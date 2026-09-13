@@ -2,2180 +2,2282 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SefwiGo — Sefwi Wiawso</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="theme-color" content="#0f7a4f">
+<title>SefwiGo | Local Marketplace</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+:root{
+--green:#0f7a4f;--dark:#075c3b;--gold:#e0ad3d;
+--bg:#f5f7f6;--card:#fff;--text:#17221d;--muted:#6f7b75;
+--line:#e5ebe8;--red:#c63b3b;--shadow:0 10px 30px rgba(18,45,33,.08);
 }
-
+*{box-sizing:border-box}
 body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f6f7f9;
-  color:#171717;
-  padding-bottom:78px;
+margin:0;background:var(--bg);color:var(--text);
+font-family:Arial,Helvetica,sans-serif;padding-bottom:80px
 }
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.container{width:min(1120px,92%);margin:auto}
 
-button,input,select,textarea{
-  font:inherit;
+/* HEADER */
+header{
+position:sticky;top:0;z-index:50;background:#fff;
+border-bottom:1px solid var(--line)
 }
-
-button{
-  cursor:pointer;
+.nav{
+height:70px;display:flex;align-items:center;
+justify-content:space-between;gap:10px
 }
-
-.header{
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:#fff;
-  border-bottom:1px solid #eee;
-  height:64px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 16px;
+.brand{
+display:flex;align-items:center;gap:9px;
+font-size:22px;font-weight:900
 }
-
 .logo{
-  font-size:24px;
-  font-weight:900;
-  color:#16833a;
+width:44px;height:44px;border-radius:14px;
+display:grid;place-items:center;color:white;
+background:linear-gradient(135deg,var(--green),var(--dark));
 }
-
-.logo span{
-  color:#f3b900;
-}
-
+.nav-actions{display:flex;gap:8px}
 .icon-btn{
-  border:0;
-  background:#f2f3f5;
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  font-size:20px;
+border:1px solid var(--line);background:white;
+border-radius:13px;width:44px;height:44px;font-size:20px
+}
+.account-btn{
+border:0;background:var(--green);color:white;
+padding:11px 15px;border-radius:13px;font-weight:800
 }
 
-.header-left,
-.header-right{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
+/* HERO */
 .hero{
-  margin:16px;
-  border-radius:24px;
-  padding:28px 22px;
-  background:linear-gradient(135deg,#147a38,#25a653);
-  color:white;
-  overflow:hidden;
+margin:20px 0;border-radius:28px;overflow:hidden;color:white;
+background:linear-gradient(135deg,#075c3b,#15915f);
+box-shadow:var(--shadow)
 }
-
+.hero-inner{
+padding:35px;
+display:grid;grid-template-columns:1.2fr .8fr;
+align-items:center;gap:20px
+}
+.eyebrow{
+font-size:12px;font-weight:900;
+letter-spacing:.12em;text-transform:uppercase
+}
 .hero h1{
-  font-size:32px;
-  line-height:1.05;
-  margin-bottom:10px;
+font-size:clamp(35px,6vw,60px);
+line-height:1;margin:12px 0
+}
+.hero p{font-size:17px;line-height:1.6;color:#e7f6ee}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.primary,.secondary,.gold{
+border:0;border-radius:14px;padding:14px 18px;font-weight:900
+}
+.primary{background:white;color:var(--dark)}
+.secondary{background:#ffffff18;color:white;border:1px solid #ffffff44}
+.gold{background:var(--gold);color:#17221d}
+.hero-art{
+min-height:220px;border-radius:25px;background:#ffffff15;
+display:grid;place-items:center;font-size:105px
 }
 
-.hero p{
-  opacity:.92;
-  margin-bottom:20px;
+/* SECTIONS */
+.section{padding:16px 0 28px}
+.section-head{
+display:flex;justify-content:space-between;
+align-items:end;margin-bottom:15px;gap:10px
+}
+.section-head h2{margin:0;font-size:24px}
+.section-head p{margin:5px 0;color:var(--muted);font-size:14px}
+.text-btn{
+border:0;background:none;color:var(--green);font-weight:900
+}
+.grid{
+display:grid;grid-template-columns:repeat(4,1fr);gap:14px
+}
+.card{
+background:white;border:1px solid var(--line);
+border-radius:21px;box-shadow:0 5px 18px #14281e08
 }
 
-.hero-btn{
-  background:#f4bd00;
-  color:#111;
-  border:0;
-  border-radius:14px;
-  padding:13px 20px;
-  font-weight:800;
+/* SERVICES */
+.service{
+padding:20px;min-height:140px;text-align:left;
+border:1px solid var(--line);border-radius:21px;
+background:white
 }
+.service-icon{font-size:35px;margin-bottom:12px}
+.service strong{display:block}
+.service span{display:block;color:var(--muted);font-size:13px;margin-top:6px}
 
-.section{
-  padding:10px 16px 22px;
-}
-
-.section-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:13px;
-}
-
-.section-title h2{
-  font-size:20px;
-}
-
-.section-title button{
-  border:0;
-  background:none;
-  color:#16833a;
-  font-weight:700;
-}
-
-.services{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:9px;
-}
-
-.service-card{
-  background:white;
-  border-radius:17px;
-  padding:14px 7px;
-  text-align:center;
-  border:1px solid #eee;
-  min-height:112px;
-}
-
-.service-icon{
-  font-size:29px;
-  margin-bottom:7px;
-}
-
-.service-card h3{
-  font-size:13px;
-  margin-bottom:4px;
-}
-
-.service-card p{
-  color:#777;
-  font-size:10px;
-  line-height:1.2;
-}
-
-.deals{
-  display:flex;
-  gap:12px;
-  overflow-x:auto;
-  padding-bottom:5px;
-}
-
+/* DEALS */
+.deals{display:grid;grid-template-columns:1.4fr 1fr;gap:14px}
 .deal{
-  min-width:245px;
-  background:white;
-  border-radius:20px;
-  padding:18px;
-  border:1px solid #eee;
+border-radius:22px;overflow:hidden;min-height:190px
+}
+.deal-main{
+height:100%;padding:28px;color:white;
+background:linear-gradient(135deg,#0b6d47,#1a9968)
+}
+.deal-main h3{font-size:30px;margin:10px 0}
+.deal-side{
+padding:22px;background:white;border:1px solid var(--line)
+}
+.chip{
+display:inline-block;padding:7px 10px;border-radius:999px;
+background:#eaf7f0;color:var(--dark);font-size:12px;font-weight:800
 }
 
-.deal .emoji{
-  font-size:35px;
-  margin-bottom:10px;
+/* BUSINESS */
+.business{padding:17px;text-align:left}
+.business-top{display:flex;gap:12px;align-items:center}
+.avatar{
+width:50px;height:50px;border-radius:15px;
+background:#eaf7f0;display:grid;place-items:center;font-size:25px
 }
+.business h3{margin:0;font-size:16px}
+.business p{color:var(--muted);font-size:13px;margin:5px 0 12px}
 
-.deal h3{
-  margin-bottom:6px;
-}
-
-.deal p{
-  color:#666;
-  font-size:13px;
-  margin-bottom:13px;
-}
-
-.small-btn,
-.primary-btn,
-.secondary-btn,
-.danger-btn{
-  border:0;
-  border-radius:12px;
-  padding:11px 15px;
-  font-weight:700;
-}
-
-.primary-btn{
-  background:#16833a;
-  color:#fff;
-  width:100%;
-}
-
-.secondary-btn{
-  background:#edf7ef;
-  color:#16833a;
-}
-
-.danger-btn{
-  background:#ffe8e8;
-  color:#c62828;
-}
-
-.business-list{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-
-.business{
-  background:white;
-  border:1px solid #eee;
-  border-radius:18px;
-  padding:15px;
-  display:flex;
-  align-items:center;
-  gap:13px;
-}
-
-.business-icon{
-  width:55px;
-  height:55px;
-  border-radius:15px;
-  background:#edf7ef;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:27px;
-}
-
-.business-info{
-  flex:1;
-}
-
-.business-info h3{
-  margin-bottom:4px;
-  font-size:16px;
-}
-
-.business-info p{
-  color:#777;
-  font-size:12px;
-}
-
-.badge{
-  display:inline-block;
-  padding:5px 8px;
-  border-radius:20px;
-  background:#edf7ef;
-  color:#16833a;
-  font-size:10px;
-  font-weight:700;
-  margin-top:5px;
-}
-
-.property-card{
-  background:white;
-  border-radius:20px;
-  overflow:hidden;
-  border:1px solid #eee;
-}
-
+/* PROPERTY */
+.property{overflow:hidden}
 .property-image{
-  height:160px;
-  background:#e9eee9;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:55px;
+height:160px;display:grid;place-items:center;
+font-size:65px;background:linear-gradient(135deg,#dcefe5,#f8f0d7)
 }
-
-.property-body{
-  padding:15px;
+.property-body{padding:16px}
+.property-body h3{margin:9px 0 5px}
+.price{font-size:21px;font-weight:900;color:var(--dark)}
+.meta{font-size:12px;color:var(--muted);margin:10px 0;line-height:1.7}
+.actions{display:flex;gap:8px}
+.small{
+flex:1;border:0;border-radius:11px;
+padding:10px;background:#edf3ef;color:var(--dark);font-weight:800
 }
+.small.green{background:var(--green);color:white}
 
-.property-body h3{
-  margin-bottom:7px;
+/* PARTNER */
+.partner{
+padding:26px;border-radius:24px;
+background:#10221a;color:white;
+display:flex;justify-content:space-between;
+align-items:center;gap:15px
 }
+.partner h2{margin:0 0 6px}
+.partner p{margin:0;color:#b9c9c1}
 
-.property-price{
-  color:#16833a;
-  font-size:18px;
-  font-weight:900;
-  margin-bottom:7px;
+/* BOTTOM */
+.bottom{
+position:fixed;bottom:0;left:0;right:0;height:76px;
+background:#fff;border-top:1px solid var(--line);
+z-index:70
 }
-
-.property-meta{
-  color:#666;
-  font-size:12px;
-  line-height:1.6;
+.bottom-inner{
+height:100%;width:min(620px,100%);margin:auto;
+display:grid;grid-template-columns:repeat(4,1fr)
 }
-
-.partner-banner{
-  margin:8px 16px 20px;
-  background:#171717;
-  color:white;
-  border-radius:22px;
-  padding:22px;
-}
-
-.partner-banner h2{
-  margin-bottom:7px;
-}
-
-.partner-banner p{
-  color:#ccc;
-  font-size:13px;
-  margin-bottom:15px;
-}
-
-.bottom-nav{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  height:68px;
-  background:white;
-  border-top:1px solid #ddd;
-  z-index:200;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-}
-
 .nav-item{
-  border:0;
-  background:white;
-  color:#777;
-  font-size:11px;
+border:0;background:white;color:#737b77;
+display:flex;flex-direction:column;
+align-items:center;justify-content:center;
+gap:4px;font-size:11px;font-weight:800
 }
+.nav-item span{font-size:22px}
+.nav-item.active{color:var(--green)}
 
-.nav-item.active{
-  color:#16833a;
-  font-weight:800;
+/* DRAWER */
+.overlay{
+display:none;position:fixed;inset:0;
+background:#0007;z-index:100
 }
-
-.nav-item div{
-  font-size:21px;
-  margin-bottom:3px;
+.overlay.open{display:block}
+.drawer{
+width:min(360px,88vw);height:100%;
+background:white;padding:22px;overflow:auto
 }
+.drawer-head{
+display:flex;justify-content:space-between;align-items:center
+}
+.menu{
+width:100%;border:0;background:white;
+padding:14px;text-align:left;border-radius:13px;
+font-weight:800
+}
+.menu:hover{background:#eaf7f0}
 
+/* MODALS */
 .modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.55);
-  z-index:500;
-  display:none;
-  align-items:flex-end;
-  justify-content:center;
+display:none;position:fixed;inset:0;
+background:#07140e99;z-index:120;
+padding:15px;overflow:auto
 }
-
-.modal.show{
-  display:flex;
+.modal.open{
+display:flex;align-items:center;justify-content:center
 }
-
-.modal-box{
-  width:100%;
-  max-width:650px;
-  max-height:92vh;
-  overflow-y:auto;
-  background:white;
-  border-radius:25px 25px 0 0;
-  padding:22px 18px 30px;
-  position:relative;
+.modal-card{
+width:min(900px,100%);background:white;
+border-radius:26px;overflow:auto;max-height:94vh
 }
-
-.close-btn{
-  position:absolute;
-  right:15px;
-  top:15px;
-  border:0;
-  background:#f1f1f1;
-  width:36px;
-  height:36px;
-  border-radius:50%;
-  font-size:22px;
+.modal-head{
+padding:18px 20px;border-bottom:1px solid var(--line);
+display:flex;justify-content:space-between;align-items:center;
+position:sticky;top:0;background:white;z-index:2
 }
-
-.modal-icon{
-  font-size:38px;
-  margin-bottom:8px;
+.close{
+border:0;background:#f0f3f1;
+width:40px;height:40px;border-radius:12px;font-size:22px
 }
+.modal-body{padding:20px}
 
-.modal-box h2{
-  margin-bottom:7px;
+/* FORMS */
+.tabs{
+display:flex;gap:8px;overflow:auto;margin-bottom:18px
 }
-
-.modal-subtitle{
-  color:#777;
-  font-size:13px;
-  margin-bottom:18px;
-}
-
-label{
-  display:block;
-  font-size:13px;
-  font-weight:700;
-  margin:13px 0 6px;
-}
-
-input,select,textarea{
-  width:100%;
-  border:1px solid #ddd;
-  border-radius:12px;
-  padding:12px;
-  outline:none;
-  background:#fff;
-}
-
-input:focus,select:focus,textarea:focus{
-  border-color:#16833a;
-}
-
-.form-heading{
-  margin-top:22px;
-  padding-top:15px;
-  border-top:1px solid #eee;
-}
-
-.dashboard-tabs{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:5px;
-  margin:15px 0;
-}
-
 .tab{
-  border:0;
-  background:#f0f1f2;
-  border-radius:10px;
-  padding:9px 4px;
-  font-size:10px;
+white-space:nowrap;border:1px solid var(--line);
+background:white;padding:10px 14px;
+border-radius:12px;font-weight:800
 }
-
-.tab.active{
-  background:#16833a;
-  color:white;
+.tab.active{background:var(--green);color:white}
+.form-grid{
+display:grid;grid-template-columns:repeat(2,1fr);gap:14px
 }
-
-.dashboard-panel{
-  display:none;
+.field{display:flex;flex-direction:column;gap:6px}
+.full{grid-column:1/-1}
+.field label{font-size:13px;font-weight:800}
+.field input,.field select,.field textarea{
+border:1px solid #dce4df;border-radius:12px;
+padding:12px;background:#fbfcfb;outline:none
 }
-
-.dashboard-panel.active{
-  display:block;
+.field textarea{min-height:110px}
+.submit{
+width:100%;border:0;background:var(--green);
+color:white;padding:14px;border-radius:13px;font-weight:900
 }
+.help{font-size:12px;color:var(--muted);line-height:1.5}
 
-.info-box{
-  background:#f5f7f5;
-  border-radius:15px;
-  padding:15px;
-  margin-bottom:12px;
+/* DASHBOARD */
+.dashboard-head{
+padding:23px;color:white;
+background:linear-gradient(135deg,#0b6844,#15915f)
 }
-
-.info-box strong{
-  display:block;
-  margin-bottom:5px;
+.dashboard-head h2{margin:0}
+.dashboard-head p{margin:6px 0;color:#d9eee5}
+.stats{
+display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:15px 0
 }
-
-.empty{
-  text-align:center;
-  padding:30px 15px;
-  color:#777;
+.stat{
+background:#f7faf8;border:1px solid var(--line);
+padding:15px;border-radius:16px
 }
-
-.list-item{
-  border:1px solid #eee;
-  border-radius:15px;
-  padding:14px;
-  margin-bottom:10px;
+.stat b{font-size:24px;display:block}
+.stat span{font-size:12px;color:var(--muted)}
+.list{
+border:1px solid var(--line);border-radius:17px;
+padding:14px;margin-bottom:10px
 }
+.list h4{margin:0 0 5px}
+.list p{margin:0;color:var(--muted);font-size:12px}
+.list-actions{display:flex;gap:7px;margin-top:10px}
+.danger{background:#fceeee!important;color:#a12c2c!important}
 
-.list-item h3{
-  font-size:15px;
-  margin-bottom:6px;
-}
-
-.list-item p{
-  font-size:12px;
-  color:#666;
-  line-height:1.6;
-}
-
-.actions{
-  display:flex;
-  gap:7px;
-  margin-top:10px;
-  flex-wrap:wrap;
-}
-
-.side-menu{
-  position:fixed;
-  inset:0;
-  z-index:600;
-  display:none;
-  background:rgba(0,0,0,.45);
-}
-
-.side-menu.show{
-  display:block;
-}
-
-.side-panel{
-  width:82%;
-  max-width:330px;
-  height:100%;
-  background:white;
-  padding:25px 18px;
-}
-
-.side-panel h2{
-  color:#16833a;
-  margin-bottom:25px;
-}
-
-.menu-link{
-  width:100%;
-  border:0;
-  background:white;
-  text-align:left;
-  padding:15px 5px;
-  border-bottom:1px solid #eee;
-  font-weight:700;
-}
-
+/* TOAST */
 .toast{
-  position:fixed;
-  left:50%;
-  bottom:90px;
-  transform:translateX(-50%);
-  background:#171717;
-  color:white;
-  padding:12px 18px;
-  border-radius:12px;
-  display:none;
-  z-index:1000;
-  font-size:13px;
-  text-align:center;
+position:fixed;bottom:90px;left:50%;
+transform:translate(-50%,20px);
+background:#10221a;color:white;
+padding:12px 16px;border-radius:13px;
+opacity:0;pointer-events:none;z-index:200;
+transition:.25s;font-size:13px
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.empty{
+padding:30px;text-align:center;
+border:1px dashed #ccd7d1;border-radius:18px;
+color:var(--muted);background:white
 }
 
-.toast.show{
-  display:block;
+@media(max-width:800px){
+.hero-inner{grid-template-columns:1fr}
+.hero-art{display:none}
+.grid{grid-template-columns:repeat(2,1fr)}
+.deals{grid-template-columns:1fr}
 }
-
-@media(max-width:400px){
-  .services{
-    gap:6px;
-  }
-
-  .service-card{
-    padding:12px 4px;
-  }
-
-  .hero h1{
-    font-size:28px;
-  }
+@media(max-width:520px){
+.hero-inner{padding:27px 20px}
+.hero h1{font-size:39px}
+.form-grid{grid-template-columns:1fr}
+.full{grid-column:auto}
+.partner{flex-direction:column;align-items:flex-start}
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<header class="header">
-  <div class="header-left">
-    <button class="icon-btn" onclick="openMenu()">☰</button>
-    <div class="logo">Sefwi<span>Go</span></div>
-  </div>
+<header>
+<div class="container nav">
 
-  <div class="header-right">
-    <button class="icon-btn" onclick="openAccount()">👤</button>
-  </div>
+<button class="icon-btn" onclick="openMenu()">☰</button>
+
+<a class="brand" href="#" onclick="goHome()">
+<div class="logo">S</div>
+<span>SefwiGo</span>
+</a>
+
+<div class="nav-actions">
+<button class="icon-btn" onclick="openCart()">🛒</button>
+<button class="account-btn" onclick="openAccount()">Account</button>
+</div>
+
+</div>
 </header>
 
+<main id="home">
 
-<!-- HERO -->
+<div class="container">
+
 <section class="hero">
-  <h1>How would you like to order today?</h1>
-  <p>Food, groceries, parcels, services and property — all around Sefwi Wiawso.</p>
-  <button class="hero-btn" onclick="scrollToServices()">ORDER NOW</button>
+<div class="hero-inner">
+
+<div>
+<div class="eyebrow">Sefwi Wiawso • Local Marketplace</div>
+
+<h1>How would you like to order today?</h1>
+
+<p>
+Food, groceries, parcels, services and property —
+all in one simple SefwiGo experience.
+</p>
+
+<div class="hero-actions">
+<button class="primary" onclick="scrollToId('services')">
+ORDER NOW
+</button>
+
+<button class="secondary" onclick="openPartner()">
+Become a Partner
+</button>
+</div>
+</div>
+
+<div class="hero-art">🛵</div>
+
+</div>
 </section>
 
 
-<!-- SERVICES -->
-<section class="section" id="servicesSection">
-  <div class="section-title">
-    <h2>What do you need?</h2>
-  </div>
+<section class="section" id="services">
 
-  <div class="services">
+<div class="section-head">
+<div>
+<h2>What do you need?</h2>
+<p>Choose a service to get started.</p>
+</div>
+</div>
 
-    <div class="service-card" onclick="showFood()">
-      <div class="service-icon">🍔</div>
-      <h3>Food</h3>
-      <p>Meals & restaurants</p>
-    </div>
+<div class="grid">
 
-    <div class="service-card" onclick="showGroceries()">
-      <div class="service-icon">🛒</div>
-      <h3>Groceries</h3>
-      <p>Shop essentials</p>
-    </div>
+<button class="service" onclick="filterService('Food')">
+<div class="service-icon">🍔</div>
+<strong>Food</strong>
+<span>Meals & local favourites</span>
+</button>
 
-    <div class="service-card" onclick="openParcel()">
-      <div class="service-icon">📦</div>
-      <h3>Parcels</h3>
-      <p>Send & receive</p>
-    </div>
+<button class="service" onclick="filterService('Groceries')">
+<div class="service-icon">🛒</div>
+<strong>Groceries</strong>
+<span>Everyday shopping</span>
+</button>
 
-    <div class="service-card" onclick="showProperties()">
-      <div class="service-icon">🏠</div>
-      <h3>Property</h3>
-      <p>Rent & buy</p>
-    </div>
+<button class="service" onclick="openParcel()">
+<div class="service-icon">📦</div>
+<strong>Parcels</strong>
+<span>Send it around town</span>
+</button>
 
-  </div>
+<button class="service" onclick="scrollToId('property')">
+<div class="service-icon">🏠</div>
+<strong>Rent & Property</strong>
+<span>Homes, rooms, land & more</span>
+</button>
+
+</div>
 </section>
 
 
-<!-- DEALS -->
 <section class="section">
-  <div class="section-title">
-    <h2>Featured on SefwiGo</h2>
-    <button onclick="showToast('More deals coming soon')">See all</button>
-  </div>
 
-  <div class="deals">
+<div class="section-head">
+<div>
+<h2>🔥 Featured on SefwiGo</h2>
+<p>Local offers and everyday essentials.</p>
+</div>
+</div>
 
-    <div class="deal">
-      <div class="emoji">🍛</div>
-      <h3>Local Meals</h3>
-      <p>Order your favourite meals from local businesses.</p>
-      <button class="secondary-btn" onclick="showFood()">Explore</button>
-    </div>
+<div class="deals">
 
-    <div class="deal">
-      <div class="emoji">🛒</div>
-      <h3>Fresh Groceries</h3>
-      <p>Get everyday groceries from local shops.</p>
-      <button class="secondary-btn" onclick="showGroceries()">Shop</button>
-    </div>
+<div class="deal">
+<div class="deal-main">
+<div class="eyebrow">Today's spotlight</div>
+<h3>Local food, delivered.</h3>
+<p>
+Discover meals from businesses around Sefwi Wiawso
+and order directly through SefwiGo.
+</p>
+<button class="gold" onclick="filterService('Food')">
+Explore Food
+</button>
+</div>
+</div>
 
-    <div class="deal">
-      <div class="emoji">🏠</div>
-      <h3>Rent & Property</h3>
-      <p>Find properties available around Sefwi Wiawso.</p>
-      <button class="secondary-btn" onclick="showProperties()">View</button>
-    </div>
+<div class="deal deal-side">
+<span class="chip">📦 Fast local delivery</span>
+<h3>Send parcels around town</h3>
+<p>Simple pickup and delivery for your local needs.</p>
+</div>
 
-  </div>
+</div>
 </section>
 
 
-<!-- BUSINESSES -->
-<section class="section" id="businessSection">
-  <div class="section-title">
-    <h2>Popular Businesses</h2>
-  </div>
+<section class="section" id="businesses">
 
-  <div class="business-list" id="businessList">
+<div class="section-head">
+<div>
+<h2>⭐ Popular businesses</h2>
+<p>Businesses registered on SefwiGo.</p>
+</div>
+<button class="text-btn" onclick="loadBusinesses()">
+Refresh
+</button>
+</div>
 
-    <div class="business" onclick="openBusiness('Wiawso Chop Bar','Food','🍛')">
-      <div class="business-icon">🍛</div>
-      <div class="business-info">
-        <h3>Wiawso Chop Bar</h3>
-        <p>Local meals • Sefwi Wiawso</p>
-        <span class="badge">Open</span>
-      </div>
-      <span>›</span>
-    </div>
+<div class="grid" id="businessGrid">
 
-    <div class="business" onclick="openBusiness('Auntie Ama Kitchen','Food','🍲')">
-      <div class="business-icon">🍲</div>
-      <div class="business-info">
-        <h3>Auntie Ama Kitchen</h3>
-        <p>Home-style meals</p>
-        <span class="badge">Open</span>
-      </div>
-      <span>›</span>
-    </div>
+<div class="business card">
+<div class="business-top">
+<div class="avatar">🍲</div>
+<div>
+<h3>Wiawso Chop Bar</h3>
+<p>Food • Local meals</p>
+</div>
+</div>
+<span class="chip">Open</span>
+</div>
 
-    <div class="business" onclick="openBusiness('Sefwi Fresh Mart','Groceries','🛒')">
-      <div class="business-icon">🛒</div>
-      <div class="business-info">
-        <h3>Sefwi Fresh Mart</h3>
-        <p>Groceries • Essentials</p>
-        <span class="badge">Open</span>
-      </div>
-      <span>›</span>
-    </div>
-
-    <div class="business" onclick="openBusiness('Wiawso Drinks Spot','Drinks','🥤')">
-      <div class="business-icon">🥤</div>
-      <div class="business-info">
-        <h3>Wiawso Drinks Spot</h3>
-        <p>Drinks & refreshments</p>
-        <span class="badge">Open</span>
-      </div>
-      <span>›</span>
-    </div>
-
-  </div>
+</div>
 </section>
 
 
-<!-- PROPERTY -->
-<section class="section" id="propertySection">
-  <div class="section-title">
-    <h2>🏠 Rent & Property</h2>
-    <button onclick="showProperties()">See all</button>
-  </div>
+<section class="section" id="property">
 
-  <div id="propertyPreview"></div>
+<div class="section-head">
+<div>
+<h2>🏠 Rent & Property</h2>
+<p>Properties published by SefwiGo partners.</p>
+</div>
+
+<button class="text-btn" onclick="openPartner('property')">
+List yours
+</button>
+</div>
+
+<div class="grid" id="propertyGrid"></div>
+
 </section>
 
 
-<!-- PARTNER -->
-<section class="partner-banner">
-  <h2>🏪 Own a Business?</h2>
-  <p>
-    Join SefwiGo and reach customers around Sefwi Wiawso.
-    You can also register properties through your partner dashboard.
-  </p>
+<section class="section">
 
-  <button class="hero-btn" onclick="openVendorRegistration()">
-    Become a SefwiGo Partner
-  </button>
+<div class="partner">
+
+<div>
+<h2>Own a business or property?</h2>
+<p>Join SefwiGo and reach customers around Sefwi Wiawso.</p>
+</div>
+
+<button class="gold" onclick="openPartner()">
+Become a SefwiGo Partner
+</button>
+
+</div>
+
 </section>
+
+</div>
+</main>
 
 
 <!-- BOTTOM NAV -->
-<nav class="bottom-nav">
 
-  <button class="nav-item active" onclick="goHome()">
-    <div>🏠</div>
-    Home
-  </button>
+<nav class="bottom">
+<div class="bottom-inner">
 
-  <button class="nav-item" onclick="showDeals()">
-    <div>🔥</div>
-    Deals
-  </button>
+<button class="nav-item active" onclick="goHome()">
+<span>⌂</span>Home
+</button>
 
-  <button class="nav-item" onclick="scrollToServices()">
-    <div>☰</div>
-    Menu
-  </button>
+<button class="nav-item" onclick="scrollToId('businesses')">
+<span>🔥</span>Deals
+</button>
 
-  <button class="nav-item" onclick="openAccount()">
-    <div>👤</div>
-    Account
-  </button>
+<button class="nav-item" onclick="openMenu()">
+<span>☰</span>Menu
+</button>
 
+<button class="nav-item" onclick="openAccount()">
+<span>◉</span>Account
+</button>
+
+</div>
 </nav>
 
 
-<!-- SIDE MENU -->
-<div class="side-menu" id="sideMenu" onclick="closeMenu(event)">
-  <div class="side-panel" onclick="event.stopPropagation()">
+<!-- MENU -->
 
-    <h2>SefwiGo</h2>
+<div class="overlay" id="menuOverlay" onclick="closeMenu(event)">
 
-    <button class="menu-link" onclick="goHome()">
-      🏠 Home
-    </button>
+<aside class="drawer" onclick="event.stopPropagation()">
 
-    <button class="menu-link" onclick="showFood();closeMenu()">
-      🍔 Food
-    </button>
+<div class="drawer-head">
+<h2>SefwiGo</h2>
+<button class="close" onclick="closeMenu()">×</button>
+</div>
 
-    <button class="menu-link" onclick="showGroceries();closeMenu()">
-      🛒 Groceries
-    </button>
+<button class="menu" onclick="goHome()">🏠 Home</button>
 
-    <button class="menu-link" onclick="openParcel();closeMenu()">
-      📦 Parcels
-    </button>
+<button class="menu" onclick="scrollToId('services');closeMenu()">
+🛍️ Services
+</button>
 
-    <button class="menu-link" onclick="showProperties();closeMenu()">
-      🏠 Rent & Property
-    </button>
+<button class="menu" onclick="scrollToId('businesses');closeMenu()">
+⭐ Businesses
+</button>
 
-    <button class="menu-link" onclick="openVendorRegistration();closeMenu()">
-      🏪 Become a Partner
-    </button>
+<button class="menu" onclick="scrollToId('property');closeMenu()">
+🏠 Rent & Property
+</button>
 
-    <button class="menu-link" onclick="openAccount();closeMenu()">
-      👤 My Account
-    </button>
+<hr>
 
-  </div>
+<button class="menu" onclick="openPartner();closeMenu()">
+🏪 Become a SefwiGo Partner
+</button>
+
+<button class="menu" onclick="openAccount();closeMenu()">
+👤 My Account
+</button>
+
+<button class="menu" onclick="openCart();closeMenu()">
+🛒 My Cart
+</button>
+
+</aside>
 </div>
 
 
-<!-- ACCOUNT MODAL -->
-<div class="modal" id="accountModal">
-  <div class="modal-box">
+<!-- BUSINESS MODAL -->
 
-    <button class="close-btn" onclick="closeModal('accountModal')">×</button>
-
-    <div class="modal-icon">👤</div>
-    <h2>My Account</h2>
-    <p class="modal-subtitle">
-      Sign in or use the free test account.
-    </p>
-
-    <div id="accountContent">
-
-      <label>Your Name</label>
-      <input id="accountName" placeholder="Enter your name">
-
-      <label>Ghana Phone Number</label>
-      <input id="accountPhone" placeholder="024 000 0000">
-
-      <button class="primary-btn" style="margin-top:15px"
-              onclick="startTestAccount()">
-        🧪 Create Free Test Account
-      </button>
-
-      <p style="font-size:11px;color:#777;margin-top:10px;text-align:center">
-        Demo verification code: <strong>123456</strong>
-      </p>
-
-    </div>
-
-  </div>
-</div>
-
-
-<!-- TEST OTP MODAL -->
-<div class="modal" id="otpModal">
-  <div class="modal-box">
-
-    <button class="close-btn" onclick="closeModal('otpModal')">×</button>
-
-    <div class="modal-icon">🔐</div>
-
-    <h2>Verify Account</h2>
-
-    <p class="modal-subtitle">
-      For free testing, enter the demo code below.
-    </p>
-
-    <label>Verification Code</label>
-    <input id="testOtp" maxlength="6" placeholder="123456">
-
-    <button class="primary-btn" style="margin-top:15px"
-            onclick="verifyTestAccount()">
-      Verify Account
-    </button>
-
-  </div>
-</div>
-
-
-<!-- VENDOR REGISTRATION -->
-<div class="modal" id="vendorModal">
-  <div class="modal-box">
-
-    <button class="close-btn" onclick="closeModal('vendorModal')">×</button>
-
-    <div class="modal-icon">🏪</div>
-
-    <h2>Become a SefwiGo Partner</h2>
-
-    <p class="modal-subtitle">
-      Register your business with SefwiGo.
-    </p>
-
-    <form onsubmit="registerVendor(event)">
-
-      <label>Business Name</label>
-      <input id="vendorBusinessName"
-             placeholder="e.g. Auntie Ama Kitchen"
-             required>
-
-      <label>Owner Name</label>
-      <input id="vendorOwnerName"
-             placeholder="Enter owner's name"
-             required>
-
-      <label>Phone / WhatsApp</label>
-      <input id="vendorPhone"
-             placeholder="024 000 0000"
-             required>
-
-      <label>Business Category</label>
-      <select id="vendorCategory" required>
-        <option value="">Select category</option>
-        <option>Food</option>
-        <option>Groceries</option>
-        <option>Drinks</option>
-        <option>Services</option>
-        <option>Parcel</option>
-        <option>Property</option>
-        <option>Other</option>
-      </select>
-
-      <label>Business Location</label>
-      <input id="vendorLocation"
-             placeholder="e.g. Sefwi Wiawso"
-             required>
-
-      <label>Business Description</label>
-      <textarea id="vendorDescription"
-                rows="4"
-                placeholder="Tell customers about your business"
-                required></textarea>
-
-      <label>Business Photo / Logo</label>
-      <input id="vendorPhoto" type="file" accept="image/*">
-
-      <button class="primary-btn" type="submit" style="margin-top:15px">
-        🏪 Register My Business
-      </button>
-
-    </form>
-
-  </div>
-</div>
-
-
-<!-- BUSINESS DASHBOARD -->
-<div class="modal" id="dashboardModal">
-  <div class="modal-box">
-
-    <button class="close-btn" onclick="closeModal('dashboardModal')">×</button>
-
-    <div class="modal-icon">📊</div>
-
-    <h2>Business Dashboard</h2>
-
-    <p class="modal-subtitle">
-      Manage your SefwiGo business and properties.
-    </p>
-
-    <div class="dashboard-tabs">
-
-      <button class="tab active"
-              onclick="dashboardTab('overview',this)">
-        Overview
-      </button>
-
-      <button class="tab"
-              onclick="dashboardTab('business',this)">
-        Business
-      </button>
-
-      <button class="tab"
-              onclick="dashboardTab('property',this)">
-        Property
-      </button>
-
-      <button class="tab"
-              onclick="dashboardTab('myproperties',this)">
-        My Properties
-      </button>
-
-    </div>
-
-
-    <!-- OVERVIEW -->
-    <div class="dashboard-panel active" id="dash-overview">
-
-      <div class="info-box">
-        <strong>🏪 My Business</strong>
-        <span id="dashboardBusinessName">
-          No business registered yet.
-        </span>
-      </div>
-
-      <div class="info-box">
-        <strong>🏠 My Properties</strong>
-        <span id="propertyCount">0 properties</span>
-      </div>
-
-      <div class="info-box">
-        <strong>📦 Orders</strong>
-        <span>Order management will be connected next.</span>
-      </div>
-
-    </div>
-
-
-    <!-- BUSINESS -->
-    <div class="dashboard-panel" id="dash-business">
-
-      <div id="myBusinessBox" class="empty">
-        No business registered yet.
-      </div>
-
-      <button class="secondary-btn"
-              onclick="openVendorRegistration()">
-        + Register Business
-      </button>
-
-    </div>
-
-
-    <!-- PROPERTY REGISTRATION -->
-    <div class="dashboard-panel" id="dash-property">
-
-      <h3>🏠 Register Property</h3>
-
-      <form onsubmit="registerProperty(event)">
-
-        <label>Property Purpose</label>
-        <select id="propertyPurpose" required>
-          <option value="">Choose</option>
-          <option value="For Rent">For Rent</option>
-          <option value="For Sale">For Sale</option>
-        </select>
-
-        <label>Property Type</label>
-        <select id="propertyType" required>
-          <option value="">Choose</option>
-          <option>House</option>
-          <option>Apartment</option>
-          <option>Room</option>
-          <option>Land</option>
-          <option>Commercial</option>
-        </select>
-
-        <label>Property Title</label>
-        <input id="propertyTitle"
-               placeholder="e.g. 3 Bedroom House"
-               required>
-
-        <label>Price in GH₵</label>
-        <input id="propertyPrice"
-               type="number"
-               min="0"
-               placeholder="e.g. 2500"
-               required>
-
-        <label>Location</label>
-        <input id="propertyLocation"
-               placeholder="e.g. Sefwi Wiawso"
-               required>
-
-        <label>Bedrooms</label>
-        <input id="propertyBedrooms"
-               type="number"
-               min="0"
-               placeholder="0">
-
-        <label>Bathrooms</label>
-        <input id="propertyBathrooms"
-               type="number"
-               min="0"
-               placeholder="0">
-
-        <label>Owner / Agent Name</label>
-        <input id="propertyOwner"
-               placeholder="Enter name"
-               required>
-
-        <label>Phone / WhatsApp</label>
-        <input id="propertyPhone"
-               placeholder="024 000 0000"
-               required>
-
-        <label>Property Photos</label>
-        <input id="propertyPhotos"
-               type="file"
-               accept="image/*"
-               multiple>
-
-        <label>Description</label>
-        <textarea id="propertyDescription"
-                  rows="4"
-                  placeholder="Describe the property"
-                  required></textarea>
-
-        <label>Availability</label>
-        <select id="propertyAvailability">
-          <option value="Available">Available</option>
-          <option value="Unavailable">Unavailable</option>
-        </select>
-
-        <button class="primary-btn"
-                type="submit"
-                style="margin-top:15px">
-          🏠 Publish Property
-        </button>
-
-      </form>
-
-    </div>
-
-
-    <!-- MY PROPERTIES -->
-    <div class="dashboard-panel" id="dash-myproperties">
-
-      <h3>📋 My Properties</h3>
-
-      <div id="myPropertiesList" style="margin-top:12px"></div>
-
-    </div>
-
-  </div>
-</div>
-
-
-<!-- PARCEL MODAL -->
-<div class="modal" id="parcelModal">
-
-  <div class="modal-box">
-
-    <button class="close-btn"
-            onclick="closeModal('parcelModal')">
-      ×
-    </button>
-
-    <div class="modal-icon">📦</div>
-
-    <h2>Parcel Delivery</h2>
-
-    <p class="modal-subtitle">
-      Send and receive parcels around Sefwi Wiawso.
-    </p>
-
-    <form onsubmit="requestParcel(event)">
-
-      <label>What are you sending?</label>
-      <input id="parcelDescription"
-             placeholder="e.g. Clothes, documents"
-             required>
-
-      <h3 class="form-heading">Sender Details</h3>
-
-      <label>Sender Name</label>
-      <input id="senderName"
-             placeholder="Sender's name"
-             required>
-
-      <label>Sender Phone</label>
-      <input id="senderPhone"
-             placeholder="024 000 0000"
-             required>
-
-      <label>Pickup Location</label>
-      <input id="pickupLocation"
-             placeholder="Pickup location"
-             required>
-
-      <h3 class="form-heading">Receiver Details</h3>
-
-      <label>Receiver Name</label>
-      <input id="receiverName"
-             placeholder="Receiver's name"
-             required>
-
-      <label>Receiver Phone</label>
-      <input id="receiverPhone"
-             placeholder="024 000 0000"
-             required>
-
-      <label>Delivery Location</label>
-      <input id="deliveryLocation"
-             placeholder="Delivery location"
-             required>
-
-      <label>Special Instructions</label>
-      <textarea id="parcelInstructions"
-                rows="3"
-                placeholder="Anything the rider should know?"></textarea>
-
-      <button class="primary-btn"
-              type="submit"
-              style="margin-top:15px">
-        📦 Request Parcel Delivery
-      </button>
-
-    </form>
-
-  </div>
-
-</div>
-
-
-<!-- BUSINESS DETAILS -->
 <div class="modal" id="businessModal">
 
-  <div class="modal-box">
+<div class="modal-card">
 
-    <button class="close-btn"
-            onclick="closeModal('businessModal')">
-      ×
-    </button>
+<div class="modal-head">
+<strong id="businessTitle">Business</strong>
+<button class="close" onclick="closeModal('businessModal')">×</button>
+</div>
 
-    <div class="modal-icon" id="businessIcon">🏪</div>
+<div class="modal-body" id="businessBody"></div>
 
-    <h2 id="businessTitle">Business</h2>
-
-    <p class="modal-subtitle" id="businessCategory">
-      Local business
-    </p>
-
-    <div class="info-box">
-      <strong>📍 Location</strong>
-      Sefwi Wiawso
-    </div>
-
-    <div class="info-box">
-      <strong>🛍️ Products</strong>
-      Products from this business will appear here.
-    </div>
-
-    <button class="primary-btn"
-            onclick="addDemoItem()">
-      🛒 Add Demo Item to Cart
-    </button>
-
-  </div>
-
+</div>
 </div>
 
 
-<!-- PROPERTY DETAILS -->
-<div class="modal" id="propertyDetailsModal">
+<!-- ACCOUNT -->
 
-  <div class="modal-box">
+<div class="modal" id="accountModal">
 
-    <button class="close-btn"
-            onclick="closeModal('propertyDetailsModal')">
-      ×
-    </button>
+<div class="modal-card">
 
-    <div class="modal-icon">🏠</div>
+<div class="modal-head">
+<strong>My SefwiGo Account</strong>
+<button class="close" onclick="closeModal('accountModal')">×</button>
+</div>
 
-    <h2 id="detailPropertyTitle"></h2>
+<div class="modal-body" id="accountBody"></div>
 
-    <p class="property-price"
-       id="detailPropertyPrice"></p>
+</div>
+</div>
 
-    <div class="info-box">
-      <strong>📍 Location</strong>
-      <span id="detailPropertyLocation"></span>
-    </div>
 
-    <div class="info-box">
-      <strong>🏠 Details</strong>
-      <span id="detailPropertyMeta"></span>
-    </div>
+<!-- PARTNER DASHBOARD -->
 
-    <div class="info-box">
-      <strong>📝 Description</strong>
-      <span id="detailPropertyDescription"></span>
-    </div>
+<div class="modal" id="partnerModal">
 
-    <div class="info-box">
-      <strong>👤 Owner / Agent</strong>
-      <span id="detailPropertyOwner"></span>
-    </div>
+<div class="modal-card">
 
-    <button class="primary-btn"
-            id="propertyWhatsAppBtn">
-      💬 Contact Owner on WhatsApp
-    </button>
+<div class="dashboard-head">
 
-  </div>
+<div style="display:flex;justify-content:space-between;gap:10px">
 
+<div>
+<h2>Business Dashboard</h2>
+<p>Manage your SefwiGo business and properties.</p>
+</div>
+
+<button class="close" onclick="closeModal('partnerModal')">×</button>
+
+</div>
+
+</div>
+
+<div class="modal-body">
+
+<div class="tabs">
+
+<button class="tab active" id="tabOverview"
+onclick="dashboardTab('overview')">
+Overview
+</button>
+
+<button class="tab" id="tabBusiness"
+onclick="dashboardTab('business')">
+Business
+</button>
+
+<button class="tab" id="tabProperty"
+onclick="dashboardTab('property')">
+Property
+</button>
+
+<button class="tab" id="tabMyProperties"
+onclick="dashboardTab('myproperties')">
+My Properties
+</button>
+
+</div>
+
+<div id="dashboardContent"></div>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- PARCEL -->
+
+<div class="modal" id="parcelModal">
+
+<div class="modal-card">
+
+<div class="modal-head">
+<strong>📦 Parcel Delivery</strong>
+<button class="close" onclick="closeModal('parcelModal')">×</button>
+</div>
+
+<div class="modal-body">
+
+<form onsubmit="sendParcel(event)">
+
+<div class="form-grid">
+
+<div class="field">
+<label>Sender name</label>
+<input id="parcelSender" required>
+</div>
+
+<div class="field">
+<label>Sender phone</label>
+<input id="parcelPhone" required>
+</div>
+
+<div class="field">
+<label>Pickup location</label>
+<input id="parcelPickup" required>
+</div>
+
+<div class="field">
+<label>Receiver name</label>
+<input id="parcelReceiver" required>
+</div>
+
+<div class="field">
+<label>Receiver phone</label>
+<input id="parcelReceiverPhone" required>
+</div>
+
+<div class="field">
+<label>Delivery location</label>
+<input id="parcelDelivery" required>
+</div>
+
+<div class="field full">
+<label>Parcel description</label>
+<textarea id="parcelDescription" required></textarea>
+</div>
+
+</div>
+
+<button class="submit" style="margin-top:15px">
+Send Delivery Request on WhatsApp
+</button>
+
+</form>
+
+</div>
+</div>
+</div>
+
+
+<!-- CART -->
+
+<div class="modal" id="cartModal">
+
+<div class="modal-card">
+
+<div class="modal-head">
+<strong>🛒 Your Cart</strong>
+<button class="close" onclick="closeModal('cartModal')">×</button>
+</div>
+
+<div class="modal-body" id="cartBody"></div>
+
+</div>
 </div>
 
 
 <div class="toast" id="toast"></div>
 
 
-<script>
+<script type="module">
 
-/* =========================
-   BASIC NAVIGATION
-========================= */
+/* =====================================================
+   FIREBASE
+===================================================== */
 
-function scrollToServices(){
-  document.getElementById("servicesSection")
-    .scrollIntoView({behavior:"smooth"});
+import {
+initializeApp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getAuth,
+signInAnonymously,
+onAuthStateChanged,
+signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+getFirestore,
+collection,
+addDoc,
+getDocs,
+doc,
+updateDoc,
+deleteDoc,
+serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+const firebaseConfig = {
+apiKey:"AIzaSyDjHGybObPLLuqTNhNGE5SBRfBL5T29qWA",
+authDomain:"sefwi-go.firebaseapp.com",
+projectId:"sefwi-go",
+storageBucket:"sefwi-go.firebasestorage.app",
+messagingSenderId:"210398787110",
+appId:"1:210398787110:web:f7f76a538a2712a2bb58e7"
+};
+
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+
+let firebaseUser=null;
+
+
+/* Anonymous login */
+
+onAuthStateChanged(auth,user=>{
+firebaseUser=user;
+
+if(user){
+console.log("SefwiGo Firebase user:",user.uid);
+loadProperties();
+loadBusinesses();
 }
 
-function goHome(){
-  closeMenu();
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+renderAccount();
+});
+
+
+async function startFirebase(){
+
+try{
+
+if(!auth.currentUser){
+
+await signInAnonymously(auth);
+
 }
 
-function showDeals(){
-  window.scrollTo({
-    top:document.querySelector(".deals").offsetTop - 90,
-    behavior:"smooth"
-  });
+}catch(error){
+
+console.error("Firebase login error:",error);
+
+showToast(
+"Firebase login failed. Check Anonymous Authentication."
+);
+
 }
 
-function showFood(){
-  window.scrollTo({
-    top:document.getElementById("businessSection").offsetTop - 80,
-    behavior:"smooth"
-  });
-
-  showToast("Showing food businesses");
 }
 
-function showGroceries(){
-  window.scrollTo({
-    top:document.getElementById("businessSection").offsetTop - 80,
-    behavior:"smooth"
-  });
-
-  showToast("Showing grocery businesses");
-}
-
-function showProperties(){
-  window.scrollTo({
-    top:document.getElementById("propertySection").offsetTop - 80,
-    behavior:"smooth"
-  });
-}
+startFirebase();
 
 
-/* =========================
-   MODALS
-========================= */
+/* =====================================================
+   HELPERS
+===================================================== */
 
-function closeModal(id){
-  document.getElementById(id).classList.remove("show");
-}
+const $=id=>document.getElementById(id);
 
+function escapeHtml(value){
 
-/* =========================
-   SIDE MENU
-========================= */
+return String(value ?? "")
+.replace(/[&<>"']/g,c=>({
 
-function openMenu(){
-  document.getElementById("sideMenu")
-    .classList.add("show");
-}
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
 
-function closeMenu(event){
-  if(event && event.target !== document.getElementById("sideMenu")){
-    return;
-  }
+}[c]));
 
-  document.getElementById("sideMenu")
-    .classList.remove("show");
-}
-
-
-/* =========================
-   ACCOUNT / TEST ACCOUNT
-========================= */
-
-function openAccount(){
-
-  const account =
-    JSON.parse(localStorage.getItem("sefwiTestAccount"));
-
-  if(account){
-
-    document.getElementById("accountContent").innerHTML = `
-
-      <div class="info-box">
-        <strong>✅ Signed In</strong>
-
-        Name: ${escapeHTML(account.name)}<br>
-        Phone: ${escapeHTML(account.phone)}
-      </div>
-
-      <button class="secondary-btn"
-              onclick="openDashboard()"
-              style="width:100%;margin-bottom:10px">
-        📊 Business Dashboard
-      </button>
-
-      <button class="danger-btn"
-              onclick="signOut()"
-              style="width:100%">
-        Sign Out
-      </button>
-    `;
-
-  }else{
-
-    document.getElementById("accountContent").innerHTML = `
-
-      <label>Your Name</label>
-
-      <input id="accountName"
-             placeholder="Enter your name">
-
-      <label>Ghana Phone Number</label>
-
-      <input id="accountPhone"
-             placeholder="024 000 0000">
-
-      <button class="primary-btn"
-              style="margin-top:15px"
-              onclick="startTestAccount()">
-        🧪 Create Free Test Account
-      </button>
-
-      <p style="font-size:11px;color:#777;margin-top:10px;text-align:center">
-        Demo verification code:
-        <strong>123456</strong>
-      </p>
-    `;
-  }
-
-  document.getElementById("accountModal")
-    .classList.add("show");
 }
 
 
-function startTestAccount(){
+window.showToast=function(message){
 
-  const name =
-    document.getElementById("accountName").value.trim();
+const toast=$("toast");
 
-  const phone =
-    document.getElementById("accountPhone").value.trim();
+toast.textContent=message;
+toast.classList.add("show");
 
-  if(!name || !phone){
-    alert("Please enter your name and phone number.");
-    return;
-  }
+setTimeout(()=>{
+toast.classList.remove("show");
+},2800);
 
-  localStorage.setItem(
-    "pendingTestAccount",
-    JSON.stringify({
-      name:name,
-      phone:phone
-    })
-  );
+};
 
-  closeModal("accountModal");
 
-  document.getElementById("otpModal")
-    .classList.add("show");
+window.scrollToId=function(id){
+
+$(id)?.scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+
+closeMenu();
+
+};
+
+
+window.goHome=function(){
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+closeMenu();
+
+};
+
+
+window.openMenu=function(){
+
+$("menuOverlay").classList.add("open");
+
+};
+
+
+window.closeMenu=function(event){
+
+if(!event || event.target===$("menuOverlay")){
+$("menuOverlay").classList.remove("open");
+}
+
+};
+
+
+window.closeModal=function(id){
+
+$(id).classList.remove("open");
+
+};
+
+
+/* =====================================================
+   BUSINESS
+===================================================== */
+
+let businesses=[];
+
+
+async function loadBusinesses(){
+
+try{
+
+const snap=await getDocs(collection(db,"businesses"));
+
+businesses=snap.docs.map(d=>({
+id:d.id,
+...d.data()
+}));
+
+renderBusinesses();
+
+}catch(error){
+
+console.error("Business load error:",error);
+
+showToast("Could not load businesses from Firestore.");
+
+}
+
 }
 
 
-function verifyTestAccount(){
+function renderBusinesses(){
 
-  const code =
-    document.getElementById("testOtp").value.trim();
+const grid=$("businessGrid");
 
-  if(code !== "123456"){
-    alert("Incorrect test code. Use 123456.");
-    return;
-  }
+if(!businesses.length){
 
-  const account =
-    JSON.parse(localStorage.getItem("pendingTestAccount"));
+grid.innerHTML=`
 
-  if(!account){
-    alert("Please start the test account again.");
-    return;
-  }
+<div class="empty" style="grid-column:1/-1">
 
-  localStorage.setItem(
-    "sefwiTestAccount",
-    JSON.stringify(account)
-  );
+<div style="font-size:40px">🏪</div>
 
-  localStorage.removeItem("pendingTestAccount");
+<strong>No businesses registered yet.</strong>
 
-  closeModal("otpModal");
+<p>Become the first SefwiGo partner.</p>
 
-  showToast("✅ Test account created successfully");
+<button class="submit"
+style="max-width:280px"
+onclick="openPartner('business')">
 
-  setTimeout(openAccount,500);
+Register Business
+
+</button>
+
+</div>
+
+`;
+
+return;
+
 }
 
 
-function signOut(){
+grid.innerHTML=businesses.map(b=>`
 
-  localStorage.removeItem("sefwiTestAccount");
+<div class="business card"
+onclick="showBusiness('${b.id}')">
 
-  showToast("You have signed out.");
+<div class="business-top">
 
-  setTimeout(openAccount,500);
+<div class="avatar">🏪</div>
+
+<div>
+
+<h3>${escapeHtml(b.name)}</h3>
+
+<p>
+${escapeHtml(b.category||"Business")}
+</p>
+
+</div>
+
+</div>
+
+<span class="chip">
+SefwiGo Partner
+</span>
+
+</div>
+
+`).join("");
+
 }
 
 
-/* =========================
-   VENDOR REGISTRATION
-========================= */
+window.showBusiness=function(id){
 
-function openVendorRegistration(){
+const b=businesses.find(x=>x.id===id);
 
-  document.getElementById("vendorModal")
-    .classList.add("show");
+if(!b)return;
+
+$("businessTitle").textContent=b.name;
+
+$("businessBody").innerHTML=`
+
+<div style="text-align:center">
+
+<div style="font-size:65px">🏪</div>
+
+<span class="chip">
+${escapeHtml(b.category||"Business")}
+</span>
+
+<h2>${escapeHtml(b.name)}</h2>
+
+<p>
+<strong>Owner:</strong>
+${escapeHtml(b.owner||"—")}
+</p>
+
+<p>
+<strong>Location:</strong>
+${escapeHtml(b.location||"—")}
+</p>
+
+<p>
+<strong>Phone:</strong>
+${escapeHtml(b.phone||"—")}
+</p>
+
+<p>
+${escapeHtml(b.description||"")}
+</p>
+
+<button class="submit"
+onclick="contactBusiness('${b.phone||""}')">
+
+Contact Business
+
+</button>
+
+</div>
+
+`;
+
+$("businessModal").classList.add("open");
+
+};
+
+
+window.contactBusiness=function(phone){
+
+const number=String(phone||"").replace(/\D/g,"");
+
+if(!number){
+
+showToast("No phone number available.");
+
+return;
+
+}
+
+window.open(
+"https://wa.me/"+number,
+"_blank"
+);
+
+};
+
+
+/* =====================================================
+   PARTNER DASHBOARD
+===================================================== */
+
+window.openPartner=function(tab){
+
+$("partnerModal").classList.add("open");
+
+dashboardTab(
+tab==="property" ? "property" :
+tab==="business" ? "business" :
+"overview"
+);
+
+};
+
+
+window.dashboardTab=function(tab){
+
+$("tabOverview").classList.toggle(
+"active",tab==="overview"
+);
+
+$("tabBusiness").classList.toggle(
+"active",tab==="business"
+);
+
+$("tabProperty").classList.toggle(
+"active",tab==="property"
+);
+
+$("tabMyProperties").classList.toggle(
+"active",tab==="myproperties"
+);
+
+
+if(tab==="overview")renderOverview();
+
+if(tab==="business")renderBusinessForm();
+
+if(tab==="property")renderPropertyForm();
+
+if(tab==="myproperties")renderMyProperties();
+
+};
+
+
+/* OVERVIEW */
+
+function renderOverview(){
+
+const props=JSON.parse(
+localStorage.getItem("sefwiProperties")||"[]"
+);
+
+$("dashboardContent").innerHTML=`
+
+<div class="stats">
+
+<div class="stat">
+<b>${props.length}</b>
+<span>My Properties</span>
+</div>
+
+<div class="stat">
+<b>${props.filter(p=>p.available!==false).length}</b>
+<span>Available</span>
+</div>
+
+<div class="stat">
+<b>${businesses.length}</b>
+<span>Businesses Online</span>
+</div>
+
+</div>
+
+<div class="card" style="padding:20px">
+
+<h3>Welcome to your SefwiGo Partner Dashboard</h3>
+
+<p class="help">
+Your business and property information is now connected
+to Firebase Firestore.
+</p>
+
+<div style="display:grid;gap:10px">
+
+<button class="submit"
+onclick="dashboardTab('business')">
+
+🏪 Register / Update Business
+
+</button>
+
+<button class="submit"
+onclick="dashboardTab('property')">
+
+🏠 Register Property
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
 }
 
 
-function registerVendor(event){
+/* BUSINESS FORM */
 
-  event.preventDefault();
+function renderBusinessForm(){
 
-  const vendor = {
-
-    id:Date.now(),
-
-    businessName:
-      document.getElementById("vendorBusinessName").value.trim(),
-
-    ownerName:
-      document.getElementById("vendorOwnerName").value.trim(),
-
-    phone:
-      document.getElementById("vendorPhone").value.trim(),
-
-    category:
-      document.getElementById("vendorCategory").value,
-
-    location:
-      document.getElementById("vendorLocation").value.trim(),
-
-    description:
-      document.getElementById("vendorDescription").value.trim(),
-
-    status:"Pending",
-
-    registeredAt:new Date().toISOString()
-
-  };
+const saved=JSON.parse(
+localStorage.getItem("sefwiBusiness")||"null"
+)||{};
 
 
-  const vendors =
-    JSON.parse(localStorage.getItem("sefwiVendors")) || [];
+$("dashboardContent").innerHTML=`
 
-  vendors.push(vendor);
+<h3>🏪 My Business</h3>
 
-  localStorage.setItem(
-    "sefwiVendors",
-    JSON.stringify(vendors)
-  );
+<p class="help">
+Your business will be saved directly to Firestore.
+</p>
+
+<form onsubmit="saveBusiness(event)">
+
+<div class="form-grid">
+
+<div class="field">
+
+<label>Business name *</label>
+
+<input
+id="bizName"
+required
+value="${escapeHtml(saved.name||"")}"
+placeholder="e.g. Cold boutique">
+
+</div>
 
 
-  closeModal("vendorModal");
+<div class="field">
 
-  event.target.reset();
+<label>Category *</label>
 
-  showToast(
-    "🎉 Business registration received. Status: Pending"
-  );
+<select id="bizCategory">
 
-  updateDashboard();
+<option>Food</option>
+<option>Groceries</option>
+<option>Parcels</option>
+<option>Services</option>
+<option>Rent & Property</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>Owner / Manager</label>
+
+<input
+id="bizOwner"
+value="${escapeHtml(saved.owner||"")}"
+placeholder="Owner name">
+
+</div>
+
+
+<div class="field">
+
+<label>Phone / WhatsApp *</label>
+
+<input
+id="bizPhone"
+required
+value="${escapeHtml(saved.phone||"")}"
+placeholder="0247123456">
+
+</div>
+
+
+<div class="field full">
+
+<label>Business location *</label>
+
+<input
+id="bizLocation"
+required
+value="${escapeHtml(saved.location||"")}"
+placeholder="Sefwi Dwenase">
+
+</div>
+
+
+<div class="field full">
+
+<label>Description</label>
+
+<textarea
+id="bizDescription"
+placeholder="Tell customers about your business">${escapeHtml(saved.description||"")}</textarea>
+
+</div>
+
+</div>
+
+<button class="submit" style="margin-top:15px">
+
+🚀 Publish Business
+
+</button>
+
+</form>
+
+`;
+
+if(saved.category){
+
+$("bizCategory").value=saved.category;
+
+}
+
 }
 
 
-/* =========================
-   BUSINESS DASHBOARD
-========================= */
+/* SAVE BUSINESS TO FIRESTORE */
 
-function openDashboard(){
+window.saveBusiness=async function(event){
 
-  closeModal("accountModal");
+event.preventDefault();
 
-  updateDashboard();
+if(!firebaseUser){
 
-  document.getElementById("dashboardModal")
-    .classList.add("show");
+showToast("Connecting to Firebase. Try again in a moment.");
+
+await startFirebase();
+
+if(!firebaseUser)return;
+
 }
 
 
-function dashboardTab(tab,button){
+const business={
 
-  document.querySelectorAll(".dashboard-panel")
-    .forEach(panel=>{
-      panel.classList.remove("active");
-    });
+name:$("bizName").value.trim(),
 
-  document.querySelectorAll(".tab")
-    .forEach(btn=>{
-      btn.classList.remove("active");
-    });
+category:$("bizCategory").value,
 
-  document.getElementById("dash-"+tab)
-    .classList.add("active");
+owner:$("bizOwner").value.trim(),
 
-  button.classList.add("active");
+phone:$("bizPhone").value.trim(),
 
-  if(tab === "myproperties"){
-    renderMyProperties();
-  }
+location:$("bizLocation").value.trim(),
+
+description:$("bizDescription").value.trim(),
+
+ownerUid:firebaseUser.uid,
+
+createdAt:serverTimestamp()
+
+};
+
+
+try{
+
+/*
+If this browser already has a business ID,
+update that business.
+Otherwise create a new Firestore document.
+*/
+
+const old=JSON.parse(
+localStorage.getItem("sefwiBusiness")||"null"
+);
+
+
+let businessId;
+
+
+if(old?.id && old.ownerUid===firebaseUser.uid){
+
+await updateDoc(
+doc(db,"businesses",old.id),
+business
+);
+
+businessId=old.id;
+
+}else{
+
+const ref=await addDoc(
+collection(db,"businesses"),
+business
+);
+
+businessId=ref.id;
+
 }
 
 
-function updateDashboard(){
+localStorage.setItem(
+"sefwiBusiness",
+JSON.stringify({
+...business,
+id:businessId
+})
+);
 
-  const vendors =
-    JSON.parse(localStorage.getItem("sefwiVendors")) || [];
 
-  const properties =
-    JSON.parse(localStorage.getItem("sefwiProperties")) || [];
+showToast("✅ Business published to Firestore!");
 
-  const businessBox =
-    document.getElementById("myBusinessBox");
+await loadBusinesses();
 
-  const businessName =
-    document.getElementById("dashboardBusinessName");
+dashboardTab("overview");
 
-  if(vendors.length){
 
-    const vendor = vendors[vendors.length-1];
+}catch(error){
 
-    businessName.textContent =
-      vendor.businessName;
+console.error("SAVE BUSINESS ERROR:",error);
 
-    businessBox.innerHTML = `
+showToast(
+"❌ Business could not be saved. Check Firestore rules."
+);
 
-      <div class="list-item">
-
-        <h3>🏪 ${escapeHTML(vendor.businessName)}</h3>
-
-        <p>
-          Owner: ${escapeHTML(vendor.ownerName)}<br>
-          Category: ${escapeHTML(vendor.category)}<br>
-          Location: ${escapeHTML(vendor.location)}<br>
-          Phone: ${escapeHTML(vendor.phone)}<br>
-          Status: <strong>${escapeHTML(vendor.status)}</strong>
-        </p>
-
-      </div>
-    `;
-
-  }else{
-
-    businessName.textContent =
-      "No business registered yet.";
-
-    businessBox.innerHTML =
-      '<div class="empty">No business registered yet.</div>';
-  }
-
-  document.getElementById("propertyCount")
-    .textContent =
-      properties.length +
-      (properties.length === 1 ? " property" : " properties");
 }
 
-
-/* =========================
-   PROPERTY REGISTRATION
-========================= */
-
-function registerProperty(event){
-
-  event.preventDefault();
-
-  const property = {
-
-    id:Date.now(),
-
-    purpose:
-      document.getElementById("propertyPurpose").value,
-
-    type:
-      document.getElementById("propertyType").value,
-
-    title:
-      document.getElementById("propertyTitle").value.trim(),
-
-    price:
-      document.getElementById("propertyPrice").value,
-
-    location:
-      document.getElementById("propertyLocation").value.trim(),
-
-    bedrooms:
-      document.getElementById("propertyBedrooms").value || 0,
-
-    bathrooms:
-      document.getElementById("propertyBathrooms").value || 0,
-
-    owner:
-      document.getElementById("propertyOwner").value.trim(),
-
-    phone:
-      document.getElementById("propertyPhone").value.trim(),
-
-    description:
-      document.getElementById("propertyDescription").value.trim(),
-
-    availability:
-      document.getElementById("propertyAvailability").value,
-
-    published:true,
-
-    createdAt:new Date().toISOString()
-
-  };
+};
 
 
-  const properties =
-    JSON.parse(localStorage.getItem("sefwiProperties")) || [];
+/* =====================================================
+   PROPERTY
+===================================================== */
 
-  properties.push(property);
-
-  localStorage.setItem(
-    "sefwiProperties",
-    JSON.stringify(properties)
-  );
+let properties=[];
 
 
-  event.target.reset();
+async function loadProperties(){
 
-  showToast(
-    "🏠 Property published successfully!"
-  );
+try{
 
-  updateDashboard();
+const snap=await getDocs(
+collection(db,"properties")
+);
 
-  renderProperties();
+properties=snap.docs.map(d=>({
+id:d.id,
+...d.data()
+}));
 
-  dashboardTab(
-    "myproperties",
-    document.querySelectorAll(".tab")[3]
-  );
+localStorage.setItem(
+"sefwiProperties",
+JSON.stringify(properties)
+);
 
-  renderMyProperties();
+renderProperties();
+
+if(
+$("partnerModal").classList.contains("open")
+){
+
+renderMyProperties();
+
 }
 
+}catch(error){
 
-/* =========================
-   MY PROPERTIES
-========================= */
+console.error("PROPERTY LOAD ERROR:",error);
 
-function renderMyProperties(){
-
-  const container =
-    document.getElementById("myPropertiesList");
-
-  const properties =
-    JSON.parse(localStorage.getItem("sefwiProperties")) || [];
-
-  if(!properties.length){
-
-    container.innerHTML =
-      '<div class="empty">You have no properties yet.</div>';
-
-    return;
-  }
-
-  container.innerHTML =
-    properties.map(property=>`
-
-      <div class="list-item">
-
-        <h3>🏠 ${escapeHTML(property.title)}</h3>
-
-        <p>
-          ${escapeHTML(property.purpose)} •
-          ${escapeHTML(property.type)}<br>
-
-          GH₵ ${formatMoney(property.price)}<br>
-
-          📍 ${escapeHTML(property.location)}<br>
-
-          🛏️ ${property.bedrooms}
-          &nbsp;
-          🚿 ${property.bathrooms}<br>
-
-          Status:
-          <strong>${escapeHTML(property.availability)}</strong>
-        </p>
-
-        <div class="actions">
-
-          <button class="secondary-btn"
-                  onclick="toggleProperty(${property.id})">
-            ${property.availability === "Available"
-              ? "Mark Unavailable"
-              : "Mark Available"}
-          </button>
-
-          <button class="danger-btn"
-                  onclick="deleteProperty(${property.id})">
-            Delete
-          </button>
-
-        </div>
-
-      </div>
-
-    `).join("");
 }
 
-
-function toggleProperty(id){
-
-  const properties =
-    JSON.parse(localStorage.getItem("sefwiProperties")) || [];
-
-  const property =
-    properties.find(p=>p.id===id);
-
-  if(!property){
-    return;
-  }
-
-  property.availability =
-    property.availability === "Available"
-      ? "Unavailable"
-      : "Available";
-
-  localStorage.setItem(
-    "sefwiProperties",
-    JSON.stringify(properties)
-  );
-
-  renderMyProperties();
-  renderProperties();
-
-  showToast("Property status updated.");
 }
 
-
-function deleteProperty(id){
-
-  if(!confirm("Delete this property?")){
-    return;
-  }
-
-  let properties =
-    JSON.parse(localStorage.getItem("sefwiProperties")) || [];
-
-  properties =
-    properties.filter(p=>p.id!==id);
-
-  localStorage.setItem(
-    "sefwiProperties",
-    JSON.stringify(properties)
-  );
-
-  renderMyProperties();
-  renderProperties();
-  updateDashboard();
-
-  showToast("Property deleted.");
-}
-
-
-/* =========================
-   CUSTOMER PROPERTY DISPLAY
-========================= */
 
 function renderProperties(){
 
-  const container =
-    document.getElementById("propertyPreview");
+const grid=$("propertyGrid");
 
-  const properties =
-    JSON.parse(localStorage.getItem("sefwiProperties")) || [];
+const available=properties.filter(
+p=>p.available!==false
+);
 
-  const available =
-    properties.filter(
-      p=>p.published &&
-         p.availability === "Available"
-    );
+if(!available.length){
 
-  if(!available.length){
+grid.innerHTML=`
 
-    container.innerHTML = `
+<div class="empty" style="grid-column:1/-1">
 
-      <div class="property-card">
+<div style="font-size:40px">🏠</div>
 
-        <div class="property-image">
-          🏠
-        </div>
+<strong>No properties published yet.</strong>
 
-        <div class="property-body">
+<p>Register a property to appear here.</p>
 
-          <h3>Properties coming soon</h3>
+<button class="submit"
+style="max-width:280px"
+onclick="openPartner('property')">
 
-          <p class="property-meta">
-            SefwiGo partners will be able to list
-            houses, rooms, apartments, land and
-            commercial properties here.
-          </p>
+Register Property
 
-        </div>
+</button>
 
-      </div>
-    `;
+</div>
 
-    return;
-  }
+`;
 
-  container.innerHTML =
-    available.slice(0,5).map(property=>`
+return;
 
-      <div class="property-card"
-           style="margin-bottom:12px"
-           onclick="openPropertyDetails(${property.id})">
-
-        <div class="property-image">
-          🏠
-        </div>
-
-        <div class="property-body">
-
-          <h3>${escapeHTML(property.title)}</h3>
-
-          <div class="property-price">
-            GH₵ ${formatMoney(property.price)}
-          </div>
-
-          <div class="property-meta">
-
-            ${escapeHTML(property.purpose)}
-            •
-            ${escapeHTML(property.type)}
-            <br>
-
-            📍 ${escapeHTML(property.location)}
-            <br>
-
-            🛏️ ${property.bedrooms}
-            &nbsp;
-            🚿 ${property.bathrooms}
-
-          </div>
-
-        </div>
-
-      </div>
-
-    `).join("");
 }
 
 
-function openPropertyDetails(id){
+grid.innerHTML=available.map(p=>`
 
-  const properties =
-    JSON.parse(localStorage.getItem("sefwiProperties")) || [];
+<article class="property card">
 
-  const property =
-    properties.find(p=>p.id===id);
+<div class="property-image">
 
-  if(!property){
-    return;
-  }
+${
+p.type==="Land" ? "🌳" :
+p.type==="Commercial" ? "🏢" :
+p.type==="Room" ? "🛏️" :
+p.type==="Apartment" ? "🏬" :
+"🏠"
+}
 
-  document.getElementById("detailPropertyTitle")
-    .textContent =
-      property.title;
+</div>
 
-  document.getElementById("detailPropertyPrice")
-    .textContent =
-      "GH₵ " + formatMoney(property.price);
+<div class="property-body">
 
-  document.getElementById("detailPropertyLocation")
-    .textContent =
-      property.location;
+<span class="chip">
+${escapeHtml(p.purpose||"For Rent")}
+</span>
 
-  document.getElementById("detailPropertyMeta")
-    .textContent =
-      property.purpose +
-      " • " +
-      property.type +
-      " • " +
-      property.bedrooms +
-      " bedrooms • " +
-      property.bathrooms +
-      " bathrooms";
+<h3>${escapeHtml(p.title)}</h3>
 
-  document.getElementById("detailPropertyDescription")
-    .textContent =
-      property.description;
+<div class="price">
+GH₵ ${Number(p.price||0).toLocaleString()}
+</div>
 
-  document.getElementById("detailPropertyOwner")
-    .textContent =
-      property.owner +
-      " • " +
-      property.phone;
+<div class="meta">
 
+📍 ${escapeHtml(p.location||"—")}
 
-  document.getElementById("propertyWhatsAppBtn")
-    .onclick = function(){
+<br>
 
-      const message =
-        "Hello, I found your property on SefwiGo.%0A%0A" +
-        "Property: " +
-        encodeURIComponent(property.title) +
-        "%0A" +
-        "Location: " +
-        encodeURIComponent(property.location);
+${p.bedrooms ? "🛏️ "+escapeHtml(p.bedrooms)+" bedrooms" : ""}
 
-      window.open(
-        "https://wa.me/" +
-        cleanPhone(property.phone) +
-        "?text=" +
-        message,
-        "_blank"
-      );
-    };
+${p.bathrooms ? " • 🚿 "+escapeHtml(p.bathrooms)+" bathrooms" : ""}
 
+</div>
 
-  document.getElementById("propertyDetailsModal")
-    .classList.add("show");
+<p class="help">
+${escapeHtml(
+(p.description||"").slice(0,100)
+)}
+</p>
+
+<div class="actions">
+
+<button class="small"
+onclick="showProperty('${p.id}')">
+Details
+</button>
+
+<button class="small green"
+onclick="contactProperty('${p.id}')">
+Contact
+</button>
+
+</div>
+
+</div>
+
+</article>
+
+`).join("");
+
 }
 
 
-/* =========================
-   PARCEL DELIVERY
-========================= */
+function renderPropertyForm(){
 
-function openParcel(){
+$("dashboardContent").innerHTML=`
 
-  document.getElementById("parcelModal")
-    .classList.add("show");
+<h3>🏠 Register Property</h3>
+
+<p class="help">
+Your property will be saved directly to Firebase Firestore.
+</p>
+
+<form onsubmit="publishProperty(event)">
+
+<div class="form-grid">
+
+<div class="field">
+
+<label>Purpose *</label>
+
+<select id="propPurpose">
+<option>For Rent</option>
+<option>For Sale</option>
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>Property type *</label>
+
+<select id="propType">
+<option>House</option>
+<option>Apartment</option>
+<option>Room</option>
+<option>Land</option>
+<option>Commercial</option>
+</select>
+
+</div>
+
+
+<div class="field full">
+
+<label>Property title *</label>
+
+<input
+id="propTitle"
+required
+placeholder="3 Bedroom House at Wiawso">
+
+</div>
+
+
+<div class="field">
+
+<label>Price GH₵ *</label>
+
+<input
+id="propPrice"
+type="number"
+min="0"
+required
+placeholder="2500">
+
+</div>
+
+
+<div class="field">
+
+<label>Location *</label>
+
+<input
+id="propLocation"
+required
+placeholder="Sefwi Wiawso">
+
+</div>
+
+
+<div class="field">
+
+<label>Bedrooms</label>
+
+<input
+id="propBedrooms"
+type="number"
+min="0"
+placeholder="3">
+
+</div>
+
+
+<div class="field">
+
+<label>Bathrooms</label>
+
+<input
+id="propBathrooms"
+type="number"
+min="0"
+placeholder="2">
+
+</div>
+
+
+<div class="field">
+
+<label>Owner / Agent *</label>
+
+<input
+id="propOwner"
+required
+placeholder="Your name">
+
+</div>
+
+
+<div class="field">
+
+<label>Phone / WhatsApp *</label>
+
+<input
+id="propPhone"
+required
+placeholder="0247123456">
+
+</div>
+
+
+<div class="field full">
+
+<label>Description</label>
+
+<textarea
+id="propDescription"
+placeholder="Describe the property"></textarea>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+<input
+id="propAvailable"
+type="checkbox"
+checked
+style="width:auto">
+
+Available for customers
+
+</label>
+
+</div>
+
+</div>
+
+<button class="submit" style="margin-top:15px">
+
+🚀 Publish Property
+
+</button>
+
+</form>
+
+`;
+
 }
 
 
-function requestParcel(event){
+/* SAVE PROPERTY */
 
-  event.preventDefault();
+window.publishProperty=async function(event){
 
-  const parcelDescription =
-    document.getElementById("parcelDescription").value;
+event.preventDefault();
 
-  const senderName =
-    document.getElementById("senderName").value;
+if(!firebaseUser){
 
-  const senderPhone =
-    document.getElementById("senderPhone").value;
+await startFirebase();
 
-  const pickupLocation =
-    document.getElementById("pickupLocation").value;
+if(!firebaseUser){
 
-  const receiverName =
-    document.getElementById("receiverName").value;
+showToast("Firebase account is not ready.");
 
-  const receiverPhone =
-    document.getElementById("receiverPhone").value;
+return;
 
-  const deliveryLocation =
-    document.getElementById("deliveryLocation").value;
+}
 
-  const instructions =
-    document.getElementById("parcelInstructions").value;
-
-
-  const message =
-`📦 SEFWIGO PARCEL DELIVERY REQUEST
-
-Parcel: ${parcelDescription}
-
-SENDER
-Name: ${senderName}
-Phone: ${senderPhone}
-Pickup: ${pickupLocation}
-
-RECEIVER
-Name: ${receiverName}
-Phone: ${receiverPhone}
-Delivery: ${deliveryLocation}
-
-Special Instructions:
-${instructions || "None"}`;
-
-
-  const whatsappNumber =
-    "233248159106";
-
-  const url =
-    "https://wa.me/" +
-    whatsappNumber +
-    "?text=" +
-    encodeURIComponent(message);
-
-  window.open(url,"_blank");
 }
 
 
-/* =========================
-   BUSINESS DETAILS
-========================= */
+const property={
 
-function openBusiness(name,category,icon){
+purpose:$("propPurpose").value,
 
-  document.getElementById("businessTitle")
-    .textContent = name;
+type:$("propType").value,
 
-  document.getElementById("businessCategory")
-    .textContent =
-      icon + " " + category +
-      " • Sefwi Wiawso";
+title:$("propTitle").value.trim(),
 
-  document.getElementById("businessIcon")
-    .textContent = icon;
+price:Number($("propPrice").value||0),
 
-  document.getElementById("businessModal")
-    .classList.add("show");
+location:$("propLocation").value.trim(),
+
+bedrooms:$("propBedrooms").value,
+
+bathrooms:$("propBathrooms").value,
+
+owner:$("propOwner").value.trim(),
+
+phone:$("propPhone").value.trim(),
+
+description:$("propDescription").value.trim(),
+
+available:$("propAvailable").checked,
+
+ownerUid:firebaseUser.uid,
+
+createdAt:serverTimestamp()
+
+};
+
+
+try{
+
+const ref=await addDoc(
+collection(db,"properties"),
+property
+);
+
+showToast("✅ Property published to Firestore!");
+
+await loadProperties();
+
+dashboardTab("myproperties");
+
+}catch(error){
+
+console.error("PROPERTY SAVE ERROR:",error);
+
+showToast(
+"❌ Property could not be saved. Check Firestore rules."
+);
+
+}
+
+};
+
+
+/* MY PROPERTIES */
+
+function renderMyProperties(){
+
+const mine=properties.filter(
+p=>p.ownerUid===firebaseUser?.uid
+);
+
+
+if(!mine.length){
+
+$("dashboardContent").innerHTML=`
+
+<div class="empty">
+
+<div style="font-size:45px">🏠</div>
+
+<strong>You have no properties yet.</strong>
+
+<p>Register your first property.</p>
+
+<button class="submit"
+style="max-width:260px"
+onclick="dashboardTab('property')">
+
+Register Property
+
+</button>
+
+</div>
+
+`;
+
+return;
+
 }
 
 
-function addDemoItem(){
+$("dashboardContent").innerHTML=`
 
-  let cart =
-    JSON.parse(localStorage.getItem("sefwiCart")) || [];
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px">
 
-  cart.push({
-    name:"Demo Item",
-    price:25
-  });
+<div>
 
-  localStorage.setItem(
-    "sefwiCart",
-    JSON.stringify(cart)
-  );
+<h3 style="margin:0">
+My Properties
+</h3>
 
-  showToast("🛒 Demo item added to cart.");
+<p class="help">
+Manage your Firestore listings.
+</p>
+
+</div>
+
+<button class="small green"
+style="flex:none"
+onclick="dashboardTab('property')">
+
++ Add
+
+</button>
+
+</div>
+
+${mine.map(p=>`
+
+<div class="list">
+
+<h4>${escapeHtml(p.title)}</h4>
+
+<p>
+${escapeHtml(p.purpose)}
+•
+GH₵ ${Number(p.price||0).toLocaleString()}
+•
+${escapeHtml(p.location)}
+</p>
+
+<p style="margin-top:7px">
+
+${p.available!==false
+? "🟢 Available"
+: "🔴 Unavailable"}
+
+</p>
+
+<div class="list-actions">
+
+<button class="small"
+onclick="toggleProperty('${p.id}')">
+
+${
+p.available!==false
+? "Mark unavailable"
+: "Make available"
+}
+
+</button>
+
+<button class="small danger"
+onclick="deleteProperty('${p.id}')">
+
+Delete
+
+</button>
+
+</div>
+
+</div>
+
+`).join("")}
+
+`;
+
 }
 
 
-/* =========================
-   HELPERS
-========================= */
+/* UPDATE PROPERTY */
 
-function formatMoney(value){
+window.toggleProperty=async function(id){
 
-  return Number(value || 0)
-    .toLocaleString("en-GH");
+const property=properties.find(
+p=>p.id===id
+);
+
+if(!property)return;
+
+try{
+
+await updateDoc(
+doc(db,"properties",id),
+{
+available:property.available===false
+}
+);
+
+showToast("Property availability updated.");
+
+await loadProperties();
+
+renderMyProperties();
+
+}catch(error){
+
+console.error(error);
+
+showToast("Could not update property.");
+
+}
+
+};
+
+
+/* DELETE PROPERTY */
+
+window.deleteProperty=async function(id){
+
+if(!confirm("Delete this property?"))return;
+
+try{
+
+await deleteDoc(
+doc(db,"properties",id)
+);
+
+showToast("Property deleted.");
+
+await loadProperties();
+
+renderMyProperties();
+
+}catch(error){
+
+console.error(error);
+
+showToast("Could not delete property.");
+
+}
+
+};
+
+
+/* PROPERTY DETAILS */
+
+window.showProperty=function(id){
+
+const p=properties.find(x=>x.id===id);
+
+if(!p)return;
+
+alert(
+
+p.title+
+"\n\n"+
+p.purpose+" • "+p.type+
+"\nPrice: GH₵ "+Number(p.price||0).toLocaleString()+
+"\nLocation: "+p.location+
+"\nBedrooms: "+(p.bedrooms||"—")+
+"\nBathrooms: "+(p.bathrooms||"—")+
+"\n\n"+(p.description||"")+
+"\n\nOwner/Agent: "+(p.owner||"—")+
+"\nPhone: "+(p.phone||"—")
+
+);
+
+};
+
+
+window.contactProperty=function(id){
+
+const p=properties.find(x=>x.id===id);
+
+if(!p)return;
+
+const number=String(p.phone||"").replace(/\D/g,"");
+
+if(!number){
+
+showToast("No phone number available.");
+
+return;
+
+}
+
+window.open(
+"https://wa.me/"+number+
+"?text="+encodeURIComponent(
+"Hello, I found your property on SefwiGo: "+p.title
+),
+"_blank"
+);
+
+};
+
+
+/* =====================================================
+   ACCOUNT
+===================================================== */
+
+window.openAccount=function(){
+
+$("accountModal").classList.add("open");
+
+renderAccount();
+
+};
+
+
+function renderAccount(){
+
+if(firebaseUser){
+
+$("accountBody").innerHTML=`
+
+<div style="text-align:center">
+
+<div style="font-size:55px">👤</div>
+
+<h2>Firebase Account Active</h2>
+
+<p class="help">
+Your SefwiGo data is connected to Firebase.
+</p>
+
+<p class="help">
+User ID:
+<br>
+${escapeHtml(firebaseUser.uid)}
+</p>
+
+<button class="submit"
+onclick="logoutAccount()">
+
+Sign Out
+
+</button>
+
+</div>
+
+`;
+
+return;
+
 }
 
 
-function cleanPhone(phone){
+$("accountBody").innerHTML=`
 
-  let p =
-    String(phone || "")
-      .replace(/\D/g,"");
+<h2>Connecting account...</h2>
 
-  if(p.startsWith("0")){
-    p = "233" + p.substring(1);
-  }
+<p class="help">
+Please wait while SefwiGo connects to Firebase.
+</p>
 
-  return p;
+`;
+
 }
 
 
-function escapeHTML(value){
+window.logoutAccount=async function(){
 
-  return String(value || "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+try{
+
+await signOut(auth);
+
+showToast("Signed out.");
+
+}catch(error){
+
+console.error(error);
+
+}
+
+};
+
+
+/* =====================================================
+   CART
+===================================================== */
+
+let cart=JSON.parse(
+localStorage.getItem("sefwiCart")||"[]"
+);
+
+
+window.openCart=function(){
+
+renderCart();
+
+$("cartModal").classList.add("open");
+
+};
+
+
+function renderCart(){
+
+if(!cart.length){
+
+$("cartBody").innerHTML=`
+
+<div class="empty">
+
+<div style="font-size:40px">🛒</div>
+
+<strong>Your cart is empty.</strong>
+
+<p>Products and ordering will be connected next.</p>
+
+</div>
+
+`;
+
+return;
+
 }
 
 
-function showToast(message){
+$("cartBody").innerHTML=
 
-  const toast =
-    document.getElementById("toast");
+cart.map((item,i)=>`
 
-  toast.textContent = message;
+<div class="list">
 
-  toast.classList.add("show");
+<h4>${escapeHtml(item.name)}</h4>
 
-  setTimeout(()=>{
-    toast.classList.remove("show");
-  },2500);
+<p>
+GH₵ ${Number(item.price).toLocaleString()}
+</p>
+
+<button class="small danger"
+onclick="removeCart(${i})">
+
+Remove
+
+</button>
+
+</div>
+
+`).join("");
+
+
 }
 
 
-/* =========================
-   STARTUP
-========================= */
+window.removeCart=function(i){
+
+cart.splice(i,1);
+
+localStorage.setItem(
+"sefwiCart",
+JSON.stringify(cart)
+);
+
+renderCart();
+
+};
+
+
+/* =====================================================
+   SERVICES
+===================================================== */
+
+window.filterService=function(service){
+
+showToast(
+service+" selected. Business ordering is coming next."
+);
+
+scrollToId("businesses");
+
+};
+
+
+window.openParcel=function(){
+
+$("parcelModal").classList.add("open");
+
+};
+
+
+window.sendParcel=function(event){
+
+event.preventDefault();
+
+const sender=$("parcelSender").value;
+const phone=$("parcelPhone").value;
+const pickup=$("parcelPickup").value;
+const receiver=$("parcelReceiver").value;
+const receiverPhone=$("parcelReceiverPhone").value;
+const delivery=$("parcelDelivery").value;
+const description=$("parcelDescription").value;
+
+
+const message=
+"SefwiGo Parcel Request\n\n"+
+"Sender: "+sender+"\n"+
+"Sender Phone: "+phone+"\n"+
+"Pickup: "+pickup+"\n"+
+"Receiver: "+receiver+"\n"+
+"Receiver Phone: "+receiverPhone+"\n"+
+"Delivery: "+delivery+"\n"+
+"Parcel: "+description;
+
+
+window.open(
+"https://wa.me/233248159106?text="+
+encodeURIComponent(message),
+"_blank"
+);
+
+};
+
+
+/* INITIAL */
 
 renderProperties();
-updateDashboard();
 
 </script>
 
