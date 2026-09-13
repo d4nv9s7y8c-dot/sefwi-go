@@ -2,24 +2,20 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#087f5b">
-<meta name="description" content="SefwiGo - Local marketplace for Sefwi Wiawso">
 <title>SefwiGo</title>
 
 <style>
 :root{
   --green:#087f5b;
-  --green2:#0aa36f;
   --dark:#063d2e;
-  --gold:#d9a441;
   --light:#f4f8f6;
   --white:#fff;
   --text:#17231f;
   --muted:#718078;
   --border:#e1ebe6;
   --danger:#d93025;
-  --shadow:0 8px 28px rgba(0,0,0,.08);
 }
 
 *{
@@ -35,7 +31,10 @@ body{
   padding-bottom:85px;
 }
 
-button,input,select,textarea{
+button,
+input,
+select,
+textarea{
   font:inherit;
 }
 
@@ -43,31 +42,18 @@ button{
   cursor:pointer;
 }
 
+/* HEADER */
+
 .header{
   background:linear-gradient(135deg,var(--dark),var(--green));
-  color:white;
+  color:#fff;
   padding:18px 16px 25px;
-  position:relative;
-  overflow:hidden;
-}
-
-.header:after{
-  content:"";
-  position:absolute;
-  width:220px;
-  height:220px;
-  border-radius:50%;
-  background:rgba(255,255,255,.06);
-  right:-80px;
-  top:-100px;
 }
 
 .topbar{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  position:relative;
-  z-index:2;
 }
 
 .logo{
@@ -80,13 +66,13 @@ button{
   width:48px;
   height:48px;
   border-radius:15px;
-  background:white;
+  background:#fff;
   color:var(--green);
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:20px;
   font-weight:900;
+  font-size:20px;
 }
 
 .logo h1{
@@ -103,14 +89,12 @@ button{
   height:48px;
   border:0;
   border-radius:50%;
-  background:rgba(255,255,255,.15);
-  color:white;
+  background:#ffffff26;
+  color:#fff;
   font-size:23px;
 }
 
 .hero{
-  position:relative;
-  z-index:2;
   margin-top:30px;
 }
 
@@ -129,16 +113,11 @@ button{
 
 .search{
   margin-top:20px;
-  background:white;
+  background:#fff;
   border-radius:15px;
   display:flex;
   align-items:center;
   padding:0 14px;
-  box-shadow:0 8px 22px rgba(0,0,0,.12);
-}
-
-.search span{
-  font-size:20px;
 }
 
 .search input{
@@ -146,8 +125,9 @@ button{
   border:0;
   outline:0;
   padding:15px 10px;
-  color:#222;
 }
+
+/* MAIN */
 
 main{
   max-width:950px;
@@ -178,6 +158,8 @@ main{
   font-weight:800;
 }
 
+/* CATEGORIES */
+
 .categories{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -185,16 +167,11 @@ main{
 }
 
 .category{
-  background:white;
+  background:#fff;
   border:1px solid var(--border);
   border-radius:18px;
   padding:17px 5px;
   text-align:center;
-  box-shadow:0 3px 12px rgba(0,0,0,.04);
-}
-
-.category:active{
-  transform:scale(.96);
 }
 
 .category-icon{
@@ -204,8 +181,8 @@ main{
   border-radius:15px;
   background:#e8f6f0;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   font-size:24px;
 }
 
@@ -215,19 +192,17 @@ main{
   margin-top:9px;
 }
 
+/* DEAL */
+
 .deal{
   background:linear-gradient(135deg,#0b805d,#0caa72);
-  color:white;
+  color:#fff;
   border-radius:23px;
   padding:22px;
   display:flex;
   justify-content:space-between;
   align-items:center;
   gap:15px;
-}
-
-.deal h3{
-  font-size:21px;
 }
 
 .deal p{
@@ -238,12 +213,14 @@ main{
 
 .deal button{
   border:0;
-  background:white;
+  background:#fff;
   color:var(--green);
   padding:11px 14px;
   border-radius:12px;
   font-weight:800;
 }
+
+/* BUSINESS CARDS */
 
 .cards{
   display:grid;
@@ -252,19 +229,18 @@ main{
 }
 
 .card{
-  background:white;
+  background:#fff;
   border-radius:18px;
   overflow:hidden;
   border:1px solid var(--border);
-  box-shadow:0 4px 15px rgba(0,0,0,.05);
 }
 
 .card-image{
   height:120px;
   background:linear-gradient(135deg,#d8eee5,#b9ddce);
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   font-size:42px;
 }
 
@@ -293,8 +269,10 @@ main{
   font-weight:800;
 }
 
+/* PROPERTY */
+
 .property{
-  background:white;
+  background:#fff;
   border-radius:18px;
   padding:14px;
   border:1px solid var(--border);
@@ -344,6 +322,8 @@ main{
   margin-top:12px;
 }
 
+/* BUTTONS */
+
 .btn{
   border:0;
   border-radius:11px;
@@ -354,7 +334,7 @@ main{
 
 .btn-primary{
   background:var(--green);
-  color:white;
+  color:#fff;
 }
 
 .btn-light{
@@ -371,8 +351,10 @@ main{
   width:100%;
 }
 
+/* EMPTY / LOADING */
+
 .empty{
-  background:white;
+  background:#fff;
   border:1px dashed #ccd9d3;
   border-radius:17px;
   padding:25px 15px;
@@ -388,19 +370,20 @@ main{
   font-size:13px;
 }
 
+/* BOTTOM NAV */
+
 .bottom-nav{
   position:fixed;
   left:0;
   right:0;
   bottom:0;
   height:72px;
-  background:rgba(255,255,255,.98);
+  background:#fff;
   border-top:1px solid var(--border);
   display:flex;
   justify-content:space-around;
   align-items:center;
   z-index:100;
-  box-shadow:0 -5px 20px rgba(0,0,0,.06);
 }
 
 .nav-item{
@@ -423,10 +406,12 @@ main{
   color:var(--green);
 }
 
+/* MODALS */
+
 .overlay{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.52);
+  background:#00000085;
   z-index:200;
   display:none;
   align-items:flex-end;
@@ -437,18 +422,12 @@ main{
 }
 
 .modal{
-  background:white;
+  background:#fff;
   width:100%;
   max-height:92vh;
   overflow:auto;
   border-radius:25px 25px 0 0;
   padding:20px;
-  animation:up .22s ease;
-}
-
-@keyframes up{
-  from{transform:translateY(100%)}
-  to{transform:translateY(0)}
 }
 
 .modal-head{
@@ -469,8 +448,10 @@ main{
   background:#edf3f0;
   border-radius:50%;
   font-size:25px;
-  color:#1684dc;
+  color:#555;
 }
+
+/* FORMS */
 
 .form-group{
   margin-bottom:13px;
@@ -490,18 +471,12 @@ main{
   border:1px solid #dbe5e0;
   border-radius:12px;
   padding:12px;
-  outline:none;
-  background:white;
+  outline:0;
+  background:#fff;
 }
 
 .form-group textarea{
   min-height:90px;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus{
-  border-color:var(--green);
 }
 
 .status{
@@ -518,6 +493,8 @@ main{
   background:#fff0ef;
   color:var(--danger);
 }
+
+/* DASHBOARD */
 
 .dashboard-tabs{
   display:flex;
@@ -539,7 +516,7 @@ main{
 
 .dashboard-tabs button.active{
   background:var(--green);
-  color:white;
+  color:#fff;
 }
 
 .stat-grid{
@@ -566,13 +543,15 @@ main{
   font-size:11px;
 }
 
+/* TOAST */
+
 .toast{
   position:fixed;
   left:50%;
   bottom:88px;
   transform:translateX(-50%) translateY(20px);
   background:#18231f;
-  color:white;
+  color:#fff;
   padding:13px 17px;
   border-radius:13px;
   font-size:12px;
@@ -589,7 +568,10 @@ main{
   transform:translateX(-50%) translateY(0);
 }
 
+/* DESKTOP */
+
 @media(min-width:700px){
+
   .cards{
     grid-template-columns:repeat(3,1fr);
   }
@@ -604,64 +586,81 @@ main{
   .overlay{
     align-items:center;
   }
+
 }
 
+/* MOBILE */
+
 @media(max-width:500px){
+
   .hero h2{
     font-size:31px;
   }
-}
 
-@media(max-width:360px){
-  .categories{
-    gap:6px;
-  }
-
-  .category{
-    padding:11px 3px;
-  }
-
-  .category-icon{
-    width:40px;
-    height:40px;
-  }
 }
 </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
+
 <header class="header">
 
   <div class="topbar">
 
     <div class="logo">
-      <div class="logo-icon">SG</div>
-      <div>
-        <h1>SefwiGo</h1>
-        <small>Sefwi Wiawso</small>
+
+      <div class="logo-icon">
+        SG
       </div>
+
+      <div>
+
+        <h1>SefwiGo</h1>
+
+        <small>
+          Sefwi Wiawso
+        </small>
+
+      </div>
+
     </div>
 
-    <button class="account-btn" onclick="openAccount()">👤</button>
+    <button
+      class="account-btn"
+      onclick="openAccount()">
+
+      👤
+
+    </button>
 
   </div>
 
+
   <div class="hero">
 
-    <h2>Everything local, delivered to you.</h2>
+    <h2>
+      Everything local, delivered to you.
+    </h2>
 
     <p>
       Food, groceries, parcels, property and local businesses.
     </p>
 
+
     <div class="search">
-      <span>🔎</span>
+
+      <span>
+        🔎
+      </span>
+
       <input
         id="searchInput"
         type="search"
         placeholder="Search businesses, food, property..."
         oninput="searchEverything()">
+
     </div>
 
   </div>
@@ -669,54 +668,115 @@ main{
 </header>
 
 
+<!-- MAIN -->
+
 <main>
 
-<section id="homePage">
+<section>
+
+
+  <!-- CATEGORIES -->
 
   <div class="section">
 
     <div class="section-title">
-      <h3>What do you need?</h3>
+
+      <h3>
+        What do you need?
+      </h3>
+
     </div>
+
 
     <div class="categories">
 
-      <button class="category" onclick="showFood()">
-        <div class="category-icon">🍔</div>
-        <strong>Food</strong>
+      <button
+        class="category"
+        onclick="showFood()">
+
+        <div class="category-icon">
+          🍔
+        </div>
+
+        <strong>
+          Food
+        </strong>
+
       </button>
 
-      <button class="category" onclick="showGroceries()">
-        <div class="category-icon">🛒</div>
-        <strong>Groceries</strong>
+
+      <button
+        class="category"
+        onclick="showGroceries()">
+
+        <div class="category-icon">
+          🛒
+        </div>
+
+        <strong>
+          Groceries
+        </strong>
+
       </button>
 
-      <button class="category" onclick="openParcel()">
-        <div class="category-icon">📦</div>
-        <strong>Parcels</strong>
+
+      <button
+        class="category"
+        onclick="openParcel()">
+
+        <div class="category-icon">
+          📦
+        </div>
+
+        <strong>
+          Parcels
+        </strong>
+
       </button>
 
-      <button class="category" onclick="openProperty()">
-        <div class="category-icon">🏠</div>
-        <strong>Property</strong>
+
+      <button
+        class="category"
+        onclick="openProperty()">
+
+        <div class="category-icon">
+          🏠
+        </div>
+
+        <strong>
+          Property
+        </strong>
+
       </button>
 
     </div>
 
   </div>
 
+
+  <!-- DEAL -->
 
   <div class="section">
 
     <div class="deal">
 
       <div>
-        <h3>Order locally 🚀</h3>
-        <p>Connect with businesses around Sefwi Wiawso.</p>
+
+        <h3>
+          Order locally 🚀
+        </h3>
+
+        <p>
+          Connect with businesses around Sefwi Wiawso.
+        </p>
+
       </div>
 
+
       <button onclick="openPartner()">
+
         Partner with us
+
       </button>
 
     </div>
@@ -724,122 +784,239 @@ main{
   </div>
 
 
+  <!-- BUSINESSES -->
+
   <div class="section">
 
     <div class="section-title">
 
-      <h3>Popular Businesses</h3>
+      <h3>
+        Popular Businesses
+      </h3>
 
       <button onclick="openPartner()">
+
         Register business
+
       </button>
 
     </div>
+
 
     <div id="businessList">
-      <div class="loading">Loading businesses...</div>
+
+      <div class="loading">
+        Loading businesses...
+      </div>
+
     </div>
 
   </div>
 
+
+  <!-- PROPERTIES -->
 
   <div class="section">
 
     <div class="section-title">
 
-      <h3>Available Properties</h3>
+      <h3>
+        Available Properties
+      </h3>
 
       <button onclick="openProperty()">
+
         View all
+
       </button>
 
     </div>
 
+
     <div id="propertyList">
-      <div class="loading">Loading properties...</div>
+
+      <div class="loading">
+        Loading properties...
+      </div>
+
     </div>
 
   </div>
+
 
 </section>
 
 </main>
 
 
+<!-- BOTTOM NAV -->
+
 <nav class="bottom-nav">
 
-  <button class="nav-item active" id="navHome" onclick="goHome()">
-    <span>⌂</span>
+  <button
+    class="nav-item active"
+    id="navHome"
+    onclick="goHome()">
+
+    <span>
+      ⌂
+    </span>
+
     Home
+
   </button>
 
-  <button class="nav-item" id="navOrders" onclick="openOrders()">
-    <span>🧾</span>
+
+  <button
+    class="nav-item"
+    id="navOrders"
+    onclick="openOrders()">
+
+    <span>
+      🧾
+    </span>
+
     Orders
+
   </button>
 
-  <button class="nav-item" id="navPartner" onclick="openPartner()">
-    <span>🏪</span>
+
+  <button
+    class="nav-item"
+    id="navPartner"
+    onclick="openPartner()">
+
+    <span>
+      🏪
+    </span>
+
     Partner
+
   </button>
 
-  <button class="nav-item" id="navAccount" onclick="openAccount()">
-    <span>👤</span>
+
+  <button
+    class="nav-item"
+    id="navAccount"
+    onclick="openAccount()">
+
+    <span>
+      👤
+    </span>
+
     Account
+
   </button>
 
 </nav>
 
 
-<!-- ACCOUNT -->
+<!-- ACCOUNT MODAL -->
 
-<div class="overlay" id="accountModal">
+<div
+  class="overlay"
+  id="accountModal">
 
   <div class="modal">
 
     <div class="modal-head">
-      <h3>My Account</h3>
-      <button class="close" onclick="closeModal('accountModal')">×</button>
+
+      <h3>
+        My Account
+      </h3>
+
+      <button
+        class="close"
+        onclick="closeModal('accountModal')">
+
+        ×
+
+      </button>
+
     </div>
 
-    <div class="status" id="accountStatus">
+
+    <div
+      class="status"
+      id="accountStatus">
+
       Connecting account...
+
     </div>
+
 
     <div class="stat-grid">
 
       <div class="stat">
-        <strong id="accountBusinesses">0</strong>
-        <span>My Businesses</span>
+
+        <strong id="accountBusinesses">
+          0
+        </strong>
+
+        <span>
+          My Businesses
+        </span>
+
       </div>
 
+
       <div class="stat">
-        <strong id="accountProperties">0</strong>
-        <span>My Properties</span>
+
+        <strong id="accountProperties">
+          0
+        </strong>
+
+        <span>
+          My Properties
+        </span>
+
       </div>
 
     </div>
 
-    <button class="btn btn-primary full" onclick="openPartner()">
+
+    <button
+      class="btn btn-primary full"
+      onclick="openPartner()">
+
       🏪 Business Dashboard
+
     </button>
+
 
     <br><br>
 
-    <button class="btn btn-light full" onclick="openProperty()">
+
+    <button
+      class="btn btn-light full"
+      onclick="openProperty()">
+
       🏠 My Properties
+
     </button>
+
 
     <br><br>
 
-    <button class="btn btn-light full" onclick="openOrders()">
+
+    <button
+      class="btn btn-light full"
+      onclick="openOrders()">
+
       🧾 My Orders
+
     </button>
+
 
     <br><br>
 
-    <button class="btn btn-danger full" onclick="logout()">
+
+    <button
+      class="btn btn-danger full"
+      onclick="logout()">
+
       Sign out
+
     </button>
 
   </div>
@@ -847,58 +1024,105 @@ main{
 </div>
 
 
-<!-- PARTNER -->
+<!-- PARTNER DASHBOARD -->
 
-<div class="overlay" id="partnerModal">
+<div
+  class="overlay"
+  id="partnerModal">
 
   <div class="modal">
 
     <div class="modal-head">
-      <h3>Business Dashboard</h3>
-      <button class="close" onclick="closeModal('partnerModal')">×</button>
+
+      <h3>
+        Business Dashboard
+      </h3>
+
+      <button
+        class="close"
+        onclick="closeModal('partnerModal')">
+
+        ×
+
+      </button>
+
     </div>
+
 
     <div class="dashboard-tabs">
 
-      <button id="tabOverview"
-              class="active"
-              onclick="dashboardTab('overview')">
+      <button
+        id="tabOverview"
+        class="active"
+        onclick="dashboardTab('overview')">
+
         Overview
+
       </button>
 
-      <button id="tabBusiness"
-              onclick="dashboardTab('business')">
+
+      <button
+        id="tabBusiness"
+        onclick="dashboardTab('business')">
+
         My Business
+
       </button>
 
-      <button id="tabProducts"
-              onclick="dashboardTab('products')">
+
+      <button
+        id="tabProducts"
+        onclick="dashboardTab('products')">
+
         Products
+
       </button>
 
-      <button id="tabOrders"
-              onclick="dashboardTab('orders')">
+
+      <button
+        id="tabOrders"
+        onclick="dashboardTab('orders')">
+
         Orders
+
       </button>
 
     </div>
 
+
+    <!-- OVERVIEW -->
 
     <div id="dashboardOverview">
 
       <div class="stat-grid">
 
         <div class="stat">
-          <strong id="dashBusinessCount">0</strong>
-          <span>Businesses</span>
+
+          <strong id="dashBusinessCount">
+            0
+          </strong>
+
+          <span>
+            Businesses
+          </span>
+
         </div>
 
+
         <div class="stat">
-          <strong id="dashProductCount">0</strong>
-          <span>Products</span>
+
+          <strong id="dashProductCount">
+            0
+          </strong>
+
+          <span>
+            Products
+          </span>
+
         </div>
 
       </div>
+
 
       <button
         class="btn btn-primary full"
@@ -911,97 +1135,183 @@ main{
     </div>
 
 
-    <div id="dashboardBusiness" style="display:none">
+    <!-- BUSINESS -->
+
+    <div
+      id="dashboardBusiness"
+      style="display:none">
 
       <form onsubmit="saveBusiness(event)">
 
+
         <div class="form-group">
-          <label>Business name</label>
-          <input id="bizName"
-                 required
-                 placeholder="Example: Kofi's Chop Bar">
+
+          <label>
+            Business name
+          </label>
+
+          <input
+            id="bizName"
+            required
+            placeholder="Example: Kofi's Chop Bar">
+
         </div>
 
+
         <div class="form-group">
-          <label>Category</label>
 
-          <select id="bizCategory" required>
+          <label>
+            Category
+          </label>
 
-            <option value="">Choose category</option>
-            <option>Restaurant</option>
-            <option>Food Vendor</option>
-            <option>Grocery</option>
-            <option>Pharmacy</option>
-            <option>Fashion</option>
-            <option>Electronics</option>
-            <option>Beauty</option>
-            <option>Services</option>
-            <option>Other</option>
+          <select
+            id="bizCategory"
+            required>
+
+            <option value="">
+              Choose category
+            </option>
+
+            <option>
+              Restaurant
+            </option>
+
+            <option>
+              Food Vendor
+            </option>
+
+            <option>
+              Grocery
+            </option>
+
+            <option>
+              Pharmacy
+            </option>
+
+            <option>
+              Fashion
+            </option>
+
+            <option>
+              Electronics
+            </option>
+
+            <option>
+              Beauty
+            </option>
+
+            <option>
+              Services
+            </option>
+
+            <option>
+              Other
+            </option>
 
           </select>
 
         </div>
 
-        <div class="form-group">
-          <label>Owner / Contact person</label>
 
-          <input id="bizOwner"
-                 required
-                 placeholder="Your name">
+        <div class="form-group">
+
+          <label>
+            Owner / Contact person
+          </label>
+
+          <input
+            id="bizOwner"
+            required
+            placeholder="Your name">
 
         </div>
 
-        <div class="form-group">
-          <label>WhatsApp / Phone</label>
 
-          <input id="bizPhone"
-                 required
-                 placeholder="024XXXXXXX">
+        <div class="form-group">
+
+          <label>
+            WhatsApp / Phone
+          </label>
+
+          <input
+            id="bizPhone"
+            required
+            placeholder="024XXXXXXX">
 
         </div>
 
-        <div class="form-group">
-          <label>Location</label>
 
-          <input id="bizLocation"
-                 required
-                 placeholder="Sefwi Wiawso">
+        <div class="form-group">
+
+          <label>
+            Location
+          </label>
+
+          <input
+            id="bizLocation"
+            required
+            placeholder="Sefwi Wiawso">
 
         </div>
 
+
         <div class="form-group">
-          <label>Description</label>
+
+          <label>
+            Description
+          </label>
 
           <textarea
             id="bizDescription"
-            placeholder="Tell customers about your business"></textarea>
+            placeholder="Tell customers about your business">
+          </textarea>
 
         </div>
 
-        <button class="btn btn-primary full" type="submit">
+
+        <button
+          class="btn btn-primary full"
+          type="submit">
+
           Publish Business
+
         </button>
+
 
       </form>
 
     </div>
 
 
-    <div id="dashboardProducts" style="display:none">
+    <!-- PRODUCTS -->
+
+    <div
+      id="dashboardProducts"
+      style="display:none">
 
       <div class="empty">
+
         Product management will be added here.
+
         <br><br>
+
         Products, prices and stock can be connected to your business.
+
       </div>
 
     </div>
 
 
-    <div id="dashboardOrders" style="display:none">
+    <!-- ORDERS -->
+
+    <div
+      id="dashboardOrders"
+      style="display:none">
 
       <div class="empty">
+
         No business orders yet.
+
       </div>
 
     </div>
@@ -1011,58 +1321,94 @@ main{
 </div>
 
 
-<!-- PROPERTY -->
+<!-- PROPERTY MODAL -->
 
-<div class="overlay" id="propertyModal">
+<div
+  class="overlay"
+  id="propertyModal">
 
   <div class="modal">
 
     <div class="modal-head">
-      <h3>Property</h3>
-      <button class="close" onclick="closeModal('propertyModal')">×</button>
+
+      <h3>
+        Property
+      </h3>
+
+      <button
+        class="close"
+        onclick="closeModal('propertyModal')">
+
+        ×
+
+      </button>
+
     </div>
+
 
     <div class="dashboard-tabs">
 
       <button
-        class="active"
         id="propertyBrowseTab"
+        class="active"
         onclick="propertyTab('browse')">
+
         Browse
+
       </button>
+
 
       <button
         id="propertyRegisterTab"
         onclick="propertyTab('register')">
+
         Register Property
+
       </button>
+
 
       <button
         id="propertyMineTab"
         onclick="propertyTab('mine')">
+
         My Properties
+
       </button>
 
     </div>
 
 
+    <!-- BROWSE -->
+
     <div id="propertyBrowse">
 
       <div id="modalPropertyList">
+
         <div class="loading">
+
           Loading properties...
+
         </div>
+
       </div>
 
     </div>
 
 
-    <div id="propertyRegister" style="display:none">
+    <!-- REGISTER -->
+
+    <div
+      id="propertyRegister"
+      style="display:none">
 
       <form onsubmit="saveProperty(event)">
 
+
         <div class="form-group">
-          <label>Property title</label>
+
+          <label>
+            Property title
+          </label>
 
           <input
             id="propertyTitle"
@@ -1071,40 +1417,90 @@ main{
 
         </div>
 
+
         <div class="form-group">
-          <label>Property type</label>
 
-          <select id="propertyType" required>
+          <label>
+            Property type
+          </label>
 
-            <option value="">Choose type</option>
-            <option>House</option>
-            <option>Apartment</option>
-            <option>Room</option>
-            <option>Shop</option>
-            <option>Land</option>
-            <option>Office</option>
-            <option>Other</option>
+          <select
+            id="propertyType"
+            required>
+
+            <option value="">
+              Choose type
+            </option>
+
+            <option>
+              House
+            </option>
+
+            <option>
+              Apartment
+            </option>
+
+            <option>
+              Room
+            </option>
+
+            <option>
+              Shop
+            </option>
+
+            <option>
+              Land
+            </option>
+
+            <option>
+              Office
+            </option>
+
+            <option>
+              Other
+            </option>
 
           </select>
 
         </div>
 
+
         <div class="form-group">
-          <label>Purpose</label>
 
-          <select id="propertyPurpose" required>
+          <label>
+            Purpose
+          </label>
 
-            <option value="">Choose purpose</option>
-            <option>Rent</option>
-            <option>Sale</option>
-            <option>Lease</option>
+          <select
+            id="propertyPurpose"
+            required>
+
+            <option value="">
+              Choose purpose
+            </option>
+
+            <option>
+              Rent
+            </option>
+
+            <option>
+              Sale
+            </option>
+
+            <option>
+              Lease
+            </option>
 
           </select>
 
         </div>
 
+
         <div class="form-group">
-          <label>Price</label>
+
+          <label>
+            Price
+          </label>
 
           <input
             id="propertyPrice"
@@ -1113,8 +1509,12 @@ main{
 
         </div>
 
+
         <div class="form-group">
-          <label>Location</label>
+
+          <label>
+            Location
+          </label>
 
           <input
             id="propertyLocation"
@@ -1123,8 +1523,12 @@ main{
 
         </div>
 
+
         <div class="form-group">
-          <label>Contact phone</label>
+
+          <label>
+            Contact phone
+          </label>
 
           <input
             id="propertyPhone"
@@ -1133,30 +1537,49 @@ main{
 
         </div>
 
+
         <div class="form-group">
-          <label>Description</label>
+
+          <label>
+            Description
+          </label>
 
           <textarea
             id="propertyDescription"
-            placeholder="Describe the property"></textarea>
+            placeholder="Describe the property">
+          </textarea>
 
         </div>
 
-        <button class="btn btn-primary full" type="submit">
+
+        <button
+          class="btn btn-primary full"
+          type="submit">
+
           Publish Property
+
         </button>
+
 
       </form>
 
     </div>
 
 
-    <div id="propertyMine" style="display:none">
+    <!-- MY PROPERTIES -->
+
+    <div
+      id="propertyMine"
+      style="display:none">
 
       <div id="myPropertyList">
+
         <div class="loading">
+
           Loading your properties...
+
         </div>
+
       </div>
 
     </div>
@@ -1166,44 +1589,90 @@ main{
 </div>
 
 
-<!-- PARCEL -->
+<!-- PARCEL MODAL -->
 
-<div class="overlay" id="parcelModal">
+<div
+  class="overlay"
+  id="parcelModal">
 
   <div class="modal">
 
     <div class="modal-head">
-      <h3>Parcel Delivery</h3>
-      <button class="close" onclick="closeModal('parcelModal')">×</button>
+
+      <h3>
+        Parcel Delivery
+      </h3>
+
+      <button
+        class="close"
+        onclick="closeModal('parcelModal')">
+
+        ×
+
+      </button>
+
     </div>
+
 
     <div class="status">
+
       Tell us where the parcel should be collected and delivered.
+
     </div>
 
-    <div class="form-group">
-      <label>Your name</label>
-      <input id="parcelName" placeholder="Your name">
-    </div>
 
     <div class="form-group">
-      <label>Pickup location</label>
-      <input id="parcelPickup" placeholder="Pickup location">
+
+      <label>
+        Your name
+      </label>
+
+      <input
+        id="parcelName"
+        placeholder="Your name">
+
     </div>
 
-    <div class="form-group">
-      <label>Delivery location</label>
-      <input id="parcelDropoff" placeholder="Delivery location">
-    </div>
 
     <div class="form-group">
-      <label>Parcel description</label>
+
+      <label>
+        Pickup location
+      </label>
+
+      <input
+        id="parcelPickup"
+        placeholder="Pickup location">
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        Delivery location
+      </label>
+
+      <input
+        id="parcelDropoff"
+        placeholder="Delivery location">
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        Parcel description
+      </label>
 
       <textarea
         id="parcelDescription"
-        placeholder="What are you sending?"></textarea>
+        placeholder="What are you sending?">
+      </textarea>
 
     </div>
+
 
     <button
       class="btn btn-primary full"
@@ -1218,16 +1687,30 @@ main{
 </div>
 
 
-<!-- ORDERS -->
+<!-- ORDERS MODAL -->
 
-<div class="overlay" id="ordersModal">
+<div
+  class="overlay"
+  id="ordersModal">
 
   <div class="modal">
 
     <div class="modal-head">
-      <h3>My Orders</h3>
-      <button class="close" onclick="closeModal('ordersModal')">×</button>
+
+      <h3>
+        My Orders
+      </h3>
+
+      <button
+        class="close"
+        onclick="closeModal('ordersModal')">
+
+        ×
+
+      </button>
+
     </div>
+
 
     <div class="empty">
 
@@ -1244,15 +1727,29 @@ main{
 </div>
 
 
-<div class="toast" id="toast"></div>
+<!-- TOAST -->
+
+<div
+  class="toast"
+  id="toast">
+</div>
 
 
 <!-- FIREBASE -->
 
 <script type="module">
 
-import { initializeApp }
+/*
+==================================================
+FIREBASE IMPORTS
+==================================================
+*/
+
+import {
+  initializeApp
+}
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
 
 import {
   getAuth,
@@ -1261,6 +1758,7 @@ import {
   signOut
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
 
 import {
   getFirestore,
@@ -1275,14 +1773,21 @@ import {
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-/* =========================================
-   FIREBASE CONFIG
-========================================= */
+/*
+==================================================
+CORRECT FIREBASE CONFIG
+==================================================
+
+IMPORTANT:
+The API key below is the corrected key from
+your Firebase Project Settings.
+==================================================
+*/
 
 const firebaseConfig = {
 
   apiKey:
-    "AIzaSyDjHGybObPLLuqTNhNGE5SBRfBL5T29qWA",
+    "AIzaSyDjHGyeObPLLuqTNhNGE5SBRfBL5T29qWA",
 
   authDomain:
     "sefwi-go.firebaseapp.com",
@@ -1302,1516 +1807,52 @@ const firebaseConfig = {
 };
 
 
-/* =========================================
-   START FIREBASE
-========================================= */
+/*
+==================================================
+INITIALIZE FIREBASE
+==================================================
+*/
 
-const app = initializeApp(firebaseConfig);
+const app =
+  initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
 
-const db = getFirestore(app);
+const auth =
+  getAuth(app);
 
-let firebaseUser = null;
 
-let loginPromise = null;
+const db =
+  getFirestore(app);
+
+
+let firebaseUser =
+  null;
+
+
+let loginPromise =
+  null;
+
+
+window.allBusinesses =
+  [];
+
+
+window.allProperties =
+  [];
 
 
 /*
- IMPORTANT FIX:
-
- We now use the user returned directly from
- signInAnonymously().
-
- We do NOT wait for the first
- onAuthStateChanged() event because that event
- can initially return null before Firebase
- finishes signing in.
+==================================================
+HELPERS
+==================================================
 */
 
-async function ensureFirebaseUser(){
-
-  if(firebaseUser){
-    return firebaseUser;
-  }
-
-  if(loginPromise){
-    return loginPromise;
-  }
-
-  loginPromise = (async function(){
-
-    try{
-
-      const credential =
-        await signInAnonymously(auth);
-
-      firebaseUser = credential.user;
-
-      console.log(
-        "SefwiGo Firebase user:",
-        firebaseUser.uid
-      );
-
-      updateAccountStatus();
-
-      return firebaseUser;
-
-    }catch(error){
-
-      console.error(
-        "SEFWIGO FIREBASE ERROR:",
-        error
-      );
-
-      showFirebaseError(error);
-
-      return null;
-
-    }finally{
-
-      loginPromise = null;
-
-    }
-
-  })();
-
-  return loginPromise;
-
-}
-
-
-/* =========================================
-   AUTH STATE
-========================================= */
-
-onAuthStateChanged(auth, user => {
-
-  if(user){
-
-    firebaseUser = user;
-
-    console.log(
-      "Firebase authentication ready:",
-      user.uid
-    );
-
-    updateAccountStatus();
-
-  }
-
-});
-
-
-/* =========================================
-   SHOW REAL FIREBASE ERROR
-========================================= */
-
-function showFirebaseError(error){
-
-  console.error(error);
-
-  let message =
-    "Firebase connection failed.";
-
-  if(error && error.code){
-
-    message =
-      "Firebase error: " + error.code;
-
-  }
-
-  const status =
-    document.getElementById("accountStatus");
-
-  if(status){
-
-    status.textContent = message;
-
-    status.classList.add("error");
-
-  }
-
-  showToast(message);
-
-}
-
-
-/* =========================================
-   DOM
-========================================= */
-
-window.$ = function(id){
+function $(id){
 
   return document.getElementById(id);
 
-};
-
-
-/* =========================================
-   TOAST
-========================================= */
-
-window.showToast = function(message){
-
-  const toast = $("toast");
-
-  toast.textContent = message;
-
-  toast.classList.add("show");
-
-  clearTimeout(window.toastTimer);
-
-  window.toastTimer =
-    setTimeout(function(){
-
-      toast.classList.remove("show");
-
-    },3000);
-
-};
-
-
-/* =========================================
-   MODALS
-========================================= */
-
-window.openModal = function(id){
-
-  $(id).classList.add("show");
-
-};
-
-
-window.closeModal = function(id){
-
-  $(id).classList.remove("show");
-
-};
-
-
-document.querySelectorAll(".overlay")
-.forEach(function(overlay){
-
-  overlay.addEventListener("click",function(event){
-
-    if(event.target === overlay){
-
-      overlay.classList.remove("show");
-
-    }
-
-  });
-
-});
-
-
-/* =========================================
-   ACCOUNT
-========================================= */
-
-window.openAccount = async function(){
-
-  openModal("accountModal");
-
-  updateAccountStatus();
-
-  const user =
-    await ensureFirebaseUser();
-
-  if(user){
-
-    updateAccountStatus();
-
-    await updateAccountStats();
-
-  }
-
-};
-
-
-function updateAccountStatus(){
-
-  const box =
-    $("accountStatus");
-
-  if(!box){
-    return;
-  }
-
-  box.classList.remove("error");
-
-  if(firebaseUser){
-
-    box.textContent =
-      "✅ Your SefwiGo account is connected.";
-
-  }else{
-
-    box.textContent =
-      "Connecting your SefwiGo account...";
-
-  }
-
 }
 
-
-async function updateAccountStats(){
-
-  if(!firebaseUser){
-    return;
-  }
-
-  try{
-
-    const businessesSnapshot =
-      await getDocs(
-        collection(db,"businesses")
-      );
-
-    const propertiesSnapshot =
-      await getDocs(
-        collection(db,"properties")
-      );
-
-    const businesses =
-      businessesSnapshot.docs
-      .filter(function(d){
-
-        return d.data().ownerUid ===
-          firebaseUser.uid;
-
-      });
-
-    const properties =
-      propertiesSnapshot.docs
-      .filter(function(d){
-
-        return d.data().ownerUid ===
-          firebaseUser.uid;
-
-      });
-
-    $("accountBusinesses").textContent =
-      businesses.length;
-
-    $("accountProperties").textContent =
-      properties.length;
-
-    $("dashBusinessCount").textContent =
-      businesses.length;
-
-  }catch(error){
-
-    console.error(
-      "ACCOUNT STATS ERROR:",
-      error
-    );
-
-  }
-
-}
-
-
-/* =========================================
-   LOGOUT
-========================================= */
-
-window.logout = async function(){
-
-  try{
-
-    await signOut(auth);
-
-    firebaseUser = null;
-
-    closeModal("accountModal");
-
-    showToast("Signed out.");
-
-  }catch(error){
-
-    console.error(error);
-
-  }
-
-};
-
-
-/* =========================================
-   HOME
-========================================= */
-
-window.goHome = function(){
-
-  document
-    .querySelectorAll(".nav-item")
-    .forEach(function(item){
-
-      item.classList.remove("active");
-
-    });
-
-  $("navHome").classList.add("active");
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-};
-
-
-/* =========================================
-   BUSINESS
-========================================= */
-
-window.allBusinesses = [];
-
-
-async function loadBusinesses(){
-
-  const container =
-    $("businessList");
-
-  if(!container){
-    return;
-  }
-
-  try{
-
-    const snapshot =
-      await getDocs(
-        collection(db,"businesses")
-      );
-
-    window.allBusinesses =
-      snapshot.docs.map(function(d){
-
-        return {
-          id:d.id,
-          ...d.data()
-        };
-
-      });
-
-    renderBusinesses(
-      window.allBusinesses
-    );
-
-  }catch(error){
-
-    console.error(
-      "BUSINESS LOAD ERROR:",
-      error
-    );
-
-    container.innerHTML = `
-      <div class="empty">
-        Businesses will appear here when partners register.
-      </div>
-    `;
-
-  }
-
-}
-
-
-function renderBusinesses(list){
-
-  const container =
-    $("businessList");
-
-  if(!container){
-    return;
-  }
-
-  if(!list.length){
-
-    container.innerHTML = `
-      <div class="empty">
-        No businesses registered yet.
-        <br><br>
-        Be the first business to join SefwiGo.
-      </div>
-    `;
-
-    return;
-
-  }
-
-  container.innerHTML =
-    list.map(function(business){
-
-      const name =
-        escapeHTML(
-          business.name ||
-          "Unnamed Business"
-        );
-
-      const category =
-        escapeHTML(
-          business.category ||
-          "Local Business"
-        );
-
-      const location =
-        escapeHTML(
-          business.location ||
-          "Sefwi Wiawso"
-        );
-
-      const description =
-        escapeHTML(
-          business.description ||
-          "Local business on SefwiGo"
-        );
-
-      return `
-
-        <div class="card">
-
-          <div class="card-image">
-            🏪
-          </div>
-
-          <div class="card-body">
-
-            <h4>${name}</h4>
-
-            <p>${description}</p>
-
-            <p>📍 ${location}</p>
-
-            <span class="card-tag">
-              ${category}
-            </span>
-
-          </div>
-
-        </div>
-
-      `;
-
-    }).join("");
-
-}
-
-
-/* =========================================
-   SAVE BUSINESS
-========================================= */
-
-window.saveBusiness =
-async function(event){
-
-  event.preventDefault();
-
-  const user =
-    await ensureFirebaseUser();
-
-  if(!user){
-
-    showToast(
-      "Firebase account could not be connected."
-    );
-
-    return;
-
-  }
-
-  const business = {
-
-    name:
-      $("bizName").value.trim(),
-
-    category:
-      $("bizCategory").value,
-
-    owner:
-      $("bizOwner").value.trim(),
-
-    phone:
-      $("bizPhone").value.trim(),
-
-    location:
-      $("bizLocation").value.trim(),
-
-    description:
-      $("bizDescription").value.trim(),
-
-    ownerUid:
-      user.uid,
-
-    createdAt:
-      serverTimestamp()
-
-  };
-
-
-  try{
-
-    const old =
-      JSON.parse(
-        localStorage.getItem(
-          "sefwiBusiness"
-        ) || "null"
-      );
-
-    let businessId;
-
-
-    if(
-      old &&
-      old.id &&
-      old.ownerUid === user.uid
-    ){
-
-      await updateDoc(
-        doc(
-          db,
-          "businesses",
-          old.id
-        ),
-        business
-      );
-
-      businessId = old.id;
-
-    }else{
-
-      const ref =
-        await addDoc(
-          collection(
-            db,
-            "businesses"
-          ),
-          business
-        );
-
-      businessId = ref.id;
-
-    }
-
-
-    localStorage.setItem(
-      "sefwiBusiness",
-      JSON.stringify({
-        ...business,
-        id:businessId
-      })
-    );
-
-
-    showToast(
-      "✅ Business published!"
-    );
-
-
-    await loadBusinesses();
-
-    await updateAccountStats();
-
-    dashboardTab("overview");
-
-  }catch(error){
-
-    console.error(
-      "SAVE BUSINESS ERROR:",
-      error
-    );
-
-    showToast(
-      "❌ Could not publish business: " +
-      (error.code || "unknown error")
-    );
-
-  }
-
-};
-
-
-/* =========================================
-   PARTNER DASHBOARD
-========================================= */
-
-window.openPartner =
-async function(){
-
-  closeModal("accountModal");
-
-  openModal("partnerModal");
-
-  const user =
-    await ensureFirebaseUser();
-
-  if(!user){
-    return;
-  }
-
-  await loadMyBusiness();
-
-  dashboardTab("overview");
-
-};
-
-
-window.dashboardTab =
-function(tab){
-
-  const tabs = [
-    "overview",
-    "business",
-    "products",
-    "orders"
-  ];
-
-  tabs.forEach(function(name){
-
-    const section =
-      $("dashboard" +
-        capitalize(name));
-
-    const button =
-      $("tab" +
-        capitalize(name));
-
-    if(section){
-
-      section.style.display =
-        name === tab
-        ? "block"
-        : "none";
-
-    }
-
-    if(button){
-
-      button.classList.toggle(
-        "active",
-        name === tab
-      );
-
-    }
-
-  });
-
-};
-
-
-async function loadMyBusiness(){
-
-  if(!firebaseUser){
-    return;
-  }
-
-  try{
-
-    const snapshot =
-      await getDocs(
-        collection(db,"businesses")
-      );
-
-    const mine =
-      snapshot.docs.find(function(d){
-
-        return d.data().ownerUid ===
-          firebaseUser.uid;
-
-      });
-
-    if(!mine){
-      return;
-    }
-
-    const b =
-      mine.data();
-
-    $("bizName").value =
-      b.name || "";
-
-    $("bizCategory").value =
-      b.category || "";
-
-    $("bizOwner").value =
-      b.owner || "";
-
-    $("bizPhone").value =
-      b.phone || "";
-
-    $("bizLocation").value =
-      b.location || "";
-
-    $("bizDescription").value =
-      b.description || "";
-
-
-    localStorage.setItem(
-      "sefwiBusiness",
-      JSON.stringify({
-        ...b,
-        id:mine.id
-      })
-    );
-
-  }catch(error){
-
-    console.error(
-      "LOAD MY BUSINESS ERROR:",
-      error
-    );
-
-  }
-
-}
-
-
-/* =========================================
-   PROPERTY
-========================================= */
-
-window.allProperties = [];
-
-
-window.openProperty =
-async function(){
-
-  openModal("propertyModal");
-
-  const user =
-    await ensureFirebaseUser();
-
-  if(!user){
-    return;
-  }
-
-  propertyTab("browse");
-
-  await loadProperties();
-
-};
-
-
-window.propertyTab =
-function(tab){
-
-  const tabs = [
-    "browse",
-    "register",
-    "mine"
-  ];
-
-  tabs.forEach(function(name){
-
-    const section =
-      $("property" +
-        capitalize(name));
-
-    if(section){
-
-      section.style.display =
-        name === tab
-        ? "block"
-        : "none";
-
-    }
-
-  });
-
-
-  $("propertyBrowseTab")
-    .classList.toggle(
-      "active",
-      tab === "browse"
-    );
-
-  $("propertyRegisterTab")
-    .classList.toggle(
-      "active",
-      tab === "register"
-    );
-
-  $("propertyMineTab")
-    .classList.toggle(
-      "active",
-      tab === "mine"
-    );
-
-
-  if(tab === "mine"){
-
-    loadMyProperties();
-
-  }
-
-};
-
-
-async function loadProperties(){
-
-  const homeContainer =
-    $("propertyList");
-
-  if(!homeContainer){
-    return;
-  }
-
-  try{
-
-    const snapshot =
-      await getDocs(
-        collection(db,"properties")
-      );
-
-    window.allProperties =
-      snapshot.docs.map(function(d){
-
-        return {
-          id:d.id,
-          ...d.data()
-        };
-
-      });
-
-
-    renderProperties(
-      window.allProperties,
-      homeContainer,
-      false
-    );
-
-
-    if($("modalPropertyList")){
-
-      renderProperties(
-        window.allProperties,
-        $("modalPropertyList"),
-        false
-      );
-
-    }
-
-
-    await loadMyProperties();
-
-  }catch(error){
-
-    console.error(
-      "PROPERTY LOAD ERROR:",
-      error
-    );
-
-    homeContainer.innerHTML = `
-      <div class="empty">
-        No properties listed yet.
-      </div>
-    `;
-
-  }
-
-}
-
-
-function renderProperties(
-  properties,
-  container,
-  mineOnly
-){
-
-  if(!container){
-    return;
-  }
-
-  let list =
-    properties || [];
-
-
-  if(mineOnly){
-
-    list =
-      list.filter(function(property){
-
-        return firebaseUser &&
-          property.ownerUid ===
-          firebaseUser.uid;
-
-      });
-
-  }
-
-
-  if(!list.length){
-
-    container.innerHTML = `
-
-      <div class="empty">
-
-        ${
-          mineOnly
-          ? "You have not registered any properties yet."
-          : "No properties available yet."
-        }
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-  container.innerHTML =
-    list.map(function(property){
-
-      const title =
-        escapeHTML(
-          property.title ||
-          "Property"
-        );
-
-      const type =
-        escapeHTML(
-          property.type ||
-          "Property"
-        );
-
-      const purpose =
-        escapeHTML(
-          property.purpose ||
-          ""
-        );
-
-      const price =
-        escapeHTML(
-          property.price ||
-          ""
-        );
-
-      const location =
-        escapeHTML(
-          property.location ||
-          ""
-        );
-
-      const description =
-        escapeHTML(
-          property.description ||
-          ""
-        );
-
-      const owner =
-        firebaseUser &&
-        property.ownerUid ===
-        firebaseUser.uid;
-
-
-      return `
-
-        <div class="property">
-
-          <div class="property-top">
-
-            <div class="property-photo">
-              🏠
-            </div>
-
-            <div class="property-info">
-
-              <h4>${title}</h4>
-
-              <p>
-                ${type} • ${purpose}
-              </p>
-
-              <p>
-                📍 ${location}
-              </p>
-
-              <div class="price">
-                ${price}
-              </div>
-
-            </div>
-
-          </div>
-
-
-          ${
-            description
-            ? `
-              <p style="
-                margin-top:10px;
-                color:#718078;
-                font-size:12px;
-              ">
-                ${description}
-              </p>
-            `
-            : ""
-          }
-
-
-          <div class="property-actions">
-
-            ${
-              property.phone
-              ? `
-                <button
-                  class="btn btn-primary"
-                  onclick="contactProperty('${escapeAttr(property.phone)}')">
-
-                  WhatsApp
-
-                </button>
-              `
-              : ""
-            }
-
-
-            ${
-              owner
-              ? `
-                <button
-                  class="btn btn-danger"
-                  onclick="deleteProperty('${escapeAttr(property.id)}')">
-
-                  Delete
-
-                </button>
-              `
-              : ""
-            }
-
-          </div>
-
-        </div>
-
-      `;
-
-    }).join("");
-
-}
-
-
-/* =========================================
-   SAVE PROPERTY
-========================================= */
-
-window.saveProperty =
-async function(event){
-
-  event.preventDefault();
-
-  const user =
-    await ensureFirebaseUser();
-
-  if(!user){
-
-    showToast(
-      "Firebase account could not be connected."
-    );
-
-    return;
-
-  }
-
-
-  const property = {
-
-    title:
-      $("propertyTitle").value.trim(),
-
-    type:
-      $("propertyType").value,
-
-    purpose:
-      $("propertyPurpose").value,
-
-    price:
-      $("propertyPrice").value.trim(),
-
-    location:
-      $("propertyLocation").value.trim(),
-
-    phone:
-      $("propertyPhone").value.trim(),
-
-    description:
-      $("propertyDescription").value.trim(),
-
-    ownerUid:
-      user.uid,
-
-    createdAt:
-      serverTimestamp()
-
-  };
-
-
-  try{
-
-    await addDoc(
-      collection(db,"properties"),
-      property
-    );
-
-
-    showToast(
-      "✅ Property published!"
-    );
-
-
-    $("propertyTitle").value = "";
-
-    $("propertyType").value = "";
-
-    $("propertyPurpose").value = "";
-
-    $("propertyPrice").value = "";
-
-    $("propertyLocation").value = "";
-
-    $("propertyPhone").value = "";
-
-    $("propertyDescription").value = "";
-
-
-    await loadProperties();
-
-    await updateAccountStats();
-
-    propertyTab("mine");
-
-  }catch(error){
-
-    console.error(
-      "SAVE PROPERTY ERROR:",
-      error
-    );
-
-    showToast(
-      "❌ Property could not be saved: " +
-      (error.code || "unknown error")
-    );
-
-  }
-
-};
-
-
-/* =========================================
-   MY PROPERTIES
-========================================= */
-
-async function loadMyProperties(){
-
-  if(!firebaseUser){
-    return;
-  }
-
-  try{
-
-    const snapshot =
-      await getDocs(
-        collection(db,"properties")
-      );
-
-    const properties =
-      snapshot.docs.map(function(d){
-
-        return {
-          id:d.id,
-          ...d.data()
-        };
-
-      });
-
-
-    renderProperties(
-      properties,
-      $("myPropertyList"),
-      true
-    );
-
-  }catch(error){
-
-    console.error(
-      "MY PROPERTY ERROR:",
-      error
-    );
-
-  }
-
-}
-
-
-/* =========================================
-   DELETE PROPERTY
-========================================= */
-
-window.deleteProperty =
-async function(id){
-
-  if(!firebaseUser){
-    return;
-  }
-
-  try{
-
-    await deleteDoc(
-      doc(
-        db,
-        "properties",
-        id
-      )
-    );
-
-
-    showToast(
-      "Property deleted."
-    );
-
-
-    await loadProperties();
-
-    await updateAccountStats();
-
-    propertyTab("mine");
-
-  }catch(error){
-
-    console.error(
-      "DELETE PROPERTY ERROR:",
-      error
-    );
-
-    showToast(
-      "Could not delete property."
-    );
-
-  }
-
-};
-
-
-/* =========================================
-   PROPERTY WHATSAPP
-========================================= */
-
-window.contactProperty =
-function(phone){
-
-  const clean =
-    String(phone)
-      .replace(/\D/g,"");
-
-  let number = clean;
-
-  if(clean.startsWith("0")){
-
-    number =
-      "233" +
-      clean.substring(1);
-
-  }
-
-  const message =
-    encodeURIComponent(
-      "Hello, I saw your property on SefwiGo and I am interested."
-    );
-
-
-  window.open(
-    "https://wa.me/" +
-    number +
-    "?text=" +
-    message,
-    "_blank"
-  );
-
-};
-
-
-/* =========================================
-   PARCEL
-========================================= */
-
-window.openParcel =
-function(){
-
-  openModal("parcelModal");
-
-};
-
-
-window.sendParcelWhatsApp =
-function(){
-
-  const name =
-    $("parcelName").value.trim();
-
-  const pickup =
-    $("parcelPickup").value.trim();
-
-  const dropoff =
-    $("parcelDropoff").value.trim();
-
-  const description =
-    $("parcelDescription").value.trim();
-
-
-  if(!pickup || !dropoff){
-
-    showToast(
-      "Please enter pickup and delivery locations."
-    );
-
-    return;
-
-  }
-
-
-  const message =
-`SefwiGo Parcel Request
-
-Name: ${name || "Not provided"}
-
-Pickup: ${pickup}
-
-Delivery: ${dropoff}
-
-Parcel: ${description || "Not provided"}`;
-
-
-  const encoded =
-    encodeURIComponent(message);
-
-
-  /*
-    IMPORTANT:
-    Replace this with the official SefwiGo
-    WhatsApp number when you have one.
-  */
-
-  const sefwiGoNumber =
-    "233000000000";
-
-
-  window.open(
-    "https://wa.me/" +
-    sefwiGoNumber +
-    "?text=" +
-    encoded,
-    "_blank"
-  );
-
-};
-
-
-/* =========================================
-   FOOD
-========================================= */
-
-window.showFood =
-function(){
-
-  showToast(
-    "Food marketplace coming next."
-  );
-
-};
-
-
-/* =========================================
-   GROCERIES
-========================================= */
-
-window.showGroceries =
-function(){
-
-  showToast(
-    "Grocery marketplace coming next."
-  );
-
-};
-
-
-/* =========================================
-   ORDERS
-========================================= */
-
-window.openOrders =
-function(){
-
-  openModal("ordersModal");
-
-  document
-    .querySelectorAll(".nav-item")
-    .forEach(function(item){
-
-      item.classList.remove("active");
-
-    });
-
-  $("navOrders")
-    .classList.add("active");
-
-};
-
-
-/* =========================================
-   SEARCH
-========================================= */
-
-window.searchEverything =
-function(){
-
-  const text =
-    $("searchInput")
-      .value
-      .trim()
-      .toLowerCase();
-
-
-  if(!text){
-
-    renderBusinesses(
-      window.allBusinesses || []
-    );
-
-    return;
-
-  }
-
-
-  const results =
-    (window.allBusinesses || [])
-    .filter(function(business){
-
-      const value =
-        [
-          business.name,
-          business.category,
-          business.location,
-          business.description
-        ]
-        .join(" ")
-        .toLowerCase();
-
-      return value.includes(text);
-
-    });
-
-
-  renderBusinesses(results);
-
-};
-
-
-/* =========================================
-   HELPERS
-========================================= */
 
 function capitalize(value){
 
@@ -2842,9 +1883,1954 @@ function escapeAttr(value){
 }
 
 
-/* =========================================
-   START APP
-========================================= */
+/*
+==================================================
+TOAST
+==================================================
+*/
+
+window.showToast =
+function(message){
+
+  const toast =
+    $("toast");
+
+  toast.textContent =
+    message;
+
+  toast.classList.add(
+    "show"
+  );
+
+  clearTimeout(
+    window.toastTimer
+  );
+
+  window.toastTimer =
+    setTimeout(
+      function(){
+
+        toast.classList.remove(
+          "show"
+        );
+
+      },
+      3000
+    );
+
+};
+
+
+/*
+==================================================
+MODALS
+==================================================
+*/
+
+window.openModal =
+function(id){
+
+  $(id).classList.add(
+    "show"
+  );
+
+};
+
+
+window.closeModal =
+function(id){
+
+  $(id).classList.remove(
+    "show"
+  );
+
+};
+
+
+document
+  .querySelectorAll(".overlay")
+  .forEach(
+    function(overlay){
+
+      overlay.addEventListener(
+        "click",
+        function(event){
+
+          if(
+            event.target ===
+            overlay
+          ){
+
+            overlay.classList.remove(
+              "show"
+            );
+
+          }
+
+        }
+      );
+
+    }
+  );
+
+
+/*
+==================================================
+FIREBASE USER
+==================================================
+
+IMPORTANT FIX:
+
+We use the user returned directly from
+signInAnonymously().
+
+We do NOT wait for the initial
+onAuthStateChanged() null state.
+==================================================
+*/
+
+async function ensureFirebaseUser(){
+
+  if(firebaseUser){
+
+    return firebaseUser;
+
+  }
+
+
+  if(loginPromise){
+
+    return loginPromise;
+
+  }
+
+
+  loginPromise =
+    (async function(){
+
+      try{
+
+        const credential =
+          await signInAnonymously(
+            auth
+          );
+
+
+        firebaseUser =
+          credential.user;
+
+
+        console.log(
+          "SefwiGo Firebase user:",
+          firebaseUser.uid
+        );
+
+
+        updateAccountStatus();
+
+
+        return firebaseUser;
+
+      }
+      catch(error){
+
+        showFirebaseError(
+          error
+        );
+
+
+        return null;
+
+      }
+      finally{
+
+        loginPromise =
+          null;
+
+      }
+
+    })();
+
+
+  return loginPromise;
+
+}
+
+
+/*
+==================================================
+AUTH STATE
+==================================================
+*/
+
+onAuthStateChanged(
+  auth,
+  function(user){
+
+    if(user){
+
+      firebaseUser =
+        user;
+
+      console.log(
+        "Firebase authentication ready:",
+        user.uid
+      );
+
+      updateAccountStatus();
+
+    }
+
+  }
+);
+
+
+/*
+==================================================
+FIREBASE ERROR
+==================================================
+*/
+
+function showFirebaseError(
+  error
+){
+
+  console.error(
+    "SEFWIGO FIREBASE ERROR:",
+    error
+  );
+
+
+  let message =
+    "Firebase connection failed.";
+
+
+  if(
+    error &&
+    error.code
+  ){
+
+    message =
+      "Firebase error: " +
+      error.code;
+
+  }
+
+
+  const status =
+    $("accountStatus");
+
+
+  if(status){
+
+    status.textContent =
+      message;
+
+    status.classList.add(
+      "error"
+    );
+
+  }
+
+
+  showToast(
+    message
+  );
+
+}
+
+
+/*
+==================================================
+ACCOUNT STATUS
+==================================================
+*/
+
+function updateAccountStatus(){
+
+  const box =
+    $("accountStatus");
+
+
+  if(!box){
+
+    return;
+
+  }
+
+
+  box.classList.remove(
+    "error"
+  );
+
+
+  if(firebaseUser){
+
+    box.textContent =
+      "✅ Your SefwiGo account is connected.";
+
+  }
+  else{
+
+    box.textContent =
+      "Connecting your SefwiGo account...";
+
+  }
+
+}
+
+
+/*
+==================================================
+ACCOUNT
+==================================================
+*/
+
+window.openAccount =
+async function(){
+
+  openModal(
+    "accountModal"
+  );
+
+
+  updateAccountStatus();
+
+
+  const user =
+    await ensureFirebaseUser();
+
+
+  if(user){
+
+    await updateAccountStats();
+
+  }
+
+};
+
+
+async function updateAccountStats(){
+
+  if(!firebaseUser){
+
+    return;
+
+  }
+
+
+  try{
+
+    const results =
+      await Promise.all([
+
+        getDocs(
+          collection(
+            db,
+            "businesses"
+          )
+        ),
+
+        getDocs(
+          collection(
+            db,
+            "properties"
+          )
+        )
+
+      ]);
+
+
+    const businesses =
+      results[0].docs.filter(
+        function(d){
+
+          return d.data().ownerUid ===
+            firebaseUser.uid;
+
+        }
+      );
+
+
+    const properties =
+      results[1].docs.filter(
+        function(d){
+
+          return d.data().ownerUid ===
+            firebaseUser.uid;
+
+        }
+      );
+
+
+    $("accountBusinesses")
+      .textContent =
+      businesses.length;
+
+
+    $("accountProperties")
+      .textContent =
+      properties.length;
+
+
+    $("dashBusinessCount")
+      .textContent =
+      businesses.length;
+
+  }
+  catch(error){
+
+    console.error(
+      "ACCOUNT STATS ERROR:",
+      error
+    );
+
+  }
+
+}
+
+
+/*
+==================================================
+LOGOUT
+==================================================
+*/
+
+window.logout =
+async function(){
+
+  try{
+
+    await signOut(
+      auth
+    );
+
+
+    firebaseUser =
+      null;
+
+
+    closeModal(
+      "accountModal"
+    );
+
+
+    showToast(
+      "Signed out."
+    );
+
+  }
+  catch(error){
+
+    console.error(
+      error
+    );
+
+  }
+
+};
+
+
+/*
+==================================================
+HOME
+==================================================
+*/
+
+window.goHome =
+function(){
+
+  document
+    .querySelectorAll(
+      ".nav-item"
+    )
+    .forEach(
+      function(item){
+
+        item.classList.remove(
+          "active"
+        );
+
+      }
+    );
+
+
+  $("navHome")
+    .classList.add(
+      "active"
+    );
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+};
+
+
+/*
+==================================================
+BUSINESSES
+==================================================
+*/
+
+async function loadBusinesses(){
+
+  try{
+
+    const snapshot =
+      await getDocs(
+        collection(
+          db,
+          "businesses"
+        )
+      );
+
+
+    window.allBusinesses =
+      snapshot.docs.map(
+        function(d){
+
+          return {
+            id:d.id,
+            ...d.data()
+          };
+
+        }
+      );
+
+
+    renderBusinesses(
+      window.allBusinesses
+    );
+
+  }
+  catch(error){
+
+    console.error(
+      "BUSINESS LOAD ERROR:",
+      error
+    );
+
+
+    $("businessList")
+      .innerHTML =
+
+      `
+        <div class="empty">
+
+          Businesses will appear here
+          when partners register.
+
+        </div>
+      `;
+
+  }
+
+}
+
+
+function renderBusinesses(
+  list
+){
+
+  const container =
+    $("businessList");
+
+
+  if(!list.length){
+
+    container.innerHTML =
+
+      `
+        <div class="empty">
+
+          No businesses registered yet.
+
+          <br><br>
+
+          Be the first business
+          to join SefwiGo.
+
+        </div>
+      `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+
+    `
+      <div class="cards">
+
+        ${
+          list.map(
+            function(business){
+
+              return `
+
+                <div class="card">
+
+                  <div class="card-image">
+                    🏪
+                  </div>
+
+                  <div class="card-body">
+
+                    <h4>
+                      ${escapeHTML(
+                        business.name ||
+                        "Unnamed Business"
+                      )}
+                    </h4>
+
+
+                    <p>
+                      ${escapeHTML(
+                        business.description ||
+                        "Local business on SefwiGo"
+                      )}
+                    </p>
+
+
+                    <p>
+                      📍
+                      ${escapeHTML(
+                        business.location ||
+                        "Sefwi Wiawso"
+                      )}
+                    </p>
+
+
+                    <span class="card-tag">
+
+                      ${escapeHTML(
+                        business.category ||
+                        "Local Business"
+                      )}
+
+                    </span>
+
+                  </div>
+
+                </div>
+
+              `;
+
+            }
+          ).join("")
+        }
+
+      </div>
+    `;
+
+}
+
+
+/*
+==================================================
+SAVE BUSINESS
+==================================================
+*/
+
+window.saveBusiness =
+async function(event){
+
+  event.preventDefault();
+
+
+  const user =
+    await ensureFirebaseUser();
+
+
+  if(!user){
+
+    showToast(
+      "Firebase account could not be connected."
+    );
+
+    return;
+
+  }
+
+
+  const business = {
+
+    name:
+      $("bizName")
+        .value
+        .trim(),
+
+    category:
+      $("bizCategory")
+        .value,
+
+    owner:
+      $("bizOwner")
+        .value
+        .trim(),
+
+    phone:
+      $("bizPhone")
+        .value
+        .trim(),
+
+    location:
+      $("bizLocation")
+        .value
+        .trim(),
+
+    description:
+      $("bizDescription")
+        .value
+        .trim(),
+
+    ownerUid:
+      user.uid,
+
+    createdAt:
+      serverTimestamp()
+
+  };
+
+
+  try{
+
+    const old =
+      JSON.parse(
+        localStorage.getItem(
+          "sefwiBusiness"
+        ) ||
+        "null"
+      );
+
+
+    let businessId;
+
+
+    if(
+      old &&
+      old.id &&
+      old.ownerUid ===
+      user.uid
+    ){
+
+      await updateDoc(
+        doc(
+          db,
+          "businesses",
+          old.id
+        ),
+        business
+      );
+
+
+      businessId =
+        old.id;
+
+    }
+    else{
+
+      const ref =
+        await addDoc(
+          collection(
+            db,
+            "businesses"
+          ),
+          business
+        );
+
+
+      businessId =
+        ref.id;
+
+    }
+
+
+    localStorage.setItem(
+      "sefwiBusiness",
+      JSON.stringify({
+
+        ...business,
+
+        id:
+          businessId
+
+      })
+    );
+
+
+    showToast(
+      "✅ Business published!"
+    );
+
+
+    await loadBusinesses();
+
+
+    await updateAccountStats();
+
+
+    dashboardTab(
+      "overview"
+    );
+
+  }
+  catch(error){
+
+    console.error(
+      "SAVE BUSINESS ERROR:",
+      error
+    );
+
+
+    showToast(
+      "❌ Could not publish business: " +
+      (
+        error.code ||
+        "unknown error"
+      )
+    );
+
+  }
+
+};
+
+
+/*
+==================================================
+PARTNER DASHBOARD
+==================================================
+*/
+
+window.openPartner =
+async function(){
+
+  closeModal(
+    "accountModal"
+  );
+
+
+  openModal(
+    "partnerModal"
+  );
+
+
+  const user =
+    await ensureFirebaseUser();
+
+
+  if(!user){
+
+    return;
+
+  }
+
+
+  await loadMyBusiness();
+
+
+  dashboardTab(
+    "overview"
+  );
+
+};
+
+
+window.dashboardTab =
+function(tab){
+
+  const tabs = [
+    "overview",
+    "business",
+    "products",
+    "orders"
+  ];
+
+
+  tabs.forEach(
+    function(name){
+
+      const section =
+        $("dashboard" +
+          capitalize(name));
+
+
+      const button =
+        $("tab" +
+          capitalize(name));
+
+
+      if(section){
+
+        section.style.display =
+          name === tab
+          ? "block"
+          : "none";
+
+      }
+
+
+      if(button){
+
+        button.classList.toggle(
+          "active",
+          name === tab
+        );
+
+      }
+
+    }
+  );
+
+};
+
+
+async function loadMyBusiness(){
+
+  if(!firebaseUser){
+
+    return;
+
+  }
+
+
+  try{
+
+    const snapshot =
+      await getDocs(
+        collection(
+          db,
+          "businesses"
+        )
+      );
+
+
+    const mine =
+      snapshot.docs.find(
+        function(d){
+
+          return d.data().ownerUid ===
+            firebaseUser.uid;
+
+        }
+      );
+
+
+    if(!mine){
+
+      return;
+
+    }
+
+
+    const business =
+      mine.data();
+
+
+    $("bizName").value =
+      business.name ||
+      "";
+
+
+    $("bizCategory").value =
+      business.category ||
+      "";
+
+
+    $("bizOwner").value =
+      business.owner ||
+      "";
+
+
+    $("bizPhone").value =
+      business.phone ||
+      "";
+
+
+    $("bizLocation").value =
+      business.location ||
+      "";
+
+
+    $("bizDescription").value =
+      business.description ||
+      "";
+
+
+    localStorage.setItem(
+      "sefwiBusiness",
+      JSON.stringify({
+
+        ...business,
+
+        id:
+          mine.id
+
+      })
+    );
+
+  }
+  catch(error){
+
+    console.error(
+      "LOAD MY BUSINESS ERROR:",
+      error
+    );
+
+  }
+
+}
+
+
+/*
+==================================================
+PROPERTIES
+==================================================
+*/
+
+async function loadProperties(){
+
+  try{
+
+    const snapshot =
+      await getDocs(
+        collection(
+          db,
+          "properties"
+        )
+      );
+
+
+    window.allProperties =
+      snapshot.docs.map(
+        function(d){
+
+          return {
+
+            id:d.id,
+
+            ...d.data()
+
+          };
+
+        }
+      );
+
+
+    renderProperties(
+      window.allProperties,
+      $("propertyList"),
+      false
+    );
+
+
+    renderProperties(
+      window.allProperties,
+      $("modalPropertyList"),
+      false
+    );
+
+
+    await loadMyProperties();
+
+  }
+  catch(error){
+
+    console.error(
+      "PROPERTY LOAD ERROR:",
+      error
+    );
+
+
+    $("propertyList")
+      .innerHTML =
+
+      `
+        <div class="empty">
+
+          No properties listed yet.
+
+        </div>
+      `;
+
+  }
+
+}
+
+
+function renderProperties(
+  list,
+  container,
+  mineOnly
+){
+
+  if(!container){
+
+    return;
+
+  }
+
+
+  if(mineOnly){
+
+    list =
+      list.filter(
+        function(property){
+
+          return firebaseUser &&
+            property.ownerUid ===
+            firebaseUser.uid;
+
+        }
+      );
+
+  }
+
+
+  if(!list.length){
+
+    container.innerHTML =
+
+      `
+        <div class="empty">
+
+          ${
+            mineOnly
+
+            ?
+
+            "You have not registered any properties yet."
+
+            :
+
+            "No properties available yet."
+
+          }
+
+        </div>
+      `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+
+    list.map(
+      function(property){
+
+        const owner =
+          firebaseUser &&
+          property.ownerUid ===
+          firebaseUser.uid;
+
+
+        return `
+
+          <div class="property">
+
+
+            <div class="property-top">
+
+
+              <div class="property-photo">
+
+                🏠
+
+              </div>
+
+
+              <div class="property-info">
+
+
+                <h4>
+
+                  ${escapeHTML(
+                    property.title ||
+                    "Property"
+                  )}
+
+                </h4>
+
+
+                <p>
+
+                  ${escapeHTML(
+                    property.type ||
+                    "Property"
+                  )}
+
+                  •
+
+                  ${escapeHTML(
+                    property.purpose ||
+                    ""
+                  )}
+
+                </p>
+
+
+                <p>
+
+                  📍
+
+                  ${escapeHTML(
+                    property.location ||
+                    ""
+                  )}
+
+                </p>
+
+
+                <div class="price">
+
+                  ${escapeHTML(
+                    property.price ||
+                    ""
+                  )}
+
+                </div>
+
+
+              </div>
+
+
+            </div>
+
+
+            ${
+              property.description
+
+              ?
+
+              `
+
+                <p
+                  style="
+                    margin-top:10px;
+                    color:#718078;
+                    font-size:12px;
+                  ">
+
+                  ${escapeHTML(
+                    property.description
+                  )}
+
+                </p>
+
+              `
+
+              :
+
+              ""
+
+            }
+
+
+            <div class="property-actions">
+
+
+              ${
+                property.phone
+
+                ?
+
+                `
+
+                  <button
+                    class="btn btn-primary"
+                    onclick="contactProperty('${escapeAttr(
+                      property.phone
+                    )}')">
+
+                    WhatsApp
+
+                  </button>
+
+                `
+
+                :
+
+                ""
+
+              }
+
+
+              ${
+                owner
+
+                ?
+
+                `
+
+                  <button
+                    class="btn btn-danger"
+                    onclick="deleteProperty('${escapeAttr(
+                      property.id
+                    )}')">
+
+                    Delete
+
+                  </button>
+
+                `
+
+                :
+
+                ""
+
+              }
+
+
+            </div>
+
+
+          </div>
+
+        `;
+
+      }
+    ).join("");
+
+}
+
+
+/*
+==================================================
+OPEN PROPERTY
+==================================================
+*/
+
+window.openProperty =
+async function(){
+
+  openModal(
+    "propertyModal"
+  );
+
+
+  const user =
+    await ensureFirebaseUser();
+
+
+  if(!user){
+
+    return;
+
+  }
+
+
+  propertyTab(
+    "browse"
+  );
+
+
+  await loadProperties();
+
+};
+
+
+/*
+==================================================
+PROPERTY TABS
+==================================================
+*/
+
+window.propertyTab =
+function(tab){
+
+  [
+    "browse",
+    "register",
+    "mine"
+  ]
+  .forEach(
+    function(name){
+
+      $("property" +
+        capitalize(name))
+        .style.display =
+          name === tab
+          ? "block"
+          : "none";
+
+    }
+  );
+
+
+  $("propertyBrowseTab")
+    .classList.toggle(
+      "active",
+      tab === "browse"
+    );
+
+
+  $("propertyRegisterTab")
+    .classList.toggle(
+      "active",
+      tab === "register"
+    );
+
+
+  $("propertyMineTab")
+    .classList.toggle(
+      "active",
+      tab === "mine"
+    );
+
+
+  if(tab === "mine"){
+
+    loadMyProperties();
+
+  }
+
+};
+
+
+/*
+==================================================
+SAVE PROPERTY
+==================================================
+*/
+
+window.saveProperty =
+async function(event){
+
+  event.preventDefault();
+
+
+  const user =
+    await ensureFirebaseUser();
+
+
+  if(!user){
+
+    showToast(
+      "Firebase account could not be connected."
+    );
+
+    return;
+
+  }
+
+
+  const property = {
+
+    title:
+      $("propertyTitle")
+        .value
+        .trim(),
+
+    type:
+      $("propertyType")
+        .value,
+
+    purpose:
+      $("propertyPurpose")
+        .value,
+
+    price:
+      $("propertyPrice")
+        .value
+        .trim(),
+
+    location:
+      $("propertyLocation")
+        .value
+        .trim(),
+
+    phone:
+      $("propertyPhone")
+        .value
+        .trim(),
+
+    description:
+      $("propertyDescription")
+        .value
+        .trim(),
+
+    ownerUid:
+      user.uid,
+
+    createdAt:
+      serverTimestamp()
+
+  };
+
+
+  try{
+
+    await addDoc(
+      collection(
+        db,
+        "properties"
+      ),
+      property
+    );
+
+
+    showToast(
+      "✅ Property published!"
+    );
+
+
+    $("propertyTitle")
+      .value = "";
+
+
+    $("propertyType")
+      .value = "";
+
+
+    $("propertyPurpose")
+      .value = "";
+
+
+    $("propertyPrice")
+      .value = "";
+
+
+    $("propertyLocation")
+      .value = "";
+
+
+    $("propertyPhone")
+      .value = "";
+
+
+    $("propertyDescription")
+      .value = "";
+
+
+    await loadProperties();
+
+
+    await updateAccountStats();
+
+
+    propertyTab(
+      "mine"
+    );
+
+  }
+  catch(error){
+
+    console.error(
+      "SAVE PROPERTY ERROR:",
+      error
+    );
+
+
+    showToast(
+      "❌ Property could not be saved: " +
+      (
+        error.code ||
+        "unknown error"
+      )
+    );
+
+  }
+
+};
+
+
+/*
+==================================================
+MY PROPERTIES
+==================================================
+*/
+
+async function loadMyProperties(){
+
+  if(!firebaseUser){
+
+    return;
+
+  }
+
+
+  try{
+
+    const snapshot =
+      await getDocs(
+        collection(
+          db,
+          "properties"
+        )
+      );
+
+
+    const properties =
+      snapshot.docs.map(
+        function(d){
+
+          return {
+
+            id:d.id,
+
+            ...d.data()
+
+          };
+
+        }
+      );
+
+
+    renderProperties(
+      properties,
+      $("myPropertyList"),
+      true
+    );
+
+  }
+  catch(error){
+
+    console.error(
+      "MY PROPERTY ERROR:",
+      error
+    );
+
+  }
+
+}
+
+
+/*
+==================================================
+DELETE PROPERTY
+==================================================
+*/
+
+window.deleteProperty =
+async function(id){
+
+  if(!firebaseUser){
+
+    return;
+
+  }
+
+
+  try{
+
+    await deleteDoc(
+      doc(
+        db,
+        "properties",
+        id
+      )
+    );
+
+
+    showToast(
+      "Property deleted."
+    );
+
+
+    await loadProperties();
+
+
+    await updateAccountStats();
+
+
+    propertyTab(
+      "mine"
+    );
+
+  }
+  catch(error){
+
+    console.error(
+      "DELETE PROPERTY ERROR:",
+      error
+    );
+
+
+    showToast(
+      "Could not delete property."
+    );
+
+  }
+
+};
+
+
+/*
+==================================================
+PROPERTY WHATSAPP
+==================================================
+*/
+
+window.contactProperty =
+function(phone){
+
+  let number =
+    String(phone)
+      .replace(
+        /\D/g,
+        ""
+      );
+
+
+  if(
+    number.startsWith("0")
+  ){
+
+    number =
+      "233" +
+      number.substring(1);
+
+  }
+
+
+  const message =
+    encodeURIComponent(
+      "Hello, I saw your property on SefwiGo and I am interested."
+    );
+
+
+  window.open(
+    "https://wa.me/" +
+    number +
+    "?text=" +
+    message,
+    "_blank"
+  );
+
+};
+
+
+/*
+==================================================
+PARCEL
+==================================================
+*/
+
+window.openParcel =
+function(){
+
+  openModal(
+    "parcelModal"
+  );
+
+};
+
+
+window.sendParcelWhatsApp =
+function(){
+
+  const name =
+    $("parcelName")
+      .value
+      .trim();
+
+
+  const pickup =
+    $("parcelPickup")
+      .value
+      .trim();
+
+
+  const dropoff =
+    $("parcelDropoff")
+      .value
+      .trim();
+
+
+  const description =
+    $("parcelDescription")
+      .value
+      .trim();
+
+
+  if(
+    !pickup ||
+    !dropoff
+  ){
+
+    showToast(
+      "Please enter pickup and delivery locations."
+    );
+
+    return;
+
+  }
+
+
+  const message =
+    encodeURIComponent(
+
+      `SefwiGo Parcel Request
+
+Name: ${name || "Not provided"}
+
+Pickup: ${pickup}
+
+Delivery: ${dropoff}
+
+Parcel: ${description || "Not provided"}`
+
+    );
+
+
+  /*
+    IMPORTANT:
+    Replace 233000000000 with the official
+    SefwiGo WhatsApp number when you have it.
+  */
+
+  window.open(
+    "https://wa.me/233000000000?text=" +
+    message,
+    "_blank"
+  );
+
+};
+
+
+/*
+==================================================
+FOOD
+==================================================
+*/
+
+window.showFood =
+function(){
+
+  showToast(
+    "Food marketplace coming next."
+  );
+
+};
+
+
+/*
+==================================================
+GROCERIES
+==================================================
+*/
+
+window.showGroceries =
+function(){
+
+  showToast(
+    "Grocery marketplace coming next."
+  );
+
+};
+
+
+/*
+==================================================
+ORDERS
+==================================================
+*/
+
+window.openOrders =
+function(){
+
+  openModal(
+    "ordersModal"
+  );
+
+
+  document
+    .querySelectorAll(
+      ".nav-item"
+    )
+    .forEach(
+      function(item){
+
+        item.classList.remove(
+          "active"
+        );
+
+      }
+    );
+
+
+  $("navOrders")
+    .classList.add(
+      "active"
+    );
+
+};
+
+
+/*
+==================================================
+SEARCH
+==================================================
+*/
+
+window.searchEverything =
+function(){
+
+  const query =
+    $("searchInput")
+      .value
+      .trim()
+      .toLowerCase();
+
+
+  if(!query){
+
+    renderBusinesses(
+      window.allBusinesses
+    );
+
+    return;
+
+  }
+
+
+  const results =
+    window.allBusinesses
+      .filter(
+        function(business){
+
+          const searchable =
+            [
+
+              business.name,
+
+              business.category,
+
+              business.location,
+
+              business.description
+
+            ]
+            .join(" ")
+            .toLowerCase();
+
+
+          return searchable.includes(
+            query
+          );
+
+        }
+      );
+
+
+  renderBusinesses(
+    results
+  );
+
+};
+
+
+/*
+==================================================
+START APPLICATION
+==================================================
+*/
 
 async function startApp(){
 
@@ -2852,9 +3838,9 @@ async function startApp(){
     "Starting SefwiGo..."
   );
 
+
   /*
-    First establish the anonymous account.
-    This is the important fixed section.
+    Establish Firebase anonymous account.
   */
 
   const user =
@@ -2879,14 +3865,21 @@ async function startApp(){
 
 
   /*
-    Now load Firestore data.
+    Load Firestore data.
   */
 
   await loadBusinesses();
 
+
   await loadProperties();
 
+
   await updateAccountStats();
+
+
+  console.log(
+    "SefwiGo started successfully."
+  );
 
 }
 
