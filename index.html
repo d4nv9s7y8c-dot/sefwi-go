@@ -1,305 +1,1683 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SefwiGo | Delivery Made Easy</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+<title>SefwiGo | Delivery Made Easy</title>
 
-    body {
-      background: #f5f7f6;
-      color: #17221b;
-    }
+<meta name="description"
+content="SefwiGo connects you with local food, groceries, shops and delivery services in Sefwi Wiawso.">
 
-    header {
-      background: #087f3e;
-      color: white;
-      padding: 18px;
-      text-align: center;
-    }
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,Helvetica,sans-serif;
+}
 
-    header h1 {
-      font-size: 30px;
-      margin-bottom: 6px;
-    }
+html{
+  scroll-behavior:smooth;
+}
 
-    header p {
-      font-size: 14px;
-    }
+body{
+  background:#f5f7f6;
+  color:#17221b;
+  line-height:1.5;
+}
 
-    .hero {
-      background: white;
-      padding: 35px 20px;
-      text-align: center;
-    }
+/* NAVIGATION */
 
-    .hero h2 {
-      font-size: 28px;
-      margin-bottom: 12px;
-    }
+.navbar{
+  background:#087f3e;
+  color:white;
+  padding:15px 6%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 3px 15px rgba(0,0,0,.15);
+}
 
-    .hero p {
-      color: #59645d;
-      margin-bottom: 20px;
-    }
+.logo{
+  font-size:25px;
+  font-weight:bold;
+}
 
-    .button {
-      display: inline-block;
-      background: #087f3e;
-      color: white;
-      padding: 13px 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-    }
+.nav-links{
+  display:flex;
+  gap:18px;
+  align-items:center;
+}
 
-    .section {
-      padding: 25px 18px;
-      max-width: 1000px;
-      margin: auto;
-    }
+.nav-links a{
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+  font-size:14px;
+}
 
-    .section h2 {
-      margin-bottom: 15px;
-    }
+.nav-links a:hover{
+  opacity:.75;
+}
 
-    .categories,
-    .businesses {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
-      gap: 15px;
-    }
+.menu-btn{
+  display:none;
+  background:none;
+  border:none;
+  color:white;
+  font-size:28px;
+  cursor:pointer;
+}
 
-    .card {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.06);
-    }
+.cart-btn{
+  background:white;
+  color:#087f3e;
+  border:none;
+  padding:9px 13px;
+  border-radius:20px;
+  cursor:pointer;
+  font-weight:bold;
+}
 
-    .card .emoji {
-      font-size: 35px;
-      margin-bottom: 10px;
-    }
+/* HERO */
 
-    .card h3 {
-      margin-bottom: 8px;
-    }
+.hero{
+  background:linear-gradient(135deg,#087f3e,#0ca654);
+  color:white;
+  padding:80px 20px;
+  text-align:center;
+}
 
-    .card p {
-      color: #68736c;
-      font-size: 14px;
-      margin-bottom: 12px;
-    }
+.hero h1{
+  font-size:48px;
+  margin-bottom:15px;
+}
 
-    .order-box {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      margin-top: 25px;
-    }
+.hero p{
+  font-size:18px;
+  max-width:650px;
+  margin:0 auto 25px;
+}
 
-    input,
-    select {
-      width: 100%;
-      padding: 13px;
-      margin: 8px 0 14px;
-      border: 1px solid #ccd5ce;
-      border-radius: 8px;
-    }
+.hero-buttons{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
 
-    footer {
-      background: #123d27;
-      color: white;
-      text-align: center;
-      padding: 22px;
-      margin-top: 30px;
-      font-size: 14px;
-    }
+/* BUTTON */
 
-    .notice {
-      background: #fff3cd;
-      color: #664d03;
-      padding: 12px;
-      margin: 18px;
-      border-radius: 8px;
-      font-size: 13px;
-    }
-  </style>
+.button{
+  display:inline-block;
+  background:#087f3e;
+  color:white;
+  padding:13px 20px;
+  border-radius:8px;
+  text-decoration:none;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+  transition:.25s;
+}
+
+.button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 7px 18px rgba(0,0,0,.15);
+}
+
+.button-white{
+  background:white;
+  color:#087f3e;
+}
+
+/* NOTICE */
+
+.notice{
+  background:#fff3cd;
+  color:#664d03;
+  padding:12px 18px;
+  text-align:center;
+  font-size:13px;
+}
+
+/* SECTIONS */
+
+.section{
+  padding:55px 6%;
+  max-width:1200px;
+  margin:auto;
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.section-title h2{
+  font-size:30px;
+  margin-bottom:8px;
+}
+
+.section-title p{
+  color:#68736c;
+}
+
+/* SEARCH */
+
+.search-box{
+  max-width:650px;
+  margin:0 auto 35px;
+  display:flex;
+  gap:10px;
+}
+
+.search-box input{
+  flex:1;
+  margin:0;
+}
+
+/* CARDS */
+
+.categories,
+.businesses,
+.products,
+.features{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:white;
+  padding:22px;
+  border-radius:15px;
+  box-shadow:0 4px 18px rgba(0,0,0,.07);
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+.emoji{
+  font-size:40px;
+  margin-bottom:10px;
+}
+
+.card h3{
+  margin-bottom:7px;
+}
+
+.card p{
+  color:#68736c;
+  font-size:14px;
+  margin-bottom:15px;
+}
+
+/* PRODUCTS */
+
+.product-price{
+  color:#087f3e;
+  font-weight:bold;
+  font-size:18px;
+  margin-bottom:12px;
+}
+
+/* FEATURES */
+
+.feature{
+  text-align:center;
+}
+
+.feature-icon{
+  font-size:42px;
+  margin-bottom:10px;
+}
+
+/* ORDER */
+
+.order-box{
+  background:white;
+  padding:25px;
+  border-radius:15px;
+  margin-top:30px;
+  box-shadow:0 4px 18px rgba(0,0,0,.07);
+}
+
+.order-box h2{
+  margin-bottom:20px;
+}
+
+input,
+select,
+textarea{
+  width:100%;
+  padding:13px;
+  margin:8px 0 14px;
+  border:1px solid #ccd5ce;
+  border-radius:8px;
+  outline:none;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:#087f3e;
+}
+
+textarea{
+  min-height:90px;
+  resize:vertical;
+}
+
+label{
+  font-weight:bold;
+  font-size:14px;
+}
+
+/* CART */
+
+.cart{
+  position:fixed;
+  right:-420px;
+  top:0;
+  width:390px;
+  max-width:92%;
+  height:100%;
+  background:white;
+  z-index:2000;
+  padding:25px;
+  box-shadow:-5px 0 25px rgba(0,0,0,.2);
+  transition:.35s;
+  overflow-y:auto;
+}
+
+.cart.open{
+  right:0;
+}
+
+.cart-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.close-cart{
+  background:#eee;
+  border:none;
+  width:35px;
+  height:35px;
+  border-radius:50%;
+  cursor:pointer;
+}
+
+.cart-item{
+  border-bottom:1px solid #eee;
+  padding:12px 0;
+}
+
+.cart-total{
+  font-size:20px;
+  font-weight:bold;
+  margin:20px 0;
+  color:#087f3e;
+}
+
+.quantity{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:8px;
+}
+
+.quantity button{
+  border:none;
+  padding:6px 9px;
+  border-radius:5px;
+  cursor:pointer;
+}
+
+/* LOGIN */
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  z-index:3000;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-content{
+  background:white;
+  width:450px;
+  max-width:100%;
+  padding:30px;
+  border-radius:15px;
+  position:relative;
+}
+
+.modal-close{
+  position:absolute;
+  right:15px;
+  top:12px;
+  border:none;
+  background:#eee;
+  border-radius:50%;
+  width:32px;
+  height:32px;
+  cursor:pointer;
+}
+
+/* RESULT */
+
+.result{
+  margin-top:15px;
+  padding:12px;
+  border-radius:8px;
+  font-weight:bold;
+}
+
+/* WHATSAPP */
+
+.whatsapp-button{
+  background:#25D366;
+  color:white;
+  width:100%;
+  margin-top:10px;
+}
+
+.whatsapp-button:hover{
+  background:#1ebe5d;
+}
+
+/* FOOTER */
+
+footer{
+  background:#123d27;
+  color:white;
+  padding:40px 6%;
+  margin-top:30px;
+}
+
+.footer-grid{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:30px;
+}
+
+footer h3{
+  margin-bottom:12px;
+}
+
+footer p{
+  font-size:14px;
+  margin-bottom:7px;
+  opacity:.9;
+}
+
+.copyright{
+  text-align:center;
+  border-top:1px solid rgba(255,255,255,.2);
+  margin-top:30px;
+  padding-top:20px;
+  font-size:13px;
+}
+
+/* MOBILE */
+
+@media(max-width:750px){
+
+  .navbar{
+    padding:13px 5%;
+  }
+
+  .menu-btn{
+    display:block;
+  }
+
+  .nav-links{
+    display:none;
+    position:absolute;
+    top:65px;
+    left:0;
+    width:100%;
+    background:#087f3e;
+    padding:20px;
+    flex-direction:column;
+  }
+
+  .nav-links.active{
+    display:flex;
+  }
+
+  .hero{
+    padding:60px 20px;
+  }
+
+  .hero h1{
+    font-size:36px;
+  }
+
+  .hero p{
+    font-size:16px;
+  }
+
+  .section{
+    padding:40px 5%;
+  }
+
+  .search-box{
+    flex-direction:column;
+  }
+
+  .cart{
+    width:100%;
+  }
+}
+</style>
 </head>
 
 <body>
-  <header>
-    <h1>🚀 SefwiGo</h1>
-    <p>Your town. Your shops. Delivered.</p>
-  </header>
 
-  <div class="notice">
-    Demo version only — no real payments or deliveries are connected yet.
+<!-- NAVIGATION -->
+
+<nav class="navbar">
+
+  <div class="logo">🚀 SefwiGo</div>
+
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+  <div class="nav-links" id="navLinks">
+
+    <a href="#home">Home</a>
+
+    <a href="#categories">Categories</a>
+
+    <a href="#businesses">Businesses</a>
+
+    <a href="#how">How It Works</a>
+
+    <button class="button button-white"
+    onclick="openLogin()">
+      👤 Account
+    </button>
+
+    <button class="cart-btn"
+    onclick="openCart()">
+      🛒 Cart (<span id="cartCount">0</span>)
+    </button>
+
   </div>
 
-  <section class="hero">
-    <h2>Delivery made easy in Sefwi Wiawso</h2>
-    <p>Order food, groceries and other services from local businesses.</p>
-    <a href="#businesses" class="button">Explore Businesses</a>
-  </section>
+</nav>
 
-  <section class="section">
+<div class="notice">
+  🚀 SefwiGo — Your town. Your shops. Delivered.
+</div>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+  <h1>🚀 SefwiGo</h1>
+
+  <p>
+    Order food, groceries, parcels and local services
+    from businesses around Sefwi Wiawso.
+  </p>
+
+  <div class="hero-buttons">
+
+    <a href="#businesses"
+    class="button button-white">
+      🛍️ Start Shopping
+    </a>
+
+    <a href="#how"
+    class="button button-white">
+      How It Works
+    </a>
+
+  </div>
+
+</section>
+
+<!-- CATEGORIES -->
+
+<section class="section" id="categories">
+
+  <div class="section-title">
+
     <h2>Explore Categories</h2>
 
-    <div class="categories">
-      <div class="card">
-        <div class="emoji">🍔</div>
-        <h3>Food</h3>
-        <p>Meals, snacks and drinks.</p>
-        <button class="button" onclick="chooseCategory('Food')">
-          Explore
-        </button>
-      </div>
+    <p>
+      Find what you need around Sefwi Wiawso.
+    </p>
 
-      <div class="card">
-        <div class="emoji">🛒</div>
-        <h3>Groceries</h3>
-        <p>Daily household essentials.</p>
-        <button class="button" onclick="chooseCategory('Groceries')">
-          Explore
-        </button>
-      </div>
+  </div>
 
-      <div class="card">
-        <div class="emoji">📦</div>
-        <h3>Parcels</h3>
-        <p>Send and receive packages.</p>
-        <button class="button" onclick="chooseCategory('Parcels')">
-          Explore
-        </button>
-      </div>
+  <div class="categories">
 
-      <div class="card">
-        <div class="emoji">✨</div>
-        <h3>More Services</h3>
-        <p>More useful local services.</p>
-        <button class="button" onclick="chooseCategory('More Services')">
-          Explore
-        </button>
-      </div>
-    </div>
-  </section>
+    <div class="card">
 
-  <section class="section" id="businesses">
-    <h2>Popular Businesses</h2>
+      <div class="emoji">🍔</div>
 
-    <div class="businesses">
-      <div class="card">
-        <div class="emoji">🍛</div>
-        <h3>Wiawso Chop Bar</h3>
-        <p>Local meals · 25–40 minutes</p>
-        <button class="button" onclick="selectBusiness('Wiawso Chop Bar')">
-          Order
-        </button>
-      </div>
+      <h3>Food</h3>
 
-      <div class="card">
-        <div class="emoji">🍲</div>
-        <h3>Auntie Ama Kitchen</h3>
-        <p>Home-style meals · 20–35 minutes</p>
-        <button class="button" onclick="selectBusiness('Auntie Ama Kitchen')">
-          Order
-        </button>
-      </div>
+      <p>
+        Meals, snacks and drinks.
+      </p>
 
-      <div class="card">
-        <div class="emoji">🛍️</div>
-        <h3>Sefwi Fresh Mart</h3>
-        <p>Groceries and essentials</p>
-        <button class="button" onclick="selectBusiness('Sefwi Fresh Mart')">
-          Order
-        </button>
-      </div>
-    </div>
-
-    <div class="order-box" id="orderBox">
-      <h2>Place a Demo Order</h2>
-
-      <label>Selected business</label>
-      <input id="business" placeholder="Choose a business above" readonly />
-
-      <label>Your name</label>
-      <input id="name" placeholder="Enter your name" />
-
-      <label>Delivery location</label>
-      <input id="location" placeholder="Example: Wiawso Market" />
-
-      <label>Service</label>
-      <select id="service">
-        <option>Food delivery</option>
-        <option>Grocery delivery</option>
-        <option>Parcel delivery</option>
-      </select>
-
-      <button class="button" onclick="placeOrder()">
-        Place Demo Order
+      <button class="button"
+      onclick="filterBusinesses('Food')">
+        Explore
       </button>
 
-      <p id="result" style="margin-top:15px;"></p>
     </div>
-  </section>
 
-  <footer>
-    <p>© 2026 SefwiGo. Built for Sefwi Wiawso.</p>
-    <p style="margin-top:6px;">Demo project — coming soon.</p>
-  </footer>
+    <div class="card">
 
-  <script>
-    function chooseCategory(category) {
-      alert(category + " service selected.");
-      document.getElementById("businesses").scrollIntoView({
-        behavior: "smooth"
-      });
-    }
+      <div class="emoji">🛒</div>
 
-    function selectBusiness(name) {
-      document.getElementById("business").value = name;
-      document.getElementById("orderBox").scrollIntoView({
-        behavior: "smooth"
-      });
-    }
+      <h3>Groceries</h3>
 
-    function placeOrder() {
-      const business = document.getElementById("business").value;
-      const name = document.getElementById("name").value;
-      const location = document.getElementById("location").value;
-      const service = document.getElementById("service").value;
-      const result = document.getElementById("result");
+      <p>
+        Household essentials and groceries.
+      </p>
 
-      if (!business || !name || !location) {
-        result.style.color = "red";
-        result.textContent =
-          "Please select a business and complete all fields.";
-        return;
-      }
+      <button class="button"
+      onclick="filterBusinesses('Groceries')">
+        Explore
+      </button>
 
-      result.style.color = "#087f3e";
-      result.textContent =
-        "Demo order received! " +
-        name +
-        ", your " +
-        service.toLowerCase() +
-        " from " +
-        business +
-        " will be delivered to " +
-        location +
-        ".";
-    }
-  </script>
+    </div>
+
+    <div class="card">
+
+      <div class="emoji">📦</div>
+
+      <h3>Parcels</h3>
+
+      <p>
+        Send and receive packages.
+      </p>
+
+      <button class="button"
+      onclick="chooseCategory('Parcels')">
+        Explore
+      </button>
+
+    </div>
+
+    <div class="card">
+
+      <div class="emoji">✨</div>
+
+      <h3>Services</h3>
+
+      <p>
+        Discover useful local services.
+      </p>
+
+      <button class="button"
+      onclick="chooseCategory('Services')">
+        Explore
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- SEARCH -->
+
+<section class="section">
+
+  <div class="section-title">
+
+    <h2>Find a Business</h2>
+
+    <p>
+      Search for restaurants, shops and local businesses.
+    </p>
+
+  </div>
+
+  <div class="search-box">
+
+    <input
+      id="searchInput"
+      type="text"
+      placeholder="Search business..."
+      onkeyup="searchBusinesses()"
+    />
+
+    <button class="button"
+    onclick="searchBusinesses()">
+      🔎 Search
+    </button>
+
+  </div>
+
+</section>
+
+<!-- BUSINESSES -->
+
+<section class="section" id="businesses">
+
+  <div class="section-title">
+
+    <h2>Popular Businesses</h2>
+
+    <p>
+      Support local businesses in Sefwi Wiawso.
+    </p>
+
+  </div>
+
+  <div class="businesses" id="businessList">
+
+    <div class="card business-card"
+    data-name="Wiawso Chop Bar"
+    data-category="Food">
+
+      <div class="emoji">🍛</div>
+
+      <h3>Wiawso Chop Bar</h3>
+
+      <p>
+        Local Ghanaian meals · 25–40 minutes
+      </p>
+
+      <button class="button"
+      onclick="addProduct('Jollof Rice - Wiawso Chop Bar',35)">
+        Add Food · GH₵35
+      </button>
+
+    </div>
+
+    <div class="card business-card"
+    data-name="Auntie Ama Kitchen"
+    data-category="Food">
+
+      <div class="emoji">🍲</div>
+
+      <h3>Auntie Ama Kitchen</h3>
+
+      <p>
+        Home-style meals · 20–35 minutes
+      </p>
+
+      <button class="button"
+      onclick="addProduct('Waakye - Auntie Ama Kitchen',30)">
+        Add Food · GH₵30
+      </button>
+
+    </div>
+
+    <div class="card business-card"
+    data-name="Sefwi Fresh Mart"
+    data-category="Groceries">
+
+      <div class="emoji">🛍️</div>
+
+      <h3>Sefwi Fresh Mart</h3>
+
+      <p>
+        Groceries and essentials
+      </p>
+
+      <button class="button"
+      onclick="addProduct('Grocery Package - Sefwi Fresh Mart',50)">
+        Add Package · GH₵50
+      </button>
+
+    </div>
+
+    <div class="card business-card"
+    data-name="Wiawso Drinks Spot"
+    data-category="Food">
+
+      <div class="emoji">🥤</div>
+
+      <h3>Wiawso Drinks Spot</h3>
+
+      <p>
+        Drinks and refreshments
+      </p>
+
+      <button class="button"
+      onclick="addProduct('Drinks Package',20)">
+        Add Drinks · GH₵20
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- PRODUCTS -->
+
+<section class="section">
+
+  <div class="section-title">
+
+    <h2>Popular Items</h2>
+
+    <p>
+      Add items to your SefwiGo cart.
+    </p>
+
+  </div>
+
+  <div class="products">
+
+    <div class="card">
+
+      <div class="emoji">🍚</div>
+
+      <h3>Jollof Rice</h3>
+
+      <p>
+        Delicious local meal.
+      </p>
+
+      <div class="product-price">
+        GH₵35
+      </div>
+
+      <button class="button"
+      onclick="addProduct('Jollof Rice',35)">
+        Add to Cart
+      </button>
+
+    </div>
+
+    <div class="card">
+
+      <div class="emoji">🍗</div>
+
+      <h3>Chicken Meal</h3>
+
+      <p>
+        Chicken with your choice of side.
+      </p>
+
+      <div class="product-price">
+        GH₵45
+      </div>
+
+      <button class="button"
+      onclick="addProduct('Chicken Meal',45)">
+        Add to Cart
+      </button>
+
+    </div>
+
+    <div class="card">
+
+      <div class="emoji">🛒</div>
+
+      <h3>Grocery Package</h3>
+
+      <p>
+        Basic household essentials.
+      </p>
+
+      <div class="product-price">
+        GH₵50
+      </div>
+
+      <button class="button"
+      onclick="addProduct('Grocery Package',50)">
+        Add to Cart
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- HOW IT WORKS -->
+
+<section class="section" id="how">
+
+  <div class="section-title">
+
+    <h2>How SefwiGo Works</h2>
+
+    <p>
+      Ordering locally is simple.
+    </p>
+
+  </div>
+
+  <div class="features">
+
+    <div class="card feature">
+
+      <div class="feature-icon">🔎</div>
+
+      <h3>1. Choose</h3>
+
+      <p>
+        Find your favourite local business.
+      </p>
+
+    </div>
+
+    <div class="card feature">
+
+      <div class="feature-icon">🛒</div>
+
+      <h3>2. Order</h3>
+
+      <p>
+        Add items and provide your delivery location.
+      </p>
+
+    </div>
+
+    <div class="card feature">
+
+      <div class="feature-icon">💳</div>
+
+      <h3>3. Pay</h3>
+
+      <p>
+        Choose your preferred payment method.
+      </p>
+
+    </div>
+
+    <div class="card feature">
+
+      <div class="feature-icon">🛵</div>
+
+      <h3>4. Receive</h3>
+
+      <p>
+        A SefwiGo rider delivers your order.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ORDER -->
+
+<section class="section">
+
+  <div class="order-box">
+
+    <h2>📦 Complete Your Order</h2>
+
+    <label>Your name</label>
+
+    <input
+      id="customerName"
+      placeholder="Enter your name"
+    >
+
+    <label>Phone number</label>
+
+    <input
+      id="customerPhone"
+      type="tel"
+      placeholder="Example: 024 000 0000"
+    >
+
+    <label>Delivery location</label>
+
+    <input
+      id="deliveryLocation"
+      placeholder="Example: Wiawso Market"
+    >
+
+    <label>Delivery instructions</label>
+
+    <textarea
+      id="instructions"
+      placeholder="Example: Call me when you arrive."
+    ></textarea>
+
+    <label>Payment method</label>
+
+    <select id="paymentMethod">
+
+      <option>Cash on Delivery</option>
+
+      <option>Mobile Money</option>
+
+      <option>Debit / Credit Card</option>
+
+    </select>
+
+    <button
+    class="button"
+    onclick="submitOrder()">
+
+      🚀 Submit Demo Order
+
+    </button>
+
+    <button
+    class="button whatsapp-button"
+    onclick="sendWhatsAppOrder()">
+
+      💬 Order Through WhatsApp
+
+    </button>
+
+    <div id="orderResult"></div>
+
+  </div>
+
+</section>
+
+<!-- VENDOR -->
+
+<section class="section">
+
+  <div class="card" style="text-align:center;">
+
+    <div class="emoji">🏪</div>
+
+    <h2>Own a Business?</h2>
+
+    <p>
+      Join SefwiGo and reach more customers
+      around Sefwi Wiawso.
+    </p>
+
+    <button class="button"
+    onclick="vendorSignup()">
+
+      Become a SefwiGo Partner
+
+    </button>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+  <div class="footer-grid">
+
+    <div>
+
+      <h3>🚀 SefwiGo</h3>
+
+      <p>
+        Your town. Your shops. Delivered.
+      </p>
+
+    </div>
+
+    <div>
+
+      <h3>Services</h3>
+
+      <p>Food delivery</p>
+      <p>Grocery delivery</p>
+      <p>Parcel delivery</p>
+      <p>Local services</p>
+
+    </div>
+
+    <div>
+
+      <h3>Contact</h3>
+
+      <p>📞 Customer Support</p>
+      <p>📍 Sefwi Wiawso</p>
+      <p>💬 WhatsApp: 024 815 9106</p>
+
+    </div>
+
+  </div>
+
+  <div class="copyright">
+
+    © 2026 SefwiGo. Built for Sefwi Wiawso.
+
+  </div>
+
+</footer>
+
+<!-- CART -->
+
+<div class="cart" id="cart">
+
+  <div class="cart-header">
+
+    <h2>🛒 Your Cart</h2>
+
+    <button
+    class="close-cart"
+    onclick="closeCart()">
+      ✕
+    </button>
+
+  </div>
+
+  <div id="cartItems">
+    <p>Your cart is empty.</p>
+  </div>
+
+  <div class="cart-total">
+
+    Total: GH₵<span id="cartTotal">0</span>
+
+  </div>
+
+  <button
+  class="button"
+  style="width:100%;"
+  onclick="goToOrder()">
+
+    Continue to Order
+
+  </button>
+
+</div>
+
+<!-- LOGIN -->
+
+<div class="modal" id="loginModal">
+
+  <div class="modal-content">
+
+    <button
+    class="modal-close"
+    onclick="closeLogin()">
+      ✕
+    </button>
+
+    <h2>👤 SefwiGo Account</h2>
+
+    <p style="margin:10px 0 20px;color:#68736c;">
+      Create a demo account or sign in.
+    </p>
+
+    <label>Name</label>
+
+    <input
+      id="accountName"
+      placeholder="Your name"
+    >
+
+    <label>Phone</label>
+
+    <input
+      id="accountPhone"
+      placeholder="Your phone number"
+    >
+
+    <button
+    class="button"
+    style="width:100%;"
+    onclick="saveAccount()">
+
+      Create / Save Account
+
+    </button>
+
+    <p id="accountResult"
+    style="margin-top:15px;">
+    </p>
+
+  </div>
+
+</div>
+
+<script>
+
+/* CART */
+
+let cart =
+JSON.parse(localStorage.getItem("sefwiCart")) || [];
+
+/* MENU */
+
+function toggleMenu(){
+
+  document
+  .getElementById("navLinks")
+  .classList.toggle("active");
+
+}
+
+/* CATEGORY */
+
+function chooseCategory(category){
+
+  alert(
+    category +
+    " services will be available on SefwiGo."
+  );
+
+  document
+  .getElementById("businesses")
+  .scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+/* FILTER */
+
+function filterBusinesses(category){
+
+  const cards =
+  document.querySelectorAll(".business-card");
+
+  cards.forEach(card => {
+
+    card.style.display =
+    card.dataset.category === category
+    ? "block"
+    : "none";
+
+  });
+
+  document
+  .getElementById("businesses")
+  .scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+/* SEARCH */
+
+function searchBusinesses(){
+
+  const search =
+  document
+  .getElementById("searchInput")
+  .value
+  .toLowerCase();
+
+  const cards =
+  document.querySelectorAll(".business-card");
+
+  cards.forEach(card => {
+
+    const name =
+    card.dataset.name.toLowerCase();
+
+    card.style.display =
+    name.includes(search)
+    ? "block"
+    : "none";
+
+  });
+
+}
+
+/* ADD PRODUCT */
+
+function addProduct(name,price){
+
+  const existing =
+  cart.find(item => item.name === name);
+
+  if(existing){
+
+    existing.quantity++;
+
+  }else{
+
+    cart.push({
+      name:name,
+      price:price,
+      quantity:1
+    });
+
+  }
+
+  saveCart();
+
+  updateCart();
+
+  openCart();
+
+}
+
+/* SAVE CART */
+
+function saveCart(){
+
+  localStorage.setItem(
+    "sefwiCart",
+    JSON.stringify(cart)
+  );
+
+}
+
+/* UPDATE CART */
+
+function updateCart(){
+
+  const cartItems =
+  document.getElementById("cartItems");
+
+  const cartCount =
+  document.getElementById("cartCount");
+
+  const cartTotal =
+  document.getElementById("cartTotal");
+
+  if(cart.length === 0){
+
+    cartItems.innerHTML =
+    "<p>Your cart is empty.</p>";
+
+    cartCount.textContent="0";
+
+    cartTotal.textContent="0";
+
+    return;
+
+  }
+
+  let total=0;
+  let count=0;
+
+  cartItems.innerHTML="";
+
+  cart.forEach((item,index)=>{
+
+    total +=
+    item.price * item.quantity;
+
+    count += item.quantity;
+
+    const div =
+    document.createElement("div");
+
+    div.className="cart-item";
+
+    div.innerHTML=`
+
+      <strong>${item.name}</strong>
+
+      <p>
+        GH₵${item.price}
+        × ${item.quantity}
+      </p>
+
+      <div class="quantity">
+
+        <button
+        onclick="changeQuantity(${index},-1)">
+          −
+        </button>
+
+        <span>${item.quantity}</span>
+
+        <button
+        onclick="changeQuantity(${index},1)">
+          +
+        </button>
+
+        <button
+        onclick="removeItem(${index})">
+          Remove
+        </button>
+
+      </div>
+
+    `;
+
+    cartItems.appendChild(div);
+
+  });
+
+  cartCount.textContent=count;
+
+  cartTotal.textContent=
+  total.toFixed(2);
+
+}
+
+/* QUANTITY */
+
+function changeQuantity(index,change){
+
+  cart[index].quantity += change;
+
+  if(cart[index].quantity <= 0){
+
+    cart.splice(index,1);
+
+  }
+
+  saveCart();
+
+  updateCart();
+
+}
+
+/* REMOVE */
+
+function removeItem(index){
+
+  cart.splice(index,1);
+
+  saveCart();
+
+  updateCart();
+
+}
+
+/* CART */
+
+function openCart(){
+
+  document
+  .getElementById("cart")
+  .classList.add("open");
+
+}
+
+function closeCart(){
+
+  document
+  .getElementById("cart")
+  .classList.remove("open");
+
+}
+
+function goToOrder(){
+
+  closeCart();
+
+  document
+  .querySelector(".order-box")
+  .scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+/* SUBMIT ORDER */
+
+function submitOrder(){
+
+  const name =
+  document.getElementById("customerName")
+  .value.trim();
+
+  const phone =
+  document.getElementById("customerPhone")
+  .value.trim();
+
+  const location =
+  document.getElementById("deliveryLocation")
+  .value.trim();
+
+  const payment =
+  document.getElementById("paymentMethod")
+  .value;
+
+  const result =
+  document.getElementById("orderResult");
+
+  if(!name || !phone || !location){
+
+    result.className="result";
+
+    result.style.background="#fee2e2";
+
+    result.style.color="#991b1b";
+
+    result.textContent=
+    "Please complete your name, phone and delivery location.";
+
+    return;
+
+  }
+
+  if(cart.length===0){
+
+    result.className="result";
+
+    result.style.background="#fff3cd";
+
+    result.style.color="#664d03";
+
+    result.textContent=
+    "Please add at least one item to your cart.";
+
+    return;
+
+  }
+
+  let total=0;
+
+  cart.forEach(item=>{
+
+    total +=
+    item.price * item.quantity;
+
+  });
+
+  result.className="result";
+
+  result.style.background="#dcfce7";
+
+  result.style.color="#166534";
+
+  result.textContent=
+  "✅ Demo order received! " +
+  name +
+  ", your order total is GH₵" +
+  total.toFixed(2) +
+  ". Payment: " +
+  payment +
+  ". Delivery to " +
+  location +
+  ".";
+
+}
+
+/* WHATSAPP ORDER */
+
+function sendWhatsAppOrder(){
+
+  const whatsappNumber =
+  "233248159106";
+
+  const name =
+  document
+  .getElementById("customerName")
+  .value.trim();
+
+  const phone =
+  document
+  .getElementById("customerPhone")
+  .value.trim();
+
+  const location =
+  document
+  .getElementById("deliveryLocation")
+  .value.trim();
+
+  const instructions =
+  document
+  .getElementById("instructions")
+  .value.trim();
+
+  if(cart.length === 0){
+
+    alert(
+      "Please add at least one item to your cart first."
+    );
+
+    return;
+
+  }
+
+  let total=0;
+
+  let items="";
+
+  cart.forEach(item=>{
+
+    const subtotal =
+    item.price * item.quantity;
+
+    total += subtotal;
+
+    items +=
+    item.name +
+    " x " +
+    item.quantity +
+    " = GH₵" +
+    subtotal +
+    "\n";
+
+  });
+
+  const message =
+  "Hello SefwiGo! 🚀\n\n" +
+
+  "I want to place an order.\n\n" +
+
+  "Customer: " +
+  name +
+  "\n" +
+
+  "Phone: " +
+  phone +
+  "\n\n" +
+
+  "Items:\n" +
+  items +
+  "\n" +
+
+  "Total: GH₵" +
+  total.toFixed(2) +
+  "\n\n" +
+
+  "Delivery location: " +
+  location +
+  "\n\n" +
+
+  "Instructions: " +
+  instructions;
+
+  const url =
+  "https://wa.me/" +
+  whatsappNumber +
+  "?text=" +
+  encodeURIComponent(message);
+
+  window.open(url,"_blank");
+
+}
+
+/* LOGIN */
+
+function openLogin(){
+
+  document
+  .getElementById("loginModal")
+  .classList.add("show");
+
+}
+
+function closeLogin(){
+
+  document
+  .getElementById("loginModal")
+  .classList.remove("show");
+
+}
+
+function saveAccount(){
+
+  const name =
+  document
+  .getElementById("accountName")
+  .value.trim();
+
+  const phone =
+  document
+  .getElementById("accountPhone")
+  .value.trim();
+
+  const result =
+  document
+  .getElementById("accountResult");
+
+  if(!name || !phone){
+
+    result.style.color="red";
+
+    result.textContent=
+    "Please enter your name and phone number.";
+
+    return;
+
+  }
+
+  localStorage.setItem(
+    "sefwiAccount",
+    JSON.stringify({
+      name:name,
+      phone:phone
+    })
+  );
+
+  result.style.color="#087f3e";
+
+  result.textContent=
+  "✅ Demo account saved successfully.";
+
+}
+
+/* VENDOR */
+
+function vendorSignup(){
+
+  alert(
+    "Thank you for your interest in becoming a SefwiGo partner. Vendor registration will be connected soon."
+  );
+
+}
+
+/* START */
+
+updateCart();
+
+</script>
+
 </body>
 </html>
