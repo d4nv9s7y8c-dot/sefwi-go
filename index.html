@@ -81,15 +81,6 @@ header{
   outline:none;
 }
 
-.partner-btn{
-  background:white;
-  color:#087f5b;
-  border:0;
-  border-radius:22px;
-  padding:11px 15px;
-  font-weight:bold;
-}
-
 /* HERO */
 .hero{
   background:linear-gradient(135deg,#087f5b,#063d2e);
@@ -279,6 +270,50 @@ section{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:12px;
+}
+
+/* ACCOUNT TYPE */
+.account-type-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin:10px 0 18px;
+}
+
+.account-type{
+  border:2px solid #d8eee5;
+  background:white;
+  border-radius:14px;
+  padding:18px 12px;
+  text-align:center;
+  transition:.2s;
+}
+
+.account-type:hover{
+  border-color:#087f5b;
+}
+
+.account-type.selected{
+  border-color:#087f5b;
+  background:#e8f7f1;
+}
+
+.account-type-icon{
+  font-size:32px;
+  margin-bottom:8px;
+}
+
+.account-type strong{
+  display:block;
+  color:#063d2e;
+  margin-bottom:5px;
+}
+
+.account-type span{
+  display:block;
+  color:#6d817a;
+  font-size:12px;
+  line-height:1.4;
 }
 
 /* MODAL */
@@ -479,7 +514,7 @@ section{
 .bottom-nav-inner{
   width:min(700px,100%);
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(3,1fr);
 }
 
 .nav-btn{
@@ -576,6 +611,7 @@ section{
 
 /* RESPONSIVE */
 @media(max-width:750px){
+
   .header-inner{
     flex-wrap:wrap;
   }
@@ -607,8 +643,13 @@ section{
 }
 
 @media(max-width:450px){
+
   .option-row{
     grid-template-columns:1fr 80px 35px;
+  }
+
+  .account-type-grid{
+    grid-template-columns:1fr;
   }
 }
 </style>
@@ -631,10 +672,6 @@ section{
       >
     </div>
 
-    <button class="partner-btn" onclick="openPartner()">
-      Become a Partner
-    </button>
-
   </div>
 </header>
 
@@ -653,6 +690,7 @@ section{
       </p>
 
       <div class="hero-actions">
+
         <button class="secondary" onclick="showCategory('Food')">
           🍛 Order Food
         </button>
@@ -664,6 +702,7 @@ section{
         <button class="secondary" onclick="openParcel()">
           📦 Send Parcel
         </button>
+
       </div>
 
     </div>
@@ -712,6 +751,7 @@ section{
 
       <div class="section-title">
         <h2>Popular Businesses</h2>
+
         <button class="outline-btn" onclick="openBusinessList()">
           View all
         </button>
@@ -742,11 +782,13 @@ section{
     <div class="container">
 
       <div class="section-title">
+
         <h2>Available Properties</h2>
 
         <button class="outline-btn" onclick="openProperty()">
           View all
         </button>
+
       </div>
 
       <div id="propertyGrid" class="grid"></div>
@@ -757,8 +799,97 @@ section{
 </main>
 
 
+<!-- CUSTOMER DASHBOARD -->
+<main id="customerPage" class="hidden">
+
+  <section>
+
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Customer Dashboard</h2>
+      </div>
+
+      <div class="dashboard-card">
+
+        <h3 id="customerName">
+          Welcome to SefwiGo
+        </h3>
+
+        <p class="muted">
+          Find food, groceries, properties and local services.
+        </p>
+
+      </div>
+
+      <div class="stat-grid">
+
+        <div class="stat">
+          <strong id="customerOrders">0</strong>
+          Orders
+        </div>
+
+        <div class="stat">
+          <strong id="customerCart">0</strong>
+          Cart Items
+        </div>
+
+        <div class="stat">
+          <strong>✓</strong>
+          Customer
+        </div>
+
+      </div>
+
+      <section>
+
+        <div class="card">
+
+          <h3>What would you like to do?</h3>
+
+          <div class="card-actions" style="margin-top:15px">
+
+            <button class="small-btn"
+              onclick="showCategory('Food');goHome()">
+              🍛 Order Food
+            </button>
+
+            <button class="small-btn"
+              onclick="showCategory('Groceries');goHome()">
+              🛒 Shop Groceries
+            </button>
+
+            <button class="small-btn"
+              onclick="openProperty()">
+              🏠 Find Property
+            </button>
+
+            <button class="small-btn"
+              onclick="openParcel()">
+              📦 Send Parcel
+            </button>
+
+            <button class="outline-btn"
+              onclick="openOrders()">
+              📋 My Orders
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </section>
+
+</main>
+
+
 <!-- VENDOR DASHBOARD -->
 <main id="vendorPage" class="hidden">
+
   <section>
     <div class="container">
 
@@ -767,10 +898,13 @@ section{
       </div>
 
       <div class="dashboard-card">
+
         <h3 id="vendorName">My Business</h3>
+
         <p class="muted">
           Manage your business, products and orders.
         </p>
+
       </div>
 
       <div class="stat-grid">
@@ -795,17 +929,22 @@ section{
       <section>
 
         <div class="tabs">
-          <button class="tab active" onclick="vendorTab('products',this)">
+
+          <button class="tab active"
+            onclick="vendorTab('products',this)">
             Products
           </button>
 
-          <button class="tab" onclick="vendorTab('orders',this)">
+          <button class="tab"
+            onclick="vendorTab('orders',this)">
             Orders
           </button>
 
-          <button class="tab" onclick="vendorTab('business',this)">
+          <button class="tab"
+            onclick="vendorTab('business',this)">
             Business
           </button>
+
         </div>
 
         <div id="vendorContent"></div>
@@ -814,6 +953,7 @@ section{
 
     </div>
   </section>
+
 </main>
 
 
@@ -821,6 +961,7 @@ section{
 <main id="driverPage" class="hidden">
 
   <section>
+
     <div class="container">
 
       <div class="section-title">
@@ -828,15 +969,19 @@ section{
       </div>
 
       <div class="dashboard-card">
+
         <h3>Available Deliveries</h3>
+
         <p class="muted">
           Accept delivery requests and update their status.
         </p>
+
       </div>
 
       <div id="driverContent"></div>
 
     </div>
+
   </section>
 
 </main>
@@ -846,6 +991,7 @@ section{
 <main id="adminPage" class="hidden">
 
   <section>
+
     <div class="container">
 
       <div class="section-title">
@@ -874,6 +1020,7 @@ section{
       <div id="adminContent" style="margin-top:20px;"></div>
 
     </div>
+
   </section>
 
 </main>
@@ -894,11 +1041,6 @@ section{
       Orders
     </button>
 
-    <button class="nav-btn" onclick="openPartner(this)">
-      <span class="nav-icon">🏪</span>
-      Partner
-    </button>
-
     <button class="nav-btn" onclick="openAccount(this)">
       <span class="nav-icon">👤</span>
       Account
@@ -909,59 +1051,346 @@ section{
 </nav>
 
 
-<!-- PARTNER MODAL -->
-<div id="partnerModal" class="modal">
+<!-- AUTH / ACCOUNT MODAL -->
+<div id="accountModal" class="modal">
 
   <div class="sheet">
 
     <div class="modal-head">
+
       <div>
-        <h2>Become a Partner</h2>
-        <div class="muted">
-          Register your business on SefwiGo
+        <h2>My Account</h2>
+
+        <div id="accountSubtitle" class="muted">
+          Sign in or create your SefwiGo account
         </div>
       </div>
 
-      <button class="close" onclick="closeModal('partnerModal')">
+      <button class="close"
+        onclick="closeModal('accountModal')">
         ×
       </button>
+
     </div>
 
-    <div class="form-group">
-      <label>Business Name</label>
-      <input id="partnerBusinessName" placeholder="e.g. Mama's Kitchen">
+
+    <!-- LOGGED OUT -->
+    <div id="loggedOutAccount">
+
+      <button class="primary"
+        style="width:100%;margin-bottom:10px"
+        onclick="showLoginForm()">
+        🔐 Sign In
+      </button>
+
+      <button class="outline-btn"
+        style="width:100%"
+        onclick="showRegisterForm()">
+        Create Account
+      </button>
+
     </div>
 
-    <div class="form-group">
-      <label>Business Category</label>
-      <select id="partnerCategory">
-        <option>Restaurant</option>
-        <option>Food Vendor</option>
-        <option>Grocery</option>
-        <option>Shop</option>
-        <option>Other</option>
-      </select>
+
+    <!-- LOGGED IN -->
+    <div id="loggedInAccount" class="hidden">
+
+      <div class="dashboard-card">
+
+        <h3 id="accountUserName">
+          SefwiGo User
+        </h3>
+
+        <p class="muted" id="accountUserEmail"></p>
+
+        <p style="margin-top:8px">
+
+          Account type:
+          <strong id="accountTypeLabel">
+            Customer
+          </strong>
+
+        </p>
+
+      </div>
+
+
+      <button id="customerDashboardButton"
+        class="outline-btn"
+        style="width:100%;margin-bottom:10px"
+        onclick="showCustomerDashboard()">
+
+        👤 Customer Dashboard
+
+      </button>
+
+
+      <button id="vendorDashboardButton"
+        class="outline-btn"
+        style="width:100%;margin-bottom:10px"
+        onclick="showVendorDashboard()">
+
+        🏪 Partner Dashboard
+
+      </button>
+
+
+      <button id="driverDashboardButton"
+        class="outline-btn"
+        style="width:100%;margin-bottom:10px"
+        onclick="showDriverDashboard()">
+
+        🚚 Driver Dashboard
+
+      </button>
+
+
+      <button id="adminDashboardButton"
+        class="outline-btn"
+        style="width:100%;margin-bottom:10px"
+        onclick="showAdminDashboard()">
+
+        ⚙️ Admin Dashboard
+
+      </button>
+
+
+      <button class="primary"
+        style="width:100%"
+        onclick="logoutUser()">
+
+        Sign Out
+
+      </button>
+
     </div>
 
-    <div class="form-group">
-      <label>Phone Number</label>
-      <input id="partnerPhone" placeholder="233XXXXXXXXX">
+
+    <!-- LOGIN FORM -->
+    <div id="loginForm" class="hidden">
+
+      <div class="form-group">
+
+        <label>Email</label>
+
+        <input
+          id="loginEmail"
+          type="email"
+          placeholder="Enter your email">
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>Password</label>
+
+        <input
+          id="loginPassword"
+          type="password"
+          placeholder="Enter your password">
+
+      </div>
+
+
+      <button class="primary"
+        style="width:100%"
+        onclick="loginUser()">
+
+        Sign In
+
+      </button>
+
+
+      <button class="outline-btn"
+        style="width:100%;margin-top:10px"
+        onclick="showRegisterForm()">
+
+        Create New Account
+
+      </button>
+
     </div>
 
-    <div class="form-group">
-      <label>Location</label>
-      <input id="partnerLocation" placeholder="Sefwi Wiawso">
-    </div>
 
-    <div class="form-group">
-      <label>Description</label>
-      <textarea id="partnerDescription"
-        placeholder="Tell customers about your business"></textarea>
-    </div>
+    <!-- REGISTER FORM -->
+    <div id="registerForm" class="hidden">
 
-    <button class="primary" style="width:100%" onclick="registerBusiness()">
-      Register Business
-    </button>
+      <div class="form-group">
+
+        <label>Full Name</label>
+
+        <input
+          id="registerName"
+          type="text"
+          placeholder="Enter your full name">
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>Email</label>
+
+        <input
+          id="registerEmail"
+          type="email"
+          placeholder="Enter your email">
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>Password</label>
+
+        <input
+          id="registerPassword"
+          type="password"
+          placeholder="Create a password">
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>Choose Account Type</label>
+
+        <div class="account-type-grid">
+
+          <button
+            type="button"
+            id="customerTypeButton"
+            class="account-type selected"
+            onclick="selectAccountType('customer')">
+
+            <div class="account-type-icon">👤</div>
+
+            <strong>Customer</strong>
+
+            <span>
+              Order food, shop, send parcels and find properties.
+            </span>
+
+          </button>
+
+
+          <button
+            type="button"
+            id="partnerTypeButton"
+            class="account-type"
+            onclick="selectAccountType('partner')">
+
+            <div class="account-type-icon">🏪</div>
+
+            <strong>Partner</strong>
+
+            <span>
+              Register a business and sell products on SefwiGo.
+            </span>
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- PARTNER INFORMATION -->
+      <div id="partnerRegistrationFields" class="hidden">
+
+        <div class="dashboard-card">
+
+          <h3>Partner Business Information</h3>
+
+          <p class="muted">
+            Complete these details to create your Partner account.
+          </p>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>Business Name</label>
+
+          <input
+            id="partnerBusinessName"
+            placeholder="e.g. Mama's Kitchen">
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>Business Category</label>
+
+          <select id="partnerCategory">
+
+            <option>Restaurant</option>
+            <option>Food Vendor</option>
+            <option>Grocery</option>
+            <option>Shop</option>
+            <option>Other</option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>Business Phone Number</label>
+
+          <input
+            id="partnerPhone"
+            placeholder="233XXXXXXXXX">
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>Business Location</label>
+
+          <input
+            id="partnerLocation"
+            placeholder="Sefwi Wiawso">
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>Business Description</label>
+
+          <textarea
+            id="partnerDescription"
+            placeholder="Tell customers about your business"></textarea>
+
+        </div>
+
+      </div>
+
+
+      <button class="primary"
+        style="width:100%"
+        onclick="registerUser()">
+
+        Create Account
+
+      </button>
+
+
+      <button class="outline-btn"
+        style="width:100%;margin-top:10px"
+        onclick="showLoginForm()">
+
+        Already have an account? Sign In
+
+      </button>
+
+    </div>
 
   </div>
 
@@ -976,11 +1405,15 @@ section{
     <div class="modal-head">
 
       <div>
+
         <h2 id="menuTitle">Business</h2>
+
         <div id="menuSubtitle" class="muted"></div>
+
       </div>
 
-      <button class="close" onclick="closeModal('menuModal')">
+      <button class="close"
+        onclick="closeModal('menuModal')">
         ×
       </button>
 
@@ -1001,11 +1434,15 @@ section{
     <div class="modal-head">
 
       <div>
+
         <h2 id="foodTitle">Customize Food</h2>
+
         <div id="foodSubtitle" class="muted"></div>
+
       </div>
 
-      <button class="close" onclick="closeModal('foodModal')">
+      <button class="close"
+        onclick="closeModal('foodModal')">
         ×
       </button>
 
@@ -1027,7 +1464,8 @@ section{
 
       <h2>Your Cart</h2>
 
-      <button class="close" onclick="closeModal('cartModal')">
+      <button class="close"
+        onclick="closeModal('cartModal')">
         ×
       </button>
 
@@ -1048,13 +1486,17 @@ section{
     <div class="modal-head">
 
       <div>
+
         <h2>Property</h2>
+
         <div class="muted">
           Browse and register properties
         </div>
+
       </div>
 
-      <button class="close" onclick="closeModal('propertyModal')">
+      <button class="close"
+        onclick="closeModal('propertyModal')">
         ×
       </button>
 
@@ -1062,19 +1504,22 @@ section{
 
     <div class="tabs">
 
-      <button id="propBrowseTab"
+      <button
+        id="propBrowseTab"
         class="tab active"
         onclick="propertyTab('browse',this)">
         Browse
       </button>
 
-      <button id="propRegisterTab"
+      <button
+        id="propRegisterTab"
         class="tab"
         onclick="propertyTab('register',this)">
         Register Property
       </button>
 
-      <button id="propMineTab"
+      <button
+        id="propMineTab"
         class="tab"
         onclick="propertyTab('mine',this)">
         My Properties
@@ -1097,46 +1542,72 @@ section{
     <div class="modal-head">
 
       <div>
+
         <h2>Send a Parcel</h2>
+
         <div class="muted">
           Request a local delivery
         </div>
+
       </div>
 
-      <button class="close" onclick="closeModal('parcelModal')">
+      <button class="close"
+        onclick="closeModal('parcelModal')">
         ×
       </button>
 
     </div>
 
     <div class="form-group">
+
       <label>Pickup Location</label>
-      <input id="parcelPickup" placeholder="Where should we collect it?">
+
+      <input
+        id="parcelPickup"
+        placeholder="Where should we collect it?">
+
     </div>
 
     <div class="form-group">
+
       <label>Destination</label>
-      <input id="parcelDestination" placeholder="Where should we deliver it?">
+
+      <input
+        id="parcelDestination"
+        placeholder="Where should we deliver it?">
+
     </div>
 
     <div class="form-group">
+
       <label>Parcel Type</label>
+
       <select id="parcelType">
+
         <option>Document</option>
         <option>Food</option>
         <option>Clothing</option>
         <option>Package</option>
         <option>Other</option>
+
       </select>
+
     </div>
 
     <div class="form-group">
+
       <label>Additional Information</label>
+
       <textarea id="parcelNotes"></textarea>
+
     </div>
 
-    <button class="primary" style="width:100%" onclick="requestParcel()">
+    <button class="primary"
+      style="width:100%"
+      onclick="requestParcel()">
+
       Request Delivery
+
     </button>
 
   </div>
@@ -1153,61 +1624,14 @@ section{
 
       <h2>My Orders</h2>
 
-      <button class="close" onclick="closeModal('ordersModal')">
+      <button class="close"
+        onclick="closeModal('ordersModal')">
         ×
       </button>
 
     </div>
 
     <div id="ordersContent"></div>
-
-  </div>
-
-</div>
-
-
-<!-- ACCOUNT MODAL -->
-<div id="accountModal" class="modal">
-
-  <div class="sheet">
-
-    <div class="modal-head">
-
-      <h2>My Account</h2>
-
-      <button class="close" onclick="closeModal('accountModal')">
-        ×
-      </button>
-
-    </div>
-
-    <div class="dashboard-card">
-
-      <h3>SefwiGo Account</h3>
-
-      <p class="muted">
-        Manage your customer, vendor or driver account.
-      </p>
-
-    </div>
-
-    <button class="outline-btn"
-      style="width:100%;margin-bottom:10px"
-      onclick="showVendorDashboard()">
-      🏪 Partner Dashboard
-    </button>
-
-    <button class="outline-btn"
-      style="width:100%;margin-bottom:10px"
-      onclick="showDriverDashboard()">
-      🚚 Driver Dashboard
-    </button>
-
-    <button class="outline-btn"
-      style="width:100%;margin-bottom:10px"
-      onclick="showAdminDashboard()">
-      ⚙️ Admin Dashboard
-    </button>
 
   </div>
 
@@ -1229,8 +1653,10 @@ import {
 
 import {
   getAuth,
-  signInAnonymously,
-  onAuthStateChanged
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
@@ -1239,6 +1665,8 @@ import {
   addDoc,
   getDocs,
   doc,
+  setDoc,
+  getDoc,
   updateDoc,
   deleteDoc,
   serverTimestamp
@@ -1266,6 +1694,10 @@ const db = getFirestore(app);
 ========================================================= */
 
 let currentUser = null;
+
+let currentUserProfile = null;
+
+let accountType = "customer";
 
 let businesses = [];
 let products = [];
@@ -1510,23 +1942,6 @@ const demoProperties = [
 
 
 /* =========================================================
-   AUTH
-========================================================= */
-
-signInAnonymously(auth)
-  .catch(error => {
-    console.log("Authentication error:",error);
-  });
-
-
-onAuthStateChanged(auth,user => {
-
-  currentUser = user;
-
-});
-
-
-/* =========================================================
    INITIAL LOAD
 ========================================================= */
 
@@ -1548,33 +1963,675 @@ renderAdmin();
 
 
 /* =========================================================
+   AUTH STATE
+========================================================= */
+
+onAuthStateChanged(auth, async user => {
+
+  currentUser = user;
+
+  if(!user){
+
+    currentUserProfile = null;
+
+    accountType = "customer";
+
+    updateAccountUI();
+
+    return;
+  }
+
+
+  await loadUserProfile(user.uid);
+
+  updateAccountUI();
+
+});
+
+
+/* =========================================================
+   USER PROFILE
+========================================================= */
+
+async function loadUserProfile(uid){
+
+  try{
+
+    const userRef=doc(db,"users",uid);
+
+    const snapshot=await getDoc(userRef);
+
+    if(snapshot.exists()){
+
+      currentUserProfile={
+        id:uid,
+        ...snapshot.data()
+      };
+
+      accountType=
+        currentUserProfile.accountType || "customer";
+
+    }else{
+
+      /*
+        Existing accounts without a profile are treated
+        as customers by default.
+      */
+
+      accountType="customer";
+
+      currentUserProfile={
+        id:uid,
+        accountType:"customer",
+        name:currentUser?.email || "SefwiGo Customer"
+      };
+
+    }
+
+  }catch(error){
+
+    console.error("Profile loading error:",error);
+
+    accountType="customer";
+
+  }
+
+}
+
+
+/* =========================================================
+   ACCOUNT TYPE SELECTION
+========================================================= */
+
+let selectedAccountType="customer";
+
+
+window.selectAccountType=function(type){
+
+  selectedAccountType=type;
+
+  const customerButton=
+    document.getElementById("customerTypeButton");
+
+  const partnerButton=
+    document.getElementById("partnerTypeButton");
+
+  const partnerFields=
+    document.getElementById("partnerRegistrationFields");
+
+
+  customerButton.classList.remove("selected");
+
+  partnerButton.classList.remove("selected");
+
+
+  if(type==="customer"){
+
+    customerButton.classList.add("selected");
+
+    partnerFields.classList.add("hidden");
+
+  }else{
+
+    partnerButton.classList.add("selected");
+
+    partnerFields.classList.remove("hidden");
+
+  }
+
+};
+
+
+/* =========================================================
+   ACCOUNT UI
+========================================================= */
+
+function updateAccountUI(){
+
+  const loggedOut=
+    document.getElementById("loggedOutAccount");
+
+  const loggedIn=
+    document.getElementById("loggedInAccount");
+
+
+  if(!currentUser){
+
+    loggedOut.classList.remove("hidden");
+
+    loggedIn.classList.add("hidden");
+
+    return;
+  }
+
+
+  loggedOut.classList.add("hidden");
+
+  loggedIn.classList.remove("hidden");
+
+
+  const name=
+    currentUserProfile?.name ||
+    currentUser.displayName ||
+    currentUser.email ||
+    "SefwiGo User";
+
+
+  document.getElementById("accountUserName")
+    .textContent=name;
+
+
+  document.getElementById("accountUserEmail")
+    .textContent=currentUser.email || "";
+
+
+  const label=
+    accountType==="partner"
+    ? "Partner"
+    : "Customer";
+
+
+  document.getElementById("accountTypeLabel")
+    .textContent=label;
+
+
+  const customerButton=
+    document.getElementById("customerDashboardButton");
+
+  const vendorButton=
+    document.getElementById("vendorDashboardButton");
+
+
+  if(accountType==="partner"){
+
+    customerButton.classList.add("hidden");
+
+    vendorButton.classList.remove("hidden");
+
+  }else{
+
+    customerButton.classList.remove("hidden");
+
+    vendorButton.classList.add("hidden");
+
+  }
+
+}
+
+
+/* =========================================================
+   ACCOUNT MODAL
+========================================================= */
+
+window.openAccount=function(){
+
+  updateAccountUI();
+
+  openModal("accountModal");
+
+};
+
+
+window.showLoginForm=function(){
+
+  document.getElementById("loggedOutAccount")
+    .classList.add("hidden");
+
+  document.getElementById("loggedInAccount")
+    .classList.add("hidden");
+
+  document.getElementById("registerForm")
+    .classList.add("hidden");
+
+  document.getElementById("loginForm")
+    .classList.remove("hidden");
+
+};
+
+
+window.showRegisterForm=function(){
+
+  document.getElementById("loggedOutAccount")
+    .classList.add("hidden");
+
+  document.getElementById("loggedInAccount")
+    .classList.add("hidden");
+
+  document.getElementById("loginForm")
+    .classList.add("hidden");
+
+  document.getElementById("registerForm")
+    .classList.remove("hidden");
+
+  selectAccountType("customer");
+
+};
+
+
+/* =========================================================
+   REGISTER USER
+========================================================= */
+
+window.registerUser=async function(){
+
+  const name=
+    document.getElementById("registerName")
+      .value.trim();
+
+  const email=
+    document.getElementById("registerEmail")
+      .value.trim();
+
+  const password=
+    document.getElementById("registerPassword")
+      .value;
+
+
+  if(!name || !email || !password){
+
+    showToast("Please complete your account details");
+
+    return;
+  }
+
+
+  if(password.length<6){
+
+    showToast("Password must be at least 6 characters");
+
+    return;
+  }
+
+
+  /* Partner fields */
+  let business=null;
+
+
+  if(selectedAccountType==="partner"){
+
+    const businessName=
+      document.getElementById("partnerBusinessName")
+        .value.trim();
+
+    const category=
+      document.getElementById("partnerCategory")
+        .value;
+
+    const phone=
+      document.getElementById("partnerPhone")
+        .value.trim();
+
+    const location=
+      document.getElementById("partnerLocation")
+        .value.trim();
+
+    const description=
+      document.getElementById("partnerDescription")
+        .value.trim();
+
+
+    if(!businessName || !phone || !location){
+
+      showToast(
+        "Complete your business information"
+      );
+
+      return;
+    }
+
+
+    business={
+      name:businessName,
+      category,
+      phone,
+      location,
+      description
+    };
+
+  }
+
+
+  try{
+
+    showToast("Creating your account...");
+
+
+    const credential=
+      await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+
+    const user=
+      credential.user;
+
+
+    /*
+      Save account type in Firestore.
+    */
+
+    await setDoc(
+      doc(db,"users",user.uid),
+      {
+
+        uid:user.uid,
+
+        name:name,
+
+        email:email,
+
+        accountType:selectedAccountType,
+
+        createdAt:serverTimestamp()
+
+      }
+    );
+
+
+    /*
+      If Partner was selected,
+      create the business record too.
+    */
+
+    if(
+      selectedAccountType==="partner" &&
+      business
+    ){
+
+      const businessRecord={
+
+        ...business,
+
+        ownerUid:user.uid,
+
+        createdAt:serverTimestamp()
+
+      };
+
+
+      const businessRef=
+        await addDoc(
+          collection(db,"businesses"),
+          businessRecord
+        );
+
+
+      /*
+        Keep the business locally available.
+      */
+
+      businesses.unshift({
+
+        id:businessRef.id,
+
+        ...business,
+
+        ownerUid:user.uid
+
+      });
+
+
+      renderBusinesses();
+
+
+      /*
+        Save business information to profile.
+      */
+
+      await updateDoc(
+        doc(db,"users",user.uid),
+        {
+          businessId:businessRef.id
+        }
+      );
+
+    }
+
+
+    await loadUserProfile(user.uid);
+
+    updateAccountUI();
+
+    closeModal("accountModal");
+
+
+    if(accountType==="partner"){
+
+      showToast(
+        "Partner account created successfully"
+      );
+
+      showVendorDashboard();
+
+    }else{
+
+      showToast(
+        "Customer account created successfully"
+      );
+
+      showCustomerDashboard();
+
+    }
+
+  }catch(error){
+
+    console.error(
+      "Registration error:",
+      error
+    );
+
+
+    let message="Registration failed";
+
+
+    if(error.code==="auth/email-already-in-use"){
+
+      message=
+        "This email is already registered";
+
+    }else if(error.code==="auth/invalid-email"){
+
+      message=
+        "Please enter a valid email";
+
+    }else if(error.code==="auth/weak-password"){
+
+      message=
+        "Password is too weak";
+
+    }else if(error.message){
+
+      message=error.message;
+
+    }
+
+
+    showToast(message);
+
+  }
+
+};
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+window.loginUser=async function(){
+
+  const email=
+    document.getElementById("loginEmail")
+      .value.trim();
+
+  const password=
+    document.getElementById("loginPassword")
+      .value;
+
+
+  if(!email || !password){
+
+    showToast("Enter your email and password");
+
+    return;
+  }
+
+
+  try{
+
+    showToast("Signing in...");
+
+
+    const credential=
+      await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+
+    currentUser=credential.user;
+
+
+    await loadUserProfile(
+      credential.user.uid
+    );
+
+
+    updateAccountUI();
+
+    closeModal("accountModal");
+
+
+    if(accountType==="partner"){
+
+      showVendorDashboard();
+
+    }else{
+
+      showCustomerDashboard();
+
+    }
+
+
+    showToast("Welcome back to SefwiGo");
+
+  }catch(error){
+
+    console.error(
+      "Login error:",
+      error
+    );
+
+
+    let message="Sign in failed";
+
+
+    if(
+      error.code==="auth/invalid-credential" ||
+      error.code==="auth/wrong-password" ||
+      error.code==="auth/user-not-found"
+    ){
+
+      message=
+        "Incorrect email or password";
+
+    }else if(error.code==="auth/invalid-email"){
+
+      message=
+        "Please enter a valid email";
+
+    }else if(error.message){
+
+      message=error.message;
+
+    }
+
+
+    showToast(message);
+
+  }
+
+};
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+window.logoutUser=async function(){
+
+  try{
+
+    await signOut(auth);
+
+    currentUser=null;
+
+    currentUserProfile=null;
+
+    accountType="customer";
+
+    closeModal("accountModal");
+
+    hidePages();
+
+    document.getElementById("homePage")
+      .classList.remove("hidden");
+
+    document.querySelectorAll(".nav-btn")
+      .forEach(b=>b.classList.remove("active"));
+
+    document.querySelector(".nav-btn")
+      ?.classList.add("active");
+
+    showToast("You have been signed out");
+
+  }catch(error){
+
+    console.error(error);
+
+    showToast("Sign out failed");
+
+  }
+
+};
+
+
+/* =========================================================
    BASIC UI
 ========================================================= */
 
-window.closeModal = function(id){
+window.closeModal=function(id){
 
-  document.getElementById(id).classList.remove("show");
+  document.getElementById(id)
+    .classList.remove("show");
 
 };
 
 
 function openModal(id){
 
-  document.getElementById(id).classList.add("show");
+  document.getElementById(id)
+    .classList.add("show");
 
 }
 
 
-window.showToast = function(message){
+window.showToast=function(message){
 
-  const toast = document.getElementById("toast");
+  const toast=
+    document.getElementById("toast");
 
-  toast.textContent = message;
+  toast.textContent=message;
 
-  toast.style.display = "block";
+  toast.style.display="block";
+
 
   setTimeout(()=>{
+
     toast.style.display="none";
+
   },2500);
 
 };
@@ -1586,34 +2643,102 @@ window.showToast = function(message){
 
 function hidePages(){
 
-  document.getElementById("homePage").classList.add("hidden");
+  document.getElementById("homePage")
+    .classList.add("hidden");
 
-  document.getElementById("vendorPage").classList.add("hidden");
+  document.getElementById("customerPage")
+    .classList.add("hidden");
 
-  document.getElementById("driverPage").classList.add("hidden");
+  document.getElementById("vendorPage")
+    .classList.add("hidden");
 
-  document.getElementById("adminPage").classList.add("hidden");
+  document.getElementById("driverPage")
+    .classList.add("hidden");
+
+  document.getElementById("adminPage")
+    .classList.add("hidden");
 
 }
 
 
-window.goHome = function(button){
+window.goHome=function(button){
 
   hidePages();
 
-  document.getElementById("homePage").classList.remove("hidden");
+  document.getElementById("homePage")
+    .classList.remove("hidden");
+
 
   document.querySelectorAll(".nav-btn")
     .forEach(b=>b.classList.remove("active"));
 
+
   if(button){
+
     button.classList.add("active");
+
   }
 
 };
 
 
-window.openOrders = function(){
+window.showCustomerDashboard=function(){
+
+  if(!currentUser){
+
+    openAccount();
+
+    showLoginForm();
+
+    showToast("Please sign in first");
+
+    return;
+  }
+
+
+  if(accountType!=="customer"){
+
+    showToast(
+      "This account is registered as a Partner"
+    );
+
+    return;
+  }
+
+
+  closeModal("accountModal");
+
+  hidePages();
+
+  document.getElementById("customerPage")
+    .classList.remove("hidden");
+
+
+  document.querySelectorAll(".nav-btn")
+    .forEach(b=>b.classList.remove("active"));
+
+
+  document.getElementById("customerName")
+    .textContent=
+      currentUserProfile?.name ||
+      "Welcome to SefwiGo";
+
+
+  document.getElementById("customerOrders")
+    .textContent=orders.length;
+
+
+  document.getElementById("customerCart")
+    .textContent=
+      cart.reduce(
+        (sum,item)=>sum+Number(item.quantity||0),
+        0
+      );
+
+};
+
+
+window.openOrders=function(){
 
   renderOrders();
 
@@ -1622,9 +2747,11 @@ window.openOrders = function(){
 };
 
 
-window.openAccount = function(){
+window.openCart=function(){
 
-  openModal("accountModal");
+  renderCart();
+
+  openModal("cartModal");
 
 };
 
@@ -1635,14 +2762,18 @@ window.openAccount = function(){
 
 function renderBusinesses(list=businesses){
 
-  const grid=document.getElementById("businessGrid");
+  const grid=
+    document.getElementById("businessGrid");
+
 
   if(!list.length){
 
-    grid.innerHTML='<div class="empty">No businesses found.</div>';
+    grid.innerHTML=
+      '<div class="empty">No businesses found.</div>';
 
     return;
   }
+
 
   grid.innerHTML=list.map(b=>`
 
@@ -1655,26 +2786,35 @@ function renderBusinesses(list=businesses){
           <h3>${escapeHtml(b.name)}</h3>
 
           <p class="muted">
-            ${escapeHtml(b.location || "Sefwi Wiawso")}
+            ${escapeHtml(
+              b.location || "Sefwi Wiawso"
+            )}
           </p>
 
         </div>
 
         <span class="badge">
-          ${escapeHtml(b.category || "Business")}
+          ${escapeHtml(
+            b.category || "Business"
+          )}
         </span>
 
       </div>
 
       <p style="margin-top:10px">
-        ${escapeHtml(b.description || "")}
+        ${escapeHtml(
+          b.description || ""
+        )}
       </p>
 
       <div class="card-actions">
 
-        <button class="small-btn"
+        <button
+          class="small-btn"
           onclick="openBusinessMenu('${b.id}')">
+
           View Business
+
         </button>
 
       </div>
@@ -1697,7 +2837,9 @@ window.openBusinessList=function(){
 
 window.openBusinessMenu=function(id){
 
-  currentBusiness=businesses.find(b=>b.id===id);
+  currentBusiness=
+    businesses.find(b=>b.id===id);
+
 
   if(!currentBusiness){
 
@@ -1706,17 +2848,25 @@ window.openBusinessMenu=function(id){
     return;
   }
 
-  document.getElementById("menuTitle").textContent=
-    currentBusiness.name;
 
-  document.getElementById("menuSubtitle").textContent=
-    currentBusiness.location || "";
+  document.getElementById("menuTitle")
+    .textContent=currentBusiness.name;
+
+
+  document.getElementById("menuSubtitle")
+    .textContent=
+      currentBusiness.location || "";
+
 
   const businessProducts=
-    products.filter(p=>p.businessId===id);
+    products.filter(
+      p=>p.businessId===id
+    );
+
 
   const content=
     document.getElementById("menuContent");
+
 
   if(!businessProducts.length){
 
@@ -1728,47 +2878,63 @@ window.openBusinessMenu=function(id){
     return;
   }
 
-  content.innerHTML=businessProducts.map(p=>`
 
-    <div class="food-item">
+  content.innerHTML=
+    businessProducts.map(p=>`
 
-      <div class="food-item-header">
+      <div class="food-item">
 
-        <div>
-          <h3>${escapeHtml(p.name)}</h3>
+        <div class="food-item-header">
 
-          <p class="muted">
-            ${escapeHtml(p.description || "")}
-          </p>
+          <div>
+
+            <h3>
+              ${escapeHtml(p.name)}
+            </h3>
+
+            <p class="muted">
+              ${escapeHtml(
+                p.description || ""
+              )}
+            </p>
+
+          </div>
+
+          <div class="price">
+            GH₵${Number(p.price).toFixed(2)}
+          </div>
+
         </div>
 
-        <div class="price">
-          GH₵${Number(p.price).toFixed(2)}
+        <div class="card-actions">
+
+          ${
+            p.modifiers &&
+            p.modifiers.length
+            ?
+            `<button
+              class="small-btn"
+              onclick="openFoodCustomizer('${p.id}','${id}')">
+
+              Customize & Order
+
+            </button>`
+            :
+            `<button
+              class="small-btn"
+              onclick="addSimpleProduct('${p.id}')">
+
+              Add to Cart
+
+            </button>`
+          }
+
         </div>
 
       </div>
 
-      <div class="card-actions">
+    `).join("");
 
-        ${
-          p.modifiers && p.modifiers.length
-          ?
-          `<button class="small-btn"
-             onclick="openFoodCustomizer('${p.id}','${id}')">
-             Customize & Order
-           </button>`
-          :
-          `<button class="small-btn"
-             onclick="addSimpleProduct('${p.id}')">
-             Add to Cart
-           </button>`
-        }
-
-      </div>
-
-    </div>
-
-  `).join("");
 
   openModal("menuModal");
 
@@ -1779,11 +2945,22 @@ window.openBusinessMenu=function(id){
    FOOD CUSTOMIZER
 ========================================================= */
 
-window.openFoodCustomizer=function(productId,businessId){
+window.openFoodCustomizer=function(
+  productId,
+  businessId
+){
 
-  const product=products.find(p=>p.id===productId);
+  const product=
+    products.find(
+      p=>p.id===productId
+    );
 
-  const business=businesses.find(b=>b.id===businessId);
+
+  const business=
+    businesses.find(
+      b=>b.id===businessId
+    );
+
 
   if(!product || !business){
 
@@ -1792,17 +2969,27 @@ window.openFoodCustomizer=function(productId,businessId){
     return;
   }
 
+
   currentProduct=product;
 
-  document.getElementById("foodTitle").textContent=
-    product.name;
+  currentBusiness=business;
 
-  document.getElementById("foodSubtitle").textContent=
-    `${business.name} • Base price GH₵${Number(product.price).toFixed(2)}`;
 
-  const content=document.getElementById("foodContent");
+  document.getElementById("foodTitle")
+    .textContent=product.name;
 
-  if(!product.modifiers || !product.modifiers.length){
+
+  document.getElementById("foodSubtitle")
+    .textContent=
+      `${business.name} • Base price GH₵${Number(product.price).toFixed(2)}`;
+
+
+  const content=
+    document.getElementById("foodContent");
+
+
+  if(!product.modifiers ||
+     !product.modifiers.length){
 
     content.innerHTML=`
 
@@ -1816,13 +3003,17 @@ window.openFoodCustomizer=function(productId,businessId){
 
       </div>
 
-      <button class="primary"
+      <button
+        class="primary"
         style="width:100%"
         onclick="addSimpleProduct('${product.id}')">
+
         Add to Cart
+
       </button>
 
     `;
+
 
     openModal("foodModal");
 
@@ -1830,60 +3021,78 @@ window.openFoodCustomizer=function(productId,businessId){
   }
 
 
-  content.innerHTML=product.modifiers.map((group,index)=>`
+  content.innerHTML=
+    product.modifiers.map(
+      (group,index)=>`
 
-    <div class="modifier-group">
+      <div class="modifier-group">
 
-      <div class="modifier-head">
+        <div class="modifier-head">
 
-        <h3>${escapeHtml(group.name)}</h3>
+          <h3>
+            ${escapeHtml(group.name)}
+          </h3>
+
+          ${
+            group.required
+            ?
+            '<span class="badge">Required</span>'
+            :
+            '<span class="muted">Optional</span>'
+          }
+
+        </div>
 
         ${
-          group.required
-          ? '<span class="badge">Required</span>'
-          : '<span class="muted">Optional</span>'
+          (group.options || [])
+          .map(
+            (option,optionIndex)=>`
+
+            <div class="modifier-option">
+
+              <label>
+
+                <input
+                  type="${
+                    group.multi
+                    ? "checkbox"
+                    : "radio"
+                  }"
+                  name="modifier_${index}"
+                  value="${optionIndex}"
+                  data-group="${index}"
+                  onchange="calculateFoodTotal()">
+
+                <span>
+                  ${escapeHtml(option.name)}
+                </span>
+
+              </label>
+
+              <strong>
+
+                ${
+                  Number(option.price)>0
+                  ?
+                  "+ GH₵"+
+                  Number(option.price)
+                    .toFixed(2)
+                  :
+                  "Included"
+                }
+
+              </strong>
+
+            </div>
+
+          `
+          ).join("")
         }
 
       </div>
 
-      ${
-        group.options || []
-        .map((option,optionIndex)=>`
-
-          <div class="modifier-option">
-
-            <label>
-
-              <input
-                type="${group.multi ? "checkbox" : "radio"}"
-                name="modifier_${index}"
-                value="${optionIndex}"
-                data-group="${index}"
-                onchange="calculateFoodTotal()"
-              >
-
-              <span>
-                ${escapeHtml(option.name)}
-              </span>
-
-            </label>
-
-            <strong>
-              ${
-                Number(option.price)>0
-                ? "+ GH₵"+Number(option.price).toFixed(2)
-                : "Included"
-              }
-            </strong>
-
-          </div>
-
-        `).join("")
-      }
-
-    </div>
-
-  `).join("");
+    `
+    ).join("");
 
 
   content.innerHTML+=`
@@ -1893,18 +3102,26 @@ window.openFoodCustomizer=function(productId,businessId){
       <span>Total</span>
 
       <span id="foodCalculatedTotal">
-        GH₵${Number(product.price).toFixed(2)}
+
+        GH₵${Number(
+          product.price
+        ).toFixed(2)}
+
       </span>
 
     </div>
 
-    <button class="primary"
+    <button
+      class="primary"
       style="width:100%"
       onclick="addCustomizedFood()">
+
       Add to Cart
+
     </button>
 
   `;
+
 
   openModal("foodModal");
 
@@ -1915,34 +3132,49 @@ window.calculateFoodTotal=function(){
 
   if(!currentProduct) return;
 
-  let total=Number(currentProduct.price);
 
-  currentProduct.modifiers.forEach((group,index)=>{
+  let total=
+    Number(currentProduct.price);
 
-    const inputs=
-      document.querySelectorAll(
-        `input[data-group="${index}"]:checked`
-      );
 
-    inputs.forEach(input=>{
+  currentProduct.modifiers
+    .forEach(
+      (group,index)=>{
 
-      const optionIndex=Number(input.value);
+        const inputs=
+          document.querySelectorAll(
+            `input[data-group="${index}"]:checked`
+          );
 
-      const option=group.options[optionIndex];
 
-      if(option){
+        inputs.forEach(input=>{
 
-        total+=Number(option.price || 0);
+          const option=
+            group.options[
+              Number(input.value)
+            ];
+
+
+          if(option){
+
+            total+=
+              Number(
+                option.price || 0
+              );
+
+          }
+
+        });
 
       }
+    );
 
-    });
 
-  });
+  const output=
+    document.getElementById(
+      "foodCalculatedTotal"
+    );
 
-  const output=document.getElementById(
-    "foodCalculatedTotal"
-  );
 
   if(output){
 
@@ -1956,58 +3188,85 @@ window.calculateFoodTotal=function(){
 
 window.addCustomizedFood=function(){
 
-  if(!currentProduct || !currentBusiness) return;
+  if(
+    !currentProduct ||
+    !currentBusiness
+  ) return;
+
 
   const selections=[];
 
-  let total=Number(currentProduct.price);
+  let total=
+    Number(currentProduct.price);
 
   let valid=true;
 
 
-  currentProduct.modifiers.forEach((group,index)=>{
+  currentProduct.modifiers
+    .forEach(
+      (group,index)=>{
 
-    const inputs=
-      [...document.querySelectorAll(
-        `input[data-group="${index}"]:checked`
-      )];
+        const inputs=[
+          ...document.querySelectorAll(
+            `input[data-group="${index}"]:checked`
+          )
+        ];
 
-    if(group.required && inputs.length===0){
 
-      valid=false;
+        if(
+          group.required &&
+          inputs.length===0
+        ){
 
-      showToast(`Please select ${group.name}`);
+          valid=false;
 
-      return;
-    }
+          showToast(
+            `Please select ${group.name}`
+          );
 
-    const selected=[];
+          return;
+        }
 
-    inputs.forEach(input=>{
 
-      const option=
-        group.options[Number(input.value)];
+        const selected=[];
 
-      if(option){
 
-        selected.push(option);
+        inputs.forEach(input=>{
 
-        total+=Number(option.price || 0);
+          const option=
+            group.options[
+              Number(input.value)
+            ];
+
+
+          if(option){
+
+            selected.push(option);
+
+            total+=
+              Number(
+                option.price || 0
+              );
+
+          }
+
+        });
+
+
+        if(selected.length){
+
+          selections.push({
+
+            group:group.name,
+
+            options:selected
+
+          });
+
+        }
 
       }
-
-    });
-
-    if(selected.length){
-
-      selections.push({
-        group:group.name,
-        options:selected
-      });
-
-    }
-
-  });
+    );
 
 
   if(!valid) return;
@@ -2017,17 +3276,22 @@ window.addCustomizedFood=function(){
 
     id:Date.now().toString(),
 
-    productId:currentProduct.id,
+    productId:
+      currentProduct.id,
 
-    businessId:currentBusiness.id,
+    businessId:
+      currentBusiness.id,
 
-    businessName:currentBusiness.name,
+    businessName:
+      currentBusiness.name,
 
-    name:currentProduct.name,
+    name:
+      currentProduct.name,
 
-    basePrice:Number(currentProduct.price),
+    basePrice:
+      Number(currentProduct.price),
 
-    selections:selections,
+    selections,
 
     price:total,
 
@@ -2042,17 +3306,27 @@ window.addCustomizedFood=function(){
 
   renderOrders();
 
+  updateCustomerCounters();
+
 };
 
 
 window.addSimpleProduct=function(productId){
 
-  const product=products.find(p=>p.id===productId);
+  const product=
+    products.find(
+      p=>p.id===productId
+    );
+
 
   if(!product) return;
 
+
   const business=
-    businesses.find(b=>b.id===product.businessId);
+    businesses.find(
+      b=>b.id===product.businessId
+    );
+
 
   cart.push({
 
@@ -2060,21 +3334,27 @@ window.addSimpleProduct=function(productId){
 
     productId:product.id,
 
-    businessId:product.businessId,
+    businessId:
+      product.businessId,
 
-    businessName:business?.name || product.businessName,
+    businessName:
+      business?.name ||
+      product.businessName,
 
     name:product.name,
 
-    basePrice:Number(product.price),
+    basePrice:
+      Number(product.price),
 
     selections:[],
 
-    price:Number(product.price),
+    price:
+      Number(product.price),
 
     quantity:1
 
   });
+
 
   closeModal("menuModal");
 
@@ -2084,6 +3364,8 @@ window.addSimpleProduct=function(productId){
 
   openCart();
 
+  updateCustomerCounters();
+
 };
 
 
@@ -2091,21 +3373,13 @@ window.addSimpleProduct=function(productId){
    CART
 ========================================================= */
 
-function openCart(){
-
-  renderCart();
-
-  openModal("cartModal");
-
-}
-
-
-window.openCart=openCart;
-
-
 function renderCart(){
 
-  const content=document.getElementById("cartContent");
+  const content=
+    document.getElementById(
+      "cartContent"
+    );
+
 
   if(!cart.length){
 
@@ -2115,92 +3389,164 @@ function renderCart(){
     return;
   }
 
+
   let total=0;
 
+
   cart.forEach(item=>{
-    total+=item.price*item.quantity;
+
+    total+=
+      item.price *
+      item.quantity;
+
   });
 
 
-  content.innerHTML=cart.map(item=>`
+  content.innerHTML=
+    cart.map(item=>`
 
-    <div class="cart-row">
+      <div class="cart-row">
 
-      <div>
+        <div>
 
-        <strong>${escapeHtml(item.name)}</strong>
+          <strong>
+            ${escapeHtml(item.name)}
+          </strong>
 
-        <p class="muted">
-          ${item.selections
-            .map(s=>`${s.group}: ${s.options.map(o=>o.name).join(", ")}`)
-            .join(" • ")}
-        </p>
+          <p class="muted">
 
-        <p class="price">
-          GH₵${(item.price*item.quantity).toFixed(2)}
-        </p>
+            ${item.selections
+              .map(
+                s=>
+                  `${escapeHtml(s.group)}: ${
+                    s.options
+                      .map(o=>escapeHtml(o.name))
+                      .join(", ")
+                  }`
+              )
+              .join(" • ")}
+
+          </p>
+
+          <p class="price">
+
+            GH₵${(
+              item.price *
+              item.quantity
+            ).toFixed(2)}
+
+          </p>
+
+        </div>
+
+
+        <div class="quantity">
+
+          <button
+            onclick="changeQuantity('${item.id}',-1)">
+            −
+          </button>
+
+          <strong>
+            ${item.quantity}
+          </strong>
+
+          <button
+            onclick="changeQuantity('${item.id}',1)">
+            +
+          </button>
+
+        </div>
 
       </div>
 
-      <div class="quantity">
+    `).join("")+
 
-        <button onclick="changeQuantity('${item.id}',-1)">
-          −
-        </button>
+    `
 
-        <strong>${item.quantity}</strong>
+      <div class="food-total">
 
-        <button onclick="changeQuantity('${item.id}',1)">
-          +
-        </button>
+        <span>Total</span>
+
+        <span>
+          GH₵${total.toFixed(2)}
+        </span>
 
       </div>
 
-    </div>
+      <button
+        class="primary"
+        style="width:100%"
+        onclick="checkoutCart()">
 
-  `).join("")+
+        Place Order
 
-  `
+      </button>
 
-    <div class="food-total">
-
-      <span>Total</span>
-
-      <span>GH₵${total.toFixed(2)}</span>
-
-    </div>
-
-    <button class="primary"
-      style="width:100%"
-      onclick="checkoutCart()">
-      Place Order
-    </button>
-
-  `;
+    `;
 
 }
 
 
-window.changeQuantity=function(id,change){
+window.changeQuantity=function(
+  id,
+  change
+){
 
-  const item=cart.find(x=>x.id===id);
+  const item=
+    cart.find(x=>x.id===id);
+
 
   if(!item) return;
 
+
   item.quantity+=change;
+
 
   if(item.quantity<=0){
 
-    cart=cart.filter(x=>x.id!==id);
+    cart=
+      cart.filter(
+        x=>x.id!==id
+      );
 
   }
 
+
   renderCart();
+
+  updateCustomerCounters();
 
 };
 
 
 window.checkoutCart=function(){
+
+  if(!currentUser){
+
+    closeModal("cartModal");
+
+    openAccount();
+
+    showLoginForm();
+
+    showToast(
+      "Please create an account or sign in before ordering"
+    );
+
+    return;
+  }
+
+
+  if(accountType!=="customer"){
+
+    showToast(
+      "Only customer accounts can place customer orders"
+    );
+
+    return;
+  }
+
 
   if(!cart.length){
 
@@ -2209,16 +3555,23 @@ window.checkoutCart=function(){
     return;
   }
 
-  const total=cart.reduce(
-    (sum,item)=>sum+(item.price*item.quantity),
-    0
-  );
+
+  const total=
+    cart.reduce(
+      (sum,item)=>
+        sum+
+        item.price*
+        item.quantity,
+      0
+    );
+
 
   const order={
 
     id:"SG"+Date.now(),
 
-    customerUid:currentUser?.uid || "guest",
+    customerUid:
+      currentUser.uid,
 
     items:[...cart],
 
@@ -2226,19 +3579,26 @@ window.checkoutCart=function(){
 
     status:"Pending",
 
-    createdAt:new Date().toISOString()
+    createdAt:
+      new Date().toISOString()
 
   };
+
 
   orders.push(order);
 
   cart=[];
 
+
   closeModal("cartModal");
 
   renderOrders();
 
-  showToast(`Order ${order.id} placed`);
+  updateCustomerCounters();
+
+  showToast(
+    `Order ${order.id} placed`
+  );
 
 };
 
@@ -2250,7 +3610,10 @@ window.checkoutCart=function(){
 function renderOrders(){
 
   const content=
-    document.getElementById("ordersContent");
+    document.getElementById(
+      "ordersContent"
+    );
+
 
   if(!orders.length){
 
@@ -2260,45 +3623,106 @@ function renderOrders(){
     return;
   }
 
-  content.innerHTML=orders.map(order=>`
 
-    <div class="card" style="margin-bottom:12px">
+  content.innerHTML=
+    orders.map(order=>`
 
-      <div class="card-top">
+      <div
+        class="card"
+        style="margin-bottom:12px">
 
-        <div>
-          <h3>${order.id}</h3>
+        <div class="card-top">
 
-          <p class="muted">
-            ${new Date(order.createdAt).toLocaleString()}
-          </p>
+          <div>
+
+            <h3>
+              ${escapeHtml(order.id)}
+            </h3>
+
+            <p class="muted">
+
+              ${new Date(
+                order.createdAt
+              ).toLocaleString()}
+
+            </p>
+
+          </div>
+
+          <span class="badge">
+            ${escapeHtml(order.status)}
+          </span>
+
         </div>
 
-        <span class="badge">
-          ${order.status}
-        </span>
+
+        <div style="margin-top:10px">
+
+          ${order.items.map(item=>`
+
+            <p>
+              ${item.quantity} ×
+              ${escapeHtml(item.name)}
+            </p>
+
+          `).join("")}
+
+        </div>
+
+
+        <p
+          class="price"
+          style="margin-top:10px">
+
+          GH₵${Number(
+            order.total
+          ).toFixed(2)}
+
+        </p>
 
       </div>
 
-      <div style="margin-top:10px">
+    `).join("");
 
-        ${order.items.map(item=>`
+}
 
-          <p>
-            ${item.quantity} × ${escapeHtml(item.name)}
-          </p>
 
-        `).join("")}
+/* =========================================================
+   CUSTOMER COUNTERS
+========================================================= */
 
-      </div>
+function updateCustomerCounters(){
 
-      <p class="price" style="margin-top:10px">
-        GH₵${Number(order.total).toFixed(2)}
-      </p>
+  const orderElement=
+    document.getElementById(
+      "customerOrders"
+    );
 
-    </div>
+  const cartElement=
+    document.getElementById(
+      "customerCart"
+    );
 
-  `).join("");
+
+  if(orderElement){
+
+    orderElement.textContent=
+      orders.length;
+
+  }
+
+
+  if(cartElement){
+
+    cartElement.textContent=
+      cart.reduce(
+        (sum,item)=>
+          sum+
+          Number(item.quantity||0),
+        0
+      );
+
+  }
 
 }
 
@@ -2312,32 +3736,60 @@ window.showCategory=function(category){
   if(category==="Food"){
 
     const food=
-      products.filter(p=>
-        ["Main Meal","Breakfast","Drinks","Snacks"]
-        .includes(p.category)
+      products.filter(
+        p=>
+          [
+            "Main Meal",
+            "Breakfast",
+            "Drinks",
+            "Snacks"
+          ].includes(p.category)
       );
+
 
     renderProducts(food);
 
   }
 
+
   if(category==="Groceries"){
 
     const grocery=
-      products.filter(p=>
-        p.category==="Groceries"
+      products.filter(
+        p=>
+          p.category==="Groceries"
       );
+
 
     renderProducts(grocery);
 
   }
 
+
+  /*
+    Keep user on the home marketplace
+    when selecting a category.
+  */
+
+  hidePages();
+
+  document.getElementById("homePage")
+    .classList.remove("hidden");
+
 };
 
 
+/* =========================================================
+   PRODUCTS
+========================================================= */
+
 function renderProducts(list=products){
 
-  const grid=document.getElementById("productGrid");
+  const grid=
+    document.getElementById(
+      "productGrid"
+    );
+
 
   if(!list.length){
 
@@ -2347,57 +3799,87 @@ function renderProducts(list=products){
     return;
   }
 
-  grid.innerHTML=list.map(p=>`
 
-    <div class="card">
+  grid.innerHTML=
+    list.map(p=>`
 
-      <div class="card-top">
+      <div class="card">
 
-        <div>
+        <div class="card-top">
 
-          <h3>${escapeHtml(p.name)}</h3>
+          <div>
 
-          <p class="muted">
-            ${escapeHtml(p.businessName || "")}
-          </p>
+            <h3>
+              ${escapeHtml(p.name)}
+            </h3>
+
+            <p class="muted">
+              ${escapeHtml(
+                p.businessName || ""
+              )}
+            </p>
+
+          </div>
+
+          <span class="badge">
+
+            ${escapeHtml(
+              p.category ||
+              "Product"
+            )}
+
+          </span>
 
         </div>
 
-        <span class="badge">
-          ${escapeHtml(p.category || "Product")}
-        </span>
+
+        <p style="margin-top:8px">
+
+          ${escapeHtml(
+            p.description || ""
+          )}
+
+        </p>
+
+
+        <p
+          class="price"
+          style="margin-top:8px">
+
+          GH₵${Number(
+            p.price
+          ).toFixed(2)}
+
+        </p>
+
+
+        <div class="card-actions">
+
+          ${
+            p.modifiers?.length
+            ?
+            `<button
+              class="small-btn"
+              onclick="openFoodCustomizer('${p.id}','${p.businessId}')">
+
+              Customize
+
+            </button>`
+            :
+            `<button
+              class="small-btn"
+              onclick="addSimpleProduct('${p.id}')">
+
+              Add to Cart
+
+            </button>`
+          }
+
+        </div>
 
       </div>
 
-      <p style="margin-top:8px">
-        ${escapeHtml(p.description || "")}
-      </p>
-
-      <p class="price" style="margin-top:8px">
-        GH₵${Number(p.price).toFixed(2)}
-      </p>
-
-      <div class="card-actions">
-
-        ${
-          p.modifiers?.length
-          ?
-          `<button class="small-btn"
-             onclick="openFoodCustomizer('${p.id}','${p.businessId}')">
-             Customize
-           </button>`
-          :
-          `<button class="small-btn"
-             onclick="addSimpleProduct('${p.id}')">
-             Add to Cart
-           </button>`
-        }
-
-      </div>
-
-    </div>
-
-  `).join("");
+    `).join("");
 
 }
 
@@ -2415,10 +3897,18 @@ window.openProperty=function(){
 };
 
 
-window.propertyTab=function(tab,button){
+window.propertyTab=function(
+  tab,
+  button
+){
 
-  document.querySelectorAll("#propertyModal .tab")
-    .forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll(
+    "#propertyModal .tab"
+  )
+  .forEach(
+    b=>b.classList.remove("active")
+  );
+
 
   if(button){
 
@@ -2428,10 +3918,15 @@ window.propertyTab=function(tab,button){
 
     const target=
       document.querySelector(
-        `#propertyModal .tab`
+        "#propertyModal .tab"
       );
 
-    if(target) target.classList.add("active");
+
+    if(target){
+
+      target.classList.add("active");
+
+    }
 
   }
 
@@ -2442,31 +3937,44 @@ window.propertyTab=function(tab,button){
 
   }
 
+
   if(tab==="register"){
 
     propertyForm();
 
   }
 
+
   if(tab==="mine"){
 
     const mine=
-      properties.filter(p=>
-        p.ownerUid===
-        (currentUser?.uid || "guest")
+      properties.filter(
+        p=>
+          p.ownerUid===
+          (currentUser?.uid || "guest")
       );
 
-    renderProperties(mine,true);
+
+    renderProperties(
+      mine,
+      true
+    );
 
   }
 
 };
 
 
-function renderProperties(list=properties,mine=false){
+function renderProperties(
+  list=properties,
+  mine=false
+){
 
   const content=
-    document.getElementById("propertyContent");
+    document.getElementById(
+      "propertyContent"
+    );
+
 
   if(!list.length){
 
@@ -2476,124 +3984,195 @@ function renderProperties(list=properties,mine=false){
     return;
   }
 
-  content.innerHTML=list.map(p=>`
 
-    <div class="card" style="margin-bottom:12px">
+  content.innerHTML=
+    list.map(p=>`
 
-      <div class="card-top">
+      <div
+        class="card"
+        style="margin-bottom:12px">
 
-        <div>
-          <h3>${escapeHtml(p.title)}</h3>
+        <div class="card-top">
 
-          <p class="muted">
-            ${escapeHtml(p.location)}
-          </p>
+          <div>
+
+            <h3>
+              ${escapeHtml(p.title)}
+            </h3>
+
+            <p class="muted">
+              ${escapeHtml(p.location)}
+            </p>
+
+          </div>
+
+          <span class="badge">
+            ${escapeHtml(p.purpose)}
+          </span>
+
         </div>
 
-        <span class="badge">
-          ${escapeHtml(p.purpose)}
-        </span>
+
+        <p style="margin-top:10px">
+          ${escapeHtml(
+            p.description || ""
+          )}
+        </p>
+
+
+        <p
+          class="price"
+          style="margin-top:10px">
+
+          GH₵${Number(
+            p.price
+          ).toFixed(2)}
+
+        </p>
+
+
+        <p
+          class="muted"
+          style="margin-top:6px">
+
+          ${escapeHtml(p.type)}
+
+        </p>
+
+
+        <div class="card-actions">
+
+          <button
+            class="small-btn"
+            onclick="contactProperty('${p.phone}')">
+
+            Contact
+
+          </button>
+
+
+          ${
+            mine
+            ?
+            `<button
+              class="outline-btn"
+              onclick="deleteProperty('${p.id}')">
+
+              Delete
+
+            </button>`
+            :
+            ""
+          }
+
+        </div>
 
       </div>
 
-      <p style="margin-top:10px">
-        ${escapeHtml(p.description || "")}
-      </p>
-
-      <p class="price" style="margin-top:10px">
-        GH₵${Number(p.price).toFixed(2)}
-      </p>
-
-      <p class="muted" style="margin-top:6px">
-        ${escapeHtml(p.type)}
-      </p>
-
-      <div class="card-actions">
-
-        <button class="small-btn"
-          onclick="contactProperty('${p.phone}')">
-          Contact
-        </button>
-
-        ${
-          mine
-          ?
-          `<button class="outline-btn"
-             onclick="deleteProperty('${p.id}')">
-             Delete
-           </button>`
-          :
-          ""
-        }
-
-      </div>
-
-    </div>
-
-  `).join("");
+    `).join("");
 
 }
 
 
 window.propertyForm=function(){
 
-  document.getElementById("propertyContent").innerHTML=`
+  document.getElementById(
+    "propertyContent"
+  ).innerHTML=`
 
     <div class="form-group">
-      <label>Property Title</label>
-      <input id="propTitle"
+
+      <label>
+        Property Title
+      </label>
+
+      <input
+        id="propTitle"
         placeholder="e.g. Two Bedroom House">
+
     </div>
+
 
     <div class="form-row">
 
       <div class="form-group">
+
         <label>Type</label>
 
         <select id="propType">
+
           <option>House</option>
           <option>Room</option>
           <option>Apartment</option>
           <option>Land</option>
           <option>Shop</option>
+
         </select>
+
       </div>
 
+
       <div class="form-group">
+
         <label>Purpose</label>
 
         <select id="propPurpose">
+
           <option>For Rent</option>
           <option>For Sale</option>
+
         </select>
+
       </div>
 
     </div>
 
+
     <div class="form-group">
+
       <label>Price</label>
-      <input id="propPrice" type="number">
+
+      <input
+        id="propPrice"
+        type="number">
+
     </div>
 
+
     <div class="form-group">
+
       <label>Location</label>
+
       <input id="propLocation">
+
     </div>
 
+
     <div class="form-group">
+
       <label>Phone</label>
+
       <input id="propPhone">
+
     </div>
+
 
     <div class="form-group">
+
       <label>Description</label>
+
       <textarea id="propDescription"></textarea>
+
     </div>
 
-    <button class="primary"
+
+    <button
+      class="primary"
       style="width:100%"
       onclick="saveProperty()">
+
       Register Property
+
     </button>
 
   `;
@@ -2603,38 +4182,70 @@ window.propertyForm=function(){
 
 window.saveProperty=function(){
 
+  if(!currentUser){
+
+    showToast(
+      "Please sign in before registering a property"
+    );
+
+    return;
+  }
+
+
   const property={
 
     id:"property"+Date.now(),
 
-    title:document.getElementById("propTitle").value,
+    title:
+      document.getElementById(
+        "propTitle"
+      ).value,
 
-    type:document.getElementById("propType").value,
+    type:
+      document.getElementById(
+        "propType"
+      ).value,
 
-    purpose:document.getElementById("propPurpose").value,
+    purpose:
+      document.getElementById(
+        "propPurpose"
+      ).value,
 
     price:Number(
-      document.getElementById("propPrice").value
+      document.getElementById(
+        "propPrice"
+      ).value
     ),
 
     location:
-      document.getElementById("propLocation").value,
+      document.getElementById(
+        "propLocation"
+      ).value,
 
     phone:
-      document.getElementById("propPhone").value,
+      document.getElementById(
+        "propPhone"
+      ).value,
 
     description:
-      document.getElementById("propDescription").value,
+      document.getElementById(
+        "propDescription"
+      ).value,
 
     ownerUid:
-      currentUser?.uid || "guest"
+      currentUser.uid
 
   };
 
 
-  if(!property.title || !property.location){
+  if(
+    !property.title ||
+    !property.location
+  ){
 
-    showToast("Please complete the required fields");
+    showToast(
+      "Please complete the required fields"
+    );
 
     return;
   }
@@ -2652,7 +4263,10 @@ window.saveProperty=function(){
 window.deleteProperty=function(id){
 
   properties=
-    properties.filter(p=>p.id!==id);
+    properties.filter(
+      p=>p.id!==id
+    );
+
 
   propertyTab("mine");
 
@@ -2665,15 +4279,22 @@ window.contactProperty=function(phone){
 
   if(!phone){
 
-    showToast("Phone number unavailable");
+    showToast(
+      "Phone number unavailable"
+    );
 
     return;
   }
 
+
   const url=
     "https://wa.me/"+phone;
 
-  window.open(url,"_blank");
+
+  window.open(
+    url,
+    "_blank"
+  );
 
 };
 
@@ -2692,21 +4313,37 @@ window.openParcel=function(){
 window.requestParcel=function(){
 
   const pickup=
-    document.getElementById("parcelPickup").value;
+    document.getElementById(
+      "parcelPickup"
+    ).value;
+
 
   const destination=
-    document.getElementById("parcelDestination").value;
+    document.getElementById(
+      "parcelDestination"
+    ).value;
+
 
   const type=
-    document.getElementById("parcelType").value;
+    document.getElementById(
+      "parcelType"
+    ).value;
+
 
   const notes=
-    document.getElementById("parcelNotes").value;
+    document.getElementById(
+      "parcelNotes"
+    ).value;
 
 
-  if(!pickup || !destination){
+  if(
+    !pickup ||
+    !destination
+  ){
 
-    showToast("Enter pickup and destination");
+    showToast(
+      "Enter pickup and destination"
+    );
 
     return;
   }
@@ -2728,76 +4365,14 @@ Notes: ${notes || "None"}`;
     "https://wa.me/233000000000?text="+
     encodeURIComponent(message);
 
-  window.open(url,"_blank");
+
+  window.open(
+    url,
+    "_blank"
+  );
+
 
   closeModal("parcelModal");
-
-};
-
-
-/* =========================================================
-   PARTNER REGISTRATION
-========================================================= */
-
-window.openPartner=function(){
-
-  openModal("partnerModal");
-
-};
-
-
-window.registerBusiness=function(){
-
-  const business={
-
-    id:"business"+Date.now(),
-
-    name:
-      document.getElementById(
-        "partnerBusinessName"
-      ).value,
-
-    category:
-      document.getElementById(
-        "partnerCategory"
-      ).value,
-
-    phone:
-      document.getElementById(
-        "partnerPhone"
-      ).value,
-
-    location:
-      document.getElementById(
-        "partnerLocation"
-      ).value,
-
-    description:
-      document.getElementById(
-        "partnerDescription"
-      ).value,
-
-    ownerUid:
-      currentUser?.uid || "guest"
-
-  };
-
-
-  if(!business.name || !business.phone){
-
-    showToast("Business name and phone are required");
-
-    return;
-  }
-
-
-  businesses.unshift(business);
-
-  renderBusinesses();
-
-  closeModal("partnerModal");
-
-  showToast("Business registered successfully");
 
 };
 
@@ -2808,88 +4383,173 @@ window.registerBusiness=function(){
 
 window.showVendorDashboard=function(){
 
+  /*
+    IMPORTANT:
+    Customer accounts cannot access
+    the Partner dashboard.
+  */
+
+  if(!currentUser){
+
+    openAccount();
+
+    showLoginForm();
+
+    showToast(
+      "Please sign in first"
+    );
+
+    return;
+  }
+
+
+  if(accountType!=="partner"){
+
+    showToast(
+      "Only Partner accounts can access the Partner Dashboard"
+    );
+
+    return;
+  }
+
+
   closeModal("accountModal");
 
   hidePages();
 
+
   document.getElementById("vendorPage")
     .classList.remove("hidden");
+
+
+  document.getElementById("vendorName")
+    .textContent=
+      currentUserProfile?.name ||
+      "My Business";
+
 
   vendorTab("products");
 
 };
 
 
-window.vendorTab=function(tab,button){
+window.vendorTab=function(
+  tab,
+  button
+){
 
   if(button){
 
-    document.querySelectorAll(".tabs .tab")
-      .forEach(b=>b.classList.remove("active"));
+    document.querySelectorAll(
+      "#vendorPage .tabs .tab"
+    )
+    .forEach(
+      b=>b.classList.remove("active")
+    );
+
 
     button.classList.add("active");
 
   }
 
+
   const content=
-    document.getElementById("vendorContent");
+    document.getElementById(
+      "vendorContent"
+    );
 
 
   if(tab==="products"){
 
-    document.getElementById("vendorProducts")
-      .textContent=products.length;
+    document.getElementById(
+      "vendorProducts"
+    ).textContent=
+      products.filter(
+        p=>
+          p.businessOwnerUid===
+          currentUser?.uid
+      ).length ||
+      products.length;
+
 
     content.innerHTML=`
 
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+      <div
+        style="
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin-bottom:12px">
 
         <h3>My Products</h3>
 
-        <button class="small-btn"
+        <button
+          class="small-btn"
           onclick="productManager()">
+
           + Add Product
+
         </button>
 
       </div>
 
-      ${
-        products.map(p=>`
 
-          <div class="card" style="margin-bottom:10px">
+      ${
+        products.map(
+          p=>`
+
+          <div
+            class="card"
+            style="margin-bottom:10px">
 
             <div class="card-top">
 
               <div>
-                <h3>${escapeHtml(p.name)}</h3>
+
+                <h3>
+                  ${escapeHtml(p.name)}
+                </h3>
+
                 <p class="muted">
                   ${escapeHtml(p.category)}
                 </p>
+
               </div>
 
               <span class="price">
-                GH₵${Number(p.price).toFixed(2)}
+                GH₵${Number(
+                  p.price
+                ).toFixed(2)}
               </span>
 
             </div>
 
+
             <div class="card-actions">
 
-              <button class="small-btn"
+              <button
+                class="small-btn"
                 onclick="editProduct('${p.id}')">
+
                 Edit
+
               </button>
 
-              <button class="outline-btn"
+
+              <button
+                class="outline-btn"
                 onclick="removeProduct('${p.id}')">
+
                 Delete
+
               </button>
 
             </div>
 
           </div>
 
-        `).join("")
+        `
+        ).join("")
       }
 
     `;
@@ -2905,54 +4565,83 @@ window.vendorTab=function(tab,button){
         Customer Orders
       </h3>
 
+
       ${
         orders.length
         ?
-        orders.map(o=>`
+        orders.map(
+          o=>`
 
-          <div class="card" style="margin-bottom:10px">
+          <div
+            class="card"
+            style="margin-bottom:10px">
 
             <div class="card-top">
 
-              <strong>${o.id}</strong>
+              <strong>
+                ${escapeHtml(o.id)}
+              </strong>
 
               <span class="badge">
-                ${o.status}
+                ${escapeHtml(o.status)}
               </span>
 
             </div>
 
+
             <p style="margin-top:8px">
-              Total: GH₵${Number(o.total).toFixed(2)}
+
+              Total:
+              GH₵${Number(
+                o.total
+              ).toFixed(2)}
+
             </p>
+
 
             <div class="card-actions">
 
-              <button class="small-btn"
+              <button
+                class="small-btn"
                 onclick="changeOrderStatus('${o.id}','Accepted')">
+
                 Accept
+
               </button>
 
-              <button class="small-btn"
+
+              <button
+                class="small-btn"
                 onclick="changeOrderStatus('${o.id}','Preparing')">
+
                 Preparing
+
               </button>
 
-              <button class="small-btn"
+
+              <button
+                class="small-btn"
                 onclick="changeOrderStatus('${o.id}','Ready')">
+
                 Ready
+
               </button>
 
-              <button class="small-btn"
+
+              <button
+                class="small-btn"
                 onclick="changeOrderStatus('${o.id}','Delivered')">
+
                 Delivered
+
               </button>
 
             </div>
 
           </div>
 
-        `).join("")
+        `
+        ).join("")
         :
         '<div class="empty">No orders yet.</div>'
       }
@@ -2964,33 +4653,72 @@ window.vendorTab=function(tab,button){
 
   if(tab==="business"){
 
+    const myBusiness=
+      businesses.find(
+        b=>
+          b.ownerUid===
+          currentUser?.uid
+      );
+
+
     content.innerHTML=`
 
       <div class="card">
 
-        <h3>Business Information</h3>
+        <h3>
+          Business Information
+        </h3>
 
-        <div class="form-group" style="margin-top:15px">
-          <label>Business Name</label>
-          <input id="editBusinessName"
-            value="${escapeAttr(businesses[0]?.name || "")}">
+
+        <div
+          class="form-group"
+          style="margin-top:15px">
+
+          <label>
+            Business Name
+          </label>
+
+          <input
+            id="editBusinessName"
+            value="${escapeAttr(
+              myBusiness?.name || ""
+            )}">
+
         </div>
 
+
         <div class="form-group">
+
           <label>Phone</label>
-          <input id="editBusinessPhone"
-            value="${escapeAttr(businesses[0]?.phone || "")}">
+
+          <input
+            id="editBusinessPhone"
+            value="${escapeAttr(
+              myBusiness?.phone || ""
+            )}">
+
         </div>
+
 
         <div class="form-group">
+
           <label>Location</label>
-          <input id="editBusinessLocation"
-            value="${escapeAttr(businesses[0]?.location || "")}">
+
+          <input
+            id="editBusinessLocation"
+            value="${escapeAttr(
+              myBusiness?.location || ""
+            )}">
+
         </div>
 
-        <button class="primary"
+
+        <button
+          class="primary"
           onclick="saveBusinessInfo()">
+
           Save Changes
+
         </button>
 
       </div>
@@ -3002,15 +4730,24 @@ window.vendorTab=function(tab,button){
 };
 
 
-window.changeOrderStatus=function(id,status){
+window.changeOrderStatus=function(
+  id,
+  status
+){
 
-  const order=orders.find(o=>o.id===id);
+  const order=
+    orders.find(
+      o=>o.id===id
+    );
+
 
   if(order){
 
     order.status=status;
 
-    showToast(`Order ${id}: ${status}`);
+    showToast(
+      `Order ${id}: ${status}`
+    );
 
     vendorTab("orders");
 
@@ -3021,20 +4758,54 @@ window.changeOrderStatus=function(id,status){
 
 window.saveBusinessInfo=function(){
 
-  if(!businesses.length) return;
+  const business=
+    businesses.find(
+      b=>
+        b.ownerUid===
+        currentUser?.uid
+    );
 
-  businesses[0].name=
-    document.getElementById("editBusinessName").value;
 
-  businesses[0].phone=
-    document.getElementById("editBusinessPhone").value;
+  if(!business){
 
-  businesses[0].location=
-    document.getElementById("editBusinessLocation").value;
+    showToast(
+      "Business not found"
+    );
+
+    return;
+  }
+
+
+  business.name=
+    document.getElementById(
+      "editBusinessName"
+    ).value;
+
+
+  business.phone=
+    document.getElementById(
+      "editBusinessPhone"
+    ).value;
+
+
+  business.location=
+    document.getElementById(
+      "editBusinessLocation"
+    ).value;
+
 
   renderBusinesses();
 
-  showToast("Business updated");
+
+  document.getElementById(
+    "vendorName"
+  ).textContent=
+    business.name;
+
+
+  showToast(
+    "Business updated"
+  );
 
 };
 
@@ -3043,56 +4814,95 @@ window.saveBusinessInfo=function(){
    PRODUCT MANAGER
 ========================================================= */
 
-window.productManager=function(existing=null){
+window.productManager=function(
+  existing=null
+){
+
+  if(accountType!=="partner"){
+
+    showToast(
+      "Only Partners can manage products"
+    );
+
+    return;
+  }
+
 
   const content=
-    document.getElementById("vendorContent");
+    document.getElementById(
+      "vendorContent"
+    );
+
 
   content.innerHTML=`
 
     <div class="card">
 
-      <h3>${existing ? "Edit Product" : "Add Product"}</h3>
+      <h3>
+        ${
+          existing
+          ? "Edit Product"
+          : "Add Product"
+        }
+      </h3>
 
-      <div class="form-group" style="margin-top:15px">
 
-        <label>Product Name</label>
+      <div
+        class="form-group"
+        style="margin-top:15px">
 
-        <input id="productName"
-          value="${escapeAttr(existing?.name || "")}">
+        <label>
+          Product Name
+        </label>
+
+        <input
+          id="productName"
+          value="${escapeAttr(
+            existing?.name || ""
+          )}">
 
       </div>
+
 
       <div class="form-row">
 
         <div class="form-group">
 
-          <label>Category</label>
+          <label>
+            Category
+          </label>
 
-          <select id="productCategory"
+          <select
+            id="productCategory"
             onchange="productCategoryChanged()">
 
-            <option ${existing?.category==="Main Meal"?"selected":""}>
+            <option
+              ${existing?.category==="Main Meal"?"selected":""}>
               Main Meal
             </option>
 
-            <option ${existing?.category==="Breakfast"?"selected":""}>
+            <option
+              ${existing?.category==="Breakfast"?"selected":""}>
               Breakfast
             </option>
 
-            <option ${existing?.category==="Drinks"?"selected":""}>
+            <option
+              ${existing?.category==="Drinks"?"selected":""}>
               Drinks
             </option>
 
-            <option ${existing?.category==="Snacks"?"selected":""}>
+            <option
+              ${existing?.category==="Snacks"?"selected":""}>
               Snacks
             </option>
 
-            <option ${existing?.category==="Groceries"?"selected":""}>
+            <option
+              ${existing?.category==="Groceries"?"selected":""}>
               Groceries
             </option>
 
-            <option ${existing?.category==="Other"?"selected":""}>
+            <option
+              ${existing?.category==="Other"?"selected":""}>
               Other
             </option>
 
@@ -3103,9 +4913,12 @@ window.productManager=function(existing=null){
 
         <div class="form-group">
 
-          <label>Price</label>
+          <label>
+            Price
+          </label>
 
-          <input id="productPrice"
+          <input
+            id="productPrice"
             type="number"
             value="${existing?.price || ""}">
 
@@ -3116,16 +4929,22 @@ window.productManager=function(existing=null){
 
       <div class="form-group">
 
-        <label>Description</label>
+        <label>
+          Description
+        </label>
 
-        <textarea id="productDescription">${escapeHtml(existing?.description || "")}</textarea>
+        <textarea
+          id="productDescription">${escapeHtml(
+            existing?.description || ""
+          )}</textarea>
 
       </div>
 
 
       <label class="checkline">
 
-        <input type="checkbox"
+        <input
+          type="checkbox"
           id="productAvailable"
           ${existing?.available !== false ? "checked" : ""}>
 
@@ -3136,7 +4955,8 @@ window.productManager=function(existing=null){
 
       <label class="checkline">
 
-        <input type="checkbox"
+        <input
+          type="checkbox"
           id="productFood"
           ${existing?.modifiers?.length ? "checked" : ""}
           onchange="toggleFoodModifierEditor()">
@@ -3146,26 +4966,49 @@ window.productManager=function(existing=null){
       </label>
 
 
-      <div id="foodModifierEditor"
+      <div
+        id="foodModifierEditor"
         class="modifier-editor"
-        style="${existing?.modifiers?.length ? "" : "display:none"}">
+        style="${
+          existing?.modifiers?.length
+          ? ""
+          : "display:none"
+        }">
 
-        ${renderModifierEditor(existing?.modifiers)}
+        ${renderModifierEditor(
+          existing?.modifiers
+        )}
 
       </div>
 
 
-      <div class="card-actions"
+      <div
+        class="card-actions"
         style="margin-top:15px">
 
-        <button class="primary"
-          onclick="${existing ? `updateProduct('${existing.id}')` : "saveProduct()"}">
+        <button
+          class="primary"
+          onclick="${
+            existing
+            ?
+            `updateProduct('${existing.id}')`
+            :
+            "saveProduct()"
+          }">
 
-          ${existing ? "Save Changes" : "Add Product"}
+          ${
+            existing
+            ?
+            "Save Changes"
+            :
+            "Add Product"
+          }
 
         </button>
 
-        <button class="outline-btn"
+
+        <button
+          class="outline-btn"
           onclick="vendorTab('products')">
 
           Cancel
@@ -3181,27 +5024,41 @@ window.productManager=function(existing=null){
 };
 
 
-function renderModifierEditor(modifiers){
+function renderModifierEditor(
+  modifiers
+){
 
-  const defaults=getDefaultModifiers();
+  const defaults=
+    getDefaultModifiers();
 
-  const data=modifiers?.length
-    ? modifiers
-    : defaults;
 
-  return data.map((group,index)=>`
+  const data=
+    modifiers?.length
+    ?
+    modifiers
+    :
+    defaults;
 
-    <div class="modifier-editor-group">
+
+  return data.map(
+    (group,index)=>`
+
+    <div
+      class="modifier-editor-group">
 
       <div class="modifier-head">
 
-        <h3>${escapeHtml(group.name)}</h3>
+        <h3>
+          ${escapeHtml(group.name)}
+        </h3>
 
       </div>
 
+
       <label class="checkline">
 
-        <input type="checkbox"
+        <input
+          type="checkbox"
           class="modifier-required"
           data-group="${index}"
           ${group.required ? "checked":""}>
@@ -3210,9 +5067,11 @@ function renderModifierEditor(modifiers){
 
       </label>
 
+
       <label class="checkline">
 
-        <input type="checkbox"
+        <input
+          type="checkbox"
           class="modifier-multi"
           data-group="${index}"
           ${group.multi ? "checked":""}>
@@ -3222,18 +5081,23 @@ function renderModifierEditor(modifiers){
       </label>
 
 
-      <div class="modifier-options"
+      <div
+        class="modifier-options"
         data-options-group="${index}">
 
         ${
-          (group.options || []).map(option=>`
+          (group.options || [])
+          .map(
+            option=>`
 
             <div class="option-row">
 
               <input
                 class="option-name"
                 placeholder="Option name"
-                value="${escapeAttr(option.name)}">
+                value="${escapeAttr(
+                  option.name
+                )}">
 
               <input
                 class="option-price"
@@ -3241,23 +5105,29 @@ function renderModifierEditor(modifiers){
                 min="0"
                 step="0.01"
                 placeholder="Price"
-                value="${Number(option.price || 0)}">
+                value="${Number(
+                  option.price || 0
+                )}">
 
               <button
                 class="remove-option"
                 onclick="removeModifierOption(this)">
+
                 ×
+
               </button>
 
             </div>
 
-          `).join("")
+          `
+          ).join("")
         }
 
       </div>
 
 
-      <button class="outline-btn"
+      <button
+        class="outline-btn"
         style="margin-top:7px"
         onclick="addModifierOption(${index})">
 
@@ -3271,7 +5141,8 @@ function renderModifierEditor(modifiers){
 
   `
 
-    <button class="outline-btn"
+    <button
+      class="outline-btn"
       onclick="restoreModifierDefaults()">
 
       Restore Food Defaults
@@ -3293,10 +5164,17 @@ function getDefaultModifiers(){
       multi:false,
 
       options:[
-        {name:"Chicken",price:10},
-        {name:"Beef",price:15}
+        {
+          name:"Chicken",
+          price:10
+        },
+        {
+          name:"Beef",
+          price:15
+        }
       ]
     },
+
 
     {
       name:"Extra Soup",
@@ -3304,10 +5182,17 @@ function getDefaultModifiers(){
       multi:true,
 
       options:[
-        {name:"Extra Soup",price:5},
-        {name:"Large Soup",price:10}
+        {
+          name:"Extra Soup",
+          price:5
+        },
+        {
+          name:"Large Soup",
+          price:10
+        }
       ]
     },
+
 
     {
       name:"Spice Level",
@@ -3315,9 +5200,18 @@ function getDefaultModifiers(){
       multi:false,
 
       options:[
-        {name:"Mild",price:0},
-        {name:"Medium",price:0},
-        {name:"Hot",price:0}
+        {
+          name:"Mild",
+          price:0
+        },
+        {
+          name:"Medium",
+          price:0
+        },
+        {
+          name:"Hot",
+          price:0
+        }
       ]
     }
 
@@ -3329,13 +5223,23 @@ function getDefaultModifiers(){
 window.toggleFoodModifierEditor=function(){
 
   const checked=
-    document.getElementById("productFood").checked;
+    document.getElementById(
+      "productFood"
+    ).checked;
+
 
   const editor=
-    document.getElementById("foodModifierEditor");
+    document.getElementById(
+      "foodModifierEditor"
+    );
+
 
   editor.style.display=
-    checked ? "block" : "none";
+    checked
+    ?
+    "block"
+    :
+    "none";
 
 };
 
@@ -3343,7 +5247,10 @@ window.toggleFoodModifierEditor=function(){
 window.productCategoryChanged=function(){
 
   const category=
-    document.getElementById("productCategory").value;
+    document.getElementById(
+      "productCategory"
+    ).value;
+
 
   const foodCategories=[
     "Main Meal",
@@ -3352,9 +5259,18 @@ window.productCategoryChanged=function(){
     "Snacks"
   ];
 
-  const food=document.getElementById("productFood");
 
-  if(foodCategories.includes(category)){
+  const food=
+    document.getElementById(
+      "productFood"
+    );
+
+
+  if(
+    foodCategories.includes(
+      category
+    )
+  ){
 
     food.checked=true;
 
@@ -3365,24 +5281,35 @@ window.productCategoryChanged=function(){
 };
 
 
-window.addModifierOption=function(groupIndex){
+window.addModifierOption=function(
+  groupIndex
+){
 
   const container=
     document.querySelector(
       `[data-options-group="${groupIndex}"]`
     );
 
+
   if(!container) return;
 
-  const row=document.createElement("div");
 
-  row.className="option-row";
+  const row=
+    document.createElement(
+      "div"
+    );
+
+
+  row.className=
+    "option-row";
+
 
   row.innerHTML=`
 
     <input
       class="option-name"
       placeholder="Option name">
+
 
     <input
       class="option-price"
@@ -3391,33 +5318,50 @@ window.addModifierOption=function(groupIndex){
       step="0.01"
       placeholder="Price">
 
+
     <button
       class="remove-option"
       onclick="removeModifierOption(this)">
+
       ×
+
     </button>
 
   `;
+
 
   container.appendChild(row);
 
 };
 
 
-window.removeModifierOption=function(button){
+window.removeModifierOption=function(
+  button
+){
 
-  const row=button.closest(".option-row");
+  const row=
+    button.closest(
+      ".option-row"
+    );
 
-  if(row) row.remove();
+
+  if(row){
+
+    row.remove();
+
+  }
 
 };
 
 
 window.restoreModifierDefaults=function(){
 
-  document.getElementById("foodModifierEditor")
-    .innerHTML=
-      renderModifierEditor(getDefaultModifiers());
+  document.getElementById(
+    "foodModifierEditor"
+  ).innerHTML=
+    renderModifierEditor(
+      getDefaultModifiers()
+    );
 
 };
 
@@ -3425,78 +5369,146 @@ window.restoreModifierDefaults=function(){
 function readModifierEditor(){
 
   const groups=
-    [...document.querySelectorAll(
-      ".modifier-editor-group"
-    )];
+    [
+      ...document.querySelectorAll(
+        ".modifier-editor-group"
+      )
+    ];
 
-  return groups.map((group,index)=>{
 
-    const name=
-      group.querySelector("h3").textContent.trim();
+  return groups.map(
+    group=>{
 
-    const required=
-      group.querySelector(".modifier-required").checked;
+      const name=
+        group.querySelector(
+          "h3"
+        ).textContent.trim();
 
-    const multi=
-      group.querySelector(".modifier-multi").checked;
 
-    const options=
-      [...group.querySelectorAll(".option-row")]
-      .map(row=>({
+      const required=
+        group.querySelector(
+          ".modifier-required"
+        ).checked;
 
-        name:
-          row.querySelector(".option-name").value.trim(),
 
-        price:
-          Number(
-            row.querySelector(".option-price").value || 0
+      const multi=
+        group.querySelector(
+          ".modifier-multi"
+        ).checked;
+
+
+      const options=
+        [
+          ...group.querySelectorAll(
+            ".option-row"
           )
+        ]
+        .map(
+          row=>({
 
-      }))
-      .filter(o=>o.name);
+            name:
+              row.querySelector(
+                ".option-name"
+              ).value.trim(),
+
+            price:
+              Number(
+                row.querySelector(
+                  ".option-price"
+                ).value || 0
+              )
+
+          })
+        )
+        .filter(
+          o=>o.name
+        );
 
 
-    return {
-      name,
-      required,
-      multi,
-      options
-    };
+      return {
 
-  });
+        name,
+
+        required,
+
+        multi,
+
+        options
+
+      };
+
+    }
+  );
 
 }
 
 
 window.saveProduct=function(){
 
+  if(accountType!=="partner"){
+
+    showToast(
+      "Only Partners can add products"
+    );
+
+    return;
+  }
+
+
   const name=
-    document.getElementById("productName").value.trim();
+    document.getElementById(
+      "productName"
+    ).value.trim();
+
 
   const price=
     Number(
-      document.getElementById("productPrice").value || 0
+      document.getElementById(
+        "productPrice"
+      ).value || 0
     );
 
+
   const category=
-    document.getElementById("productCategory").value;
+    document.getElementById(
+      "productCategory"
+    ).value;
+
 
   const description=
-    document.getElementById("productDescription").value;
+    document.getElementById(
+      "productDescription"
+    ).value;
+
 
   const available=
-    document.getElementById("productAvailable").checked;
+    document.getElementById(
+      "productAvailable"
+    ).checked;
+
 
   const food=
-    document.getElementById("productFood").checked;
+    document.getElementById(
+      "productFood"
+    ).checked;
 
 
   if(!name || price<=0){
 
-    showToast("Enter product name and price");
+    showToast(
+      "Enter product name and price"
+    );
 
     return;
   }
+
+
+  const myBusiness=
+    businesses.find(
+      b=>
+        b.ownerUid===
+        currentUser?.uid
+    );
 
 
   const product={
@@ -3504,13 +5516,15 @@ window.saveProduct=function(){
     id:"product"+Date.now(),
 
     businessId:
-      businesses[0]?.id || "demo1",
+      myBusiness?.id ||
+      "demo1",
 
     businessOwnerUid:
-      currentUser?.uid || "guest",
+      currentUser?.uid,
 
     businessName:
-      businesses[0]?.name || "Sefwi Business",
+      myBusiness?.name ||
+      "Sefwi Business",
 
     name,
 
@@ -3523,7 +5537,11 @@ window.saveProduct=function(){
     available,
 
     modifiers:
-      food ? readModifierEditor() : []
+      food
+      ?
+      readModifierEditor()
+      :
+      []
 
   };
 
@@ -3534,7 +5552,9 @@ window.saveProduct=function(){
 
   vendorTab("products");
 
-  showToast("Product added");
+  showToast(
+    "Product added"
+  );
 
 };
 
@@ -3542,9 +5562,26 @@ window.saveProduct=function(){
 window.editProduct=function(id){
 
   const product=
-    products.find(p=>p.id===id);
+    products.find(
+      p=>p.id===id
+    );
+
 
   if(product){
+
+    if(
+      product.businessOwnerUid &&
+      product.businessOwnerUid !==
+      currentUser?.uid
+    ){
+
+      showToast(
+        "You cannot edit another Partner's product"
+      );
+
+      return;
+    }
+
 
     productManager(product);
 
@@ -3556,53 +5593,116 @@ window.editProduct=function(id){
 window.updateProduct=function(id){
 
   const product=
-    products.find(p=>p.id===id);
+    products.find(
+      p=>p.id===id
+    );
+
 
   if(!product) return;
 
 
+  if(
+    product.businessOwnerUid &&
+    product.businessOwnerUid !==
+    currentUser?.uid
+  ){
+
+    showToast(
+      "You cannot edit another Partner's product"
+    );
+
+    return;
+  }
+
+
   product.name=
-    document.getElementById("productName").value.trim();
+    document.getElementById(
+      "productName"
+    ).value.trim();
+
 
   product.price=
     Number(
-      document.getElementById("productPrice").value || 0
+      document.getElementById(
+        "productPrice"
+      ).value || 0
     );
 
+
   product.category=
-    document.getElementById("productCategory").value;
+    document.getElementById(
+      "productCategory"
+    ).value;
+
 
   product.description=
-    document.getElementById("productDescription").value;
+    document.getElementById(
+      "productDescription"
+    ).value;
+
 
   product.available=
-    document.getElementById("productAvailable").checked;
+    document.getElementById(
+      "productAvailable"
+    ).checked;
+
 
   product.modifiers=
-    document.getElementById("productFood").checked
-    ? readModifierEditor()
-    : [];
+    document.getElementById(
+      "productFood"
+    ).checked
+    ?
+    readModifierEditor()
+    :
+    [];
 
 
   renderProducts();
 
   vendorTab("products");
 
-  showToast("Product updated");
+  showToast(
+    "Product updated"
+  );
 
 };
 
 
 window.removeProduct=function(id){
 
+  const product=
+    products.find(
+      p=>p.id===id
+    );
+
+
+  if(
+    product?.businessOwnerUid &&
+    product.businessOwnerUid !==
+    currentUser?.uid
+  ){
+
+    showToast(
+      "You cannot delete another Partner's product"
+    );
+
+    return;
+  }
+
+
   products=
-    products.filter(p=>p.id!==id);
+    products.filter(
+      p=>p.id!==id
+    );
+
 
   renderProducts();
 
   vendorTab("products");
 
-  showToast("Product deleted");
+  showToast(
+    "Product deleted"
+  );
 
 };
 
@@ -3614,11 +5714,20 @@ window.removeProduct=function(id){
 function renderDriver(){
 
   const content=
-    document.getElementById("driverContent");
+    document.getElementById(
+      "driverContent"
+    );
+
 
   const deliveryOrders=
-    orders.filter(o=>
-      ["Ready","Out for Delivery"].includes(o.status)
+    orders.filter(
+      o=>
+        [
+          "Ready",
+          "Out for Delivery"
+        ].includes(
+          o.status
+        )
     );
 
 
@@ -3632,58 +5741,99 @@ function renderDriver(){
 
 
   content.innerHTML=
-    deliveryOrders.map(order=>`
+    deliveryOrders.map(
+      order=>`
 
-      <div class="card" style="margin-bottom:12px">
+      <div
+        class="card"
+        style="margin-bottom:12px">
 
         <div class="card-top">
 
-          <h3>${order.id}</h3>
+          <h3>
+            ${escapeHtml(order.id)}
+          </h3>
 
           <span class="badge">
-            ${order.status}
+            ${escapeHtml(order.status)}
           </span>
 
         </div>
 
+
         <p style="margin-top:10px">
-          Order total: GH₵${Number(order.total).toFixed(2)}
+
+          Order total:
+          GH₵${Number(
+            order.total
+          ).toFixed(2)}
+
         </p>
+
 
         <div class="card-actions">
 
-          <button class="small-btn"
+          <button
+            class="small-btn"
             onclick="driverAccept('${order.id}')">
+
             Accept Delivery
+
           </button>
 
-          <button class="small-btn"
+
+          <button
+            class="small-btn"
             onclick="driverUpdate('${order.id}','Out for Delivery')">
+
             On the Way
+
           </button>
 
-          <button class="small-btn"
+
+          <button
+            class="small-btn"
             onclick="driverUpdate('${order.id}','Delivered')">
+
             Delivered
+
           </button>
 
         </div>
 
       </div>
 
-    `).join("");
+    `
+    ).join("");
 
 }
 
 
 window.showDriverDashboard=function(){
 
+  if(!currentUser){
+
+    openAccount();
+
+    showLoginForm();
+
+    showToast(
+      "Please sign in first"
+    );
+
+    return;
+  }
+
+
   closeModal("accountModal");
 
   hidePages();
 
-  document.getElementById("driverPage")
-    .classList.remove("hidden");
+
+  document.getElementById(
+    "driverPage"
+  ).classList.remove("hidden");
+
 
   renderDriver();
 
@@ -3692,14 +5842,24 @@ window.showDriverDashboard=function(){
 
 window.driverAccept=function(id){
 
-  driverUpdate(id,"Out for Delivery");
+  driverUpdate(
+    id,
+    "Out for Delivery"
+  );
 
 };
 
 
-window.driverUpdate=function(id,status){
+window.driverUpdate=function(
+  id,
+  status
+){
 
-  const order=orders.find(o=>o.id===id);
+  const order=
+    orders.find(
+      o=>o.id===id
+    );
+
 
   if(order){
 
@@ -3709,7 +5869,9 @@ window.driverUpdate=function(id,status){
 
     renderOrders();
 
-    showToast(`${id}: ${status}`);
+    showToast(
+      `${id}: ${status}`
+    );
 
   }
 
@@ -3722,68 +5884,105 @@ window.driverUpdate=function(id,status){
 
 function renderAdmin(){
 
-  document.getElementById("adminUsers")
-    .textContent="0";
-
-  document.getElementById("adminBusinesses")
-    .textContent=businesses.length;
-
-  document.getElementById("adminOrders")
-    .textContent=orders.length;
+  document.getElementById(
+    "adminUsers"
+  ).textContent="0";
 
 
-  document.getElementById("adminContent").innerHTML=`
+  document.getElementById(
+    "adminBusinesses"
+  ).textContent=
+    businesses.length;
+
+
+  document.getElementById(
+    "adminOrders"
+  ).textContent=
+    orders.length;
+
+
+  document.getElementById(
+    "adminContent"
+  ).innerHTML=`
 
     <div class="card">
 
-      <h3>Business Management</h3>
+      <h3>
+        Business Management
+      </h3>
+
 
       <div style="margin-top:12px">
 
-        ${businesses.map(b=>`
+        ${
+          businesses.map(
+            b=>`
 
-          <div class="cart-row">
+            <div class="cart-row">
 
-            <div>
+              <div>
 
-              <strong>
-                ${escapeHtml(b.name)}
-              </strong>
+                <strong>
+                  ${escapeHtml(b.name)}
+                </strong>
 
-              <p class="muted">
-                ${escapeHtml(b.category)}
-              </p>
+                <p class="muted">
+                  ${escapeHtml(b.category)}
+                </p>
+
+              </div>
+
+
+              <span class="badge">
+                Active
+              </span>
 
             </div>
 
-            <span class="badge">
-              Active
-            </span>
-
-          </div>
-
-        `).join("")}
+          `
+          ).join("")
+        }
 
       </div>
 
     </div>
 
-    <div class="card" style="margin-top:15px">
 
-      <h3>Order Management</h3>
+    <div
+      class="card"
+      style="margin-top:15px">
 
-      <p class="muted" style="margin-top:6px">
-        Total orders: ${orders.length}
+      <h3>
+        Order Management
+      </h3>
+
+      <p
+        class="muted"
+        style="margin-top:6px">
+
+        Total orders:
+        ${orders.length}
+
       </p>
 
     </div>
 
-    <div class="card" style="margin-top:15px">
 
-      <h3>Property Management</h3>
+    <div
+      class="card"
+      style="margin-top:15px">
 
-      <p class="muted" style="margin-top:6px">
-        Total listings: ${properties.length}
+      <h3>
+        Property Management
+      </h3>
+
+      <p
+        class="muted"
+        style="margin-top:6px">
+
+        Total listings:
+        ${properties.length}
+
       </p>
 
     </div>
@@ -3799,8 +5998,11 @@ window.showAdminDashboard=function(){
 
   hidePages();
 
-  document.getElementById("adminPage")
-    .classList.remove("hidden");
+
+  document.getElementById(
+    "adminPage"
+  ).classList.remove("hidden");
+
 
   renderAdmin();
 
@@ -3813,7 +6015,9 @@ window.showAdminDashboard=function(){
 
 window.searchApp=function(query){
 
-  query=query.toLowerCase().trim();
+  query=
+    query.toLowerCase().trim();
+
 
   if(!query){
 
@@ -3822,29 +6026,35 @@ window.searchApp=function(query){
     renderProducts();
 
     return;
-
   }
 
 
   const filteredBusinesses=
-    businesses.filter(b=>
-      `${b.name} ${b.category} ${b.location}`
-      .toLowerCase()
-      .includes(query)
+    businesses.filter(
+      b=>
+        `${b.name} ${b.category} ${b.location}`
+        .toLowerCase()
+        .includes(query)
     );
 
 
   const filteredProducts=
-    products.filter(p=>
-      `${p.name} ${p.category} ${p.businessName}`
-      .toLowerCase()
-      .includes(query)
+    products.filter(
+      p=>
+        `${p.name} ${p.category} ${p.businessName}`
+        .toLowerCase()
+        .includes(query)
     );
 
 
-  renderBusinesses(filteredBusinesses);
+  renderBusinesses(
+    filteredBusinesses
+  );
 
-  renderProducts(filteredProducts);
+
+  renderProducts(
+    filteredProducts
+  );
 
 };
 
@@ -3856,11 +6066,26 @@ window.searchApp=function(query){
 function escapeHtml(value){
 
   return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
+    );
 
 }
 
@@ -3878,99 +6103,140 @@ function escapeAttr(value){
 
 setInterval(()=>{
 
-  document.getElementById("vendorProducts")
-    .textContent=products.length;
+  document.getElementById(
+    "vendorProducts"
+  ).textContent=
+    products.length;
 
-  document.getElementById("vendorOrders")
-    .textContent=orders.length;
 
-  document.getElementById("vendorSales")
-    .textContent=
-      "GH₵"+
-      orders.reduce(
-        (sum,o)=>sum+Number(o.total||0),
-        0
-      ).toFixed(2);
+  document.getElementById(
+    "vendorOrders"
+  ).textContent=
+    orders.length;
+
+
+  document.getElementById(
+    "vendorSales"
+  ).textContent=
+    "GH₵"+
+    orders.reduce(
+      (sum,o)=>
+        sum+
+        Number(o.total||0),
+      0
+    ).toFixed(2);
+
 
   renderAdmin();
+
+  updateCustomerCounters();
 
 },2000);
 
 
 /* =========================================================
    FIRESTORE HELPERS
-   Ready for connecting real records
 ========================================================= */
 
-window.saveBusinessToFirebase=async function(business){
+window.saveBusinessToFirebase=
+async function(business){
 
   try{
 
     await addDoc(
-      collection(db,"businesses"),
+      collection(
+        db,
+        "businesses"
+      ),
       {
         ...business,
-        createdAt:serverTimestamp()
+        createdAt:
+          serverTimestamp()
       }
     );
 
-    showToast("Business saved");
+
+    showToast(
+      "Business saved"
+    );
 
   }catch(error){
 
     console.error(error);
 
-    showToast("Failed to save business");
+    showToast(
+      "Failed to save business"
+    );
 
   }
 
 };
 
 
-window.saveProductToFirebase=async function(product){
+window.saveProductToFirebase=
+async function(product){
 
   try{
 
     await addDoc(
-      collection(db,"products"),
+      collection(
+        db,
+        "products"
+      ),
       {
         ...product,
-        createdAt:serverTimestamp()
+        createdAt:
+          serverTimestamp()
       }
     );
 
-    showToast("Product saved");
+
+    showToast(
+      "Product saved"
+    );
 
   }catch(error){
 
     console.error(error);
 
-    showToast("Failed to save product");
+    showToast(
+      "Failed to save product"
+    );
 
   }
 
 };
 
 
-window.saveOrderToFirebase=async function(order){
+window.saveOrderToFirebase=
+async function(order){
 
   try{
 
     await addDoc(
-      collection(db,"orders"),
+      collection(
+        db,
+        "orders"
+      ),
       {
         ...order,
-        createdAt:serverTimestamp()
+        createdAt:
+          serverTimestamp()
       }
     );
 
-    showToast("Order saved");
+
+    showToast(
+      "Order saved"
+    );
 
   }catch(error){
 
     console.error(error);
 
-    showToast("Failed to save order");
+    showToast(
+      "Failed to save order"
+    );
 
   }
 
@@ -3981,32 +6247,54 @@ window.saveOrderToFirebase=async function(order){
    FIRESTORE PROPERTY SUPPORT
 ========================================================= */
 
-window.savePropertyToFirebase=async function(property){
+window.savePropertyToFirebase=
+async function(property){
 
   try{
 
     await addDoc(
-      collection(db,"properties"),
+      collection(
+        db,
+        "properties"
+      ),
       {
+
         title:property.title,
+
         type:property.type,
+
         purpose:property.purpose,
+
         price:property.price,
+
         location:property.location,
+
         phone:property.phone,
-        description:property.description,
-        ownerUid:property.ownerUid,
-        createdAt:serverTimestamp()
+
+        description:
+          property.description,
+
+        ownerUid:
+          property.ownerUid,
+
+        createdAt:
+          serverTimestamp()
+
       }
     );
 
-    showToast("Property saved");
+
+    showToast(
+      "Property saved"
+    );
 
   }catch(error){
 
     console.error(error);
 
-    showToast("Failed to save property");
+    showToast(
+      "Failed to save property"
+    );
 
   }
 
@@ -4017,10 +6305,11 @@ window.savePropertyToFirebase=async function(property){
    INITIAL VENDOR NAME
 ========================================================= */
 
-document.getElementById("vendorName")
-  .textContent=
-    businesses[0]?.name || "My Business";
-
+document.getElementById(
+  "vendorName"
+).textContent=
+  businesses[0]?.name ||
+  "My Business";
 
 </script>
 
