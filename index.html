@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SefwiGo | Delivery Made Easy</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f7f6;
+      color: #17221b;
+    }
+
+    header {
+      background: #087f3e;
+      color: white;
+      padding: 18px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 30px;
+      margin-bottom: 6px;
+    }
+
+    header p {
+      font-size: 14px;
+    }
+
+    .hero {
+      background: white;
+      padding: 35px 20px;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      color: #59645d;
+      margin-bottom: 20px;
+    }
+
+    .button {
+      display: inline-block;
+      background: #087f3e;
+      color: white;
+      padding: 13px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .section {
+      padding: 25px 18px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .section h2 {
+      margin-bottom: 15px;
+    }
+
+    .categories,
+    .businesses {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+      gap: 15px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    }
+
+    .card .emoji {
+      font-size: 35px;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: #68736c;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .order-box {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      margin-top: 25px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 13px;
+      margin: 8px 0 14px;
+      border: 1px solid #ccd5ce;
+      border-radius: 8px;
+    }
+
+    footer {
+      background: #123d27;
+      color: white;
+      text-align: center;
+      padding: 22px;
+      margin-top: 30px;
+      font-size: 14px;
+    }
+
+    .notice {
+      background: #fff3cd;
+      color: #664d03;
+      padding: 12px;
+      margin: 18px;
+      border-radius: 8px;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>🚀 SefwiGo</h1>
+    <p>Your town. Your shops. Delivered.</p>
+  </header>
+
+  <div class="notice">
+    Demo version only — no real payments or deliveries are connected yet.
+  </div>
+
+  <section class="hero">
+    <h2>Delivery made easy in Sefwi Wiawso</h2>
+    <p>Order food, groceries and other services from local businesses.</p>
+    <a href="#businesses" class="button">Explore Businesses</a>
+  </section>
+
+  <section class="section">
+    <h2>Explore Categories</h2>
+
+    <div class="categories">
+      <div class="card">
+        <div class="emoji">🍔</div>
+        <h3>Food</h3>
+        <p>Meals, snacks and drinks.</p>
+        <button class="button" onclick="chooseCategory('Food')">
+          Explore
+        </button>
+      </div>
+
+      <div class="card">
+        <div class="emoji">🛒</div>
+        <h3>Groceries</h3>
+        <p>Daily household essentials.</p>
+        <button class="button" onclick="chooseCategory('Groceries')">
+          Explore
+        </button>
+      </div>
+
+      <div class="card">
+        <div class="emoji">📦</div>
+        <h3>Parcels</h3>
+        <p>Send and receive packages.</p>
+        <button class="button" onclick="chooseCategory('Parcels')">
+          Explore
+        </button>
+      </div>
+
+      <div class="card">
+        <div class="emoji">✨</div>
+        <h3>More Services</h3>
+        <p>More useful local services.</p>
+        <button class="button" onclick="chooseCategory('More Services')">
+          Explore
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="businesses">
+    <h2>Popular Businesses</h2>
+
+    <div class="businesses">
+      <div class="card">
+        <div class="emoji">🍛</div>
+        <h3>Wiawso Chop Bar</h3>
+        <p>Local meals · 25–40 minutes</p>
+        <button class="button" onclick="selectBusiness('Wiawso Chop Bar')">
+          Order
+        </button>
+      </div>
+
+      <div class="card">
+        <div class="emoji">🍲</div>
+        <h3>Auntie Ama Kitchen</h3>
+        <p>Home-style meals · 20–35 minutes</p>
+        <button class="button" onclick="selectBusiness('Auntie Ama Kitchen')">
+          Order
+        </button>
+      </div>
+
+      <div class="card">
+        <div class="emoji">🛍️</div>
+        <h3>Sefwi Fresh Mart</h3>
+        <p>Groceries and essentials</p>
+        <button class="button" onclick="selectBusiness('Sefwi Fresh Mart')">
+          Order
+        </button>
+      </div>
+    </div>
+
+    <div class="order-box" id="orderBox">
+      <h2>Place a Demo Order</h2>
+
+      <label>Selected business</label>
+      <input id="business" placeholder="Choose a business above" readonly />
+
+      <label>Your name</label>
+      <input id="name" placeholder="Enter your name" />
+
+      <label>Delivery location</label>
+      <input id="location" placeholder="Example: Wiawso Market" />
+
+      <label>Service</label>
+      <select id="service">
+        <option>Food delivery</option>
+        <option>Grocery delivery</option>
+        <option>Parcel delivery</option>
+      </select>
+
+      <button class="button" onclick="placeOrder()">
+        Place Demo Order
+      </button>
+
+      <p id="result" style="margin-top:15px;"></p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 SefwiGo. Built for Sefwi Wiawso.</p>
+    <p style="margin-top:6px;">Demo project — coming soon.</p>
+  </footer>
+
+  <script>
+    function chooseCategory(category) {
+      alert(category + " service selected.");
+      document.getElementById("businesses").scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+
+    function selectBusiness(name) {
+      document.getElementById("business").value = name;
+      document.getElementById("orderBox").scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+
+    function placeOrder() {
+      const business = document.getElementById("business").value;
+      const name = document.getElementById("name").value;
+      const location = document.getElementById("location").value;
+      const service = document.getElementById("service").value;
+      const result = document.getElementById("result");
+
+      if (!business || !name || !location) {
+        result.style.color = "red";
+        result.textContent =
+          "Please select a business and complete all fields.";
+        return;
+      }
+
+      result.style.color = "#087f3e";
+      result.textContent =
+        "Demo order received! " +
+        name +
+        ", your " +
+        service.toLowerCase() +
+        " from " +
+        business +
+        " will be delivered to " +
+        location +
+        ".";
+    }
+  </script>
+</body>
+</html>
