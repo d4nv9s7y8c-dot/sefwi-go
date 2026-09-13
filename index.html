@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#0f7a4f">
-<meta name="description" content="SefwiGo — food, groceries, parcels, services and property around Sefwi Wiawso.">
-<title>SefwiGo | Delivery & Local Marketplace</title>
+<meta name="description" content="SefwiGo — food, groceries, parcels and property around Sefwi Wiawso.">
+<title>SefwiGo | Local Marketplace</title>
 
 <style>
 :root{
@@ -16,575 +16,921 @@
   --ink:#17221d;
   --muted:#6f7b75;
   --bg:#f5f7f6;
-  --card:#ffffff;
-  --line:#e6ebe8;
+  --card:#fff;
+  --line:#e3ebe6;
   --danger:#c63b3b;
-  --shadow:0 12px 30px rgba(18,45,33,.08);
-  --radius:22px;
+  --shadow:0 12px 35px rgba(18,45,33,.09);
+  --radius:20px;
 }
+
 *{box-sizing:border-box}
+
 html{scroll-behavior:smooth}
+
 body{
   margin:0;
   font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   color:var(--ink);
   background:var(--bg);
-  padding-bottom:82px;
+  padding-bottom:80px;
 }
+
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
-a{text-decoration:none;color:inherit}
 img{max-width:100%;display:block}
 .container{width:min(1120px,92%);margin:auto}
 
-/* Header */
 .topbar{
-  position:sticky;top:0;z-index:50;
-  background:rgba(255,255,255,.94);
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(255,255,255,.96);
   backdrop-filter:blur(18px);
   border-bottom:1px solid var(--line);
 }
+
 .nav{
-  height:72px;display:flex;align-items:center;justify-content:space-between;gap:14px;
-}
-.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:-.5px}
-.logo{
-  width:44px;height:44px;border-radius:14px;
-  background:linear-gradient(135deg,var(--green),var(--green-dark));
-  color:#fff;display:grid;place-items:center;font-size:23px;
-  box-shadow:0 7px 18px rgba(15,122,79,.25);
-}
-.brand span{font-size:21px}
-.nav-actions{display:flex;align-items:center;gap:8px}
-.icon-btn{
-  width:44px;height:44px;border:1px solid var(--line);background:#fff;
-  border-radius:14px;display:grid;place-items:center;font-size:20px;
-}
-.account-btn{
-  border:0;background:var(--green);color:#fff;border-radius:14px;
-  padding:11px 15px;font-weight:800;
+  height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
 }
 
-/* Hero */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  font-weight:950;
+}
+
+.logo{
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,var(--green),var(--green-dark));
+  color:white;
+  font-size:23px;
+  box-shadow:0 7px 18px rgba(15,122,79,.25);
+}
+
+.brand span{font-size:21px}
+
+.nav-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.icon-btn{
+  width:44px;
+  height:44px;
+  border:1px solid var(--line);
+  border-radius:13px;
+  background:white;
+  display:grid;
+  place-items:center;
+  font-size:20px;
+  position:relative;
+}
+
+.account-btn{
+  border:0;
+  border-radius:13px;
+  background:var(--green);
+  color:#fff;
+  padding:11px 15px;
+  font-weight:850;
+}
+
+.cart-count{
+  position:absolute;
+  top:-5px;
+  right:-5px;
+  min-width:19px;
+  height:19px;
+  border-radius:50%;
+  background:#d72e2e;
+  color:#fff;
+  font-size:10px;
+  display:grid;
+  place-items:center;
+  font-weight:900;
+}
+
 .hero{
   margin:22px 0;
   border-radius:30px;
   overflow:hidden;
   background:
-    radial-gradient(circle at 85% 15%,rgba(224,173,61,.34),transparent 27%),
+    radial-gradient(circle at 85% 15%,rgba(224,173,61,.35),transparent 28%),
     linear-gradient(135deg,#075c3b,#15915f 65%,#0c6e48);
-  color:#fff;box-shadow:var(--shadow);
-  position:relative;
-}
-.hero-inner{
-  padding:34px clamp(22px,5vw,56px);
-  display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:20px;
-  align-items:center
-}
-.eyebrow{
-  font-size:13px;font-weight:900;letter-spacing:.14em;
-  text-transform:uppercase;opacity:.85
-}
-.hero h1{
-  font-size:clamp(34px,6vw,62px);
-  line-height:.98;margin:12px 0;
-  letter-spacing:-2.8px;max-width:680px
-}
-.hero p{
-  font-size:17px;line-height:1.6;
-  max-width:600px;color:rgba(255,255,255,.88)
-}
-.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
-.primary,.secondary,.gold-btn{
-  border:0;border-radius:15px;padding:14px 19px;font-weight:900;
-}
-.primary{background:#fff;color:var(--green-dark)}
-.secondary{
-  background:rgba(255,255,255,.14);
-  color:#fff;border:1px solid rgba(255,255,255,.24)
-}
-.gold-btn{background:var(--gold);color:#1d271f}
-.hero-art{
-  min-height:220px;border-radius:28px;
-  background:rgba(255,255,255,.09);
-  border:1px solid rgba(255,255,255,.15);
-  display:grid;place-items:center;font-size:110px;
-  transform:rotate(2deg);
+  color:#fff;
+  box-shadow:var(--shadow);
 }
 
-/* Sections */
-.section{padding:14px 0 28px}
+.hero-inner{
+  padding:38px clamp(22px,5vw,56px);
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:25px;
+  align-items:center;
+}
+
+.eyebrow{
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  opacity:.85;
+}
+
+.hero h1{
+  font-size:clamp(37px,6vw,62px);
+  line-height:.98;
+  margin:12px 0;
+  letter-spacing:-2.8px;
+}
+
+.hero p{
+  max-width:610px;
+  line-height:1.6;
+  color:rgba(255,255,255,.88);
+}
+
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:22px;
+}
+
+.primary,.secondary,.gold-btn{
+  border:0;
+  border-radius:14px;
+  padding:13px 18px;
+  font-weight:900;
+}
+
+.primary{
+  background:#fff;
+  color:var(--green-dark);
+}
+
+.secondary{
+  background:rgba(255,255,255,.14);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.25);
+}
+
+.gold-btn{
+  background:var(--gold);
+  color:#1d271f;
+}
+
+.hero-art{
+  min-height:230px;
+  border-radius:28px;
+  display:grid;
+  place-items:center;
+  font-size:110px;
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.15);
+}
+
+.section{padding:15px 0 28px}
+
 .section-head{
-  display:flex;justify-content:space-between;
-  align-items:end;gap:15px;margin-bottom:15px
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:15px;
+  margin-bottom:15px;
 }
+
 .section-head h2{
-  margin:0;font-size:24px;letter-spacing:-.8px
+  margin:0;
+  font-size:24px;
 }
+
 .section-head p{
-  margin:5px 0 0;color:var(--muted);font-size:14px
+  margin:5px 0 0;
+  color:var(--muted);
+  font-size:14px;
 }
+
 .text-btn{
-  border:0;background:none;color:var(--green);font-weight:900
+  border:0;
+  background:none;
+  color:var(--green);
+  font-weight:900;
 }
 
 .grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:14px
+  gap:14px;
 }
-.service-card,.business-card,.property-card,.deal-card,.dash-card{
-  background:var(--card);
+
+.service-card,
+.business-card,
+.product-card,
+.property-card,
+.dash-card{
+  background:#fff;
   border:1px solid var(--line);
   border-radius:var(--radius);
   box-shadow:0 5px 18px rgba(20,40,30,.04);
 }
+
 .service-card{
-  padding:20px;min-height:145px;transition:.2s
+  padding:20px;
+  min-height:140px;
+  border:1px solid var(--line);
+  text-align:left;
+  transition:.2s;
 }
+
 .service-card:hover{
   transform:translateY(-3px);
-  box-shadow:var(--shadow)
+  box-shadow:var(--shadow);
 }
-.service-icon{font-size:35px;margin-bottom:12px}
-.service-card strong{display:block;font-size:16px}
+
+.service-icon{
+  font-size:35px;
+  margin-bottom:12px;
+}
+
+.service-card strong{
+  display:block;
+}
+
 .service-card span{
-  font-size:13px;color:var(--muted);
-  display:block;margin-top:5px
+  display:block;
+  color:var(--muted);
+  font-size:13px;
+  margin-top:5px;
 }
 
-.deals{
-  display:grid;
-  grid-template-columns:1.4fr 1fr;
-  gap:15px
-}
-.deal-card{
-  overflow:hidden;min-height:190px;position:relative
-}
-.deal-main{
-  padding:28px;
-  background:
-    radial-gradient(circle at 85% 20%,rgba(224,173,61,.3),transparent 25%),
-    linear-gradient(135deg,#0b6d47,#1a9968);
-  color:#fff;height:100%;
-}
-.deal-main h3{font-size:30px;line-height:1;margin:8px 0}
-.deal-main p{opacity:.9;max-width:480px}
-.deal-side{
-  padding:22px;
-  display:flex;flex-direction:column;
-  justify-content:space-between
-}
-.price{
-  font-size:26px;font-weight:950;color:var(--green-dark)
+.business-card{
+  padding:16px;
+  cursor:pointer;
 }
 
-.business-card{padding:16px}
 .business-top{
-  display:flex;align-items:center;gap:12px
+  display:flex;
+  gap:12px;
+  align-items:center;
 }
+
 .avatar{
-  width:50px;height:50px;border-radius:16px;
+  width:52px;
+  height:52px;
+  border-radius:15px;
   background:var(--green-soft);
-  display:grid;place-items:center;font-size:25px
+  display:grid;
+  place-items:center;
+  font-size:25px;
+  flex:none;
 }
-.business-card h3{margin:0;font-size:16px}
+
+.business-card h3{
+  margin:0;
+  font-size:16px;
+}
+
 .business-card p{
-  margin:5px 0;color:var(--muted);font-size:13px
+  margin:5px 0;
+  color:var(--muted);
+  font-size:13px;
 }
+
 .chip{
-  display:inline-flex;align-items:center;gap:5px;
-  padding:7px 10px;border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:6px 9px;
+  border-radius:999px;
   background:var(--green-soft);
   color:var(--green-dark);
-  font-size:12px;font-weight:800
+  font-size:11px;
+  font-weight:850;
+  margin-top:9px;
 }
 
-/* Properties */
-.property-card{overflow:hidden}
-.property-image{
-  height:170px;display:grid;place-items:center;
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+.product-card{
+  overflow:hidden;
+}
+
+.product-photo{
+  width:100%;
+  height:190px;
+  object-fit:cover;
+  background:#eaf2ed;
+}
+
+.product-placeholder{
+  height:190px;
+  display:grid;
+  place-items:center;
   font-size:65px;
   background:linear-gradient(135deg,#dcefe5,#f8f0d7);
 }
-.property-body{padding:16px}
-.property-body h3{margin:0 0 6px;font-size:17px}
-.property-meta{
-  display:flex;flex-wrap:wrap;gap:8px;
-  color:var(--muted);font-size:12px;margin:10px 0
+
+.product-body{
+  padding:16px;
 }
+
+.product-body h3{
+  margin:0 0 6px;
+}
+
+.product-body p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.5;
+}
+
+.product-price{
+  font-size:20px;
+  color:var(--green-dark);
+  font-weight:950;
+  margin:10px 0;
+}
+
+.add-btn{
+  width:100%;
+  border:0;
+  border-radius:12px;
+  padding:11px;
+  background:var(--green);
+  color:#fff;
+  font-weight:900;
+}
+
+.property-card{
+  overflow:hidden;
+}
+
+.property-image{
+  height:165px;
+  display:grid;
+  place-items:center;
+  font-size:65px;
+  background:linear-gradient(135deg,#dcefe5,#f8f0d7);
+}
+
+.property-body{
+  padding:16px;
+}
+
+.property-body h3{
+  margin:0 0 6px;
+}
+
 .property-price{
-  font-size:21px;font-weight:950;color:var(--green-dark)
+  font-size:20px;
+  color:var(--green-dark);
+  font-weight:950;
 }
-.property-actions{display:flex;gap:8px;margin-top:13px}
+
+.property-meta{
+  color:var(--muted);
+  font-size:12px;
+  margin:9px 0;
+}
+
+.property-actions{
+  display:flex;
+  gap:8px;
+}
+
 .small-btn{
-  flex:1;border:0;border-radius:12px;
-  padding:10px;font-weight:800;
-  background:#eef3f0;color:var(--green-dark)
+  flex:1;
+  border:0;
+  border-radius:11px;
+  padding:10px;
+  font-weight:800;
+  background:#edf3ef;
+  color:var(--green-dark);
 }
-.small-btn.primary-small{background:var(--green);color:#fff}
 
-/* Partner banner */
+.small-btn.primary-small{
+  background:var(--green);
+  color:#fff;
+}
+
 .partner{
-  padding:26px;border-radius:26px;
-  background:#10221a;color:#fff;
-  display:flex;align-items:center;
-  justify-content:space-between;gap:20px;
-}
-.partner h2{margin:0 0 7px}
-.partner p{
-  margin:0;color:rgba(255,255,255,.7)
+  padding:27px;
+  border-radius:26px;
+  background:#10221a;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
 }
 
-/* Bottom nav */
+.partner h2{margin:0 0 7px}
+.partner p{margin:0;color:rgba(255,255,255,.72)}
+
 .bottom-nav{
-  position:fixed;bottom:0;left:0;right:0;
-  z-index:80;height:76px;
-  background:rgba(255,255,255,.96);
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  z-index:80;
+  height:76px;
+  background:rgba(255,255,255,.97);
   backdrop-filter:blur(18px);
   border-top:1px solid var(--line);
-  display:flex;justify-content:center;
 }
+
 .bottom-inner{
   width:min(620px,100%);
-  display:grid;grid-template-columns:repeat(4,1fr)
+  height:100%;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
 }
-.nav-item{
-  border:0;background:transparent;color:#737b77;
-  font-weight:700;display:flex;
-  flex-direction:column;align-items:center;
-  justify-content:center;gap:4px;font-size:11px
-}
-.nav-item .nav-icon{font-size:23px;line-height:1}
-.nav-item.active{color:var(--green)}
-.nav-item.active .nav-icon{transform:translateY(-1px)}
 
-/* Side menu */
+.nav-item{
+  border:0;
+  background:transparent;
+  color:#737b77;
+  font-weight:700;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  font-size:11px;
+}
+
+.nav-icon{
+  font-size:22px;
+}
+
+.nav-item.active{
+  color:var(--green);
+}
+
 .overlay{
-  position:fixed;inset:0;
+  position:fixed;
+  inset:0;
   background:rgba(0,0,0,.42);
-  z-index:90;display:none
+  z-index:90;
+  display:none;
 }
+
 .overlay.open{display:block}
+
 .drawer{
-  position:absolute;left:0;top:0;bottom:0;
-  width:min(360px,88vw);
-  background:#fff;padding:24px;overflow:auto;
-  box-shadow:20px 0 50px rgba(0,0,0,.15)
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:min(370px,88vw);
+  background:#fff;
+  padding:24px;
+  overflow:auto;
 }
+
 .drawer-head{
-  display:flex;justify-content:space-between;
-  align-items:center;margin-bottom:25px
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:20px;
 }
-.drawer h2{margin:0}
+
 .menu-link{
-  width:100%;display:flex;align-items:center;
-  gap:12px;padding:14px;border:0;
-  background:#fff;border-radius:15px;
-  text-align:left;font-weight:800
+  width:100%;
+  border:0;
+  background:#fff;
+  border-radius:14px;
+  padding:14px;
+  text-align:left;
+  font-weight:800;
 }
+
 .menu-link:hover{
   background:var(--green-soft);
-  color:var(--green-dark)
-}
-.menu-divider{
-  height:1px;background:var(--line);
-  margin:14px 0
 }
 
-/* Modal / dashboard */
+.menu-divider{
+  height:1px;
+  background:var(--line);
+  margin:13px 0;
+}
+
 .modal{
-  position:fixed;inset:0;
-  background:rgba(7,20,14,.58);
-  z-index:100;display:none;padding:18px;
-  overflow:auto
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:none;
+  padding:16px;
+  overflow:auto;
+  background:rgba(7,20,14,.62);
 }
+
 .modal.open{
-  display:flex;align-items:center;
-  justify-content:center
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
+
 .modal-card{
-  width:min(900px,100%);
-  max-height:94vh;overflow:auto;
-  background:#fff;border-radius:28px;
-  box-shadow:0 30px 80px rgba(0,0,0,.25)
+  width:min(940px,100%);
+  max-height:94vh;
+  overflow:auto;
+  background:#fff;
+  border-radius:26px;
+  box-shadow:0 30px 80px rgba(0,0,0,.25);
 }
+
 .modal-head{
-  position:sticky;top:0;z-index:2;
-  background:#fff;padding:20px 22px;
+  position:sticky;
+  top:0;
+  z-index:3;
+  background:#fff;
+  padding:18px 21px;
   border-bottom:1px solid var(--line);
-  display:flex;justify-content:space-between;
-  align-items:center
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
+
 .close{
-  border:0;background:#f1f4f2;
-  width:40px;height:40px;border-radius:12px;
-  font-size:20px
+  width:40px;
+  height:40px;
+  border:0;
+  border-radius:12px;
+  background:#eef3f0;
+  font-size:20px;
 }
-.modal-body{padding:22px}
-.tabs{
-  display:flex;gap:8px;overflow:auto;
-  margin-bottom:18px
-}
-.tab{
-  white-space:nowrap;border:1px solid var(--line);
-  background:#fff;padding:10px 14px;
-  border-radius:12px;font-weight:800
-}
-.tab.active{
-  background:var(--green);
-  color:#fff;border-color:var(--green)
+
+.modal-body{
+  padding:21px;
 }
 
 .form-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:14px
+  gap:14px;
 }
+
 .field{
-  display:flex;flex-direction:column;gap:7px
+  display:flex;
+  flex-direction:column;
+  gap:7px;
 }
-.field.full{grid-column:1/-1}
-.field label{font-size:13px;font-weight:850}
-.field input,.field select,.field textarea{
-  width:100%;border:1px solid #dce4df;
-  background:#fbfcfb;border-radius:13px;
-  padding:12px 13px;outline:none
+
+.field.full{
+  grid-column:1/-1;
 }
-.field input:focus,.field select:focus,.field textarea:focus{
-  border-color:var(--green);
-  box-shadow:0 0 0 3px rgba(15,122,79,.1)
+
+.field label{
+  font-size:13px;
+  font-weight:850;
 }
-.field textarea{min-height:110px;resize:vertical}
+
+.field input,
+.field select,
+.field textarea{
+  width:100%;
+  border:1px solid #dce4df;
+  background:#fbfcfb;
+  border-radius:12px;
+  padding:12px;
+  outline:none;
+}
+
+.field textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
 .submit{
-  width:100%;border:0;background:var(--green);
-  color:#fff;border-radius:14px;
-  padding:14px;font-weight:950
+  width:100%;
+  border:0;
+  border-radius:13px;
+  padding:14px;
+  background:var(--green);
+  color:#fff;
+  font-weight:950;
 }
+
 .help{
-  font-size:12px;color:var(--muted);
-  line-height:1.5
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+}
+
+.tabs{
+  display:flex;
+  gap:8px;
+  overflow:auto;
+  margin-bottom:18px;
+}
+
+.tab{
+  white-space:nowrap;
+  border:1px solid var(--line);
+  background:#fff;
+  padding:10px 14px;
+  border-radius:11px;
+  font-weight:800;
+}
+
+.tab.active{
+  background:var(--green);
+  color:#fff;
 }
 
 .dashboard-head{
+  padding:24px;
+  color:#fff;
   background:linear-gradient(135deg,#0b6844,#15915f);
-  color:#fff;padding:24px
-}
-.dashboard-head h2{margin:0;font-size:27px}
-.dashboard-head p{
-  margin:7px 0 0;
-  color:rgba(255,255,255,.8)
-}
-.dash-stats{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:10px;margin:18px 0
-}
-.stat{
-  padding:17px;border-radius:17px;
-  background:#f7faf8;border:1px solid var(--line)
-}
-.stat b{display:block;font-size:25px}
-.stat span{font-size:12px;color:var(--muted)}
-.my-property{
-  display:flex;gap:13px;padding:13px;
-  border:1px solid var(--line);
-  border-radius:17px;margin-bottom:10px
-}
-.my-property .thumb{
-  width:78px;height:70px;border-radius:13px;
-  background:var(--green-soft);
-  display:grid;place-items:center;
-  font-size:32px;flex:none
-}
-.my-property h4{margin:0 0 5px}
-.my-property p{
-  margin:0;color:var(--muted);font-size:12px
-}
-.status{
-  display:inline-block;margin-top:7px;
-  padding:5px 8px;border-radius:999px;
-  font-size:10px;font-weight:900;
-  background:#fff2d4;color:#8a5d00
-}
-.status.on{background:#e2f7e9;color:#13713f}
-.status.off{background:#fdeaea;color:#a02d2d}
-.row-actions{
-  margin-left:auto;display:flex;
-  gap:7px;align-items:center;flex-wrap:wrap;
-  justify-content:flex-end
-}
-.dash-action{
-  border:0;background:#eef3f0;
-  color:var(--green-dark);border-radius:10px;
-  padding:8px 10px;font-size:12px;font-weight:800
-}
-.dash-action.danger{
-  background:#fdeaea;color:#a02d2d
-}
-.empty{
-  text-align:center;padding:40px 15px;
-  color:var(--muted)
-}
-.empty strong{
-  display:block;color:var(--ink);
-  font-size:17px;margin-top:8px
 }
 
-/* Product / food menu */
-.product-grid{
+.dashboard-head h2{
+  margin:0;
+}
+
+.stats{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:13px
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin:18px 0;
 }
-.product-card{
+
+.stat{
+  padding:16px;
   border:1px solid var(--line);
-  border-radius:18px;
-  overflow:hidden;background:#fff
+  background:#f7faf8;
+  border-radius:15px;
 }
-.product-photo{
-  width:100%;height:190px;
-  object-fit:cover;background:#edf3ef
+
+.stat b{
+  display:block;
+  font-size:24px;
 }
-.product-photo.placeholder{
-  display:grid;place-items:center;
-  font-size:60px
+
+.stat span{
+  color:var(--muted);
+  font-size:12px;
 }
-.product-body{padding:15px}
-.product-body h4{margin:0 0 5px;font-size:16px}
-.product-body p{
-  margin:0 0 9px;color:var(--muted);
-  font-size:12px;line-height:1.5
+
+.modifier-group{
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:14px;
+  margin:12px 0;
+  background:#fbfcfb;
 }
-.product-price{
+
+.modifier-group h4{
+  margin:0 0 10px;
+}
+
+.modifier-option{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:10px 0;
+  border-top:1px solid #edf1ef;
+}
+
+.modifier-option:first-of-type{
+  border-top:0;
+}
+
+.modifier-option label{
+  display:flex;
+  gap:8px;
+  align-items:center;
+  flex:1;
+}
+
+.modifier-price{
   color:var(--green-dark);
-  font-size:18px;font-weight:950
+  font-weight:800;
+  font-size:13px;
 }
-.product-actions{display:flex;gap:8px;margin-top:12px}
-.product-actions button{flex:1}
+
+.selected-summary{
+  background:var(--green-soft);
+  padding:12px;
+  border-radius:13px;
+  margin:12px 0;
+  font-size:13px;
+}
+
+.cart-item{
+  display:flex;
+  gap:12px;
+  padding:13px;
+  border:1px solid var(--line);
+  border-radius:15px;
+  margin-bottom:10px;
+}
+
+.cart-thumb{
+  width:65px;
+  height:65px;
+  border-radius:12px;
+  object-fit:cover;
+  background:#edf4ef;
+  flex:none;
+}
+
+.cart-info{
+  flex:1;
+  min-width:0;
+}
+
+.cart-info h4{
+  margin:0 0 4px;
+}
+
+.cart-info p{
+  margin:4px 0;
+  font-size:12px;
+  color:var(--muted);
+}
+
+.remove-btn{
+  border:0;
+  border-radius:9px;
+  padding:7px 9px;
+  background:#fceeee;
+  color:#a12c2c;
+  font-weight:800;
+}
+
+.order-card{
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:12px;
+}
+
+.order-top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.status{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:999px;
+  background:var(--green-soft);
+  color:var(--green-dark);
+  font-size:11px;
+  font-weight:900;
+}
+
+.status.cancelled{
+  background:#fceeee;
+  color:#a12c2c;
+}
+
+.empty{
+  padding:35px 15px;
+  text-align:center;
+  color:var(--muted);
+  border:1px dashed #ccd7d1;
+  border-radius:18px;
+  background:#fff;
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:94px;
+  transform:translate(-50%,20px);
+  z-index:200;
+  background:#10221a;
+  color:#fff;
+  padding:12px 16px;
+  border-radius:13px;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  font-size:13px;
+  max-width:90%;
+  text-align:center;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
+}
+
+.photo-preview{
+  width:100%;
+  max-height:220px;
+  object-fit:cover;
+  border-radius:15px;
+  margin-top:8px;
+  display:none;
+}
+
+.photo-preview.show{
+  display:block;
+}
 
 .modifier-builder{
   border:1px solid var(--line);
-  border-radius:18px;padding:15px;
-  background:#fbfcfb
+  border-radius:16px;
+  padding:15px;
+  margin-top:10px;
 }
-.modifier-group{
-  border:1px solid #dde5e0;
-  border-radius:15px;padding:13px;
-  margin-top:10px;background:#fff
-}
-.modifier-group-head{
-  display:flex;justify-content:space-between;
-  align-items:center;gap:10px
-}
-.modifier-option{
-  display:grid;
-  grid-template-columns:1fr 105px 40px;
-  gap:8px;margin-top:8px
-}
-.modifier-option input{
-  width:100%;border:1px solid #dce4df;
-  border-radius:10px;padding:9px
-}
-.addon-list{
-  display:flex;flex-wrap:wrap;
-  gap:7px;margin-top:10px
-}
-.addon-quick{
-  border:1px dashed #b8c9c0;
-  background:#f5faf7;color:var(--green-dark);
-  padding:8px 10px;border-radius:10px;
-  font-size:12px;font-weight:800
-}
-.check-row{
-  display:flex;align-items:center;
-  gap:9px;margin-top:9px;font-size:12px
-}
-.check-row input{width:18px;height:18px}
 
-.customizer-group{
-  padding:14px 0;
-  border-bottom:1px solid var(--line)
-}
-.customizer-group:last-child{border-bottom:0}
-.customizer-group h4{margin:0 0 9px}
 .option-row{
-  display:flex;align-items:center;
-  justify-content:space-between;
-  gap:10px;padding:9px 10px;
+  display:grid;
+  grid-template-columns:1fr 120px 40px;
+  gap:7px;
+  margin-top:8px;
+}
+
+.checkbox-line{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  font-size:13px;
+}
+
+.product-admin{
+  display:flex;
+  gap:12px;
+  padding:12px;
   border:1px solid var(--line);
-  border-radius:12px;margin-top:7px
-}
-.option-row label{
-  display:flex;align-items:center;
-  gap:9px;flex:1;font-size:13px
-}
-.option-row input{
-  width:18px;height:18px
+  border-radius:15px;
+  margin-bottom:9px;
 }
 
-/* Search */
-.search-wrap{
-  display:flex;gap:8px;margin-top:16px
-}
-.search-wrap input{
-  flex:1;border:1px solid var(--line);
-  border-radius:14px;padding:13px 15px;
-  background:#fff;outline:none
-}
-.search-wrap button{
-  border:0;background:var(--green);
-  color:#fff;border-radius:14px;
-  padding:0 17px;font-weight:900
+.admin-thumb{
+  width:75px;
+  height:65px;
+  border-radius:11px;
+  object-fit:cover;
+  background:#edf4ef;
+  flex:none;
 }
 
-/* Cart */
-.cart-badge{
-  position:absolute;top:-4px;right:-4px;
-  min-width:19px;height:19px;
-  padding:0 5px;border-radius:999px;
-  background:#d94444;color:#fff;
-  font-size:10px;font-weight:900;
-  display:grid;place-items:center
+.admin-info{
+  flex:1;
 }
-.cart-button{position:relative}
 
-/* Responsive */
-@media(max-width:820px){
+.admin-info h4{
+  margin:0;
+}
+
+.admin-info p{
+  margin:4px 0;
+  font-size:12px;
+  color:var(--muted);
+}
+
+@media(max-width:800px){
   .hero-inner{grid-template-columns:1fr}
-  .hero-art{min-height:150px;font-size:75px}
-  .grid{grid-template-columns:repeat(2,1fr)}
-  .deals{grid-template-columns:1fr}
-}
-@media(max-width:600px){
-  .nav{height:64px}
-  .brand span{font-size:18px}
-  .account-btn{padding:10px 11px;font-size:12px}
-  .hero{margin:14px 0;border-radius:23px}
-  .hero-inner{padding:27px 20px}
-  .hero h1{font-size:39px;letter-spacing:-1.8px}
-  .hero p{font-size:14px}
   .hero-art{display:none}
-  .grid{grid-template-columns:repeat(2,1fr);gap:10px}
-  .service-card{padding:15px;min-height:125px}
-  .service-icon{font-size:29px}
-  .business-card{padding:13px}
+  .grid{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:560px){
+  .grid{grid-template-columns:1fr 1fr}
+  .product-grid{grid-template-columns:1fr}
   .form-grid{grid-template-columns:1fr}
   .field.full{grid-column:auto}
-  .product-grid{grid-template-columns:1fr}
-  .product-photo{height:210px}
-  .modifier-option{grid-template-columns:1fr 85px 38px}
-  .partner{flex-direction:column;align-items:flex-start}
-  .modal{padding:8px}
-  .modal-card{border-radius:21px}
-  .modal-body{padding:16px}
-  .modal-head{padding:16px}
-  .dash-stats{grid-template-columns:1fr 1fr 1fr}
-  .stat{padding:12px}
+  .stats{grid-template-columns:1fr 1fr 1fr}
+  .stat{padding:12px 9px}
   .stat b{font-size:20px}
-  .my-property{align-items:flex-start}
-  .row-actions{margin-left:0}
+  .partner{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  .option-row{
+    grid-template-columns:1fr 95px 38px;
+  }
+}
+
+@media(max-width:390px){
+  .account-btn{display:none}
+  .brand span{font-size:18px}
+  .grid{gap:9px}
+  .service-card{padding:14px}
 }
 </style>
 </head>
@@ -593,491 +939,414 @@ img{max-width:100%;display:block}
 
 <header class="topbar">
   <div class="container nav">
-    <button class="icon-btn" onclick="openDrawer()" aria-label="Open menu">☰</button>
 
-    <a href="#" class="brand" onclick="goHome();return false;">
+    <button class="icon-btn" onclick="openMenu()">☰</button>
+
+    <a class="brand" href="#" onclick="goHome();return false;">
       <div class="logo">S</div>
       <span>SefwiGo</span>
     </a>
 
     <div class="nav-actions">
-      <button class="icon-btn cart-button" onclick="openCart()" aria-label="Cart">
+      <button class="icon-btn" onclick="openCart()">
         🛒
-        <span id="cartCount" class="cart-badge">0</span>
+        <span id="cartCount" class="cart-count" style="display:none">0</span>
       </button>
       <button class="account-btn" onclick="openAccount()">Account</button>
     </div>
+
   </div>
 </header>
 
-<main id="homePage">
+<main>
 
-  <div class="container">
-    <section class="hero">
-      <div class="hero-inner">
-        <div>
-          <div class="eyebrow">Sefwi Wiawso • Local Marketplace</div>
-          <h1>Everything local. Delivered simply.</h1>
-          <p>
-            Order food, groceries and parcels, discover local businesses,
-            or find property around Sefwi Wiawso with SefwiGo.
-          </p>
+<div class="container">
 
-          <div class="hero-actions">
-            <button class="primary" onclick="scrollToId('businesses')">🍲 Order Food</button>
-            <button class="secondary" onclick="openParcel()">📦 Send a Parcel</button>
-            <button class="gold-btn" onclick="openPartner()">🤝 Become a Partner</button>
-          </div>
+<section class="hero" id="home">
+  <div class="hero-inner">
 
-          <div class="search-wrap">
-            <input id="searchInput" placeholder="Search businesses, meals or properties..." oninput="performSearch()">
-            <button onclick="performSearch()">Search</button>
-          </div>
-        </div>
+    <div>
+      <div class="eyebrow">Sefwi Wiawso • Local Marketplace</div>
 
-        <div class="hero-art">🛵</div>
+      <h1>Everything local. One place.</h1>
+
+      <p>
+        Order food, shop groceries, send parcels and discover local
+        businesses and properties with SefwiGo.
+      </p>
+
+      <div class="hero-actions">
+        <button class="primary" onclick="scrollToId('services')">
+          ORDER NOW
+        </button>
+
+        <button class="secondary" onclick="openPartner()">
+          Become a Partner
+        </button>
       </div>
-    </section>
+    </div>
+
+    <div class="hero-art">🛵</div>
+
+  </div>
+</section>
+
+
+<section class="section" id="services">
+
+  <div class="section-head">
+    <div>
+      <h2>What do you need?</h2>
+      <p>Choose a service to get started.</p>
+    </div>
   </div>
 
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h2>What do you need?</h2>
-          <p>Choose a service and get started.</p>
-        </div>
-      </div>
+  <div class="grid">
 
-      <div class="grid">
-        <button class="service-card" onclick="filterService('Food')">
-          <div class="service-icon">🍲</div>
-          <strong>Food</strong>
-          <span>Meals from local kitchens</span>
-        </button>
+    <button class="service-card" onclick="filterService('Food')">
+      <div class="service-icon">🍔</div>
+      <strong>Food</strong>
+      <span>Meals & local favourites</span>
+    </button>
 
-        <button class="service-card" onclick="filterService('Groceries')">
-          <div class="service-icon">🛒</div>
-          <strong>Groceries</strong>
-          <span>Daily essentials nearby</span>
-        </button>
+    <button class="service-card" onclick="filterService('Groceries')">
+      <div class="service-icon">🛒</div>
+      <strong>Groceries</strong>
+      <span>Everyday shopping</span>
+    </button>
 
-        <button class="service-card" onclick="openParcel()">
-          <div class="service-icon">📦</div>
-          <strong>Parcels</strong>
-          <span>Send and receive items</span>
-        </button>
+    <button class="service-card" onclick="filterService('Parcels')">
+      <div class="service-icon">📦</div>
+      <strong>Parcels</strong>
+      <span>Send it around town</span>
+    </button>
 
-        <button class="service-card" onclick="scrollToId('properties')">
-          <div class="service-icon">🏠</div>
-          <strong>Property</strong>
-          <span>Rooms, houses and land</span>
-        </button>
-      </div>
+    <button class="service-card" onclick="scrollToId('property')">
+      <div class="service-icon">🏠</div>
+      <strong>Property</strong>
+      <span>Homes, rooms & land</span>
+    </button>
+
+  </div>
+</section>
+
+
+<section class="section" id="businesses">
+
+  <div class="section-head">
+    <div>
+      <h2>⭐ Businesses</h2>
+      <p>Discover businesses and their menus.</p>
     </div>
-  </section>
 
-  <section class="section">
-    <div class="container">
-      <div class="deals">
-        <div class="deal-card">
-          <div class="deal-main">
-            <div class="eyebrow">SefwiGo Deals</div>
-            <h3>Good food.<br>Good prices.</h3>
-            <p>Discover meals from local businesses and customize your order with add-ons before checkout.</p>
-            <button class="primary" onclick="scrollToId('businesses')">Explore Food</button>
-          </div>
-        </div>
+    <button class="text-btn" onclick="loadBusinesses()">
+      Refresh
+    </button>
+  </div>
 
-        <div class="deal-card">
-          <div class="deal-side">
-            <div>
-              <span class="chip">🏡 Property</span>
-              <h3 style="margin:12px 0 5px">Find your next place</h3>
-              <p class="help">Browse available property listings around Sefwi Wiawso.</p>
-            </div>
-            <button class="small-btn primary-small" onclick="scrollToId('properties')">View Properties</button>
-          </div>
-        </div>
-      </div>
+  <div class="grid" id="businessGrid"></div>
+
+</section>
+
+
+<section class="section" id="property">
+
+  <div class="section-head">
+    <div>
+      <h2>🏠 Rent & Property</h2>
+      <p>Properties published by SefwiGo partners.</p>
     </div>
-  </section>
 
-  <section class="section" id="businesses">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h2>Popular Businesses</h2>
-          <p>Order directly from businesses on SefwiGo.</p>
-        </div>
-        <button class="text-btn" onclick="loadBusinesses()">Refresh</button>
-      </div>
+    <button class="text-btn" onclick="openPartner('property')">
+      List yours
+    </button>
+  </div>
 
-      <div id="businessGrid" class="grid">
-        <div class="empty">
-          <div style="font-size:40px">🍽️</div>
-          <strong>Loading businesses...</strong>
-        </div>
-      </div>
+  <div class="grid" id="propertyGrid"></div>
+
+</section>
+
+
+<section class="section">
+
+  <div class="partner">
+
+    <div>
+      <h2>Own a business or property?</h2>
+      <p>
+        Join SefwiGo and reach customers around Sefwi Wiawso.
+      </p>
     </div>
-  </section>
 
-  <section class="section" id="properties">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h2>Available Properties</h2>
-          <p>Rooms, houses and other local property listings.</p>
-        </div>
-        <button class="text-btn" onclick="renderProperties()">Refresh</button>
-      </div>
+    <button class="gold-btn" onclick="openPartner()">
+      Become a SefwiGo Partner
+    </button>
 
-      <div id="propertyGrid" class="grid"></div>
-    </div>
-  </section>
+  </div>
 
-  <section class="section">
-    <div class="container">
-      <div class="partner">
-        <div>
-          <h2>Own a business?</h2>
-          <p>Join SefwiGo and let customers discover your products and services.</p>
-        </div>
-        <button class="gold-btn" onclick="openPartner()">Become a Partner</button>
-      </div>
-    </div>
-  </section>
+</section>
+
+</div>
 
 </main>
 
-<!-- Bottom Navigation -->
+
 <nav class="bottom-nav">
+
   <div class="bottom-inner">
-    <button class="nav-item active" id="navHome" onclick="goHome()">
-      <span class="nav-icon">🏠</span>
+
+    <button class="nav-item active" onclick="goHome()">
+      <span class="nav-icon">⌂</span>
       Home
     </button>
 
-    <button class="nav-item" onclick="openCart()">
-      <span class="nav-icon">📦</span>
-      Orders
+    <button class="nav-item" onclick="scrollToId('businesses')">
+      <span class="nav-icon">🏪</span>
+      Businesses
     </button>
 
-    <button class="nav-item" onclick="openPartner()">
-      <span class="nav-icon">🤝</span>
-      Partner
+    <button class="nav-item" onclick="openCart()">
+      <span class="nav-icon">🛒</span>
+      Cart
     </button>
 
     <button class="nav-item" onclick="openAccount()">
-      <span class="nav-icon">👤</span>
+      <span class="nav-icon">◉</span>
       Account
     </button>
+
   </div>
+
 </nav>
 
-<!-- Drawer -->
-<div id="drawerOverlay" class="overlay" onclick="if(event.target===this)closeDrawer()">
-  <aside class="drawer">
+
+<!-- MENU -->
+
+<div class="overlay" id="menuOverlay" onclick="closeMenu(event)">
+
+  <aside class="drawer" onclick="event.stopPropagation()">
+
     <div class="drawer-head">
-      <div class="brand">
-        <div class="logo">S</div>
-        <span>SefwiGo</span>
-      </div>
-      <button class="close" onclick="closeDrawer()">×</button>
+      <h2>SefwiGo</h2>
+      <button class="close" onclick="closeMenu()">×</button>
     </div>
 
-    <button class="menu-link" onclick="goHome();closeDrawer()">🏠 Home</button>
-    <button class="menu-link" onclick="scrollToId('businesses');closeDrawer()">🍲 Food & Businesses</button>
-    <button class="menu-link" onclick="scrollToId('properties');closeDrawer()">🏠 Property</button>
-    <button class="menu-link" onclick="openParcel();closeDrawer()">📦 Send a Parcel</button>
-    <button class="menu-link" onclick="openCart();closeDrawer()">🛒 My Cart</button>
+    <button class="menu-link" onclick="goHome()">🏠 Home</button>
+
+    <button class="menu-link" onclick="scrollToId('services')">
+      🛍️ Services
+    </button>
+
+    <button class="menu-link" onclick="scrollToId('businesses')">
+      ⭐ Businesses
+    </button>
+
+    <button class="menu-link" onclick="scrollToId('property')">
+      🏠 Property
+    </button>
 
     <div class="menu-divider"></div>
 
-    <button class="menu-link" onclick="openPartner();closeDrawer()">🤝 Become a Partner</button>
-    <button class="menu-link" onclick="openAccount();closeDrawer()">👤 Account</button>
+    <button class="menu-link" onclick="openPartner()">
+      🏪 Become a Partner
+    </button>
+
+    <button class="menu-link" onclick="openCart()">
+      🛒 My Cart
+    </button>
+
+    <button class="menu-link" onclick="openAccount()">
+      👤 My Account
+    </button>
+
   </aside>
+
 </div>
 
-<!-- Business Modal -->
-<div id="businessModal" class="modal">
+
+<!-- BUSINESS MODAL -->
+
+<div class="modal" id="businessModal">
+
   <div class="modal-card">
+
     <div class="modal-head">
-      <div>
-        <strong id="businessTitle">Business Menu</strong>
-        <div class="help" id="businessSubtitle"></div>
-      </div>
+      <strong id="businessTitle">Business</strong>
       <button class="close" onclick="closeModal('businessModal')">×</button>
     </div>
+
     <div class="modal-body" id="businessBody"></div>
+
   </div>
+
 </div>
 
-<!-- Product Customizer -->
-<div id="customizerModal" class="modal">
-  <div class="modal-card" style="max-width:620px">
-    <div class="modal-head">
-      <div>
-        <strong id="customizerTitle">Customize Item</strong>
-        <div class="help">Choose your preferred add-ons.</div>
-      </div>
-      <button class="close" onclick="closeModal('customizerModal')">×</button>
-    </div>
-    <div class="modal-body" id="customizerBody"></div>
-  </div>
-</div>
 
-<!-- Cart Modal -->
-<div id="cartModal" class="modal">
+<!-- PRODUCT CUSTOMIZATION MODAL -->
+
+<div class="modal" id="customizeModal">
+
   <div class="modal-card">
+
     <div class="modal-head">
-      <div>
-        <strong>🛒 Your Cart</strong>
-        <div class="help">Review your items before placing the order.</div>
-      </div>
+      <strong id="customizeTitle">Customize Item</strong>
+      <button class="close" onclick="closeModal('customizeModal')">×</button>
+    </div>
+
+    <div class="modal-body" id="customizeBody"></div>
+
+  </div>
+
+</div>
+
+
+<!-- CART -->
+
+<div class="modal" id="cartModal">
+
+  <div class="modal-card">
+
+    <div class="modal-head">
+      <strong>🛒 Your Cart</strong>
       <button class="close" onclick="closeModal('cartModal')">×</button>
     </div>
+
     <div class="modal-body" id="cartBody"></div>
+
   </div>
+
 </div>
 
-<!-- Partner Modal -->
-<div id="partnerModal" class="modal">
+
+<!-- ACCOUNT -->
+
+<div class="modal" id="accountModal">
+
   <div class="modal-card">
+
     <div class="modal-head">
-      <div>
-        <strong>🤝 SefwiGo Partner</strong>
-        <div class="help">Manage your local business, products and property.</div>
-      </div>
-      <button class="close" onclick="closeModal('partnerModal')">×</button>
-    </div>
-
-    <div class="modal-body">
-      <div id="partnerIntro">
-        <div class="dash-card" style="padding:18px;margin-bottom:15px">
-          <h3 style="margin-top:0">Grow your business with SefwiGo</h3>
-          <p class="help">
-            Create your business profile, upload actual photos of your dishes,
-            add prices and add-on modifiers, and receive customer orders.
-          </p>
-          <button class="submit" onclick="startVendorSetup()">Start Partner Setup</button>
-        </div>
-      </div>
-
-      <div id="partnerDashboard" style="display:none">
-        <div class="dashboard-head" style="border-radius:20px">
-          <h2 id="dashboardBusinessName">Partner Dashboard</h2>
-          <p>Manage your business and customer orders.</p>
-        </div>
-
-        <div class="tabs" style="margin-top:18px">
-          <button class="tab active" id="tabOverview" onclick="dashboardTab('overview')">Overview</button>
-          <button class="tab" id="tabProducts" onclick="dashboardTab('products')">Products</button>
-          <button class="tab" id="tabOrders" onclick="dashboardTab('orders')">
-            Orders <span id="orderBadge" class="cart-badge" style="position:static;display:none">0</span>
-          </button>
-          <button class="tab" id="tabMyProperties" onclick="dashboardTab('myproperties')">Property</button>
-        </div>
-
-        <div id="dashboardContent"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Account Modal -->
-<div id="accountModal" class="modal">
-  <div class="modal-card" style="max-width:560px">
-    <div class="modal-head">
-      <div>
-        <strong>👤 Account</strong>
-        <div class="help">Customer and partner account access.</div>
-      </div>
+      <strong>My SefwiGo Account</strong>
       <button class="close" onclick="closeModal('accountModal')">×</button>
     </div>
 
-    <div class="modal-body">
-      <div id="accountBody">
-        <div class="dash-card" style="padding:18px">
-          <h3 style="margin-top:0">Sign in to SefwiGo</h3>
-          <p class="help">
-            Sign in with your phone number to use account features and place orders.
-          </p>
+    <div class="modal-body" id="accountBody"></div>
 
-          <div class="field" style="margin-top:15px">
-            <label>Phone number</label>
-            <input id="phoneInput" placeholder="+233..." type="tel">
-          </div>
-
-          <button class="submit" style="margin-top:12px" onclick="phoneSignIn()">
-            Continue
-          </button>
-
-          <p class="help" style="margin-top:12px">
-            Firebase phone authentication must be enabled in your Firebase project.
-          </p>
-        </div>
-      </div>
-    </div>
   </div>
+
 </div>
 
-<!-- Parcel Modal -->
-<div id="parcelModal" class="modal">
-  <div class="modal-card" style="max-width:560px">
-    <div class="modal-head">
-      <div>
-        <strong>📦 Send a Parcel</strong>
-        <div class="help">Contact SefwiGo to arrange your delivery.</div>
-      </div>
-      <button class="close" onclick="closeModal('parcelModal')">×</button>
-    </div>
 
-    <div class="modal-body">
-      <div class="form-grid">
-        <div class="field">
-          <label>Your name</label>
-          <input id="parcelName" placeholder="Your name">
-        </div>
+<!-- PARTNER DASHBOARD -->
 
-        <div class="field">
-          <label>Phone / WhatsApp</label>
-          <input id="parcelPhone" placeholder="+233...">
-        </div>
+<div class="modal" id="partnerModal">
 
-        <div class="field full">
-          <label>Pickup location</label>
-          <input id="parcelPickup" placeholder="Where should we collect it?">
-        </div>
-
-        <div class="field full">
-          <label>Delivery location</label>
-          <input id="parcelDropoff" placeholder="Where should we deliver it?">
-        </div>
-
-        <div class="field full">
-          <label>Parcel description</label>
-          <textarea id="parcelDescription" placeholder="What are you sending?"></textarea>
-        </div>
-      </div>
-
-      <button class="submit" style="margin-top:14px" onclick="sendParcelWhatsApp()">
-        WhatsApp SefwiGo
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- Property Modal -->
-<div id="propertyModal" class="modal">
-  <div class="modal-card" style="max-width:620px">
-    <div class="modal-head">
-      <div>
-        <strong id="propertyModalTitle">Property</strong>
-        <div class="help">Property details</div>
-      </div>
-      <button class="close" onclick="closeModal('propertyModal')">×</button>
-    </div>
-    <div class="modal-body" id="propertyModalBody"></div>
-  </div>
-</div>
-
-<!-- Product Form Modal -->
-<div id="productFormModal" class="modal">
   <div class="modal-card">
-    <div class="modal-head">
-      <div>
-        <strong id="productFormTitle">Add Product</strong>
-        <div class="help">Upload the actual dish photo and configure add-ons.</div>
+
+    <div class="dashboard-head">
+
+      <div style="display:flex;justify-content:space-between;gap:10px">
+
+        <div>
+          <h2>Partner Dashboard</h2>
+          <p>Manage your business, dishes and customer orders.</p>
+        </div>
+
+        <button class="close" onclick="closeModal('partnerModal')">
+          ×
+        </button>
+
       </div>
-      <button class="close" onclick="closeModal('productFormModal')">×</button>
+
     </div>
 
     <div class="modal-body">
-      <form id="productForm" onsubmit="saveProduct(event)">
-        <div class="form-grid">
 
-          <div class="field full">
-            <label>Dish / Product name *</label>
-            <input id="prodName" required placeholder="e.g. Jollof Rice with Chicken">
-          </div>
+      <div class="tabs">
 
-          <div class="field">
-            <label>Price (GH₵) *</label>
-            <input id="prodPrice" type="number" min="0" step="0.01" required placeholder="35">
-          </div>
-
-          <div class="field">
-            <label>Availability</label>
-            <select id="prodAvailable">
-              <option value="true">Available</option>
-              <option value="false">Unavailable</option>
-            </select>
-          </div>
-
-          <div class="field full">
-            <label>Description</label>
-            <textarea id="prodDescription" placeholder="Describe the dish, portion size, ingredients, etc."></textarea>
-          </div>
-
-          <div class="field full">
-            <label>Actual dish photo *</label>
-            <input
-              id="prodPhoto"
-              type="file"
-              accept="image/*"
-              required
-              onchange="previewProductPhoto(event)"
-            >
-            <div class="help">
-              Upload a clear, well-lit photo of the actual dish prepared by your kitchen.
-              Maximum file size: 5 MB.
-            </div>
-            <div id="productPhotoPreview" style="margin-top:10px"></div>
-          </div>
-
-          <div class="field full">
-            <div class="modifier-builder">
-              <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
-                <div>
-                  <strong>Add-On Modifiers</strong>
-                  <div class="help">Let customers customize their meal without calling.</div>
-                </div>
-                <button type="button" class="small-btn primary-small" onclick="addModifierGroup()">
-                  + Add Group
-                </button>
-              </div>
-
-              <div class="addon-list">
-                <button type="button" class="addon-quick" onclick="quickModifier('Protein')">+ Protein</button>
-                <button type="button" class="addon-quick" onclick="quickModifier('Extra Soup')">+ Extra Soup</button>
-                <button type="button" class="addon-quick" onclick="quickModifier('Spice Level')">+ Spice Level</button>
-              </div>
-
-              <div id="modifierBuilderList"></div>
-            </div>
-          </div>
-
-        </div>
-
-        <button class="submit" style="margin-top:15px" type="submit">
-          Save Product
+        <button class="tab active" id="tabOverview"
+          onclick="dashboardTab('overview')">
+          Overview
         </button>
-      </form>
+
+        <button class="tab" id="tabBusiness"
+          onclick="dashboardTab('business')">
+          My Business
+        </button>
+
+        <button class="tab" id="tabProducts"
+          onclick="dashboardTab('products')">
+          My Dishes
+        </button>
+
+        <button class="tab" id="tabOrders"
+          onclick="dashboardTab('orders')">
+          Orders
+          <span id="orderBadge"
+            style="display:none;background:#d72e2e;color:#fff;border-radius:99px;padding:2px 6px;font-size:10px">
+            0
+          </span>
+        </button>
+
+        <button class="tab" id="tabProperty"
+          onclick="dashboardTab('property')">
+          Property
+        </button>
+
+      </div>
+
+      <div id="dashboardContent"></div>
+
     </div>
+
   </div>
+
 </div>
 
-<div id="toast" style="
-position:fixed;left:50%;bottom:92px;transform:translateX(-50%) translateY(20px);
-background:#17221d;color:#fff;padding:12px 16px;border-radius:13px;
-font-size:13px;font-weight:800;z-index:300;opacity:0;pointer-events:none;
-transition:.25s;max-width:90%;text-align:center;
-"></div>
+
+<div class="toast" id="toast"></div>
+
 
 <script type="module">
 
-/* Firebase */
+/* =========================================================
+   FIREBASE
+========================================================= */
+
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInAnonymously,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  getDoc,
+  doc,
+  updateDoc,
+  deleteDoc,
+  query,
+  where,
+  serverTimestamp,
+  orderBy
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  deleteObject
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyDjHGyeObPLLuqTNhNGE5SBRfBL5T29qWA",
   authDomain: "sefwi-go.firebaseapp.com",
@@ -1087,1294 +1356,1655 @@ const firebaseConfig = {
   appId: "1:210398787110:web:f7f76a538a2712a2bb58e7"
 };
 
-let firebaseApp = null;
-let auth = null;
-let db = null;
-let storage = null;
-let authFns = {};
-let firestoreFns = {};
-let storageFns = {};
-let firebaseReady = false;
-let firebasePromise = null;
 
-async function initFirebase(){
-  if(firebaseReady)return true;
-  if(firebasePromise)return firebasePromise;
+let firebaseApp;
+let auth;
+let db;
+let storage;
 
-  firebasePromise=(async()=>{
-    try{
-      const appMod=await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js");
-      const authMod=await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js");
-      const firestoreMod=await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
-      const storageMod=await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js");
+let firebaseReady=false;
 
-      firebaseApp=appMod.getApps().length
-        ? appMod.getApps()[0]
-        : appMod.initializeApp(firebaseConfig);
+try{
 
-      auth=authMod.getAuth(firebaseApp);
-      db=firestoreMod.getFirestore(firebaseApp);
-      storage=storageMod.getStorage(firebaseApp);
+  firebaseApp=initializeApp(firebaseConfig);
 
-      authFns={
-        signInAnonymously:authMod.signInAnonymously,
-        onAuthStateChanged:authMod.onAuthStateChanged,
-        RecaptchaVerifier:authMod.RecaptchaVerifier,
-        signInWithPhoneNumber:authMod.signInWithPhoneNumber
-      };
+  auth=getAuth(firebaseApp);
 
-      firestoreFns={
-        collection:firestoreMod.collection,
-        addDoc:firestoreMod.addDoc,
-        getDocs:firestoreMod.getDocs,
-        getDoc:firestoreMod.getDoc,
-        doc:firestoreMod.doc,
-        updateDoc:firestoreMod.updateDoc,
-        deleteDoc:firestoreMod.deleteDoc,
-        query:firestoreMod.query,
-        where:firestoreMod.where,
-        orderBy:firestoreMod.orderBy,
-        serverTimestamp:firestoreMod.serverTimestamp
-      };
+  db=getFirestore(firebaseApp);
 
-      storageFns={
-        ref:storageMod.ref,
-        uploadBytes:storageMod.uploadBytes,
-        getDownloadURL:storageMod.getDownloadURL
-      };
+  storage=getStorage(firebaseApp);
 
-      firebaseReady=true;
+  firebaseReady=true;
 
-      if(!auth.currentUser){
-        try{
-          await authFns.signInAnonymously(auth);
-        }catch(e){
-          console.warn("Anonymous sign-in unavailable:",e);
-        }
-      }
+  onAuthStateChanged(auth,user=>{
 
-      return true;
-    }catch(e){
-      console.error("Firebase initialization failed:",e);
-      firebaseReady=false;
-      return false;
+    if(user){
+
+      console.log("Firebase user:",user.uid);
+
     }
-  })();
 
-  return firebasePromise;
+    if(document.getElementById("accountModal")?.classList.contains("open")){
+      renderAccount();
+    }
+
+  });
+
+}catch(error){
+
+  console.error("Firebase initialization error:",error);
+
 }
 
-initFirebase().then(()=>{
-  loadBusinesses();
-  loadVendorOrderCount();
-});
 
-/* Helpers */
+/* =========================================================
+   HELPERS
+========================================================= */
+
 const $=id=>document.getElementById(id);
 
-function escapeHtml(value){
-  return String(value??"")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-}
+window.scrollToId=function(id){
 
-function showToast(message){
-  const el=$("toast");
-  if(!el)return;
-  el.textContent=message;
-  el.style.opacity="1";
-  el.style.transform="translateX(-50%) translateY(0)";
-  clearTimeout(window.__toastTimer);
-  window.__toastTimer=setTimeout(()=>{
-    el.style.opacity="0";
-    el.style.transform="translateX(-50%) translateY(20px)";
-  },2800);
-}
+  $(id)?.scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
 
-function scrollToId(id){
-  const el=$(id);
-  if(el)el.scrollIntoView({behavior:"smooth",block:"start"});
-}
+  closeMenu();
 
-window.scrollToId=scrollToId;
-
-function openModal(id){
-  const el=$(id);
-  if(el)el.classList.add("open");
-}
-
-window.closeModal=function(id){
-  const el=$(id);
-  if(el)el.classList.remove("open");
-};
-
-window.openDrawer=function(){
-  $("drawerOverlay").classList.add("open");
-};
-
-window.closeDrawer=function(){
-  $("drawerOverlay").classList.remove("open");
 };
 
 window.goHome=function(){
-  closeDrawer();
-  window.scrollTo({top:0,behavior:"smooth"});
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+  closeMenu();
+
 };
+
+window.openMenu=function(){
+
+  $("menuOverlay").classList.add("open");
+
+};
+
+window.closeMenu=function(event){
+
+  if(!event || event.target===$("menuOverlay")){
+    $("menuOverlay").classList.remove("open");
+  }
+
+};
+
+window.closeModal=function(id){
+
+  $(id)?.classList.remove("open");
+
+};
+
+function showToast(message){
+
+  const t=$("toast");
+
+  t.textContent=message;
+
+  t.classList.add("show");
+
+  clearTimeout(window.toastTimer);
+
+  window.toastTimer=setTimeout(()=>{
+    t.classList.remove("show");
+  },3200);
+
+}
+
+window.showToast=showToast;
+
+
+function escapeHtml(value){
+
+  return String(value??"")
+    .replace(/[&<>"']/g,char=>({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+    }[char]));
+
+}
+
+
+function money(value){
+
+  return "GH₵ "+Number(value||0).toLocaleString();
+
+}
+
+
+function slug(value){
+
+  return String(value||"")
+    .replace(/[^a-zA-Z0-9._-]/g,"_");
+
+}
+
+
+/* =========================================================
+   AUTH
+========================================================= */
+
+async function ensureAuth(){
+
+  if(!firebaseReady || !auth){
+    throw new Error("Firebase could not initialize.");
+  }
+
+  if(auth.currentUser){
+    return auth.currentUser;
+  }
+
+  const result=await signInAnonymously(auth);
+
+  return result.user;
+
+}
+
+
+/* =========================================================
+   CART
+========================================================= */
+
+let cart=[];
+
+try{
+  cart=JSON.parse(localStorage.getItem("sefwiCart")||"[]");
+  if(!Array.isArray(cart))cart=[];
+}catch{
+  cart=[];
+}
+
+
+function saveCart(){
+
+  localStorage.setItem(
+    "sefwiCart",
+    JSON.stringify(cart)
+  );
+
+  updateCartCount();
+
+}
+
+
+function updateCartCount(){
+
+  const count=cart.reduce(
+    (total,item)=>total+Number(item.qty||1),
+    0
+  );
+
+  const badge=$("cartCount");
+
+  badge.textContent=count;
+
+  badge.style.display=count?"grid":"none";
+
+}
+
 
 window.openCart=function(){
+
   renderCart();
-  openModal("cartModal");
+
+  $("cartModal").classList.add("open");
+
 };
 
-/* Businesses */
-let businessesCache=[];
+
+window.removeCart=function(index){
+
+  cart.splice(index,1);
+
+  saveCart();
+
+  renderCart();
+
+  showToast("Item removed from cart.");
+
+};
+
+
+window.changeCartQty=function(index,change){
+
+  if(!cart[index])return;
+
+  cart[index].qty=Math.max(
+    1,
+    Number(cart[index].qty||1)+change
+  );
+
+  saveCart();
+
+  renderCart();
+
+};
+
+
+/* =========================================================
+   BUSINESS DATA
+========================================================= */
+
+let businesses=[];
+
 
 async function loadBusinesses(){
+
   const grid=$("businessGrid");
-  if(!grid)return;
 
   grid.innerHTML=`
-    <div class="empty">
-      <div style="font-size:40px">🍽️</div>
-      <strong>Loading businesses...</strong>
-      <p>Checking SefwiGo businesses.</p>
-    </div>`;
-
-  if(!(await initFirebase())||!db){
-    grid.innerHTML=`
-      <div class="empty" style="grid-column:1/-1">
-        <div style="font-size:40px">⚠️</div>
-        <strong>Business service unavailable</strong>
-        <p>Check your Firebase setup and Firestore rules.</p>
-      </div>`;
-    return;
-  }
-
-  try{
-    const snap=await firestoreFns.getDocs(
-      firestoreFns.collection(db,"businesses")
-    );
-
-    businessesCache=[];
-    snap.forEach(d=>{
-      businessesCache.push({id:d.id,...d.data()});
-    });
-
-    if(!businessesCache.length){
-      const local=JSON.parse(localStorage.getItem("sefwiBusiness")||"null");
-
-      if(local){
-        businessesCache=[{
-          id:"local-business",
-          ...local,
-          ownerUid:local.ownerUid||null
-        }];
-      }
-    }
-
-    renderBusinesses(businessesCache);
-  }catch(e){
-    console.error(e);
-
-    const local=JSON.parse(localStorage.getItem("sefwiBusiness")||"null");
-
-    if(local){
-      businessesCache=[{
-        id:"local-business",
-        ...local
-      }];
-      renderBusinesses(businessesCache);
-    }else{
-      grid.innerHTML=`
-        <div class="empty" style="grid-column:1/-1">
-          <div style="font-size:40px">⚠️</div>
-          <strong>Could not load businesses.</strong>
-          <p>${escapeHtml(e.message||"Check Firestore permissions.")}</p>
-        </div>`;
-    }
-  }
-}
-
-window.loadBusinesses=loadBusinesses;
-
-function renderBusinesses(list){
-  const grid=$("businessGrid");
-
-  if(!list.length){
-    grid.innerHTML=`
-      <div class="empty" style="grid-column:1/-1">
-        <div style="font-size:40px">🏪</div>
-        <strong>No businesses yet.</strong>
-        <p>Become a SefwiGo partner to list your business.</p>
-      </div>`;
-    return;
-  }
-
-  grid.innerHTML=list.map(b=>`
-    <div class="business-card">
-      <div class="business-top">
-        <div class="avatar">🍽️</div>
-        <div style="min-width:0;flex:1">
-          <h3>${escapeHtml(b.name||"SefwiGo Business")}</h3>
-          <p>${escapeHtml(b.category||"Food & Local Business")}</p>
-        </div>
-      </div>
-
-      <div style="margin-top:12px">
-        <span class="chip">📍 ${escapeHtml(b.location||"Sefwi Wiawso")}</span>
-      </div>
-
-      <p style="margin-top:10px">
-        ${escapeHtml(b.description||"Local business on SefwiGo.")}
-      </p>
-
-      <button class="small-btn primary-small" style="width:100%;margin-top:6px"
-        onclick='openBusiness(${JSON.stringify(b).replace(/'/g,"&#39;")})'>
-        View Menu
-      </button>
-    </div>
-  `).join("");
-}
-
-window.openBusiness=async function(b){
-  $("businessTitle").textContent=b.name||"Business Menu";
-  $("businessSubtitle").textContent=
-    `${b.category||"Local business"} • ${b.location||"Sefwi Wiawso"}`;
-
-  $("businessBody").innerHTML=`
-    <div class="empty">
-      <div style="font-size:40px">🍽️</div>
-      <strong>Loading menu...</strong>
-      <p>Finding products from this business.</p>
-    </div>`;
-
-  openModal("businessModal");
-
-  if(!(await initFirebase())||!db){
-    $("businessBody").innerHTML=`
-      <div class="empty">
-        <strong>Could not connect to the menu.</strong>
-        <p>Check Firebase and try again.</p>
-      </div>`;
-    return;
-  }
-
-  try{
-    let products=[];
-
-    if(b.id!=="local-business"){
-      const snap=await firestoreFns.getDocs(
-        firestoreFns.query(
-          firestoreFns.collection(db,"products"),
-          firestoreFns.where("vendorId","==",b.ownerUid||b.vendorId||b.id)
-        )
-      );
-
-      snap.forEach(d=>{
-        products.push({id:d.id,...d.data()});
-      });
-    }
-
-    if(!products.length && b.name){
-      try{
-        const snap=await firestoreFns.getDocs(
-          firestoreFns.query(
-            firestoreFns.collection(db,"products"),
-            firestoreFns.where("vendorName","==",b.name)
-          )
-        );
-
-        snap.forEach(d=>{
-          products.push({id:d.id,...d.data()});
-        });
-      }catch(e){}
-    }
-
-    if(!products.length){
-      const localProducts=JSON.parse(
-        localStorage.getItem("sefwiProducts")||"[]"
-      );
-
-      products=localProducts.filter(p=>
-        p.vendorName===b.name ||
-        p.vendorId===b.ownerUid ||
-        p.vendorId===b.vendorId
-      );
-    }
-
-    if(!products.length){
-      $("businessBody").innerHTML=`
-        <div class="empty">
-          <div style="font-size:40px">🍽️</div>
-          <strong>No products listed yet.</strong>
-          <p>This business has not added its menu yet.</p>
-        </div>`;
-      return;
-    }
-
-    $("businessBody").innerHTML=`
-      <div class="product-grid">
-        ${products.map(renderCustomerProduct).join("")}
-      </div>`;
-  }catch(e){
-    console.error(e);
-    $("businessBody").innerHTML=`
-      <div class="empty">
-        <strong>Could not load menu.</strong>
-        <p>${escapeHtml(e.message||"Check Firestore permissions.")}</p>
-      </div>`;
-  }
-};
-
-function renderCustomerProduct(p){
-  const photo=p.photoUrl
-    ? `<img class="product-photo" src="${escapeHtml(p.photoUrl)}" alt="${escapeHtml(p.name)}" loading="lazy">`
-    : `<div class="product-photo placeholder">🍲</div>`;
-
-  const modifiers=p.modifiers||[];
-
-  return `
-    <div class="product-card">
-      ${photo}
-
-      <div class="product-body">
-        <h4>${escapeHtml(p.name||"Dish")}</h4>
-
-        <p>${escapeHtml(p.description||"")}</p>
-
-        <div class="product-price">
-          GH₵ ${Number(p.price||0).toLocaleString()}
-        </div>
-
-        ${
-          modifiers.length
-          ? `<button class="small-btn primary-small" style="width:100%;margin-top:11px"
-              onclick='openCustomizer(${JSON.stringify(p).replace(/'/g,"&#39;")})'>
-              Customize & Add
-            </button>`
-          : `<button class="small-btn primary-small" style="width:100%;margin-top:11px"
-              onclick='addSimpleProduct(${JSON.stringify(p).replace(/'/g,"&#39;")})'>
-              Add to Cart
-            </button>`
-        }
-      </div>
-    </div>`;
-}
-
-window.addSimpleProduct=function(p){
-  const item={
-    id:Date.now().toString(),
-    productId:p.id,
-    name:p.name,
-    price:Number(p.price||0),
-    basePrice:Number(p.price||0),
-    vendorName:p.vendorName||"SefwiGo business",
-    vendorId:p.vendorId||null,
-    qty:1,
-    modifiers:[],
-    photoUrl:p.photoUrl||null
-  };
-
-  cart.push(item);
-  localStorage.setItem("sefwiCart",JSON.stringify(cart));
-
-  closeModal("businessModal");
-  showToast("Item added to cart.");
-  updateCartCount();
-};
-
-/* Product customizer */
-window.openCustomizer=function(p){
-  $("customizerTitle").textContent=p.name||"Customize Item";
-
-  const groups=p.modifiers||[];
-
-  $("customizerBody").innerHTML=`
-    <div>
-      <div class="help">
-        Base price: GH₵ ${Number(p.price||0).toLocaleString()}
-      </div>
-
-      ${groups.map((g,gi)=>`
-        <div class="customizer-group">
-          <h4>
-            ${escapeHtml(g.name||"Add-ons")}
-            ${g.required?'<span style="color:#c63b3b">*</span>':""}
-          </h4>
-
-          <div class="help">
-            ${g.multiple
-              ? "Choose one or more."
-              : "Choose one option."
-            }
-          </div>
-
-          ${(g.options||[]).map((o,oi)=>`
-            <div class="option-row">
-              <label>
-                <input
-                  type="${g.multiple?"checkbox":"radio"}"
-                  name="mod_${p.id}_${gi}"
-                  value="${oi}"
-                >
-                <span>${escapeHtml(o.name)}</span>
-              </label>
-
-              <strong>
-                ${Number(o.price||0)>0
-                  ? `+ GH₵ ${Number(o.price||0).toLocaleString()}`
-                  : "Included"}
-              </strong>
-            </div>
-          `).join("")}
-        </div>
-      `).join("")}
-
-      <button class="submit" style="margin-top:15px"
-        onclick='addCustomizedProduct(${JSON.stringify(p).replace(/'/g,"&#39;")})'>
-        Add Customized Item
-      </button>
+    <div class="empty" style="grid-column:1/-1">
+      <div style="font-size:35px">⏳</div>
+      Loading businesses...
     </div>
   `;
 
-  openModal("customizerModal");
+  const fallback=[
+    {
+      id:"demo1",
+      name:"Wiawso Chop Bar",
+      category:"Food",
+      description:"Local meals and favourites."
+    },
+    {
+      id:"demo2",
+      name:"Auntie Ama Kitchen",
+      category:"Food",
+      description:"Homemade meals prepared fresh."
+    },
+    {
+      id:"demo3",
+      name:"Sefwi Fresh Mart",
+      category:"Groceries",
+      description:"Everyday groceries and shopping."
+    },
+    {
+      id:"demo4",
+      name:"Wiawso Drinks Spot",
+      category:"Drinks",
+      description:"Cold drinks and refreshments."
+    }
+  ];
+
+  try{
+
+    if(!firebaseReady){
+
+      businesses=fallback;
+
+    }else{
+
+      const snapshot=await getDocs(
+        collection(db,"businesses")
+      );
+
+      businesses=snapshot.docs.map(d=>({
+        id:d.id,
+        ...d.data()
+      }));
+
+      if(!businesses.length){
+        businesses=fallback;
+      }
+
+    }
+
+  }catch(error){
+
+    console.error("Business loading error:",error);
+
+    businesses=fallback;
+
+  }
+
+  grid.innerHTML=businesses.map((business,index)=>`
+
+    <article class="business-card"
+      onclick="openBusiness(${index})">
+
+      <div class="business-top">
+
+        <div class="avatar">🏪</div>
+
+        <div>
+
+          <h3>
+            ${escapeHtml(business.name)}
+          </h3>
+
+          <p>
+            ${escapeHtml(business.category||"Local business")}
+          </p>
+
+        </div>
+
+      </div>
+
+      <span class="chip">
+        ${business.category==="Food"?"🍲":"🛍️"}
+        ${escapeHtml(business.category||"Business")}
+      </span>
+
+    </article>
+
+  `).join("");
+
+}
+
+
+window.openBusiness=async function(index){
+
+  const business=businesses[index];
+
+  if(!business)return;
+
+  $("businessTitle").textContent=business.name;
+
+  $("businessBody").innerHTML=`
+    <div class="empty">
+      <div style="font-size:50px">⏳</div>
+      Loading menu...
+    </div>
+  `;
+
+  $("businessModal").classList.add("open");
+
+  try{
+
+    let products=[];
+
+    if(firebaseReady){
+
+      const q=query(
+        collection(db,"products"),
+        where("vendorId","==",business.ownerUid||business.vendorId||business.id)
+      );
+
+      const snap=await getDocs(q);
+
+      products=snap.docs.map(d=>({
+        id:d.id,
+        ...d.data()
+      }));
+
+    }
+
+    if(!products.length){
+
+      $("businessBody").innerHTML=`
+
+        <div style="text-align:center;padding-bottom:15px">
+
+          <div style="font-size:55px">🏪</div>
+
+          <h2>${escapeHtml(business.name)}</h2>
+
+          <p class="help">
+            ${escapeHtml(business.description||"Local SefwiGo business.")}
+          </p>
+
+        </div>
+
+        <div class="empty">
+
+          <div style="font-size:40px">🍽️</div>
+
+          <strong>No dishes have been added yet.</strong>
+
+          <p>
+            This business will appear here when the owner publishes dishes.
+          </p>
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+    $("businessBody").innerHTML=`
+
+      <div style="margin-bottom:18px">
+
+        <span class="chip">
+          ${escapeHtml(business.category||"Food")}
+        </span>
+
+        <h2 style="margin:10px 0 5px">
+          ${escapeHtml(business.name)}
+        </h2>
+
+        <p class="help">
+          ${escapeHtml(business.description||"")}
+        </p>
+
+      </div>
+
+      <div class="product-grid">
+
+        ${products.map(productCard).join("")}
+
+      </div>
+
+    `;
+
+  }catch(error){
+
+    console.error("Menu loading error:",error);
+
+    $("businessBody").innerHTML=`
+
+      <div class="empty">
+
+        <div style="font-size:40px">⚠️</div>
+
+        <strong>Could not load this menu.</strong>
+
+        <p>${escapeHtml(error.message)}</p>
+
+        <button class="submit"
+          onclick="openBusiness(${index})">
+          Try Again
+        </button>
+
+      </div>
+
+    `;
+
+  }
+
 };
 
-window.addCustomizedProduct=function(p){
-  let extra=0;
-  let selected=[];
 
-  for(const [gi,g] of (p.modifiers||[]).entries()){
-    const checked=[
+function productCard(product){
+
+  const photo=product.photoUrl
+    ? `<img class="product-photo"
+        src="${escapeHtml(product.photoUrl)}"
+        alt="${escapeHtml(product.name)}">`
+    : `<div class="product-placeholder">🍲</div>`;
+
+  return `
+
+    <article class="product-card">
+
+      ${photo}
+
+      <div class="product-body">
+
+        <h3>${escapeHtml(product.name)}</h3>
+
+        <div class="product-price">
+          ${money(product.price)}
+        </div>
+
+        <p>
+          ${escapeHtml(product.description||"")}
+        </p>
+
+        ${
+          product.modifiers?.length
+          ? `<span class="chip">⚙️ Customizable</span>`
+          : ""
+        }
+
+        <button class="add-btn"
+          style="margin-top:10px"
+          onclick='customizeProduct(${JSON.stringify(product).replace(/'/g,"&#039;")})'>
+
+          ${product.modifiers?.length
+            ?"Customize & Add"
+            :"Add to Cart"}
+
+        </button>
+
+      </div>
+
+    </article>
+
+  `;
+
+}
+
+
+/* =========================================================
+   PRODUCT CUSTOMIZATION
+========================================================= */
+
+window.customizeProduct=function(product){
+
+  $("customizeTitle").textContent=
+    "Customize "+product.name;
+
+  let html=`
+
+    <div>
+
+      ${
+        product.photoUrl
+        ? `<img class="product-photo"
+             src="${escapeHtml(product.photoUrl)}"
+             alt="${escapeHtml(product.name)}"
+             style="border-radius:15px;margin-bottom:14px">`
+        : ""
+      }
+
+      <h2 style="margin:0">
+        ${escapeHtml(product.name)}
+      </h2>
+
+      <div class="product-price">
+        ${money(product.price)}
+      </div>
+
+  `;
+
+  if(!product.modifiers?.length){
+
+    html+=`
+
+      <button class="submit"
+        style="margin-top:15px"
+        onclick="addSimpleProduct(${JSON.stringify(product).replace(/'/g,"&#039;")})">
+
+        Add to Cart
+
+      </button>
+
+    `;
+
+  }else{
+
+    product.modifiers.forEach((group,groupIndex)=>{
+
+      html+=`
+
+        <div class="modifier-group">
+
+          <h4>
+
+            ${escapeHtml(group.name||"Options")}
+
+            ${
+              group.required
+              ? `<span style="color:#c63b3b;font-size:11px">Required</span>`
+              : `<span style="color:#777;font-size:11px">Optional</span>`
+            }
+
+          </h4>
+
+      `;
+
+      (group.options||[]).forEach((option,optionIndex)=>{
+
+        const type=group.multiple
+          ?"checkbox"
+          :"radio";
+
+        html+=`
+
+          <div class="modifier-option">
+
+            <label>
+
+              <input
+                type="${type}"
+                name="custom_${product.id}_${groupIndex}"
+                value="${optionIndex}">
+
+              <span>
+                ${escapeHtml(option.name)}
+              </span>
+
+            </label>
+
+            <span class="modifier-price">
+              ${
+                Number(option.price||0)>0
+                ? "+"+money(option.price)
+                : "Included"
+              }
+            </span>
+
+          </div>
+
+        `;
+
+      });
+
+      html+=`</div>`;
+
+    });
+
+    html+=`
+
+      <div class="selected-summary">
+        Base price: <strong>${money(product.price)}</strong>
+        <br>
+        Select your options below. The final price updates when you add the item.
+      </div>
+
+      <button class="submit"
+        onclick='addCustomizedProduct(${JSON.stringify(product).replace(/'/g,"&#039;")})'>
+
+        🛒 Add Customized Item
+
+      </button>
+
+    `;
+
+  }
+
+  html+=`</div>`;
+
+  $("customizeBody").innerHTML=html;
+
+  $("customizeModal").classList.add("open");
+
+};
+
+
+window.addSimpleProduct=function(product){
+
+  cart.push({
+
+    id:Date.now().toString(),
+
+    productId:product.id,
+
+    name:product.name,
+
+    price:Number(product.price||0),
+
+    basePrice:Number(product.price||0),
+
+    qty:1,
+
+    vendorId:product.vendorId||null,
+
+    vendorName:product.vendorName||"SefwiGo Business",
+
+    modifiers:[],
+
+    photoUrl:product.photoUrl||null
+
+  });
+
+  saveCart();
+
+  closeModal("customizeModal");
+
+  showToast("Item added to cart.");
+
+};
+
+
+window.addCustomizedProduct=function(product){
+
+  let extra=0;
+
+  const selected=[];
+
+  for(
+    const [groupIndex,group]
+    of (product.modifiers||[]).entries()
+  ){
+
+    const inputs=[
       ...document.querySelectorAll(
-        `input[name="mod_${p.id}_${gi}"]:checked`
+        `input[name="custom_${product.id}_${groupIndex}"]:checked`
       )
     ];
 
-    if(g.required&&!checked.length){
-      showToast(`Please choose an option for ${g.name||"this add-on"}.`);
+    if(group.required && !inputs.length){
+
+      showToast(
+        "Please choose an option for "+
+        (group.name||"this add-on")+"."
+      );
+
       return;
+
     }
 
-    checked.forEach(input=>{
-      const o=(g.options||[])[Number(input.value)];
+    inputs.forEach(input=>{
 
-      if(o){
-        extra+=Number(o.price||0);
+      const option=
+        (group.options||[])[Number(input.value)];
 
-        selected.push({
-          group:g.name,
-          name:o.name,
-          price:Number(o.price||0)
-        });
-      }
+      if(!option)return;
+
+      const price=Number(option.price||0);
+
+      extra+=price;
+
+      selected.push({
+
+        group:group.name||"Options",
+
+        name:option.name,
+
+        price:price
+
+      });
+
     });
+
   }
 
   const item={
+
     id:Date.now().toString(),
-    productId:p.id,
-    name:p.name,
-    price:Number(p.price||0)+extra,
-    basePrice:Number(p.price||0),
-    vendorName:p.vendorName||"SefwiGo business",
-    vendorId:p.vendorId||null,
+
+    productId:product.id,
+
+    name:product.name,
+
+    price:Number(product.price||0)+extra,
+
+    basePrice:Number(product.price||0),
+
     qty:1,
+
+    vendorId:product.vendorId||null,
+
+    vendorName:product.vendorName||"SefwiGo Business",
+
     modifiers:selected,
-    photoUrl:p.photoUrl||null
+
+    photoUrl:product.photoUrl||null
+
   };
 
   cart.push(item);
-  localStorage.setItem("sefwiCart",JSON.stringify(cart));
 
-  closeModal("customizerModal");
-  closeModal("businessModal");
+  saveCart();
+
+  closeModal("customizeModal");
 
   showToast("Customized item added to cart.");
-  updateCartCount();
+
 };
 
-/* Cart */
-let cart=JSON.parse(localStorage.getItem("sefwiCart")||"[]");
 
-function updateCartCount(){
-  const el=$("cartCount");
-  if(el){
-    el.textContent=cart.reduce(
-      (n,x)=>n+Number(x.qty||1),0
-    );
-  }
-}
+/* =========================================================
+   CART RENDER
+========================================================= */
 
 function renderCart(){
+
   const body=$("cartBody");
 
   if(!cart.length){
+
     body.innerHTML=`
+
       <div class="empty">
-        <div style="font-size:42px">🛒</div>
+
+        <div style="font-size:45px">🛒</div>
+
         <strong>Your cart is empty.</strong>
-        <p>Add products from a business catalogue.</p>
-        <button class="small-btn primary-small"
-          style="max-width:220px"
-          onclick="closeModal('cartModal');scrollToId('businesses')">
-          Browse Food
-        </button>
-      </div>`;
+
+        <p>Add food or products from a SefwiGo business.</p>
+
+      </div>
+
+    `;
+
     return;
+
   }
 
   const total=cart.reduce(
-    (n,x)=>n+Number(x.price||0)*Number(x.qty||1),0
+    (sum,item)=>
+      sum+
+      Number(item.price||0)*
+      Number(item.qty||1),
+    0
   );
 
   body.innerHTML=`
-    ${cart.map((x,i)=>`
-      <div class="my-property">
 
-        <div class="thumb" style="overflow:hidden">
-          ${
-            x.photoUrl
-            ? `<img src="${escapeHtml(x.photoUrl)}"
-                style="width:100%;height:100%;object-fit:cover"
-                alt="">`
-            : "🍔"
-          }
-        </div>
+    ${cart.map((item,index)=>`
 
-        <div style="min-width:0;flex:1">
-          <h4>${escapeHtml(x.name)}</h4>
+      <div class="cart-item">
+
+        ${
+          item.photoUrl
+          ? `<img class="cart-thumb"
+               src="${escapeHtml(item.photoUrl)}"
+               alt="">`
+          : `<div class="cart-thumb"
+               style="display:grid;place-items:center;font-size:30px">
+               🍲
+             </div>`
+        }
+
+        <div class="cart-info">
+
+          <h4>
+            ${escapeHtml(item.name)}
+          </h4>
 
           <p>
-            GH₵ ${Number(x.price||0).toLocaleString()}
-            × ${Number(x.qty||1)}
-          </p>
-
-          <p class="help">
-            Vendor: ${escapeHtml(x.vendorName||"SefwiGo business")}
+            ${escapeHtml(item.vendorName||"SefwiGo Business")}
           </p>
 
           ${
-            x.modifiers?.length
-            ? `<p class="help">
-                ${x.modifiers.map(m=>
-                  `${escapeHtml(m.group)}: ${escapeHtml(m.name)}`
-                ).join(" • ")}
-              </p>`
+            item.modifiers?.length
+            ? `<p>
+                <strong>Options:</strong>
+                ${item.modifiers.map(m=>
+                  escapeHtml(m.group)+": "+
+                  escapeHtml(m.name)
+                ).join(", ")}
+               </p>`
             : ""
           }
+
+          <strong>
+            ${money(item.price)}
+          </strong>
+
+          <div style="display:flex;align-items:center;gap:7px;margin-top:8px">
+
+            <button class="small-btn"
+              onclick="changeCartQty(${index},-1)">
+              −
+            </button>
+
+            <strong>${item.qty||1}</strong>
+
+            <button class="small-btn"
+              onclick="changeCartQty(${index},1)">
+              +
+            </button>
+
+          </div>
+
         </div>
 
-        <div class="row-actions">
-          <button class="dash-action"
-            onclick="changeCartQty(${i},-1)">−</button>
-          <strong>${Number(x.qty||1)}</strong>
-          <button class="dash-action"
-            onclick="changeCartQty(${i},1)">+</button>
-          <button class="dash-action danger"
-            onclick="removeCart(${i})">Remove</button>
-        </div>
+        <button class="remove-btn"
+          onclick="removeCart(${index})">
+          Remove
+        </button>
+
       </div>
+
     `).join("")}
 
-    <div class="dash-card" style="margin-top:14px;padding:16px">
+    <div class="dash-card"
+      style="padding:17px;margin-top:15px">
 
       <div style="display:flex;justify-content:space-between">
-        <strong>Total</strong>
+        <strong>Order Total</strong>
         <strong style="color:var(--green-dark)">
-          GH₵ ${total.toLocaleString()}
+          ${money(total)}
         </strong>
       </div>
 
-      <div class="form-grid" style="margin-top:12px">
+      <div class="form-grid" style="margin-top:15px">
 
         <div class="field">
-          <label>Your name *</label>
-          <input id="orderCustomerName" placeholder="Your name">
+
+          <label>Your Name *</label>
+
+          <input
+            id="orderCustomerName"
+            placeholder="Your name">
+
         </div>
 
         <div class="field">
+
           <label>Phone / WhatsApp *</label>
-          <input id="orderCustomerPhone" placeholder="+233...">
+
+          <input
+            id="orderCustomerPhone"
+            placeholder="+233...">
+
         </div>
 
         <div class="field full">
-          <label>Delivery address / location *</label>
-          <input id="orderAddress" placeholder="Where should we deliver?">
+
+          <label>Delivery Location *</label>
+
+          <input
+            id="orderAddress"
+            placeholder="Where should we deliver?">
+
         </div>
 
         <div class="field full">
-          <label>Order note</label>
-          <textarea id="orderNote" placeholder="Extra instructions"></textarea>
+
+          <label>Order Note</label>
+
+          <textarea
+            id="orderNote"
+            placeholder="Extra instructions"></textarea>
+
         </div>
 
       </div>
 
-      <button class="submit" style="margin-top:12px"
+      <button class="submit"
+        style="margin-top:13px"
         onclick="submitOrder()">
+
         📦 Place Order
+
       </button>
-    </div>`;
+
+    </div>
+
+  `;
+
 }
 
-window.changeCartQty=function(i,amount){
-  if(!cart[i])return;
 
-  cart[i].qty=Math.max(
-    1,
-    Number(cart[i].qty||1)+amount
-  );
-
-  localStorage.setItem(
-    "sefwiCart",
-    JSON.stringify(cart)
-  );
-
-  renderCart();
-  updateCartCount();
-};
-
-window.removeCart=function(i){
-  cart.splice(i,1);
-
-  localStorage.setItem(
-    "sefwiCart",
-    JSON.stringify(cart)
-  );
-
-  renderCart();
-  updateCartCount();
-};
+/* =========================================================
+   PLACE ORDER
+========================================================= */
 
 window.submitOrder=async function(){
+
   if(!cart.length){
+
     showToast("Your cart is empty.");
+
     return;
+
   }
 
   const name=$("orderCustomerName")?.value.trim();
+
   const phone=$("orderCustomerPhone")?.value.trim();
+
   const address=$("orderAddress")?.value.trim();
+
   const note=$("orderNote")?.value.trim();
 
   if(!name||!phone||!address){
-    showToast("Please enter your name, phone and delivery location.");
-    return;
-  }
 
-  if(!(await initFirebase())||!db){
     showToast(
-      "Order service could not connect to Firebase. Please try again."
+      "Please enter your name, phone and delivery location."
     );
+
     return;
+
   }
-
-  const groups={};
-
-  cart.forEach(x=>{
-    const key=x.vendorId||x.vendorName||"unassigned";
-
-    if(!groups[key])groups[key]=[];
-
-    groups[key].push(x);
-  });
 
   try{
-    for(const key of Object.keys(groups)){
-      const items=groups[key];
+
+    showToast("Connecting to SefwiGo...");
+
+    const user=await ensureAuth();
+
+    const grouped={};
+
+    cart.forEach(item=>{
+
+      const key=
+        item.vendorId||
+        item.vendorName||
+        "unknown";
+
+      if(!grouped[key]){
+        grouped[key]=[];
+      }
+
+      grouped[key].push(item);
+
+    });
+
+    for(const key of Object.keys(grouped)){
+
+      const items=grouped[key];
+
       const vendor=items[0];
 
       const total=items.reduce(
-        (n,x)=>n+Number(x.price||0)*Number(x.qty||1),
+        (sum,item)=>
+          sum+
+          Number(item.price||0)*
+          Number(item.qty||1),
         0
       );
 
-      await firestoreFns.addDoc(
-        firestoreFns.collection(db,"orders"),
+      await addDoc(
+        collection(db,"orders"),
         {
-          vendorId:vendor.vendorId||null,
-          vendorName:vendor.vendorName||"SefwiGo business",
 
-          items:items.map(x=>({
-            name:x.name,
-            price:Number(x.price||0),
-            qty:Number(x.qty||1),
-            productId:x.productId||null,
-            modifiers:x.modifiers||[],
-            basePrice:Number(
-              x.basePrice ?? x.price ?? 0
-            ),
-            photoUrl:x.photoUrl||null
+          vendorId:vendor.vendorId||null,
+
+          vendorName:
+            vendor.vendorName||
+            "SefwiGo Business",
+
+          items:items.map(item=>({
+
+            productId:item.productId||null,
+
+            name:item.name,
+
+            price:Number(item.price||0),
+
+            basePrice:
+              Number(
+                item.basePrice||
+                item.price||
+                0
+              ),
+
+            qty:Number(item.qty||1),
+
+            modifiers:item.modifiers||[],
+
+            photoUrl:item.photoUrl||null
+
           })),
 
           total,
 
+          customerUid:user.uid,
+
           customerName:name,
+
           customerPhone:phone,
+
           deliveryAddress:address,
-          note,
+
+          note:note||"",
 
           status:"new",
-          createdAt:firestoreFns.serverTimestamp(),
-          customerUid:auth?.currentUser?.uid||null
+
+          createdAt:serverTimestamp()
+
         }
+
       );
+
     }
 
     cart=[];
 
-    localStorage.setItem(
-      "sefwiCart",
-      "[]"
-    );
+    saveCart();
 
-    updateCartCount();
     closeModal("cartModal");
 
     showToast(
-      "Order placed successfully. The vendor can now see it in their dashboard."
+      "Order placed successfully!"
     );
 
-  }catch(e){
-    console.error(e);
+  }catch(error){
+
+    console.error("ORDER ERROR:",error);
 
     showToast(
-      "Could not place order. Check your Firebase Firestore setup."
+      "Order failed: "+
+      (error.message||"Check Firebase Firestore rules.")
     );
-  }
-};
 
-/* Search */
-window.performSearch=function(){
-  const q=($("searchInput")?.value||"")
-    .trim()
-    .toLowerCase();
-
-  if(!q){
-    renderBusinesses(businessesCache);
-    renderProperties();
-    return;
   }
 
-  const businesses=businessesCache.filter(b=>
-    `${b.name||""} ${b.category||""} ${b.location||""} ${b.description||""}`
-      .toLowerCase()
-      .includes(q)
-  );
-
-  renderBusinesses(businesses);
-
-  const props=getProperties().filter(p=>
-    `${p.title||""} ${p.location||""} ${p.type||""} ${p.description||""}`
-      .toLowerCase()
-      .includes(q)
-  );
-
-  renderProperties(props);
 };
 
-/* Services */
-window.filterService=function(category){
-  showToast(`${category} selected. Scroll down to choose a business.`);
-  scrollToId("businesses");
+
+/* =========================================================
+   PARTNER DASHBOARD
+========================================================= */
+
+window.openPartner=function(tab){
+
+  $("partnerModal").classList.add("open");
+
+  dashboardTab(
+    tab==="property"
+    ?"property"
+    :"overview"
+  );
+
 };
 
-window.addDemoItem=function(name){
-  const saved=
-    JSON.parse(
-      localStorage.getItem("sefwiBusiness")||"null"
-    )||{};
 
-  cart.push({
-    id:Date.now().toString(),
-    name:name+" — Demo meal",
-    price:35,
-    vendorName:name,
-    vendorId:saved.name===name?saved.ownerUid:null,
-    qty:1
+window.dashboardTab=function(tab){
+
+  const tabs={
+    overview:"tabOverview",
+    business:"tabBusiness",
+    products:"tabProducts",
+    orders:"tabOrders",
+    property:"tabProperty"
+  };
+
+  Object.values(tabs).forEach(id=>{
+    $(id)?.classList.remove("active");
   });
 
-  localStorage.setItem(
-    "sefwiCart",
-    JSON.stringify(cart)
-  );
+  $(tabs[tab])?.classList.add("active");
 
-  closeModal("businessModal");
-  showToast("Item added to cart.");
-  updateCartCount();
+  if(tab==="overview")renderDashboardOverview();
+
+  if(tab==="business")renderBusinessForm();
+
+  if(tab==="products")renderProductsManager();
+
+  if(tab==="orders")renderVendorOrders();
+
+  if(tab==="property")renderPropertyForm();
+
 };
 
-/* Parcel */
-window.openParcel=function(){
-  openModal("parcelModal");
-};
 
-window.sendParcelWhatsApp=function(){
-  const name=$("parcelName")?.value.trim()||"";
-  const phone=$("parcelPhone")?.value.trim()||"";
-  const pickup=$("parcelPickup")?.value.trim()||"";
-  const dropoff=$("parcelDropoff")?.value.trim()||"";
-  const description=$("parcelDescription")?.value.trim()||"";
+/* =========================================================
+   BUSINESS FORM
+========================================================= */
 
-  if(!name||!phone||!pickup||!dropoff){
-    showToast("Please complete the required parcel details.");
-    return;
+function getLocalBusiness(){
+
+  try{
+    return JSON.parse(
+      localStorage.getItem("sefwiBusiness")||"null"
+    )||{};
+  }catch{
+    return {};
   }
 
-  const message=
-`Hello SefwiGo, I want to send a parcel.
-
-Name: ${name}
-Phone: ${phone}
-Pickup: ${pickup}
-Delivery: ${dropoff}
-Parcel: ${description}`;
-
-  const whatsappNumber="233000000000";
-
-  window.open(
-    `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
-    "_blank"
-  );
-};
-
-/* Partner */
-window.openPartner=async function(){
-  openModal("partnerModal");
-
-  const b=getVendorBusiness();
-
-  if(b){
-    $("partnerIntro").style.display="none";
-    $("partnerDashboard").style.display="block";
-
-    $("dashboardBusinessName").textContent=
-      b.name||"Partner Dashboard";
-
-    dashboardTab("overview");
-  }else{
-    $("partnerIntro").style.display="block";
-    $("partnerDashboard").style.display="none";
-  }
-};
-
-function getVendorBusiness(){
-  return JSON.parse(
-    localStorage.getItem("sefwiBusiness")||"null"
-  );
 }
 
-window.startVendorSetup=function(){
-  $("partnerIntro").innerHTML=`
-    <div class="dash-card" style="padding:18px">
 
-      <h3 style="margin-top:0">Business Details</h3>
+function renderBusinessForm(){
+
+  const b=getLocalBusiness();
+
+  $("dashboardContent").innerHTML=`
+
+    <h3>🏪 My Business</h3>
+
+    <p class="help">
+      Your business information is used when customers view your menu.
+    </p>
+
+    <form onsubmit="saveBusiness(event)">
 
       <div class="form-grid">
 
-        <div class="field full">
-          <label>Business name *</label>
-          <input id="vendorName" placeholder="Your restaurant or business">
+        <div class="field">
+
+          <label>Business Name *</label>
+
+          <input
+            id="bizName"
+            required
+            value="${escapeHtml(b.name||"")}"
+            placeholder="e.g. Wiawso Chop Bar">
+
         </div>
 
         <div class="field">
+
           <label>Category *</label>
-          <select id="vendorCategory">
+
+          <select id="bizCategory">
+
             <option>Food</option>
             <option>Groceries</option>
-            <option>Restaurant</option>
+            <option>Drinks</option>
             <option>Services</option>
-            <option>Other</option>
+            <option>Parcels</option>
+
           </select>
+
         </div>
 
         <div class="field">
-          <label>Location *</label>
-          <input id="vendorLocation" placeholder="Sefwi Wiawso">
+
+          <label>Owner / Manager</label>
+
+          <input
+            id="bizOwner"
+            value="${escapeHtml(b.owner||"")}"
+            placeholder="Your name">
+
+        </div>
+
+        <div class="field">
+
+          <label>Phone / WhatsApp</label>
+
+          <input
+            id="bizPhone"
+            value="${escapeHtml(b.phone||"")}"
+            placeholder="+233...">
+
         </div>
 
         <div class="field full">
+
+          <label>Location</label>
+
+          <input
+            id="bizLocation"
+            value="${escapeHtml(b.location||"Sefwi Wiawso")}"
+            placeholder="Sefwi Wiawso">
+
+        </div>
+
+        <div class="field full">
+
           <label>Description</label>
-          <textarea id="vendorDescription"
-            placeholder="Tell customers about your business."></textarea>
+
+          <textarea
+            id="bizDescription"
+            placeholder="Tell customers about your business">${escapeHtml(b.description||"")}</textarea>
+
         </div>
 
       </div>
 
-      <button class="submit" style="margin-top:14px"
-        onclick="saveVendorBusiness()">
-        Create Business
+      <button class="submit" style="margin-top:14px">
+        Save Business
       </button>
-    </div>`;
-};
 
-window.saveVendorBusiness=async function(){
-  const name=$("vendorName")?.value.trim();
-  const category=$("vendorCategory")?.value;
-  const location=$("vendorLocation")?.value.trim();
-  const description=$("vendorDescription")?.value.trim();
+    </form>
 
-  if(!name||!category||!location){
-    showToast("Please enter the business name, category and location.");
-    return;
+  `;
+
+  if(b.category){
+    $("bizCategory").value=b.category;
   }
 
-  if(!(await initFirebase())||!db||!auth?.currentUser){
-    showToast("Vendor sign-in is required.");
-    return;
-  }
+}
+
+
+window.saveBusiness=async function(event){
+
+  event.preventDefault();
 
   try{
-    const data={
-      name,
-      category,
-      location,
-      description,
-      ownerUid:auth.currentUser.uid,
-      createdAt:firestoreFns.serverTimestamp()
-    };
 
-    const ref=await firestoreFns.addDoc(
-      firestoreFns.collection(db,"businesses"),
-      data
-    );
+    const user=await ensureAuth();
 
-    const local={
-      ...data,
-      id:ref.id
+    const business={
+
+      name:$("bizName").value.trim(),
+
+      category:$("bizCategory").value,
+
+      owner:$("bizOwner").value.trim(),
+
+      phone:$("bizPhone").value.trim(),
+
+      location:$("bizLocation").value.trim(),
+
+      description:$("bizDescription").value.trim(),
+
+      ownerUid:user.uid,
+
+      updatedAt:new Date().toISOString()
+
     };
 
     localStorage.setItem(
       "sefwiBusiness",
-      JSON.stringify(local)
+      JSON.stringify(business)
     );
 
-    $("partnerIntro").style.display="none";
-    $("partnerDashboard").style.display="block";
+    await addDoc(
+      collection(db,"businesses"),
+      {
+        ...business,
+        createdAt:serverTimestamp()
+      }
+    );
 
-    $("dashboardBusinessName").textContent=name;
+    showToast("Business saved successfully.");
 
     dashboardTab("overview");
 
     loadBusinesses();
 
-    showToast("Business created successfully.");
+  }catch(error){
 
-  }catch(e){
-    console.error(e);
+    console.error("BUSINESS ERROR:",error);
+
     showToast(
-      "Could not create business. Check Firestore permissions."
+      "Business save failed: "+
+      (error.message||"Check Firebase rules.")
     );
+
   }
+
 };
 
-/* Vendor dashboard */
-window.dashboardTab=function(tab){
-  document.querySelectorAll(".tab").forEach(x=>
-    x.classList.remove("active")
-  );
 
-  const map={
-    overview:"tabOverview",
-    products:"tabProducts",
-    orders:"tabOrders",
-    myproperties:"tabMyProperties"
-  };
-
-  if($(map[tab]))$(map[tab]).classList.add("active");
-
-  if(tab==="overview")renderDashboardOverview();
-  if(tab==="products")renderVendorProducts();
-  if(tab==="orders")renderVendorOrders();
-  if(tab==="myproperties")renderVendorProperties();
-};
+/* =========================================================
+   DASHBOARD OVERVIEW
+========================================================= */
 
 async function renderDashboardOverview(){
+
   const box=$("dashboardContent");
-  const b=getVendorBusiness();
-
-  if(!b){
-    box.innerHTML=`
-      <div class="empty">
-        <strong>No business found.</strong>
-      </div>`;
-    return;
-  }
-
-  let productCount=0;
-
-  if(await initFirebase()&&db&&auth?.currentUser){
-    try{
-      const snap=await firestoreFns.getDocs(
-        firestoreFns.query(
-          firestoreFns.collection(db,"products"),
-          firestoreFns.where(
-            "vendorId",
-            "==",
-            auth.currentUser.uid
-          )
-        )
-      );
-
-      productCount=snap.size;
-    }catch(e){}
-  }
 
   box.innerHTML=`
-    <div class="dash-stats">
+
+    <div class="stats">
 
       <div class="stat">
-        <b>${productCount}</b>
-        <span>Products</span>
+        <b id="overviewProducts">0</b>
+        <span>Dishes</span>
       </div>
 
       <div class="stat">
-        <b id="overviewOrderCount">0</b>
+        <b id="overviewOrders">0</b>
         <span>Orders</span>
       </div>
 
       <div class="stat">
-        <b>${getProperties().filter(p=>p.ownerUid===auth?.currentUser?.uid).length}</b>
+        <b id="overviewProperties">0</b>
         <span>Properties</span>
       </div>
 
     </div>
 
-    <div class="dash-card" style="padding:18px">
-      <h3 style="margin-top:0">Welcome, ${escapeHtml(b.name||"Partner")}</h3>
+    <div class="dash-card" style="padding:20px">
+
+      <h3>Welcome to your Partner Dashboard</h3>
+
       <p class="help">
-        Use Products to upload actual dish photos and create
-        add-on modifiers such as protein, extra soup and spice level.
+        Add your business, upload real photos of your dishes,
+        create add-on options and receive customer orders.
       </p>
 
-      <button class="small-btn primary-small"
-        onclick="dashboardTab('products')">
-        Manage Products
-      </button>
-    </div>`;
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:15px">
 
-  loadVendorOrderCount();
-}
+        <button class="submit"
+          onclick="dashboardTab('business')">
+          🏪 My Business
+        </button>
 
-async function getVendorProducts(){
-  if(!(await initFirebase())||!db||!auth?.currentUser)return [];
+        <button class="submit"
+          onclick="dashboardTab('products')">
+          🍲 Add Dish
+        </button>
 
-  const snap=await firestoreFns.getDocs(
-    firestoreFns.query(
-      firestoreFns.collection(db,"products"),
-      firestoreFns.where(
-        "vendorId",
-        "==",
-        auth.currentUser.uid
-      )
-    )
-  );
-
-  const arr=[];
-
-  snap.forEach(d=>{
-    arr.push({id:d.id,...d.data()});
-  });
-
-  return arr;
-}
-
-async function renderVendorProducts(){
-  const box=$("dashboardContent");
-
-  box.innerHTML=`
-    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px">
-      <div>
-        <h3 style="margin:0">🍲 Products</h3>
-        <p class="help">Upload actual dish photos and manage add-ons.</p>
       </div>
 
-      <button class="small-btn primary-small"
-        onclick="openProductForm()">
-        + Add Product
-      </button>
     </div>
 
-    <div id="vendorProductsList">
-      <div class="empty">
-        <div style="font-size:38px">🍲</div>
-        <strong>Loading products...</strong>
-      </div>
-    </div>`;
+  `;
 
   try{
-    const products=await getVendorProducts();
 
-    if(!products.length){
-      $("vendorProductsList").innerHTML=`
-        <div class="empty">
-          <div style="font-size:40px">🍽️</div>
-          <strong>No products yet.</strong>
-          <p>Add your first dish with a real photo.</p>
-        </div>`;
-      return;
-    }
+    const user=await ensureAuth();
 
-    $("vendorProductsList").innerHTML=`
-      <div class="product-grid">
-        ${products.map(renderVendorProduct).join("")}
-      </div>`;
-  }catch(e){
-    console.error(e);
+    const productSnap=await getDocs(
+      query(
+        collection(db,"products"),
+        where("vendorId","==",user.uid)
+      )
+    );
 
-    $("vendorProductsList").innerHTML=`
-      <div class="empty">
-        <strong>Could not load products.</strong>
-        <p>${escapeHtml(e.message||"Check Firestore permissions.")}</p>
-      </div>`;
+    $("overviewProducts").textContent=
+      productSnap.size;
+
+    const orderSnap=await getDocs(
+      query(
+        collection(db,"orders"),
+        where("vendorId","==",user.uid)
+      )
+    );
+
+    $("overviewOrders").textContent=
+      orderSnap.size;
+
+  }catch(error){
+
+    console.error(error);
+
   }
+
 }
 
-function renderVendorProduct(p){
-  const photo=p.photoUrl
-    ? `<img class="product-photo"
-        src="${escapeHtml(p.photoUrl)}"
-        alt="${escapeHtml(p.name)}">`
-    : `<div class="product-photo placeholder">🍲</div>`;
 
-  return `
-    <div class="product-card">
+/* =========================================================
+   PRODUCT MANAGER
+========================================================= */
 
-      ${photo}
-
-      <div class="product-body">
-        <h4>${escapeHtml(p.name)}</h4>
-
-        <p>${escapeHtml(p.description||"")}</p>
-
-        <div class="product-price">
-          GH₵ ${Number(p.price||0).toLocaleString()}
-        </div>
-
-        <div class="help" style="margin-top:7px">
-          ${(p.modifiers||[]).length}
-          modifier group(s)
-          • ${p.available!==false?"Available":"Unavailable"}
-        </div>
-
-        <div class="product-actions">
-          <button class="small-btn"
-            onclick='editProduct(${JSON.stringify(p).replace(/'/g,"&#39;")})'>
-            Edit
-          </button>
-
-          <button class="small-btn"
-            onclick="deleteProduct('${p.id}')">
-            Delete
-          </button>
-        </div>
-      </div>
-    </div>`;
-}
-
-/* Product form */
-let editingProductId=null;
 let modifierGroups=[];
 
-window.openProductForm=function(product=null){
-  editingProductId=product?.id||null;
 
-  $("productFormTitle").textContent=
-    product?"Edit Product":"Add Product";
+function resetModifiers(){
 
-  $("prodName").value=product?.name||"";
-  $("prodPrice").value=product?.price??"";
-  $("prodDescription").value=product?.description||"";
-  $("prodAvailable").value=
-    product?.available===false?"false":"true";
+  modifierGroups=[];
 
-  $("prodPhoto").value="";
-  $("productPhotoPreview").innerHTML=
-    product?.photoUrl
-    ? `<img src="${escapeHtml(product.photoUrl)}"
-        style="width:180px;height:130px;object-fit:cover;border-radius:14px"
-        alt="">`
-    : "";
+}
 
-  modifierGroups=JSON.parse(
-    JSON.stringify(product?.modifiers||[])
-  );
 
-  renderModifierBuilder();
+function modifierBuilderHtml(){
 
-  openModal("productFormModal");
-};
+  return `
 
-window.editProduct=function(p){
-  openProductForm(p);
-};
+    <div class="modifier-builder">
 
-window.previewProductPhoto=function(event){
-  const file=event.target.files?.[0];
+      <div style="display:flex;justify-content:space-between;align-items:center">
 
-  if(!file){
-    $("productPhotoPreview").innerHTML="";
-    return;
-  }
+        <strong>Add-on / Modifier Groups</strong>
 
-  if(!file.type.startsWith("image/")){
-    showToast("Please choose an image file.");
-    event.target.value="";
-    return;
-  }
+        <button type="button"
+          class="small-btn primary-small"
+          onclick="addModifierGroup()">
+          + Add Group
+        </button>
 
-  if(file.size>5*1024*1024){
-    showToast(
-      "Photo is too large. Please choose an image under 5 MB."
-    );
-    event.target.value="";
-    return;
-  }
+      </div>
 
-  const reader=new FileReader();
+      <p class="help">
+        Example: Protein, Extra Soup, Spice Level.
+      </p>
 
-  reader.onload=()=>{
-    $("productPhotoPreview").innerHTML=`
-      <img src="${reader.result}"
-        style="width:180px;height:130px;object-fit:cover;border-radius:14px"
-        alt="Preview">`;
-  };
+      <div id="modifierGroups"></div>
 
-  reader.readAsDataURL(file);
-};
+    </div>
 
-/* Modifier builder */
+  `;
+
+}
+
+
+function renderModifierGroups(){
+
+  const box=$("modifierGroups");
+
+  if(!box)return;
+
+  box.innerHTML=modifierGroups.map(
+    (group,index)=>`
+
+      <div class="modifier-group">
+
+        <div class="form-grid">
+
+          <div class="field">
+
+            <label>Group name</label>
+
+            <input
+              value="${escapeHtml(group.name||"")}"
+              oninput="modifierGroups[${index}].name=this.value"
+              placeholder="e.g. Protein">
+
+          </div>
+
+          <div style="display:flex;gap:15px;align-items:end">
+
+            <label class="checkbox-line">
+              <input
+                type="checkbox"
+                ${group.required?"checked":""}
+                onchange="modifierGroups[${index}].required=this.checked">
+              Required
+            </label>
+
+            <label class="checkbox-line">
+              <input
+                type="checkbox"
+                ${group.multiple?"checked":""}
+                onchange="modifierGroups[${index}].multiple=this.checked">
+              Multiple
+            </label>
+
+          </div>
+
+        </div>
+
+        <div style="margin-top:10px">
+
+          <strong style="font-size:12px">
+            Options
+          </strong>
+
+          ${(group.options||[]).map(
+            (option,optionIndex)=>`
+
+              <div class="option-row">
+
+                <input
+                  value="${escapeHtml(option.name||"")}"
+                  placeholder="Option name"
+                  oninput="modifierGroups[${index}].options[${optionIndex}].name=this.value">
+
+                <input
+                  type="number"
+                  min="0"
+                  value="${Number(option.price||0)}"
+                  placeholder="Price"
+                  oninput="modifierGroups[${index}].options[${optionIndex}].price=Number(this.value||0)">
+
+                <button type="button"
+                  class="remove-btn"
+                  onclick="removeModifierOption(${index},${optionIndex})">
+                  ×
+                </button>
+
+              </div>
+
+          `).join("")}
+
+        </div>
+
+        <div style="display:flex;gap:8px;margin-top:10px">
+
+          <button type="button"
+            class="small-btn"
+            onclick="addModifierOption(${index})">
+            + Option
+          </button>
+
+          <button type="button"
+            class="small-btn"
+            style="color:#a12c2c"
+            onclick="removeModifierGroup(${index})">
+            Remove Group
+          </button>
+
+        </div>
+
+      </div>
+
+    `
+  ).join("");
+
+}
+
+
 window.addModifierGroup=function(){
+
   modifierGroups.push({
-    name:"New Add-on",
+
+    name:"",
+
     required:false,
+
     multiple:false,
+
     options:[
-      {name:"Option 1",price:0}
+      {
+        name:"",
+        price:0
+      }
     ]
+
   });
 
-  renderModifierBuilder();
+  renderModifierGroups();
+
 };
 
-window.quickModifier=function(type){
-  if(type==="Protein"){
-    modifierGroups.push({
+
+window.removeModifierGroup=function(index){
+
+  modifierGroups.splice(index,1);
+
+  renderModifierGroups();
+
+};
+
+
+window.addModifierOption=function(index){
+
+  modifierGroups[index].options.push({
+    name:"",
+    price:0
+  });
+
+  renderModifierGroups();
+
+};
+
+
+window.removeModifierOption=function(groupIndex,optionIndex){
+
+  modifierGroups[groupIndex].options.splice(
+    optionIndex,
+    1
+  );
+
+  renderModifierGroups();
+
+};
+
+
+function addQuickModifierGroups(){
+
+  modifierGroups=[
+
+    {
       name:"Protein",
       required:true,
       multiple:false,
       options:[
         {name:"Chicken",price:10},
-        {name:"Beef",price:15}
+        {name:"Beef",price:15},
+        {name:"Fish",price:12}
       ]
-    });
-  }
+    },
 
-  if(type==="Extra Soup"){
-    modifierGroups.push({
+    {
       name:"Extra Soup",
       required:false,
       multiple:true,
@@ -2382,11 +3012,9 @@ window.quickModifier=function(type){
         {name:"Extra soup",price:5},
         {name:"Large soup",price:10}
       ]
-    });
-  }
+    },
 
-  if(type==="Spice Level"){
-    modifierGroups.push({
+    {
       name:"Spice Level",
       required:true,
       multiple:false,
@@ -2395,750 +3023,622 @@ window.quickModifier=function(type){
         {name:"Medium",price:0},
         {name:"Hot",price:0}
       ]
-    });
-  }
+    }
 
-  renderModifierBuilder();
-};
+  ];
 
-function renderModifierBuilder(){
-  const box=$("modifierBuilderList");
+  renderModifierGroups();
 
-  if(!modifierGroups.length){
-    box.innerHTML=`
-      <div class="empty" style="padding:25px 5px">
-        No add-ons yet.
-        <br>
-        Use the quick buttons above or add a group.
-      </div>`;
-    return;
-  }
-
-  box.innerHTML=modifierGroups.map((g,gi)=>`
-    <div class="modifier-group">
-
-      <div class="modifier-group-head">
-        <strong>Modifier Group ${gi+1}</strong>
-
-        <button type="button"
-          class="dash-action danger"
-          onclick="removeModifierGroup(${gi})">
-          Remove
-        </button>
-      </div>
-
-      <div class="field" style="margin-top:10px">
-        <label>Group name</label>
-        <input
-          value="${escapeHtml(g.name||"")}"
-          oninput="updateModifierGroup(${gi},'name',this.value)"
-          placeholder="e.g. Protein">
-      </div>
-
-      <div style="display:flex;flex-wrap:wrap;gap:15px;margin-top:9px">
-
-        <label class="check-row">
-          <input
-            type="checkbox"
-            ${g.required?"checked":""}
-            onchange="updateModifierGroup(${gi},'required',this.checked)">
-          Required
-        </label>
-
-        <label class="check-row">
-          <input
-            type="checkbox"
-            ${g.multiple?"checked":""}
-            onchange="updateModifierGroup(${gi},'multiple',this.checked)">
-          Allow multiple selections
-        </label>
-
-      </div>
-
-      <div style="margin-top:12px">
-        <strong style="font-size:13px">Options</strong>
-
-        ${(g.options||[]).map((o,oi)=>`
-          <div class="modifier-option">
-
-            <input
-              value="${escapeHtml(o.name||"")}"
-              oninput="updateModifierOption(${gi},${oi},'name',this.value)"
-              placeholder="Option name">
-
-            <input
-              type="number"
-              min="0"
-              step="0.01"
-              value="${Number(o.price||0)}"
-              oninput="updateModifierOption(${gi},${oi},'price',this.value)"
-              placeholder="Price">
-
-            <button type="button"
-              class="dash-action danger"
-              onclick="removeModifierOption(${gi},${oi})">
-              ×
-            </button>
-
-          </div>
-        `).join("")}
-
-        <button type="button"
-          class="addon-quick"
-          style="margin-top:10px"
-          onclick="addModifierOption(${gi})">
-          + Add Option
-        </button>
-      </div>
-    </div>
-  `).join("");
 }
 
-window.updateModifierGroup=function(i,key,value){
-  if(!modifierGroups[i])return;
-  modifierGroups[i][key]=value;
-};
 
-window.removeModifierGroup=function(i){
-  modifierGroups.splice(i,1);
-  renderModifierBuilder();
-};
+window.addQuickModifierGroups=addQuickModifierGroups;
 
-window.addModifierOption=function(gi){
-  if(!modifierGroups[gi])return;
 
-  modifierGroups[gi].options??=[];
+function renderProductsManager(){
 
-  modifierGroups[gi].options.push({
-    name:"New option",
-    price:0
-  });
+  resetModifiers();
 
-  renderModifierBuilder();
-};
+  $("dashboardContent").innerHTML=`
 
-window.removeModifierOption=function(gi,oi){
-  if(!modifierGroups[gi]?.options)return;
-
-  modifierGroups[gi].options.splice(oi,1);
-  renderModifierBuilder();
-};
-
-window.updateModifierOption=function(gi,oi,key,value){
-  const option=modifierGroups[gi]?.options?.[oi];
-
-  if(!option)return;
-
-  option[key]=key==="price"
-    ? Number(value||0)
-    : value;
-};
-
-/* Save Product */
-window.saveProduct=async function(e){
-  e.preventDefault();
-
-  const b=getVendorBusiness();
-  const file=$("prodPhoto")?.files?.[0];
-
-  if(!editingProductId&&!file){
-    return showToast("Please choose a real dish photo.");
-  }
-
-  if(file){
-    if(!file.type.startsWith("image/")){
-      return showToast("Please choose an image file.");
-    }
-
-    if(file.size>5*1024*1024){
-      return showToast(
-        "Photo is too large. Please choose an image under 5 MB."
-      );
-    }
-  }
-
-  if(!(await initFirebase())||!db||!auth?.currentUser){
-    return showToast("Vendor sign-in is required.");
-  }
-
-  try{
-    showToast(
-      file
-      ? "Uploading dish photo…"
-      : "Saving product…"
-    );
-
-    let photoUrl=null;
-
-    if(editingProductId){
-      try{
-        const existing=await firestoreFns.getDoc(
-          firestoreFns.doc(
-            db,
-            "products",
-            editingProductId
-          )
-        );
-
-        if(existing.exists()){
-          photoUrl=existing.data().photoUrl||null;
-        }
-      }catch(e){}
-    }
-
-    if(file){
-      const safeName=file.name.replace(
-        /[^a-zA-Z0-9._-]/g,
-        "_"
-      );
-
-      const storageRef=storageFns.ref(
-        storage,
-        `productPhotos/${auth.currentUser.uid}/${Date.now()}_${safeName}`
-      );
-
-      const uploadResult=await storageFns.uploadBytes(
-        storageRef,
-        file,
-        {
-          contentType:file.type
-        }
-      );
-
-      photoUrl=await storageFns.getDownloadURL(
-        uploadResult.ref
-      );
-    }
-
-    const data={
-      name:$("prodName").value.trim(),
-      price:Number($("prodPrice").value||0),
-      description:$("prodDescription").value.trim(),
-      photoUrl,
-      modifiers:modifierGroups,
-      vendorId:auth.currentUser.uid,
-      vendorName:b?.name||"SefwiGo business",
-      available:$("prodAvailable").value==="true",
-      updatedAt:firestoreFns.serverTimestamp()
-    };
-
-    if(!data.name){
-      showToast("Please enter the product name.");
-      return;
-    }
-
-    if(editingProductId){
-      await firestoreFns.updateDoc(
-        firestoreFns.doc(
-          db,
-          "products",
-          editingProductId
-        ),
-        data
-      );
-
-      showToast("Product updated successfully.");
-    }else{
-      await firestoreFns.addDoc(
-        firestoreFns.collection(db,"products"),
-        {
-          ...data,
-          createdAt:firestoreFns.serverTimestamp()
-        }
-      );
-
-      showToast("Product added successfully.");
-    }
-
-    closeModal("productFormModal");
-
-    editingProductId=null;
-    modifierGroups=[];
-
-    renderVendorProducts();
-
-  }catch(e){
-    console.error(e);
-
-    if(e.code==="storage/unauthorized"){
-      showToast(
-        "Photo upload failed: Firebase Storage permission was denied."
-      );
-    }else if(e.code==="storage/unknown"){
-      showToast(
-        "Photo upload failed. Check that Firebase Storage is enabled."
-      );
-    }else{
-      showToast(
-        "Could not save product. Check Firebase Storage and Firestore rules."
-      );
-    }
-  }
-};
-
-window.deleteProduct=async function(id){
-  if(!confirm("Delete this product?"))return;
-
-  if(!(await initFirebase())||!db)return;
-
-  try{
-    await firestoreFns.deleteDoc(
-      firestoreFns.doc(db,"products",id)
-    );
-
-    showToast("Product deleted.");
-    renderVendorProducts();
-
-  }catch(e){
-    console.error(e);
-    showToast(
-      "Could not delete product. Check Firestore permissions."
-    );
-  }
-};
-
-/* Properties */
-function getProperties(){
-  return JSON.parse(
-    localStorage.getItem("sefwiProperties")||"[]"
-  );
-}
-
-function saveProperties(props){
-  localStorage.setItem(
-    "sefwiProperties",
-    JSON.stringify(props)
-  );
-}
-
-function renderProperties(props=getProperties()){
-  const grid=$("propertyGrid");
-
-  if(!grid)return;
-
-  if(!props.length){
-    grid.innerHTML=`
-      <div class="empty" style="grid-column:1/-1">
-        <div style="font-size:42px">🏠</div>
-        <strong>No property listings yet.</strong>
-        <p>Partners can add rooms, houses and land from their dashboard.</p>
-      </div>`;
-    return;
-  }
-
-  grid.innerHTML=props.map(renderPropertyCard).join("");
-}
-
-function renderPropertyCard(p){
-  return `
-    <div class="property-card">
-
-      <div class="property-image">
-        ${p.photoUrl
-          ? `<img src="${escapeHtml(p.photoUrl)}"
-              style="width:100%;height:100%;object-fit:cover"
-              alt="${escapeHtml(p.title||"Property")}">`
-          : "🏠"}
-      </div>
-
-      <div class="property-body">
-        <h3>${escapeHtml(p.title||"Property")}</h3>
-
-        <div class="property-meta">
-          <span>📍 ${escapeHtml(p.location||"Sefwi Wiawso")}</span>
-          <span>🏷️ ${escapeHtml(p.type||"Property")}</span>
-        </div>
-
-        <div class="property-price">
-          GH₵ ${Number(p.price||0).toLocaleString()}
-        </div>
-
-        <div class="property-actions">
-          <button class="small-btn primary-small"
-            onclick='openProperty(${JSON.stringify(p).replace(/'/g,"&#39;")})'>
-            View
-          </button>
-        </div>
-      </div>
-    </div>`;
-}
-
-window.openProperty=function(p){
-  $("propertyModalTitle").textContent=p.title||"Property";
-
-  $("propertyModalBody").innerHTML=`
-    ${
-      p.photoUrl
-      ? `<img src="${escapeHtml(p.photoUrl)}"
-          style="width:100%;height:260px;object-fit:cover;border-radius:18px"
-          alt="${escapeHtml(p.title||"Property")}">`
-      : `<div style="height:220px;border-radius:18px;background:var(--green-soft);display:grid;place-items:center;font-size:80px">🏠</div>`
-    }
-
-    <h2>${escapeHtml(p.title||"Property")}</h2>
+    <h3>🍲 My Dishes</h3>
 
     <p class="help">
-      📍 ${escapeHtml(p.location||"Sefwi Wiawso")}
-      • ${escapeHtml(p.type||"Property")}
+      Upload a clear photo of the actual dish prepared by your business.
+      Maximum photo size is 5 MB.
     </p>
 
-    <div class="property-price">
-      GH₵ ${Number(p.price||0).toLocaleString()}
-    </div>
-
-    <p style="line-height:1.6">
-      ${escapeHtml(p.description||"No description provided.")}
-    </p>
-
-    <button class="submit" onclick='contactProperty(${JSON.stringify(p).replace(/'/g,"&#39;")})'>
-      Contact Owner
-    </button>
-  `;
-
-  openModal("propertyModal");
-};
-
-window.contactProperty=function(p){
-  const phone=p.phone||"233000000000";
-
-  const message=
-`Hello, I am interested in this SefwiGo property:
-
-Property: ${p.title||""}
-Location: ${p.location||""}
-Price: GH₵ ${p.price||""}`;
-
-  window.open(
-    `https://wa.me/${phone.replace(/\D/g,"")}?text=${encodeURIComponent(message)}`,
-    "_blank"
-  );
-};
-
-window.openAddProperty=function(){
-  $("dashboardContent").innerHTML=`
-    <div class="dash-card" style="padding:18px">
-      <h3 style="margin-top:0">Add Property</h3>
+    <form onsubmit="saveProduct(event)">
 
       <div class="form-grid">
 
-        <div class="field full">
-          <label>Property title *</label>
-          <input id="propertyTitle" placeholder="e.g. Single room for rent">
+        <div class="field">
+
+          <label>Dish name *</label>
+
+          <input
+            id="prodName"
+            required
+            placeholder="e.g. Fufu with Light Soup">
+
         </div>
 
         <div class="field">
-          <label>Property type</label>
-          <select id="propertyType">
-            <option>Room</option>
-            <option>House</option>
-            <option>Apartment</option>
-            <option>Land</option>
-            <option>Shop</option>
-          </select>
-        </div>
 
-        <div class="field">
-          <label>Price *</label>
-          <input id="propertyPrice" type="number" min="0">
+          <label>Price GH₵ *</label>
+
+          <input
+            id="prodPrice"
+            type="number"
+            min="0"
+            required
+            placeholder="50">
+
         </div>
 
         <div class="field full">
-          <label>Location *</label>
-          <input id="propertyLocation" placeholder="Sefwi Wiawso">
-        </div>
 
-        <div class="field full">
           <label>Description</label>
-          <textarea id="propertyDescription"></textarea>
+
+          <textarea
+            id="prodDescription"
+            placeholder="Describe the dish"></textarea>
+
         </div>
 
         <div class="field full">
-          <label>Photo URL</label>
-          <input id="propertyPhotoUrl" placeholder="Optional image URL">
+
+          <label>Real dish photo *</label>
+
+          <input
+            id="prodPhoto"
+            type="file"
+            accept="image/*"
+            required
+            onchange="previewProductPhoto(this)">
+
+          <img
+            id="productPhotoPreview"
+            class="photo-preview"
+            alt="Dish preview">
+
+          <div class="help">
+            Use a clear, well-lit photo of the actual food.
+            JPG, PNG or WebP recommended. Maximum 5 MB.
+          </div>
+
         </div>
 
       </div>
 
-      <button class="submit" style="margin-top:14px"
-        onclick="saveProperty()">
-        Save Property
-      </button>
-    </div>`;
-};
+      ${modifierBuilderHtml()}
 
-window.saveProperty=function(){
-  const title=$("propertyTitle")?.value.trim();
-  const type=$("propertyType")?.value;
-  const price=Number($("propertyPrice")?.value||0);
-  const location=$("propertyLocation")?.value.trim();
-  const description=$("propertyDescription")?.value.trim();
-  const photoUrl=$("propertyPhotoUrl")?.value.trim();
+      <div style="display:flex;gap:8px;margin-top:10px">
 
-  if(!title||!location){
-    showToast("Please enter the property title and location.");
-    return;
-  }
-
-  const property={
-    id:Date.now().toString(),
-    title,
-    type,
-    price,
-    location,
-    description,
-    photoUrl,
-    ownerUid:auth?.currentUser?.uid||null,
-    available:true
-  };
-
-  const props=getProperties();
-  props.unshift(property);
-  saveProperties(props);
-
-  showToast("Property added.");
-  dashboardTab("myproperties");
-  renderProperties();
-};
-
-async function renderVendorProperties(){
-  const box=$("dashboardContent");
-
-  box.innerHTML=`
-    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px">
-      <div>
-        <h3 style="margin:0">🏠 My Properties</h3>
-        <p class="help">Manage your property listings.</p>
-      </div>
-
-      <button class="small-btn primary-small"
-        onclick="openAddProperty()">
-        + Add Property
-      </button>
-    </div>`;
-
-  const props=getProperties().filter(
-    p=>p.ownerUid===auth?.currentUser?.uid
-  );
-
-  if(!props.length){
-    box.innerHTML+=`
-      <div class="empty">
-        <div style="font-size:40px">🏠</div>
-        <strong>No property listings.</strong>
-        <p>Add a property for customers to discover.</p>
-      </div>`;
-    return;
-  }
-
-  box.innerHTML+=props.map(p=>`
-    <div class="my-property">
-
-      <div class="thumb">
-        ${p.photoUrl
-          ? `<img src="${escapeHtml(p.photoUrl)}"
-              style="width:100%;height:100%;object-fit:cover;border-radius:13px">`
-          : "🏠"}
-      </div>
-
-      <div style="min-width:0;flex:1">
-        <h4>${escapeHtml(p.title)}</h4>
-        <p>
-          GH₵ ${Number(p.price||0).toLocaleString()}
-          • ${escapeHtml(p.location)}
-        </p>
-
-        <span class="status ${p.available!==false?"on":"off"}">
-          ${p.available!==false?"Available":"Unavailable"}
-        </span>
-      </div>
-
-      <div class="row-actions">
-        <button class="dash-action"
-          onclick="toggleProperty('${p.id}')">
-          ${p.available!==false?"Mark unavailable":"Make available"}
+        <button type="button"
+          class="small-btn"
+          onclick="addQuickModifierGroups()">
+          ⚡ Add Protein / Soup / Spice
         </button>
 
-        <button class="dash-action danger"
-          onclick="deleteProperty('${p.id}')">
+      </div>
+
+      <button class="submit" style="margin-top:15px">
+        📸 Upload Dish & Publish
+      </button>
+
+    </form>
+
+    <hr style="border:0;border-top:1px solid var(--line);margin:25px 0">
+
+    <h3>Published Dishes</h3>
+
+    <div id="myProductsList">
+      <div class="empty">Loading your dishes...</div>
+    </div>
+
+  `;
+
+  renderModifierGroups();
+
+  loadMyProducts();
+
+}
+
+
+window.previewProductPhoto=function(input){
+
+  const file=input.files?.[0];
+
+  const preview=$("productPhotoPreview");
+
+  if(!file){
+
+    preview.classList.remove("show");
+
+    return;
+
+  }
+
+  if(!file.type.startsWith("image/")){
+
+    showToast("Please choose an image file.");
+
+    input.value="";
+
+    return;
+
+  }
+
+  if(file.size>5*1024*1024){
+
+    showToast("Photo must be smaller than 5 MB.");
+
+    input.value="";
+
+    return;
+
+  }
+
+  preview.src=URL.createObjectURL(file);
+
+  preview.classList.add("show");
+
+};
+
+
+window.saveProduct=async function(event){
+
+  event.preventDefault();
+
+  const name=$("prodName").value.trim();
+
+  const price=Number($("prodPrice").value||0);
+
+  const description=$("prodDescription").value.trim();
+
+  const file=$("prodPhoto").files?.[0];
+
+  if(!name){
+
+    showToast("Enter the dish name.");
+
+    return;
+
+  }
+
+  if(price<0){
+
+    showToast("Enter a valid price.");
+
+    return;
+
+  }
+
+  if(!file){
+
+    showToast("Please choose a real dish photo.");
+
+    return;
+
+  }
+
+  if(!file.type.startsWith("image/")){
+
+    showToast("Please choose an image file.");
+
+    return;
+
+  }
+
+  if(file.size>5*1024*1024){
+
+    showToast("Photo is too large. Maximum is 5 MB.");
+
+    return;
+
+  }
+
+  for(const group of modifierGroups){
+
+    if(!group.name.trim()){
+
+      showToast("Every modifier group needs a name.");
+
+      return;
+
+    }
+
+    if(!group.options.length){
+
+      showToast(
+        "Add at least one option to "+
+        group.name
+      );
+
+      return;
+
+    }
+
+    for(const option of group.options){
+
+      if(!option.name.trim()){
+
+        showToast(
+          "Every modifier option needs a name."
+        );
+
+        return;
+
+      }
+
+    }
+
+  }
+
+  try{
+
+    const user=await ensureAuth();
+
+    showToast("Uploading dish photo...");
+
+    const fileName=
+      Date.now()+
+      "_"+
+      slug(file.name);
+
+    const storagePath=
+      `productPhotos/${user.uid}/${fileName}`;
+
+    const storageRef=
+      ref(storage,storagePath);
+
+    await uploadBytes(
+      storageRef,
+      file,
+      {
+        contentType:file.type
+      }
+    );
+
+    const photoUrl=
+      await getDownloadURL(storageRef);
+
+    showToast("Saving dish...");
+
+    const business=getLocalBusiness();
+
+    await addDoc(
+      collection(db,"products"),
+      {
+
+        name,
+
+        price,
+
+        description,
+
+        photoUrl,
+
+        storagePath,
+
+        modifiers:
+          modifierGroups.map(group=>({
+
+            name:group.name.trim(),
+
+            required:Boolean(group.required),
+
+            multiple:Boolean(group.multiple),
+
+            options:
+              group.options.map(option=>({
+
+                name:option.name.trim(),
+
+                price:Number(option.price||0)
+
+              }))
+
+          })),
+
+        vendorId:user.uid,
+
+        vendorName:
+          business.name||
+          "SefwiGo Business",
+
+        available:true,
+
+        createdAt:serverTimestamp()
+
+      }
+    );
+
+    showToast(
+      "Dish published successfully!"
+    );
+
+    event.target.reset();
+
+    $("productPhotoPreview")
+      .classList.remove("show");
+
+    resetModifiers();
+
+    renderModifierGroups();
+
+    loadMyProducts();
+
+  }catch(error){
+
+    console.error("PRODUCT UPLOAD ERROR:",error);
+
+    let message=
+      error.message||
+      "Unknown Firebase error.";
+
+    if(
+      error.code===
+      "storage/unauthorized"
+    ){
+      message=
+        "Storage permission denied. Update your Firebase Storage Rules.";
+    }
+
+    if(
+      error.code===
+      "storage/unknown"
+    ){
+      message=
+        "Firebase Storage failed. Make sure Storage is enabled.";
+    }
+
+    showToast(
+      "Dish upload failed: "+message
+    );
+
+  }
+
+};
+
+
+/* =========================================================
+   LOAD VENDOR PRODUCTS
+========================================================= */
+
+async function loadMyProducts(){
+
+  const box=$("myProductsList");
+
+  if(!box)return;
+
+  try{
+
+    const user=await ensureAuth();
+
+    const snapshot=await getDocs(
+      query(
+        collection(db,"products"),
+        where("vendorId","==",user.uid)
+      )
+    );
+
+    const products=snapshot.docs.map(d=>({
+      id:d.id,
+      ...d.data()
+    }));
+
+    if(!products.length){
+
+      box.innerHTML=`
+        <div class="empty">
+          <div style="font-size:40px">🍲</div>
+          <strong>No dishes published yet.</strong>
+          <p>Add your first dish above.</p>
+        </div>
+      `;
+
+      return;
+
+    }
+
+    box.innerHTML=products.map(product=>`
+
+      <div class="product-admin">
+
+        ${
+          product.photoUrl
+          ? `<img
+              class="admin-thumb"
+              src="${escapeHtml(product.photoUrl)}"
+              alt="">`
+          : `<div class="admin-thumb"
+              style="display:grid;place-items:center;font-size:30px">
+              🍲
+             </div>`
+        }
+
+        <div class="admin-info">
+
+          <h4>
+            ${escapeHtml(product.name)}
+          </h4>
+
+          <p>
+            ${money(product.price)}
+          </p>
+
+          <p>
+            ${
+              product.modifiers?.length
+              ? product.modifiers.length+
+                " modifier group(s)"
+              : "No add-ons"
+            }
+          </p>
+
+          <span class="status">
+            Published
+          </span>
+
+        </div>
+
+        <button class="remove-btn"
+          onclick="deleteProduct('${product.id}','${escapeHtml(product.storagePath||"")}')">
           Delete
         </button>
+
       </div>
 
-    </div>
-  `).join("");
+    `).join("");
+
+  }catch(error){
+
+    console.error(error);
+
+    box.innerHTML=`
+      <div class="empty">
+        Could not load dishes.
+      </div>
+    `;
+
+  }
+
 }
 
-window.toggleProperty=function(id){
-  const props=getProperties().map(
-    p=>p.id===id
-      ? {...p,available:p.available===false}
-      : p
-  );
 
-  saveProperties(props);
-  dashboardTab("myproperties");
-  renderProperties();
+window.deleteProduct=async function(
+  productId,
+  storagePath
+){
 
-  showToast("Property availability updated.");
+  if(!confirm("Delete this dish?"))return;
+
+  try{
+
+    await deleteDoc(
+      doc(db,"products",productId)
+    );
+
+    if(storagePath){
+
+      try{
+
+        await deleteObject(
+          ref(storage,storagePath)
+        );
+
+      }catch(storageError){
+
+        console.warn(
+          "Photo delete warning:",
+          storageError
+        );
+
+      }
+
+    }
+
+    showToast("Dish deleted.");
+
+    loadMyProducts();
+
+  }catch(error){
+
+    console.error(error);
+
+    showToast(
+      "Could not delete dish: "+
+      error.message
+    );
+
+  }
+
 };
 
-window.deleteProperty=function(id){
-  if(!confirm("Delete this property listing?"))return;
 
-  saveProperties(
-    getProperties().filter(p=>p.id!==id)
-  );
+/* =========================================================
+   VENDOR ORDERS
+========================================================= */
 
-  dashboardTab("myproperties");
-  renderProperties();
+async function renderVendorOrders(){
 
-  showToast("Property deleted.");
-};
-
-/* Vendor orders */
-async function getVendorOrders(){
-  if(!(await initFirebase())||!db||!auth?.currentUser){
-    return [];
-  }
-
-  const b=
-    JSON.parse(
-      localStorage.getItem("sefwiBusiness")||"null"
-    )||{};
-
-  const qs=[];
-
-  if(auth.currentUser.uid){
-    qs.push(
-      firestoreFns.getDocs(
-        firestoreFns.query(
-          firestoreFns.collection(db,"orders"),
-          firestoreFns.where(
-            "vendorId",
-            "==",
-            auth.currentUser.uid
-          )
-        )
-      )
-    );
-  }
-
-  if(b.name){
-    qs.push(
-      firestoreFns.getDocs(
-        firestoreFns.query(
-          firestoreFns.collection(db,"orders"),
-          firestoreFns.where(
-            "vendorName",
-            "==",
-            b.name
-          )
-        )
-      )
-    );
-  }
-
-  const snaps=await Promise.all(qs);
-  const map=new Map();
-
-  snaps.forEach(sn=>{
-    sn.forEach(d=>{
-      map.set(
-        d.id,
-        {
-          id:d.id,
-          ...d.data()
-        }
-      );
-    });
-  });
-
-  return [...map.values()].sort((a,b)=>{
-    const ta=a.createdAt?.seconds||0;
-    const tb=b.createdAt?.seconds||0;
-    return tb-ta;
-  });
-}
-
-function orderDate(o){
-  return o.createdAt?.toDate
-    ? o.createdAt.toDate().toLocaleString()
-    : "Just now";
-}
-
-window.renderVendorOrders=async function(){
   const box=$("dashboardContent");
 
   box.innerHTML=`
     <div class="empty">
-      <div style="font-size:38px">📦</div>
-      <strong>Loading orders…</strong>
-      <p>Checking your Firebase order inbox.</p>
-    </div>`;
-
-  if(!(await initFirebase())||!auth?.currentUser){
-    box.innerHTML=`
-      <div class="empty">
-        <div style="font-size:38px">🔐</div>
-        <strong>Vendor sign-in required</strong>
-        <p>
-          Sign in with the vendor's Firebase account
-          before opening Orders.
-        </p>
-        <button class="submit"
-          style="max-width:260px"
-          onclick="openAccount()">
-          Sign in
-        </button>
-      </div>`;
-    return;
-  }
+      <div style="font-size:38px">⏳</div>
+      Loading customer orders...
+    </div>
+  `;
 
   try{
-    const orders=await getVendorOrders();
 
-    const counts={
-      new:0,
-      accepted:0,
-      preparing:0,
-      ready:0,
-      completed:0,
-      cancelled:0
-    };
+    const user=await ensureAuth();
 
-    orders.forEach(o=>{
-      counts[o.status||"new"]++;
-    });
+    const snapshot=await getDocs(
+      query(
+        collection(db,"orders"),
+        where("vendorId","==",user.uid)
+      )
+    );
 
-    const badge=$("orderBadge");
+    const orders=snapshot.docs.map(d=>({
+      id:d.id,
+      ...d.data()
+    }));
 
-    if(badge){
-      badge.textContent=counts.new;
-      badge.style.display=
-        counts.new?"inline-block":"none";
-    }
+    const newCount=
+      orders.filter(
+        order=>(order.status||"new")==="new"
+      ).length;
+
+    $("orderBadge").textContent=newCount;
+
+    $("orderBadge").style.display=
+      newCount?"inline-block":"none";
 
     if(!orders.length){
+
       box.innerHTML=`
         <div class="empty">
+
           <div style="font-size:42px">📦</div>
+
           <strong>No orders yet.</strong>
+
           <p>
-            New customer orders will appear here automatically.
+            Customer orders will appear here automatically.
           </p>
-        </div>`;
+
+        </div>
+      `;
+
       return;
+
     }
 
+    orders.sort((a,b)=>{
+
+      const aa=a.createdAt?.seconds||0;
+      const bb=b.createdAt?.seconds||0;
+
+      return bb-aa;
+
+    });
+
     box.innerHTML=`
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px">
+
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+
         <div>
-          <h3 style="margin:0">📦 Customer Orders</h3>
+          <h3 style="margin:0">
+            📦 Customer Orders
+          </h3>
+
           <p class="help">
-            New: ${counts.new}
-            • Accepted: ${counts.accepted}
-            • Preparing: ${counts.preparing}
-            • Ready: ${counts.ready}
+            New orders: ${newCount}
           </p>
         </div>
 
@@ -3146,339 +3646,809 @@ window.renderVendorOrders=async function(){
           onclick="renderVendorOrders()">
           ↻ Refresh
         </button>
+
       </div>
 
-      ${orders.map(renderOrderCard).join("")}`;
-  }catch(e){
-    console.error(e);
+      ${orders.map(renderOrderCard).join("")}
+
+    `;
+
+  }catch(error){
+
+    console.error("ORDER LOAD ERROR:",error);
 
     box.innerHTML=`
-      <div class="empty">
-        <strong>Could not load orders.</strong>
-        <p>${escapeHtml(e.message||"Check Firestore permissions.")}</p>
-      </div>`;
-  }
-};
 
-function renderOrderCard(o){
-  const status=o.status||"new";
+      <div class="empty">
+
+        <div style="font-size:40px">⚠️</div>
+
+        <strong>Could not load orders.</strong>
+
+        <p>
+          ${escapeHtml(error.message)}
+        </p>
+
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+function renderOrderCard(order){
+
+  const status=order.status||"new";
 
   const next={
-    new:["accepted","Accept"],
-    accepted:["preparing","Start preparing"],
-    preparing:["ready","Mark ready"],
-    ready:["completed","Complete"],
+
+    new:["accepted","Accept Order"],
+
+    accepted:["preparing","Start Preparing"],
+
+    preparing:["ready","Mark Ready"],
+
+    ready:["completed","Complete Order"],
+
     completed:[null,"Completed"],
+
     cancelled:[null,"Cancelled"]
+
   }[status]||[null,""];
 
-  return `
-    <div class="dash-card" style="padding:18px;margin-bottom:12px">
+  const date=
+    order.createdAt?.toDate
+    ?order.createdAt.toDate().toLocaleString()
+    :"Recently";
 
-      <div style="display:flex;justify-content:space-between;gap:12px;align-items:start">
+  return `
+
+    <div class="order-card">
+
+      <div class="order-top">
 
         <div>
+
           <strong>
-            Order #${escapeHtml(o.id.slice(-6).toUpperCase())}
+            Order #${escapeHtml(
+              order.id.slice(-6).toUpperCase()
+            )}
           </strong>
 
-          <p class="help" style="margin:5px 0">
-            ${escapeHtml(orderDate(o))}
-            • ${escapeHtml(o.customerName||"Customer")}
-            • ${escapeHtml(o.customerPhone||"")}
+          <p class="help">
+            ${escapeHtml(date)}
           </p>
+
         </div>
 
         <span class="status ${
-          status==="completed"
-          ?"on"
-          :status==="cancelled"
-          ?"off"
+          status==="cancelled"
+          ?"cancelled"
           :""
         }">
+
           ${escapeHtml(status.toUpperCase())}
+
         </span>
 
       </div>
 
-      <div style="margin:12px 0">
+      <div style="margin:13px 0">
 
-        ${(o.items||[]).map(x=>`
-          <div style="padding:7px 0;border-bottom:1px solid #f0f2f1">
+        <strong>
+          Customer
+        </strong>
 
-            <div style="display:flex;justify-content:space-between;gap:10px">
-              <span>
-                ${escapeHtml(x.name)}
-                × ${Number(x.qty||1)}
-              </span>
+        <p class="help">
+          ${escapeHtml(order.customerName||"")}
+          <br>
+          ${escapeHtml(order.customerPhone||"")}
+          <br>
+          📍 ${escapeHtml(order.deliveryAddress||"")}
+        </p>
+
+      </div>
+
+      <div>
+
+        ${(order.items||[]).map(item=>`
+
+          <div style="
+            display:flex;
+            justify-content:space-between;
+            gap:10px;
+            padding:7px 0;
+            border-bottom:1px solid #edf1ef">
+
+            <div>
 
               <strong>
-                GH₵ ${(Number(x.price||0)*Number(x.qty||1)).toLocaleString()}
+                ${escapeHtml(item.name)}
               </strong>
+
+              <div class="help">
+                Qty: ${Number(item.qty||1)}
+              </div>
+
+              ${
+                item.modifiers?.length
+                ? `<div class="help">
+                    ${item.modifiers.map(
+                      modifier=>
+                      escapeHtml(modifier.group)+
+                      ": "+
+                      escapeHtml(modifier.name)
+                    ).join(" • ")}
+                   </div>`
+                :""
+              }
+
             </div>
 
-            ${
-              x.modifiers?.length
-              ? `<div class="help" style="margin-top:4px">
-                  ${x.modifiers.map(m=>
-                    `${escapeHtml(m.group)}: ${escapeHtml(m.name)}`
-                  ).join(" • ")}
-                </div>`
-              : ""
-            }
+            <strong>
+              ${money(
+                Number(item.price||0)*
+                Number(item.qty||1)
+              )}
+            </strong>
 
           </div>
+
         `).join("")}
 
-        <div style="display:flex;justify-content:space-between;margin-top:10px">
-          <strong>Total</strong>
-          <strong>
-            GH₵ ${Number(o.total||0).toLocaleString()}
-          </strong>
+      </div>
+
+      <div style="
+        display:flex;
+        justify-content:space-between;
+        margin-top:12px">
+
+        <strong>Total</strong>
+
+        <strong style="color:var(--green-dark)">
+          ${money(order.total)}
+        </strong>
+
+      </div>
+
+      ${
+        order.note
+        ? `<p class="help">
+             📝 ${escapeHtml(order.note)}
+           </p>`
+        :""
+      }
+
+      ${
+        next[0]
+        ? `<button
+            class="submit"
+            style="margin-top:13px"
+            onclick="updateOrderStatus('${order.id}','${next[0]}')">
+            ${next[1]}
+           </button>`
+        :""
+      }
+
+      ${
+        status!=="completed" &&
+        status!=="cancelled"
+        ? `<button
+             class="small-btn"
+             style="margin-top:8px"
+             onclick="updateOrderStatus('${order.id}','cancelled')">
+             Cancel Order
+           </button>`
+        :""
+      }
+
+    </div>
+
+  `;
+
+}
+
+
+window.updateOrderStatus=async function(
+  orderId,
+  status
+){
+
+  try{
+
+    await updateDoc(
+      doc(db,"orders",orderId),
+      {
+        status,
+        updatedAt:serverTimestamp()
+      }
+    );
+
+    showToast(
+      "Order status updated."
+    );
+
+    renderVendorOrders();
+
+  }catch(error){
+
+    console.error(error);
+
+    showToast(
+      "Could not update order: "+
+      error.message
+    );
+
+  }
+
+};
+
+
+/* =========================================================
+   PROPERTY
+========================================================= */
+
+function getProperties(){
+
+  try{
+
+    return JSON.parse(
+      localStorage.getItem("sefwiProperties")||"[]"
+    );
+
+  }catch{
+
+    return [];
+
+  }
+
+}
+
+
+function saveProperties(properties){
+
+  localStorage.setItem(
+    "sefwiProperties",
+    JSON.stringify(properties)
+  );
+
+  renderProperties();
+
+}
+
+
+function renderProperties(){
+
+  const grid=$("propertyGrid");
+
+  const properties=
+    getProperties()
+      .filter(p=>p.available!==false);
+
+  if(!properties.length){
+
+    grid.innerHTML=`
+
+      <div class="empty"
+        style="grid-column:1/-1">
+
+        <div style="font-size:42px">🏠</div>
+
+        <strong>
+          No properties published yet.
+        </strong>
+
+        <p>
+          Be the first partner to list a property.
+        </p>
+
+        <button
+          class="submit"
+          style="max-width:270px"
+          onclick="openPartner('property')">
+          List Property
+        </button>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+  grid.innerHTML=properties.map((p,index)=>`
+
+    <article class="property-card">
+
+      <div class="property-image">
+        ${
+          p.type==="Land"
+          ?"🌳"
+          :p.type==="Commercial"
+          ?"🏢"
+          :p.type==="Room"
+          ?"🛏️"
+          :"🏠"
+        }
+      </div>
+
+      <div class="property-body">
+
+        <span class="chip">
+          ${escapeHtml(p.purpose)}
+        </span>
+
+        <h3>
+          ${escapeHtml(p.title)}
+        </h3>
+
+        <div class="property-price">
+          ${money(p.price)}
+        </div>
+
+        <div class="property-meta">
+          📍 ${escapeHtml(p.location)}
+          ${
+            p.bedrooms
+            ?" • 🛏️ "+p.bedrooms+" bed"
+            :""
+          }
+          ${
+            p.bathrooms
+            ?" • 🚿 "+p.bathrooms+" bath"
+            :""
+          }
+        </div>
+
+        <div class="property-actions">
+
+          <button class="small-btn"
+            onclick="showProperty(${index})">
+            Details
+          </button>
+
+          <button class="small-btn primary-small"
+            onclick="contactProperty(${index})">
+            Contact
+          </button>
+
         </div>
 
       </div>
 
-      <p class="help">
-        📍 ${escapeHtml(o.deliveryAddress||"")}
-        ${o.note
-          ? `<br>📝 ${escapeHtml(o.note)}`
-          : ""}
-      </p>
+    </article>
 
-      ${
-        next[0]
-        ? `<button class="submit"
-            onclick="updateOrderStatus('${o.id}','${next[0]}')">
-            ${next[1]}
-          </button>`
-        : ""
-      }
+  `).join("");
 
-      ${
-        status!=="completed"&&status!=="cancelled"
-        ? `<button class="small-btn"
-            style="margin-top:8px;width:100%"
-            onclick="updateOrderStatus('${o.id}','cancelled')">
-            Cancel order
-          </button>`
-        : ""
-      }
-
-    </div>`;
 }
 
-window.updateOrderStatus=async function(id,status){
-  if(!(await initFirebase())||!db){
-    return showToast("Firebase is not ready.");
-  }
 
-  try{
-    await firestoreFns.updateDoc(
-      firestoreFns.doc(db,"orders",id),
-      {
-        status,
-        updatedAt:firestoreFns.serverTimestamp()
-      }
-    );
+window.showProperty=function(index){
 
-    showToast("Order status updated.");
-    renderVendorOrders();
+  const properties=
+    getProperties()
+      .filter(p=>p.available!==false);
 
-  }catch(e){
-    console.error(e);
+  const p=properties[index];
 
-    showToast(
-      "Could not update order. Check Firestore permissions."
-    );
-  }
+  if(!p)return;
+
+  alert(
+
+    `${p.title}
+
+${p.purpose} • ${p.type}
+
+Price: ${money(p.price)}
+
+Location: ${p.location}
+
+Bedrooms: ${p.bedrooms||"—"}
+
+Bathrooms: ${p.bathrooms||"—"}
+
+${p.description||""}
+
+Owner: ${p.owner||"—"}
+
+Phone: ${p.phone||"—"}`
+
+  );
+
 };
 
-async function loadVendorOrderCount(){
-  try{
-    const orders=await getVendorOrders();
 
-    const n=orders.filter(
-      o=>(o.status||"new")==="new"
-    ).length;
+window.contactProperty=function(index){
 
-    const b=$("orderBadge");
-    const s=$("overviewOrderCount");
+  const properties=
+    getProperties()
+      .filter(p=>p.available!==false);
 
-    if(b){
-      b.textContent=n;
-      b.style.display=n?"inline-block":"none";
-    }
+  const p=properties[index];
 
-    if(s)s.textContent=orders.length;
+  if(!p)return;
 
-  }catch(e){
-    const s=$("overviewOrderCount");
-    if(s)s.textContent="0";
+  const phone=
+    String(p.phone||"")
+      .replace(/\D/g,"");
+
+  if(!phone){
+
+    showToast(
+      "No phone number was added."
+    );
+
+    return;
+
   }
+
+  window.open(
+    `https://wa.me/${phone}?text=${
+      encodeURIComponent(
+        "Hello, I found your property on SefwiGo: "+
+        p.title
+      )
+    }`,
+    "_blank"
+  );
+
+};
+
+
+function renderPropertyForm(){
+
+  $("dashboardContent").innerHTML=`
+
+    <h3>🏠 Register Property</h3>
+
+    <p class="help">
+      List your house, apartment, room, land or commercial property.
+    </p>
+
+    <form onsubmit="publishProperty(event)">
+
+      <div class="form-grid">
+
+        <div class="field">
+
+          <label>Purpose *</label>
+
+          <select id="propPurpose">
+
+            <option>For Rent</option>
+            <option>For Sale</option>
+
+          </select>
+
+        </div>
+
+        <div class="field">
+
+          <label>Property Type *</label>
+
+          <select id="propType">
+
+            <option>House</option>
+            <option>Apartment</option>
+            <option>Room</option>
+            <option>Land</option>
+            <option>Commercial</option>
+
+          </select>
+
+        </div>
+
+        <div class="field full">
+
+          <label>Title *</label>
+
+          <input
+            id="propTitle"
+            required
+            placeholder="e.g. 3 Bedroom House at Wiawso">
+
+        </div>
+
+        <div class="field">
+
+          <label>Price GH₵ *</label>
+
+          <input
+            id="propPrice"
+            type="number"
+            min="0"
+            required>
+
+        </div>
+
+        <div class="field">
+
+          <label>Location *</label>
+
+          <input
+            id="propLocation"
+            required
+            placeholder="Sefwi Wiawso">
+
+        </div>
+
+        <div class="field">
+
+          <label>Bedrooms</label>
+
+          <input
+            id="propBedrooms"
+            type="number"
+            min="0">
+
+        </div>
+
+        <div class="field">
+
+          <label>Bathrooms</label>
+
+          <input
+            id="propBathrooms"
+            type="number"
+            min="0">
+
+        </div>
+
+        <div class="field">
+
+          <label>Owner / Agent *</label>
+
+          <input
+            id="propOwner"
+            required>
+
+        </div>
+
+        <div class="field">
+
+          <label>Phone / WhatsApp *</label>
+
+          <input
+            id="propPhone"
+            required
+            placeholder="+233...">
+
+        </div>
+
+        <div class="field full">
+
+          <label>Description</label>
+
+          <textarea
+            id="propDescription"
+            placeholder="Describe the property"></textarea>
+
+        </div>
+
+      </div>
+
+      <button class="submit" style="margin-top:14px">
+        Publish Property
+      </button>
+
+    </form>
+
+  `;
+
 }
 
-/* Account / Firebase authentication */
-let confirmationResult=null;
-let recaptchaVerifier=null;
 
-window.openAccount=async function(){
-  openModal("accountModal");
+window.publishProperty=function(event){
 
-  if(await initFirebase()&&auth?.currentUser){
+  event.preventDefault();
+
+  const properties=getProperties();
+
+  const item={
+
+    id:Date.now().toString(),
+
+    purpose:$("propPurpose").value,
+
+    type:$("propType").value,
+
+    title:$("propTitle").value.trim(),
+
+    price:Number($("propPrice").value||0),
+
+    location:$("propLocation").value.trim(),
+
+    bedrooms:$("propBedrooms").value,
+
+    bathrooms:$("propBathrooms").value,
+
+    owner:$("propOwner").value.trim(),
+
+    phone:$("propPhone").value.trim(),
+
+    description:$("propDescription").value.trim(),
+
+    available:true,
+
+    createdAt:new Date().toISOString()
+
+  };
+
+  properties.unshift(item);
+
+  saveProperties(properties);
+
+  showToast(
+    "Property published."
+  );
+
+  dashboardTab("overview");
+
+};
+
+
+/* =========================================================
+   ACCOUNT
+========================================================= */
+
+window.openAccount=function(){
+
+  $("accountModal").classList.add("open");
+
+  renderAccount();
+
+};
+
+
+function renderAccount(){
+
+  const user=auth?.currentUser;
+
+  if(user){
+
     $("accountBody").innerHTML=`
-      <div class="dash-card" style="padding:18px">
+
+      <div style="text-align:center;padding:15px">
 
         <div style="font-size:50px">👤</div>
 
-        <h3>
-          ${auth.currentUser.isAnonymous
-            ?"Guest account"
-            :"Signed in"}
-        </h3>
+        <h2>SefwiGo Account</h2>
 
         <p class="help">
-          ${
-            auth.currentUser.phoneNumber
-            ? escapeHtml(auth.currentUser.phoneNumber)
-            : "You are currently using SefwiGo as a guest."
-          }
+          Account connected successfully.
         </p>
-
-        ${
-          auth.currentUser.isAnonymous
-          ? `<p class="help">
-              Sign in with your phone number to connect
-              your orders to your account.
-            </p>`
-          : ""
-        }
-
-        <button class="small-btn primary-small"
-          style="width:100%;margin-top:10px"
-          onclick="openPartner()">
-          Open Partner Dashboard
-        </button>
-
-      </div>`;
-  }
-};
-
-window.phoneSignIn=async function(){
-  const phone=$("phoneInput")?.value.trim();
-
-  if(!phone){
-    showToast("Enter your phone number.");
-    return;
-  }
-
-  if(!(await initFirebase())||!auth){
-    showToast("Firebase authentication is unavailable.");
-    return;
-  }
-
-  try{
-    if(!recaptchaVerifier){
-      recaptchaVerifier=new authFns.RecaptchaVerifier(
-        auth,
-        "accountBody",
-        {
-          size:"invisible"
-        }
-      );
-
-      await recaptchaVerifier.render();
-    }
-
-    confirmationResult=
-      await authFns.signInWithPhoneNumber(
-        auth,
-        phone,
-        recaptchaVerifier
-      );
-
-    $("accountBody").innerHTML=`
-      <div class="dash-card" style="padding:18px">
-
-        <h3>Enter verification code</h3>
 
         <p class="help">
-          A verification code was sent to ${escapeHtml(phone)}.
+          User ID:
+          ${escapeHtml(user.uid)}
         </p>
-
-        <div class="field">
-          <label>Verification code</label>
-          <input id="verificationCode"
-            inputmode="numeric"
-            placeholder="123456">
-        </div>
 
         <button class="submit"
-          style="margin-top:12px"
-          onclick="verifyPhoneCode()">
-          Verify
+          onclick="logoutAccount()">
+          Sign Out
         </button>
 
-      </div>`;
+      </div>
 
-  }catch(e){
-    console.error(e);
+    `;
 
-    showToast(
-      "Phone sign-in failed. Check Firebase Phone Authentication and reCAPTCHA setup."
-    );
-  }
-};
-
-window.verifyPhoneCode=async function(){
-  const code=$("verificationCode")?.value.trim();
-
-  if(!code||!confirmationResult){
-    showToast("Enter the verification code.");
     return;
+
   }
 
-  try{
-    await confirmationResult.confirm(code);
+  $("accountBody").innerHTML=`
 
-    showToast("Signed in successfully.");
-    openAccount();
+    <div style="text-align:center;padding:10px">
 
-  }catch(e){
-    console.error(e);
-    showToast("Invalid verification code.");
-  }
-};
+      <div style="font-size:50px">👤</div>
 
-/* Product / local fallback initialization */
-function seedDemoBusinessIfNeeded(){
-  const existing=
-    JSON.parse(
-      localStorage.getItem("sefwiBusiness")||"null"
-    );
+      <h2>Welcome to SefwiGo</h2>
 
-  if(existing)return;
+      <p class="help">
+        Connect your account to place orders and use partner features.
+      </p>
 
-  /*
-    This is only a local fallback.
-    Real businesses are loaded from Firestore.
-  */
+      <button class="submit"
+        onclick="connectAccount()">
+
+        Continue
+
+      </button>
+
+    </div>
+
+  `;
+
 }
 
-/* Close modals when clicking outside */
-document.querySelectorAll(".modal").forEach(modal=>{
-  modal.addEventListener("click",e=>{
-    if(e.target===modal){
-      modal.classList.remove("open");
-    }
-  });
-});
 
-seedDemoBusinessIfNeeded();
+window.connectAccount=async function(){
+
+  try{
+
+    await ensureAuth();
+
+    renderAccount();
+
+    showToast(
+      "Account connected successfully."
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    showToast(
+      "Account connection failed: "+
+      error.message
+    );
+
+  }
+
+};
+
+
+window.logoutAccount=async function(){
+
+  try{
+
+    await signOut(auth);
+
+    renderAccount();
+
+    showToast("Signed out.");
+
+  }catch(error){
+
+    showToast(
+      "Could not sign out."
+    );
+
+  }
+
+};
+
+
+/* =========================================================
+   SERVICE FILTER
+========================================================= */
+
+window.filterService=function(category){
+
+  if(category==="Food"){
+
+    scrollToId("businesses");
+
+    showToast(
+      "Choose a food business to see its menu."
+    );
+
+    return;
+
+  }
+
+  showToast(
+    category+
+    " service is being prepared for SefwiGo."
+  );
+
+};
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
 
 renderProperties();
+
 updateCartCount();
 
+loadBusinesses();
+
 </script>
+
 </body>
 </html>
