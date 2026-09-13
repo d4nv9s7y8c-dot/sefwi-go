@@ -3,81 +3,4313 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SefwiGo</title>
+
+  <title>SefwiGo — Local Marketplace</title>
+
+  <meta name="theme-color" content="#087f5b">
+
   <style>
+    :root {
+      --green: #087f5b;
+      --green-dark: #063d2e;
+      --green-light: #e8f7f1;
+      --background: #f4fbf8;
+      --white: #ffffff;
+      --text: #16332a;
+      --muted: #6d7e78;
+      --border: #e4eee9;
+      --danger: #d64545;
+      --warning: #8a681f;
+      --shadow: 0 10px 30px rgba(6, 61, 46, 0.09);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       margin: 0;
-      padding: 20px;
-      background-color: #f4f4f9;
-      color: #333;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--background);
+      color: var(--text);
     }
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      background: #fff;
-      padding: 20px;
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* HEADER */
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      max-width: 1150px;
+      margin: auto;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo {
+      font-weight: 900;
+      font-size: 26px;
+      color: var(--green);
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--green-dark);
+    }
+
+    .search {
+      flex: 1;
+      max-width: 550px;
+    }
+
+    .search input {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      outline: none;
+      background: #f8fcfa;
+    }
+
+    .search input:focus {
+      border-color: var(--green);
+    }
+
+    /* BUTTONS */
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 15px;
       border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      font-weight: 800;
+      cursor: pointer;
     }
-    h1 {
-      color: #2c3e50;
+
+    .btn-primary {
+      background: var(--green);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--green-dark);
+    }
+
+    .btn-secondary {
+      background: var(--green-light);
+      color: var(--green-dark);
+    }
+
+    .btn-danger {
+      background: #fff0f0;
+      color: var(--danger);
+    }
+
+    .btn-small {
+      padding: 8px 11px;
+      font-size: 13px;
+    }
+
+    /* MAIN */
+
+    .container {
+      max-width: 1150px;
+      margin: auto;
+      padding: 22px 18px 110px;
+    }
+
+    /* HERO */
+
+    .hero {
+      background: linear-gradient(
+        135deg,
+        var(--green-dark),
+        var(--green)
+      );
+      color: white;
+      border-radius: 24px;
+      padding: 34px;
+      margin-bottom: 26px;
+    }
+
+    .hero h1 {
+      margin: 0 0 9px;
+      font-size: clamp(31px, 5vw, 48px);
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 680px;
+      line-height: 1.6;
+      opacity: 0.92;
+    }
+
+    /* SECTIONS */
+
+    .section {
+      margin: 28px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    /* CATEGORIES */
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 13px;
+    }
+
+    .category {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 19px;
       text-align: center;
+      font-weight: 800;
+      box-shadow: var(--shadow);
+      color: var(--text);
     }
-    .menu-item {
+
+    .category:hover {
+      transform: translateY(-2px);
+    }
+
+    .category .icon {
+      display: block;
+      font-size: 31px;
+      margin-bottom: 8px;
+    }
+
+    /* GRID */
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    /* CARDS */
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin: 8px 0;
+    }
+
+    .card p {
+      line-height: 1.55;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .price {
+      color: var(--green);
+      font-weight: 900;
+      font-size: 18px;
+      margin-top: 5px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: var(--green-light);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .badge.off {
+      background: #f0f2f1;
+      color: #69746f;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 13px;
+    }
+
+    .empty {
+      padding: 30px;
+      text-align: center;
+      border: 1px dashed #cbdcd5;
+      border-radius: 16px;
+      color: var(--muted);
+      background: white;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 28px;
+      color: var(--muted);
+    }
+
+    /* BOTTOM NAV */
+
+    .bottom-nav {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 30;
+      background: white;
+      border-top: 1px solid var(--border);
+    }
+
+    .bottom-inner {
+      max-width: 700px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .nav-btn {
+      background: white;
+      padding: 12px 5px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .nav-btn.active {
+      color: var(--green);
+    }
+
+    /* MODALS */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      z-index: 50;
+      padding: 12px;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .sheet {
+      background: white;
+      width: min(780px, 100%);
+      max-height: 92vh;
+      overflow-y: auto;
+      border-radius: 24px;
+      padding: 22px;
+    }
+
+    .modal-head {
       display: flex;
       justify-content: space-between;
-      padding: 12px 0;
-      border-bottom: 1px solid #eee;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 18px;
     }
-    .menu-item:last-child {
+
+    .modal-head h2 {
+      margin: 0;
+    }
+
+    .close {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #edf3f0;
+      font-size: 21px;
+    }
+
+    /* TABS */
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      margin-bottom: 19px;
+    }
+
+    .tab {
+      white-space: nowrap;
+      padding: 10px 13px;
+      border-radius: 11px;
+      background: #f0f5f2;
+      font-weight: 800;
+    }
+
+    .tab.active {
+      background: var(--green);
+      color: white;
+    }
+
+    /* FORMS */
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .field {
+      margin-bottom: 12px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      outline: none;
+      background: #fbfdfc;
+    }
+
+    .field textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--green);
+    }
+
+    /* DASHBOARD */
+
+    .dashboard-summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .stat {
+      background: #f5faf8;
+      border-radius: 14px;
+      padding: 15px;
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--green);
+      font-size: 22px;
+      margin-top: 4px;
+    }
+
+    /* PRODUCT ROW */
+
+    .product-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .product-row:last-child {
       border-bottom: none;
     }
-    #status {
-      text-align: center;
-      color: #666;
-      font-style: italic;
+
+    .product-main {
+      min-width: 0;
+      flex: 1;
     }
-  </style>
-</head>
-<body>
 
-  <div class="container">
-    <h1>SefwiGo Menu</h1>
-    <div id="status">Loading menu items...</div>
-    <div id="menu-list"></div>
-  </div>
+    .product-main h4 {
+      margin: 0 0 6px;
+    }
 
-  <script>
-    const sampleMenu = [
-      { name: "Jollof Rice & Chicken", price: "GH₵ 40.00" },
-      { name: "Fried Rice & Fish", price: "GH₵ 45.00" },
-      { name: "Fufu with Goat Light Soup", price: "GH₵ 50.00" },
-      { name: "Banku with Tilapia", price: "GH₵ 55.00" }
-    ];
+    .product-actions {
+      display: flex;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
 
-    function loadMenu() {
-      const menuList = document.getElementById('menu-list');
-      const status = document.getElementById('status');
+    .notice {
+      background: #fff8e8;
+      border: 1px solid #f3dfac;
+      padding: 12px;
+      border-radius: 12px;
+      color: var(--warning);
+      font-size: 13px;
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
 
-      try {
-        status.style.display = 'none';
-        menuList.innerHTML = '';
+    /* TOAST */
 
-        sampleMenu.forEach(item => {
-          const div = document.createElement('div');
-          div.className = 'menu-item';
-          div.innerHTML = `<strong>${item.name}</strong> <span>${item.price}</span>`;
-          menuList.appendChild(div);
-        });
-      } catch (error) {
-        status.style.display = 'block';
-        status.textContent = 'Could not load the menu. Please refresh.';
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 82px;
+      transform: translateX(-50%) translateY(20px);
+      background: #16332a;
+      color: white;
+      padding: 12px 17px;
+      border-radius: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.25s;
+      z-index: 100;
+      font-weight: 700;
+      max-width: calc(100% - 30px);
+      text-align: center;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid var(--border);
+      margin: 22px 0;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 760px) {
+
+      .header-inner {
+        flex-wrap: wrap;
+      }
+
+      .search {
+        order: 3;
+        flex-basis: 100%;
+        max-width: none;
+      }
+
+      .categories {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .dashboard-summary {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero {
+        padding: 26px;
+      }
+
+      .header-inner .btn {
+        padding: 9px 10px;
+        font-size: 12px;
+      }
+
+      .product-row {
+        flex-direction: column;
+      }
+
+      .product-actions {
+        justify-content: flex-start;
       }
     }
 
-    document.addEventListener('DOMContentLoaded', loadMenu);
-  </script>
+    @media (max-width: 420px) {
+      .dashboard-summary {
+        grid-template-columns: 1fr;
+      }
+
+      .logo {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+  <div class="header-inner">
+
+    <div class="logo">
+      Sefwi<span>Go</span>
+    </div>
+
+    <div class="search">
+      <input
+        id="searchInput"
+        type="text"
+        placeholder="Search businesses..."
+        oninput="searchBusinesses()"
+      >
+    </div>
+
+    <button
+      class="btn btn-primary"
+      onclick="openPartner()"
+    >
+      Become a Partner
+    </button>
+
+  </div>
+
+</header>
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="container">
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <h1>
+      Your local Sefwi marketplace.
+    </h1>
+
+    <p>
+      Discover businesses, products, food, properties and local services
+      around Sefwi Wiawso — all in one place.
+    </p>
+
+  </section>
+
+  <!-- CATEGORIES -->
+
+  <section class="section">
+
+    <div class="section-head">
+      <h2>Explore SefwiGo</h2>
+    </div>
+
+    <div class="categories">
+
+      <button
+        class="category"
+        onclick="showComingSoon('Food ordering')"
+      >
+        <span class="icon">🍲</span>
+        Food
+      </button>
+
+      <button
+        class="category"
+        onclick="showComingSoon('Groceries')"
+      >
+        <span class="icon">🛒</span>
+        Groceries
+      </button>
+
+      <button
+        class="category"
+        onclick="openParcel()"
+      >
+        <span class="icon">📦</span>
+        Parcels
+      </button>
+
+      <button
+        class="category"
+        onclick="openProperty()"
+      >
+        <span class="icon">🏠</span>
+        Property
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- BUSINESSES -->
+
+  <section class="section">
+
+    <div class="section-head">
+
+      <h2>
+        Popular Businesses
+      </h2>
+
+      <button
+        class="btn btn-secondary btn-small"
+        onclick="loadBusinesses()"
+      >
+        Refresh
+      </button>
+
+    </div>
+
+    <div
+      id="businessGrid"
+      class="grid"
+    >
+      <div class="loading">
+        Loading businesses...
+      </div>
+    </div>
+
+  </section>
+
+  <!-- PROPERTY -->
+
+  <section class="section">
+
+    <div class="section-head">
+
+      <h2>
+        Available Properties
+      </h2>
+
+      <button
+        class="btn btn-secondary btn-small"
+        onclick="openProperty()"
+      >
+        View all
+      </button>
+
+    </div>
+
+    <div
+      id="propertyGrid"
+      class="grid"
+    >
+      <div class="loading">
+        Loading properties...
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<!-- =========================
+     BOTTOM NAVIGATION
+========================= -->
+
+<nav class="bottom-nav">
+
+  <div class="bottom-inner">
+
+    <button
+      class="nav-btn active"
+      onclick="scrollHome()"
+    >
+      🏠
+      <br>
+      Home
+    </button>
+
+    <button
+      class="nav-btn"
+      onclick="openOrders()"
+    >
+      🧾
+      <br>
+      Orders
+    </button>
+
+    <button
+      class="nav-btn"
+      onclick="openPartner()"
+    >
+      🤝
+      <br>
+      Partner
+    </button>
+
+    <button
+      class="nav-btn"
+      onclick="openAccount()"
+    >
+      👤
+      <br>
+      Account
+    </button>
+
+  </div>
+
+</nav>
+
+<!-- =========================
+     PARTNER DASHBOARD
+========================= -->
+
+<div
+  id="partnerModal"
+  class="modal"
+>
+
+  <div class="sheet">
+
+    <div class="modal-head">
+
+      <div>
+
+        <h2>
+          Partner Dashboard
+        </h2>
+
+        <div class="muted">
+          Manage your SefwiGo business
+        </div>
+
+      </div>
+
+      <button
+        class="close"
+        onclick="closeModal('partnerModal')"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div id="partnerContent"></div>
+
+  </div>
+
+</div>
+
+<!-- =========================
+     BUSINESS MENU
+========================= -->
+
+<div
+  id="menuModal"
+  class="modal"
+>
+
+  <div class="sheet">
+
+    <div class="modal-head">
+
+      <div>
+
+        <h2 id="menuTitle">
+          Business Menu
+        </h2>
+
+        <div
+          id="menuSubtitle"
+          class="muted"
+        ></div>
+
+      </div>
+
+      <button
+        class="close"
+        onclick="closeModal('menuModal')"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div id="menuContent"></div>
+
+  </div>
+
+</div>
+
+<!-- =========================
+     PROPERTY
+========================= -->
+
+<div
+  id="propertyModal"
+  class="modal"
+>
+
+  <div class="sheet">
+
+    <div class="modal-head">
+
+      <div>
+
+        <h2>
+          Property
+        </h2>
+
+        <div class="muted">
+          Browse and manage local property listings
+        </div>
+
+      </div>
+
+      <button
+        class="close"
+        onclick="closeModal('propertyModal')"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div class="tabs">
+
+      <button
+        id="propBrowseTab"
+        class="tab active"
+        onclick="propertyTab('browse')"
+      >
+        Browse
+      </button>
+
+      <button
+        id="propRegisterTab"
+        class="tab"
+        onclick="propertyTab('register')"
+      >
+        Register Property
+      </button>
+
+      <button
+        id="propMineTab"
+        class="tab"
+        onclick="propertyTab('mine')"
+      >
+        My Properties
+      </button>
+
+    </div>
+
+    <div id="propertyContent"></div>
+
+  </div>
+
+</div>
+
+<!-- =========================
+     PARCEL
+========================= -->
+
+<div
+  id="parcelModal"
+  class="modal"
+>
+
+  <div class="sheet">
+
+    <div class="modal-head">
+
+      <h2>
+        Parcel Delivery
+      </h2>
+
+      <button
+        class="close"
+        onclick="closeModal('parcelModal')"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <p>
+      Request a local parcel pickup or delivery through WhatsApp.
+    </p>
+
+    <div class="notice">
+
+      Replace the demo WhatsApp number in the code with
+      your official SefwiGo business number before launch.
+
+    </div>
+
+    <button
+      class="btn btn-primary"
+      onclick="requestParcel()"
+    >
+      Request Parcel Delivery
+    </button>
+
+  </div>
+
+</div>
+
+<!-- =========================
+     ORDERS
+========================= -->
+
+<div
+  id="ordersModal"
+  class="modal"
+>
+
+  <div class="sheet">
+
+    <div class="modal-head">
+
+      <h2>
+        Orders
+      </h2>
+
+      <button
+        class="close"
+        onclick="closeModal('ordersModal')"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div class="empty">
+
+      Customer ordering and order tracking
+      will connect here next.
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- =========================
+     ACCOUNT
+========================= -->
+
+<div
+  id="accountModal"
+  class="modal"
+>
+
+  <div class="sheet">
+
+    <div class="modal-head">
+
+      <h2>
+        Account
+      </h2>
+
+      <button
+        class="close"
+        onclick="closeModal('accountModal')"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div id="accountContent"></div>
+
+  </div>
+
+</div>
+
+<!-- TOAST -->
+
+<div
+  id="toast"
+  class="toast"
+></div>
+
+<!-- =========================
+     FIREBASE
+========================= -->
+
+<script type="module">
+
+  import {
+    initializeApp
+  }
+  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+  import {
+    getAuth,
+    signInAnonymously,
+    onAuthStateChanged
+  }
+  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  import {
+    getFirestore,
+    collection,
+    addDoc,
+    getDocs,
+    doc,
+    updateDoc,
+    deleteDoc,
+    serverTimestamp
+  }
+  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  /* =========================
+     FIREBASE CONFIG
+  ========================= */
+
+  const firebaseConfig = {
+
+    apiKey:
+      "AIzaSyDjHGyeObPLLuqTNhNGE5SBRfBL5T29qWA",
+
+    authDomain:
+      "sefwi-go.firebaseapp.com",
+
+    projectId:
+      "sefwi-go",
+
+    storageBucket:
+      "sefwi-go.firebasestorage.app",
+
+    messagingSenderId:
+      "210398787110",
+
+    appId:
+      "1:210398787110:web:f7f76a538a2712a2bb58e7"
+
+  };
+
+  /* =========================
+     INITIALIZE FIREBASE
+  ========================= */
+
+  const app =
+    initializeApp(firebaseConfig);
+
+  const auth =
+    getAuth(app);
+
+  const db =
+    getFirestore(app);
+
+  /* =========================
+     GLOBAL VARIABLES
+  ========================= */
+
+  let currentUser = null;
+
+  let businesses = [];
+
+  let properties = [];
+
+  let products = [];
+
+  let currentBusiness = null;
+
+  /* =========================
+     HELPERS
+  ========================= */
+
+  const $ = id =>
+    document.getElementById(id);
+
+  function escapeHTML(value) {
+
+    return String(value ?? "")
+      .replace(/[&<>"']/g, function(character) {
+
+        return {
+
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#039;"
+
+        }[character];
+
+      });
+
+  }
+
+  function money(value) {
+
+    const number =
+      Number(value);
+
+    if (!Number.isFinite(number)) {
+
+      return "GH₵ 0.00";
+
+    }
+
+    return `GH₵ ${number.toFixed(2)}`;
+
+  }
+
+  function toast(message) {
+
+    const element =
+      $("toast");
+
+    element.textContent =
+      message;
+
+    element.classList.add("show");
+
+    clearTimeout(window.__toastTimer);
+
+    window.__toastTimer =
+      setTimeout(function() {
+
+        element.classList.remove("show");
+
+      }, 2600);
+
+  }
+
+  function showModal(id) {
+
+    $(id).classList.add("show");
+
+  }
+
+  function closeModal(id) {
+
+    $(id).classList.remove("show");
+
+  }
+
+  window.closeModal =
+    closeModal;
+
+  function whatsappURL(phone, message) {
+
+    const digits =
+      String(phone || "")
+        .replace(/\D/g, "");
+
+    return (
+      "https://wa.me/" +
+      digits +
+      "?text=" +
+      encodeURIComponent(message)
+    );
+
+  }
+
+  function getBusinessById(id) {
+
+    return businesses.find(
+      business => business.id === id
+    );
+
+  }
+
+  /* =========================
+     FIREBASE AUTH
+  ========================= */
+
+  onAuthStateChanged(
+    auth,
+    async function(user) {
+
+      if (user) {
+
+        currentUser =
+          user;
+
+        await loadBusinesses();
+
+        await loadProperties();
+
+      }
+
+    }
+  );
+
+  try {
+
+    const credential =
+      await signInAnonymously(auth);
+
+    /*
+      IMPORTANT:
+      Use the user returned directly
+      from signInAnonymously().
+    */
+
+    currentUser =
+      credential.user;
+
+    await loadBusinesses();
+
+    await loadProperties();
+
+  }
+  catch (error) {
+
+    console.error(
+      "Firebase Authentication Error:",
+      error
+    );
+
+    toast(
+      "Firebase sign-in failed. Check Anonymous Authentication."
+    );
+
+  }
+
+  /* =========================
+     BUSINESSES
+  ========================= */
+
+  async function loadBusinesses() {
+
+    try {
+
+      const snapshot =
+        await getDocs(
+          collection(
+            db,
+            "businesses"
+          )
+        );
+
+      businesses =
+        snapshot.docs.map(
+          document => ({
+
+            id: document.id,
+
+            ...document.data()
+
+          })
+        );
+
+      renderBusinesses(
+        businesses
+      );
+
+    }
+    catch (error) {
+
+      console.error(error);
+
+      $("businessGrid").innerHTML = `
+
+        <div class="empty">
+
+          Could not load businesses.
+          Check your Firestore rules.
+
+        </div>
+
+      `;
+
+    }
+
+  }
+
+  window.loadBusinesses =
+    loadBusinesses;
+
+  function renderBusinesses(list) {
+
+    if (!list.length) {
+
+      $("businessGrid").innerHTML = `
+
+        <div class="empty">
+
+          No businesses yet.
+
+          <br><br>
+
+          Be the first partner on SefwiGo.
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+    $("businessGrid").innerHTML =
+
+      list.map(function(business) {
+
+        return `
+
+          <div class="card">
+
+            <span class="badge">
+
+              ${escapeHTML(
+                business.category ||
+                "Local Business"
+              )}
+
+            </span>
+
+            <h3>
+
+              ${escapeHTML(
+                business.name
+              )}
+
+            </h3>
+
+            <div class="muted">
+
+              📍
+
+              ${escapeHTML(
+                business.location ||
+                "Sefwi Wiawso"
+              )}
+
+            </div>
+
+            <p>
+
+              ${escapeHTML(
+                business.description ||
+                "A local business on SefwiGo."
+              )}
+
+            </p>
+
+            <div class="actions">
+
+              <button
+
+                class="btn btn-primary btn-small"
+
+                onclick="openBusinessMenu('${business.id}')"
+
+              >
+
+                View Products
+
+              </button>
+
+              ${
+                business.phone
+                  ?
+
+                `
+
+                <a
+
+                  class="btn btn-secondary btn-small"
+
+                  href="${whatsappURL(
+
+                    business.phone,
+
+                    `Hello ${business.name}, I found your business on SefwiGo.`
+
+                  )}"
+
+                  target="_blank"
+
+                  rel="noopener"
+
+                >
+
+                  WhatsApp
+
+                </a>
+
+                `
+
+                  : ""
+
+              }
+
+            </div>
+
+          </div>
+
+        `;
+
+      }).join("");
+
+  }
+
+  /* =========================
+     BUSINESS SEARCH
+  ========================= */
+
+  window.searchBusinesses =
+    function() {
+
+      const query =
+        $("searchInput")
+          .value
+          .trim()
+          .toLowerCase();
+
+      if (!query) {
+
+        renderBusinesses(
+          businesses
+        );
+
+        return;
+
+      }
+
+      const filtered =
+        businesses.filter(
+          function(business) {
+
+            return [
+
+              business.name,
+
+              business.category,
+
+              business.location,
+
+              business.description
+
+            ]
+              .some(
+                value =>
+                  String(value || "")
+                    .toLowerCase()
+                    .includes(query)
+              );
+
+          }
+        );
+
+      renderBusinesses(
+        filtered
+      );
+
+    };
+
+  /* =========================
+     PARTNER DASHBOARD
+  ========================= */
+
+  window.openPartner =
+    async function() {
+
+      showModal(
+        "partnerModal"
+      );
+
+      await renderPartnerDashboard();
+
+    };
+
+  async function getMyBusiness() {
+
+    if (!currentUser) {
+
+      return null;
+
+    }
+
+    let business =
+      businesses.find(
+        item =>
+          item.ownerUid ===
+          currentUser.uid
+      );
+
+    if (business) {
+
+      return business;
+
+    }
+
+    await loadBusinesses();
+
+    business =
+      businesses.find(
+        item =>
+          item.ownerUid ===
+          currentUser.uid
+      );
+
+    return business || null;
+
+  }
+
+  async function renderPartnerDashboard(
+    selectedTab = "overview"
+  ) {
+
+    currentBusiness =
+      await getMyBusiness();
+
+    /*
+      No business registered yet.
+    */
+
+    if (!currentBusiness) {
+
+      $("partnerContent").innerHTML = `
+
+        <div class="notice">
+
+          You need to register your business
+          before you can add products.
+
+        </div>
+
+        ${businessForm()}
+
+      `;
+
+      return;
+
+    }
+
+    $("partnerContent").innerHTML = `
+
+      <div class="dashboard-summary">
+
+        <div class="stat">
+
+          <span class="muted">
+            Business
+          </span>
+
+          <strong>
+            ${escapeHTML(
+              currentBusiness.name
+            )}
+          </strong>
+
+        </div>
+
+        <div class="stat">
+
+          <span class="muted">
+            Products
+          </span>
+
+          <strong id="statProducts">
+            —
+          </strong>
+
+        </div>
+
+        <div class="stat">
+
+          <span class="muted">
+            Status
+          </span>
+
+          <strong>
+            Active
+          </strong>
+
+        </div>
+
+      </div>
+
+      <div class="tabs">
+
+        <button
+
+          class="tab ${
+            selectedTab === "overview"
+              ? "active"
+              : ""
+          }"
+
+          onclick="renderPartnerDashboard('overview')"
+
+        >
+
+          Overview
+
+        </button>
+
+        <button
+
+          class="tab ${
+            selectedTab === "business"
+              ? "active"
+              : ""
+          }"
+
+          onclick="renderPartnerDashboard('business')"
+
+        >
+
+          My Business
+
+        </button>
+
+        <button
+
+          class="tab ${
+            selectedTab === "products"
+              ? "active"
+              : ""
+          }"
+
+          onclick="renderPartnerDashboard('products')"
+
+        >
+
+          Products
+
+        </button>
+
+        <button
+
+          class="tab ${
+            selectedTab === "orders"
+              ? "active"
+              : ""
+          }"
+
+          onclick="renderPartnerDashboard('orders')"
+
+        >
+
+          Orders
+
+        </button>
+
+      </div>
+
+      <div id="partnerTabContent"></div>
+
+    `;
+
+    const content =
+      $("partnerTabContent");
+
+    if (
+      selectedTab ===
+      "overview"
+    ) {
+
+      content.innerHTML = `
+
+        <div
+          class="card"
+          style="box-shadow:none"
+        >
+
+          <h3>
+
+            Welcome,
+            ${escapeHTML(
+              currentBusiness.owner ||
+              "Partner"
+            )}
+
+          </h3>
+
+          <p>
+
+            Your business is connected
+            to Firebase.
+
+            Customers can discover your
+            business and view the products
+            you publish.
+
+          </p>
+
+          <div class="actions">
+
+            <button
+
+              class="btn btn-primary"
+
+              onclick="renderPartnerDashboard('products')"
+
+            >
+
+              Add Products
+
+            </button>
+
+            <button
+
+              class="btn btn-secondary"
+
+              onclick="renderPartnerDashboard('business')"
+
+            >
+
+              Edit Business
+
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+      await updateProductStat();
+
+    }
+
+    else if (
+      selectedTab ===
+      "business"
+    ) {
+
+      content.innerHTML =
+        businessForm(
+          currentBusiness
+        );
+
+      await updateProductStat();
+
+    }
+
+    else if (
+      selectedTab ===
+      "products"
+    ) {
+
+      content.innerHTML =
+        productManager();
+
+      await loadMyProducts();
+
+      await updateProductStat();
+
+    }
+
+    else {
+
+      content.innerHTML = `
+
+        <div class="empty">
+
+          <h3>
+            Orders
+          </h3>
+
+          <p>
+
+            Customer ordering and
+            order management will
+            connect here next.
+
+          </p>
+
+        </div>
+
+      `;
+
+      await updateProductStat();
+
+    }
+
+  }
+
+  window.renderPartnerDashboard =
+    renderPartnerDashboard;
+
+  /* =========================
+     BUSINESS FORM
+  ========================= */
+
+  function businessForm(
+    business = null
+  ) {
+
+    return `
+
+      <form
+        onsubmit="saveBusiness(event)"
+      >
+
+        <div class="form-grid">
+
+          <div class="field">
+
+            <label>
+              Business Name *
+            </label>
+
+            <input
+
+              id="bizName"
+
+              required
+
+              value="${escapeHTML(
+                business?.name
+              )}"
+
+              placeholder="e.g. Sefwi Taste"
+
+            >
+
+          </div>
+
+          <div class="field">
+
+            <label>
+              Category *
+            </label>
+
+            <select
+              id="bizCategory"
+              required
+            >
+
+              ${
+                [
+                  "Restaurant",
+                  "Food Vendor",
+                  "Grocery",
+                  "Shop",
+                  "Pharmacy",
+                  "Fashion",
+                  "Services",
+                  "Other"
+                ]
+                  .map(
+                    category => `
+
+                      <option
+
+                        ${
+                          business?.category ===
+                          category
+                            ? "selected"
+                            : ""
+                        }
+
+                      >
+
+                        ${category}
+
+                      </option>
+
+                    `
+                  )
+                  .join("")
+              }
+
+            </select>
+
+          </div>
+
+          <div class="field">
+
+            <label>
+              Owner / Contact Person *
+            </label>
+
+            <input
+
+              id="bizOwner"
+
+              required
+
+              value="${escapeHTML(
+                business?.owner
+              )}"
+
+              placeholder="Your name"
+
+            >
+
+          </div>
+
+          <div class="field">
+
+            <label>
+              Phone / WhatsApp *
+            </label>
+
+            <input
+
+              id="bizPhone"
+
+              required
+
+              value="${escapeHTML(
+                business?.phone
+              )}"
+
+              placeholder="024..."
+
+            >
+
+          </div>
+
+          <div class="field">
+
+            <label>
+              Location *
+            </label>
+
+            <input
+
+              id="bizLocation"
+
+              required
+
+              value="${escapeHTML(
+                business?.location
+              )}"
+
+              placeholder="Sefwi Wiawso"
+
+            >
+
+          </div>
+
+          <div class="field full">
+
+            <label>
+              Business Description
+            </label>
+
+            <textarea
+
+              id="bizDescription"
+
+              placeholder="Tell customers about your business"
+
+            >${escapeHTML(
+              business?.description
+            )}</textarea>
+
+          </div>
+
+        </div>
+
+        <button
+          class="btn btn-primary"
+          type="submit"
+        >
+
+          ${
+            business
+              ? "Save Business Changes"
+              : "Register Business"
+          }
+
+        </button>
+
+      </form>
+
+    `;
+
+  }
+
+  /* =========================
+     SAVE BUSINESS
+  ========================= */
+
+  window.saveBusiness =
+    async function(event) {
+
+      event.preventDefault();
+
+      if (!currentUser) {
+
+        toast(
+          "Please wait for Firebase sign-in."
+        );
+
+        return;
+
+      }
+
+      const data = {
+
+        name:
+          $("bizName")
+            .value
+            .trim(),
+
+        category:
+          $("bizCategory")
+            .value,
+
+        owner:
+          $("bizOwner")
+            .value
+            .trim(),
+
+        phone:
+          $("bizPhone")
+            .value
+            .trim(),
+
+        location:
+          $("bizLocation")
+            .value
+            .trim(),
+
+        description:
+          $("bizDescription")
+            .value
+            .trim(),
+
+        ownerUid:
+          currentUser.uid
+
+      };
+
+      try {
+
+        if (currentBusiness) {
+
+          await updateDoc(
+
+            doc(
+              db,
+              "businesses",
+              currentBusiness.id
+            ),
+
+            {
+
+              ...data,
+
+              updatedAt:
+                serverTimestamp()
+
+            }
+
+          );
+
+          toast(
+            "Business updated successfully."
+          );
+
+        }
+
+        else {
+
+          const reference =
+            await addDoc(
+
+              collection(
+                db,
+                "businesses"
+              ),
+
+              {
+
+                ...data,
+
+                createdAt:
+                  serverTimestamp()
+
+              }
+
+            );
+
+          currentBusiness = {
+
+            id:
+              reference.id,
+
+            ...data
+
+          };
+
+          toast(
+            "Business registered successfully."
+          );
+
+        }
+
+        await loadBusinesses();
+
+        currentBusiness =
+          await getMyBusiness();
+
+        await renderPartnerDashboard(
+          "overview"
+        );
+
+      }
+
+      catch (error) {
+
+        console.error(
+          "Business Save Error:",
+          error
+        );
+
+        toast(
+          "Could not save business. Check Firestore rules."
+        );
+
+      }
+
+    };
+
+  /* =========================
+     PRODUCT MANAGER
+  ========================= */
+
+  function productManager() {
+
+    return `
+
+      <div class="notice">
+
+        Products you add here belong to
+        your business.
+
+        Customers will only see products
+        marked as <b>Available</b>.
+
+      </div>
+
+      <form
+        onsubmit="saveProduct(event)"
+      >
+
+        <input
+          type="hidden"
+          id="productId"
+          value=""
+        >
+
+        <div class="form-grid">
+
+          <div class="field">
+
+            <label>
+              Product / Menu Item *
+            </label>
+
+            <input
+
+              id="productName"
+
+              required
+
+              placeholder="e.g. Jollof Rice"
+
+            >
+
+          </div>
+
+          <div class="field">
+
+            <label>
+              Category *
+            </label>
+
+            <select
+              id="productCategory"
+              required
+            >
+
+              <option>
+                Main Meal
+              </option>
+
+              <option>
+                Breakfast
+              </option>
+
+              <option>
+                Drinks
+              </option>
+
+              <option>
+                Snacks
+              </option>
+
+              <option>
+                Groceries
+              </option>
+
+              <option>
+                Fashion
+              </option>
+
+              <option>
+                Services
+              </option>
+
+              <option>
+                Other
+              </option>
+
+            </select>
+
+          </div>
+
+          <div class="field">
+
+            <label>
+              Price (GH₵) *
+            </label>
+
+            <input
+
+              id="productPrice"
+
+              type="number"
+
+              min="0"
+
+              step="0.01"
+
+              required
+
+              placeholder="25.00"
+
+            >
+
+          </div>
+
+          <div class="field">
+
+            <label>
+              Availability
+            </label>
+
+            <select
+              id="productAvailable"
+            >
+
+              <option value="true">
+                Available
+              </option>
+
+              <option value="false">
+                Unavailable
+              </option>
+
+            </select>
+
+          </div>
+
+          <div class="field full">
+
+            <label>
+              Description
+            </label>
+
+            <textarea
+
+              id="productDescription"
+
+              placeholder="Short description of the product"
+
+            ></textarea>
+
+          </div>
+
+        </div>
+
+        <div class="actions">
+
+          <button
+            id="productSubmit"
+            class="btn btn-primary"
+            type="submit"
+          >
+
+            Add Product
+
+          </button>
+
+          <button
+
+            class="btn btn-secondary"
+
+            type="button"
+
+            onclick="resetProductForm()"
+
+          >
+
+            Clear
+
+          </button>
+
+        </div>
+
+      </form>
+
+      <hr>
+
+      <h3>
+        Your Products
+      </h3>
+
+      <div id="myProducts">
+
+        <div class="loading">
+          Loading products...
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+  /* =========================
+     LOAD MY PRODUCTS
+  ========================= */
+
+  async function loadMyProducts() {
+
+    if (
+      !currentBusiness ||
+      !currentUser
+    ) {
+
+      return;
+
+    }
+
+    try {
+
+      const snapshot =
+        await getDocs(
+          collection(
+            db,
+            "products"
+          )
+        );
+
+      products =
+        snapshot.docs
+          .map(
+            document => ({
+
+              id:
+                document.id,
+
+              ...document.data()
+
+            })
+          )
+          .filter(
+            product =>
+
+              product.businessId ===
+              currentBusiness.id &&
+
+              product.businessOwnerUid ===
+              currentUser.uid
+
+          );
+
+      renderMyProducts();
+
+      if ($("statProducts")) {
+
+        $("statProducts")
+          .textContent =
+          products.length;
+
+      }
+
+    }
+
+    catch (error) {
+
+      console.error(
+        "Product Load Error:",
+        error
+      );
+
+      if ($("myProducts")) {
+
+        $("myProducts").innerHTML = `
+
+          <div class="empty">
+
+            Could not load products.
+
+          </div>
+
+        `;
+
+      }
+
+    }
+
+  }
+
+  /* =========================
+     RENDER PRODUCTS
+  ========================= */
+
+  function renderMyProducts() {
+
+    if (!products.length) {
+
+      $("myProducts").innerHTML = `
+
+        <div class="empty">
+
+          You have no products yet.
+
+          <br><br>
+
+          Add your first menu item above.
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+    $("myProducts").innerHTML =
+
+      products
+        .map(function(product) {
+
+          const available =
+            product.available !== false;
+
+          return `
+
+            <div class="product-row">
+
+              <div class="product-main">
+
+                <h4>
+
+                  ${escapeHTML(
+                    product.name
+                  )}
+
+                  <span
+                    class="badge ${
+                      available
+                        ? ""
+                        : "off"
+                    }"
+                  >
+
+                    ${
+                      available
+                        ? "Available"
+                        : "Unavailable"
+                    }
+
+                  </span>
+
+                </h4>
+
+                <div class="muted">
+
+                  ${escapeHTML(
+                    product.category ||
+                    "Other"
+                  )}
+
+                  ${product.description
+                    ? " · " +
+                      escapeHTML(
+                        product.description
+                      )
+                    : ""}
+
+                </div>
+
+                <div class="price">
+
+                  ${money(
+                    product.price
+                  )}
+
+                </div>
+
+              </div>
+
+              <div class="product-actions">
+
+                <button
+
+                  class="btn btn-secondary btn-small"
+
+                  onclick="editProduct('${product.id}')"
+
+                >
+
+                  Edit
+
+                </button>
+
+                <button
+
+                  class="btn btn-secondary btn-small"
+
+                  onclick="toggleProductAvailability('${product.id}')"
+
+                >
+
+                  ${
+                    available
+                      ? "Disable"
+                      : "Enable"
+                  }
+
+                </button>
+
+                <button
+
+                  class="btn btn-danger btn-small"
+
+                  onclick="deleteProduct('${product.id}')"
+
+                >
+
+                  Delete
+
+                </button>
+
+              </div>
+
+            </div>
+
+          `;
+
+        })
+        .join("");
+
+  }
+
+  /* =========================
+     SAVE PRODUCT
+  ========================= */
+
+  window.saveProduct =
+    async function(event) {
+
+      event.preventDefault();
+
+      if (
+        !currentUser ||
+        !currentBusiness
+      ) {
+
+        toast(
+          "Register your business first."
+        );
+
+        return;
+
+      }
+
+      const name =
+        $("productName")
+          .value
+          .trim();
+
+      const price =
+        Number(
+          $("productPrice")
+            .value
+        );
+
+      if (
+        !name ||
+        !Number.isFinite(price) ||
+        price < 0
+      ) {
+
+        toast(
+          "Enter a valid product name and price."
+        );
+
+        return;
+
+      }
+
+      const data = {
+
+        businessId:
+          currentBusiness.id,
+
+        businessOwnerUid:
+          currentUser.uid,
+
+        businessName:
+          currentBusiness.name,
+
+        name:
+          name,
+
+        category:
+          $("productCategory")
+            .value,
+
+        price:
+          price,
+
+        description:
+          $("productDescription")
+            .value
+            .trim(),
+
+        available:
+          $("productAvailable")
+            .value === "true"
+
+      };
+
+      try {
+
+        const productId =
+          $("productId")
+            .value;
+
+        if (productId) {
+
+          await updateDoc(
+
+            doc(
+              db,
+              "products",
+              productId
+            ),
+
+            {
+
+              ...data,
+
+              updatedAt:
+                serverTimestamp()
+
+            }
+
+          );
+
+          toast(
+            "Product updated."
+          );
+
+        }
+
+        else {
+
+          await addDoc(
+
+            collection(
+              db,
+              "products"
+            ),
+
+            {
+
+              ...data,
+
+              createdAt:
+                serverTimestamp()
+
+            }
+
+          );
+
+          toast(
+            "Product added successfully."
+          );
+
+        }
+
+        resetProductForm();
+
+        await loadMyProducts();
+
+      }
+
+      catch (error) {
+
+        console.error(
+          "Product Save Error:",
+          error
+        );
+
+        toast(
+          "Could not save product. Check Firestore rules."
+        );
+
+      }
+
+    };
+
+  /* =========================
+     EDIT PRODUCT
+  ========================= */
+
+  window.editProduct =
+    function(id) {
+
+      const product =
+        products.find(
+          item =>
+            item.id === id
+        );
+
+      if (!product) {
+
+        return;
+
+      }
+
+      $("productId")
+        .value =
+        product.id;
+
+      $("productName")
+        .value =
+        product.name || "";
+
+      $("productCategory")
+        .value =
+        product.category ||
+        "Other";
+
+      $("productPrice")
+        .value =
+        product.price ?? "";
+
+      $("productDescription")
+        .value =
+        product.description || "";
+
+      $("productAvailable")
+        .value =
+        product.available === false
+          ? "false"
+          : "true";
+
+      $("productSubmit")
+        .textContent =
+        "Update Product";
+
+      $("productName")
+        .focus();
+
+    };
+
+  /* =========================
+     RESET PRODUCT FORM
+  ========================= */
+
+  window.resetProductForm =
+    function() {
+
+      if (!$("productId")) {
+
+        return;
+
+      }
+
+      $("productId")
+        .value = "";
+
+      $("productName")
+        .value = "";
+
+      $("productCategory")
+        .value =
+        "Main Meal";
+
+      $("productPrice")
+        .value = "";
+
+      $("productDescription")
+        .value = "";
+
+      $("productAvailable")
+        .value =
+        "true";
+
+      $("productSubmit")
+        .textContent =
+        "Add Product";
+
+    };
+
+  /* =========================
+     DELETE PRODUCT
+  ========================= */
+
+  window.deleteProduct =
+    async function(id) {
+
+      const product =
+        products.find(
+          item =>
+            item.id === id
+        );
+
+      if (
+        !product ||
+        product.businessOwnerUid !==
+        currentUser?.uid
+      ) {
+
+        return;
+
+      }
+
+      if (
+        !confirm(
+          `Delete "${product.name}"?`
+        )
+      ) {
+
+        return;
+
+      }
+
+      try {
+
+        await deleteDoc(
+
+          doc(
+            db,
+            "products",
+            id
+          )
+
+        );
+
+        toast(
+          "Product deleted."
+        );
+
+        await loadMyProducts();
+
+      }
+
+      catch (error) {
+
+        console.error(error);
+
+        toast(
+          "Could not delete product."
+        );
+
+      }
+
+    };
+
+  /* =========================
+     AVAILABILITY
+  ========================= */
+
+  window.toggleProductAvailability =
+    async function(id) {
+
+      const product =
+        products.find(
+          item =>
+            item.id === id
+        );
+
+      if (
+        !product ||
+        product.businessOwnerUid !==
+        currentUser?.uid
+      ) {
+
+        return;
+
+      }
+
+      const newAvailability =
+        product.available === false;
+
+      try {
+
+        await updateDoc(
+
+          doc(
+            db,
+            "products",
+            id
+          ),
+
+          {
+
+            available:
+              newAvailability,
+
+            updatedAt:
+              serverTimestamp()
+
+          }
+
+        );
+
+        toast(
+
+          newAvailability
+            ? "Product is now available."
+            : "Product is now unavailable."
+
+        );
+
+        await loadMyProducts();
+
+      }
+
+      catch (error) {
+
+        console.error(error);
+
+        toast(
+          "Could not update product."
+        );
+
+      }
+
+    };
+
+  /* =========================
+     PRODUCT STAT
+  ========================= */
+
+  async function updateProductStat() {
+
+    const stat =
+      $("statProducts");
+
+    if (
+      !stat ||
+      !currentBusiness ||
+      !currentUser
+    ) {
+
+      return;
+
+    }
+
+    try {
+
+      const snapshot =
+        await getDocs(
+          collection(
+            db,
+            "products"
+          )
+        );
+
+      const count =
+        snapshot.docs.filter(
+          document => {
+
+            const product =
+              document.data();
+
+            return (
+
+              product.businessId ===
+              currentBusiness.id &&
+
+              product.businessOwnerUid ===
+              currentUser.uid
+
+            );
+
+          }
+        ).length;
+
+      stat.textContent =
+        count;
+
+    }
+
+    catch (error) {
+
+      console.error(error);
+
+      stat.textContent =
+        "—";
+
+    }
+
+  }
+
+  /* =========================
+     CUSTOMER BUSINESS MENU
+  ========================= */
+
+  window.openBusinessMenu =
+    async function(id) {
+
+      const business =
+        getBusinessById(id);
+
+      if (!business) {
+
+        return;
+
+      }
+
+      $("menuTitle")
+        .textContent =
+        business.name;
+
+      $("menuSubtitle")
+        .textContent =
+
+        `${business.category || "Local Business"} · ${
+          business.location ||
+          "Sefwi Wiawso"
+        }`;
+
+      $("menuContent").innerHTML = `
+
+        <div class="loading">
+
+          Loading products...
+
+        </div>
+
+      `;
+
+      showModal(
+        "menuModal"
+      );
+
+      try {
+
+        const snapshot =
+          await getDocs(
+            collection(
+              db,
+              "products"
+            )
+          );
+
+        const businessProducts =
+          snapshot.docs
+
+            .map(
+              document => ({
+
+                id:
+                  document.id,
+
+                ...document.data()
+
+              })
+            )
+
+            .filter(
+
+              product =>
+
+                product.businessId ===
+                id &&
+
+                product.available !== false
+
+            );
+
+        if (
+          !businessProducts.length
+        ) {
+
+          $("menuContent").innerHTML = `
+
+            <div class="empty">
+
+              This business has not
+              published any available
+              products yet.
+
+            </div>
+
+          `;
+
+          return;
+
+        }
+
+        $("menuContent").innerHTML =
+
+          businessProducts
+            .map(
+              function(product) {
+
+                return `
+
+                  <div class="product-row">
+
+                    <div class="product-main">
+
+                      <h4>
+
+                        ${escapeHTML(
+                          product.name
+                        )}
+
+                      </h4>
+
+                      <div class="muted">
+
+                        ${escapeHTML(
+                          product.category ||
+                          ""
+                        )}
+
+                        ${
+                          product.description
+                            ? " · " +
+                              escapeHTML(
+                                product.description
+                              )
+                            : ""
+                        }
+
+                      </div>
+
+                    </div>
+
+                    <div class="price">
+
+                      ${money(
+                        product.price
+                      )}
+
+                    </div>
+
+                  </div>
+
+                `;
+
+              }
+            )
+            .join("");
+
+        if (business.phone) {
+
+          $("menuContent").innerHTML += `
+
+            <div class="actions">
+
+              <a
+
+                class="btn btn-primary"
+
+                href="${whatsappURL(
+
+                  business.phone,
+
+                  `Hello ${business.name}, I would like to order from your SefwiGo menu.`
+
+                )}"
+
+                target="_blank"
+
+                rel="noopener"
+
+              >
+
+                Contact / Order on WhatsApp
+
+              </a>
+
+            </div>
+
+          `;
+
+        }
+
+      }
+
+      catch (error) {
+
+        console.error(error);
+
+        $("menuContent").innerHTML = `
+
+          <div class="empty">
+
+            Could not load this business menu.
+
+          </div>
+
+        `;
+
+      }
+
+    };
+
+  /* =========================
+     PROPERTY
+  ========================= */
+
+  async function loadProperties() {
+
+    try {
+
+      const snapshot =
+        await getDocs(
+          collection(
+            db,
+            "properties"
+          )
+        );
+
+      properties =
+        snapshot.docs.map(
+          document => ({
+
+            id:
+              document.id,
+
+            ...document.data()
+
+          })
+        );
+
+      renderProperties(
+        properties.slice(0, 6)
+      );
+
+    }
+
+    catch (error) {
+
+      console.error(error);
+
+      $("propertyGrid").innerHTML = `
+
+        <div class="empty">
+
+          Could not load properties.
+
+        </div>
+
+      `;
+
+    }
+
+  }
+
+  function renderProperties(list) {
+
+    if (!list.length) {
+
+      $("propertyGrid").innerHTML = `
+
+        <div class="empty">
+
+          No property listings yet.
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+    $("propertyGrid").innerHTML =
+
+      list.map(
+        function(property) {
+
+          return `
+
+            <div class="card">
+
+              <span class="badge">
+
+                ${escapeHTML(
+                  property.type ||
+                  "Property"
+                )}
+
+                ·
+
+                ${escapeHTML(
+                  property.purpose ||
+                  "For Sale"
+                )}
+
+              </span>
+
+              <h3>
+
+                ${escapeHTML(
+                  property.title
+                )}
+
+              </h3>
+
+              <div class="price">
+
+                ${money(
+                  property.price
+                )}
+
+              </div>
+
+              <div class="muted">
+
+                📍
+
+                ${escapeHTML(
+                  property.location ||
+                  ""
+                )}
+
+              </div>
+
+              <p>
+
+                ${escapeHTML(
+                  property.description ||
+                  ""
+                )}
+
+              </p>
+
+              ${
+                property.phone
+                  ?
+
+                `
+
+                <a
+
+                  class="btn btn-primary btn-small"
+
+                  href="${whatsappURL(
+
+                    property.phone,
+
+                    `Hello, I am interested in your SefwiGo property listing: ${property.title}`
+
+                  )}"
+
+                  target="_blank"
+
+                  rel="noopener"
+
+                >
+
+                  Contact Owner
+
+                </a>
+
+                `
+
+                  : ""
+
+              }
+
+            </div>
+
+          `;
+
+        }
+      ).join("");
+
+  }
+
+  /* =========================
+     PROPERTY MODAL
+  ========================= */
+
+  window.openProperty =
+    function() {
+
+      showModal(
+        "propertyModal"
+      );
+
+      propertyTab(
+        "browse"
+      );
+
+    };
+
+  window.propertyTab =
+    async function(tab) {
+
+      [
+        "propBrowseTab",
+        "propRegisterTab",
+        "propMineTab"
+      ]
+        .forEach(
+          id =>
+            $(id)
+              .classList
+              .remove("active")
+        );
+
+      if (
+        tab === "browse"
+      ) {
+
+        $("propBrowseTab")
+          .classList
+          .add("active");
+
+      }
+
+      else if (
+        tab === "register"
+      ) {
+
+        $("propRegisterTab")
+          .classList
+          .add("active");
+
+      }
+
+      else {
+
+        $("propMineTab")
+          .classList
+          .add("active");
+
+      }
+
+      if (
+        tab === "browse"
+      ) {
+
+        $("propertyContent").innerHTML =
+
+          properties.length
+
+            ?
+
+            properties.map(
+              function(property) {
+
+                return `
+
+                  <div class="product-row">
+
+                    <div class="product-main">
+
+                      <h4>
+
+                        ${escapeHTML(
+                          property.title
+                        )}
+
+                      </h4>
+
+                      <div class="muted">
+
+                        ${escapeHTML(
+                          property.type ||
+                          ""
+                        )}
+
+                        ·
+
+                        ${escapeHTML(
+                          property.purpose ||
+                          ""
+                        )}
+
+                        ·
+
+                        ${escapeHTML(
+                          property.location ||
+                          ""
+                        )}
+
+                      </div>
+
+                    </div>
+
+                    <div>
+
+                      <div class="price">
+
+                        ${money(
+                          property.price
+                        )}
+
+                      </div>
+
+                      ${
+                        property.phone
+                          ?
+
+                          `
+
+                          <a
+
+                            class="btn btn-primary btn-small"
+
+                            href="${whatsappURL(
+
+                              property.phone,
+
+                              `Hello, I am interested in: ${property.title}`
+
+                            )}"
+
+                            target="_blank"
+
+                            rel="noopener"
+
+                          >
+
+                            Contact
+
+                          </a>
+
+                          `
+
+                          : ""
+
+                      }
+
+                    </div>
+
+                  </div>
+
+                `;
+
+              }
+            ).join("")
+
+            :
+
+            `
+
+              <div class="empty">
+
+                No properties listed yet.
+
+              </div>
+
+            `;
+
+      }
+
+      else if (
+        tab === "register"
+      ) {
+
+        $("propertyContent")
+          .innerHTML =
+          propertyForm();
+
+      }
+
+      else {
+
+        if (!currentUser) {
+
+          $("propertyContent")
+            .innerHTML = `
+
+              <div class="empty">
+
+                Signing in...
+
+              </div>
+
+            `;
+
+          return;
+
+        }
+
+        const mine =
+          properties.filter(
+            property =>
+              property.ownerUid ===
+              currentUser.uid
+          );
+
+        $("propertyContent")
+          .innerHTML =
+
+          mine.length
+
+            ?
+
+            mine.map(
+              function(property) {
+
+                return `
+
+                  <div class="product-row">
+
+                    <div class="product-main">
+
+                      <h4>
+
+                        ${escapeHTML(
+                          property.title
+                        )}
+
+                      </h4>
+
+                      <div class="muted">
+
+                        ${escapeHTML(
+                          property.location ||
+                          ""
+                        )}
+
+                        ·
+
+                        ${money(
+                          property.price
+                        )}
+
+                      </div>
+
+                    </div>
+
+                    <button
+
+                      class="btn btn-danger btn-small"
+
+                      onclick="deleteProperty('${property.id}')"
+
+                    >
+
+                      Delete
+
+                    </button>
+
+                  </div>
+
+                `;
+
+              }
+            ).join("")
+
+            :
+
+            `
+
+              <div class="empty">
+
+                You have no property listings.
+
+              </div>
+
+            `;
+
+      }
+
+    };
+
+  /* =========================
+     PROPERTY FORM
+  ========================= */
+
+  function propertyForm() {
+
+    return `
+
+      <form
+        onsubmit="saveProperty(event)"
+      >
+
+        <div class="form-grid">
+
+          <div class="field">
+
+            <label>
+              Title *
+            </label>
+
+            <input
+
+              id="propTitle"
+
+              required
+
+              placeholder="2-bedroom house"
+
+            >
+
+          </div>
+
+          <div class="field">
+
+            <label>
+              Type *
+            </label>
+
+            <select id="propType">
+
+              <option>
+                House
+              </option>
+
+              <option>
+                Apartment
+              </option>
+
+              <option>
+                Land
+              </option>
+
+              <option>
+                Shop
+              </option>
+
+              <option>
+                Office
+              </option>
+
+              <option>
+                Other
+              </option>
+
+            </select>
+
+          </div>
+
+          <div class="field">
+
+            <label>
+              Purpose *
+            </label>
+
+            <select id="propPurpose">
+
+              <option>
+                For Sale
+              </option>
+
+              <option>
+                For Rent
+              </option>
+
+            </select>
+
+          </div>
+
+          <div class="field">
+
+            <label>
+              Price (GH₵) *
+            </label>
+
+            <input
+
+              id="propPrice"
+
+              type="number"
+
+              min="0"
+
+              step="0.01"
+
+              required
+
+            >
+
+          </div>
+
+          <div class="field">
+
+            <label>
+              Location *
+            </label>
+
+            <input
+
+              id="propLocation"
+
+              required
+
+              placeholder="Sefwi Wiawso"
+
+            >
+
+          </div>
+
+          <div class="field">
+
+            <label>
+              Phone *
+            </label>
+
+            <input
+
+              id="propPhone"
+
+              required
+
+              placeholder="024..."
+
+            >
+
+          </div>
+
+          <div class="field full">
+
+            <label>
+              Description
+            </label>
+
+            <textarea
+              id="propDescription"
+            ></textarea>
+
+          </div>
+
+        </div>
+
+        <button
+          class="btn btn-primary"
+          type="submit"
+        >
+
+          Publish Property
+
+        </button>
+
+      </form>
+
+    `;
+
+  }
+
+  /* =========================
+     SAVE PROPERTY
+  ========================= */
+
+  window.saveProperty =
+    async function(event) {
+
+      event.preventDefault();
+
+      if (!currentUser) {
+
+        toast(
+          "Please wait for sign-in."
+        );
+
+        return;
+
+      }
+
+      try {
+
+        await addDoc(
+
+          collection(
+            db,
+            "properties"
+          ),
+
+          {
+
+            title:
+              $("propTitle")
+                .value
+                .trim(),
+
+            type:
+              $("propType")
+                .value,
+
+            purpose:
+              $("propPurpose")
+                .value,
+
+            price:
+              Number(
+                $("propPrice")
+                  .value
+              ),
+
+            location:
+              $("propLocation")
+                .value
+                .trim(),
+
+            phone:
+              $("propPhone")
+                .value
+                .trim(),
+
+            description:
+              $("propDescription")
+                .value
+                .trim(),
+
+            ownerUid:
+              currentUser.uid,
+
+            createdAt:
+              serverTimestamp()
+
+          }
+
+        );
+
+        toast(
+          "Property published."
+        );
+
+        await loadProperties();
+
+        propertyTab(
+          "mine"
+        );
+
+      }
+
+      catch (error) {
+
+        console.error(error);
+
+        toast(
+          "Could not publish property."
+        );
+
+      }
+
+    };
+
+  /* =========================
+     DELETE PROPERTY
+  ========================= */
+
+  window.deleteProperty =
+    async function(id) {
+
+      const property =
+        properties.find(
+          item =>
+            item.id === id
+        );
+
+      if (
+        !property ||
+        property.ownerUid !==
+        currentUser?.uid
+      ) {
+
+        return;
+
+      }
+
+      if (
+        !confirm(
+          "Delete this property listing?"
+        )
+      ) {
+
+        return;
+
+      }
+
+      try {
+
+        await deleteDoc(
+
+          doc(
+            db,
+            "properties",
+            id
+          )
+
+        );
+
+        toast(
+          "Property deleted."
+        );
+
+        await loadProperties();
+
+        propertyTab(
+          "mine"
+        );
+
+      }
+
+      catch (error) {
+
+        console.error(error);
+
+        toast(
+          "Could not delete property."
+        );
+
+      }
+
+    };
+
+  /* =========================
+     PARCEL
+  ========================= */
+
+  window.openParcel =
+    function() {
+
+      showModal(
+        "parcelModal"
+      );
+
+    };
+
+  window.requestParcel =
+    function() {
+
+      /*
+        IMPORTANT:
+        Replace this with your
+        official SefwiGo WhatsApp
+        number before launch.
+      */
+
+      const number =
+        "233000000000";
+
+      const message =
+        "Hello SefwiGo, I want to request parcel pickup/delivery.";
+
+      const url =
+        `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+
+      window.open(
+        url,
+        "_blank"
+      );
+
+    };
+
+  /* =========================
+     ORDERS
+  ========================= */
+
+  window.openOrders =
+    function() {
+
+      showModal(
+        "ordersModal"
+      );
+
+    };
+
+  /* =========================
+     ACCOUNT
+  ========================= */
+
+  window.openAccount =
+    function() {
+
+      $("accountContent")
+        .innerHTML = `
+
+        <div
+          class="card"
+          style="box-shadow:none"
+        >
+
+          <h3>
+            SefwiGo Account
+          </h3>
+
+          <p class="muted">
+
+            Your current session uses
+            Firebase Anonymous Authentication.
+
+          </p>
+
+          <p>
+
+            <b>
+              Connection:
+            </b>
+
+            ${
+              currentUser
+                ? "Connected"
+                : "Connecting..."
+            }
+
+          </p>
+
+          <div class="actions">
+
+            <button
+
+              class="btn btn-primary"
+
+              onclick="
+
+                openPartner();
+
+                closeModal('accountModal');
+
+              "
+
+            >
+
+              Partner Dashboard
+
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+      showModal(
+        "accountModal"
+      );
+
+    };
+
+  /* =========================
+     HOME
+  ========================= */
+
+  window.scrollHome =
+    function() {
+
+      closeModal(
+        "partnerModal"
+      );
+
+      closeModal(
+        "propertyModal"
+      );
+
+      closeModal(
+        "menuModal"
+      );
+
+      window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+      });
+
+    };
+
+  /* =========================
+     COMING SOON
+  ========================= */
+
+  window.showComingSoon =
+    function(name) {
+
+      toast(
+        `${name} is coming next.`
+      );
+
+    };
+
+  /* =========================
+     CLOSE MODALS
+     BY CLICKING OUTSIDE
+  ========================= */
+
+  window.addEventListener(
+    "click",
+    function(event) {
+
+      if (
+        event.target.classList
+          .contains("modal")
+      ) {
+
+        event.target
+          .classList
+          .remove("show");
+
+      }
+
+    }
+  );
+
+</script>
 
 </body>
 </html>
