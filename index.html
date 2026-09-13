@@ -10,343 +10,239 @@
 *{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif}
 html{scroll-behavior:smooth}
 body{background:#f5f7f6;color:#17221b;line-height:1.5}
-.navbar{background:#0b5d3b;color:#fff;padding:14px 5%;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:1000}
-.logo{font-size:25px;font-weight:800}
-.logo span{color:#d9b44a}
-.nav-links{display:flex;gap:18px;align-items:center}
-.nav-links a{color:#fff;text-decoration:none;font-weight:600}
-.btn{border:none;border-radius:8px;padding:11px 16px;cursor:pointer;font-weight:700}
-.btn-primary{background:#0b5d3b;color:#fff}
-.btn-gold{background:#d9b44a;color:#102016}
-.btn-light{background:#fff;color:#0b5d3b;border:1px solid #d9e3dd}
-.hero{padding:70px 5%;background:linear-gradient(135deg,#e8f5ee,#fff8df);display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
-.hero h1{font-size:48px;line-height:1.08;margin-bottom:18px}
-.hero h1 span{color:#0b5d3b}
-.hero p{font-size:18px;color:#536158;margin-bottom:25px;max-width:600px}
-.hero-card{background:#fff;border-radius:18px;padding:30px;box-shadow:0 12px 35px rgba(0,0,0,.1)}
-.hero-card h3{margin-bottom:12px;color:#0b5d3b}
-.search-box{display:flex;gap:10px;margin-top:15px}
-.search-box input{flex:1;padding:13px;border:1px solid #ccd8d0;border-radius:8px}
-section{padding:55px 5%}
-.section-title{text-align:center;margin-bottom:30px}
-.section-title h2{font-size:32px;color:#0b5d3b}
-.section-title p{color:#68746d}
-.categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
-.category{background:#fff;padding:22px;border-radius:14px;text-align:center;cursor:pointer;border:1px solid #e1e8e3;transition:.2s}
-.category:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.07)}
-.category .icon{font-size:34px;margin-bottom:8px}
-.business-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
-.business-card{background:#fff;border-radius:15px;overflow:hidden;border:1px solid #e0e7e2}
-.business-image{height:150px;background:#dcebe2;display:flex;align-items:center;justify-content:center;font-size:55px}
-.business-content{padding:18px}
-.business-content h3{margin-bottom:6px}
-.business-content p{color:#69756d;font-size:14px;margin-bottom:12px}
-.tag{display:inline-block;background:#e9f4ee;color:#0b5d3b;border-radius:20px;padding:5px 9px;font-size:12px;font-weight:700}
-.order-area{background:#eef6f1}
-.order-box{max-width:760px;margin:auto;background:#fff;padding:25px;border-radius:16px;box-shadow:0 8px 25px rgba(0,0,0,.06)}
-.form-group{margin-bottom:15px}
-.form-group label{display:block;font-weight:700;margin-bottom:6px}
-.form-group input,.form-group textarea,.form-group select{width:100%;padding:12px;border:1px solid #ccd8d0;border-radius:8px}
-.form-group textarea{min-height:100px;resize:vertical}
-.cart{background:#fff;border:1px solid #dce5df;border-radius:12px;padding:15px;margin-bottom:18px}
-.cart-item{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid #edf1ee}
-.cart-item:last-child{border-bottom:none}
-.empty{color:#77827b;text-align:center;padding:10px}
-footer{background:#103b29;color:#dfeae4;padding:35px 5%;text-align:center}
-footer p{margin:7px 0}
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:2000;align-items:center;justify-content:center;padding:20px}
-.modal.active{display:flex}
-.modal-box{background:#fff;width:100%;max-width:480px;border-radius:16px;padding:25px;max-height:90vh;overflow:auto}
-.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
-.close{background:none;border:none;font-size:28px;cursor:pointer}
-.auth-status{padding:10px;border-radius:8px;margin-bottom:15px;font-size:14px}
-.auth-success{background:#e8f7ed;color:#176b3d}
-.auth-error{background:#fdecec;color:#a72c2c}
-.hidden{display:none!important}
-.small{font-size:13px;color:#6c776f}
-#recaptcha-container{margin:12px 0}
-hr{border:none;border-top:1px solid #e5ebe7;margin:20px 0}
-@media(max-width:800px){
-.hero{grid-template-columns:1fr;padding-top:45px}
-.hero h1{font-size:38px}
-.nav-links a{display:none}
+.navbar{background:#087f3e;color:white;padding:15px 6%;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:1000;box-shadow:0 3px 15px rgba(0,0,0,.15)}
+.logo{font-size:25px;font-weight:bold}.nav-links{display:flex;gap:18px;align-items:center}
+.nav-links a{color:white;text-decoration:none;font-weight:bold;font-size:14px}.nav-links a:hover{opacity:.75}
+.menu-btn{display:none;background:none;border:none;color:white;font-size:28px;cursor:pointer}
+.cart-btn{background:white;color:#087f3e;border:none;padding:9px 13px;border-radius:20px;cursor:pointer;font-weight:bold}
+.hero{background:linear-gradient(135deg,#087f3e,#0ca654);color:white;padding:80px 20px;text-align:center}
+.hero h1{font-size:48px;margin-bottom:15px}.hero p{font-size:18px;max-width:650px;margin:0 auto 25px}
+.hero-buttons{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.button{display:inline-block;background:#087f3e;color:white;padding:13px 20px;border-radius:8px;text-decoration:none;border:none;cursor:pointer;font-weight:bold;transition:.25s}
+.button:hover{transform:translateY(-2px);box-shadow:0 7px 18px rgba(0,0,0,.15)}.button-white{background:white;color:#087f3e}
+.notice{background:#fff3cd;color:#664d03;padding:12px 18px;text-align:center;font-size:13px}
+.section{padding:55px 6%;max-width:1200px;margin:auto}.section-title{text-align:center;margin-bottom:30px}
+.section-title h2{font-size:30px;margin-bottom:8px}.section-title p{color:#68736c}
+.search-box{max-width:650px;margin:0 auto 35px;display:flex;gap:10px}.search-box input{flex:1;margin:0}
+.categories,.businesses,.products,.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:20px}
+.card{background:white;padding:22px;border-radius:15px;box-shadow:0 4px 18px rgba(0,0,0,.07);transition:.3s}
+.card:hover{transform:translateY(-5px);box-shadow:0 10px 25px rgba(0,0,0,.1)}
+.emoji{font-size:40px;margin-bottom:10px}.card h3{margin-bottom:7px}.card p{color:#68736c;font-size:14px;margin-bottom:15px}
+.product-price{color:#087f3e;font-weight:bold;font-size:18px;margin-bottom:12px}
+.feature{text-align:center}.feature-icon{font-size:42px;margin-bottom:10px}
+.order-box{background:white;padding:25px;border-radius:15px;margin-top:30px;box-shadow:0 4px 18px rgba(0,0,0,.07)}
+.order-box h2{margin-bottom:20px}
+input,select,textarea{width:100%;padding:13px;margin:8px 0 14px;border:1px solid #ccd5ce;border-radius:8px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:#087f3e}textarea{min-height:90px;resize:vertical}label{font-weight:bold;font-size:14px}
+.cart{position:fixed;right:-420px;top:0;width:390px;max-width:92%;height:100%;background:white;z-index:2000;padding:25px;box-shadow:-5px 0 25px rgba(0,0,0,.2);transition:.35s;overflow-y:auto}
+.cart.open{right:0}.cart-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.close-cart{background:#eee;border:none;width:35px;height:35px;border-radius:50%;cursor:pointer}
+.cart-item{border-bottom:1px solid #eee;padding:12px 0}.cart-total{font-size:20px;font-weight:bold;margin:20px 0;color:#087f3e}
+.quantity{display:flex;align-items:center;gap:8px;margin-top:8px}.quantity button{border:none;padding:6px 9px;border-radius:5px;cursor:pointer}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:3000;align-items:center;justify-content:center;padding:20px}
+.modal.show{display:flex}.modal-content{background:white;width:450px;max-width:100%;padding:30px;border-radius:15px;position:relative}
+.modal-close{position:absolute;right:15px;top:12px;border:none;background:#eee;border-radius:50%;width:32px;height:32px;cursor:pointer}
+.result{margin-top:15px;padding:12px;border-radius:8px;font-weight:bold}
+.whatsapp-button{background:#25D366;color:white;width:100%;margin-top:10px}.whatsapp-button:hover{background:#1ebe5d}
+footer{background:#123d27;color:white;padding:40px 6%;margin-top:30px}.footer-grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px}
+footer h3{margin-bottom:12px}footer p{font-size:14px;margin-bottom:7px;opacity:.9}.copyright{text-align:center;border-top:1px solid rgba(255,255,255,.2);margin-top:30px;padding-top:20px;font-size:13px}
+.otp-step{display:none}.otp-step.show{display:block}.auth-status{margin-top:12px;font-weight:bold}
+.recaptcha-box{margin:10px 0 15px;min-height:78px}
+.small-note{font-size:12px;color:#68736c;margin:8px 0 15px}
+@media(max-width:750px){
+.navbar{padding:13px 5%}.menu-btn{display:block}.nav-links{display:none;position:absolute;top:65px;left:0;width:100%;background:#087f3e;padding:20px;flex-direction:column}
+.nav-links.active{display:flex}.hero{padding:60px 20px}.hero h1{font-size:36px}.hero p{font-size:16px}.section{padding:40px 5%}
+.search-box{flex-direction:column}.cart{width:100%}
 }
 </style>
-
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-auth-compat.js"></script>
 </head>
 
 <body>
 
 <nav class="navbar">
-  <div class="logo">Sefwi<span>Go</span></div>
-  <div class="nav-links">
+  <div class="logo">🚀 SefwiGo</div>
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <div class="nav-links" id="navLinks">
     <a href="#home">Home</a>
     <a href="#categories">Categories</a>
     <a href="#businesses">Businesses</a>
-    <a href="#order">Order</a>
-    <button class="btn btn-gold" onclick="openAccount()">Account</button>
+    <a href="#how">How It Works</a>
+    <button class="button button-white" onclick="openLogin()">👤 Account</button>
+    <button class="cart-btn" onclick="openCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
   </div>
 </nav>
 
+<div class="notice">🚀 SefwiGo — Your town. Your shops. Delivered.</div>
+
 <section class="hero" id="home">
-  <div>
-    <h1>Delivery made <span>easy</span> with SefwiGo.</h1>
-    <p>Find local food, groceries, shops and services in Sefwi Wiawso and order what you need with ease.</p>
-    <a href="#businesses" class="btn btn-primary" style="display:inline-block;text-decoration:none">Explore Businesses</a>
-  </div>
-
-  <div class="hero-card">
-    <h3>What are you looking for?</h3>
-    <p class="small">Search for food, groceries, shops and more.</p>
-    <div class="search-box">
-      <input id="searchInput" type="text" placeholder="Search SefwiGo..." oninput="searchBusinesses()">
-      <button class="btn btn-gold" onclick="searchBusinesses()">Search</button>
-    </div>
+  <h1>🚀 SefwiGo</h1>
+  <p>Order food, groceries, parcels and local services from businesses around Sefwi Wiawso.</p>
+  <div class="hero-buttons">
+    <a href="#businesses" class="button button-white">🛍️ Start Shopping</a>
+    <a href="#how" class="button button-white">How It Works</a>
   </div>
 </section>
 
-<section id="categories">
-  <div class="section-title">
-    <h2>Browse Categories</h2>
-    <p>Choose what you need</p>
-  </div>
-
+<section class="section" id="categories">
+  <div class="section-title"><h2>Explore Categories</h2><p>Find what you need around Sefwi Wiawso.</p></div>
   <div class="categories">
-    <div class="category" onclick="filterCategory('Food')">
-      <div class="icon">🍔</div>
-      <strong>Food</strong>
-    </div>
-
-    <div class="category" onclick="filterCategory('Groceries')">
-      <div class="icon">🛒</div>
-      <strong>Groceries</strong>
-    </div>
-
-    <div class="category" onclick="filterCategory('Pharmacy')">
-      <div class="icon">💊</div>
-      <strong>Pharmacy</strong>
-    </div>
-
-    <div class="category" onclick="filterCategory('Fashion')">
-      <div class="icon">👕</div>
-      <strong>Fashion</strong>
-    </div>
-
-    <div class="category" onclick="filterCategory('Electronics')">
-      <div class="icon">📱</div>
-      <strong>Electronics</strong>
-    </div>
-
-    <div class="category" onclick="filterCategory('Services')">
-      <div class="icon">🔧</div>
-      <strong>Services</strong>
-    </div>
+    <div class="card"><div class="emoji">🍔</div><h3>Food</h3><p>Meals, snacks and drinks.</p><button class="button" onclick="filterBusinesses('Food')">Explore</button></div>
+    <div class="card"><div class="emoji">🛒</div><h3>Groceries</h3><p>Household essentials and groceries.</p><button class="button" onclick="filterBusinesses('Groceries')">Explore</button></div>
+    <div class="card"><div class="emoji">📦</div><h3>Parcels</h3><p>Send and receive packages.</p><button class="button" onclick="chooseCategory('Parcels')">Explore</button></div>
+    <div class="card"><div class="emoji">✨</div><h3>Services</h3><p>Discover useful local services.</p><button class="button" onclick="chooseCategory('Services')">Explore</button></div>
   </div>
 </section>
 
-<section id="businesses">
-  <div class="section-title">
-    <h2>Popular Businesses</h2>
-    <p>Discover businesses available on SefwiGo</p>
+<section class="section">
+  <div class="section-title"><h2>Find a Business</h2><p>Search for restaurants, shops and local businesses.</p></div>
+  <div class="search-box">
+    <input id="searchInput" type="text" placeholder="Search business..." onkeyup="searchBusinesses()">
+    <button class="button" onclick="searchBusinesses()">🔎 Search</button>
   </div>
+</section>
 
-  <div class="business-grid" id="businessGrid">
+<section class="section" id="businesses">
+  <div class="section-title"><h2>Popular Businesses</h2><p>Support local businesses in Sefwi Wiawso.</p></div>
+  <div class="businesses" id="businessList">
 
-    <div class="business-card" data-category="Food" data-name="Sefwi Chop Bar">
-      <div class="business-image">🍛</div>
-      <div class="business-content">
-        <span class="tag">Food</span>
-        <h3>Sefwi Chop Bar</h3>
-        <p>Local Ghanaian meals prepared fresh.</p>
-        <button class="btn btn-primary" onclick="addToCart('Jollof Rice',25)">Add Jollof — GH₵25</button>
-      </div>
+    <div class="card business-card" data-name="Wiawso Chop Bar" data-category="Food">
+      <div class="emoji">🍛</div><h3>Wiawso Chop Bar</h3><p>Local Ghanaian meals · 25–40 minutes</p>
+      <button class="button" onclick="addProduct('Jollof Rice - Wiawso Chop Bar',35)">Add Food · GH₵35</button>
     </div>
 
-    <div class="business-card" data-category="Groceries" data-name="Sefwi Market Store">
-      <div class="business-image">🛒</div>
-      <div class="business-content">
-        <span class="tag">Groceries</span>
-        <h3>Sefwi Market Store</h3>
-        <p>Everyday groceries and household essentials.</p>
-        <button class="btn btn-primary" onclick="addToCart('Groceries',50)">Add Groceries — GH₵50</button>
-      </div>
+    <div class="card business-card" data-name="Auntie Ama Kitchen" data-category="Food">
+      <div class="emoji">🍲</div><h3>Auntie Ama Kitchen</h3><p>Home-style meals · 20–35 minutes</p>
+      <button class="button" onclick="addProduct('Waakye - Auntie Ama Kitchen',30)">Add Food · GH₵30</button>
     </div>
 
-    <div class="business-card" data-category="Fashion" data-name="Sefwi Fashion Hub">
-      <div class="business-image">👕</div>
-      <div class="business-content">
-        <span class="tag">Fashion</span>
-        <h3>Sefwi Fashion Hub</h3>
-        <p>Clothing and fashion items.</p>
-        <button class="btn btn-primary" onclick="addToCart('Fashion Item',80)">Add Item — GH₵80</button>
-      </div>
+    <div class="card business-card" data-name="Sefwi Fresh Mart" data-category="Groceries">
+      <div class="emoji">🛍️</div><h3>Sefwi Fresh Mart</h3><p>Groceries and essentials</p>
+      <button class="button" onclick="addProduct('Grocery Package - Sefwi Fresh Mart',50)">Add Package · GH₵50</button>
     </div>
 
-    <div class="business-card" data-category="Electronics" data-name="Sefwi Electronics">
-      <div class="business-image">📱</div>
-      <div class="business-content">
-        <span class="tag">Electronics</span>
-        <h3>Sefwi Electronics</h3>
-        <p>Phones, accessories and electronic products.</p>
-        <button class="btn btn-primary" onclick="addToCart('Phone Accessory',60)">Add Accessory — GH₵60</button>
-      </div>
-    </div>
-
-    <div class="business-card" data-category="Pharmacy" data-name="Sefwi Pharmacy">
-      <div class="business-image">💊</div>
-      <div class="business-content">
-        <span class="tag">Pharmacy</span>
-        <h3>Sefwi Pharmacy</h3>
-        <p>Pharmacy and personal-care products.</p>
-        <button class="btn btn-primary" onclick="addToCart('Personal Care Item',35)">Add Item — GH₵35</button>
-      </div>
-    </div>
-
-    <div class="business-card" data-category="Services" data-name="Sefwi Services">
-      <div class="business-image">🔧</div>
-      <div class="business-content">
-        <span class="tag">Services</span>
-        <h3>Sefwi Services</h3>
-        <p>Find useful local services around you.</p>
-        <button class="btn btn-primary" onclick="addToCart('Service Request',40)">Add Service — GH₵40</button>
-      </div>
+    <div class="card business-card" data-name="Wiawso Drinks Spot" data-category="Food">
+      <div class="emoji">🥤</div><h3>Wiawso Drinks Spot</h3><p>Drinks and refreshments</p>
+      <button class="button" onclick="addProduct('Drinks Package',20)">Add Drinks · GH₵20</button>
     </div>
 
   </div>
 </section>
 
-<section class="order-area" id="order">
-  <div class="section-title">
-    <h2>Your Order</h2>
-    <p>Review your cart and send your order</p>
+<section class="section">
+  <div class="section-title"><h2>Popular Items</h2><p>Add items to your SefwiGo cart.</p></div>
+  <div class="products">
+    <div class="card"><div class="emoji">🍚</div><h3>Jollof Rice</h3><p>Delicious local meal.</p><div class="product-price">GH₵35</div><button class="button" onclick="addProduct('Jollof Rice',35)">Add to Cart</button></div>
+    <div class="card"><div class="emoji">🍗</div><h3>Chicken Meal</h3><p>Chicken with your choice of side.</p><div class="product-price">GH₵45</div><button class="button" onclick="addProduct('Chicken Meal',45)">Add to Cart</button></div>
+    <div class="card"><div class="emoji">🛒</div><h3>Grocery Package</h3><p>Basic household essentials.</p><div class="product-price">GH₵50</div><button class="button" onclick="addProduct('Grocery Package',50)">Add to Cart</button></div>
   </div>
+</section>
 
+<section class="section" id="how">
+  <div class="section-title"><h2>How SefwiGo Works</h2><p>Ordering locally is simple.</p></div>
+  <div class="features">
+    <div class="card feature"><div class="feature-icon">🔎</div><h3>1. Choose</h3><p>Find your favourite local business.</p></div>
+    <div class="card feature"><div class="feature-icon">🛒</div><h3>2. Order</h3><p>Add items and provide your delivery location.</p></div>
+    <div class="card feature"><div class="feature-icon">💳</div><h3>3. Pay</h3><p>Choose your preferred payment method.</p></div>
+    <div class="card feature"><div class="feature-icon">🛵</div><h3>4. Receive</h3><p>A SefwiGo rider delivers your order.</p></div>
+  </div>
+</section>
+
+<section class="section">
   <div class="order-box">
-
-    <div class="cart">
-      <h3 style="margin-bottom:10px">Cart</h3>
-      <div id="cartItems"></div>
-      <hr>
-      <div style="display:flex;justify-content:space-between;font-weight:800">
-        <span>Total</span>
-        <span>GH₵<span id="cartTotal">0</span></span>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="orderName">Name</label>
-      <input id="orderName" type="text" placeholder="Your name">
-    </div>
-
-    <div class="form-group">
-      <label for="orderPhone">Phone</label>
-      <input id="orderPhone" type="tel" placeholder="0241234567">
-    </div>
-
-    <div class="form-group">
-      <label for="orderAddress">Delivery Address</label>
-      <textarea id="orderAddress" placeholder="Where should we deliver?"></textarea>
-    </div>
-
-    <button class="btn btn-primary" style="width:100%" onclick="sendWhatsAppOrder()">
-      Order via WhatsApp
-    </button>
-
+    <h2>📦 Complete Your Order</h2>
+    <label>Your name</label><input id="customerName" placeholder="Enter your name">
+    <label>Phone number</label><input id="customerPhone" type="tel" placeholder="Example: 024 000 0000">
+    <label>Delivery location</label><input id="deliveryLocation" placeholder="Example: Wiawso Market">
+    <label>Delivery instructions</label><textarea id="instructions" placeholder="Example: Call me when you arrive."></textarea>
+    <label>Payment method</label>
+    <select id="paymentMethod"><option>Cash on Delivery</option><option>Mobile Money</option><option>Debit / Credit Card</option></select>
+    <button class="button" onclick="submitOrder()">🚀 Submit Demo Order</button>
+    <button class="button whatsapp-button" onclick="sendWhatsAppOrder()">💬 Order Through WhatsApp</button>
+    <div id="orderResult"></div>
   </div>
 </section>
 
-<section>
-  <div class="section-title">
-    <h2>Become a SefwiGo Partner</h2>
-    <p>Are you a local business owner?</p>
-  </div>
-
-  <div style="text-align:center">
-    <button class="btn btn-gold" onclick="vendorRegistration()">Register Your Business</button>
+<section class="section">
+  <div class="card" style="text-align:center;">
+    <div class="emoji">🏪</div><h2>Own a Business?</h2>
+    <p>Join SefwiGo and reach more customers around Sefwi Wiawso.</p>
+    <button class="button" onclick="vendorSignup()">Become a SefwiGo Partner</button>
   </div>
 </section>
 
 <footer>
-  <div class="logo">Sefwi<span>Go</span></div>
-  <p>Delivery made easy in Sefwi Wiawso.</p>
-  <p>© 2026 SefwiGo. All rights reserved.</p>
+  <div class="footer-grid">
+    <div><h3>🚀 SefwiGo</h3><p>Your town. Your shops. Delivered.</p></div>
+    <div><h3>Services</h3><p>Food delivery</p><p>Grocery delivery</p><p>Parcel delivery</p><p>Local services</p></div>
+    <div><h3>Contact</h3><p>📞 Customer Support</p><p>📍 Sefwi Wiawso</p><p>💬 WhatsApp: 024 815 9106</p></div>
+  </div>
+  <div class="copyright">© 2026 SefwiGo. Built for Sefwi Wiawso.</div>
 </footer>
 
-<!-- ACCOUNT MODAL -->
-<div class="modal" id="accountModal">
-  <div class="modal-box">
+<div class="cart" id="cart">
+  <div class="cart-header"><h2>🛒 Your Cart</h2><button class="close-cart" onclick="closeCart()">✕</button></div>
+  <div id="cartItems"><p>Your cart is empty.</p></div>
+  <div class="cart-total">Total: GH₵<span id="cartTotal">0</span></div>
+  <button class="button" style="width:100%;" onclick="goToOrder()">Continue to Order</button>
+</div>
 
-    <div class="modal-header">
-      <h2>SefwiGo Account</h2>
-      <button class="close" onclick="closeAccount()">&times;</button>
-    </div>
+<!-- Firebase Phone OTP Account Modal -->
+<div class="modal" id="loginModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeLogin()">✕</button>
+    <h2>👤 SefwiGo Account</h2>
+    <p style="margin:10px 0 20px;color:#68736c;">Sign in securely with your Ghana phone number.</p>
 
-    <div id="authMessage"></div>
+    <div id="phoneStep">
+      <label>Name</label>
+      <input id="accountName" placeholder="Your name" autocomplete="name">
 
-    <div id="loggedOutView">
+      <label>Ghana phone number</label>
+      <input id="accountPhone" type="tel" placeholder="024 000 0000" autocomplete="tel">
 
-      <div class="form-group">
-        <label for="accountName">Name</label>
-        <input id="accountName" type="text" placeholder="Your name">
-      </div>
+      <p class="small-note">You will receive an SMS verification code. Standard SMS rates may apply.</p>
 
-      <div class="form-group">
-        <label for="accountPhone">Ghana Phone Number</label>
-        <input id="accountPhone" type="tel" placeholder="0241234567">
-        <p class="small" style="margin-top:5px">
-          Example: 0241234567 or +233241234567
-        </p>
-      </div>
+      <div id="recaptcha-container" class="recaptcha-box"></div>
 
-      <div id="recaptcha-container"></div>
-
-      <button id="sendOtpBtn" class="btn btn-primary" style="width:100%" onclick="sendOTP()">
-        Send OTP
+      <button id="sendOtpButton" class="button" style="width:100%;" onclick="sendOTP()">
+        📱 Send OTP
       </button>
 
-      <div id="otpSection" class="hidden" style="margin-top:15px">
-
-        <div class="form-group">
-          <label for="otpCode">Enter OTP</label>
-          <input id="otpCode" type="text" inputmode="numeric" maxlength="6" placeholder="6-digit code">
-        </div>
-
-        <button class="btn btn-gold" style="width:100%" onclick="verifyOTP()">
-          Verify OTP
-        </button>
-
-        <button class="btn btn-light" style="width:100%;margin-top:8px" onclick="changePhone()">
-          Change Phone Number
-        </button>
-
-      </div>
-
-    </div>
-
-    <div id="loggedInView" class="hidden">
-
-      <div class="auth-status auth-success">
-        You are signed in to your SefwiGo account.
-      </div>
-
-      <p><strong>Name:</strong> <span id="accountDisplayName"></span></p>
-      <p><strong>Phone:</strong> <span id="accountDisplayPhone"></span></p>
-
-      <button class="btn btn-light" style="width:100%;margin-top:20px" onclick="signOutUser()">
-        Sign Out
+      <button class="button" style="width:100%;margin-top:10px;background:#f1f5f3;color:#0b5d3b;border:1px solid #cbd9d1;" onclick="startFreeTestAccount()">
+        🧪 Test Account — Free
       </button>
 
+      <p class="small-note" style="margin-top:8px;">Free testing uses a demo verification code: <strong>123456</strong>. It does not send a real SMS.</p>
     </div>
 
+    <div id="otpStep" class="otp-step">
+      <p id="otpMessage" style="margin-bottom:15px;color:#68736c;"></p>
+
+      <label>6-digit verification code</label>
+      <input id="otpCode" type="text" inputmode="numeric" maxlength="6"
+             placeholder="Enter OTP" autocomplete="one-time-code">
+
+      <button id="verifyOtpButton" class="button" style="width:100%;" onclick="verifyOTP()">
+        ✅ Verify OTP
+      </button>
+
+      <button class="button" style="width:100%;margin-top:10px;background:#eee;color:#17221b;"
+              onclick="backToPhoneStep()">
+        ← Change phone number
+      </button>
+    </div>
+
+    <p id="accountResult" class="auth-status"></p>
   </div>
 </div>
 
+<!-- Firebase compat SDK -->
+<script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-auth-compat.js"></script>
+
 <script>
 /* =========================
-   FIREBASE CONFIGURATION
+   FIREBASE
 ========================= */
 
 const firebaseConfig = {
@@ -362,169 +258,392 @@ firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
 
-let recaptchaVerifier = null;
 let confirmationResult = null;
+let recaptchaVerifier = null;
 
 
 /* =========================
-   ACCOUNT MODAL
+   CART
 ========================= */
 
-function openAccount(){
-  document.getElementById("accountModal").classList.add("active");
-  updateAuthUI();
+let cart = JSON.parse(localStorage.getItem("sefwiCart")) || [];
 
-  if(!auth.currentUser){
-    setTimeout(initializeRecaptcha,200);
-  }
+function toggleMenu(){
+  document.getElementById("navLinks").classList.toggle("active");
 }
 
-function closeAccount(){
-  document.getElementById("accountModal").classList.remove("active");
+function chooseCategory(category){
+  alert(category + " services will be available on SefwiGo.");
+  document.getElementById("businesses").scrollIntoView({behavior:"smooth"});
 }
 
-function showAuthMessage(message,type="error"){
-  const box=document.getElementById("authMessage");
+function filterBusinesses(category){
+  const cards = document.querySelectorAll(".business-card");
+  cards.forEach(card => {
+    card.style.display = card.dataset.category === category ? "block" : "none";
+  });
+  document.getElementById("businesses").scrollIntoView({behavior:"smooth"});
+}
 
-  if(!message){
-    box.innerHTML="";
+function searchBusinesses(){
+  const search = document.getElementById("searchInput").value.toLowerCase();
+  const cards = document.querySelectorAll(".business-card");
+  cards.forEach(card => {
+    const name = card.dataset.name.toLowerCase();
+    card.style.display = name.includes(search) ? "block" : "none";
+  });
+}
+
+function addProduct(name,price){
+  const existing = cart.find(item => item.name === name);
+  if(existing) existing.quantity++;
+  else cart.push({name:name,price:price,quantity:1});
+  saveCart();
+  updateCart();
+  openCart();
+}
+
+function saveCart(){
+  localStorage.setItem("sefwiCart", JSON.stringify(cart));
+}
+
+function updateCart(){
+  const cartItems = document.getElementById("cartItems");
+  const cartCount = document.getElementById("cartCount");
+  const cartTotal = document.getElementById("cartTotal");
+
+  if(cart.length === 0){
+    cartItems.innerHTML = "<p>Your cart is empty.</p>";
+    cartCount.textContent = "0";
+    cartTotal.textContent = "0";
     return;
   }
 
-  box.innerHTML =
-    '<div class="auth-status '+(type==="success"?"auth-success":"auth-error")+'">'
-    +escapeHtml(message)+
-    '</div>';
+  let total = 0;
+  let count = 0;
+  cartItems.innerHTML = "";
+
+  cart.forEach((item,index)=>{
+    total += item.price * item.quantity;
+    count += item.quantity;
+
+    const div = document.createElement("div");
+    div.className = "cart-item";
+    div.innerHTML = `
+      <strong>${escapeHtml(item.name)}</strong>
+      <p>GH₵${Number(item.price).toFixed(2)} × ${item.quantity}</p>
+      <div class="quantity">
+        <button onclick="changeQuantity(${index},-1)">−</button>
+        <span>${item.quantity}</span>
+        <button onclick="changeQuantity(${index},1)">+</button>
+        <button onclick="removeItem(${index})">Remove</button>
+      </div>
+    `;
+    cartItems.appendChild(div);
+  });
+
+  cartCount.textContent = count;
+  cartTotal.textContent = total.toFixed(2);
+}
+
+function changeQuantity(index,change){
+  cart[index].quantity += change;
+  if(cart[index].quantity <= 0) cart.splice(index,1);
+  saveCart();
+  updateCart();
+}
+
+function removeItem(index){
+  cart.splice(index,1);
+  saveCart();
+  updateCart();
+}
+
+function openCart(){
+  document.getElementById("cart").classList.add("open");
+}
+
+function closeCart(){
+  document.getElementById("cart").classList.remove("open");
+}
+
+function goToOrder(){
+  closeCart();
+  document.querySelector(".order-box").scrollIntoView({behavior:"smooth"});
 }
 
 
 /* =========================
-   PHONE NORMALIZATION
+   ORDER
 ========================= */
 
-function normalizeGhanaPhone(phone){
+function submitOrder(){
+  const name = document.getElementById("customerName").value.trim();
+  const phone = document.getElementById("customerPhone").value.trim();
+  const location = document.getElementById("deliveryLocation").value.trim();
+  const payment = document.getElementById("paymentMethod").value;
+  const result = document.getElementById("orderResult");
 
-  phone=String(phone||"").trim();
+  if(!name || !phone || !location){
+    result.className = "result";
+    result.style.background = "#fee2e2";
+    result.style.color = "#991b1b";
+    result.textContent = "Please complete your name, phone and delivery location.";
+    return;
+  }
 
-  phone=phone.replace(/\s+/g,"");
+  if(cart.length === 0){
+    result.className = "result";
+    result.style.background = "#fff3cd";
+    result.style.color = "#664d03";
+    result.textContent = "Please add at least one item to your cart.";
+    return;
+  }
+
+  let total = 0;
+  cart.forEach(item => total += item.price * item.quantity);
+
+  result.className = "result";
+  result.style.background = "#dcfce7";
+  result.style.color = "#166534";
+  result.textContent = "✅ Demo order received! " + name +
+    ", your order total is GH₵" + total.toFixed(2) +
+    ". Payment: " + payment + ". Delivery to " + location + ".";
+}
+
+function sendWhatsAppOrder(){
+  const whatsappNumber = "233248159106";
+  const name = document.getElementById("customerName").value.trim();
+  const phone = document.getElementById("customerPhone").value.trim();
+  const location = document.getElementById("deliveryLocation").value.trim();
+  const instructions = document.getElementById("instructions").value.trim();
+
+  if(cart.length === 0){
+    alert("Please add at least one item to your cart first.");
+    return;
+  }
+
+  let total = 0;
+  let items = "";
+
+  cart.forEach(item=>{
+    const subtotal = item.price * item.quantity;
+    total += subtotal;
+    items += item.name + " x " + item.quantity + " = GH₵" + subtotal + "\n";
+  });
+
+  const message =
+    "Hello SefwiGo! 🚀\n\n" +
+    "I want to place an order.\n\n" +
+    "Customer: " + name + "\n" +
+    "Phone: " + phone + "\n\n" +
+    "Items:\n" + items + "\n" +
+    "Total: GH₵" + total.toFixed(2) + "\n\n" +
+    "Delivery location: " + location + "\n\n" +
+    "Instructions: " + instructions;
+
+  const url = "https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message);
+  window.open(url,"_blank");
+}
+
+
+/* =========================
+   FIREBASE PHONE OTP
+========================= */
+
+function openLogin(){
+  document.getElementById("loginModal").classList.add("show");
+
+  const currentUser = auth.currentUser;
+  const testAccount = JSON.parse(localStorage.getItem("sefwiTestAccount") || "null");
+
+  if(currentUser){
+    showSignedInState(currentUser);
+  }else if(testAccount){
+    showTestSignedInState(testAccount);
+  }else{
+    document.getElementById("phoneStep").style.display = "block";
+    document.getElementById("otpStep").classList.remove("show");
+    document.getElementById("accountResult").textContent = "";
+    setupRecaptcha();
+  }
+}
+
+function closeLogin(){
+  document.getElementById("loginModal").classList.remove("show");
+}
+
+function setupRecaptcha(){
+  if(recaptchaVerifier) return;
+
+  recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+    "recaptcha-container",
+    {
+      size: "normal",
+      callback: function(){
+        document.getElementById("accountResult").style.color = "#087f3e";
+        document.getElementById("accountResult").textContent = "✅ reCAPTCHA verified. You can send the OTP.";
+      },
+      "expired-callback": function(){
+        document.getElementById("accountResult").style.color = "#991b1b";
+        document.getElementById("accountResult").textContent = "reCAPTCHA expired. Please verify again.";
+      }
+    },
+    auth
+  );
+
+  recaptchaVerifier.render().catch(error=>{
+    console.error("reCAPTCHA render error:", error);
+  });
+}
+
+function normalizeGhanaPhone(value){
+  let phone = value.replace(/[^\d+]/g,"");
 
   if(phone.startsWith("+233")){
     return phone;
   }
 
   if(phone.startsWith("233")){
-    return "+"+phone;
+    return "+" + phone;
   }
 
   if(phone.startsWith("0")){
-    return "+233"+phone.substring(1);
+    return "+233" + phone.substring(1);
+  }
+
+  if(phone.length === 9){
+    return "+233" + phone;
   }
 
   return phone;
 }
 
-
-/* =========================
-   RECAPTCHA
-========================= */
-
-function initializeRecaptcha(){
-
-  if(recaptchaVerifier){
-    return;
-  }
-
-  try{
-
-    recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
-      "recaptcha-container",
-      {
-        size:"normal"
-      }
-    );
-
-    recaptchaVerifier.render();
-
-  }catch(error){
-
-    console.error(error);
-
-    showAuthMessage(
-      "Could not load reCAPTCHA. Please refresh the page and try again."
-    );
-  }
+function isValidGhanaPhone(phone){
+  return /^\+233\d{9}$/.test(phone);
 }
 
 
 /* =========================
-   SEND OTP
+   FREE TEST ACCOUNT
+========================= */
+
+function startFreeTestAccount(){
+  const name = document.getElementById("accountName").value.trim();
+  const rawPhone = document.getElementById("accountPhone").value.trim();
+  const result = document.getElementById("accountResult");
+
+  if(!name){
+    result.style.color = "#991b1b";
+    result.textContent = "Please enter your name.";
+    return;
+  }
+
+  const phone = normalizeGhanaPhone(rawPhone);
+
+  if(!isValidGhanaPhone(phone)){
+    result.style.color = "#991b1b";
+    result.textContent = "Please enter a valid Ghana mobile number, for example 024 000 0000.";
+    return;
+  }
+
+  confirmationResult = { testMode: true };
+
+  document.getElementById("phoneStep").style.display = "none";
+  document.getElementById("otpStep").classList.add("show");
+
+  document.getElementById("otpMessage").textContent =
+    "Free test mode: use verification code 123456. No SMS will be sent.";
+
+  result.style.color = "#087f3e";
+  result.textContent = "🧪 Free test mode is ready.";
+
+  document.getElementById("otpCode").focus();
+}
+
+function showTestSignedInState(account){
+  document.getElementById("phoneStep").style.display = "none";
+  document.getElementById("otpStep").classList.remove("show");
+
+  const result = document.getElementById("accountResult");
+
+  result.style.color = "#087f3e";
+
+  result.innerHTML =
+    "🧪 <strong>Test account signed in</strong><br>" +
+    escapeHtml(account.name) +
+    "<br>" +
+    escapeHtml(account.phone) +
+    "<br><small>This is a free development account. No real SMS was sent.</small>" +
+    '<br><br><button class="button" onclick="signOutAccount()">Sign Out</button>';
+}
+
+
+/* =========================
+   REAL SMS OTP
 ========================= */
 
 async function sendOTP(){
-
-  const name=document.getElementById("accountName").value.trim();
-  const rawPhone=document.getElementById("accountPhone").value.trim();
+  const name = document.getElementById("accountName").value.trim();
+  const rawPhone = document.getElementById("accountPhone").value.trim();
+  const result = document.getElementById("accountResult");
+  const button = document.getElementById("sendOtpButton");
 
   if(!name){
-    showAuthMessage("Please enter your name.");
+    result.style.color = "#991b1b";
+    result.textContent = "Please enter your name.";
     return;
   }
 
-  if(!rawPhone){
-    showAuthMessage("Please enter your phone number.");
-    return;
-  }
+  const phone = normalizeGhanaPhone(rawPhone);
 
-  const phone=normalizeGhanaPhone(rawPhone);
-
-  if(!phone.startsWith("+233")){
-    showAuthMessage("Please enter a valid Ghana phone number.");
+  if(!isValidGhanaPhone(phone)){
+    result.style.color = "#991b1b";
+    result.textContent = "Please enter a valid Ghana mobile number, for example 024 000 0000.";
     return;
   }
 
   try{
+    button.disabled = true;
+    button.textContent = "Sending OTP...";
+    result.style.color = "#68736c";
+    result.textContent = "Preparing phone verification...";
 
-    showAuthMessage("Sending OTP...","success");
+    setupRecaptcha();
 
-    if(!recaptchaVerifier){
-      initializeRecaptcha();
-    }
+    confirmationResult = await auth.signInWithPhoneNumber(phone, recaptchaVerifier);
 
-    confirmationResult =
-      await auth.signInWithPhoneNumber(
-        phone,
-        recaptchaVerifier
-      );
+    document.getElementById("phoneStep").style.display = "none";
+    document.getElementById("otpStep").classList.add("show");
 
-    document.getElementById("otpSection")
-      .classList.remove("hidden");
+    document.getElementById("otpMessage").textContent =
+      "A verification code was sent to " + phone + ". Enter the 6-digit code below.";
 
-    document.getElementById("sendOtpBtn")
-      .classList.add("hidden");
+    result.style.color = "#087f3e";
+    result.textContent = "✅ OTP sent successfully.";
 
-    showAuthMessage(
-      "OTP sent to "+phone,
-      "success"
-    );
+    document.getElementById("otpCode").focus();
 
   }catch(error){
-
     console.error(error);
 
-    showAuthMessage(
-      getFirebaseErrorMessage(error)
-    );
+    result.style.color = "#991b1b";
 
-    if(recaptchaVerifier){
-
-      try{
-        recaptchaVerifier.clear();
-      }catch(e){}
-
-      recaptchaVerifier=null;
-
-      setTimeout(initializeRecaptcha,300);
+    if(error.code === "auth/invalid-phone-number"){
+      result.textContent = "The phone number is invalid. Please check the Ghana number.";
+    }else if(error.code === "auth/too-many-requests"){
+      result.textContent = "Too many attempts. Please wait and try again later.";
+    }else if(error.code === "auth/quota-exceeded"){
+      result.textContent = "Firebase SMS quota has been exceeded. Please try again later.";
+    }else{
+      result.textContent = "Could not send the OTP. " + (error.message || "Please try again.");
     }
+
+    resetRecaptcha();
+
+  }finally{
+    button.disabled = false;
+    button.textContent = "📱 Send OTP";
   }
 }
 
@@ -534,528 +653,266 @@ async function sendOTP(){
 ========================= */
 
 async function verifyOTP(){
-
-  const code=document.getElementById("otpCode").value.trim();
-  const name=document.getElementById("accountName").value.trim();
+  const code = document.getElementById("otpCode").value.trim();
+  const name = document.getElementById("accountName").value.trim();
+  const result = document.getElementById("accountResult");
+  const button = document.getElementById("verifyOtpButton");
 
   if(!confirmationResult){
-    showAuthMessage("Please request an OTP first.");
+    result.style.color = "#991b1b";
+    result.textContent = "Please request a new OTP first.";
     return;
   }
 
-  if(!code || code.length<6){
-    showAuthMessage("Please enter the 6-digit OTP.");
+  if(!/^\d{6}$/.test(code)){
+    result.style.color = "#991b1b";
+    result.textContent = "Please enter the 6-digit verification code.";
     return;
   }
+
+  /* FREE TEST MODE */
+  if(confirmationResult && confirmationResult.testMode){
+
+    if(code !== "123456"){
+      result.style.color = "#991b1b";
+      result.textContent = "Test code is 123456. Please try again.";
+      return;
+    }
+
+    const phone = normalizeGhanaPhone(
+      document.getElementById("accountPhone").value.trim()
+    );
+
+    const testAccount = {
+      name: name,
+      phone: phone
+    };
+
+    localStorage.setItem(
+      "sefwiTestAccount",
+      JSON.stringify(testAccount)
+    );
+
+    result.style.color = "#087f3e";
+    result.textContent = "✅ Free test account created successfully!";
+
+    showTestSignedInState(testAccount);
+
+    return;
+  }
+
+  /* REAL FIREBASE MODE */
 
   try{
+    button.disabled = true;
+    button.textContent = "Verifying...";
 
-    showAuthMessage("Verifying OTP...","success");
+    result.style.color = "#68736c";
+    result.textContent = "Checking your verification code...";
 
-    const result =
+    const credentialResult =
       await confirmationResult.confirm(code);
 
-    const user=result.user;
+    const user = credentialResult.user;
 
-    if(name){
-
+    if(name && (!user.displayName || user.displayName !== name)){
       try{
-
         await user.updateProfile({
           displayName:name
         });
-
       }catch(profileError){
-        console.log(profileError);
+        console.warn("Could not update display name:", profileError);
       }
-
     }
 
     localStorage.setItem(
-      "sefwiGoAccount",
+      "sefwiAccount",
       JSON.stringify({
         name:name || user.displayName || "",
         phone:user.phoneNumber || ""
       })
     );
 
-    showAuthMessage(
-      "Account verified successfully.",
-      "success"
-    );
+    result.style.color = "#087f3e";
+    result.textContent =
+      "✅ Account verified successfully! Welcome to SefwiGo.";
 
-    updateAuthUI();
+    showSignedInState(user);
 
   }catch(error){
 
     console.error(error);
 
-    showAuthMessage(
-      getFirebaseErrorMessage(error)
-    );
+    result.style.color = "#991b1b";
+
+    if(error.code === "auth/invalid-verification-code"){
+      result.textContent =
+        "That OTP is incorrect. Please check the SMS and try again.";
+    }else if(error.code === "auth/code-expired"){
+      result.textContent =
+        "That OTP has expired. Please request a new one.";
+    }else{
+      result.textContent =
+        "Verification failed. " +
+        (error.message || "Please try again.");
+    }
+
+  }finally{
+
+    button.disabled = false;
+    button.textContent = "✅ Verify OTP";
   }
 }
 
 
 /* =========================
-   CHANGE PHONE
+   SIGNED-IN STATES
 ========================= */
 
-function changePhone(){
+function showSignedInState(user){
 
-  confirmationResult=null;
+  document.getElementById("phoneStep").style.display = "none";
+  document.getElementById("otpStep").classList.remove("show");
 
-  document.getElementById("otpCode").value="";
+  const result =
+    document.getElementById("accountResult");
 
-  document.getElementById("otpSection")
-    .classList.add("hidden");
+  result.style.color = "#087f3e";
 
-  document.getElementById("sendOtpBtn")
-    .classList.remove("hidden");
+  result.innerHTML =
+    "✅ <strong>Signed in</strong><br>" +
+    escapeHtml(user.displayName || "SefwiGo customer") +
+    "<br>" +
+    escapeHtml(user.phoneNumber || "") +
+    '<br><br><button class="button" onclick="signOutAccount()">Sign Out</button>';
+}
 
-  showAuthMessage("");
+function signOutAccount(){
+
+  /* TEST ACCOUNT */
+  if(localStorage.getItem("sefwiTestAccount")){
+
+    localStorage.removeItem("sefwiTestAccount");
+
+    document.getElementById("phoneStep").style.display = "block";
+    document.getElementById("otpStep").classList.remove("show");
+
+    document.getElementById("accountName").value = "";
+    document.getElementById("accountPhone").value = "";
+    document.getElementById("otpCode").value = "";
+
+    confirmationResult = null;
+
+    const result =
+      document.getElementById("accountResult");
+
+    result.style.color = "#087f3e";
+    result.textContent =
+      "You have signed out of the test account.";
+
+    return;
+  }
+
+  /* REAL FIREBASE ACCOUNT */
+
+  auth.signOut().then(()=>{
+
+    localStorage.removeItem("sefwiAccount");
+
+    document.getElementById("phoneStep").style.display = "block";
+    document.getElementById("otpStep").classList.remove("show");
+
+    document.getElementById("accountName").value = "";
+    document.getElementById("accountPhone").value = "";
+    document.getElementById("otpCode").value = "";
+
+    const result =
+      document.getElementById("accountResult");
+
+    result.style.color = "#087f3e";
+    result.textContent = "You have signed out.";
+
+    resetRecaptcha();
+    setupRecaptcha();
+
+  }).catch(error=>{
+    console.error(error);
+  });
+}
+
+function backToPhoneStep(){
+
+  confirmationResult = null;
+
+  document.getElementById("otpStep")
+    .classList.remove("show");
+
+  document.getElementById("phoneStep")
+    .style.display = "block";
+
+  document.getElementById("otpCode")
+    .value = "";
+
+  document.getElementById("accountResult")
+    .textContent = "";
+
+  resetRecaptcha();
+  setupRecaptcha();
+}
+
+function resetRecaptcha(){
 
   if(recaptchaVerifier){
 
     try{
       recaptchaVerifier.clear();
-    }catch(e){}
+    }catch(error){
+      console.warn("Could not clear reCAPTCHA:", error);
+    }
 
-    recaptchaVerifier=null;
+    recaptchaVerifier = null;
   }
 
-  setTimeout(initializeRecaptcha,200);
-}
+  const container =
+    document.getElementById("recaptcha-container");
 
-
-/* =========================
-   SIGN OUT
-========================= */
-
-async function signOutUser(){
-
-  try{
-
-    await auth.signOut();
-
-    localStorage.removeItem("sefwiGoAccount");
-
-    confirmationResult=null;
-
-    showAuthMessage("");
-
-    updateAuthUI();
-
-    setTimeout(initializeRecaptcha,200);
-
-  }catch(error){
-
-    console.error(error);
-
-    showAuthMessage(
-      "Could not sign out. Please try again."
-    );
+  if(container){
+    container.innerHTML = "";
   }
 }
 
-
-/* =========================
-   AUTH UI
-========================= */
-
-function updateAuthUI(){
-
-  const loggedOut=document.getElementById("loggedOutView");
-  const loggedIn=document.getElementById("loggedInView");
-
-  const user=auth.currentUser;
+auth.onAuthStateChanged(user=>{
 
   if(user){
 
-    loggedOut.classList.add("hidden");
-    loggedIn.classList.remove("hidden");
-
-    const saved=
-      JSON.parse(
-        localStorage.getItem("sefwiGoAccount") || "{}"
-      );
-
-    document.getElementById("accountDisplayName")
-      .textContent=
-      user.displayName ||
-      saved.name ||
-      "SefwiGo User";
-
-    document.getElementById("accountDisplayPhone")
-      .textContent=
-      user.phoneNumber ||
-      saved.phone ||
-      "";
+    console.log(
+      "SefwiGo Firebase user signed in:",
+      user.phoneNumber
+    );
 
   }else{
 
-    loggedOut.classList.remove("hidden");
-    loggedIn.classList.add("hidden");
-  }
-}
-
-
-/* =========================
-   FIREBASE AUTH STATE
-========================= */
-
-auth.onAuthStateChanged(function(user){
-
-  updateAuthUI();
-
-  if(user){
-
-    const saved=
-      JSON.parse(
-        localStorage.getItem("sefwiGoAccount") || "{}"
-      );
-
-    if(user.displayName && !saved.name){
-
-      localStorage.setItem(
-        "sefwiGoAccount",
-        JSON.stringify({
-          name:user.displayName,
-          phone:user.phoneNumber || ""
-        })
-      );
-
-    }
+    console.log(
+      "No SefwiGo Firebase user signed in."
+    );
   }
 });
 
 
 /* =========================
-   FIREBASE ERROR MESSAGES
+   VENDOR / UTILITIES
 ========================= */
 
-function getFirebaseErrorMessage(error){
-
-  if(!error){
-    return "Something went wrong.";
-  }
-
-  const code=error.code || "";
-
-  switch(code){
-
-    case "auth/invalid-phone-number":
-      return "The phone number is invalid.";
-
-    case "auth/too-many-requests":
-      return "Too many attempts. Please wait and try again later.";
-
-    case "auth/quota-exceeded":
-      return "SMS limit reached. Please try again later.";
-
-    case "auth/invalid-verification-code":
-      return "The OTP is incorrect. Please check the code and try again.";
-
-    case "auth/code-expired":
-      return "The OTP has expired. Please request a new one.";
-
-    case "auth/captcha-check-failed":
-      return "reCAPTCHA verification failed. Please try again.";
-
-    case "auth/network-request-failed":
-      return "Network error. Check your internet connection.";
-
-    case "auth/app-not-authorized":
-      return "This website is not authorized in Firebase.";
-
-    case "auth/operation-not-allowed":
-      return "Phone authentication is not enabled in Firebase.";
-
-    default:
-      return error.message || "Authentication failed. Please try again.";
-  }
-}
-
-
-/* =========================
-   CART
-========================= */
-
-let cart=
-  JSON.parse(
-    localStorage.getItem("sefwiGoCart") || "[]"
-  );
-
-
-function saveCart(){
-
-  localStorage.setItem(
-    "sefwiGoCart",
-    JSON.stringify(cart)
-  );
-}
-
-
-function addToCart(name,price){
-
-  const existing=
-    cart.find(item=>item.name===name);
-
-  if(existing){
-
-    existing.qty+=1;
-
-  }else{
-
-    cart.push({
-      name:name,
-      price:Number(price),
-      qty:1
-    });
-  }
-
-  saveCart();
-  updateCart();
-
-  alert(name+" added to cart.");
-}
-
-
-function removeFromCart(index){
-
-  cart.splice(index,1);
-
-  saveCart();
-  updateCart();
-}
-
-
-function updateCart(){
-
-  const container=
-    document.getElementById("cartItems");
-
-  const totalElement=
-    document.getElementById("cartTotal");
-
-  if(!container || !totalElement){
-    return;
-  }
-
-  if(cart.length===0){
-
-    container.innerHTML=
-      '<div class="empty">Your cart is empty.</div>';
-
-    totalElement.textContent="0";
-
-    return;
-  }
-
-  let total=0;
-
-  container.innerHTML=
-    cart.map((item,index)=>{
-
-      const itemTotal=
-        Number(item.price)*Number(item.qty);
-
-      total+=itemTotal;
-
-      return `
-        <div class="cart-item">
-          <div>
-            <strong>${escapeHtml(item.name)}</strong>
-            <div class="small">
-              GH₵${item.price} × ${item.qty}
-            </div>
-          </div>
-
-          <div style="text-align:right">
-            <strong>GH₵${itemTotal}</strong>
-            <br>
-            <button
-              class="btn btn-light"
-              style="padding:5px 8px;margin-top:4px"
-              onclick="removeFromCart(${index})">
-              Remove
-            </button>
-          </div>
-        </div>
-      `;
-
-    }).join("");
-
-  totalElement.textContent=total.toFixed(2);
-}
-
-
-/* =========================
-   SEARCH
-========================= */
-
-function searchBusinesses(){
-
-  const query=
-    document.getElementById("searchInput")
-      .value
-      .trim()
-      .toLowerCase();
-
-  const cards=
-    document.querySelectorAll(".business-card");
-
-  cards.forEach(card=>{
-
-    const name=
-      (card.dataset.name || "")
-      .toLowerCase();
-
-    const category=
-      (card.dataset.category || "")
-      .toLowerCase();
-
-    if(
-      !query ||
-      name.includes(query) ||
-      category.includes(query)
-    ){
-
-      card.style.display="block";
-
-    }else{
-
-      card.style.display="none";
-    }
-  });
-}
-
-
-/* =========================
-   CATEGORY FILTER
-========================= */
-
-function filterCategory(category){
-
-  const cards=
-    document.querySelectorAll(".business-card");
-
-  cards.forEach(card=>{
-
-    if(
-      card.dataset.category===category
-    ){
-
-      card.style.display="block";
-
-    }else{
-
-      card.style.display="none";
-    }
-  });
-
-  document
-    .getElementById("businesses")
-    .scrollIntoView({
-      behavior:"smooth"
-    });
-}
-
-
-/* =========================
-   WHATSAPP ORDER
-========================= */
-
-function sendWhatsAppOrder(){
-
-  if(cart.length===0){
-
-    alert("Your cart is empty.");
-
-    return;
-  }
-
-  const name=
-    document.getElementById("orderName")
-      .value.trim();
-
-  const phone=
-    document.getElementById("orderPhone")
-      .value.trim();
-
-  const address=
-    document.getElementById("orderAddress")
-      .value.trim();
-
-  if(!name || !phone || !address){
-
-    alert("Please fill in your name, phone number and delivery address.");
-
-    return;
-  }
-
-  let total=0;
-
-  const items=
-    cart.map(item=>{
-
-      const itemTotal=
-        Number(item.price)*Number(item.qty);
-
-      total+=itemTotal;
-
-      return (
-        item.name+
-        " x"+
-        item.qty+
-        " = GH₵"+
-        itemTotal
-      );
-
-    }).join("\n");
-
-  const message=
-`Hello SefwiGo, I would like to place an order.
-
-Name: ${name}
-Phone: ${phone}
-Delivery Address: ${address}
-
-Items:
-${items}
-
-Total: GH₵${total.toFixed(2)}`;
-
-  /*
-    Replace this number with the official SefwiGo
-    WhatsApp business number when available.
-  */
-  const whatsappNumber="233000000000";
-
-  const url=
-    "https://wa.me/"+
-    whatsappNumber+
-    "?text="+
-    encodeURIComponent(message);
-
-  window.open(url,"_blank");
-}
-
-
-/* =========================
-   VENDOR REGISTRATION
-========================= */
-
-function vendorRegistration(){
+function vendorSignup(){
 
   alert(
-    "Vendor registration will be connected soon. Thank you for your interest in becoming a SefwiGo partner."
+    "Thank you for your interest in becoming a SefwiGo partner. Vendor registration will be connected soon."
   );
 }
 
 
 /* =========================
-   ESCAPE HTML
+   SECURITY HELPER
 ========================= */
 
 function escapeHtml(value){
@@ -1070,7 +927,7 @@ function escapeHtml(value){
 
 
 /* =========================
-   INITIALIZE
+   START
 ========================= */
 
 updateCart();
