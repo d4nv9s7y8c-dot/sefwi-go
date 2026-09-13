@@ -36,10 +36,7 @@ body{
   padding-bottom:85px;
 }
 
-button,
-input,
-select,
-textarea{
+button,input,select,textarea{
   font:inherit;
 }
 
@@ -95,7 +92,7 @@ a{
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:22px;
+  font-size:20px;
   font-weight:900;
 }
 
@@ -128,13 +125,14 @@ a{
 .hero h2{
   font-size:25px;
   line-height:1.15;
-  max-width:300px;
+  max-width:320px;
 }
 
 .hero p{
   color:#d7eee4;
-  margin-top:7px;
+  margin-top:8px;
   font-size:14px;
+  line-height:1.5;
 }
 
 .search{
@@ -230,7 +228,7 @@ main{
   margin-top:8px;
 }
 
-/* DEAL BANNER */
+/* DEAL */
 .deal{
   background:linear-gradient(135deg,#0b805d,#0caa72);
   color:white;
@@ -239,6 +237,7 @@ main{
   display:flex;
   justify-content:space-between;
   align-items:center;
+  gap:12px;
   overflow:hidden;
 }
 
@@ -250,6 +249,7 @@ main{
   color:#d7f3e8;
   font-size:13px;
   margin-top:5px;
+  line-height:1.4;
 }
 
 .deal button{
@@ -259,6 +259,7 @@ main{
   padding:10px 13px;
   border-radius:12px;
   font-weight:800;
+  white-space:nowrap;
 }
 
 /* CARDS */
@@ -360,6 +361,7 @@ main{
   display:flex;
   gap:8px;
   margin-top:12px;
+  flex-wrap:wrap;
 }
 
 .btn{
@@ -383,6 +385,10 @@ main{
 .btn-danger{
   background:#fff0ef;
   color:var(--danger);
+}
+
+.full{
+  width:100%;
 }
 
 /* EMPTY */
@@ -514,10 +520,6 @@ main{
   border-color:var(--green);
 }
 
-.full{
-  width:100%;
-}
-
 .status{
   padding:12px;
   border-radius:12px;
@@ -645,10 +647,6 @@ main{
     grid-template-columns:repeat(3,1fr);
   }
 
-  .categories{
-    grid-template-columns:repeat(4,1fr);
-  }
-
   .modal{
     width:600px;
     margin:auto;
@@ -680,291 +678,569 @@ main{
 
 <body>
 
-<!-- HEADER -->
 <header class="header">
+
   <div class="topbar">
+
     <div class="logo">
+
       <div class="logo-icon">SG</div>
+
       <div>
         <h1>SefwiGo</h1>
         <small>Sefwi Wiawso</small>
       </div>
+
     </div>
 
-    <button class="account-btn" onclick="openAccount()">👤</button>
+    <button class="account-btn" onclick="openAccount()">
+      👤
+    </button>
+
   </div>
 
   <div class="hero">
-    <h2>Everything local, delivered to you.</h2>
-    <p>Food, groceries, parcels, property and local businesses.</p>
+
+    <h2>
+      Everything local, delivered to you.
+    </h2>
+
+    <p>
+      Food, groceries, parcels, property and local businesses.
+    </p>
 
     <div class="search">
+
       <span>🔎</span>
-      <input id="searchInput" type="search"
-             placeholder="Search businesses, food, property..."
-             oninput="searchEverything()">
+
+      <input
+        id="searchInput"
+        type="search"
+        placeholder="Search businesses, food, property..."
+        oninput="searchEverything()">
+
     </div>
+
   </div>
+
 </header>
+
 
 <main>
 
-  <!-- HOME -->
-  <section id="homePage">
+<section id="homePage">
 
-    <div class="section">
-      <div class="section-title">
-        <h3>What do you need?</h3>
-      </div>
+  <div class="section">
 
-      <div class="categories">
-
-        <button class="category" onclick="showFood()">
-          <div class="category-icon">🍔</div>
-          <strong>Food</strong>
-        </button>
-
-        <button class="category" onclick="showGroceries()">
-          <div class="category-icon">🛒</div>
-          <strong>Groceries</strong>
-        </button>
-
-        <button class="category" onclick="openParcel()">
-          <div class="category-icon">📦</div>
-          <strong>Parcels</strong>
-        </button>
-
-        <button class="category" onclick="openProperty()">
-          <div class="category-icon">🏠</div>
-          <strong>Property</strong>
-        </button>
-
-      </div>
+    <div class="section-title">
+      <h3>What do you need?</h3>
     </div>
 
-    <div class="section">
-      <div class="deal">
-        <div>
-          <h3>Order locally 🚀</h3>
-          <p>Connect with businesses around Sefwi Wiawso.</p>
-        </div>
-        <button onclick="openPartner()">Partner with us</button>
-      </div>
+    <div class="categories">
+
+      <button class="category" onclick="showFood()">
+        <div class="category-icon">🍔</div>
+        <strong>Food</strong>
+      </button>
+
+      <button class="category" onclick="showGroceries()">
+        <div class="category-icon">🛒</div>
+        <strong>Groceries</strong>
+      </button>
+
+      <button class="category" onclick="openParcel()">
+        <div class="category-icon">📦</div>
+        <strong>Parcels</strong>
+      </button>
+
+      <button class="category" onclick="openProperty()">
+        <div class="category-icon">🏠</div>
+        <strong>Property</strong>
+      </button>
+
     </div>
 
-    <div class="section">
-      <div class="section-title">
-        <h3>Popular Businesses</h3>
-        <button onclick="openPartner()">Register business</button>
+  </div>
+
+
+  <div class="section">
+
+    <div class="deal">
+
+      <div>
+
+        <h3>Order locally 🚀</h3>
+
+        <p>
+          Connect with businesses around Sefwi Wiawso.
+        </p>
+
       </div>
 
-      <div id="businessList" class="cards">
-        <div class="loading">Loading businesses...</div>
-      </div>
+      <button onclick="openPartner()">
+        Partner with us
+      </button>
+
     </div>
 
-    <div class="section">
-      <div class="section-title">
-        <h3>Available Properties</h3>
-        <button onclick="openProperty()">View all</button>
-      </div>
+  </div>
 
-      <div id="propertyList">
-        <div class="loading">Loading properties...</div>
-      </div>
+
+  <div class="section">
+
+    <div class="section-title">
+
+      <h3>Popular Businesses</h3>
+
+      <button onclick="openPartner()">
+        Register business
+      </button>
+
     </div>
 
-  </section>
+    <div id="businessList" class="cards">
+
+      <div class="loading">
+        Loading businesses...
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="section">
+
+    <div class="section-title">
+
+      <h3>Available Properties</h3>
+
+      <button onclick="openProperty()">
+        View all
+      </button>
+
+    </div>
+
+    <div id="propertyList">
+
+      <div class="loading">
+        Loading properties...
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
 </main>
 
-<!-- BOTTOM NAV -->
+
 <nav class="bottom-nav">
 
-  <button class="nav-item active" id="navHome" onclick="goHome()">
+  <button
+    class="nav-item active"
+    id="navHome"
+    onclick="goHome()">
+
     <span>⌂</span>
     Home
+
   </button>
 
-  <button class="nav-item" id="navOrders" onclick="openOrders()">
+
+  <button
+    class="nav-item"
+    id="navOrders"
+    onclick="openOrders()">
+
     <span>🧾</span>
     Orders
+
   </button>
 
-  <button class="nav-item" id="navPartner" onclick="openPartner()">
+
+  <button
+    class="nav-item"
+    id="navPartner"
+    onclick="openPartner()">
+
     <span>🏪</span>
     Partner
+
   </button>
 
-  <button class="nav-item" id="navAccount" onclick="openAccount()">
+
+  <button
+    class="nav-item"
+    id="navAccount"
+    onclick="openAccount()">
+
     <span>👤</span>
     Account
+
   </button>
 
 </nav>
 
-<!-- ACCOUNT MODAL -->
+
+<!-- ACCOUNT -->
+
 <div class="overlay" id="accountModal">
+
   <div class="modal">
 
     <div class="modal-head">
+
       <h3>My Account</h3>
-      <button class="close" onclick="closeModal('accountModal')">×</button>
+
+      <button
+        class="close"
+        onclick="closeModal('accountModal')">
+        ×
+      </button>
+
     </div>
+
 
     <div class="status" id="accountStatus">
       Connecting account...
     </div>
 
+
     <div class="stat-grid">
-      <div class="stat">
-        <strong id="accountBusinesses">0</strong>
-        <span>My Businesses</span>
-      </div>
 
       <div class="stat">
-        <strong id="accountProperties">0</strong>
-        <span>My Properties</span>
+
+        <strong id="accountBusinesses">
+          0
+        </strong>
+
+        <span>
+          My Businesses
+        </span>
+
       </div>
+
+
+      <div class="stat">
+
+        <strong id="accountProperties">
+          0
+        </strong>
+
+        <span>
+          My Properties
+        </span>
+
+      </div>
+
     </div>
 
-    <button class="btn btn-primary full" onclick="openPartner()">
+
+    <button
+      class="btn btn-primary full"
+      onclick="openPartner()">
+
       🏪 Business Dashboard
+
     </button>
+
 
     <br><br>
 
-    <button class="btn btn-light full" onclick="openProperty()">
+
+    <button
+      class="btn btn-light full"
+      onclick="openProperty()">
+
       🏠 My Properties
+
     </button>
+
 
     <br><br>
 
-    <button class="btn btn-light full" onclick="openOrders()">
+
+    <button
+      class="btn btn-light full"
+      onclick="openOrders()">
+
       🧾 My Orders
+
     </button>
+
 
     <br><br>
 
-    <button class="btn btn-danger full" onclick="logout()">
+
+    <button
+      class="btn btn-danger full"
+      onclick="logout()">
+
       Sign out
+
     </button>
 
   </div>
+
 </div>
 
-<!-- PARTNER MODAL -->
+
+<!-- PARTNER -->
+
 <div class="overlay" id="partnerModal">
+
   <div class="modal">
 
     <div class="modal-head">
+
       <h3>Business Dashboard</h3>
-      <button class="close" onclick="closeModal('partnerModal')">×</button>
+
+      <button
+        class="close"
+        onclick="closeModal('partnerModal')">
+        ×
+      </button>
+
     </div>
 
+
     <div class="dashboard-tabs">
-      <button id="tabOverview" class="active" onclick="dashboardTab('overview')">
+
+      <button
+        id="tabOverview"
+        class="active"
+        onclick="dashboardTab('overview')">
         Overview
       </button>
 
-      <button id="tabBusiness" onclick="dashboardTab('business')">
+      <button
+        id="tabBusiness"
+        onclick="dashboardTab('business')">
         My Business
       </button>
 
-      <button id="tabProducts" onclick="dashboardTab('products')">
+      <button
+        id="tabProducts"
+        onclick="dashboardTab('products')">
         Products
       </button>
 
-      <button id="tabOrders" onclick="dashboardTab('orders')">
+      <button
+        id="tabOrders"
+        onclick="dashboardTab('orders')">
         Orders
       </button>
+
     </div>
+
 
     <div id="dashboardOverview">
 
       <div class="stat-grid">
-        <div class="stat">
-          <strong id="dashBusinessCount">0</strong>
-          <span>Businesses</span>
-        </div>
 
         <div class="stat">
-          <strong id="dashProductCount">0</strong>
-          <span>Products</span>
+
+          <strong id="dashBusinessCount">
+            0
+          </strong>
+
+          <span>
+            Businesses
+          </span>
+
         </div>
+
+
+        <div class="stat">
+
+          <strong id="dashProductCount">
+            0
+          </strong>
+
+          <span>
+            Products
+          </span>
+
+        </div>
+
       </div>
 
-      <button class="btn btn-primary full" onclick="dashboardTab('business')">
+
+      <button
+        class="btn btn-primary full"
+        onclick="dashboardTab('business')">
+
         + Register / Edit Business
+
       </button>
 
     </div>
 
-    <div id="dashboardBusiness" style="display:none">
+
+    <div
+      id="dashboardBusiness"
+      style="display:none">
 
       <form onsubmit="saveBusiness(event)">
 
         <div class="form-group">
-          <label>Business name</label>
-          <input id="bizName" required placeholder="Example: Kofi's Chop Bar">
+
+          <label>
+            Business name
+          </label>
+
+          <input
+            id="bizName"
+            required
+            placeholder="Example: Kofi's Chop Bar">
+
         </div>
 
+
         <div class="form-group">
-          <label>Category</label>
+
+          <label>
+            Category
+          </label>
+
           <select id="bizCategory" required>
-            <option value="">Choose category</option>
-            <option>Restaurant</option>
-            <option>Food Vendor</option>
-            <option>Grocery</option>
-            <option>Pharmacy</option>
-            <option>Fashion</option>
-            <option>Electronics</option>
-            <option>Beauty</option>
-            <option>Services</option>
-            <option>Other</option>
+
+            <option value="">
+              Choose category
+            </option>
+
+            <option>
+              Restaurant
+            </option>
+
+            <option>
+              Food Vendor
+            </option>
+
+            <option>
+              Grocery
+            </option>
+
+            <option>
+              Pharmacy
+            </option>
+
+            <option>
+              Fashion
+            </option>
+
+            <option>
+              Electronics
+            </option>
+
+            <option>
+              Beauty
+            </option>
+
+            <option>
+              Services
+            </option>
+
+            <option>
+              Other
+            </option>
+
           </select>
+
         </div>
+
 
         <div class="form-group">
-          <label>Owner / Contact person</label>
-          <input id="bizOwner" required placeholder="Your name">
+
+          <label>
+            Owner / Contact person
+          </label>
+
+          <input
+            id="bizOwner"
+            required
+            placeholder="Your name">
+
         </div>
+
 
         <div class="form-group">
-          <label>WhatsApp / Phone</label>
-          <input id="bizPhone" required placeholder="024XXXXXXX">
+
+          <label>
+            WhatsApp / Phone
+          </label>
+
+          <input
+            id="bizPhone"
+            required
+            placeholder="024XXXXXXX">
+
         </div>
+
 
         <div class="form-group">
-          <label>Location</label>
-          <input id="bizLocation" required placeholder="Sefwi Wiawso">
+
+          <label>
+            Location
+          </label>
+
+          <input
+            id="bizLocation"
+            required
+            placeholder="Sefwi Wiawso">
+
         </div>
+
 
         <div class="form-group">
-          <label>Description</label>
-          <textarea id="bizDescription"
-                    placeholder="Tell customers about your business"></textarea>
+
+          <label>
+            Description
+          </label>
+
+          <textarea
+            id="bizDescription"
+            placeholder="Tell customers about your business">
+          </textarea>
+
         </div>
 
-        <button class="btn btn-primary full" type="submit">
+
+        <button
+          class="btn btn-primary full"
+          type="submit">
+
           Publish Business
+
         </button>
 
       </form>
 
     </div>
 
-    <div id="dashboardProducts" style="display:none">
+
+    <div
+      id="dashboardProducts"
+      style="display:none">
 
       <div class="empty">
+
         Product management is ready for the next stage.
+
         <br><br>
+
         Your business can be connected to products and prices here.
+
       </div>
 
     </div>
 
-    <div id="dashboardOrders" style="display:none">
+
+    <div
+      id="dashboardOrders"
+      style="display:none">
 
       <div class="empty">
         No orders yet.
@@ -973,198 +1249,430 @@ main{
     </div>
 
   </div>
+
 </div>
 
-<!-- PROPERTY MODAL -->
+
+<!-- PROPERTY -->
+
 <div class="overlay" id="propertyModal">
+
   <div class="modal">
 
     <div class="modal-head">
+
       <h3>Property</h3>
-      <button class="close" onclick="closeModal('propertyModal')">×</button>
+
+      <button
+        class="close"
+        onclick="closeModal('propertyModal')">
+        ×
+      </button>
+
     </div>
+
 
     <div class="dashboard-tabs">
-      <button class="active" id="propertyBrowseTab"
-              onclick="propertyTab('browse')">
+
+      <button
+        class="active"
+        id="propertyBrowseTab"
+        onclick="propertyTab('browse')">
+
         Browse
+
       </button>
 
-      <button id="propertyRegisterTab"
-              onclick="propertyTab('register')">
+
+      <button
+        id="propertyRegisterTab"
+        onclick="propertyTab('register')">
+
         Register Property
+
       </button>
 
-      <button id="propertyMineTab"
-              onclick="propertyTab('mine')">
+
+      <button
+        id="propertyMineTab"
+        onclick="propertyTab('mine')">
+
         My Properties
+
       </button>
+
     </div>
+
 
     <div id="propertyBrowse">
 
       <div id="modalPropertyList">
-        <div class="loading">Loading properties...</div>
+
+        <div class="loading">
+          Loading properties...
+        </div>
+
       </div>
 
     </div>
 
-    <div id="propertyRegister" style="display:none">
+
+    <div
+      id="propertyRegister"
+      style="display:none">
 
       <form onsubmit="saveProperty(event)">
 
         <div class="form-group">
-          <label>Property title</label>
-          <input id="propertyTitle" required
-                 placeholder="Example: 2 Bedroom House">
+
+          <label>
+            Property title
+          </label>
+
+          <input
+            id="propertyTitle"
+            required
+            placeholder="Example: 2 Bedroom House">
+
         </div>
 
+
         <div class="form-group">
-          <label>Property type</label>
-          <select id="propertyType" required>
-            <option value="">Choose type</option>
-            <option>House</option>
-            <option>Apartment</option>
-            <option>Room</option>
-            <option>Shop</option>
-            <option>Land</option>
-            <option>Office</option>
-            <option>Other</option>
+
+          <label>
+            Property type
+          </label>
+
+          <select
+            id="propertyType"
+            required>
+
+            <option value="">
+              Choose type
+            </option>
+
+            <option>
+              House
+            </option>
+
+            <option>
+              Apartment
+            </option>
+
+            <option>
+              Room
+            </option>
+
+            <option>
+              Shop
+            </option>
+
+            <option>
+              Land
+            </option>
+
+            <option>
+              Office
+            </option>
+
+            <option>
+              Other
+            </option>
+
           </select>
+
         </div>
 
+
         <div class="form-group">
-          <label>Purpose</label>
-          <select id="propertyPurpose" required>
-            <option value="">Choose purpose</option>
-            <option>Rent</option>
-            <option>Sale</option>
-            <option>Lease</option>
+
+          <label>
+            Purpose
+          </label>
+
+          <select
+            id="propertyPurpose"
+            required>
+
+            <option value="">
+              Choose purpose
+            </option>
+
+            <option>
+              Rent
+            </option>
+
+            <option>
+              Sale
+            </option>
+
+            <option>
+              Lease
+            </option>
+
           </select>
+
         </div>
+
 
         <div class="form-group">
-          <label>Price</label>
-          <input id="propertyPrice" required
-                 placeholder="Example: GH₵ 2,000/month">
+
+          <label>
+            Price
+          </label>
+
+          <input
+            id="propertyPrice"
+            required
+            placeholder="Example: GH₵ 2,000/month">
+
         </div>
+
 
         <div class="form-group">
-          <label>Location</label>
-          <input id="propertyLocation" required
-                 placeholder="Sefwi Wiawso">
+
+          <label>
+            Location
+          </label>
+
+          <input
+            id="propertyLocation"
+            required
+            placeholder="Sefwi Wiawso">
+
         </div>
+
 
         <div class="form-group">
-          <label>Contact phone</label>
-          <input id="propertyPhone" required
-                 placeholder="024XXXXXXX">
+
+          <label>
+            Contact phone
+          </label>
+
+          <input
+            id="propertyPhone"
+            required
+            placeholder="024XXXXXXX">
+
         </div>
+
 
         <div class="form-group">
-          <label>Description</label>
-          <textarea id="propertyDescription"
-                    placeholder="Describe the property"></textarea>
+
+          <label>
+            Description
+          </label>
+
+          <textarea
+            id="propertyDescription"
+            placeholder="Describe the property">
+          </textarea>
+
         </div>
 
-        <button class="btn btn-primary full" type="submit">
+
+        <button
+          class="btn btn-primary full"
+          type="submit">
+
           Publish Property
+
         </button>
 
       </form>
 
     </div>
 
-    <div id="propertyMine" style="display:none">
+
+    <div
+      id="propertyMine"
+      style="display:none">
 
       <div id="myPropertyList">
-        <div class="loading">Loading your properties...</div>
+
+        <div class="loading">
+          Loading your properties...
+        </div>
+
       </div>
 
     </div>
 
   </div>
+
 </div>
 
-<!-- PARCEL MODAL -->
+
+<!-- PARCEL -->
+
 <div class="overlay" id="parcelModal">
+
   <div class="modal">
 
     <div class="modal-head">
-      <h3>Parcel Delivery</h3>
-      <button class="close" onclick="closeModal('parcelModal')">×</button>
+
+      <h3>
+        Parcel Delivery
+      </h3>
+
+      <button
+        class="close"
+        onclick="closeModal('parcelModal')">
+        ×
+      </button>
+
     </div>
+
 
     <div class="status">
+
       Tell us where the parcel should be collected and delivered.
+
     </div>
+
 
     <div class="form-group">
-      <label>Your name</label>
-      <input id="parcelName" placeholder="Your name">
+
+      <label>
+        Your name
+      </label>
+
+      <input
+        id="parcelName"
+        placeholder="Your name">
+
     </div>
+
 
     <div class="form-group">
-      <label>Pickup location</label>
-      <input id="parcelPickup" placeholder="Pickup location">
+
+      <label>
+        Pickup location
+      </label>
+
+      <input
+        id="parcelPickup"
+        placeholder="Pickup location">
+
     </div>
+
 
     <div class="form-group">
-      <label>Delivery location</label>
-      <input id="parcelDropoff" placeholder="Delivery location">
+
+      <label>
+        Delivery location
+      </label>
+
+      <input
+        id="parcelDropoff"
+        placeholder="Delivery location">
+
     </div>
+
 
     <div class="form-group">
-      <label>Parcel description</label>
-      <textarea id="parcelDescription"
-                placeholder="What are you sending?"></textarea>
+
+      <label>
+        Parcel description
+      </label>
+
+      <textarea
+        id="parcelDescription"
+        placeholder="What are you sending?">
+      </textarea>
+
     </div>
 
-    <button class="btn btn-primary full" onclick="sendParcelWhatsApp()">
+
+    <button
+      class="btn btn-primary full"
+      onclick="sendParcelWhatsApp()">
+
       Send Delivery Request on WhatsApp
+
     </button>
 
   </div>
+
 </div>
 
-<!-- ORDERS MODAL -->
+
+<!-- ORDERS -->
+
 <div class="overlay" id="ordersModal">
+
   <div class="modal">
 
     <div class="modal-head">
-      <h3>My Orders</h3>
-      <button class="close" onclick="closeModal('ordersModal')">×</button>
+
+      <h3>
+        My Orders
+      </h3>
+
+      <button
+        class="close"
+        onclick="closeModal('ordersModal')">
+        ×
+      </button>
+
     </div>
 
+
     <div id="ordersContent">
+
       <div class="empty">
+
         You have no orders yet.
+
         <br><br>
+
         Orders you make through SefwiGo will appear here.
+
       </div>
+
     </div>
 
   </div>
+
 </div>
 
-<!-- CART MODAL -->
+
+<!-- CART -->
+
 <div class="overlay" id="cartModal">
+
   <div class="modal">
 
     <div class="modal-head">
-      <h3>Your Cart</h3>
-      <button class="close" onclick="closeModal('cartModal')">×</button>
+
+      <h3>
+        Your Cart
+      </h3>
+
+      <button
+        class="close"
+        onclick="closeModal('cartModal')">
+        ×
+      </button>
+
     </div>
+
 
     <div id="cartContent"></div>
 
   </div>
+
 </div>
+
 
 <div class="toast" id="toast"></div>
 
-<!-- FIREBASE -->
+
 <script type="module">
+
+/* =====================================================
+   FIREBASE
+===================================================== */
 
 import { initializeApp }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -1182,8 +1690,6 @@ import {
   collection,
   addDoc,
   getDocs,
-  query,
-  orderBy,
   doc,
   updateDoc,
   deleteDoc,
@@ -1192,52 +1698,76 @@ import {
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-/* ================================
-   FIREBASE CONFIG
-================================ */
-
 const firebaseConfig = {
-  apiKey: "AIzaSyDjHGybObPLLuqTNhNGE5SBRfBL5T29qWA",
-  authDomain: "sefwi-go.firebaseapp.com",
-  projectId: "sefwi-go",
-  storageBucket: "sefwi-go.firebasestorage.app",
-  messagingSenderId: "210398787110",
-  appId: "1:210398787110:web:f7f76a538a2712a2bb58e7"
+
+  apiKey:
+    "AIzaSyDjHGybObPLLuqTNhNGE5SBRfBL5T29qWA",
+
+  authDomain:
+    "sefwi-go.firebaseapp.com",
+
+  projectId:
+    "sefwi-go",
+
+  storageBucket:
+    "sefwi-go.firebasestorage.app",
+
+  messagingSenderId:
+    "210398787110",
+
+  appId:
+    "1:210398787110:web:f7f76a538a2712a2bb58e7"
+
 };
 
 
-/* ================================
-   FIREBASE INITIALIZATION
-================================ */
+const app =
+  initializeApp(firebaseConfig);
 
-const app = initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
+const auth =
+  getAuth(app);
 
-const db = getFirestore(app);
+
+const db =
+  getFirestore(app);
+
 
 let firebaseUser = null;
 
-let authReadyResolve;
-
-const authReady = new Promise(resolve => {
-  authReadyResolve = resolve;
-});
+let firebaseReady = false;
 
 
-onAuthStateChanged(auth, user => {
+/* =====================================================
+   AUTHENTICATION
+===================================================== */
 
-  firebaseUser = user;
+const authReady =
+  new Promise(resolve => {
 
-  authReadyResolve(user);
+    onAuthStateChanged(auth, user => {
 
-  updateAccountStatus();
+      firebaseUser = user;
 
-  loadBusinesses();
+      firebaseReady = true;
 
-  loadProperties();
+      updateAccountStatus();
 
-});
+      if(user){
+
+        loadBusinesses();
+
+        loadProperties();
+
+        updateAccountStats();
+
+      }
+
+      resolve(user);
+
+    });
+
+  });
 
 
 async function startFirebase(){
@@ -1245,124 +1775,223 @@ async function startFirebase(){
   try{
 
     if(firebaseUser){
+
       return firebaseUser;
+
     }
 
-    await signInAnonymously(auth);
 
-    const user = await authReady;
+    await authReady;
 
-    firebaseUser = user;
 
-    return user;
+    if(firebaseUser){
+
+      return firebaseUser;
+
+    }
+
+
+    const result =
+      await signInAnonymously(auth);
+
+
+    firebaseUser =
+      result.user;
+
+
+    updateAccountStatus();
+
+    return firebaseUser;
+
 
   }catch(error){
 
-    console.error("Firebase authentication error:",error);
-
-    updateAccountStatus(
-      "Firebase connection failed. Check Firebase Authentication."
+    console.error(
+      "FIREBASE AUTH ERROR:",
+      error
     );
 
-    showToast("Firebase connection failed.");
+
+    let message =
+      "Firebase login failed.";
+
+
+    if(error.code === "auth/operation-not-allowed"){
+
+      message =
+        "Anonymous Authentication is disabled in Firebase.";
+
+    }
+
+    else if(error.code === "auth/billing-not-enabled"){
+
+      message =
+        "Firebase billing is required for this authentication method.";
+
+    }
+
+    else if(error.code === "auth/network-request-failed"){
+
+      message =
+        "Internet connection problem.";
+
+    }
+
+
+    updateAccountStatus(message);
+
+    showToast(message);
 
     return null;
+
   }
+
 }
 
 
-/* ================================
-   DOM HELPERS
-================================ */
+/* =====================================================
+   DOM
+===================================================== */
 
-window.$ = function(id){
-  return document.getElementById(id);
-};
+window.$ =
+  function(id){
+
+    return document.getElementById(id);
+
+  };
 
 
-/* ================================
+/* =====================================================
    TOAST
-================================ */
+===================================================== */
 
-window.showToast = function(message){
+window.showToast =
+  function(message){
 
-  const toast = $("toast");
+    const toast =
+      $("toast");
 
-  toast.textContent = message;
+    toast.textContent =
+      message;
 
-  toast.classList.add("show");
+    toast.classList.add("show");
 
-  clearTimeout(window.toastTimer);
+    clearTimeout(
+      window.toastTimer
+    );
 
-  window.toastTimer = setTimeout(() => {
-    toast.classList.remove("show");
-  },3000);
+    window.toastTimer =
+      setTimeout(
+        () => {
 
-};
+          toast.classList.remove("show");
+
+        },
+        3500
+      );
+
+  };
 
 
-/* ================================
+/* =====================================================
    MODALS
-================================ */
+===================================================== */
 
-window.openModal = function(id){
-  $(id).classList.add("show");
-};
+window.openModal =
+  function(id){
 
-window.closeModal = function(id){
-  $(id).classList.remove("show");
-};
+    $(id).classList.add("show");
+
+  };
 
 
-/* Close when clicking background */
+window.closeModal =
+  function(id){
 
-document.querySelectorAll(".overlay").forEach(overlay => {
+    $(id).classList.remove("show");
 
-  overlay.addEventListener("click",event => {
+  };
 
-    if(event.target === overlay){
-      overlay.classList.remove("show");
-    }
+
+document
+  .querySelectorAll(".overlay")
+  .forEach(overlay => {
+
+    overlay.addEventListener(
+      "click",
+      event => {
+
+        if(event.target === overlay){
+
+          overlay.classList.remove("show");
+
+        }
+
+      }
+    );
 
   });
 
-});
 
-
-/* ================================
+/* =====================================================
    ACCOUNT
-================================ */
+===================================================== */
 
-window.openAccount = async function(){
+window.openAccount =
+  async function(){
 
-  openModal("accountModal");
+    openModal(
+      "accountModal"
+    );
 
-  updateAccountStatus();
+    updateAccountStatus();
 
-  await startFirebase();
+    const user =
+      await startFirebase();
 
-  updateAccountStatus();
 
-  await updateAccountStats();
+    if(user){
 
-};
+      updateAccountStatus();
+
+      await updateAccountStats();
+
+    }
+
+  };
 
 
 function updateAccountStatus(custom){
 
-  const box = $("accountStatus");
+  const box =
+    $("accountStatus");
+
+
+  if(!box){
+
+    return;
+
+  }
+
 
   if(custom){
-    box.textContent = custom;
+
+    box.textContent =
+      custom;
+
     return;
+
   }
+
 
   if(firebaseUser){
 
     box.textContent =
       "✅ Your SefwiGo account is connected.";
 
-  }else{
+  }
+
+  else{
 
     box.textContent =
       "Connecting account...";
@@ -1372,127 +2001,211 @@ function updateAccountStatus(custom){
 }
 
 
+/* =====================================================
+   ACCOUNT STATS
+===================================================== */
+
 async function updateAccountStats(){
 
-  if(!firebaseUser) return;
+  if(!firebaseUser){
+
+    return;
+
+  }
+
 
   try{
 
     const businessSnap =
-      await getDocs(collection(db,"businesses"));
+      await getDocs(
+        collection(db,"businesses")
+      );
+
 
     const propertySnap =
-      await getDocs(collection(db,"properties"));
+      await getDocs(
+        collection(db,"properties")
+      );
+
 
     const myBusinesses =
       businessSnap.docs.filter(
-        d => d.data().ownerUid === firebaseUser.uid
+        d =>
+          d.data().ownerUid ===
+          firebaseUser.uid
       );
+
 
     const myProperties =
       propertySnap.docs.filter(
-        d => d.data().ownerUid === firebaseUser.uid
+        d =>
+          d.data().ownerUid ===
+          firebaseUser.uid
       );
+
 
     $("accountBusinesses").textContent =
       myBusinesses.length;
 
+
     $("accountProperties").textContent =
       myProperties.length;
+
 
     $("dashBusinessCount").textContent =
       myBusinesses.length;
 
+
   }catch(error){
 
-    console.error(error);
+    console.error(
+      "ACCOUNT STATS ERROR:",
+      error
+    );
 
   }
 
 }
 
 
-/* ================================
+/* =====================================================
    LOGOUT
-================================ */
+===================================================== */
 
-window.logout = async function(){
+window.logout =
+  async function(){
 
-  try{
+    try{
 
-    await signOut(auth);
+      await signOut(auth);
 
-    firebaseUser = null;
+      firebaseUser =
+        null;
 
-    closeModal("accountModal");
+      closeModal(
+        "accountModal"
+      );
 
-    showToast("Signed out.");
-
-    await startFirebase();
-
-  }catch(error){
-
-    console.error(error);
-
-  }
-
-};
+      showToast(
+        "Signed out."
+      );
 
 
-/* ================================
+      setTimeout(
+        () => {
+
+          startFirebase();
+
+        },
+        200
+      );
+
+
+    }catch(error){
+
+      console.error(error);
+
+    }
+
+  };
+
+
+/* =====================================================
    HOME
-================================ */
+===================================================== */
 
-window.goHome = function(){
+window.goHome =
+  function(){
 
-  document.querySelectorAll(".nav-item")
-    .forEach(x => x.classList.remove("active"));
-
-  $("navHome").classList.add("active");
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-};
+    document
+      .querySelectorAll(".nav-item")
+      .forEach(
+        x =>
+          x.classList.remove("active")
+      );
 
 
-/* ================================
-   BUSINESS
-================================ */
+    $("navHome")
+      .classList.add("active");
+
+
+    window.scrollTo({
+
+      top:0,
+
+      behavior:"smooth"
+
+    });
+
+  };
+
+
+/* =====================================================
+   BUSINESSES
+===================================================== */
 
 async function loadBusinesses(){
 
-  const container = $("businessList");
+  const container =
+    $("businessList");
 
-  if(!container) return;
+
+  if(!container){
+
+    return;
+
+  }
+
 
   container.innerHTML =
     '<div class="loading">Loading businesses...</div>';
 
+
   try{
 
     const snapshot =
-      await getDocs(collection(db,"businesses"));
+      await getDocs(
+        collection(db,"businesses")
+      );
 
-    const businesses = snapshot.docs.map(d => ({
-      id:d.id,
-      ...d.data()
-    }));
 
-    window.allBusinesses = businesses;
+    const businesses =
+      snapshot.docs.map(
+        d => ({
 
-    renderBusinesses(businesses);
+          id:d.id,
+
+          ...d.data()
+
+        })
+      );
+
+
+    window.allBusinesses =
+      businesses;
+
+
+    renderBusinesses(
+      businesses
+    );
+
 
   }catch(error){
 
-    console.error("BUSINESS LOAD ERROR:",error);
+    console.error(
+      "BUSINESS LOAD ERROR:",
+      error
+    );
+
 
     container.innerHTML = `
+
       <div class="empty">
+
         Businesses will appear here when partners register.
+
       </div>
+
     `;
 
   }
@@ -1502,262 +2215,451 @@ async function loadBusinesses(){
 
 function renderBusinesses(list){
 
-  const container = $("businessList");
+  const container =
+    $("businessList");
+
+
+  if(!container){
+
+    return;
+
+  }
+
 
   if(!list.length){
 
     container.innerHTML = `
+
       <div class="empty">
+
         No businesses registered yet.
+
         <br><br>
+
         Be the first business to join SefwiGo.
+
       </div>
+
     `;
 
     return;
+
   }
 
 
-  container.innerHTML = list.map(business => {
+  container.innerHTML =
+    list.map(
+      business => {
 
-    const category =
-      escapeHTML(business.category || "Local Business");
+        const category =
+          escapeHTML(
+            business.category ||
+            "Local Business"
+          );
 
-    const name =
-      escapeHTML(business.name || "Unnamed Business");
 
-    const location =
-      escapeHTML(business.location || "Sefwi Wiawso");
+        const name =
+          escapeHTML(
+            business.name ||
+            "Unnamed Business"
+          );
 
-    const description =
-      escapeHTML(
-        business.description ||
-        "Local business on SefwiGo"
-      );
 
-    return `
-      <div class="card">
+        const location =
+          escapeHTML(
+            business.location ||
+            "Sefwi Wiawso"
+          );
 
-        <div class="card-image">
-          🏪
-        </div>
 
-        <div class="card-body">
+        const description =
+          escapeHTML(
+            business.description ||
+            "Local business on SefwiGo"
+          );
 
-          <h4>${name}</h4>
 
-          <p>${description}</p>
+        return `
 
-          <p>📍 ${location}</p>
+          <div class="card">
 
-          <span class="card-tag">
-            ${category}
-          </span>
+            <div class="card-image">
+              🏪
+            </div>
 
-        </div>
+            <div class="card-body">
 
-      </div>
-    `;
+              <h4>
+                ${name}
+              </h4>
 
-  }).join("");
+              <p>
+                ${description}
+              </p>
+
+              <p>
+                📍 ${location}
+              </p>
+
+              <span class="card-tag">
+                ${category}
+              </span>
+
+            </div>
+
+          </div>
+
+        `;
+
+      }
+    ).join("");
 
 }
 
 
-/* ================================
+/* =====================================================
    SAVE BUSINESS
-================================ */
+===================================================== */
 
-window.saveBusiness = async function(event){
+window.saveBusiness =
+  async function(event){
 
-  event.preventDefault();
+    event.preventDefault();
 
-  const user = await startFirebase();
 
-  if(!user){
+    const user =
+      await startFirebase();
 
-    showToast("Could not connect to your account.");
+
+    if(!user){
+
+      showToast(
+        "Could not connect to your account."
+      );
+
+      return;
+
+    }
+
+
+    const business = {
+
+      name:
+        $("bizName")
+        .value
+        .trim(),
+
+      category:
+        $("bizCategory")
+        .value,
+
+      owner:
+        $("bizOwner")
+        .value
+        .trim(),
+
+      phone:
+        $("bizPhone")
+        .value
+        .trim(),
+
+      location:
+        $("bizLocation")
+        .value
+        .trim(),
+
+      description:
+        $("bizDescription")
+        .value
+        .trim(),
+
+      ownerUid:
+        user.uid,
+
+      createdAt:
+        serverTimestamp()
+
+    };
+
+
+    try{
+
+      const old =
+        JSON.parse(
+          localStorage.getItem(
+            "sefwiBusiness"
+          ) || "null"
+        );
+
+
+      let businessId;
+
+
+      if(
+        old &&
+        old.id &&
+        old.ownerUid ===
+        user.uid
+      ){
+
+        await updateDoc(
+
+          doc(
+            db,
+            "businesses",
+            old.id
+          ),
+
+          business
+
+        );
+
+
+        businessId =
+          old.id;
+
+      }
+
+      else{
+
+        const ref =
+          await addDoc(
+
+            collection(
+              db,
+              "businesses"
+            ),
+
+            business
+
+          );
+
+
+        businessId =
+          ref.id;
+
+      }
+
+
+      localStorage.setItem(
+
+        "sefwiBusiness",
+
+        JSON.stringify({
+
+          ...business,
+
+          id:
+            businessId
+
+        })
+
+      );
+
+
+      showToast(
+        "✅ Business published!"
+      );
+
+
+      await loadBusinesses();
+
+      await updateAccountStats();
+
+      dashboardTab(
+        "overview"
+      );
+
+
+    }catch(error){
+
+      console.error(
+        "SAVE BUSINESS ERROR:",
+        error
+      );
+
+
+      showToast(
+        "❌ Business could not be saved. Check Firestore rules."
+      );
+
+    }
+
+  };
+
+
+/* =====================================================
+   PARTNER DASHBOARD
+===================================================== */
+
+window.openPartner =
+  async function(){
+
+    closeModal(
+      "accountModal"
+    );
+
+
+    openModal(
+      "partnerModal"
+    );
+
+
+    const user =
+      await startFirebase();
+
+
+    if(!user){
+
+      return;
+
+    }
+
+
+    await loadMyBusiness();
+
+    dashboardTab(
+      "overview"
+    );
+
+  };
+
+
+window.dashboardTab =
+  function(tab){
+
+    const tabs = [
+
+      "overview",
+
+      "business",
+
+      "products",
+
+      "orders"
+
+    ];
+
+
+    tabs.forEach(
+      name => {
+
+        const panel =
+          $("dashboard" +
+            capitalize(name));
+
+
+        const button =
+          $("tab" +
+            capitalize(name));
+
+
+        if(panel){
+
+          panel.style.display =
+            name === tab
+              ? "block"
+              : "none";
+
+        }
+
+
+        if(button){
+
+          button.classList.toggle(
+
+            "active",
+
+            name === tab
+
+          );
+
+        }
+
+      }
+    );
+
+  };
+
+
+async function loadMyBusiness(){
+
+  if(!firebaseUser){
 
     return;
 
   }
 
 
-  const business = {
-
-    name:$("bizName").value.trim(),
-
-    category:$("bizCategory").value,
-
-    owner:$("bizOwner").value.trim(),
-
-    phone:$("bizPhone").value.trim(),
-
-    location:$("bizLocation").value.trim(),
-
-    description:$("bizDescription").value.trim(),
-
-    ownerUid:user.uid,
-
-    createdAt:serverTimestamp()
-
-  };
-
-
   try{
 
-    const old =
-      JSON.parse(
-        localStorage.getItem("sefwiBusiness") || "null"
+    const snapshot =
+      await getDocs(
+        collection(
+          db,
+          "businesses"
+        )
       );
 
-    let businessId;
 
-
-    if(
-      old &&
-      old.id &&
-      old.ownerUid === user.uid
-    ){
-
-      await updateDoc(
-        doc(db,"businesses",old.id),
-        business
+    const mine =
+      snapshot.docs.find(
+        d =>
+          d.data().ownerUid ===
+          firebaseUser.uid
       );
 
-      businessId = old.id;
 
-    }else{
+    if(!mine){
 
-      const ref =
-        await addDoc(
-          collection(db,"businesses"),
-          business
-        );
-
-      businessId = ref.id;
+      return;
 
     }
 
 
-    localStorage.setItem(
-      "sefwiBusiness",
-      JSON.stringify({
-        ...business,
-        id:businessId
-      })
-    );
+    const b =
+      mine.data();
 
 
-    showToast("✅ Business published!");
+    $("bizName").value =
+      b.name || "";
 
-    await loadBusinesses();
-
-    await updateAccountStats();
-
-    dashboardTab("overview");
-
-  }catch(error){
-
-    console.error("SAVE BUSINESS ERROR:",error);
-
-    showToast(
-      "❌ Business could not be saved. Check Firestore rules."
-    );
-
-  }
-
-};
-
-
-/* ================================
-   PARTNER DASHBOARD
-================================ */
-
-window.openPartner = async function(){
-
-  closeModal("accountModal");
-
-  openModal("partnerModal");
-
-  await startFirebase();
-
-  await loadMyBusiness();
-
-  dashboardTab("overview");
-
-};
-
-
-window.dashboardTab = function(tab){
-
-  const tabs = [
-    "overview",
-    "business",
-    "products",
-    "orders"
-  ];
-
-  tabs.forEach(name => {
-
-    $("dashboard" + capitalize(name))
-      .style.display =
-      name === tab ? "block" : "none";
-
-    $("tab" + capitalize(name))
-      .classList.toggle(
-        "active",
-        name === tab
-      );
-
-  });
-
-};
-
-
-async function loadMyBusiness(){
-
-  if(!firebaseUser) return;
-
-  try{
-
-    const snapshot =
-      await getDocs(collection(db,"businesses"));
-
-    const mine =
-      snapshot.docs.find(
-        d => d.data().ownerUid === firebaseUser.uid
-      );
-
-    if(!mine) return;
-
-    const b = mine.data();
-
-    $("bizName").value = b.name || "";
 
     $("bizCategory").value =
       b.category || "";
 
+
     $("bizOwner").value =
       b.owner || "";
+
 
     $("bizPhone").value =
       b.phone || "";
 
+
     $("bizLocation").value =
       b.location || "";
+
 
     $("bizDescription").value =
       b.description || "";
 
 
     localStorage.setItem(
+
       "sefwiBusiness",
+
       JSON.stringify({
+
         ...b,
-        id:mine.id
+
+        id:
+          mine.id
+
       })
+
     );
+
 
   }catch(error){
 
@@ -1768,100 +2670,176 @@ async function loadMyBusiness(){
 }
 
 
-/* ================================
+/* =====================================================
    PROPERTY
-================================ */
+===================================================== */
 
-window.openProperty = async function(){
+window.openProperty =
+  async function(){
 
-  openModal("propertyModal");
-
-  await startFirebase();
-
-  propertyTab("browse");
-
-  await loadProperties();
-
-};
-
-
-window.propertyTab = function(tab){
-
-  const tabs = [
-    "browse",
-    "register",
-    "mine"
-  ];
-
-  tabs.forEach(name => {
-
-    $("property" + capitalize(name))
-      .style.display =
-      name === tab ? "block" : "none";
-
-  });
-
-
-  $("propertyBrowseTab")
-    .classList.toggle(
-      "active",
-      tab === "browse"
-    );
-
-  $("propertyRegisterTab")
-    .classList.toggle(
-      "active",
-      tab === "register"
-    );
-
-  $("propertyMineTab")
-    .classList.toggle(
-      "active",
-      tab === "mine"
+    openModal(
+      "propertyModal"
     );
 
 
-  if(tab === "mine"){
-    loadMyProperties();
-  }
+    const user =
+      await startFirebase();
 
-};
+
+    if(!user){
+
+      return;
+
+    }
+
+
+    propertyTab(
+      "browse"
+    );
+
+
+    await loadProperties();
+
+  };
+
+
+window.propertyTab =
+  function(tab){
+
+    const tabs = [
+
+      "browse",
+
+      "register",
+
+      "mine"
+
+    ];
+
+
+    tabs.forEach(
+      name => {
+
+        const panel =
+          $("property" +
+            capitalize(name));
+
+
+        if(panel){
+
+          panel.style.display =
+            name === tab
+              ? "block"
+              : "none";
+
+        }
+
+      }
+    );
+
+
+    $("propertyBrowseTab")
+      .classList.toggle(
+        "active",
+        tab === "browse"
+      );
+
+
+    $("propertyRegisterTab")
+      .classList.toggle(
+        "active",
+        tab === "register"
+      );
+
+
+    $("propertyMineTab")
+      .classList.toggle(
+        "active",
+        tab === "mine"
+      );
+
+
+    if(tab === "mine"){
+
+      loadMyProperties();
+
+    }
+
+  };
 
 
 async function loadProperties(){
 
-  const homeContainer = $("propertyList");
+  const homeContainer =
+    $("propertyList");
 
-  if(!homeContainer) return;
+
+  if(!homeContainer){
+
+    return;
+
+  }
+
 
   try{
 
     const snapshot =
-      await getDocs(collection(db,"properties"));
+      await getDocs(
+        collection(
+          db,
+          "properties"
+        )
+      );
+
 
     const properties =
-      snapshot.docs.map(d => ({
-        id:d.id,
-        ...d.data()
-      }));
+      snapshot.docs.map(
+        d => ({
 
-    window.allProperties = properties;
+          id:d.id,
+
+          ...d.data()
+
+        })
+      );
+
+
+    window.allProperties =
+      properties;
+
 
     renderProperties(
+
       properties,
+
       homeContainer,
+
       false
+
     );
 
+
     if($("modalPropertyList")){
+
       renderProperties(
+
         properties,
+
         $("modalPropertyList"),
+
         false
+
       );
+
     }
 
-    await loadMyProperties();
+
+    if(firebaseUser){
+
+      await loadMyProperties();
+
+    }
+
 
   }catch(error){
 
@@ -1870,10 +2848,15 @@ async function loadProperties(){
       error
     );
 
+
     homeContainer.innerHTML = `
+
       <div class="empty">
+
         No properties listed yet.
+
       </div>
+
     `;
 
   }
@@ -1887,15 +2870,30 @@ function renderProperties(
   mineOnly
 ){
 
-  let list = properties;
+  if(!container){
+
+    return;
+
+  }
+
+
+  let list =
+    properties;
+
 
   if(mineOnly){
 
-    list = properties.filter(
-      p =>
-        firebaseUser &&
-        p.ownerUid === firebaseUser.uid
-    );
+    list =
+      properties.filter(
+
+        p =>
+
+          firebaseUser &&
+
+          p.ownerUid ===
+          firebaseUser.uid
+
+      );
 
   }
 
@@ -1903,13 +2901,20 @@ function renderProperties(
   if(!list.length){
 
     container.innerHTML = `
+
       <div class="empty">
+
         ${
           mineOnly
+
           ? "You have not registered any properties yet."
+
           : "No properties available yet."
+
         }
+
       </div>
+
     `;
 
     return;
@@ -1917,225 +2922,350 @@ function renderProperties(
   }
 
 
-  container.innerHTML = list.map(property => {
+  container.innerHTML =
+    list.map(
+      property => {
 
-    const title =
-      escapeHTML(
-        property.title || "Property"
-      );
-
-    const type =
-      escapeHTML(
-        property.type || "Property"
-      );
-
-    const purpose =
-      escapeHTML(
-        property.purpose || ""
-      );
-
-    const price =
-      escapeHTML(
-        property.price || ""
-      );
-
-    const location =
-      escapeHTML(
-        property.location || ""
-      );
-
-    const description =
-      escapeHTML(
-        property.description || ""
-      );
+        const title =
+          escapeHTML(
+            property.title ||
+            "Property"
+          );
 
 
-    const owner =
-      property.ownerUid ===
-      (firebaseUser && firebaseUser.uid);
+        const type =
+          escapeHTML(
+            property.type ||
+            "Property"
+          );
 
 
-    return `
-      <div class="property">
+        const purpose =
+          escapeHTML(
+            property.purpose ||
+            ""
+          );
 
-        <div class="property-top">
 
-          <div class="property-photo">
-            🏠
-          </div>
+        const price =
+          escapeHTML(
+            property.price ||
+            ""
+          );
 
-          <div class="property-info">
 
-            <h4>${title}</h4>
+        const location =
+          escapeHTML(
+            property.location ||
+            ""
+          );
 
-            <p>
-              ${type} • ${purpose}
-            </p>
 
-            <p>
-              📍 ${location}
-            </p>
+        const description =
+          escapeHTML(
+            property.description ||
+            ""
+          );
 
-            <div class="price">
-              ${price}
+
+        const owner =
+          firebaseUser &&
+          property.ownerUid ===
+          firebaseUser.uid;
+
+
+        return `
+
+          <div class="property">
+
+            <div class="property-top">
+
+              <div class="property-photo">
+                🏠
+              </div>
+
+
+              <div class="property-info">
+
+                <h4>
+                  ${title}
+                </h4>
+
+                <p>
+                  ${type} • ${purpose}
+                </p>
+
+                <p>
+                  📍 ${location}
+                </p>
+
+                <div class="price">
+                  ${price}
+                </div>
+
+              </div>
+
+            </div>
+
+
+            ${
+              description
+
+              ? `
+
+                <p
+                  style="
+                    margin-top:10px;
+                    color:#718078;
+                    font-size:12px
+                  ">
+
+                  ${description}
+
+                </p>
+
+              `
+
+              : ""
+
+            }
+
+
+            <div class="property-actions">
+
+              ${
+                property.phone
+
+                ? `
+
+                  <button
+                    class="btn btn-primary"
+                    onclick="contactProperty('${escapeAttr(property.phone)}')">
+
+                    WhatsApp
+
+                  </button>
+
+                `
+
+                : ""
+
+              }
+
+
+              ${
+                owner
+
+                ? `
+
+                  <button
+                    class="btn btn-danger"
+                    onclick="deleteProperty('${escapeAttr(property.id)}')">
+
+                    Delete
+
+                  </button>
+
+                `
+
+                : ""
+
+              }
+
             </div>
 
           </div>
 
-        </div>
+        `;
 
-        ${
-          description
-          ? `<p style="margin-top:10px;color:#718078;font-size:12px">
-              ${description}
-             </p>`
-          : ""
-        }
-
-        <div class="property-actions">
-
-          ${
-            property.phone
-            ? `
-              <button
-                class="btn btn-primary"
-                onclick="contactProperty('${escapeAttr(property.phone)}')">
-                WhatsApp
-              </button>
-            `
-            : ""
-          }
-
-          ${
-            owner
-            ? `
-              <button
-                class="btn btn-danger"
-                onclick="deleteProperty('${property.id}')">
-                Delete
-              </button>
-            `
-            : ""
-          }
-
-        </div>
-
-      </div>
-    `;
-
-  }).join("");
+      }
+    ).join("");
 
 }
 
 
-window.saveProperty = async function(event){
+/* =====================================================
+   SAVE PROPERTY
+===================================================== */
 
-  event.preventDefault();
+window.saveProperty =
+  async function(event){
 
-  const user = await startFirebase();
+    event.preventDefault();
 
-  if(!user){
 
-    showToast(
-      "Could not connect to your account."
-    );
+    const user =
+      await startFirebase();
+
+
+    if(!user){
+
+      showToast(
+        "Could not connect to your account."
+      );
+
+      return;
+
+    }
+
+
+    const property = {
+
+      title:
+        $("propertyTitle")
+        .value
+        .trim(),
+
+      type:
+        $("propertyType")
+        .value,
+
+      purpose:
+        $("propertyPurpose")
+        .value,
+
+      price:
+        $("propertyPrice")
+        .value
+        .trim(),
+
+      location:
+        $("propertyLocation")
+        .value
+        .trim(),
+
+      phone:
+        $("propertyPhone")
+        .value
+        .trim(),
+
+      description:
+        $("propertyDescription")
+        .value
+        .trim(),
+
+      ownerUid:
+        user.uid,
+
+      createdAt:
+        serverTimestamp()
+
+    };
+
+
+    try{
+
+      await addDoc(
+
+        collection(
+          db,
+          "properties"
+        ),
+
+        property
+
+      );
+
+
+      showToast(
+        "✅ Property published!"
+      );
+
+
+      $("propertyTitle").value =
+        "";
+
+      $("propertyType").value =
+        "";
+
+      $("propertyPurpose").value =
+        "";
+
+      $("propertyPrice").value =
+        "";
+
+      $("propertyLocation").value =
+        "";
+
+      $("propertyPhone").value =
+        "";
+
+      $("propertyDescription").value =
+        "";
+
+
+      await loadProperties();
+
+      await updateAccountStats();
+
+      propertyTab(
+        "mine"
+      );
+
+
+    }catch(error){
+
+      console.error(
+        "SAVE PROPERTY ERROR:",
+        error
+      );
+
+
+      showToast(
+        "❌ Property could not be saved."
+      );
+
+    }
+
+  };
+
+
+/* =====================================================
+   MY PROPERTIES
+===================================================== */
+
+async function loadMyProperties(){
+
+  if(!firebaseUser){
 
     return;
 
   }
 
 
-  const property = {
-
-    title:$("propertyTitle").value.trim(),
-
-    type:$("propertyType").value,
-
-    purpose:$("propertyPurpose").value,
-
-    price:$("propertyPrice").value.trim(),
-
-    location:$("propertyLocation").value.trim(),
-
-    phone:$("propertyPhone").value.trim(),
-
-    description:$("propertyDescription").value.trim(),
-
-    ownerUid:user.uid,
-
-    createdAt:serverTimestamp()
-
-  };
-
-
-  try{
-
-    const ref =
-      await addDoc(
-        collection(db,"properties"),
-        property
-      );
-
-
-    showToast("✅ Property published!");
-
-    $("propertyTitle").value = "";
-
-    $("propertyType").value = "";
-
-    $("propertyPurpose").value = "";
-
-    $("propertyPrice").value = "";
-
-    $("propertyLocation").value = "";
-
-    $("propertyPhone").value = "";
-
-    $("propertyDescription").value = "";
-
-
-    await loadProperties();
-
-    await updateAccountStats();
-
-    propertyTab("mine");
-
-  }catch(error){
-
-    console.error(
-      "SAVE PROPERTY ERROR:",
-      error
-    );
-
-    showToast(
-      "❌ Property could not be saved."
-    );
-
-  }
-
-};
-
-
-async function loadMyProperties(){
-
-  if(!firebaseUser) return;
-
   try{
 
     const snapshot =
-      await getDocs(collection(db,"properties"));
+      await getDocs(
+        collection(
+          db,
+          "properties"
+        )
+      );
+
 
     const properties =
-      snapshot.docs.map(d => ({
-        id:d.id,
-        ...d.data()
-      }));
+      snapshot.docs.map(
+        d => ({
+
+          id:d.id,
+
+          ...d.data()
+
+        })
+      );
+
 
     renderProperties(
+
       properties,
+
       $("myPropertyList"),
+
       true
+
     );
+
 
   }catch(error){
 
@@ -2146,104 +3276,166 @@ async function loadMyProperties(){
 }
 
 
-window.deleteProperty = async function(id){
+/* =====================================================
+   DELETE PROPERTY
+===================================================== */
 
-  if(!firebaseUser) return;
+window.deleteProperty =
+  async function(id){
 
-  try{
+    if(!firebaseUser){
 
-    const propertyRef =
-      doc(db,"properties",id);
+      return;
 
-    await deleteDoc(propertyRef);
+    }
 
-    showToast("Property deleted.");
 
-    await loadProperties();
+    try{
 
-    await updateAccountStats();
+      await deleteDoc(
 
-    propertyTab("mine");
+        doc(
+          db,
+          "properties",
+          id
+        )
 
-  }catch(error){
+      );
 
-    console.error(
-      "DELETE PROPERTY ERROR:",
-      error
+
+      showToast(
+        "Property deleted."
+      );
+
+
+      await loadProperties();
+
+      await updateAccountStats();
+
+      propertyTab(
+        "mine"
+      );
+
+
+    }catch(error){
+
+      console.error(
+        "DELETE PROPERTY ERROR:",
+        error
+      );
+
+
+      showToast(
+        "Could not delete property."
+      );
+
+    }
+
+  };
+
+
+/* =====================================================
+   PROPERTY WHATSAPP
+===================================================== */
+
+window.contactProperty =
+  function(phone){
+
+    const clean =
+      String(phone)
+      .replace(/\D/g,"");
+
+
+    let number =
+      clean;
+
+
+    if(clean.startsWith("0")){
+
+      number =
+        "233" +
+        clean.substring(1);
+
+    }
+
+
+    const message =
+      encodeURIComponent(
+
+        "Hello, I saw your property on SefwiGo and I am interested."
+
+      );
+
+
+    window.open(
+
+      "https://wa.me/" +
+      number +
+      "?text=" +
+      message,
+
+      "_blank"
+
     );
 
-    showToast(
-      "Could not delete property."
-    );
-
-  }
-
-};
+  };
 
 
-window.contactProperty = function(phone){
-
-  const clean =
-    phone.replace(/\D/g,"");
-
-  let number = clean;
-
-  if(clean.startsWith("0")){
-    number = "233" + clean.substring(1);
-  }
-
-  const message =
-    encodeURIComponent(
-      "Hello, I saw your property on SefwiGo and I am interested."
-    );
-
-  window.open(
-    "https://wa.me/" + number + "?text=" + message,
-    "_blank"
-  );
-
-};
-
-
-/* ================================
+/* =====================================================
    PARCEL
-================================ */
+===================================================== */
 
-window.openParcel = function(){
+window.openParcel =
+  function(){
 
-  openModal("parcelModal");
-
-};
-
-
-window.sendParcelWhatsApp = function(){
-
-  const name =
-    $("parcelName").value.trim();
-
-  const pickup =
-    $("parcelPickup").value.trim();
-
-  const dropoff =
-    $("parcelDropoff").value.trim();
-
-  const description =
-    $("parcelDescription").value.trim();
-
-
-  if(!pickup || !dropoff){
-
-    showToast(
-      "Please enter pickup and delivery locations."
+    openModal(
+      "parcelModal"
     );
 
-    return;
-
-  }
+  };
 
 
-  const message =
-    `SefwiGo Parcel Request
+window.sendParcelWhatsApp =
+  function(){
+
+    const name =
+      $("parcelName")
+      .value
+      .trim();
+
+
+    const pickup =
+      $("parcelPickup")
+      .value
+      .trim();
+
+
+    const dropoff =
+      $("parcelDropoff")
+      .value
+      .trim();
+
+
+    const description =
+      $("parcelDescription")
+      .value
+      .trim();
+
+
+    if(!pickup || !dropoff){
+
+      showToast(
+        "Please enter pickup and delivery locations."
+      );
+
+      return;
+
+    }
+
+
+    const message =
+
+      `SefwiGo Parcel Request
 
 Name: ${name || "Not provided"}
 
@@ -2254,123 +3446,173 @@ Delivery: ${dropoff}
 Parcel: ${description || "Not provided"}`;
 
 
-  const encoded =
-    encodeURIComponent(message);
+    const encoded =
+      encodeURIComponent(
+        message
+      );
 
 
-  /*
-    Replace this number with the official
-    SefwiGo WhatsApp number when you have one.
-  */
+    /*
+      IMPORTANT:
+      Replace this with the real SefwiGo
+      WhatsApp number later.
+    */
 
-  const sefwiGoNumber =
-    "233000000000";
-
-
-  window.open(
-    "https://wa.me/" +
-    sefwiGoNumber +
-    "?text=" +
-    encoded,
-    "_blank"
-  );
-
-};
+    const sefwiGoNumber =
+      "233000000000";
 
 
-/* ================================
-   FOOD / GROCERIES
-================================ */
+    window.open(
 
-window.showFood = function(){
+      "https://wa.me/" +
+      sefwiGoNumber +
+      "?text=" +
+      encoded,
 
-  showToast(
-    "Food ordering is ready for the business marketplace."
-  );
+      "_blank"
 
-  document.querySelector(".section:nth-of-type(2)")
-    ?.scrollIntoView({
-      behavior:"smooth"
-    });
+    );
 
-};
+  };
 
 
-window.showGroceries = function(){
+/* =====================================================
+   FOOD
+===================================================== */
 
-  showToast(
-    "Grocery ordering is coming into the marketplace."
-  );
+window.showFood =
+  function(){
 
-};
+    showToast(
+      "Food ordering is ready for the business marketplace."
+    );
 
 
-/* ================================
+    const sections =
+      document.querySelectorAll(
+        ".section"
+      );
+
+
+    if(sections[1]){
+
+      sections[1]
+        .scrollIntoView({
+
+          behavior:"smooth"
+
+        });
+
+    }
+
+  };
+
+
+/* =====================================================
+   GROCERIES
+===================================================== */
+
+window.showGroceries =
+  function(){
+
+    showToast(
+      "Grocery ordering is coming into the marketplace."
+    );
+
+  };
+
+
+/* =====================================================
    ORDERS
-================================ */
+===================================================== */
 
-window.openOrders = function(){
+window.openOrders =
+  function(){
 
-  openModal("ordersModal");
-
-  document.querySelectorAll(".nav-item")
-    .forEach(x => x.classList.remove("active"));
-
-  $("navOrders").classList.add("active");
-
-};
+    openModal(
+      "ordersModal"
+    );
 
 
-/* ================================
+    document
+      .querySelectorAll(".nav-item")
+      .forEach(
+        x =>
+          x.classList.remove("active")
+      );
+
+
+    $("navOrders")
+      .classList.add("active");
+
+  };
+
+
+/* =====================================================
    SEARCH
-================================ */
+===================================================== */
 
-window.searchEverything = function(){
+window.searchEverything =
+  function(){
 
-  const text =
-    $("searchInput").value
+    const text =
+      $("searchInput")
+      .value
       .trim()
       .toLowerCase();
 
 
-  if(!text){
+    if(!text){
 
-    renderBusinesses(
-      window.allBusinesses || []
-    );
+      renderBusinesses(
+        window.allBusinesses || []
+      );
 
-    return;
+      return;
 
-  }
+    }
 
 
-  const businesses =
-    (window.allBusinesses || [])
-      .filter(b => {
+    const businesses =
+      (
+        window.allBusinesses || []
+      )
+      .filter(
+        b => {
 
-        const value =
-          [
+          const value = [
+
             b.name,
+
             b.category,
+
             b.location,
+
             b.description
+
           ]
           .join(" ")
           .toLowerCase();
 
-        return value.includes(text);
 
-      });
+          return value.includes(
+            text
+          );
+
+        }
+      );
 
 
-  renderBusinesses(businesses);
+    renderBusinesses(
+      businesses
+    );
 
-};
+  };
 
 
-/* ================================
+/* =====================================================
    HELPERS
-================================ */
+===================================================== */
 
 function capitalize(value){
 
@@ -2383,11 +3625,31 @@ function capitalize(value){
 function escapeHTML(value){
 
   return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+
+    .replace(
+      /</g,
+      "&lt;"
+    )
+
+    .replace(
+      />/g,
+      "&gt;"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+
+    .replace(
+      /'/g,
+      "&#039;"
+    );
 
 }
 
@@ -2395,27 +3657,41 @@ function escapeHTML(value){
 function escapeAttr(value){
 
   return String(value ?? "")
-    .replace(/\\/g,"\\\\")
-    .replace(/'/g,"\\'");
+
+    .replace(
+      /\\/g,
+      "\\\\"
+    )
+
+    .replace(
+      /'/g,
+      "\\'"
+    );
 
 }
 
 
-/* ================================
-   PARTNER BUTTON
-================================ */
+/* =====================================================
+   START APP
+===================================================== */
 
 document.addEventListener(
   "DOMContentLoaded",
   async () => {
 
-    await startFirebase();
+    const user =
+      await startFirebase();
 
-    await loadBusinesses();
 
-    await loadProperties();
+    if(user){
 
-    await updateAccountStats();
+      await loadBusinesses();
+
+      await loadProperties();
+
+      await updateAccountStats();
+
+    }
 
   }
 );
