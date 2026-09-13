@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#087f5b">
 <meta name="description" content="SefwiGo - Food, groceries, parcels and property in Sefwi Wiawso">
-
 <title>SefwiGo</title>
 
 <style>
@@ -13,77 +12,61 @@
   --green:#087f5b;
   --green-dark:#056044;
   --green-light:#e9f8f2;
-  --gold:#d6a928;
-  --black:#111714;
-  --gray:#68736f;
-  --light:#f5f7f6;
-  --white:#ffffff;
-  --border:#e4e9e7;
+  --gold:#d4a72c;
+  --gold-light:#fff6d8;
+  --white:#fff;
+  --bg:#f6f8f7;
+  --text:#17221e;
+  --muted:#718078;
+  --border:#e3e9e6;
   --danger:#d93025;
-  --shadow:0 8px 30px rgba(0,0,0,.08);
-  --radius:20px;
+  --shadow:0 8px 28px rgba(0,0,0,.08);
+  --radius:18px;
 }
 
 *{
   box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
-
-html,body{
   margin:0;
   padding:0;
-  font-family:Inter,Arial,Helvetica,sans-serif;
-  background:#f5f7f6;
-  color:var(--black);
 }
 
 body{
-  min-height:100vh;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  padding-bottom:82px;
 }
 
-button,
-input,
-select,
-textarea{
-  font-family:inherit;
+button,input,select,textarea{
+  font:inherit;
 }
 
 button{
+  border:0;
   cursor:pointer;
-}
-
-img{
-  max-width:100%;
-  display:block;
 }
 
 .hidden{
   display:none!important;
 }
 
-/* APP */
-
 .app{
-  max-width:560px;
+  max-width:650px;
   margin:auto;
   min-height:100vh;
-  background:#f5f7f6;
-  position:relative;
-  padding-bottom:90px;
 }
 
-/* TOP BAR */
-
-.topbar{
-  background:#fff;
-  padding:18px 18px 12px;
+/* HEADER */
+.header{
+  background:var(--white);
+  padding:15px 16px 12px;
   position:sticky;
   top:0;
-  z-index:50;
-  border-bottom:1px solid rgba(0,0,0,.04);
+  z-index:20;
+  border-bottom:1px solid var(--border);
 }
 
-.topbar-row{
+.header-top{
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -94,184 +77,136 @@ img{
   display:flex;
   align-items:center;
   gap:9px;
-  font-weight:900;
-  font-size:23px;
-  letter-spacing:-1px;
 }
 
-.brand-mark{
-  width:37px;
-  height:37px;
-  border-radius:12px;
+.logo{
+  width:42px;
+  height:42px;
+  border-radius:13px;
   background:var(--green);
   color:white;
   display:flex;
   align-items:center;
   justify-content:center;
   font-weight:900;
-  box-shadow:0 5px 14px rgba(8,127,91,.22);
+  font-size:17px;
 }
 
-.brand span{
+.brand-text{
+  font-size:21px;
+  font-weight:900;
   color:var(--green);
+}
+
+.brand-text span{
+  color:var(--gold);
+}
+
+.location{
+  margin-top:12px;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  font-size:13px;
+  color:var(--muted);
 }
 
 .profile-btn{
   width:40px;
   height:40px;
-  border:0;
   border-radius:50%;
-  background:#edf1ef;
+  background:var(--green-light);
+  color:var(--green);
   font-size:18px;
 }
 
-/* LOCATION */
-
-.location-box{
-  margin-top:15px;
-  background:#f4f7f5;
-  border-radius:15px;
-  padding:11px 13px;
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.location-icon{
-  color:var(--green);
-  font-size:19px;
-}
-
-.location-text{
-  min-width:0;
-  flex:1;
-}
-
-.location-label{
-  font-size:11px;
-  color:var(--gray);
-  margin-bottom:2px;
-}
-
-.location-value{
-  font-size:14px;
-  font-weight:800;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-.location-arrow{
-  color:var(--gray);
-}
-
-/* MAIN */
-
-main{
-  padding:14px 16px 20px;
-}
-
 /* HERO */
-
 .hero{
-  background:linear-gradient(135deg,#087f5b,#045f45);
-  color:#fff;
-  border-radius:25px;
+  margin:15px;
   padding:22px;
+  border-radius:25px;
+  background:linear-gradient(135deg,var(--green),#0b9a70);
+  color:white;
   position:relative;
   overflow:hidden;
-  min-height:185px;
-  box-shadow:var(--shadow);
-}
-
-.hero:before{
-  content:"";
-  position:absolute;
-  width:180px;
-  height:180px;
-  right:-65px;
-  top:-60px;
-  border-radius:50%;
-  border:35px solid rgba(255,255,255,.07);
 }
 
 .hero:after{
   content:"";
   position:absolute;
-  width:100px;
-  height:100px;
-  right:-20px;
-  bottom:-45px;
+  width:150px;
+  height:150px;
   border-radius:50%;
-  background:rgba(214,169,40,.12);
-}
-
-.hero-content{
-  position:relative;
-  z-index:2;
-}
-
-.hero small{
-  font-size:13px;
-  opacity:.8;
+  right:-55px;
+  top:-55px;
+  background:rgba(255,255,255,.09);
 }
 
 .hero h1{
-  margin:7px 0 5px;
-  font-size:28px;
+  font-size:26px;
   line-height:1.1;
-  letter-spacing:-1px;
+  max-width:340px;
+  margin-bottom:8px;
 }
 
 .hero p{
-  margin:0;
-  font-size:13px;
-  opacity:.85;
-  max-width:290px;
+  opacity:.9;
+  font-size:14px;
+  max-width:330px;
 }
 
-.hero-search{
-  margin-top:18px;
+/* SEARCH */
+.search-wrap{
+  padding:0 15px;
+}
+
+.search{
+  width:100%;
+  height:50px;
   background:white;
-  color:var(--gray);
-  border-radius:15px;
-  padding:13px 15px;
-  display:flex;
-  align-items:center;
-  gap:9px;
-  font-size:13px;
-  font-weight:600;
-  cursor:pointer;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:0 16px 0 45px;
+  outline:none;
+  box-shadow:0 3px 12px rgba(0,0,0,.04);
+}
+
+.search-box{
+  position:relative;
+}
+
+.search-icon{
+  position:absolute;
+  left:16px;
+  top:15px;
+  color:var(--muted);
 }
 
 /* SECTION */
-
 .section{
-  margin-top:23px;
+  padding:20px 15px 5px;
 }
 
 .section-head{
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  margin-bottom:12px;
+  align-items:center;
+  margin-bottom:13px;
 }
 
 .section-title{
   font-size:18px;
-  font-weight:900;
-  letter-spacing:-.4px;
+  font-weight:850;
 }
 
-.section-link{
+.see-all{
   color:var(--green);
-  font-size:12px;
-  font-weight:800;
-  cursor:pointer;
+  font-size:13px;
+  font-weight:700;
+  background:none;
 }
 
 /* SERVICES */
-
 .services{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -279,152 +214,112 @@ main{
 }
 
 .service{
-  background:#fff;
+  background:white;
   border:1px solid var(--border);
-  border-radius:18px;
+  border-radius:17px;
   padding:13px 5px;
   text-align:center;
-  box-shadow:0 3px 14px rgba(0,0,0,.025);
-  transition:.2s;
-}
-
-.service:active{
-  transform:scale(.96);
+  box-shadow:0 3px 10px rgba(0,0,0,.03);
 }
 
 .service-icon{
-  width:46px;
-  height:46px;
-  border-radius:15px;
-  background:var(--green-light);
+  width:45px;
+  height:45px;
+  border-radius:14px;
+  margin:auto auto 8px;
   display:flex;
-  align-items:center;
   justify-content:center;
-  margin:auto;
+  align-items:center;
   font-size:22px;
+  background:var(--green-light);
+}
+
+.service:nth-child(2) .service-icon{
+  background:#fff5df;
+}
+
+.service:nth-child(3) .service-icon{
+  background:#eaf1ff;
+}
+
+.service:nth-child(4) .service-icon{
+  background:#f4eaff;
 }
 
 .service-name{
-  margin-top:8px;
-  font-size:11px;
-  font-weight:800;
-}
-
-/* QUICK SEARCH */
-
-.search-panel{
-  display:flex;
-  gap:8px;
-  margin-top:14px;
-}
-
-.search-input{
-  flex:1;
-  border:1px solid var(--border);
-  border-radius:15px;
-  padding:13px 14px;
-  background:white;
-  outline:none;
-  font-size:14px;
-}
-
-.search-input:focus{
-  border-color:var(--green);
-}
-
-.search-btn{
-  width:48px;
-  border:0;
-  border-radius:15px;
-  background:var(--green);
-  color:#fff;
-  font-size:18px;
+  font-size:12px;
+  font-weight:750;
 }
 
 /* BUSINESS CARDS */
-
 .cards{
   display:flex;
-  gap:12px;
-  overflow-x:auto;
-  padding-bottom:5px;
-  scrollbar-width:none;
-}
-
-.cards::-webkit-scrollbar{
-  display:none;
+  flex-direction:column;
+  gap:11px;
 }
 
 .business-card{
-  min-width:235px;
-  background:#fff;
-  border-radius:20px;
-  overflow:hidden;
+  background:white;
   border:1px solid var(--border);
-  box-shadow:0 4px 18px rgba(0,0,0,.04);
-  cursor:pointer;
-}
-
-.business-image{
-  height:125px;
-  background:linear-gradient(135deg,#d9eee7,#edf5f2);
+  border-radius:18px;
+  padding:14px;
   display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:40px;
-  overflow:hidden;
+  justify-content:space-between;
+  gap:12px;
+  box-shadow:0 3px 10px rgba(0,0,0,.03);
 }
 
-.business-image img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.business-info{
-  padding:12px;
+.business-main{
+  flex:1;
 }
 
 .business-name{
-  font-weight:900;
-  font-size:15px;
+  font-size:16px;
+  font-weight:800;
+  margin-bottom:5px;
 }
 
 .business-meta{
-  margin-top:5px;
-  color:var(--gray);
-  font-size:11px;
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:10px;
 }
 
-.rating{
-  color:#d79e00;
-  font-weight:800;
+.category-pill{
+  display:inline-block;
+  padding:5px 9px;
+  background:var(--green-light);
+  color:var(--green);
+  border-radius:20px;
+  font-size:11px;
+  font-weight:700;
+}
+
+.open-btn{
+  align-self:center;
+  background:var(--green);
+  color:white;
+  border-radius:12px;
+  padding:10px 13px;
+  font-weight:750;
+  font-size:12px;
 }
 
 /* PROPERTY */
-
 .property-card{
-  background:#fff;
-  border-radius:20px;
+  background:white;
   border:1px solid var(--border);
+  border-radius:19px;
   overflow:hidden;
-  margin-bottom:12px;
-  cursor:pointer;
 }
 
-.property-image{
-  height:160px;
-  background:#e9efec;
+.property-img{
+  height:145px;
+  background:linear-gradient(135deg,#cde8dc,#edf7f2);
   display:flex;
-  align-items:center;
   justify-content:center;
-  font-size:40px;
-}
-
-.property-image img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+  align-items:center;
+  font-size:50px;
 }
 
 .property-info{
@@ -432,151 +327,124 @@ main{
 }
 
 .property-title{
-  font-size:16px;
-  font-weight:900;
+  font-weight:850;
+  margin-bottom:6px;
 }
 
 .property-price{
   color:var(--green);
   font-weight:900;
-  margin-top:5px;
 }
 
-.property-location{
-  color:var(--gray);
-  font-size:12px;
-  margin-top:4px;
+/* ORDER */
+.order-card{
+  margin:15px;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:19px;
+  padding:16px;
 }
 
-/* ORDER TRACKER */
-
-.tracker{
-  background:#111714;
-  color:#fff;
-  border-radius:21px;
-  padding:17px;
-  margin-top:20px;
-}
-
-.tracker-top{
+.order-status{
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  gap:10px;
 }
 
-.tracker-label{
-  font-size:11px;
-  color:#aeb8b4;
-}
-
-.tracker-status{
-  color:#7de0ba;
-  font-size:12px;
-  font-weight:800;
-}
-
-.tracker h3{
-  margin:7px 0 4px;
-  font-size:17px;
-}
-
-.tracker p{
-  margin:0;
-  font-size:12px;
-  color:#aeb8b4;
+.status-dot{
+  width:11px;
+  height:11px;
+  background:#f2b01e;
+  border-radius:50%;
 }
 
 .progress{
-  height:5px;
-  background:#303834;
+  height:7px;
+  background:#e8eeeb;
   border-radius:10px;
-  margin-top:15px;
   overflow:hidden;
+  margin:15px 0 8px;
 }
 
-.progress-bar{
-  width:60%;
+.progress span{
+  display:block;
+  width:62%;
   height:100%;
-  background:#35c992;
-  border-radius:10px;
+  background:var(--green);
+}
+
+.order-small{
+  font-size:12px;
+  color:var(--muted);
 }
 
 /* BOTTOM NAV */
-
 .bottom-nav{
   position:fixed;
-  z-index:100;
   bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:min(560px,100%);
-  background:rgba(255,255,255,.96);
-  backdrop-filter:blur(16px);
+  left:0;
+  right:0;
+  height:70px;
+  background:white;
   border-top:1px solid var(--border);
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  padding:9px 8px calc(9px + env(safe-area-inset-bottom));
+  display:flex;
+  justify-content:center;
+  z-index:50;
 }
 
-.nav-item{
-  border:0;
-  background:transparent;
-  color:#7a8581;
-  padding:7px 3px;
-  font-size:10px;
-  font-weight:800;
+.nav-inner{
+  width:100%;
+  max-width:650px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+}
+
+.nav-btn{
+  background:white;
+  color:#77837e;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  font-size:11px;
+  font-weight:650;
+}
+
+.nav-btn.active{
+  color:var(--green);
 }
 
 .nav-icon{
   font-size:20px;
-  display:block;
-  margin-bottom:3px;
-}
-
-.nav-item.active{
-  color:var(--green);
 }
 
 /* MODALS */
-
 .modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.52);
-  z-index:200;
-  display:none;
+  background:rgba(0,0,0,.5);
+  z-index:100;
+  display:flex;
   align-items:flex-end;
   justify-content:center;
 }
 
-.modal.show{
-  display:flex;
-}
-
 .modal-box{
-  width:min(560px,100%);
-  max-height:92vh;
-  overflow-y:auto;
-  background:#fff;
+  width:100%;
+  max-width:650px;
+  max-height:94vh;
+  overflow:auto;
+  background:white;
   border-radius:25px 25px 0 0;
-  padding:18px;
-  animation:slideUp .25s ease;
-}
-
-@keyframes slideUp{
-  from{
-    transform:translateY(100%);
-  }
-  to{
-    transform:translateY(0);
-  }
+  padding:20px;
 }
 
 .modal-head{
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  margin-bottom:17px;
+  align-items:center;
+  margin-bottom:18px;
 }
 
 .modal-title{
@@ -585,333 +453,359 @@ main{
 }
 
 .close{
-  border:0;
-  background:#f0f3f2;
   width:36px;
   height:36px;
   border-radius:50%;
-  font-size:18px;
+  background:#f1f4f2;
+  color:#555;
+  font-size:20px;
 }
 
-/* FORM */
-
+/* FORMS */
 .form-group{
-  margin-bottom:13px;
+  margin-bottom:14px;
 }
 
 .form-label{
   display:block;
-  font-size:12px;
-  font-weight:800;
-  margin-bottom:6px;
+  font-size:13px;
+  font-weight:750;
+  margin-bottom:7px;
 }
 
-.form-control{
+.input,
+.select,
+.textarea{
   width:100%;
-  border:1px solid var(--border);
+  border:1px solid #dce4e0;
   border-radius:13px;
-  padding:12px;
+  padding:12px 13px;
   outline:none;
-  font-size:14px;
   background:#fff;
 }
 
-textarea.form-control{
-  min-height:90px;
-  resize:vertical;
+.input:focus,
+.select:focus,
+.textarea:focus{
+  border-color:var(--green);
 }
 
-.form-control:focus{
-  border-color:var(--green);
+.textarea{
+  min-height:80px;
+  resize:vertical;
 }
 
 .primary-btn{
   width:100%;
-  border:0;
   background:var(--green);
   color:white;
-  border-radius:14px;
   padding:14px;
-  font-weight:900;
-  font-size:14px;
+  border-radius:14px;
+  font-weight:850;
+  margin-top:6px;
 }
 
 .secondary-btn{
   width:100%;
-  border:1px solid var(--border);
-  background:#fff;
-  color:var(--black);
-  border-radius:14px;
-  padding:13px;
+  background:var(--green-light);
+  color:var(--green);
+  padding:12px;
+  border-radius:13px;
   font-weight:800;
-  margin-top:9px;
+  margin-top:8px;
 }
 
-/* PRODUCT */
+.danger-btn{
+  background:#fff0ef;
+  color:var(--danger);
+  padding:10px 12px;
+  border-radius:11px;
+  font-weight:750;
+}
 
-.product-header{
+/* FOOD REGISTRATION */
+.food-registration{
+  background:#f7fbf9;
+  border:1px solid #dcece5;
+  border-radius:18px;
+  padding:15px;
+  margin-top:12px;
+}
+
+.food-registration-title{
+  font-size:16px;
+  font-weight:900;
+  color:var(--green);
+  margin-bottom:5px;
+}
+
+.food-registration-desc{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+  margin-bottom:15px;
+}
+
+.photo-upload{
+  border:2px dashed #b8d9cd;
+  background:white;
+  border-radius:16px;
+  padding:16px;
+  text-align:center;
+}
+
+.photo-preview{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:14px;
+  margin-top:12px;
+}
+
+.photo-upload input{
+  width:100%;
+  margin-top:8px;
+}
+
+.modifier-group{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:13px;
+  margin-top:12px;
+}
+
+.modifier-head{
   display:flex;
-  gap:13px;
+  justify-content:space-between;
+  gap:8px;
+  align-items:center;
+  margin-bottom:10px;
+}
+
+.modifier-name{
+  font-weight:850;
+  color:var(--green-dark);
+}
+
+.modifier-settings{
+  display:flex;
+  gap:12px;
+  font-size:11px;
+  color:var(--muted);
+}
+
+.option-row{
+  display:grid;
+  grid-template-columns:1fr 90px 35px;
+  gap:7px;
+  margin-bottom:7px;
+}
+
+.option-row input{
+  min-width:0;
+  border:1px solid #dde5e1;
+  border-radius:10px;
+  padding:9px;
+}
+
+.remove-option{
+  border-radius:9px;
+  background:#fff0ef;
+  color:var(--danger);
+}
+
+.add-option{
+  background:#eef8f4;
+  color:var(--green);
+  padding:8px 10px;
+  border-radius:9px;
+  font-size:11px;
+  font-weight:800;
+}
+
+.restore-btn{
+  margin-top:12px;
+  background:var(--gold-light);
+  color:#8b6810;
+  padding:10px 12px;
+  border-radius:11px;
+  font-size:12px;
+  font-weight:800;
+}
+
+/* PRODUCTS */
+.product-list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.product-card{
+  border:1px solid var(--border);
+  border-radius:17px;
+  overflow:hidden;
+  background:white;
 }
 
 .product-photo{
-  width:105px;
-  height:90px;
-  border-radius:15px;
-  overflow:hidden;
-  background:#eaf0ed;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:30px;
-  flex-shrink:0;
-}
-
-.product-photo img{
   width:100%;
-  height:100%;
+  height:165px;
   object-fit:cover;
+  background:#eef5f1;
 }
 
-.product-title{
-  font-size:18px;
-  font-weight:900;
+.product-content{
+  padding:14px;
+}
+
+.product-name{
+  font-weight:850;
+  font-size:17px;
 }
 
 .product-price{
   color:var(--green);
-  font-size:16px;
   font-weight:900;
-  margin-top:5px;
+  margin-top:4px;
 }
 
-.product-description{
-  color:var(--gray);
+.product-desc{
+  color:var(--muted);
   font-size:12px;
-  margin-top:5px;
+  margin:7px 0 12px;
 }
 
-/* MODIFIERS */
-
-.modifier-group{
-  margin-top:20px;
-}
-
-.modifier-title{
-  font-weight:900;
-  font-size:14px;
+.product-actions{
   display:flex;
-  justify-content:space-between;
+  gap:8px;
 }
 
-.required{
-  font-size:10px;
-  color:var(--green);
-  background:var(--green-light);
-  padding:4px 7px;
-  border-radius:7px;
-}
-
-.modifier-option{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  border:1px solid var(--border);
-  padding:11px;
-  border-radius:12px;
-  margin-top:7px;
-}
-
-.modifier-option label{
-  display:flex;
-  gap:9px;
-  align-items:center;
-  font-size:13px;
+.product-actions button{
   flex:1;
+  padding:11px;
+  border-radius:11px;
+  font-weight:800;
 }
 
-.option-price{
+.add-btn{
+  background:var(--green);
+  color:white;
+}
+
+/* MODIFIERS CUSTOMER */
+.customer-modifier{
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:12px;
+  margin-bottom:11px;
+}
+
+.customer-modifier h4{
+  font-size:14px;
+  margin-bottom:8px;
+}
+
+.mod-option{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:8px 0;
+  font-size:13px;
+}
+
+.mod-option-left{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.mod-price{
   color:var(--green);
-  font-weight:800;
-  font-size:12px;
+  font-weight:750;
 }
 
 /* CART */
-
 .cart-item{
-  display:flex;
-  gap:10px;
-  padding:12px 0;
   border-bottom:1px solid var(--border);
+  padding:12px 0;
 }
 
-.cart-photo{
-  width:65px;
-  height:60px;
-  border-radius:12px;
-  overflow:hidden;
-  background:#edf2ef;
+.cart-item:last-child{
+  border-bottom:0;
+}
+
+.cart-item-top{
   display:flex;
-  align-items:center;
-  justify-content:center;
+  justify-content:space-between;
+  gap:10px;
 }
 
-.cart-photo img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+.cart-item-name{
+  font-weight:800;
 }
 
-.cart-info{
-  flex:1;
-}
-
-.cart-name{
-  font-weight:900;
-  font-size:14px;
-}
-
-.cart-modifiers{
-  color:var(--gray);
-  font-size:10px;
-  margin-top:3px;
-}
-
-.cart-price{
-  color:var(--green);
-  font-weight:900;
-  font-size:13px;
+.cart-item-details{
+  color:var(--muted);
+  font-size:11px;
   margin-top:5px;
-}
-
-.qty{
-  display:flex;
-  align-items:center;
-  gap:9px;
-  margin-top:7px;
-}
-
-.qty button{
-  width:28px;
-  height:28px;
-  border:0;
-  background:#edf2ef;
-  border-radius:8px;
-  font-weight:900;
 }
 
 .cart-total{
   display:flex;
   justify-content:space-between;
-  margin-top:18px;
-  padding-top:15px;
-  border-top:1px solid var(--border);
   font-size:18px;
   font-weight:900;
+  padding-top:15px;
 }
 
-/* PARTNER */
-
-.partner-card{
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:17px;
-  margin-bottom:12px;
+/* PARTNER TABS */
+.tabs{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  background:#eef3f0;
+  border-radius:12px;
+  padding:3px;
+  margin-bottom:16px;
 }
 
-.partner-tabs{
-  display:flex;
-  gap:7px;
-  overflow-x:auto;
-  margin-bottom:15px;
-}
-
-.partner-tab{
-  border:0;
-  background:#edf2ef;
-  padding:9px 13px;
-  border-radius:10px;
-  font-size:11px;
+.tab{
+  background:transparent;
+  padding:10px 4px;
+  border-radius:9px;
+  font-size:12px;
   font-weight:800;
-  white-space:nowrap;
+  color:var(--muted);
 }
 
-.partner-tab.active{
-  background:var(--green);
-  color:#fff;
-}
-
-.order-card{
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:17px;
-  padding:14px;
-  margin-bottom:10px;
-}
-
-.order-row{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-}
-
-.order-id{
-  font-size:11px;
-  color:var(--gray);
-}
-
-.order-customer{
-  font-size:15px;
-  font-weight:900;
-  margin-top:3px;
-}
-
-.status-badge{
-  padding:5px 8px;
-  border-radius:8px;
-  background:#e9f8f2;
+.tab.active{
+  background:white;
   color:var(--green);
-  font-size:10px;
-  font-weight:900;
-  height:max-content;
+  box-shadow:0 2px 5px rgba(0,0,0,.06);
 }
-
-/* EMPTY */
 
 .empty{
   text-align:center;
-  padding:35px 15px;
-  color:var(--gray);
-}
-
-.empty-icon{
-  font-size:40px;
-  margin-bottom:10px;
-}
-
-.empty h3{
-  color:var(--black);
-  margin:5px 0;
+  padding:25px 10px;
+  color:var(--muted);
+  font-size:13px;
 }
 
 /* TOAST */
-
 .toast{
   position:fixed;
   left:50%;
-  bottom:92px;
+  bottom:86px;
   transform:translateX(-50%) translateY(20px);
-  background:#111714;
-  color:#fff;
+  background:#17221e;
+  color:white;
   padding:12px 16px;
   border-radius:12px;
-  font-size:12px;
-  font-weight:700;
-  z-index:500;
+  font-size:13px;
   opacity:0;
   pointer-events:none;
   transition:.25s;
+  z-index:300;
   max-width:90%;
   text-align:center;
 }
@@ -922,37 +816,18 @@ textarea.form-control{
 }
 
 /* LOADING */
-
 .loading{
-  padding:35px;
   text-align:center;
-  color:var(--gray);
+  padding:25px;
+  color:var(--muted);
+  font-size:13px;
 }
 
-.spinner{
-  width:30px;
-  height:30px;
-  border:3px solid #dce5e1;
-  border-top-color:var(--green);
-  border-radius:50%;
-  animation:spin .7s linear infinite;
-  margin:auto auto 10px;
-}
-
-@keyframes spin{
-  to{transform:rotate(360deg)}
-}
-
-/* DESKTOP */
-
-@media(min-width:700px){
-  body{
-    background:#e8eeeb;
-  }
-
-  .app{
-    box-shadow:0 0 45px rgba(0,0,0,.1);
-  }
+.small-note{
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.5;
+  margin-top:6px;
 }
 </style>
 </head>
@@ -961,243 +836,142 @@ textarea.form-control{
 
 <div class="app">
 
-  <!-- TOP BAR -->
-  <header class="topbar">
-    <div class="topbar-row">
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-top">
       <div class="brand">
-        <div class="brand-mark">S</div>
-        <div>Sefwi<span>Go</span></div>
+        <div class="logo">SG</div>
+        <div class="brand-text">Sefwi<span>Go</span></div>
       </div>
 
       <button class="profile-btn" onclick="openAccount()">👤</button>
     </div>
 
-    <div class="location-box" onclick="setLocation()">
-      <div class="location-icon">📍</div>
-      <div class="location-text">
-        <div class="location-label">DELIVER TO</div>
-        <div class="location-value" id="locationText">Sefwi Wiawso</div>
-      </div>
-      <div class="location-arrow">›</div>
+    <div class="location">
+      📍 <span>Sefwi Wiawso, Ghana</span>
     </div>
   </header>
 
-  <!-- MAIN -->
+  <!-- HOME -->
   <main id="homePage">
 
     <section class="hero">
-      <div class="hero-content">
-        <small>WELCOME TO SEFWIGO</small>
-        <h1>Everything you need,<br>right around you.</h1>
-        <p>Food, groceries, parcels and property — all in one place.</p>
-
-        <div class="hero-search" onclick="focusSearch()">
-          🔎
-          <span>What are you looking for?</span>
-        </div>
-      </div>
+      <h1>Everything you need, closer to you.</h1>
+      <p>Order food, groceries, parcels and discover property around Sefwi Wiawso.</p>
     </section>
 
-    <div class="search-panel">
-      <input
-        id="searchInput"
-        class="search-input"
-        placeholder="Search food, shops, products..."
-        oninput="handleSearch()"
-      >
-      <button class="search-btn" onclick="handleSearch()">⌕</button>
+    <div class="search-wrap">
+      <div class="search-box">
+        <span class="search-icon">🔎</span>
+        <input id="searchInput" class="search" placeholder="Search food, shops, property..." oninput="searchBusinesses()">
+      </div>
     </div>
 
-    <!-- SERVICES -->
     <section class="section">
       <div class="section-head">
         <div class="section-title">What do you need?</div>
       </div>
 
       <div class="services">
-
-        <div class="service" onclick="filterService('food')">
-          <div class="service-icon">🍔</div>
+        <button class="service" onclick="openFood()">
+          <div class="service-icon">🍲</div>
           <div class="service-name">Food</div>
-        </div>
+        </button>
 
-        <div class="service" onclick="filterService('groceries')">
+        <button class="service" onclick="showToast('Groceries coming soon.')">
           <div class="service-icon">🛒</div>
           <div class="service-name">Groceries</div>
-        </div>
+        </button>
 
-        <div class="service" onclick="openParcel()">
+        <button class="service" onclick="openParcel()">
           <div class="service-icon">📦</div>
           <div class="service-name">Parcel</div>
-        </div>
+        </button>
 
-        <div class="service" onclick="loadProperties()">
+        <button class="service" onclick="openProperty()">
           <div class="service-icon">🏠</div>
           <div class="service-name">Property</div>
-        </div>
-
+        </button>
       </div>
     </section>
 
-    <!-- CURRENT ORDER -->
-    <section id="trackerSection" class="hidden">
-      <div class="tracker">
-        <div class="tracker-top">
-          <div>
-            <div class="tracker-label">CURRENT ORDER</div>
-            <h3 id="trackerTitle">Your order</h3>
-          </div>
-          <div class="tracker-status" id="trackerStatus">Preparing</div>
-        </div>
-
-        <p id="trackerDescription">Your order is being prepared.</p>
-
-        <div class="progress">
-          <div class="progress-bar" id="trackerProgress"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- BUSINESSES -->
-    <section class="section" id="businessSection">
+    <section class="section">
       <div class="section-head">
         <div class="section-title">Nearby businesses</div>
-        <div class="section-link" onclick="loadBusinesses()">See all</div>
+        <button class="see-all" onclick="loadBusinesses()">Refresh</button>
       </div>
 
       <div id="businessList" class="cards">
-        <div class="loading">
-          <div class="spinner"></div>
-          Loading businesses...
-        </div>
+        <div class="loading">Loading businesses...</div>
       </div>
     </section>
 
-    <!-- PROPERTIES -->
-    <section class="section" id="propertySection">
+    <section class="section">
       <div class="section-head">
-        <div class="section-title">Available properties</div>
-        <div class="section-link" onclick="loadProperties()">See all</div>
+        <div class="section-title">Property</div>
+        <button class="see-all" onclick="openProperty()">View all</button>
       </div>
 
-      <div id="propertyList">
-        <div class="empty">
-          <div class="empty-icon">🏠</div>
-          <h3>Find a property</h3>
-          <p>Properties available around Sefwi Wiawso will appear here.</p>
+      <div class="property-card">
+        <div class="property-img">🏠</div>
+        <div class="property-info">
+          <div class="property-title">Find houses and properties</div>
+          <div class="property-price">Sefwi Wiawso</div>
         </div>
       </div>
     </section>
 
-  </main>
+    <section class="section">
+      <div class="section-title">Current order</div>
+    </section>
 
-  <!-- ORDERS PAGE -->
-  <main id="ordersPage" class="hidden">
+    <div class="order-card">
+      <div class="order-status">
+        <div class="status-dot"></div>
+        <div>
+          <strong id="orderStatusText">No active order</strong>
+          <div class="order-small" id="orderStatusSmall">Your latest order will appear here.</div>
+        </div>
+      </div>
 
-    <div class="section-head">
-      <div class="section-title">Your activity</div>
-    </div>
-
-    <div id="ordersList">
-      <div class="empty">
-        <div class="empty-icon">🧾</div>
-        <h3>No orders yet</h3>
-        <p>Your orders will appear here.</p>
+      <div class="progress">
+        <span id="orderProgress"></span>
       </div>
     </div>
 
   </main>
-
-  <!-- SERVICES PAGE -->
-  <main id="servicesPage" class="hidden">
-
-    <div class="section-head">
-      <div class="section-title">Services</div>
-    </div>
-
-    <div class="partner-card">
-      <h3>🍔 Food delivery</h3>
-      <p>Order meals from local businesses.</p>
-      <button class="primary-btn" onclick="filterService('food')">Browse Food</button>
-    </div>
-
-    <div class="partner-card">
-      <h3>🛒 Groceries</h3>
-      <p>Shop groceries from nearby stores.</p>
-      <button class="primary-btn" onclick="filterService('groceries')">Browse Groceries</button>
-    </div>
-
-    <div class="partner-card">
-      <h3>📦 Parcel delivery</h3>
-      <p>Send a parcel around Sefwi Wiawso.</p>
-      <button class="primary-btn" onclick="openParcel()">Send Parcel</button>
-    </div>
-
-    <div class="partner-card">
-      <h3>🏠 Property</h3>
-      <p>Find available properties.</p>
-      <button class="primary-btn" onclick="loadProperties()">View Properties</button>
-    </div>
-
-    <div class="partner-card">
-      <h3>🤝 Become a SefwiGo Partner</h3>
-      <p>List your business and start receiving orders.</p>
-      <button class="primary-btn" onclick="openPartner()">Become a Partner</button>
-    </div>
-
-  </main>
-
-  <!-- ACCOUNT PAGE -->
-  <main id="accountPage" class="hidden">
-
-    <div class="section-head">
-      <div class="section-title">Account</div>
-    </div>
-
-    <div class="partner-card">
-      <h3 id="accountName">SefwiGo Customer</h3>
-      <p id="accountEmail">Signed in anonymously</p>
-    </div>
-
-    <div class="partner-card">
-      <button class="secondary-btn" onclick="openPartner()">Become a Partner</button>
-      <button class="secondary-btn" onclick="openCart()">🛒 View Cart (<span id="cartCountAccount">0</span>)</button>
-      <button class="secondary-btn" onclick="showToast('SefwiGo is available around Sefwi Wiawso.')">ℹ️ About SefwiGo</button>
-    </div>
-
-  </main>
-
-  <!-- BOTTOM NAV -->
-  <nav class="bottom-nav">
-
-    <button class="nav-item active" id="navHome" onclick="showPage('home')">
-      <span class="nav-icon">⌂</span>
-      Home
-    </button>
-
-    <button class="nav-item" id="navOrders" onclick="showPage('orders')">
-      <span class="nav-icon">▣</span>
-      Activity
-    </button>
-
-    <button class="nav-item" id="navServices" onclick="showPage('services')">
-      <span class="nav-icon">⊞</span>
-      Services
-    </button>
-
-    <button class="nav-item" id="navAccount" onclick="showPage('account')">
-      <span class="nav-icon">◯</span>
-      Account
-    </button>
-
-  </nav>
 
 </div>
 
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <div class="nav-inner">
+
+    <button class="nav-btn active" onclick="goHome(this)">
+      <div class="nav-icon">⌂</div>
+      Home
+    </button>
+
+    <button class="nav-btn" onclick="openCart()">
+      <div class="nav-icon">🛍️</div>
+      Cart <span id="cartCount"></span>
+    </button>
+
+    <button class="nav-btn" onclick="openPartner()">
+      <div class="nav-icon">🏪</div>
+      Partner
+    </button>
+
+    <button class="nav-btn" onclick="openAccount()">
+      <div class="nav-icon">👤</div>
+      Account
+    </button>
+
+  </div>
+</nav>
 
 <!-- BUSINESS MODAL -->
-
-<div class="modal" id="businessModal">
+<div id="businessModal" class="modal hidden">
   <div class="modal-box">
 
     <div class="modal-head">
@@ -1205,47 +979,296 @@ textarea.form-control{
       <button class="close" onclick="closeModal('businessModal')">×</button>
     </div>
 
-    <div id="businessMenu"></div>
+    <div id="businessProducts"></div>
 
   </div>
 </div>
 
-
-<!-- PRODUCT MODAL -->
-
-<div class="modal" id="productModal">
+<!-- FOOD REGISTRATION / PARTNER MODAL -->
+<div id="partnerModal" class="modal hidden">
   <div class="modal-box">
 
     <div class="modal-head">
-      <div class="modal-title">Customize order</div>
-      <button class="close" onclick="closeModal('productModal')">×</button>
+      <div class="modal-title">SefwiGo Partner</div>
+      <button class="close" onclick="closeModal('partnerModal')">×</button>
     </div>
 
-    <div id="productCustomization"></div>
+    <div class="tabs">
+      <button id="tabBusiness" class="tab active" onclick="showPartnerTab('business')">Business</button>
+      <button id="tabProducts" class="tab" onclick="showPartnerTab('products')">Products</button>
+      <button id="tabOrders" class="tab" onclick="showPartnerTab('orders')">Orders</button>
+    </div>
+
+    <!-- BUSINESS TAB -->
+    <div id="partnerBusinessTab">
+
+      <form id="businessForm">
+
+        <div class="form-group">
+          <label class="form-label">Business name</label>
+          <input id="businessName" class="input" required placeholder="e.g. Mama's Kitchen">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Business category</label>
+          <select id="businessCategory" class="select" required>
+            <option value="">Select category</option>
+            <option value="food">Food</option>
+            <option value="groceries">Groceries</option>
+            <option value="parcel">Parcel</option>
+            <option value="property">Property</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Location</label>
+          <input id="businessLocation" class="input" required placeholder="e.g. Sefwi Wiawso Market">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Phone number</label>
+          <input id="businessPhone" class="input" required type="tel" placeholder="024 XXX XXXX">
+        </div>
+
+        <!-- FOOD-ONLY REGISTRATION -->
+        <div id="foodRegistrationFields" class="food-registration hidden">
+
+          <div class="food-registration-title">
+            🍲 Food business setup
+          </div>
+
+          <div class="food-registration-desc">
+            Because you selected Food, register your first dish here. The dish photo and add-on options will be saved together with your business.
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Dish name</label>
+            <input id="foodDishName" class="input" placeholder="e.g. Fufu with light soup">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Dish price (GH₵)</label>
+            <input id="foodDishPrice" class="input" type="number" min="0" step="0.01" placeholder="30">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Dish description</label>
+            <textarea id="foodDishDescription" class="textarea" placeholder="Describe the dish..."></textarea>
+          </div>
+
+          <!-- REAL PHOTO UPLOAD -->
+          <div class="form-group">
+            <label class="form-label">Real dish photo</label>
+
+            <div class="photo-upload">
+              <div>📸 Upload a real photo of your dish</div>
+              <div class="small-note">
+                JPG, PNG or WEBP. Maximum 5 MB.
+              </div>
+
+              <input
+                id="foodDishPhoto"
+                type="file"
+                accept="image/*"
+              >
+
+              <img
+                id="foodDishPhotoPreview"
+                class="photo-preview hidden"
+                alt="Dish preview"
+              >
+            </div>
+          </div>
+
+          <!-- PROTEIN -->
+          <div class="modifier-group">
+
+            <div class="modifier-head">
+              <div class="modifier-name">🥩 Protein</div>
+
+              <div class="modifier-settings">
+                <label>
+                  <input id="proteinRequired" type="checkbox" checked>
+                  Required
+                </label>
+
+                <label>
+                  <input id="proteinMultiple" type="checkbox">
+                  Multiple
+                </label>
+              </div>
+            </div>
+
+            <div id="proteinOptions"></div>
+
+            <button type="button" class="add-option" onclick="addFoodOption('proteinOptions')">
+              + Add option
+            </button>
+
+          </div>
+
+          <!-- EXTRA SOUP -->
+          <div class="modifier-group">
+
+            <div class="modifier-head">
+              <div class="modifier-name">🍲 Extra Soup</div>
+
+              <div class="modifier-settings">
+                <label>
+                  <input id="soupRequired" type="checkbox">
+                  Required
+                </label>
+
+                <label>
+                  <input id="soupMultiple" type="checkbox" checked>
+                  Multiple
+                </label>
+              </div>
+            </div>
+
+            <div id="soupOptions"></div>
+
+            <button type="button" class="add-option" onclick="addFoodOption('soupOptions')">
+              + Add option
+            </button>
+
+          </div>
+
+          <!-- SPICE -->
+          <div class="modifier-group">
+
+            <div class="modifier-head">
+              <div class="modifier-name">🌶️ Spice Level</div>
+
+              <div class="modifier-settings">
+                <label>
+                  <input id="spiceRequired" type="checkbox" checked>
+                  Required
+                </label>
+
+                <label>
+                  <input id="spiceMultiple" type="checkbox">
+                  Multiple
+                </label>
+              </div>
+            </div>
+
+            <div id="spiceOptions"></div>
+
+            <button type="button" class="add-option" onclick="addFoodOption('spiceOptions')">
+              + Add option
+            </button>
+
+          </div>
+
+          <button
+            type="button"
+            class="restore-btn"
+            onclick="restoreDefaultFoodModifiers()"
+          >
+            ↻ Restore default add-ons
+          </button>
+
+        </div>
+
+        <button id="registerBusinessBtn" class="primary-btn" type="submit">
+          Register business
+        </button>
+
+      </form>
+
+    </div>
+
+    <!-- PRODUCTS TAB -->
+    <div id="partnerProductsTab" class="hidden">
+
+      <div class="small-note" style="margin-bottom:12px;">
+        Food businesses can add more dishes after registering the business.
+      </div>
+
+      <form id="productForm">
+
+        <div class="form-group">
+          <label class="form-label">Dish / product name</label>
+          <input id="productName" class="input" required placeholder="Product name">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Price (GH₵)</label>
+          <input id="productPrice" class="input" type="number" min="0" step="0.01" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Description</label>
+          <textarea id="productDescription" class="textarea"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Real product photo</label>
+          <input id="productPhoto" class="input" type="file" accept="image/*">
+        </div>
+
+        <button class="primary-btn" type="submit">
+          Add product
+        </button>
+
+      </form>
+
+    </div>
+
+    <!-- ORDERS TAB -->
+    <div id="partnerOrdersTab" class="hidden">
+      <div id="partnerOrders">
+        <div class="loading">Loading orders...</div>
+      </div>
+    </div>
 
   </div>
 </div>
 
-
-<!-- CART MODAL -->
-
-<div class="modal" id="cartModal">
+<!-- PRODUCT MODIFIER MODAL -->
+<div id="customizeModal" class="modal hidden">
   <div class="modal-box">
 
     <div class="modal-head">
-      <div class="modal-title">Your cart</div>
+      <div class="modal-title" id="customizeTitle">Customize</div>
+      <button class="close" onclick="closeModal('customizeModal')">×</button>
+    </div>
+
+    <div id="customizeBody"></div>
+
+    <button class="primary-btn" onclick="addCustomizedProduct()">
+      Add to cart
+    </button>
+
+  </div>
+</div>
+
+<!-- CART MODAL -->
+<div id="cartModal" class="modal hidden">
+  <div class="modal-box">
+
+    <div class="modal-head">
+      <div class="modal-title">Your Cart</div>
       <button class="close" onclick="closeModal('cartModal')">×</button>
     </div>
 
-    <div id="cartContents"></div>
+    <div id="cartItems"></div>
+
+    <div class="cart-total">
+      <span>Total</span>
+      <span id="cartTotal">GH₵0.00</span>
+    </div>
+
+    <button class="primary-btn" onclick="openCheckout()">
+      Continue to checkout
+    </button>
 
   </div>
 </div>
 
-
-<!-- CHECKOUT MODAL -->
-
-<div class="modal" id="checkoutModal">
+<!-- CHECKOUT -->
+<div id="checkoutModal" class="modal hidden">
   <div class="modal-box">
 
     <div class="modal-head">
@@ -1253,67 +1276,95 @@ textarea.form-control{
       <button class="close" onclick="closeModal('checkoutModal')">×</button>
     </div>
 
-    <form id="checkoutForm">
+    <div class="form-group">
+      <label class="form-label">Delivery location</label>
+      <input id="checkoutLocation" class="input" placeholder="Where should we deliver?">
+    </div>
 
-      <div class="form-group">
-        <label class="form-label">Your name</label>
-        <input class="form-control" id="customerName" required placeholder="Enter your name">
-      </div>
+    <div class="form-group">
+      <label class="form-label">Phone</label>
+      <input id="checkoutPhone" class="input" type="tel" placeholder="024 XXX XXXX">
+    </div>
 
-      <div class="form-group">
-        <label class="form-label">Phone number</label>
-        <input class="form-control" id="customerPhone" required placeholder="024...">
-      </div>
+    <div class="form-group">
+      <label class="form-label">Payment method</label>
+      <select id="paymentMethod" class="select">
+        <option>Cash on delivery</option>
+        <option>Mobile Money</option>
+      </select>
+    </div>
 
-      <div class="form-group">
-        <label class="form-label">Delivery location</label>
-        <input class="form-control" id="deliveryAddress" required placeholder="Where should we deliver?">
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Additional note</label>
-        <textarea class="form-control" id="orderNote" placeholder="Any special instructions?"></textarea>
-      </div>
-
-      <button class="primary-btn" type="submit">
-        Place order
-      </button>
-
-    </form>
+    <button class="primary-btn" onclick="placeOrder()">
+      Place order
+    </button>
 
   </div>
 </div>
 
-
-<!-- PARCEL MODAL -->
-
-<div class="modal" id="parcelModal">
+<!-- PARCEL -->
+<div id="parcelModal" class="modal hidden">
   <div class="modal-box">
 
     <div class="modal-head">
-      <div class="modal-title">📦 Send a parcel</div>
+      <div class="modal-title">Send a Parcel</div>
       <button class="close" onclick="closeModal('parcelModal')">×</button>
     </div>
 
-    <form id="parcelForm">
+    <div class="form-group">
+      <label class="form-label">Pickup location</label>
+      <input id="parcelPickup" class="input">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Delivery location</label>
+      <input id="parcelDropoff" class="input">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Parcel description</label>
+      <textarea id="parcelDescription" class="textarea"></textarea>
+    </div>
+
+    <button class="primary-btn" onclick="requestParcel()">
+      Request delivery
+    </button>
+
+  </div>
+</div>
+
+<!-- PROPERTY -->
+<div id="propertyModal" class="modal hidden">
+  <div class="modal-box">
+
+    <div class="modal-head">
+      <div class="modal-title">Property</div>
+      <button class="close" onclick="closeModal('propertyModal')">×</button>
+    </div>
+
+    <form id="propertyForm">
 
       <div class="form-group">
-        <label class="form-label">Pickup location</label>
-        <input class="form-control" id="parcelPickup" required placeholder="Where should we pick it up?">
+        <label class="form-label">Property title</label>
+        <input id="propertyTitle" class="input" required>
       </div>
 
       <div class="form-group">
-        <label class="form-label">Delivery location</label>
-        <input class="form-control" id="parcelDropoff" required placeholder="Where should we deliver it?">
+        <label class="form-label">Location</label>
+        <input id="propertyLocation" class="input" required>
       </div>
 
       <div class="form-group">
-        <label class="form-label">What are you sending?</label>
-        <textarea class="form-control" id="parcelDescription" required placeholder="Describe the parcel"></textarea>
+        <label class="form-label">Price</label>
+        <input id="propertyPrice" class="input" type="number" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Description</label>
+        <textarea id="propertyDescription" class="textarea"></textarea>
       </div>
 
       <button class="primary-btn" type="submit">
-        Request parcel delivery
+        List property
       </button>
 
     </form>
@@ -1321,152 +1372,8 @@ textarea.form-control{
   </div>
 </div>
 
-
-<!-- PROPERTY MODAL -->
-
-<div class="modal" id="propertyModal">
-  <div class="modal-box">
-
-    <div class="modal-head">
-      <div class="modal-title" id="propertyModalTitle">Property</div>
-      <button class="close" onclick="closeModal('propertyModal')">×</button>
-    </div>
-
-    <div id="propertyDetails"></div>
-
-  </div>
-</div>
-
-
-<!-- PARTNER MODAL -->
-
-<div class="modal" id="partnerModal">
-  <div class="modal-box">
-
-    <div class="modal-head">
-      <div class="modal-title">Partner dashboard</div>
-      <button class="close" onclick="closeModal('partnerModal')">×</button>
-    </div>
-
-    <div id="partnerContent">
-
-      <div class="partner-tabs">
-        <button class="partner-tab active" onclick="partnerTab('business')">Business</button>
-        <button class="partner-tab" onclick="partnerTab('products')">Products</button>
-        <button class="partner-tab" onclick="partnerTab('orders')">Orders</button>
-      </div>
-
-      <div id="partnerBusinessTab">
-
-        <div class="partner-card">
-          <h3>Register your business</h3>
-
-          <form id="businessForm">
-
-            <div class="form-group">
-              <label class="form-label">Business name</label>
-              <input class="form-control" id="businessName" required placeholder="Example: Wiawso Chop Bar">
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">Category</label>
-              <select class="form-control" id="businessCategory">
-                <option value="food">Food</option>
-                <option value="groceries">Groceries</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">Location</label>
-              <input class="form-control" id="businessLocation" required placeholder="Business location">
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">Phone</label>
-              <input class="form-control" id="businessPhone" required placeholder="024...">
-            </div>
-
-            <button class="primary-btn">Save business</button>
-
-          </form>
-        </div>
-
-      </div>
-
-      <div id="partnerProductsTab" class="hidden">
-
-        <div class="partner-card">
-          <h3>Add product</h3>
-
-          <form id="productForm">
-
-            <div class="form-group">
-              <label class="form-label">Product name</label>
-              <input class="form-control" id="productName" required placeholder="Example: Jollof with chicken">
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">Price (GH₵)</label>
-              <input class="form-control" id="productPrice" required type="number" min="0" step="0.01">
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">Description</label>
-              <textarea class="form-control" id="productDescription" placeholder="Describe the product"></textarea>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">Product photo</label>
-              <input class="form-control" id="productPhoto" type="file" accept="image/*">
-            </div>
-
-            <div class="partner-card">
-              <strong>Add-ons</strong>
-
-              <button type="button" class="secondary-btn" onclick="addQuickModifier('protein')">
-                + Protein options
-              </button>
-
-              <button type="button" class="secondary-btn" onclick="addQuickModifier('soup')">
-                + Extra soup
-              </button>
-
-              <button type="button" class="secondary-btn" onclick="addQuickModifier('spice')">
-                + Spice level
-              </button>
-
-              <div id="modifierBuilder"></div>
-            </div>
-
-            <button class="primary-btn" id="saveProductBtn">
-              Save product
-            </button>
-
-          </form>
-        </div>
-
-      </div>
-
-      <div id="partnerOrdersTab" class="hidden">
-        <div id="vendorOrdersList">
-          <div class="empty">
-            <div class="empty-icon">📦</div>
-            <h3>No orders</h3>
-            <p>Customer orders will appear here.</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-</div>
-
-
-<!-- ACCOUNT MODAL -->
-
-<div class="modal" id="accountModal">
+<!-- ACCOUNT -->
+<div id="accountModal" class="modal hidden">
   <div class="modal-box">
 
     <div class="modal-head">
@@ -1474,27 +1381,16 @@ textarea.form-control{
       <button class="close" onclick="closeModal('accountModal')">×</button>
     </div>
 
-    <div class="partner-card">
-      <h3>SefwiGo</h3>
-      <p>Your local marketplace and delivery service.</p>
-    </div>
+    <div id="accountInfo"></div>
 
-    <button class="primary-btn" onclick="closeModal('accountModal');openPartner()">
-      Become a Partner
-    </button>
-
-    <button class="secondary-btn" onclick="closeModal('accountModal');openCart()">
-      🛒 View Cart
+    <button class="secondary-btn" onclick="openPartner()">
+      🏪 Register / Manage Business
     </button>
 
   </div>
 </div>
 
-
-<!-- TOAST -->
-
-<div class="toast" id="toast"></div>
-
+<div id="toast" class="toast"></div>
 
 <script type="module">
 
@@ -1508,8 +1404,8 @@ import {
 
 import {
   getAuth,
-  signInAnonymously,
-  onAuthStateChanged
+  onAuthStateChanged,
+  signInAnonymously
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
@@ -1544,531 +1440,301 @@ const firebaseConfig = {
   appId: "1:210398787110:web:f7f76a538a2712a2bb58e7"
 };
 
-let app;
-let auth;
-let db;
-let storage;
-
-try{
-
-  app = initializeApp(firebaseConfig);
-
-  auth = getAuth(app);
-
-  db = getFirestore(app);
-
-  storage = getStorage(app);
-
-}catch(error){
-
-  console.error("Firebase initialization failed:",error);
-
-}
-
-
-/* =========================================================
-   GLOBAL STATE
-========================================================= */
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
 
 let currentUser = null;
-
 let businesses = [];
-
-let products = [];
-
-let properties = [];
-
-let orders = [];
-
+let selectedBusiness = null;
+let selectedProduct = null;
 let cart = JSON.parse(localStorage.getItem("sefwiCart") || "[]");
 
-let selectedBusiness = null;
-
-let selectedProduct = null;
-
-let editingProductId = null;
-
-let modifiers = [];
-
-let currentPartnerBusiness = null;
+const MAX_IMAGE_SIZE = 5 * 1024 * 1024;
 
 
 /* =========================================================
    AUTH
 ========================================================= */
 
-if(auth){
+onAuthStateChanged(auth, async user => {
 
-  onAuthStateChanged(auth,(user)=>{
-
+  if(user){
     currentUser = user;
-
-    if(user){
-
-      console.log("Signed in:",user.uid);
-
-      loadBusinesses();
-
-      loadProperties();
-
-      loadOrders();
-
-    }
-
-  });
-
-  signInAnonymously(auth).catch(error=>{
-
-    console.error("Anonymous authentication failed:",error);
-
-    showToast("Firebase authentication failed.");
-
-  });
-
-}
-
-
-/* =========================================================
-   PAGE NAVIGATION
-========================================================= */
-
-window.showPage=function(page){
-
-  document.getElementById("homePage").classList.add("hidden");
-
-  document.getElementById("ordersPage").classList.add("hidden");
-
-  document.getElementById("servicesPage").classList.add("hidden");
-
-  document.getElementById("accountPage").classList.add("hidden");
-
-  document.querySelectorAll(".nav-item").forEach(x=>{
-    x.classList.remove("active");
-  });
-
-  if(page==="home"){
-
-    document.getElementById("homePage").classList.remove("hidden");
-
-    document.getElementById("navHome").classList.add("active");
-
+    updateAccount();
+    loadBusinesses();
+    loadCart();
+    return;
   }
 
-  if(page==="orders"){
-
-    document.getElementById("ordersPage").classList.remove("hidden");
-
-    document.getElementById("navOrders").classList.add("active");
-
-    loadOrders();
-
+  try{
+    await signInAnonymously(auth);
+  }catch(error){
+    console.error(error);
+    showToast("Firebase authentication failed: " + firebaseError(error));
   }
-
-  if(page==="services"){
-
-    document.getElementById("servicesPage").classList.remove("hidden");
-
-    document.getElementById("navServices").classList.add("active");
-
-  }
-
-  if(page==="account"){
-
-    document.getElementById("accountPage").classList.remove("hidden");
-
-    document.getElementById("navAccount").classList.add("active");
-
-    updateCartCount();
-
-  }
-
-};
-
-
-/* =========================================================
-   MODALS
-========================================================= */
-
-window.closeModal=function(id){
-
-  document.getElementById(id).classList.remove("show");
-
-};
-
-function openModal(id){
-
-  document.getElementById(id).classList.add("show");
-
-}
-
-window.openAccount=function(){
-
-  openModal("accountModal");
-
-};
-
-
-/* close when clicking outside */
-
-document.querySelectorAll(".modal").forEach(modal=>{
-
-  modal.addEventListener("click",(e)=>{
-
-    if(e.target===modal){
-
-      modal.classList.remove("show");
-
-    }
-
-  });
 
 });
 
 
 /* =========================================================
-   LOCATION
+   HELPERS
 ========================================================= */
 
-window.setLocation=function(){
+function firebaseError(error){
 
-  const location = prompt(
-    "Enter your delivery location:",
-    localStorage.getItem("sefwiLocation") || "Sefwi Wiawso"
-  );
+  if(!error) return "Unknown error.";
 
-  if(location){
-
-    localStorage.setItem("sefwiLocation",location);
-
-    document.getElementById("locationText").textContent=location;
-
-    showToast("Delivery location updated.");
-
+  if(error.code === "auth/operation-not-allowed"){
+    return "Anonymous Authentication is not enabled in Firebase.";
   }
 
+  if(error.code === "permission-denied"){
+    return "Firebase permission denied. Check Firestore rules.";
+  }
+
+  if(error.code === "storage/unauthorized"){
+    return "Storage permission denied. Check Firebase Storage rules.";
+  }
+
+  if(error.code === "storage/bucket-not-found"){
+    return "Firebase Storage is not enabled or the bucket is incorrect.";
+  }
+
+  if(error.code === "storage/unknown"){
+    return "Firebase Storage returned an unknown error.";
+  }
+
+  return error.message || "Firebase request failed.";
+}
+
+window.showToast = function(message){
+
+  const toast = document.getElementById("toast");
+
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  clearTimeout(window.toastTimer);
+
+  window.toastTimer = setTimeout(()=>{
+    toast.classList.remove("show");
+  },3000);
 };
 
-const savedLocation=localStorage.getItem("sefwiLocation");
 
-if(savedLocation){
+window.closeModal = function(id){
+  document.getElementById(id).classList.add("hidden");
+};
 
-  document.getElementById("locationText").textContent=savedLocation;
 
+function openModal(id){
+  document.getElementById(id).classList.remove("hidden");
 }
 
 
-/* =========================================================
-   SEARCH
-========================================================= */
+window.goHome = function(button){
 
-window.focusSearch=function(){
+  document.querySelectorAll(".nav-btn").forEach(x=>x.classList.remove("active"));
+  button.classList.add("active");
 
-  document.getElementById("searchInput").focus();
-
-  document.getElementById("searchInput").scrollIntoView({
-    behavior:"smooth",
-    block:"center"
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
   });
-
-};
-
-window.handleSearch=function(){
-
-  const value=document
-    .getElementById("searchInput")
-    .value
-    .trim()
-    .toLowerCase();
-
-  if(!value){
-
-    renderBusinesses(businesses);
-
-    return;
-
-  }
-
-  const filtered=businesses.filter(b=>
-    String(b.name||"").toLowerCase().includes(value) ||
-    String(b.category||"").toLowerCase().includes(value) ||
-    String(b.location||"").toLowerCase().includes(value)
-  );
-
-  renderBusinesses(filtered);
-
 };
 
 
 /* =========================================================
-   BUSINESS LOADING
+   BUSINESSES
 ========================================================= */
 
-window.loadBusinesses=async function(){
+async function loadBusinesses(){
 
-  const container=document.getElementById("businessList");
+  const list = document.getElementById("businessList");
 
-  container.innerHTML=`
-    <div class="loading">
-      <div class="spinner"></div>
-      Loading businesses...
-    </div>
-  `;
-
-  if(!db){
-
-    container.innerHTML=`
-      <div class="empty">
-        <div class="empty-icon">⚠️</div>
-        <h3>Connection problem</h3>
-        <p>Firebase could not be initialized.</p>
-      </div>
-    `;
-
-    return;
-
-  }
+  list.innerHTML = `<div class="loading">Loading businesses...</div>`;
 
   try{
 
-    const snap=await getDocs(
-      query(
-        collection(db,"businesses"),
-        limit(30)
-      )
-    );
+    const snap = await getDocs(collection(db,"businesses"));
 
-    businesses=[];
+    businesses = [];
 
-    snap.forEach(d=>{
-
+    snap.forEach(item=>{
       businesses.push({
-        id:d.id,
-        ...d.data()
+        id:item.id,
+        ...item.data()
       });
-
     });
 
     renderBusinesses(businesses);
 
   }catch(error){
 
-    console.error("Business loading error:",error);
+    console.error(error);
 
-    container.innerHTML=`
+    list.innerHTML = `
       <div class="empty">
-        <div class="empty-icon">⚠️</div>
-        <h3>Could not load businesses</h3>
-        <p>${escapeHtml(error.message || "Firebase error")}</p>
+        Unable to load businesses.<br><br>
+        ${firebaseError(error)}
       </div>
     `;
 
   }
 
-};
+}
+
+window.loadBusinesses = loadBusinesses;
 
 
-/* =========================================================
-   BUSINESS RENDER
-========================================================= */
+function renderBusinesses(items){
 
-function renderBusinesses(list){
+  const list = document.getElementById("businessList");
 
-  const container=document.getElementById("businessList");
+  if(!items.length){
 
-  if(!list.length){
-
-    container.innerHTML=`
-      <div class="empty" style="min-width:100%">
-        <div class="empty-icon">🔎</div>
-        <h3>No businesses found</h3>
-        <p>Try another search.</p>
+    list.innerHTML = `
+      <div class="empty">
+        No businesses registered yet.
       </div>
     `;
 
     return;
-
   }
 
-  container.innerHTML=list.map(b=>{
+  list.innerHTML = items.map(b=>`
 
-    const emoji =
-      b.category==="groceries" ? "🛒" :
-      b.category==="food" ? "🍔" :
-      "🏪";
+    <div class="business-card">
 
-    return `
+      <div class="business-main">
 
-      <div class="business-card" onclick="openBusiness('${b.id}')">
-
-        <div class="business-image">
-
-          ${
-            b.photoUrl
-            ? `<img src="${escapeAttr(b.photoUrl)}" alt="">`
-            : emoji
-          }
-
+        <div class="business-name">
+          ${escapeHtml(b.name || "Business")}
         </div>
 
-        <div class="business-info">
-
-          <div class="business-name">
-            ${escapeHtml(b.name || "SefwiGo Business")}
-          </div>
-
-          <div class="business-meta">
-            ${escapeHtml(b.location || "Sefwi Wiawso")}
-            ·
-            <span class="rating">★ 4.8</span>
-          </div>
-
+        <div class="business-meta">
+          📍 ${escapeHtml(b.location || "Sefwi Wiawso")}
+          ${b.phone ? ` · ☎ ${escapeHtml(b.phone)}` : ""}
         </div>
+
+        <span class="category-pill">
+          ${categoryName(b.category)}
+        </span>
 
       </div>
-    `;
 
-  }).join("");
+      <button
+        class="open-btn"
+        onclick="openBusiness('${b.id}')"
+      >
+        Open
+      </button>
+
+    </div>
+
+  `).join("");
 
 }
 
 
-/* =========================================================
-   FILTER SERVICE
-========================================================= */
+window.searchBusinesses = function(){
 
-window.filterService=function(category){
+  const text = document.getElementById("searchInput").value
+    .trim()
+    .toLowerCase();
 
-  showPage("home");
-
-  const filtered=businesses.filter(
-    b=>String(b.category||"").toLowerCase()===category
-  );
-
-  if(filtered.length){
-
-    renderBusinesses(filtered);
-
-  }else{
-
-    showToast("No businesses in this category yet.");
-
+  if(!text){
     renderBusinesses(businesses);
-
+    return;
   }
 
-  document.getElementById("businessSection")
-    .scrollIntoView({behavior:"smooth"});
+  const filtered = businesses.filter(b=>
+    String(b.name || "").toLowerCase().includes(text) ||
+    String(b.location || "").toLowerCase().includes(text) ||
+    String(b.category || "").toLowerCase().includes(text)
+  );
 
+  renderBusinesses(filtered);
 };
+
+
+function categoryName(category){
+
+  const names = {
+    food:"🍲 Food",
+    groceries:"🛒 Groceries",
+    parcel:"📦 Parcel",
+    property:"🏠 Property"
+  };
+
+  return names[category] || "Business";
+}
 
 
 /* =========================================================
    OPEN BUSINESS
 ========================================================= */
 
-window.openBusiness=async function(id){
+window.openBusiness = async function(id){
 
-  selectedBusiness=businesses.find(x=>x.id===id);
+  selectedBusiness = businesses.find(b=>b.id === id);
 
-  if(!selectedBusiness)return;
+  if(!selectedBusiness) return;
 
-  document.getElementById("businessModalTitle").textContent=
+  document.getElementById("businessModalTitle").textContent =
     selectedBusiness.name || "Business";
 
-  const menu=document.getElementById("businessMenu");
+  const container = document.getElementById("businessProducts");
 
-  menu.innerHTML=`
-    <div class="loading">
-      <div class="spinner"></div>
-      Loading menu...
-    </div>
-  `;
+  container.innerHTML = `<div class="loading">Loading products...</div>`;
 
   openModal("businessModal");
 
   try{
 
-    const snap=await getDocs(
-      query(
-        collection(db,"products"),
-        where("vendorId","==",selectedBusiness.ownerUid || selectedBusiness.vendorId || selectedBusiness.id),
-        limit(50)
-      )
+    const q = query(
+      collection(db,"products"),
+      where("businessId","==",id)
     );
 
-    const menuProducts=[];
+    const snap = await getDocs(q);
 
-    snap.forEach(d=>{
+    const products = [];
 
-      menuProducts.push({
-        id:d.id,
-        ...d.data()
+    snap.forEach(item=>{
+      products.push({
+        id:item.id,
+        ...item.data()
       });
-
     });
 
-    if(!menuProducts.length){
+    if(!products.length){
 
-      menu.innerHTML=`
+      container.innerHTML = `
         <div class="empty">
-          <div class="empty-icon">🍽️</div>
-          <h3>No products yet</h3>
-          <p>This business has not added products.</p>
+          This business has no products yet.
         </div>
       `;
 
       return;
-
     }
 
-    menu.innerHTML=menuProducts.map(p=>`
-
-      <div class="cart-item" style="cursor:pointer"
-           onclick="openProduct('${p.id}')">
-
-        <div class="cart-photo">
-
-          ${
-            p.photoUrl
-            ? `<img src="${escapeAttr(p.photoUrl)}">`
-            : "🍽️"
-          }
-
-        </div>
-
-        <div class="cart-info">
-
-          <div class="cart-name">
-            ${escapeHtml(p.name)}
-          </div>
-
-          <div class="cart-modifiers">
-            ${escapeHtml(p.description || "Tap to customize")}
-          </div>
-
-          <div class="cart-price">
-            GH₵ ${Number(p.price||0).toFixed(2)}
-          </div>
-
-        </div>
-
-        <div style="font-size:20px;color:#087f5b">
-          ›
-        </div>
-
+    container.innerHTML = `
+      <div class="product-list">
+        ${products.map(productCard).join("")}
       </div>
-
-    `).join("");
+    `;
 
   }catch(error){
 
     console.error(error);
 
-    menu.innerHTML=`
+    container.innerHTML = `
       <div class="empty">
-        <div class="empty-icon">⚠️</div>
-        <h3>Could not load menu</h3>
-        <p>${escapeHtml(error.message)}</p>
+        Could not load products.<br><br>
+        ${firebaseError(error)}
       </div>
     `;
 
@@ -2077,196 +1743,795 @@ window.openBusiness=async function(id){
 };
 
 
-/* =========================================================
-   OPEN PRODUCT
-========================================================= */
+function productCard(p){
 
-window.openProduct=async function(id){
+  return `
 
-  try{
+    <div class="product-card">
 
-    let p=products.find(x=>x.id===id);
-
-    if(!p){
-
-      const snap=await getDoc(doc(db,"products",id));
-
-      if(!snap.exists()){
-
-        showToast("Product not found.");
-
-        return;
-
+      ${
+        p.photoUrl
+        ?
+        `<img class="product-photo" src="${escapeAttribute(p.photoUrl)}" alt="${escapeAttribute(p.name || "Dish")}">`
+        :
+        `<div class="product-photo" style="display:flex;align-items:center;justify-content:center;font-size:50px;">🍲</div>`
       }
 
-      p={
-        id:snap.id,
-        ...snap.data()
-      };
+      <div class="product-content">
 
-    }
-
-    selectedProduct=p;
-
-    renderProductCustomization(p);
-
-    closeModal("businessModal");
-
-    openModal("productModal");
-
-  }catch(error){
-
-    console.error(error);
-
-    showToast("Could not open product.");
-
-  }
-
-};
-
-
-/* =========================================================
-   PRODUCT CUSTOMIZATION
-========================================================= */
-
-function renderProductCustomization(p){
-
-  const container=document.getElementById("productCustomization");
-
-  const groups=p.modifiers || [];
-
-  let html=`
-
-    <div class="product-header">
-
-      <div class="product-photo">
-
-        ${
-          p.photoUrl
-          ? `<img src="${escapeAttr(p.photoUrl)}">`
-          : "🍽️"
-        }
-
-      </div>
-
-      <div>
-
-        <div class="product-title">
-          ${escapeHtml(p.name)}
+        <div class="product-name">
+          ${escapeHtml(p.name || "Product")}
         </div>
 
         <div class="product-price">
-          GH₵ ${Number(p.price||0).toFixed(2)}
+          GH₵${Number(p.price || 0).toFixed(2)}
         </div>
 
-        <div class="product-description">
+        <div class="product-desc">
           ${escapeHtml(p.description || "")}
+        </div>
+
+        <div class="product-actions">
+
+          ${
+            p.modifiers && p.modifiers.length
+            ?
+            `<button class="add-btn" onclick='openCustomize(${safeJson(p)})'>Customize</button>`
+            :
+            `<button class="add-btn" onclick='addSimpleProduct(${safeJson(p)})'>Add to cart</button>`
+          }
+
         </div>
 
       </div>
 
     </div>
-  `;
-
-  if(groups.length){
-
-    groups.forEach((g,gi)=>{
-
-      html+=`
-
-        <div class="modifier-group">
-
-          <div class="modifier-title">
-
-            <span>
-              ${escapeHtml(g.name || "Options")}
-            </span>
-
-            ${
-              g.required
-              ? `<span class="required">REQUIRED</span>`
-              : ""
-            }
-
-          </div>
-
-      `;
-
-      (g.options||[]).forEach((o,oi)=>{
-
-        const type=g.multiple ? "checkbox" : "radio";
-
-        html+=`
-
-          <div class="modifier-option">
-
-            <label>
-
-              <input
-                type="${type}"
-                name="mod_${p.id}_${gi}"
-                value="${oi}"
-              >
-
-              <span>
-                ${escapeHtml(o.name)}
-              </span>
-
-            </label>
-
-            ${
-              Number(o.price||0)>0
-              ? `<span class="option-price">+GH₵ ${Number(o.price).toFixed(2)}</span>`
-              : ""
-            }
-
-          </div>
-        `;
-
-      });
-
-      html+=`</div>`;
-
-    });
-
-  }
-
-  html+=`
-
-    <button
-      class="primary-btn"
-      style="margin-top:22px"
-      onclick="addCustomizedProduct()"
-    >
-      Add to cart
-    </button>
 
   `;
-
-  container.innerHTML=html;
 
 }
 
 
 /* =========================================================
-   ADD CUSTOMIZED PRODUCT
+   FOOD REGISTRATION
 ========================================================= */
 
-window.addCustomizedProduct=function(){
+document.getElementById("businessCategory")
+  .addEventListener("change", toggleFoodFields);
 
-  const p=selectedProduct;
 
-  if(!p)return;
+function toggleFoodFields(){
 
-  let extra=0;
+  const category =
+    document.getElementById("businessCategory").value;
 
-  let selected=[];
+  const foodFields =
+    document.getElementById("foodRegistrationFields");
 
-  for(const [gi,g] of (p.modifiers||[]).entries()){
+  const isFood = category === "food";
 
-    const checked=[
+  foodFields.classList.toggle("hidden",!isFood);
+
+  const dishName =
+    document.getElementById("foodDishName");
+
+  const dishPrice =
+    document.getElementById("foodDishPrice");
+
+  const photo =
+    document.getElementById("foodDishPhoto");
+
+  dishName.required = isFood;
+  dishPrice.required = isFood;
+  photo.required = isFood;
+
+}
+
+
+document.getElementById("foodDishPhoto")
+  .addEventListener("change",function(){
+
+    const file = this.files[0];
+
+    const preview =
+      document.getElementById("foodDishPhotoPreview");
+
+    if(!file){
+
+      preview.classList.add("hidden");
+      preview.src = "";
+      return;
+
+    }
+
+    if(!file.type.startsWith("image/")){
+
+      this.value = "";
+      preview.classList.add("hidden");
+
+      showToast("Please choose an image file.");
+
+      return;
+    }
+
+    if(file.size > MAX_IMAGE_SIZE){
+
+      this.value = "";
+      preview.classList.add("hidden");
+
+      showToast("Dish photo must be smaller than 5 MB.");
+
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = e=>{
+
+      preview.src = e.target.result;
+      preview.classList.remove("hidden");
+
+    };
+
+    reader.readAsDataURL(file);
+
+  });
+
+
+/* =========================================================
+   DEFAULT FOOD MODIFIERS
+========================================================= */
+
+function restoreDefaultFoodModifiers(){
+
+  renderFoodOptions("proteinOptions",[
+    ["Chicken","10"],
+    ["Beef","15"]
+  ]);
+
+  renderFoodOptions("soupOptions",[
+    ["Extra soup","5"],
+    ["Large soup","10"]
+  ]);
+
+  renderFoodOptions("spiceOptions",[
+    ["Mild","0"],
+    ["Medium","0"],
+    ["Hot","0"]
+  ]);
+
+}
+
+window.restoreDefaultFoodModifiers =
+  restoreDefaultFoodModifiers;
+
+
+function renderFoodOptions(containerId,options){
+
+  const container =
+    document.getElementById(containerId);
+
+  container.innerHTML = "";
+
+  options.forEach(option=>{
+    addFoodOption(containerId,option[0],option[1]);
+  });
+
+}
+
+
+function addFoodOption(containerId,name="",price=""){
+
+  const container =
+    document.getElementById(containerId);
+
+  const row =
+    document.createElement("div");
+
+  row.className = "option-row";
+
+  row.innerHTML = `
+
+    <input
+      class="option-name"
+      placeholder="Option name"
+      value="${escapeAttribute(name)}"
+    >
+
+    <input
+      class="option-price"
+      type="number"
+      min="0"
+      step="0.01"
+      placeholder="Price"
+      value="${escapeAttribute(price)}"
+    >
+
+    <button
+      type="button"
+      class="remove-option"
+      onclick="this.parentElement.remove()"
+    >
+      ×
+    </button>
+
+  `;
+
+  container.appendChild(row);
+
+}
+
+window.addFoodOption = addFoodOption;
+
+
+function getFoodModifierGroup(
+  name,
+  containerId,
+  requiredId,
+  multipleId
+){
+
+  const options = [];
+
+  document
+    .querySelectorAll(`#${containerId} .option-row`)
+    .forEach(row=>{
+
+      const optionName =
+        row.querySelector(".option-name").value.trim();
+
+      const price =
+        Number(row.querySelector(".option-price").value || 0);
+
+      if(optionName){
+
+        options.push({
+          name:optionName,
+          price:price
+        });
+
+      }
+
+    });
+
+  return {
+    name,
+    required:document.getElementById(requiredId).checked,
+    multiple:document.getElementById(multipleId).checked,
+    options
+  };
+
+}
+
+
+function getFoodModifiers(){
+
+  return [
+
+    getFoodModifierGroup(
+      "Protein",
+      "proteinOptions",
+      "proteinRequired",
+      "proteinMultiple"
+    ),
+
+    getFoodModifierGroup(
+      "Extra Soup",
+      "soupOptions",
+      "soupRequired",
+      "soupMultiple"
+    ),
+
+    getFoodModifierGroup(
+      "Spice Level",
+      "spiceOptions",
+      "spiceRequired",
+      "spiceMultiple"
+    )
+
+  ].filter(group=>group.options.length);
+
+}
+
+
+/* =========================================================
+   REGISTER BUSINESS
+========================================================= */
+
+document.getElementById("businessForm")
+  .addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+    if(!currentUser){
+
+      showToast("Please wait for Firebase login.");
+      return;
+
+    }
+
+    const btn =
+      document.getElementById("registerBusinessBtn");
+
+    btn.disabled = true;
+    btn.textContent = "Registering...";
+
+    try{
+
+      const name =
+        document.getElementById("businessName").value.trim();
+
+      const category =
+        document.getElementById("businessCategory").value;
+
+      const location =
+        document.getElementById("businessLocation").value.trim();
+
+      const phone =
+        document.getElementById("businessPhone").value.trim();
+
+      if(!name || !category || !location || !phone){
+
+        throw new Error("Please complete all business information.");
+
+      }
+
+      let businessData = {
+
+        name,
+        category,
+        location,
+        phone,
+
+        ownerUid:currentUser.uid,
+
+        createdAt:serverTimestamp()
+
+      };
+
+
+      /* -----------------------------------------------
+         FOOD BUSINESS
+      ------------------------------------------------ */
+
+      let foodProductData = null;
+
+      if(category === "food"){
+
+        const dishName =
+          document.getElementById("foodDishName")
+            .value.trim();
+
+        const dishPrice =
+          Number(
+            document.getElementById("foodDishPrice")
+              .value
+          );
+
+        const dishDescription =
+          document.getElementById("foodDishDescription")
+            .value.trim();
+
+        const photoFile =
+          document.getElementById("foodDishPhoto")
+            .files[0];
+
+        if(!dishName){
+
+          throw new Error("Enter the name of your first dish.");
+
+        }
+
+        if(!Number.isFinite(dishPrice) || dishPrice < 0){
+
+          throw new Error("Enter a valid dish price.");
+
+        }
+
+        if(!photoFile){
+
+          throw new Error("Please upload a real photo of the dish.");
+
+        }
+
+        if(!photoFile.type.startsWith("image/")){
+
+          throw new Error("The dish photo must be an image.");
+
+        }
+
+        if(photoFile.size > MAX_IMAGE_SIZE){
+
+          throw new Error("Dish photo must be smaller than 5 MB.");
+
+        }
+
+        const modifiers = getFoodModifiers();
+
+        if(!modifiers.length){
+
+          throw new Error(
+            "Please add at least one food add-on group."
+          );
+
+        }
+
+        /* SAVE FOOD INFORMATION ON BUSINESS */
+
+        businessData.defaultModifiers = modifiers;
+
+        businessData.featuredDishName = dishName;
+
+        businessData.featuredDishPrice = dishPrice;
+
+        businessData.featuredDishDescription =
+          dishDescription;
+
+
+        /* ---------------------------------------------
+           UPLOAD REAL DISH PHOTO TO FIREBASE STORAGE
+        --------------------------------------------- */
+
+        showToast("Uploading dish photo...");
+
+        const safeFileName =
+          photoFile.name.replace(
+            /[^a-zA-Z0-9._-]/g,
+            "_"
+          );
+
+        const storagePath =
+          `productPhotos/${currentUser.uid}/${Date.now()}_${safeFileName}`;
+
+        const storageRef =
+          ref(storage,storagePath);
+
+        await uploadBytes(
+          storageRef,
+          photoFile,
+          {
+            contentType:photoFile.type
+          }
+        );
+
+        const photoUrl =
+          await getDownloadURL(storageRef);
+
+
+        foodProductData = {
+
+          name:dishName,
+
+          price:dishPrice,
+
+          description:dishDescription,
+
+          photoUrl,
+
+          modifiers,
+
+          vendorId:currentUser.uid,
+
+          vendorName:name,
+
+          available:true,
+
+          createdAt:serverTimestamp()
+
+        };
+
+      }
+
+
+      /* -----------------------------------------------
+         CREATE BUSINESS
+      ------------------------------------------------ */
+
+      showToast("Saving business...");
+
+      const businessRef =
+        await addDoc(
+          collection(db,"businesses"),
+          businessData
+        );
+
+
+      /* -----------------------------------------------
+         CREATE FIRST FOOD PRODUCT
+      ------------------------------------------------ */
+
+      if(foodProductData){
+
+        await addDoc(
+          collection(db,"products"),
+          {
+            ...foodProductData,
+            businessId:businessRef.id
+          }
+        );
+
+      }
+
+
+      showToast(
+        category === "food"
+        ?
+        "Food business and first dish registered successfully!"
+        :
+        "Business registered successfully!"
+      );
+
+      document.getElementById("businessForm").reset();
+
+      document.getElementById("foodRegistrationFields")
+        .classList.add("hidden");
+
+      document.getElementById("foodDishPhotoPreview")
+        .classList.add("hidden");
+
+      restoreDefaultFoodModifiers();
+
+      await loadBusinesses();
+
+      showPartnerTab("business");
+
+    }catch(error){
+
+      console.error(error);
+
+      showToast(firebaseError(error));
+
+    }finally{
+
+      btn.disabled = false;
+      btn.textContent = "Register business";
+
+    }
+
+  });
+
+
+/* =========================================================
+   PRODUCT REGISTRATION
+========================================================= */
+
+document.getElementById("productForm")
+  .addEventListener("submit",async function(e){
+
+    e.preventDefault();
+
+    if(!currentUser){
+
+      showToast("Please wait for Firebase login.");
+      return;
+
+    }
+
+    const name =
+      document.getElementById("productName").value.trim();
+
+    const price =
+      Number(document.getElementById("productPrice").value);
+
+    const description =
+      document.getElementById("productDescription").value.trim();
+
+    const photo =
+      document.getElementById("productPhoto").files[0];
+
+    if(!selectedBusiness){
+
+      showToast("Open your business first.");
+      return;
+
+    }
+
+    if(!name || !Number.isFinite(price)){
+
+      showToast("Enter a product name and valid price.");
+      return;
+
+    }
+
+    try{
+
+      let photoUrl = null;
+
+      if(photo){
+
+        if(!photo.type.startsWith("image/")){
+
+          throw new Error("Product photo must be an image.");
+
+        }
+
+        if(photo.size > MAX_IMAGE_SIZE){
+
+          throw new Error("Product photo must be smaller than 5 MB.");
+
+        }
+
+        const safeName =
+          photo.name.replace(
+            /[^a-zA-Z0-9._-]/g,
+            "_"
+          );
+
+        const path =
+          `productPhotos/${currentUser.uid}/${Date.now()}_${safeName}`;
+
+        const storageRef =
+          ref(storage,path);
+
+        await uploadBytes(
+          storageRef,
+          photo,
+          {
+            contentType:photo.type
+          }
+        );
+
+        photoUrl =
+          await getDownloadURL(storageRef);
+
+      }
+
+
+      await addDoc(
+        collection(db,"products"),
+        {
+
+          businessId:selectedBusiness.id,
+
+          name,
+
+          price,
+
+          description,
+
+          photoUrl,
+
+          modifiers:[],
+
+          vendorId:currentUser.uid,
+
+          vendorName:selectedBusiness.name,
+
+          available:true,
+
+          createdAt:serverTimestamp()
+
+        }
+      );
+
+
+      showToast("Product added successfully.");
+
+      this.reset();
+
+      showPartnerTab("products");
+
+    }catch(error){
+
+      console.error(error);
+
+      showToast(firebaseError(error));
+
+    }
+
+  });
+
+
+/* =========================================================
+   CUSTOMER FOOD
+========================================================= */
+
+window.openFood = async function(){
+
+  const foodBusinesses =
+    businesses.filter(b=>b.category === "food");
+
+  renderBusinesses(foodBusinesses);
+
+  window.scrollTo({
+    top:document.querySelector(".section").offsetTop - 80,
+    behavior:"smooth"
+  });
+
+};
+
+
+window.openCustomize = function(product){
+
+  selectedProduct = product;
+
+  document.getElementById("customizeTitle")
+    .textContent = product.name || "Customize";
+
+  const body =
+    document.getElementById("customizeBody");
+
+  body.innerHTML = "";
+
+  (product.modifiers || []).forEach((group,gi)=>{
+
+    const wrapper =
+      document.createElement("div");
+
+    wrapper.className = "customer-modifier";
+
+    const title =
+      document.createElement("h4");
+
+    title.textContent =
+      `${group.name || "Options"}${group.required ? " *" : ""}`;
+
+    wrapper.appendChild(title);
+
+
+    (group.options || []).forEach((option,oi)=>{
+
+      const label =
+        document.createElement("label");
+
+      label.className = "mod-option";
+
+      const inputType =
+        group.multiple ? "checkbox" : "radio";
+
+      label.innerHTML = `
+
+        <span class="mod-option-left">
+
+          <input
+            type="${inputType}"
+            name="mod_${product.id}_${gi}"
+            value="${oi}"
+          >
+
+          <span>
+            ${escapeHtml(option.name || "Option")}
+          </span>
+
+        </span>
+
+        <span class="mod-price">
+          ${Number(option.price || 0) > 0
+            ? "+ GH₵" + Number(option.price).toFixed(2)
+            : "Included"}
+        </span>
+
+      `;
+
+      wrapper.appendChild(label);
+
+    });
+
+    body.appendChild(wrapper);
+
+  });
+
+  openModal("customizeModal");
+
+};
+
+
+window.addCustomizedProduct = function(){
+
+  if(!selectedProduct) return;
+
+  let extra = 0;
+
+  const selected = [];
+
+  for(
+    const [gi,g]
+    of (selectedProduct.modifiers || []).entries()
+  ){
+
+    const checked = [
       ...document.querySelectorAll(
-        `input[name="mod_${p.id}_${gi}"]:checked`
+        `input[name="mod_${selectedProduct.id}_${gi}"]:checked`
       )
     ];
 
@@ -2282,16 +2547,24 @@ window.addCustomizedProduct=function(){
 
     checked.forEach(input=>{
 
-      const o=(g.options||[])[Number(input.value)];
+      const option =
+        (g.options || [])[Number(input.value)];
 
-      if(o){
+      if(option){
 
-        extra+=Number(o.price||0);
+        const price =
+          Number(option.price || 0);
+
+        extra += price;
 
         selected.push({
+
           group:g.name,
-          name:o.name,
-          price:Number(o.price||0)
+
+          name:option.name,
+
+          price
+
         });
 
       }
@@ -2300,17 +2573,62 @@ window.addCustomizedProduct=function(){
 
   }
 
-  const item={
+
+  const item = {
+
+    id:Date.now().toString(),
+
+    productId:selectedProduct.id,
+
+    businessId:selectedProduct.businessId || null,
+
+    name:selectedProduct.name,
+
+    price:Number(selectedProduct.price || 0) + extra,
+
+    basePrice:Number(selectedProduct.price || 0),
+
+    vendorName:
+      selectedProduct.vendorName || "SefwiGo business",
+
+    vendorId:
+      selectedProduct.vendorId || null,
+
+    qty:1,
+
+    modifiers:selected,
+
+    photoUrl:selectedProduct.photoUrl || null
+
+  };
+
+
+  cart.push(item);
+
+  saveCart();
+
+  closeModal("customizeModal");
+
+  showToast("Customized item added to cart.");
+
+};
+
+
+window.addSimpleProduct = function(p){
+
+  const item = {
 
     id:Date.now().toString(),
 
     productId:p.id,
 
+    businessId:p.businessId || null,
+
     name:p.name,
 
-    price:Number(p.price||0)+extra,
+    price:Number(p.price || 0),
 
-    basePrice:Number(p.price||0),
+    basePrice:Number(p.price || 0),
 
     vendorName:p.vendorName || "SefwiGo business",
 
@@ -2318,7 +2636,7 @@ window.addCustomizedProduct=function(){
 
     qty:1,
 
-    modifiers:selected,
+    modifiers:[],
 
     photoUrl:p.photoUrl || null
 
@@ -2328,9 +2646,7 @@ window.addCustomizedProduct=function(){
 
   saveCart();
 
-  closeModal("productModal");
-
-  showToast("Customized item added to cart.");
+  showToast("Added to cart.");
 
 };
 
@@ -2350,23 +2666,35 @@ function saveCart(){
 
 }
 
-window.updateCartCount=function(){
 
-  const count=cart.reduce(
-    (sum,item)=>sum+Number(item.qty||1),
-    0
-  );
+function loadCart(){
 
-  const el=document.getElementById("cartCountAccount");
+  cart =
+    JSON.parse(
+      localStorage.getItem("sefwiCart") || "[]"
+    );
 
-  if(el)el.textContent=count;
+  updateCartCount();
 
-};
-
-updateCartCount();
+}
 
 
-window.openCart=function(){
+function updateCartCount(){
+
+  const count =
+    cart.reduce(
+      (sum,item)=>sum + Number(item.qty || 1),
+      0
+    );
+
+  document.getElementById("cartCount")
+    .textContent =
+      count ? `(${count})` : "";
+
+}
+
+
+window.openCart = function(){
 
   renderCart();
 
@@ -2377,140 +2705,90 @@ window.openCart=function(){
 
 function renderCart(){
 
-  const container=document.getElementById("cartContents");
+  const container =
+    document.getElementById("cartItems");
 
   if(!cart.length){
 
-    container.innerHTML=`
-
+    container.innerHTML = `
       <div class="empty">
-
-        <div class="empty-icon">🛒</div>
-
-        <h3>Your cart is empty</h3>
-
-        <p>Add something from a nearby business.</p>
-
+        Your cart is empty.
       </div>
-
     `;
+
+    document.getElementById("cartTotal")
+      .textContent = "GH₵0.00";
 
     return;
 
   }
 
-  let total=0;
+  let total = 0;
 
-  let html="";
+  container.innerHTML =
+    cart.map((item,index)=>{
 
-  cart.forEach((item,index)=>{
+      const line =
+        Number(item.price || 0) *
+        Number(item.qty || 1);
 
-    const itemTotal=
-      Number(item.price||0) *
-      Number(item.qty||1);
+      total += line;
 
-    total+=itemTotal;
+      const modifierText =
+        (item.modifiers || [])
+          .map(m=>`${m.group}: ${m.name}`)
+          .join(" • ");
 
-    const mods=(item.modifiers||[])
-      .map(m=>m.name)
-      .join(", ");
+      return `
 
-    html+=`
+        <div class="cart-item">
 
-      <div class="cart-item">
+          <div class="cart-item-top">
 
-        <div class="cart-photo">
+            <div>
 
-          ${
-            item.photoUrl
-            ? `<img src="${escapeAttr(item.photoUrl)}">`
-            : "🍽️"
-          }
+              <div class="cart-item-name">
+                ${escapeHtml(item.name)}
+              </div>
+
+              <div class="cart-item-details">
+                ${modifierText
+                  ? escapeHtml(modifierText)
+                  : "No add-ons"}
+                <br>
+                Qty: ${item.qty || 1}
+              </div>
+
+            </div>
+
+            <strong>
+              GH₵${line.toFixed(2)}
+            </strong>
+
+          </div>
+
+          <button
+            class="danger-btn"
+            style="margin-top:8px;"
+            onclick="removeCartItem(${index})"
+          >
+            Remove
+          </button>
 
         </div>
 
-        <div class="cart-info">
+      `;
 
-          <div class="cart-name">
-            ${escapeHtml(item.name)}
-          </div>
+    }).join("");
 
-          ${
-            mods
-            ? `<div class="cart-modifiers">${escapeHtml(mods)}</div>`
-            : ""
-          }
-
-          <div class="cart-price">
-            GH₵ ${itemTotal.toFixed(2)}
-          </div>
-
-          <div class="qty">
-
-            <button onclick="changeQty(${index},-1)">−</button>
-
-            <strong>${item.qty}</strong>
-
-            <button onclick="changeQty(${index},1)">+</button>
-
-            <button
-              onclick="removeCartItem(${index})"
-              style="margin-left:5px;color:#d93025"
-            >
-              ×
-            </button>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    `;
-
-  });
-
-  html+=`
-
-    <div class="cart-total">
-
-      <span>Total</span>
-
-      <span>GH₵ ${total.toFixed(2)}</span>
-
-    </div>
-
-    <button
-      class="primary-btn"
-      style="margin-top:16px"
-      onclick="checkout()"
-    >
-      Continue to checkout
-    </button>
-
-  `;
-
-  container.innerHTML=html;
+  document.getElementById("cartTotal")
+    .textContent =
+      `GH₵${total.toFixed(2)}`;
 
 }
 
 
-window.changeQty=function(index,change){
-
-  cart[index].qty=
-    Math.max(
-      1,
-      Number(cart[index].qty||1)+change
-    );
-
-  saveCart();
-
-  renderCart();
-
-};
-
-
-window.removeCartItem=function(index){
+window.removeCartItem = function(index){
 
   cart.splice(index,1);
 
@@ -2518,21 +2796,14 @@ window.removeCartItem=function(index){
 
   renderCart();
 
-  showToast("Item removed.");
-
 };
 
 
-/* =========================================================
-   CHECKOUT
-========================================================= */
-
-window.checkout=function(){
+window.openCheckout = function(){
 
   if(!cart.length){
 
     showToast("Your cart is empty.");
-
     return;
 
   }
@@ -2544,15 +2815,15 @@ window.checkout=function(){
 };
 
 
-document.getElementById("checkoutForm")
-.addEventListener("submit",async(e)=>{
+/* =========================================================
+   ORDERS
+========================================================= */
 
-  e.preventDefault();
+window.placeOrder = async function(){
 
   if(!currentUser){
 
-    showToast("Please wait for Firebase to connect.");
-
+    showToast("Please wait for Firebase login.");
     return;
 
   }
@@ -2560,579 +2831,111 @@ document.getElementById("checkoutForm")
   if(!cart.length){
 
     showToast("Your cart is empty.");
-
     return;
 
   }
 
-  const btn=e.target.querySelector("button");
+  const location =
+    document.getElementById("checkoutLocation")
+      .value.trim();
 
-  btn.disabled=true;
+  const phone =
+    document.getElementById("checkoutPhone")
+      .value.trim();
 
-  btn.textContent="Placing order...";
+  const payment =
+    document.getElementById("paymentMethod")
+      .value;
 
-  try{
+  if(!location || !phone){
 
-    const total=cart.reduce(
+    showToast("Please enter delivery location and phone.");
+    return;
+
+  }
+
+  const total =
+    cart.reduce(
       (sum,x)=>
-        sum+
-        Number(x.price||0)*
-        Number(x.qty||1),
+        sum +
+        Number(x.price || 0) *
+        Number(x.qty || 1),
       0
     );
 
-    const order={
 
-      customerUid:currentUser.uid,
+  try{
 
-      customerName:
-        document.getElementById("customerName").value.trim(),
-
-      customerPhone:
-        document.getElementById("customerPhone").value.trim(),
-
-      deliveryAddress:
-        document.getElementById("deliveryAddress").value.trim(),
-
-      note:
-        document.getElementById("orderNote").value.trim(),
-
-      items:cart.map(x=>({
-
-        name:x.name,
-
-        price:Number(x.price||0),
-
-        qty:Number(x.qty||1),
-
-        productId:x.productId||null,
-
-        modifiers:x.modifiers||[],
-
-        basePrice:Number(
-          x.basePrice ?? x.price ?? 0
-        ),
-
-        photoUrl:x.photoUrl||null
-
-      })),
-
-      total,
-
-      status:"pending",
-
-      createdAt:serverTimestamp()
-
-    };
-
-    const refDoc=await addDoc(
+    await addDoc(
       collection(db,"orders"),
-      order
+      {
+
+        customerUid:currentUser.uid,
+
+        customerPhone:phone,
+
+        deliveryLocation:location,
+
+        paymentMethod:payment,
+
+        items:cart.map(x=>({
+
+          name:x.name,
+
+          price:Number(x.price || 0),
+
+          qty:Number(x.qty || 1),
+
+          productId:x.productId || null,
+
+          businessId:x.businessId || null,
+
+          vendorId:x.vendorId || null,
+
+          modifiers:x.modifiers || [],
+
+          basePrice:Number(
+            x.basePrice ?? x.price ?? 0
+          ),
+
+          photoUrl:x.photoUrl || null
+
+        })),
+
+        total,
+
+        status:"pending",
+
+        createdAt:serverTimestamp()
+
+      }
     );
 
-    cart=[];
+
+    cart = [];
 
     saveCart();
 
     closeModal("checkoutModal");
 
-    showPage("orders");
+    document.getElementById("orderStatusText")
+      .textContent = "Order placed";
+
+    document.getElementById("orderStatusSmall")
+      .textContent = "Your order is waiting for confirmation.";
+
+    document.getElementById("orderProgress").style.width =
+      "20%";
 
     showToast("Order placed successfully.");
 
-    loadOrders();
-
-  }catch(error){
-
-    console.error("ORDER ERROR:",error);
-
-    showToast(
-      "Order failed: " +
-      (error.message || "Firebase error")
-    );
-
-  }finally{
-
-    btn.disabled=false;
-
-    btn.textContent="Place order";
-
-  }
-
-});
-
-
-/* =========================================================
-   ORDERS
-========================================================= */
-
-window.loadOrders=async function(){
-
-  const container=document.getElementById("ordersList");
-
-  if(!currentUser){
-
-    return;
-
-  }
-
-  try{
-
-    const snap=await getDocs(
-      query(
-        collection(db,"orders"),
-        where("customerUid","==",currentUser.uid),
-        limit(30)
-      )
-    );
-
-    orders=[];
-
-    snap.forEach(d=>{
-
-      orders.push({
-        id:d.id,
-        ...d.data()
-      });
-
-    });
-
-    renderOrders();
-
-    if(orders.length){
-
-      const latest=orders[0];
-
-      showTracker(latest);
-
-    }
-
   }catch(error){
 
     console.error(error);
 
-    container.innerHTML=`
-
-      <div class="empty">
-
-        <div class="empty-icon">⚠️</div>
-
-        <h3>Could not load orders</h3>
-
-        <p>${escapeHtml(error.message)}</p>
-
-      </div>
-
-    `;
+    showToast(firebaseError(error));
 
   }
-
-};
-
-
-function renderOrders(){
-
-  const container=document.getElementById("ordersList");
-
-  if(!orders.length){
-
-    container.innerHTML=`
-
-      <div class="empty">
-
-        <div class="empty-icon">🧾</div>
-
-        <h3>No orders yet</h3>
-
-        <p>Your SefwiGo orders will appear here.</p>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-  container.innerHTML=orders.map(o=>{
-
-    const status=o.status || "pending";
-
-    const total=Number(o.total||0);
-
-    const date=o.createdAt?.toDate
-      ? o.createdAt.toDate().toLocaleString()
-      : "Recently";
-
-    return `
-
-      <div class="order-card">
-
-        <div class="order-row">
-
-          <div>
-
-            <div class="order-id">
-              ORDER #${escapeHtml(o.id.slice(-6).toUpperCase())}
-            </div>
-
-            <div class="order-customer">
-              GH₵ ${total.toFixed(2)}
-            </div>
-
-          </div>
-
-          <div class="status-badge">
-            ${escapeHtml(status)}
-          </div>
-
-        </div>
-
-        <div style="font-size:11px;color:#68736f;margin-top:9px">
-          ${escapeHtml(date)}
-        </div>
-
-        <button
-          class="secondary-btn"
-          onclick='showOrderTracker(${JSON.stringify(o)})'
-        >
-          Track order
-        </button>
-
-      </div>
-
-    `;
-
-  }).join("");
-
-}
-
-
-window.showOrderTracker=function(order){
-
-  closeAllModals();
-
-  showTracker(order);
-
-  showPage("home");
-
-  document
-    .getElementById("trackerSection")
-    .scrollIntoView({behavior:"smooth"});
-
-};
-
-
-function showTracker(order){
-
-  const section=document.getElementById("trackerSection");
-
-  if(!order){
-
-    section.classList.add("hidden");
-
-    return;
-
-  }
-
-  section.classList.remove("hidden");
-
-  const status=String(order.status||"pending").toLowerCase();
-
-  let title="Order received";
-
-  let description="Your order has been received.";
-
-  let progress=20;
-
-  if(status==="accepted"){
-
-    title="Business accepted your order";
-
-    description="The business is preparing your order.";
-
-    progress=40;
-
-  }
-
-  if(status==="preparing"){
-
-    title="Preparing your order";
-
-    description="Your order is being prepared.";
-
-    progress=55;
-
-  }
-
-  if(status==="ready"){
-
-    title="Order ready";
-
-    description="Your order is ready for delivery.";
-
-    progress=70;
-
-  }
-
-  if(status==="out_for_delivery"){
-
-    title="On the way";
-
-    description="Your order is on its way to you.";
-
-    progress=85;
-
-  }
-
-  if(status==="delivered"){
-
-    title="Delivered";
-
-    description="Your order has been delivered.";
-
-    progress=100;
-
-  }
-
-  if(status==="cancelled"){
-
-    title="Order cancelled";
-
-    description="This order has been cancelled.";
-
-    progress=0;
-
-  }
-
-  document.getElementById("trackerTitle").textContent=title;
-
-  document.getElementById("trackerDescription").textContent=description;
-
-  document.getElementById("trackerStatus").textContent=
-    status.replaceAll("_"," ");
-
-  document.getElementById("trackerProgress").style.width=
-    progress+"%";
-
-}
-
-
-/* =========================================================
-   PARCEL
-========================================================= */
-
-window.openParcel=function(){
-
-  openModal("parcelModal");
-
-};
-
-
-document.getElementById("parcelForm")
-.addEventListener("submit",(e)=>{
-
-  e.preventDefault();
-
-  const pickup=
-    document.getElementById("parcelPickup").value.trim();
-
-  const dropoff=
-    document.getElementById("parcelDropoff").value.trim();
-
-  const description=
-    document.getElementById("parcelDescription").value.trim();
-
-  const message=
-    `Hello SefwiGo, I want to send a parcel.%0A%0A`+
-    `Pickup: ${encodeURIComponent(pickup)}%0A`+
-    `Delivery: ${encodeURIComponent(dropoff)}%0A`+
-    `Parcel: ${encodeURIComponent(description)}`;
-
-  /*
-    Replace this number with the official SefwiGo
-    WhatsApp number when you have it.
-  */
-
-  const whatsappNumber="233000000000";
-
-  window.open(
-    `https://wa.me/${whatsappNumber}?text=${message}`,
-    "_blank"
-  );
-
-  closeModal("parcelModal");
-
-});
-
-
-/* =========================================================
-   PROPERTY
-========================================================= */
-
-window.loadProperties=async function(){
-
-  const container=document.getElementById("propertyList");
-
-  container.innerHTML=`
-    <div class="loading">
-      <div class="spinner"></div>
-      Loading properties...
-    </div>
-  `;
-
-  if(!db)return;
-
-  try{
-
-    const snap=await getDocs(
-      query(
-        collection(db,"properties"),
-        limit(20)
-      )
-    );
-
-    properties=[];
-
-    snap.forEach(d=>{
-
-      properties.push({
-        id:d.id,
-        ...d.data()
-      });
-
-    });
-
-    renderProperties();
-
-  }catch(error){
-
-    console.error(error);
-
-    container.innerHTML=`
-      <div class="empty">
-        <div class="empty-icon">⚠️</div>
-        <h3>Could not load properties</h3>
-        <p>${escapeHtml(error.message)}</p>
-      </div>
-    `;
-
-  }
-
-};
-
-
-function renderProperties(){
-
-  const container=document.getElementById("propertyList");
-
-  if(!properties.length){
-
-    container.innerHTML=`
-      <div class="empty">
-        <div class="empty-icon">🏠</div>
-        <h3>No properties yet</h3>
-        <p>New property listings will appear here.</p>
-      </div>
-    `;
-
-    return;
-
-  }
-
-  container.innerHTML=properties.map(p=>`
-
-    <div
-      class="property-card"
-      onclick="openProperty('${p.id}')"
-    >
-
-      <div class="property-image">
-
-        ${
-          p.photoUrl
-          ? `<img src="${escapeAttr(p.photoUrl)}">`
-          : "🏠"
-        }
-
-      </div>
-
-      <div class="property-info">
-
-        <div class="property-title">
-          ${escapeHtml(p.title || p.name || "Property")}
-        </div>
-
-        <div class="property-price">
-          GH₵ ${Number(p.price||0).toLocaleString()}
-        </div>
-
-        <div class="property-location">
-          📍 ${escapeHtml(p.location || "Sefwi Wiawso")}
-        </div>
-
-      </div>
-
-    </div>
-
-  `).join("");
-
-}
-
-
-window.openProperty=function(id){
-
-  const p=properties.find(x=>x.id===id);
-
-  if(!p)return;
-
-  document.getElementById("propertyModalTitle").textContent=
-    p.title || p.name || "Property";
-
-  document.getElementById("propertyDetails").innerHTML=`
-
-    <div class="property-image" style="border-radius:16px">
-
-      ${
-        p.photoUrl
-        ? `<img src="${escapeAttr(p.photoUrl)}">`
-        : "🏠"
-      }
-
-    </div>
-
-    <h2>
-      ${escapeHtml(p.title || p.name || "Property")}
-    </h2>
-
-    <div class="property-price">
-      GH₵ ${Number(p.price||0).toLocaleString()}
-    </div>
-
-    <p>
-      📍 ${escapeHtml(p.location || "Sefwi Wiawso")}
-    </p>
-
-    <p>
-      ${escapeHtml(p.description || "Contact the property owner for more information.")}
-    </p>
-
-    ${
-      p.phone
-      ? `
-        <button
-          class="primary-btn"
-          onclick="window.open('tel:${escapeAttr(p.phone)}')"
-        >
-          Contact owner
-        </button>
-      `
-      : ""
-    }
-
-  `;
-
-  openModal("propertyModal");
 
 };
 
@@ -3141,511 +2944,123 @@ window.openProperty=function(id){
    PARTNER
 ========================================================= */
 
-window.openPartner=function(){
+window.openPartner = function(){
 
   openModal("partnerModal");
 
-  loadVendorOrders();
+  showPartnerTab("business");
 
 };
 
 
-window.partnerTab=function(tab){
+window.showPartnerTab = function(tab){
 
-  document.getElementById("partnerBusinessTab").classList.add("hidden");
+  const businessTab =
+    document.getElementById("partnerBusinessTab");
 
-  document.getElementById("partnerProductsTab").classList.add("hidden");
+  const productsTab =
+    document.getElementById("partnerProductsTab");
 
-  document.getElementById("partnerOrdersTab").classList.add("hidden");
+  const ordersTab =
+    document.getElementById("partnerOrdersTab");
 
-  if(tab==="business"){
+  const tabBusiness =
+    document.getElementById("tabBusiness");
 
-    document
-      .getElementById("partnerBusinessTab")
-      .classList.remove("hidden");
+  const tabProducts =
+    document.getElementById("tabProducts");
 
-  }
+  const tabOrders =
+    document.getElementById("tabOrders");
 
-  if(tab==="products"){
 
-    document
-      .getElementById("partnerProductsTab")
-      .classList.remove("hidden");
+  businessTab.classList.toggle(
+    "hidden",
+    tab !== "business"
+  );
 
-  }
+  productsTab.classList.toggle(
+    "hidden",
+    tab !== "products"
+  );
 
-  if(tab==="orders"){
+  ordersTab.classList.toggle(
+    "hidden",
+    tab !== "orders"
+  );
 
-    document
-      .getElementById("partnerOrdersTab")
-      .classList.remove("hidden");
 
-    loadVendorOrders();
+  tabBusiness.classList.toggle(
+    "active",
+    tab === "business"
+  );
 
+  tabProducts.classList.toggle(
+    "active",
+    tab === "products"
+  );
+
+  tabOrders.classList.toggle(
+    "active",
+    tab === "orders"
+  );
+
+
+  if(tab === "orders"){
+    loadPartnerOrders();
   }
 
 };
 
 
 /* =========================================================
-   BUSINESS REGISTRATION
+   PARTNER ORDERS
 ========================================================= */
 
-document.getElementById("businessForm")
-.addEventListener("submit",async(e)=>{
+async function loadPartnerOrders(){
 
-  e.preventDefault();
+  const container =
+    document.getElementById("partnerOrders");
 
   if(!currentUser){
 
-    showToast("Please wait for Firebase.");
+    container.innerHTML =
+      `<div class="empty">Please wait for login.</div>`;
 
     return;
 
   }
 
-  const btn=e.target.querySelector("button");
-
-  btn.disabled=true;
-
-  btn.textContent="Saving...";
+  container.innerHTML =
+    `<div class="loading">Loading orders...</div>`;
 
   try{
 
-    const business={
-
-      name:
-        document.getElementById("businessName").value.trim(),
-
-      category:
-        document.getElementById("businessCategory").value,
-
-      location:
-        document.getElementById("businessLocation").value.trim(),
-
-      phone:
-        document.getElementById("businessPhone").value.trim(),
-
-      ownerUid:currentUser.uid,
-
-      createdAt:serverTimestamp()
-
-    };
-
-    const refDoc=await addDoc(
-      collection(db,"businesses"),
-      business
-    );
-
-    currentPartnerBusiness={
-      id:refDoc.id,
-      ...business
-    };
-
-    showToast("Business registered successfully.");
-
-    loadBusinesses();
-
-  }catch(error){
-
-    console.error("BUSINESS ERROR:",error);
-
-    showToast(
-      "Business registration failed: "+
-      error.message
-    );
-
-  }finally{
-
-    btn.disabled=false;
-
-    btn.textContent="Save business";
-
-  }
-
-});
-
-
-/* =========================================================
-   MODIFIER BUILDER
-========================================================= */
-
-window.addQuickModifier=function(type){
-
-  if(type==="protein"){
-
-    modifiers.push({
-
-      name:"Protein",
-
-      required:true,
-
-      multiple:false,
-
-      options:[
-
-        {name:"Chicken",price:10},
-
-        {name:"Beef",price:15}
-
-      ]
-
-    });
-
-  }
-
-  if(type==="soup"){
-
-    modifiers.push({
-
-      name:"Extra Soup",
-
-      required:false,
-
-      multiple:true,
-
-      options:[
-
-        {name:"Extra soup",price:5},
-
-        {name:"Large soup",price:10}
-
-      ]
-
-    });
-
-  }
-
-  if(type==="spice"){
-
-    modifiers.push({
-
-      name:"Spice Level",
-
-      required:true,
-
-      multiple:false,
-
-      options:[
-
-        {name:"Mild",price:0},
-
-        {name:"Medium",price:0},
-
-        {name:"Hot",price:0}
-
-      ]
-
-    });
-
-  }
-
-  renderModifierBuilder();
-
-};
-
-
-function renderModifierBuilder(){
-
-  const container=document.getElementById("modifierBuilder");
-
-  if(!modifiers.length){
-
-    container.innerHTML="";
-
-    return;
-
-  }
-
-  container.innerHTML=modifiers.map((g,gi)=>`
-
-    <div
-      class="partner-card"
-      style="margin-top:10px"
-    >
-
-      <div style="display:flex;justify-content:space-between">
-
-        <strong>
-          ${escapeHtml(g.name)}
-        </strong>
-
-        <button
-          type="button"
-          onclick="removeModifier(${gi})"
-          style="border:0;background:none;color:#d93025"
-        >
-          Remove
-        </button>
-
-      </div>
-
-      ${g.options.map((o,oi)=>`
-
-        <div style="display:flex;gap:6px;margin-top:7px">
-
-          <input
-            class="form-control"
-            value="${escapeAttr(o.name)}"
-            onchange="updateModifierOption(${gi},${oi},'name',this.value)"
-            placeholder="Option"
-          >
-
-          <input
-            class="form-control"
-            style="max-width:90px"
-            type="number"
-            value="${Number(o.price||0)}"
-            onchange="updateModifierOption(${gi},${oi},'price',this.value)"
-          >
-
-        </div>
-
-      `).join("")}
-
-    </div>
-
-  `).join("");
-
-}
-
-
-window.removeModifier=function(index){
-
-  modifiers.splice(index,1);
-
-  renderModifierBuilder();
-
-};
-
-
-window.updateModifierOption=function(gi,oi,key,value){
-
-  modifiers[gi].options[oi][key]=
-    key==="price" ? Number(value||0) : value;
-
-};
-
-
-/* =========================================================
-   PRODUCT PHOTO UPLOAD
-========================================================= */
-
-async function uploadProductPhoto(file){
-
-  if(!file){
-
-    return null;
-
-  }
-
-  if(!file.type.startsWith("image/")){
-
-    throw new Error("Please select an image file.");
-
-  }
-
-  if(file.size>5*1024*1024){
-
-    throw new Error("Image must be smaller than 5 MB.");
-
-  }
-
-  if(!storage || !currentUser){
-
-    throw new Error("Firebase Storage is not ready.");
-
-  }
-
-  const safeName=file.name.replace(
-    /[^a-zA-Z0-9._-]/g,
-    "_"
-  );
-
-  const storageRef=ref(
-    storage,
-    `productPhotos/${currentUser.uid}/${Date.now()}_${safeName}`
-  );
-
-  await uploadBytes(
-    storageRef,
-    file,
-    {
-      contentType:file.type
-    }
-  );
-
-  return await getDownloadURL(storageRef);
-
-}
-
-
-/* =========================================================
-   SAVE PRODUCT
-========================================================= */
-
-document.getElementById("productForm")
-.addEventListener("submit",async(e)=>{
-
-  e.preventDefault();
-
-  if(!currentUser){
-
-    showToast("Please wait for Firebase.");
-
-    return;
-
-  }
-
-  const btn=document.getElementById("saveProductBtn");
-
-  btn.disabled=true;
-
-  btn.textContent="Saving product...";
-
-  try{
-
-    let business=currentPartnerBusiness;
-
-    if(!business){
-
-      const snap=await getDocs(
-        query(
-          collection(db,"businesses"),
-          where("ownerUid","==",currentUser.uid),
-          limit(1)
-        )
-      );
-
-      if(!snap.empty){
-
-        const d=snap.docs[0];
-
-        business={
-          id:d.id,
-          ...d.data()
-        };
-
-      }
-
-    }
-
-    if(!business){
-
-      throw new Error(
-        "Register your business first."
-      );
-
-    }
-
-    const file=
-      document.getElementById("productPhoto").files[0];
-
-    let photoUrl=null;
-
-    if(file){
-
-      photoUrl=await uploadProductPhoto(file);
-
-    }
-
-    const product={
-
-      name:
-        document.getElementById("productName").value.trim(),
-
-      price:
-        Number(
-          document.getElementById("productPrice").value
-        ),
-
-      description:
-        document.getElementById("productDescription").value.trim(),
-
-      photoUrl,
-
-      modifiers,
-
-      vendorId:currentUser.uid,
-
-      vendorName:
-        business.name || "SefwiGo business",
-
-      businessId:business.id,
-
-      available:true,
-
-      createdAt:serverTimestamp()
-
-    };
-
-    await addDoc(
-      collection(db,"products"),
-      product
-    );
-
-    document.getElementById("productForm").reset();
-
-    modifiers=[];
-
-    renderModifierBuilder();
-
-    showToast("Product added successfully.");
-
-  }catch(error){
-
-    console.error("PRODUCT ERROR:",error);
-
-    showToast(
-      "Product failed: "+
-      error.message
-    );
-
-  }finally{
-
-    btn.disabled=false;
-
-    btn.textContent="Save product";
-
-  }
-
-});
-
-
-/* =========================================================
-   VENDOR ORDERS
-========================================================= */
-
-window.loadVendorOrders=async function(){
-
-  const container=document.getElementById("vendorOrdersList");
-
-  if(!currentUser)return;
-
-  try{
-
-    const snap=await getDocs(
+    const q =
       query(
         collection(db,"orders"),
+        orderBy("createdAt","desc"),
         limit(50)
-      )
-    );
+      );
 
-    const vendorOrders=[];
+    const snap =
+      await getDocs(q);
 
-    snap.forEach(d=>{
+    const orders = [];
 
-      const data=d.data();
+    snap.forEach(item=>{
 
-      const containsVendor=
-        (data.items||[]).some(
-          item=>item.vendorId===currentUser.uid
+      const data = item.data();
+
+      const hasVendorItem =
+        (data.items || []).some(
+          x=>x.vendorId === currentUser.uid
         );
 
-      if(containsVendor){
+      if(hasVendorItem){
 
-        vendorOrders.push({
-          id:d.id,
+        orders.push({
+          id:item.id,
           ...data
         });
 
@@ -3653,192 +3068,224 @@ window.loadVendorOrders=async function(){
 
     });
 
-    if(!vendorOrders.length){
 
-      container.innerHTML=`
+    if(!orders.length){
 
-        <div class="empty">
-
-          <div class="empty-icon">📦</div>
-
-          <h3>No orders</h3>
-
-          <p>Customer orders will appear here.</p>
-
-        </div>
-
-      `;
+      container.innerHTML =
+        `<div class="empty">No orders yet.</div>`;
 
       return;
 
     }
 
-    container.innerHTML=vendorOrders.map(o=>`
 
-      <div class="order-card">
+    container.innerHTML =
+      orders.map(order=>`
 
-        <div class="order-row">
+        <div class="business-card"
+             style="display:block;">
 
-          <div>
-
-            <div class="order-id">
-              ORDER #${escapeHtml(o.id.slice(-6).toUpperCase())}
-            </div>
-
-            <div class="order-customer">
-              ${escapeHtml(o.customerName || "Customer")}
-            </div>
-
+          <div class="business-name">
+            Order #${escapeHtml(order.id.slice(0,7))}
           </div>
 
-          <div class="status-badge">
-            ${escapeHtml(o.status || "pending")}
+          <div class="business-meta">
+            Status: ${escapeHtml(order.status || "pending")}
           </div>
+
+          <div class="business-meta">
+            Delivery: ${escapeHtml(order.deliveryLocation || "")}
+          </div>
+
+          <strong>
+            GH₵${Number(order.total || 0).toFixed(2)}
+          </strong>
 
         </div>
 
-        <div style="margin-top:9px;font-size:12px">
-
-          ${o.items.map(item=>`
-
-            <div>
-              ${Number(item.qty||1)} ×
-              ${escapeHtml(item.name)}
-            </div>
-
-          `).join("")}
-
-        </div>
-
-        <select
-          class="form-control"
-          style="margin-top:12px"
-          onchange="updateOrderStatus('${o.id}',this.value)"
-        >
-
-          <option value="pending" ${o.status==="pending"?"selected":""}>
-            Pending
-          </option>
-
-          <option value="accepted" ${o.status==="accepted"?"selected":""}>
-            Accepted
-          </option>
-
-          <option value="preparing" ${o.status==="preparing"?"selected":""}>
-            Preparing
-          </option>
-
-          <option value="ready" ${o.status==="ready"?"selected":""}>
-            Ready
-          </option>
-
-          <option value="out_for_delivery" ${o.status==="out_for_delivery"?"selected":""}>
-            Out for delivery
-          </option>
-
-          <option value="delivered" ${o.status==="delivered"?"selected":""}>
-            Delivered
-          </option>
-
-          <option value="cancelled" ${o.status==="cancelled"?"selected":""}>
-            Cancelled
-          </option>
-
-        </select>
-
-      </div>
-
-    `).join("");
+      `).join("");
 
   }catch(error){
 
     console.error(error);
 
-    container.innerHTML=`
-
+    container.innerHTML = `
       <div class="empty">
-
-        <div class="empty-icon">⚠️</div>
-
-        <h3>Could not load orders</h3>
-
-        <p>${escapeHtml(error.message)}</p>
-
+        Could not load orders.<br><br>
+        ${firebaseError(error)}
       </div>
-
     `;
 
   }
 
+}
+
+
+/* =========================================================
+   PARCEL
+========================================================= */
+
+window.openParcel = function(){
+
+  openModal("parcelModal");
+
 };
 
 
-window.updateOrderStatus=async function(id,status){
+window.requestParcel = function(){
 
-  try{
+  const pickup =
+    document.getElementById("parcelPickup").value.trim();
 
-    await updateDoc(
-      doc(db,"orders",id),
-      {
-        status
-      }
-    );
+  const dropoff =
+    document.getElementById("parcelDropoff").value.trim();
 
-    showToast("Order status updated.");
+  if(!pickup || !dropoff){
 
-    loadVendorOrders();
-
-    loadOrders();
-
-  }catch(error){
-
-    console.error(error);
-
-    showToast(
-      "Could not update order: "+
-      error.message
-    );
+    showToast("Enter pickup and delivery locations.");
+    return;
 
   }
+
+  closeModal("parcelModal");
+
+  showToast("Parcel request received.");
 
 };
 
 
 /* =========================================================
-   UTILITIES
+   PROPERTY
 ========================================================= */
 
-function closeAllModals(){
+window.openProperty = function(){
 
-  document
-    .querySelectorAll(".modal")
-    .forEach(x=>x.classList.remove("show"));
-
-}
-
-
-window.showToast=function(message){
-
-  const toast=document.getElementById("toast");
-
-  toast.textContent=message;
-
-  toast.classList.add("show");
-
-  clearTimeout(window.toastTimer);
-
-  window.toastTimer=setTimeout(()=>{
-
-    toast.classList.remove("show");
-
-  },3000);
+  openModal("propertyModal");
 
 };
 
 
+document.getElementById("propertyForm")
+  .addEventListener("submit",async function(e){
+
+    e.preventDefault();
+
+    if(!currentUser){
+
+      showToast("Please wait for Firebase login.");
+      return;
+
+    }
+
+    try{
+
+      await addDoc(
+        collection(db,"properties"),
+        {
+
+          title:
+            document.getElementById("propertyTitle").value.trim(),
+
+          location:
+            document.getElementById("propertyLocation").value.trim(),
+
+          price:
+            Number(
+              document.getElementById("propertyPrice").value
+            ),
+
+          description:
+            document.getElementById("propertyDescription").value.trim(),
+
+          ownerUid:currentUser.uid,
+
+          createdAt:serverTimestamp()
+
+        }
+      );
+
+      showToast("Property listed successfully.");
+
+      this.reset();
+
+      closeModal("propertyModal");
+
+    }catch(error){
+
+      console.error(error);
+
+      showToast(firebaseError(error));
+
+    }
+
+  });
+
+
+/* =========================================================
+   ACCOUNT
+========================================================= */
+
+window.openAccount = function(){
+
+  updateAccount();
+
+  openModal("accountModal");
+
+};
+
+
+function updateAccount(){
+
+  const container =
+    document.getElementById("accountInfo");
+
+  if(!currentUser){
+
+    container.innerHTML =
+      `<div class="empty">Connecting...</div>`;
+
+    return;
+
+  }
+
+  container.innerHTML = `
+
+    <div class="business-card"
+         style="display:block;margin-bottom:12px;">
+
+      <div class="business-name">
+        SefwiGo Customer
+      </div>
+
+      <div class="business-meta">
+        Account connected
+      </div>
+
+      <div class="small-note">
+        User ID: ${escapeHtml(currentUser.uid.slice(0,12))}...
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   DEFAULT FOOD OPTIONS ON START
+========================================================= */
+
+restoreDefaultFoodModifiers();
+
+
+/* =========================================================
+   SECURITY / HTML HELPERS
+========================================================= */
+
 function escapeHtml(value){
 
-  return String(value??"")
+  return String(value ?? "")
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
     .replace(/>/g,"&gt;")
@@ -3848,29 +3295,22 @@ function escapeHtml(value){
 }
 
 
-function escapeAttr(value){
+function escapeAttribute(value){
 
   return escapeHtml(value);
 
 }
 
 
-/* =========================================================
-   INITIALIZATION
-========================================================= */
+function safeJson(value){
 
-document.getElementById("propertySection")
-  .addEventListener("click",()=>{
+  return JSON.stringify(value)
+    .replace(/</g,"\\u003c")
+    .replace(/>/g,"\\u003e")
+    .replace(/&/g,"\\u0026")
+    .replace(/'/g,"\\u0027");
 
-    loadProperties();
-
-  });
-
-loadBusinesses();
-
-loadProperties();
-
-updateCartCount();
+}
 
 </script>
 
