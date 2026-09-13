@@ -1,961 +1,906 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>SefwiGo — Local Marketplace</title>
-
-  <meta name="theme-color" content="#087f5b">
-
-  <style>
-    :root {
-      --green: #087f5b;
-      --green-dark: #063d2e;
-      --green-light: #e8f7f1;
-      --background: #f4fbf8;
-      --white: #ffffff;
-      --text: #16332a;
-      --muted: #6d7e78;
-      --border: #e4eee9;
-      --danger: #d64545;
-      --warning: #8a681f;
-      --shadow: 0 10px 30px rgba(6, 61, 46, 0.09);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--background);
-      color: var(--text);
-    }
-
-    button,
-    input,
-    select,
-    textarea {
-      font: inherit;
-    }
-
-    button {
-      cursor: pointer;
-      border: none;
-    }
-
-    a {
-      text-decoration: none;
-    }
-
-    /* HEADER */
-
-    .header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .header-inner {
-      max-width: 1150px;
-      margin: auto;
-      padding: 14px 18px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .logo {
-      font-weight: 900;
-      font-size: 26px;
-      color: var(--green);
-      white-space: nowrap;
-    }
-
-    .logo span {
-      color: var(--green-dark);
-    }
-
-    .search {
-      flex: 1;
-      max-width: 550px;
-    }
-
-    .search input {
-      width: 100%;
-      padding: 13px 16px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      outline: none;
-      background: #f8fcfa;
-    }
-
-    .search input:focus {
-      border-color: var(--green);
-    }
-
-    /* BUTTONS */
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 11px 15px;
-      border-radius: 12px;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: var(--green);
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background: var(--green-dark);
-    }
-
-    .btn-secondary {
-      background: var(--green-light);
-      color: var(--green-dark);
-    }
-
-    .btn-danger {
-      background: #fff0f0;
-      color: var(--danger);
-    }
-
-    .btn-small {
-      padding: 8px 11px;
-      font-size: 13px;
-    }
-
-    /* MAIN */
-
-    .container {
-      max-width: 1150px;
-      margin: auto;
-      padding: 22px 18px 110px;
-    }
-
-    /* HERO */
-
-    .hero {
-      background: linear-gradient(
-        135deg,
-        var(--green-dark),
-        var(--green)
-      );
-      color: white;
-      border-radius: 24px;
-      padding: 34px;
-      margin-bottom: 26px;
-    }
-
-    .hero h1 {
-      margin: 0 0 9px;
-      font-size: clamp(31px, 5vw, 48px);
-    }
-
-    .hero p {
-      margin: 0;
-      max-width: 680px;
-      line-height: 1.6;
-      opacity: 0.92;
-    }
-
-    /* SECTIONS */
-
-    .section {
-      margin: 28px 0;
-    }
-
-    .section-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 15px;
-    }
-
-    .section-head h2 {
-      margin: 0;
-      font-size: 22px;
-    }
-
-    /* CATEGORIES */
-
-    .categories {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 13px;
-    }
-
-    .category {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 19px;
-      text-align: center;
-      font-weight: 800;
-      box-shadow: var(--shadow);
-      color: var(--text);
-    }
-
-    .category:hover {
-      transform: translateY(-2px);
-    }
-
-    .category .icon {
-      display: block;
-      font-size: 31px;
-      margin-bottom: 8px;
-    }
-
-    /* GRID */
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    /* CARDS */
-
-    .card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 18px;
-      box-shadow: var(--shadow);
-    }
-
-    .card h3 {
-      margin: 8px 0;
-    }
-
-    .card p {
-      line-height: 1.55;
-    }
-
-    .muted {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .price {
-      color: var(--green);
-      font-weight: 900;
-      font-size: 18px;
-      margin-top: 5px;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 5px 9px;
-      border-radius: 999px;
-      background: var(--green-light);
-      color: var(--green);
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    .badge.off {
-      background: #f0f2f1;
-      color: #69746f;
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 13px;
-    }
-
-    .empty {
-      padding: 30px;
-      text-align: center;
-      border: 1px dashed #cbdcd5;
-      border-radius: 16px;
-      color: var(--muted);
-      background: white;
-    }
-
-    .loading {
-      text-align: center;
-      padding: 28px;
-      color: var(--muted);
-    }
-
-    /* FOOD CUSTOMIZATION */
-
-    .food-customization {
-      margin-top: 18px;
-      padding: 16px;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      background: #f8fcfa;
-    }
-
-    .food-customization h3 {
-      margin: 0 0 5px;
-    }
-
-    .modifier-builder {
-      margin-top: 15px;
-    }
-
-    .modifier-group-builder {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      padding: 15px;
-      margin-bottom: 12px;
-    }
-
-    .modifier-group-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      align-items: flex-start;
-      margin-bottom: 10px;
-    }
-
-    .modifier-group-head strong {
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .modifier-controls {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 12px;
-      font-size: 13px;
-    }
-
-    .modifier-controls label {
-      display: flex;
-      gap: 6px;
-      align-items: center;
-      font-weight: 700;
-    }
-
-    .modifier-option-row {
-      display: grid;
-      grid-template-columns: 1fr 120px auto;
-      gap: 8px;
-      margin-bottom: 8px;
-      align-items: center;
-    }
-
-    .modifier-option-row input {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      outline: none;
-    }
-
-    .modifier-option-row input:focus {
-      border-color: var(--green);
-    }
-
-    .modifier-customer-group {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      padding: 15px;
-      margin-bottom: 12px;
-    }
-
-    .modifier-customer-group h4 {
-      margin: 0 0 5px;
-    }
-
-    .modifier-customer-option {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 11px;
-      margin-top: 7px;
-      border: 1px solid var(--border);
-      border-radius: 11px;
-      background: #fbfdfc;
-    }
-
-    .modifier-customer-option label {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      cursor: pointer;
-      font-weight: 700;
-    }
-
-    .modifier-customer-option .option-price {
-      color: var(--green);
-      font-weight: 800;
-      white-space: nowrap;
-    }
-
-    .custom-total {
-      background: var(--green-light);
-      border-radius: 14px;
-      padding: 15px;
-      margin: 15px 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .custom-total strong {
-      font-size: 21px;
-      color: var(--green-dark);
-    }
-
-    .food-label {
-      display: inline-flex;
-      padding: 5px 9px;
-      border-radius: 999px;
-      background: #fff8e8;
-      color: var(--warning);
-      font-size: 12px;
-      font-weight: 800;
-      margin-top: 8px;
-    }
-
-    /* BOTTOM NAV */
-
-    .bottom-nav {
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 30;
-      background: white;
-      border-top: 1px solid var(--border);
-    }
-
-    .bottom-inner {
-      max-width: 700px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-    }
-
-    .nav-btn {
-      background: white;
-      padding: 12px 5px;
-      color: var(--muted);
-      font-weight: 700;
-    }
-
-    .nav-btn.active {
-      color: var(--green);
-    }
-
-    /* MODALS */
-
-    .modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.45);
-      display: none;
-      align-items: flex-end;
-      justify-content: center;
-      z-index: 50;
-      padding: 12px;
-    }
-
-    .modal.show {
-      display: flex;
-    }
-
-    .sheet {
-      background: white;
-      width: min(780px, 100%);
-      max-height: 92vh;
-      overflow-y: auto;
-      border-radius: 24px;
-      padding: 22px;
-    }
-
-    .modal-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 18px;
-    }
-
-    .modal-head h2 {
-      margin: 0;
-    }
-
-    .close {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: #edf3f0;
-      font-size: 21px;
-    }
-
-    /* TABS */
-
-    .tabs {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      margin-bottom: 19px;
-    }
-
-    .tab {
-      white-space: nowrap;
-      padding: 10px 13px;
-      border-radius: 11px;
-      background: #f0f5f2;
-      font-weight: 800;
-    }
-
-    .tab.active {
-      background: var(--green);
-      color: white;
-    }
-
-    /* FORMS */
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .field {
-      margin-bottom: 12px;
-    }
-
-    .field.full {
-      grid-column: 1 / -1;
-    }
-
-    .field label {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .field input,
-    .field select,
-    .field textarea {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      outline: none;
-      background: #fbfdfc;
-    }
-
-    .field textarea {
-      min-height: 100px;
-      resize: vertical;
-    }
-
-    .field input:focus,
-    .field select:focus,
-    .field textarea:focus {
-      border-color: var(--green);
-    }
-
-    /* DASHBOARD */
-
-    .dashboard-summary {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-
-    .stat {
-      background: #f5faf8;
-      border-radius: 14px;
-      padding: 15px;
-    }
-
-    .stat strong {
-      display: block;
-      color: var(--green);
-      font-size: 22px;
-      margin-top: 4px;
-    }
-
-    /* PRODUCT ROW */
-
-    .product-row {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 15px;
-      padding: 15px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .product-row:last-child {
-      border-bottom: none;
-    }
-
-    .product-main {
-      min-width: 0;
-      flex: 1;
-    }
-
-    .product-main h4 {
-      margin: 0 0 6px;
-    }
-
-    .product-actions {
-      display: flex;
-      justify-content: flex-end;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .notice {
-      background: #fff8e8;
-      border: 1px solid #f3dfac;
-      padding: 12px;
-      border-radius: 12px;
-      color: var(--warning);
-      font-size: 13px;
-      margin-bottom: 15px;
-      line-height: 1.5;
-    }
-
-    /* TOAST */
-
-    .toast {
-      position: fixed;
-      left: 50%;
-      bottom: 82px;
-      transform: translateX(-50%) translateY(20px);
-      background: #16332a;
-      color: white;
-      padding: 12px 17px;
-      border-radius: 12px;
-      opacity: 0;
-      pointer-events: none;
-      transition: 0.25s;
-      z-index: 100;
-      font-weight: 700;
-      max-width: calc(100% - 30px);
-      text-align: center;
-    }
-
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    hr {
-      border: 0;
-      border-top: 1px solid var(--border);
-      margin: 22px 0;
-    }
-
-    /* MOBILE */
-
-    @media (max-width: 760px) {
-
-      .header-inner {
-        flex-wrap: wrap;
-      }
-
-      .search {
-        order: 3;
-        flex-basis: 100%;
-        max-width: none;
-      }
-
-      .categories {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .field.full {
-        grid-column: auto;
-      }
-
-      .dashboard-summary {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .hero {
-        padding: 26px;
-      }
-
-      .header-inner .btn {
-        padding: 9px 10px;
-        font-size: 12px;
-      }
-
-      .product-row {
-        flex-direction: column;
-      }
-
-      .product-actions {
-        justify-content: flex-start;
-      }
-
-      .modifier-option-row {
-        grid-template-columns: 1fr;
-      }
-
-      .modifier-group-head {
-        flex-direction: column;
-      }
-
-      .custom-total {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-    }
-
-    @media (max-width: 420px) {
-
-      .dashboard-summary {
-        grid-template-columns: 1fr;
-      }
-
-      .logo {
-        font-size: 22px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#087f5b">
+<meta name="description" content="SefwiGo - Local marketplace and delivery platform">
+
+<title>SefwiGo</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f4fbf8;
+  color:#18332b;
+  padding-bottom:75px;
+}
+
+button,input,select,textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.muted{
+  color:#6d817a;
+  font-size:13px;
+}
+
+.container{
+  width:min(1100px,94%);
+  margin:auto;
+}
+
+/* HEADER */
+header{
+  background:#087f5b;
+  color:white;
+  padding:14px 0;
+  position:sticky;
+  top:0;
+  z-index:50;
+  box-shadow:0 2px 10px #0002;
+}
+
+.header-inner{
+  width:min(1100px,94%);
+  margin:auto;
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:800;
+  white-space:nowrap;
+}
+
+.search{
+  flex:1;
+}
+
+.search input{
+  width:100%;
+  border:0;
+  border-radius:25px;
+  padding:12px 16px;
+  outline:none;
+}
+
+.partner-btn{
+  background:white;
+  color:#087f5b;
+  border:0;
+  border-radius:22px;
+  padding:11px 15px;
+  font-weight:bold;
+}
+
+/* HERO */
+.hero{
+  background:linear-gradient(135deg,#087f5b,#063d2e);
+  color:white;
+  padding:45px 0;
+}
+
+.hero h1{
+  font-size:36px;
+  margin-bottom:10px;
+}
+
+.hero p{
+  max-width:650px;
+  line-height:1.6;
+  color:#dff7ed;
+}
+
+.hero-actions{
+  margin-top:22px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.primary{
+  background:#087f5b;
+  color:white;
+  border:0;
+  border-radius:9px;
+  padding:12px 18px;
+  font-weight:bold;
+}
+
+.secondary{
+  background:white;
+  color:#087f5b;
+  border:0;
+  border-radius:9px;
+  padding:12px 18px;
+  font-weight:bold;
+}
+
+/* SECTION */
+section{
+  padding:28px 0;
+}
+
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:15px;
+}
+
+.section-title h2{
+  color:#063d2e;
+  font-size:22px;
+}
+
+/* CATEGORIES */
+.categories{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.category{
+  background:white;
+  border:1px solid #d8eee5;
+  border-radius:14px;
+  padding:20px 10px;
+  text-align:center;
+  box-shadow:0 3px 12px #087f5b0b;
+  transition:.2s;
+}
+
+.category:hover{
+  transform:translateY(-2px);
+}
+
+.category-icon{
+  font-size:30px;
+  margin-bottom:8px;
+}
+
+/* CARDS */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.card{
+  background:white;
+  border:1px solid #d8eee5;
+  border-radius:14px;
+  padding:16px;
+  box-shadow:0 3px 12px #087f5b0b;
+}
+
+.card h3{
+  color:#063d2e;
+  margin-bottom:6px;
+}
+
+.card p{
+  line-height:1.5;
+}
+
+.card-top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.badge{
+  background:#e8f7f1;
+  color:#087f5b;
+  border-radius:20px;
+  padding:5px 9px;
+  font-size:12px;
+  font-weight:bold;
+  white-space:nowrap;
+}
+
+.price{
+  color:#087f5b;
+  font-weight:bold;
+  font-size:18px;
+}
+
+.card-actions{
+  display:flex;
+  gap:8px;
+  margin-top:13px;
+  flex-wrap:wrap;
+}
+
+.small-btn{
+  border:0;
+  background:#087f5b;
+  color:white;
+  border-radius:7px;
+  padding:8px 11px;
+  font-size:13px;
+}
+
+.outline-btn{
+  border:1px solid #087f5b;
+  background:white;
+  color:#087f5b;
+  border-radius:7px;
+  padding:8px 11px;
+  font-size:13px;
+}
+
+/* FORMS */
+.form-group{
+  margin-bottom:14px;
+}
+
+.form-group label{
+  display:block;
+  font-weight:bold;
+  margin-bottom:6px;
+  font-size:14px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+  width:100%;
+  border:1px solid #cfe4dc;
+  border-radius:8px;
+  padding:11px;
+  background:white;
+  outline:none;
+}
+
+.form-group textarea{
+  min-height:90px;
+  resize:vertical;
+}
+
+.form-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#0008;
+  z-index:100;
+  align-items:flex-end;
+  justify-content:center;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.sheet{
+  width:min(700px,100%);
+  max-height:92vh;
+  overflow-y:auto;
+  background:white;
+  border-radius:22px 22px 0 0;
+  padding:20px;
+  animation:slideUp .2s ease;
+}
+
+@keyframes slideUp{
+  from{transform:translateY(100%)}
+  to{transform:translateY(0)}
+}
+
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.modal-head h2{
+  color:#063d2e;
+}
+
+.close{
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  border:0;
+  background:#e8f7f1;
+  color:#087f5b;
+  font-size:23px;
+}
+
+/* FOOD */
+.food-item{
+  border:1px solid #d8eee5;
+  border-radius:12px;
+  padding:14px;
+  margin-bottom:12px;
+}
+
+.food-item-header{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.modifier-group{
+  margin:18px 0;
+  border:1px solid #d8eee5;
+  border-radius:12px;
+  padding:14px;
+}
+
+.modifier-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+
+.modifier-head h3{
+  color:#063d2e;
+}
+
+.modifier-option{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding:10px;
+  border-bottom:1px solid #edf5f2;
+}
+
+.modifier-option:last-child{
+  border-bottom:0;
+}
+
+.modifier-option label{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.food-total{
+  background:#e8f7f1;
+  border-radius:12px;
+  padding:16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:15px 0;
+  font-weight:bold;
+  color:#063d2e;
+}
+
+.checkline{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin:10px 0;
+  font-size:14px;
+}
+
+/* MODIFIER EDITOR */
+.modifier-editor{
+  background:#f4fbf8;
+  padding:12px;
+  border-radius:12px;
+  margin-top:12px;
+}
+
+.modifier-editor-group{
+  background:white;
+  border:1px solid #d8eee5;
+  border-radius:10px;
+  padding:12px;
+  margin-bottom:12px;
+}
+
+.option-row{
+  display:grid;
+  grid-template-columns:1fr 100px 38px;
+  gap:7px;
+  margin:7px 0;
+}
+
+.option-row input{
+  width:100%;
+  border:1px solid #cfe4dc;
+  border-radius:6px;
+  padding:8px;
+}
+
+.remove-option{
+  border:0;
+  background:#ffe8e8;
+  color:#c0392b;
+  border-radius:6px;
+}
+
+/* TABS */
+.tabs{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  margin-bottom:16px;
+}
+
+.tab{
+  border:1px solid #cfe4dc;
+  background:white;
+  color:#087f5b;
+  padding:9px 13px;
+  border-radius:20px;
+  white-space:nowrap;
+}
+
+.tab.active{
+  background:#087f5b;
+  color:white;
+}
+
+/* BOTTOM NAV */
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:68px;
+  background:white;
+  border-top:1px solid #d8eee5;
+  z-index:60;
+  display:flex;
+  justify-content:center;
+}
+
+.bottom-nav-inner{
+  width:min(700px,100%);
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+}
+
+.nav-btn{
+  background:white;
+  border:0;
+  color:#71827c;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+}
+
+.nav-btn.active{
+  color:#087f5b;
+  font-weight:bold;
+}
+
+.nav-icon{
+  font-size:21px;
+}
+
+/* DASHBOARD */
+.dashboard-card{
+  background:#e8f7f1;
+  border-radius:14px;
+  padding:18px;
+  margin-bottom:15px;
+}
+
+.stat-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.stat{
+  background:white;
+  border-radius:10px;
+  padding:15px;
+  text-align:center;
+}
+
+.stat strong{
+  display:block;
+  font-size:24px;
+  color:#087f5b;
+}
+
+/* CART */
+.cart-row{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 0;
+  border-bottom:1px solid #e4eee9;
+}
+
+.quantity{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.quantity button{
+  width:28px;
+  height:28px;
+  border:0;
+  background:#e8f7f1;
+  color:#087f5b;
+  border-radius:6px;
+}
+
+/* TOAST */
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:85px;
+  transform:translateX(-50%);
+  background:#063d2e;
+  color:white;
+  padding:12px 18px;
+  border-radius:25px;
+  z-index:300;
+  display:none;
+}
+
+/* EMPTY */
+.empty{
+  text-align:center;
+  padding:35px 15px;
+  color:#71827c;
+}
+
+/* RESPONSIVE */
+@media(max-width:750px){
+  .header-inner{
+    flex-wrap:wrap;
+  }
+
+  .search{
+    order:3;
+    flex-basis:100%;
+  }
+
+  .hero h1{
+    font-size:29px;
+  }
+
+  .categories{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .form-row{
+    grid-template-columns:1fr;
+  }
+
+  .stat-grid{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+}
+
+@media(max-width:450px){
+  .option-row{
+    grid-template-columns:1fr 80px 35px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-<!-- =========================
-     HEADER
-========================= -->
-
-<header class="header">
-
+<!-- HEADER -->
+<header>
   <div class="header-inner">
 
-    <div class="logo">
-      Sefwi<span>Go</span>
-    </div>
+    <div class="logo">SefwiGo</div>
 
     <div class="search">
       <input
         id="searchInput"
-        type="text"
-        placeholder="Search businesses..."
-        oninput="searchBusinesses()"
+        type="search"
+        placeholder="Search food, shops, properties..."
+        oninput="searchApp(this.value)"
       >
     </div>
 
-    <button
-      class="btn btn-primary"
-      onclick="openPartner()"
-    >
+    <button class="partner-btn" onclick="openPartner()">
       Become a Partner
     </button>
 
   </div>
-
 </header>
 
-<!-- =========================
-     MAIN
-========================= -->
 
-<main class="container">
+<!-- HOME -->
+<main id="homePage">
 
-  <!-- HERO -->
+  <div class="hero">
+    <div class="container">
 
-  <section class="hero">
+      <h1>Your local marketplace in Sefwi</h1>
 
-    <h1>
-      Your local Sefwi marketplace.
-    </h1>
+      <p>
+        Discover food, groceries, parcels, properties and local businesses
+        through SefwiGo.
+      </p>
 
-    <p>
-      Discover businesses, products, food, properties and local services
-      around Sefwi Wiawso — all in one place.
-    </p>
+      <div class="hero-actions">
+        <button class="secondary" onclick="showCategory('Food')">
+          🍛 Order Food
+        </button>
 
-  </section>
+        <button class="secondary" onclick="showCategory('Groceries')">
+          🛒 Shop Groceries
+        </button>
+
+        <button class="secondary" onclick="openParcel()">
+          📦 Send Parcel
+        </button>
+      </div>
+
+    </div>
+  </div>
+
 
   <!-- CATEGORIES -->
+  <section>
+    <div class="container">
 
-  <section class="section">
+      <div class="section-title">
+        <h2>Categories</h2>
+      </div>
 
-    <div class="section-head">
-      <h2>Explore SefwiGo</h2>
-    </div>
+      <div class="categories">
 
-    <div class="categories">
+        <button class="category" onclick="showCategory('Food')">
+          <div class="category-icon">🍛</div>
+          <strong>Food</strong>
+        </button>
 
-      <button
-        class="category"
-        onclick="openFood()"
-      >
-        <span class="icon">🍲</span>
-        Food
-      </button>
+        <button class="category" onclick="showCategory('Groceries')">
+          <div class="category-icon">🛒</div>
+          <strong>Groceries</strong>
+        </button>
 
-      <button
-        class="category"
-        onclick="showComingSoon('Groceries')"
-      >
-        <span class="icon">🛒</span>
-        Groceries
-      </button>
+        <button class="category" onclick="openParcel()">
+          <div class="category-icon">📦</div>
+          <strong>Parcels</strong>
+        </button>
 
-      <button
-        class="category"
-        onclick="openParcel()"
-      >
-        <span class="icon">📦</span>
-        Parcels
-      </button>
+        <button class="category" onclick="openProperty()">
+          <div class="category-icon">🏠</div>
+          <strong>Property</strong>
+        </button>
 
-      <button
-        class="category"
-        onclick="openProperty()"
-      >
-        <span class="icon">🏠</span>
-        Property
-      </button>
+      </div>
 
     </div>
-
   </section>
+
 
   <!-- BUSINESSES -->
+  <section>
+    <div class="container">
 
-  <section class="section">
-
-    <div class="section-head">
-
-      <h2>
-        Popular Businesses
-      </h2>
-
-      <button
-        class="btn btn-secondary btn-small"
-        onclick="loadBusinesses()"
-      >
-        Refresh
-      </button>
-
-    </div>
-
-    <div
-      id="businessGrid"
-      class="grid"
-    >
-      <div class="loading">
-        Loading businesses...
+      <div class="section-title">
+        <h2>Popular Businesses</h2>
+        <button class="outline-btn" onclick="openBusinessList()">
+          View all
+        </button>
       </div>
-    </div>
 
+      <div id="businessGrid" class="grid"></div>
+
+    </div>
   </section>
 
-  <!-- PROPERTY -->
 
-  <section class="section">
+  <!-- PRODUCTS -->
+  <section>
+    <div class="container">
 
-    <div class="section-head">
-
-      <h2>
-        Available Properties
-      </h2>
-
-      <button
-        class="btn btn-secondary btn-small"
-        onclick="openProperty()"
-      >
-        View all
-      </button>
-
-    </div>
-
-    <div
-      id="propertyGrid"
-      class="grid"
-    >
-      <div class="loading">
-        Loading properties...
+      <div class="section-title">
+        <h2>Popular Food</h2>
       </div>
-    </div>
 
+      <div id="productGrid" class="grid"></div>
+
+    </div>
+  </section>
+
+
+  <!-- PROPERTIES -->
+  <section>
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Available Properties</h2>
+
+        <button class="outline-btn" onclick="openProperty()">
+          View all
+        </button>
+      </div>
+
+      <div id="propertyGrid" class="grid"></div>
+
+    </div>
   </section>
 
 </main>
 
-<!-- =========================
-     BOTTOM NAVIGATION
-========================= -->
 
+<!-- VENDOR DASHBOARD -->
+<main id="vendorPage" class="hidden">
+  <section>
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Partner Dashboard</h2>
+      </div>
+
+      <div class="dashboard-card">
+        <h3 id="vendorName">My Business</h3>
+        <p class="muted">
+          Manage your business, products and orders.
+        </p>
+      </div>
+
+      <div class="stat-grid">
+
+        <div class="stat">
+          <strong id="vendorProducts">0</strong>
+          Products
+        </div>
+
+        <div class="stat">
+          <strong id="vendorOrders">0</strong>
+          Orders
+        </div>
+
+        <div class="stat">
+          <strong id="vendorSales">GH₵0</strong>
+          Sales
+        </div>
+
+      </div>
+
+      <section>
+
+        <div class="tabs">
+          <button class="tab active" onclick="vendorTab('products',this)">
+            Products
+          </button>
+
+          <button class="tab" onclick="vendorTab('orders',this)">
+            Orders
+          </button>
+
+          <button class="tab" onclick="vendorTab('business',this)">
+            Business
+          </button>
+        </div>
+
+        <div id="vendorContent"></div>
+
+      </section>
+
+    </div>
+  </section>
+</main>
+
+
+<!-- DRIVER PAGE -->
+<main id="driverPage" class="hidden">
+
+  <section>
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Driver Dashboard</h2>
+      </div>
+
+      <div class="dashboard-card">
+        <h3>Available Deliveries</h3>
+        <p class="muted">
+          Accept delivery requests and update their status.
+        </p>
+      </div>
+
+      <div id="driverContent"></div>
+
+    </div>
+  </section>
+
+</main>
+
+
+<!-- ADMIN PAGE -->
+<main id="adminPage" class="hidden">
+
+  <section>
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Admin Dashboard</h2>
+      </div>
+
+      <div class="stat-grid">
+
+        <div class="stat">
+          <strong id="adminUsers">0</strong>
+          Users
+        </div>
+
+        <div class="stat">
+          <strong id="adminBusinesses">0</strong>
+          Businesses
+        </div>
+
+        <div class="stat">
+          <strong id="adminOrders">0</strong>
+          Orders
+        </div>
+
+      </div>
+
+      <div id="adminContent" style="margin-top:20px;"></div>
+
+    </div>
+  </section>
+
+</main>
+
+
+<!-- BOTTOM NAV -->
 <nav class="bottom-nav">
 
-  <div class="bottom-inner">
+  <div class="bottom-nav-inner">
 
-    <button
-      class="nav-btn active"
-      onclick="scrollHome()"
-    >
-      🏠
-      <br>
+    <button class="nav-btn active" onclick="goHome(this)">
+      <span class="nav-icon">🏠</span>
       Home
     </button>
 
-    <button
-      class="nav-btn"
-      onclick="openOrders()"
-    >
-      🧾
-      <br>
+    <button class="nav-btn" onclick="openOrders(this)">
+      <span class="nav-icon">📋</span>
       Orders
     </button>
 
-    <button
-      class="nav-btn"
-      onclick="openPartner()"
-    >
-      🤝
-      <br>
+    <button class="nav-btn" onclick="openPartner(this)">
+      <span class="nav-icon">🏪</span>
       Partner
     </button>
 
-    <button
-      class="nav-btn"
-      onclick="openAccount()"
-    >
-      👤
-      <br>
+    <button class="nav-btn" onclick="openAccount(this)">
+      <span class="nav-icon">👤</span>
       Account
     </button>
 
@@ -963,76 +908,79 @@
 
 </nav>
 
-<!-- =========================
-     PARTNER DASHBOARD
-========================= -->
 
-<div
-  id="partnerModal"
-  class="modal"
->
+<!-- PARTNER MODAL -->
+<div id="partnerModal" class="modal">
 
   <div class="sheet">
 
     <div class="modal-head">
-
       <div>
-
-        <h2>
-          Partner Dashboard
-        </h2>
-
+        <h2>Become a Partner</h2>
         <div class="muted">
-          Manage your SefwiGo business
+          Register your business on SefwiGo
         </div>
-
       </div>
 
-      <button
-        class="close"
-        onclick="closeModal('partnerModal')"
-      >
+      <button class="close" onclick="closeModal('partnerModal')">
         ×
       </button>
-
     </div>
 
-    <div id="partnerContent"></div>
+    <div class="form-group">
+      <label>Business Name</label>
+      <input id="partnerBusinessName" placeholder="e.g. Mama's Kitchen">
+    </div>
+
+    <div class="form-group">
+      <label>Business Category</label>
+      <select id="partnerCategory">
+        <option>Restaurant</option>
+        <option>Food Vendor</option>
+        <option>Grocery</option>
+        <option>Shop</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Phone Number</label>
+      <input id="partnerPhone" placeholder="233XXXXXXXXX">
+    </div>
+
+    <div class="form-group">
+      <label>Location</label>
+      <input id="partnerLocation" placeholder="Sefwi Wiawso">
+    </div>
+
+    <div class="form-group">
+      <label>Description</label>
+      <textarea id="partnerDescription"
+        placeholder="Tell customers about your business"></textarea>
+    </div>
+
+    <button class="primary" style="width:100%" onclick="registerBusiness()">
+      Register Business
+    </button>
 
   </div>
 
 </div>
 
-<!-- =========================
-     BUSINESS MENU
-========================= -->
 
-<div
-  id="menuModal"
-  class="modal"
->
+<!-- BUSINESS MENU MODAL -->
+<div id="menuModal" class="modal">
 
   <div class="sheet">
 
     <div class="modal-head">
 
       <div>
-
-        <h2 id="menuTitle">
-          Business Menu
-        </h2>
-
-        <div
-          id="menuSubtitle"
-          class="muted"
-        ></div>
-
+        <h2 id="menuTitle">Business</h2>
+        <div id="menuSubtitle" class="muted"></div>
       </div>
 
-      <button
-        class="close"
-        onclick="closeModal('menuModal')"
-      >
+      <button class="close" onclick="closeModal('menuModal')">
         ×
       </button>
 
@@ -1044,76 +992,69 @@
 
 </div>
 
-<!-- =========================
-     FOOD CUSTOMIZATION MODAL
-========================= -->
 
-<div
-  id="foodModal"
-  class="modal"
->
+<!-- FOOD CUSTOMIZER -->
+<div id="foodModal" class="modal">
 
   <div class="sheet">
 
     <div class="modal-head">
 
       <div>
-
-        <h2 id="foodModalTitle">
-          Customize Food
-        </h2>
-
-        <div
-          id="foodModalSubtitle"
-          class="muted"
-        ></div>
-
+        <h2 id="foodTitle">Customize Food</h2>
+        <div id="foodSubtitle" class="muted"></div>
       </div>
 
-      <button
-        class="close"
-        onclick="closeModal('foodModal')"
-      >
+      <button class="close" onclick="closeModal('foodModal')">
         ×
       </button>
 
     </div>
 
-    <div id="foodModalContent"></div>
+    <div id="foodContent"></div>
 
   </div>
 
 </div>
 
-<!-- =========================
-     PROPERTY
-========================= -->
 
-<div
-  id="propertyModal"
-  class="modal"
->
+<!-- CART MODAL -->
+<div id="cartModal" class="modal">
+
+  <div class="sheet">
+
+    <div class="modal-head">
+
+      <h2>Your Cart</h2>
+
+      <button class="close" onclick="closeModal('cartModal')">
+        ×
+      </button>
+
+    </div>
+
+    <div id="cartContent"></div>
+
+  </div>
+
+</div>
+
+
+<!-- PROPERTY MODAL -->
+<div id="propertyModal" class="modal">
 
   <div class="sheet">
 
     <div class="modal-head">
 
       <div>
-
-        <h2>
-          Property
-        </h2>
-
+        <h2>Property</h2>
         <div class="muted">
-          Browse and manage local property listings
+          Browse and register properties
         </div>
-
       </div>
 
-      <button
-        class="close"
-        onclick="closeModal('propertyModal')"
-      >
+      <button class="close" onclick="closeModal('propertyModal')">
         ×
       </button>
 
@@ -1121,27 +1062,21 @@
 
     <div class="tabs">
 
-      <button
-        id="propBrowseTab"
+      <button id="propBrowseTab"
         class="tab active"
-        onclick="propertyTab('browse')"
-      >
+        onclick="propertyTab('browse',this)">
         Browse
       </button>
 
-      <button
-        id="propRegisterTab"
+      <button id="propRegisterTab"
         class="tab"
-        onclick="propertyTab('register')"
-      >
+        onclick="propertyTab('register',this)">
         Register Property
       </button>
 
-      <button
-        id="propMineTab"
+      <button id="propMineTab"
         class="tab"
-        onclick="propertyTab('mine')"
-      >
+        onclick="propertyTab('mine',this)">
         My Properties
       </button>
 
@@ -1153,5034 +1088,2939 @@
 
 </div>
 
-<!-- =========================
-     PARCEL
-========================= -->
 
-<div
-  id="parcelModal"
-  class="modal"
->
+<!-- PARCEL MODAL -->
+<div id="parcelModal" class="modal">
 
   <div class="sheet">
 
     <div class="modal-head">
 
-      <h2>
-        Parcel Delivery
-      </h2>
+      <div>
+        <h2>Send a Parcel</h2>
+        <div class="muted">
+          Request a local delivery
+        </div>
+      </div>
 
-      <button
-        class="close"
-        onclick="closeModal('parcelModal')"
-      >
+      <button class="close" onclick="closeModal('parcelModal')">
         ×
       </button>
 
     </div>
 
-    <p>
-      Request a local parcel pickup or delivery through WhatsApp.
-    </p>
-
-    <div class="notice">
-
-      Replace the demo WhatsApp number in the code with
-      your official SefwiGo business number before launch.
-
+    <div class="form-group">
+      <label>Pickup Location</label>
+      <input id="parcelPickup" placeholder="Where should we collect it?">
     </div>
 
-    <button
-      class="btn btn-primary"
-      onclick="requestParcel()"
-    >
-      Request Parcel Delivery
+    <div class="form-group">
+      <label>Destination</label>
+      <input id="parcelDestination" placeholder="Where should we deliver it?">
+    </div>
+
+    <div class="form-group">
+      <label>Parcel Type</label>
+      <select id="parcelType">
+        <option>Document</option>
+        <option>Food</option>
+        <option>Clothing</option>
+        <option>Package</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Additional Information</label>
+      <textarea id="parcelNotes"></textarea>
+    </div>
+
+    <button class="primary" style="width:100%" onclick="requestParcel()">
+      Request Delivery
     </button>
 
   </div>
 
 </div>
 
-<!-- =========================
-     ORDERS
-========================= -->
 
-<div
-  id="ordersModal"
-  class="modal"
->
+<!-- ORDERS MODAL -->
+<div id="ordersModal" class="modal">
 
   <div class="sheet">
 
     <div class="modal-head">
 
-      <h2>
-        Orders
-      </h2>
+      <h2>My Orders</h2>
 
-      <button
-        class="close"
-        onclick="closeModal('ordersModal')"
-      >
+      <button class="close" onclick="closeModal('ordersModal')">
         ×
       </button>
 
     </div>
 
-    <div class="empty">
-
-      Customer ordering and order tracking
-      will connect here next.
-
-    </div>
+    <div id="ordersContent"></div>
 
   </div>
 
 </div>
 
-<!-- =========================
-     ACCOUNT
-========================= -->
 
-<div
-  id="accountModal"
-  class="modal"
->
+<!-- ACCOUNT MODAL -->
+<div id="accountModal" class="modal">
 
   <div class="sheet">
 
     <div class="modal-head">
 
-      <h2>
-        Account
-      </h2>
+      <h2>My Account</h2>
 
-      <button
-        class="close"
-        onclick="closeModal('accountModal')"
-      >
+      <button class="close" onclick="closeModal('accountModal')">
         ×
       </button>
 
     </div>
 
-    <div id="accountContent"></div>
+    <div class="dashboard-card">
+
+      <h3>SefwiGo Account</h3>
+
+      <p class="muted">
+        Manage your customer, vendor or driver account.
+      </p>
+
+    </div>
+
+    <button class="outline-btn"
+      style="width:100%;margin-bottom:10px"
+      onclick="showVendorDashboard()">
+      🏪 Partner Dashboard
+    </button>
+
+    <button class="outline-btn"
+      style="width:100%;margin-bottom:10px"
+      onclick="showDriverDashboard()">
+      🚚 Driver Dashboard
+    </button>
+
+    <button class="outline-btn"
+      style="width:100%;margin-bottom:10px"
+      onclick="showAdminDashboard()">
+      ⚙️ Admin Dashboard
+    </button>
 
   </div>
 
 </div>
 
-<!-- TOAST -->
 
-<div
-  id="toast"
-  class="toast"
-></div>
+<div id="toast" class="toast"></div>
 
-<!-- =========================
-     FIREBASE
-========================= -->
 
 <script type="module">
 
-  import {
-    initializeApp
+/* =========================================================
+   FIREBASE
+========================================================= */
+
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getAuth,
+  signInAnonymously,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  doc,
+  updateDoc,
+  deleteDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDjHGyeObPLLuqTNhNGE5SBRfBL5T29qWA",
+  authDomain: "sefwi-go.firebaseapp.com",
+  projectId: "sefwi-go",
+  storageBucket: "sefwi-go.firebasestorage.app",
+  messagingSenderId: "210398787110",
+  appId: "1:210398787110:web:f7f76a538a2712a2bb58e7"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+
+/* =========================================================
+   GLOBAL DATA
+========================================================= */
+
+let currentUser = null;
+
+let businesses = [];
+let products = [];
+let properties = [];
+let orders = [];
+let cart = [];
+
+let currentBusiness = null;
+let currentProduct = null;
+
+
+/* =========================================================
+   DEMO DATA
+========================================================= */
+
+const demoBusinesses = [
+
+  {
+    id:"demo1",
+    name:"Sefwi Taste Kitchen",
+    category:"Restaurant",
+    phone:"233000000000",
+    location:"Sefwi Wiawso",
+    description:"Local Ghanaian meals and delicious food."
+  },
+
+  {
+    id:"demo2",
+    name:"Wiawso Fresh Mart",
+    category:"Grocery",
+    phone:"233000000000",
+    location:"Sefwi Wiawso",
+    description:"Groceries and household products."
+  },
+
+  {
+    id:"demo3",
+    name:"Mama's Chop Bar",
+    category:"Food Vendor",
+    phone:"233000000000",
+    location:"Sefwi Wiawso",
+    description:"Traditional Ghanaian meals."
   }
-  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-  import {
-    getAuth,
-    signInAnonymously,
-    onAuthStateChanged
+];
+
+
+const demoProducts = [
+
+  {
+    id:"food1",
+    businessId:"demo1",
+    businessName:"Sefwi Taste Kitchen",
+    name:"Jollof Rice",
+    category:"Main Meal",
+    price:50,
+    description:"Delicious local jollof rice.",
+    available:true,
+
+    modifiers:[
+
+      {
+        name:"Protein",
+        required:true,
+        multi:false,
+
+        options:[
+          {name:"Chicken",price:10},
+          {name:"Beef",price:15},
+          {name:"Fish",price:20}
+        ]
+      },
+
+      {
+        name:"Extra Soup",
+        required:false,
+        multi:true,
+
+        options:[
+          {name:"Extra Soup",price:5},
+          {name:"Large Soup",price:10}
+        ]
+      },
+
+      {
+        name:"Spice Level",
+        required:true,
+        multi:false,
+
+        options:[
+          {name:"Mild",price:0},
+          {name:"Medium",price:0},
+          {name:"Hot",price:0}
+        ]
+      }
+
+    ]
+  },
+
+
+  {
+    id:"food2",
+    businessId:"demo1",
+    businessName:"Sefwi Taste Kitchen",
+    name:"Fufu & Soup",
+    category:"Main Meal",
+    price:55,
+    description:"Fresh fufu with local soup.",
+    available:true,
+
+    modifiers:[
+
+      {
+        name:"Protein",
+        required:true,
+        multi:false,
+
+        options:[
+          {name:"Chicken",price:10},
+          {name:"Beef",price:15}
+        ]
+      },
+
+      {
+        name:"Extra Soup",
+        required:false,
+        multi:true,
+
+        options:[
+          {name:"Extra Soup",price:5},
+          {name:"Large Soup",price:10}
+        ]
+      },
+
+      {
+        name:"Spice Level",
+        required:true,
+        multi:false,
+
+        options:[
+          {name:"Mild",price:0},
+          {name:"Medium",price:0},
+          {name:"Hot",price:0}
+        ]
+      }
+
+    ]
+  },
+
+
+  {
+    id:"food3",
+    businessId:"demo3",
+    businessName:"Mama's Chop Bar",
+    name:"Waakye",
+    category:"Main Meal",
+    price:45,
+    description:"Traditional Ghanaian waakye.",
+    available:true,
+
+    modifiers:[
+
+      {
+        name:"Protein",
+        required:true,
+        multi:false,
+
+        options:[
+          {name:"Chicken",price:10},
+          {name:"Beef",price:15}
+        ]
+      },
+
+      {
+        name:"Extra Soup",
+        required:false,
+        multi:true,
+
+        options:[
+          {name:"Extra Soup",price:5},
+          {name:"Large Soup",price:10}
+        ]
+      },
+
+      {
+        name:"Spice Level",
+        required:true,
+        multi:false,
+
+        options:[
+          {name:"Mild",price:0},
+          {name:"Medium",price:0},
+          {name:"Hot",price:0}
+        ]
+      }
+
+    ]
+  },
+
+  {
+    id:"grocery1",
+    businessId:"demo2",
+    businessName:"Wiawso Fresh Mart",
+    name:"Rice",
+    category:"Groceries",
+    price:120,
+    description:"Quality rice.",
+    available:true,
+    modifiers:[]
   }
-  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-  import {
-    getFirestore,
-    collection,
-    addDoc,
-    getDocs,
-    doc,
-    updateDoc,
-    deleteDoc,
-    serverTimestamp
+];
+
+
+const demoProperties = [
+
+  {
+    id:"property1",
+    title:"Two Bedroom House",
+    type:"House",
+    purpose:"For Rent",
+    price:1800,
+    location:"Sefwi Wiawso",
+    phone:"233000000000",
+    description:"Spacious two bedroom house.",
+    ownerUid:"demo"
+  },
+
+  {
+    id:"property2",
+    title:"Commercial Shop",
+    type:"Shop",
+    purpose:"For Rent",
+    price:800,
+    location:"Wiawso Central",
+    phone:"233000000000",
+    description:"Shop suitable for business.",
+    ownerUid:"demo"
   }
-  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-  /* =========================
-     FIREBASE CONFIG
-  ========================= */
+];
 
-  const firebaseConfig = {
 
-    apiKey:
-      "AIzaSyDjHGyeObPLLuqTNhNGE5SBRfBL5T29qWA",
+/* =========================================================
+   AUTH
+========================================================= */
 
-    authDomain:
-      "sefwi-go.firebaseapp.com",
+signInAnonymously(auth)
+  .catch(error => {
+    console.log("Authentication error:",error);
+  });
 
-    projectId:
-      "sefwi-go",
 
-    storageBucket:
-      "sefwi-go.firebasestorage.app",
+onAuthStateChanged(auth,user => {
 
-    messagingSenderId:
-      "210398787110",
+  currentUser = user;
 
-    appId:
-      "1:210398787110:web:f7f76a538a2712a2bb58e7"
+});
+
+
+/* =========================================================
+   INITIAL LOAD
+========================================================= */
+
+businesses = [...demoBusinesses];
+
+products = [...demoProducts];
+
+properties = [...demoProperties];
+
+renderBusinesses();
+
+renderProducts();
+
+renderProperties();
+
+renderDriver();
+
+renderAdmin();
+
+
+/* =========================================================
+   BASIC UI
+========================================================= */
+
+window.closeModal = function(id){
+
+  document.getElementById(id).classList.remove("show");
+
+};
+
+
+function openModal(id){
+
+  document.getElementById(id).classList.add("show");
+
+}
+
+
+window.showToast = function(message){
+
+  const toast = document.getElementById("toast");
+
+  toast.textContent = message;
+
+  toast.style.display = "block";
+
+  setTimeout(()=>{
+    toast.style.display="none";
+  },2500);
+
+};
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function hidePages(){
+
+  document.getElementById("homePage").classList.add("hidden");
+
+  document.getElementById("vendorPage").classList.add("hidden");
+
+  document.getElementById("driverPage").classList.add("hidden");
+
+  document.getElementById("adminPage").classList.add("hidden");
+
+}
+
+
+window.goHome = function(button){
+
+  hidePages();
+
+  document.getElementById("homePage").classList.remove("hidden");
+
+  document.querySelectorAll(".nav-btn")
+    .forEach(b=>b.classList.remove("active"));
+
+  if(button){
+    button.classList.add("active");
+  }
+
+};
+
+
+window.openOrders = function(){
+
+  renderOrders();
+
+  openModal("ordersModal");
+
+};
+
+
+window.openAccount = function(){
+
+  openModal("accountModal");
+
+};
+
+
+/* =========================================================
+   BUSINESSES
+========================================================= */
+
+function renderBusinesses(list=businesses){
+
+  const grid=document.getElementById("businessGrid");
+
+  if(!list.length){
+
+    grid.innerHTML='<div class="empty">No businesses found.</div>';
+
+    return;
+  }
+
+  grid.innerHTML=list.map(b=>`
+
+    <div class="card">
+
+      <div class="card-top">
+
+        <div>
+
+          <h3>${escapeHtml(b.name)}</h3>
+
+          <p class="muted">
+            ${escapeHtml(b.location || "Sefwi Wiawso")}
+          </p>
+
+        </div>
+
+        <span class="badge">
+          ${escapeHtml(b.category || "Business")}
+        </span>
+
+      </div>
+
+      <p style="margin-top:10px">
+        ${escapeHtml(b.description || "")}
+      </p>
+
+      <div class="card-actions">
+
+        <button class="small-btn"
+          onclick="openBusinessMenu('${b.id}')">
+          View Business
+        </button>
+
+      </div>
+
+    </div>
+
+  `).join("");
+
+}
+
+
+window.openBusinessList=function(){
+
+  renderBusinesses();
+
+  showToast("Showing all businesses");
+
+};
+
+
+window.openBusinessMenu=function(id){
+
+  currentBusiness=businesses.find(b=>b.id===id);
+
+  if(!currentBusiness){
+
+    showToast("Business not found");
+
+    return;
+  }
+
+  document.getElementById("menuTitle").textContent=
+    currentBusiness.name;
+
+  document.getElementById("menuSubtitle").textContent=
+    currentBusiness.location || "";
+
+  const businessProducts=
+    products.filter(p=>p.businessId===id);
+
+  const content=
+    document.getElementById("menuContent");
+
+  if(!businessProducts.length){
+
+    content.innerHTML=
+      '<div class="empty">No products available.</div>';
+
+    openModal("menuModal");
+
+    return;
+  }
+
+  content.innerHTML=businessProducts.map(p=>`
+
+    <div class="food-item">
+
+      <div class="food-item-header">
+
+        <div>
+          <h3>${escapeHtml(p.name)}</h3>
+
+          <p class="muted">
+            ${escapeHtml(p.description || "")}
+          </p>
+        </div>
+
+        <div class="price">
+          GH₵${Number(p.price).toFixed(2)}
+        </div>
+
+      </div>
+
+      <div class="card-actions">
+
+        ${
+          p.modifiers && p.modifiers.length
+          ?
+          `<button class="small-btn"
+             onclick="openFoodCustomizer('${p.id}','${id}')">
+             Customize & Order
+           </button>`
+          :
+          `<button class="small-btn"
+             onclick="addSimpleProduct('${p.id}')">
+             Add to Cart
+           </button>`
+        }
+
+      </div>
+
+    </div>
+
+  `).join("");
+
+  openModal("menuModal");
+
+};
+
+
+/* =========================================================
+   FOOD CUSTOMIZER
+========================================================= */
+
+window.openFoodCustomizer=function(productId,businessId){
+
+  const product=products.find(p=>p.id===productId);
+
+  const business=businesses.find(b=>b.id===businessId);
+
+  if(!product || !business){
+
+    showToast("Food item unavailable");
+
+    return;
+  }
+
+  currentProduct=product;
+
+  document.getElementById("foodTitle").textContent=
+    product.name;
+
+  document.getElementById("foodSubtitle").textContent=
+    `${business.name} • Base price GH₵${Number(product.price).toFixed(2)}`;
+
+  const content=document.getElementById("foodContent");
+
+  if(!product.modifiers || !product.modifiers.length){
+
+    content.innerHTML=`
+
+      <div class="food-total">
+
+        <span>Total</span>
+
+        <span>
+          GH₵${Number(product.price).toFixed(2)}
+        </span>
+
+      </div>
+
+      <button class="primary"
+        style="width:100%"
+        onclick="addSimpleProduct('${product.id}')">
+        Add to Cart
+      </button>
+
+    `;
+
+    openModal("foodModal");
+
+    return;
+  }
+
+
+  content.innerHTML=product.modifiers.map((group,index)=>`
+
+    <div class="modifier-group">
+
+      <div class="modifier-head">
+
+        <h3>${escapeHtml(group.name)}</h3>
+
+        ${
+          group.required
+          ? '<span class="badge">Required</span>'
+          : '<span class="muted">Optional</span>'
+        }
+
+      </div>
+
+      ${
+        group.options || []
+        .map((option,optionIndex)=>`
+
+          <div class="modifier-option">
+
+            <label>
+
+              <input
+                type="${group.multi ? "checkbox" : "radio"}"
+                name="modifier_${index}"
+                value="${optionIndex}"
+                data-group="${index}"
+                onchange="calculateFoodTotal()"
+              >
+
+              <span>
+                ${escapeHtml(option.name)}
+              </span>
+
+            </label>
+
+            <strong>
+              ${
+                Number(option.price)>0
+                ? "+ GH₵"+Number(option.price).toFixed(2)
+                : "Included"
+              }
+            </strong>
+
+          </div>
+
+        `).join("")
+      }
+
+    </div>
+
+  `).join("");
+
+
+  content.innerHTML+=`
+
+    <div class="food-total">
+
+      <span>Total</span>
+
+      <span id="foodCalculatedTotal">
+        GH₵${Number(product.price).toFixed(2)}
+      </span>
+
+    </div>
+
+    <button class="primary"
+      style="width:100%"
+      onclick="addCustomizedFood()">
+      Add to Cart
+    </button>
+
+  `;
+
+  openModal("foodModal");
+
+};
+
+
+window.calculateFoodTotal=function(){
+
+  if(!currentProduct) return;
+
+  let total=Number(currentProduct.price);
+
+  currentProduct.modifiers.forEach((group,index)=>{
+
+    const inputs=
+      document.querySelectorAll(
+        `input[data-group="${index}"]:checked`
+      );
+
+    inputs.forEach(input=>{
+
+      const optionIndex=Number(input.value);
+
+      const option=group.options[optionIndex];
+
+      if(option){
+
+        total+=Number(option.price || 0);
+
+      }
+
+    });
+
+  });
+
+  const output=document.getElementById(
+    "foodCalculatedTotal"
+  );
+
+  if(output){
+
+    output.textContent=
+      `GH₵${total.toFixed(2)}`;
+
+  }
+
+};
+
+
+window.addCustomizedFood=function(){
+
+  if(!currentProduct || !currentBusiness) return;
+
+  const selections=[];
+
+  let total=Number(currentProduct.price);
+
+  let valid=true;
+
+
+  currentProduct.modifiers.forEach((group,index)=>{
+
+    const inputs=
+      [...document.querySelectorAll(
+        `input[data-group="${index}"]:checked`
+      )];
+
+    if(group.required && inputs.length===0){
+
+      valid=false;
+
+      showToast(`Please select ${group.name}`);
+
+      return;
+    }
+
+    const selected=[];
+
+    inputs.forEach(input=>{
+
+      const option=
+        group.options[Number(input.value)];
+
+      if(option){
+
+        selected.push(option);
+
+        total+=Number(option.price || 0);
+
+      }
+
+    });
+
+    if(selected.length){
+
+      selections.push({
+        group:group.name,
+        options:selected
+      });
+
+    }
+
+  });
+
+
+  if(!valid) return;
+
+
+  cart.push({
+
+    id:Date.now().toString(),
+
+    productId:currentProduct.id,
+
+    businessId:currentBusiness.id,
+
+    businessName:currentBusiness.name,
+
+    name:currentProduct.name,
+
+    basePrice:Number(currentProduct.price),
+
+    selections:selections,
+
+    price:total,
+
+    quantity:1
+
+  });
+
+
+  closeModal("foodModal");
+
+  showToast("Added to cart");
+
+  renderOrders();
+
+};
+
+
+window.addSimpleProduct=function(productId){
+
+  const product=products.find(p=>p.id===productId);
+
+  if(!product) return;
+
+  const business=
+    businesses.find(b=>b.id===product.businessId);
+
+  cart.push({
+
+    id:Date.now().toString(),
+
+    productId:product.id,
+
+    businessId:product.businessId,
+
+    businessName:business?.name || product.businessName,
+
+    name:product.name,
+
+    basePrice:Number(product.price),
+
+    selections:[],
+
+    price:Number(product.price),
+
+    quantity:1
+
+  });
+
+  closeModal("menuModal");
+
+  closeModal("foodModal");
+
+  showToast("Added to cart");
+
+  openCart();
+
+};
+
+
+/* =========================================================
+   CART
+========================================================= */
+
+function openCart(){
+
+  renderCart();
+
+  openModal("cartModal");
+
+}
+
+
+window.openCart=openCart;
+
+
+function renderCart(){
+
+  const content=document.getElementById("cartContent");
+
+  if(!cart.length){
+
+    content.innerHTML=
+      '<div class="empty">Your cart is empty.</div>';
+
+    return;
+  }
+
+  let total=0;
+
+  cart.forEach(item=>{
+    total+=item.price*item.quantity;
+  });
+
+
+  content.innerHTML=cart.map(item=>`
+
+    <div class="cart-row">
+
+      <div>
+
+        <strong>${escapeHtml(item.name)}</strong>
+
+        <p class="muted">
+          ${item.selections
+            .map(s=>`${s.group}: ${s.options.map(o=>o.name).join(", ")}`)
+            .join(" • ")}
+        </p>
+
+        <p class="price">
+          GH₵${(item.price*item.quantity).toFixed(2)}
+        </p>
+
+      </div>
+
+      <div class="quantity">
+
+        <button onclick="changeQuantity('${item.id}',-1)">
+          −
+        </button>
+
+        <strong>${item.quantity}</strong>
+
+        <button onclick="changeQuantity('${item.id}',1)">
+          +
+        </button>
+
+      </div>
+
+    </div>
+
+  `).join("")+
+
+  `
+
+    <div class="food-total">
+
+      <span>Total</span>
+
+      <span>GH₵${total.toFixed(2)}</span>
+
+    </div>
+
+    <button class="primary"
+      style="width:100%"
+      onclick="checkoutCart()">
+      Place Order
+    </button>
+
+  `;
+
+}
+
+
+window.changeQuantity=function(id,change){
+
+  const item=cart.find(x=>x.id===id);
+
+  if(!item) return;
+
+  item.quantity+=change;
+
+  if(item.quantity<=0){
+
+    cart=cart.filter(x=>x.id!==id);
+
+  }
+
+  renderCart();
+
+};
+
+
+window.checkoutCart=function(){
+
+  if(!cart.length){
+
+    showToast("Your cart is empty");
+
+    return;
+  }
+
+  const total=cart.reduce(
+    (sum,item)=>sum+(item.price*item.quantity),
+    0
+  );
+
+  const order={
+
+    id:"SG"+Date.now(),
+
+    customerUid:currentUser?.uid || "guest",
+
+    items:[...cart],
+
+    total:total,
+
+    status:"Pending",
+
+    createdAt:new Date().toISOString()
 
   };
 
-  /* =========================
-     INITIALIZE FIREBASE
-  ========================= */
+  orders.push(order);
 
-  const app =
-    initializeApp(firebaseConfig);
+  cart=[];
 
-  const auth =
-    getAuth(app);
+  closeModal("cartModal");
 
-  const db =
-    getFirestore(app);
+  renderOrders();
 
-  /* =========================
-     GLOBAL VARIABLES
-  ========================= */
+  showToast(`Order ${order.id} placed`);
 
-  let currentUser = null;
+};
 
-  let businesses = [];
 
-  let properties = [];
+/* =========================================================
+   ORDERS
+========================================================= */
 
-  let products = [];
+function renderOrders(){
 
-  let currentBusiness = null;
+  const content=
+    document.getElementById("ordersContent");
 
-  let currentFoodProduct = null;
+  if(!orders.length){
 
-  /* =========================
-     DEFAULT FOOD OPTIONS
-  ========================= */
+    content.innerHTML=
+      '<div class="empty">You have no orders yet.</div>';
 
-  const defaultFoodModifiers = [
+    return;
+  }
+
+  content.innerHTML=orders.map(order=>`
+
+    <div class="card" style="margin-bottom:12px">
+
+      <div class="card-top">
+
+        <div>
+          <h3>${order.id}</h3>
+
+          <p class="muted">
+            ${new Date(order.createdAt).toLocaleString()}
+          </p>
+        </div>
+
+        <span class="badge">
+          ${order.status}
+        </span>
+
+      </div>
+
+      <div style="margin-top:10px">
+
+        ${order.items.map(item=>`
+
+          <p>
+            ${item.quantity} × ${escapeHtml(item.name)}
+          </p>
+
+        `).join("")}
+
+      </div>
+
+      <p class="price" style="margin-top:10px">
+        GH₵${Number(order.total).toFixed(2)}
+      </p>
+
+    </div>
+
+  `).join("");
+
+}
+
+
+/* =========================================================
+   FOOD / GROCERY CATEGORY
+========================================================= */
+
+window.showCategory=function(category){
+
+  if(category==="Food"){
+
+    const food=
+      products.filter(p=>
+        ["Main Meal","Breakfast","Drinks","Snacks"]
+        .includes(p.category)
+      );
+
+    renderProducts(food);
+
+  }
+
+  if(category==="Groceries"){
+
+    const grocery=
+      products.filter(p=>
+        p.category==="Groceries"
+      );
+
+    renderProducts(grocery);
+
+  }
+
+};
+
+
+function renderProducts(list=products){
+
+  const grid=document.getElementById("productGrid");
+
+  if(!list.length){
+
+    grid.innerHTML=
+      '<div class="empty">No products available.</div>';
+
+    return;
+  }
+
+  grid.innerHTML=list.map(p=>`
+
+    <div class="card">
+
+      <div class="card-top">
+
+        <div>
+
+          <h3>${escapeHtml(p.name)}</h3>
+
+          <p class="muted">
+            ${escapeHtml(p.businessName || "")}
+          </p>
+
+        </div>
+
+        <span class="badge">
+          ${escapeHtml(p.category || "Product")}
+        </span>
+
+      </div>
+
+      <p style="margin-top:8px">
+        ${escapeHtml(p.description || "")}
+      </p>
+
+      <p class="price" style="margin-top:8px">
+        GH₵${Number(p.price).toFixed(2)}
+      </p>
+
+      <div class="card-actions">
+
+        ${
+          p.modifiers?.length
+          ?
+          `<button class="small-btn"
+             onclick="openFoodCustomizer('${p.id}','${p.businessId}')">
+             Customize
+           </button>`
+          :
+          `<button class="small-btn"
+             onclick="addSimpleProduct('${p.id}')">
+             Add to Cart
+           </button>`
+        }
+
+      </div>
+
+    </div>
+
+  `).join("");
+
+}
+
+
+/* =========================================================
+   PROPERTY
+========================================================= */
+
+window.openProperty=function(){
+
+  propertyTab("browse");
+
+  openModal("propertyModal");
+
+};
+
+
+window.propertyTab=function(tab,button){
+
+  document.querySelectorAll("#propertyModal .tab")
+    .forEach(b=>b.classList.remove("active"));
+
+  if(button){
+
+    button.classList.add("active");
+
+  }else{
+
+    const target=
+      document.querySelector(
+        `#propertyModal .tab`
+      );
+
+    if(target) target.classList.add("active");
+
+  }
+
+
+  if(tab==="browse"){
+
+    renderProperties(properties);
+
+  }
+
+  if(tab==="register"){
+
+    propertyForm();
+
+  }
+
+  if(tab==="mine"){
+
+    const mine=
+      properties.filter(p=>
+        p.ownerUid===
+        (currentUser?.uid || "guest")
+      );
+
+    renderProperties(mine,true);
+
+  }
+
+};
+
+
+function renderProperties(list=properties,mine=false){
+
+  const content=
+    document.getElementById("propertyContent");
+
+  if(!list.length){
+
+    content.innerHTML=
+      '<div class="empty">No properties found.</div>';
+
+    return;
+  }
+
+  content.innerHTML=list.map(p=>`
+
+    <div class="card" style="margin-bottom:12px">
+
+      <div class="card-top">
+
+        <div>
+          <h3>${escapeHtml(p.title)}</h3>
+
+          <p class="muted">
+            ${escapeHtml(p.location)}
+          </p>
+        </div>
+
+        <span class="badge">
+          ${escapeHtml(p.purpose)}
+        </span>
+
+      </div>
+
+      <p style="margin-top:10px">
+        ${escapeHtml(p.description || "")}
+      </p>
+
+      <p class="price" style="margin-top:10px">
+        GH₵${Number(p.price).toFixed(2)}
+      </p>
+
+      <p class="muted" style="margin-top:6px">
+        ${escapeHtml(p.type)}
+      </p>
+
+      <div class="card-actions">
+
+        <button class="small-btn"
+          onclick="contactProperty('${p.phone}')">
+          Contact
+        </button>
+
+        ${
+          mine
+          ?
+          `<button class="outline-btn"
+             onclick="deleteProperty('${p.id}')">
+             Delete
+           </button>`
+          :
+          ""
+        }
+
+      </div>
+
+    </div>
+
+  `).join("");
+
+}
+
+
+window.propertyForm=function(){
+
+  document.getElementById("propertyContent").innerHTML=`
+
+    <div class="form-group">
+      <label>Property Title</label>
+      <input id="propTitle"
+        placeholder="e.g. Two Bedroom House">
+    </div>
+
+    <div class="form-row">
+
+      <div class="form-group">
+        <label>Type</label>
+
+        <select id="propType">
+          <option>House</option>
+          <option>Room</option>
+          <option>Apartment</option>
+          <option>Land</option>
+          <option>Shop</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Purpose</label>
+
+        <select id="propPurpose">
+          <option>For Rent</option>
+          <option>For Sale</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label>Price</label>
+      <input id="propPrice" type="number">
+    </div>
+
+    <div class="form-group">
+      <label>Location</label>
+      <input id="propLocation">
+    </div>
+
+    <div class="form-group">
+      <label>Phone</label>
+      <input id="propPhone">
+    </div>
+
+    <div class="form-group">
+      <label>Description</label>
+      <textarea id="propDescription"></textarea>
+    </div>
+
+    <button class="primary"
+      style="width:100%"
+      onclick="saveProperty()">
+      Register Property
+    </button>
+
+  `;
+
+};
+
+
+window.saveProperty=function(){
+
+  const property={
+
+    id:"property"+Date.now(),
+
+    title:document.getElementById("propTitle").value,
+
+    type:document.getElementById("propType").value,
+
+    purpose:document.getElementById("propPurpose").value,
+
+    price:Number(
+      document.getElementById("propPrice").value
+    ),
+
+    location:
+      document.getElementById("propLocation").value,
+
+    phone:
+      document.getElementById("propPhone").value,
+
+    description:
+      document.getElementById("propDescription").value,
+
+    ownerUid:
+      currentUser?.uid || "guest"
+
+  };
+
+
+  if(!property.title || !property.location){
+
+    showToast("Please complete the required fields");
+
+    return;
+  }
+
+
+  properties.unshift(property);
+
+  renderProperties();
+
+  showToast("Property registered");
+
+};
+
+
+window.deleteProperty=function(id){
+
+  properties=
+    properties.filter(p=>p.id!==id);
+
+  propertyTab("mine");
+
+  showToast("Property removed");
+
+};
+
+
+window.contactProperty=function(phone){
+
+  if(!phone){
+
+    showToast("Phone number unavailable");
+
+    return;
+  }
+
+  const url=
+    "https://wa.me/"+phone;
+
+  window.open(url,"_blank");
+
+};
+
+
+/* =========================================================
+   PARCELS
+========================================================= */
+
+window.openParcel=function(){
+
+  openModal("parcelModal");
+
+};
+
+
+window.requestParcel=function(){
+
+  const pickup=
+    document.getElementById("parcelPickup").value;
+
+  const destination=
+    document.getElementById("parcelDestination").value;
+
+  const type=
+    document.getElementById("parcelType").value;
+
+  const notes=
+    document.getElementById("parcelNotes").value;
+
+
+  if(!pickup || !destination){
+
+    showToast("Enter pickup and destination");
+
+    return;
+  }
+
+
+  const message=
+`SefwiGo Parcel Request
+
+Pickup: ${pickup}
+
+Destination: ${destination}
+
+Parcel Type: ${type}
+
+Notes: ${notes || "None"}`;
+
+
+  const url=
+    "https://wa.me/233000000000?text="+
+    encodeURIComponent(message);
+
+  window.open(url,"_blank");
+
+  closeModal("parcelModal");
+
+};
+
+
+/* =========================================================
+   PARTNER REGISTRATION
+========================================================= */
+
+window.openPartner=function(){
+
+  openModal("partnerModal");
+
+};
+
+
+window.registerBusiness=function(){
+
+  const business={
+
+    id:"business"+Date.now(),
+
+    name:
+      document.getElementById(
+        "partnerBusinessName"
+      ).value,
+
+    category:
+      document.getElementById(
+        "partnerCategory"
+      ).value,
+
+    phone:
+      document.getElementById(
+        "partnerPhone"
+      ).value,
+
+    location:
+      document.getElementById(
+        "partnerLocation"
+      ).value,
+
+    description:
+      document.getElementById(
+        "partnerDescription"
+      ).value,
+
+    ownerUid:
+      currentUser?.uid || "guest"
+
+  };
+
+
+  if(!business.name || !business.phone){
+
+    showToast("Business name and phone are required");
+
+    return;
+  }
+
+
+  businesses.unshift(business);
+
+  renderBusinesses();
+
+  closeModal("partnerModal");
+
+  showToast("Business registered successfully");
+
+};
+
+
+/* =========================================================
+   VENDOR DASHBOARD
+========================================================= */
+
+window.showVendorDashboard=function(){
+
+  closeModal("accountModal");
+
+  hidePages();
+
+  document.getElementById("vendorPage")
+    .classList.remove("hidden");
+
+  vendorTab("products");
+
+};
+
+
+window.vendorTab=function(tab,button){
+
+  if(button){
+
+    document.querySelectorAll(".tabs .tab")
+      .forEach(b=>b.classList.remove("active"));
+
+    button.classList.add("active");
+
+  }
+
+  const content=
+    document.getElementById("vendorContent");
+
+
+  if(tab==="products"){
+
+    document.getElementById("vendorProducts")
+      .textContent=products.length;
+
+    content.innerHTML=`
+
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+
+        <h3>My Products</h3>
+
+        <button class="small-btn"
+          onclick="productManager()">
+          + Add Product
+        </button>
+
+      </div>
+
+      ${
+        products.map(p=>`
+
+          <div class="card" style="margin-bottom:10px">
+
+            <div class="card-top">
+
+              <div>
+                <h3>${escapeHtml(p.name)}</h3>
+                <p class="muted">
+                  ${escapeHtml(p.category)}
+                </p>
+              </div>
+
+              <span class="price">
+                GH₵${Number(p.price).toFixed(2)}
+              </span>
+
+            </div>
+
+            <div class="card-actions">
+
+              <button class="small-btn"
+                onclick="editProduct('${p.id}')">
+                Edit
+              </button>
+
+              <button class="outline-btn"
+                onclick="removeProduct('${p.id}')">
+                Delete
+              </button>
+
+            </div>
+
+          </div>
+
+        `).join("")
+      }
+
+    `;
+
+  }
+
+
+  if(tab==="orders"){
+
+    content.innerHTML=`
+
+      <h3 style="margin-bottom:12px">
+        Customer Orders
+      </h3>
+
+      ${
+        orders.length
+        ?
+        orders.map(o=>`
+
+          <div class="card" style="margin-bottom:10px">
+
+            <div class="card-top">
+
+              <strong>${o.id}</strong>
+
+              <span class="badge">
+                ${o.status}
+              </span>
+
+            </div>
+
+            <p style="margin-top:8px">
+              Total: GH₵${Number(o.total).toFixed(2)}
+            </p>
+
+            <div class="card-actions">
+
+              <button class="small-btn"
+                onclick="changeOrderStatus('${o.id}','Accepted')">
+                Accept
+              </button>
+
+              <button class="small-btn"
+                onclick="changeOrderStatus('${o.id}','Preparing')">
+                Preparing
+              </button>
+
+              <button class="small-btn"
+                onclick="changeOrderStatus('${o.id}','Ready')">
+                Ready
+              </button>
+
+              <button class="small-btn"
+                onclick="changeOrderStatus('${o.id}','Delivered')">
+                Delivered
+              </button>
+
+            </div>
+
+          </div>
+
+        `).join("")
+        :
+        '<div class="empty">No orders yet.</div>'
+      }
+
+    `;
+
+  }
+
+
+  if(tab==="business"){
+
+    content.innerHTML=`
+
+      <div class="card">
+
+        <h3>Business Information</h3>
+
+        <div class="form-group" style="margin-top:15px">
+          <label>Business Name</label>
+          <input id="editBusinessName"
+            value="${escapeAttr(businesses[0]?.name || "")}">
+        </div>
+
+        <div class="form-group">
+          <label>Phone</label>
+          <input id="editBusinessPhone"
+            value="${escapeAttr(businesses[0]?.phone || "")}">
+        </div>
+
+        <div class="form-group">
+          <label>Location</label>
+          <input id="editBusinessLocation"
+            value="${escapeAttr(businesses[0]?.location || "")}">
+        </div>
+
+        <button class="primary"
+          onclick="saveBusinessInfo()">
+          Save Changes
+        </button>
+
+      </div>
+
+    `;
+
+  }
+
+};
+
+
+window.changeOrderStatus=function(id,status){
+
+  const order=orders.find(o=>o.id===id);
+
+  if(order){
+
+    order.status=status;
+
+    showToast(`Order ${id}: ${status}`);
+
+    vendorTab("orders");
+
+  }
+
+};
+
+
+window.saveBusinessInfo=function(){
+
+  if(!businesses.length) return;
+
+  businesses[0].name=
+    document.getElementById("editBusinessName").value;
+
+  businesses[0].phone=
+    document.getElementById("editBusinessPhone").value;
+
+  businesses[0].location=
+    document.getElementById("editBusinessLocation").value;
+
+  renderBusinesses();
+
+  showToast("Business updated");
+
+};
+
+
+/* =========================================================
+   PRODUCT MANAGER
+========================================================= */
+
+window.productManager=function(existing=null){
+
+  const content=
+    document.getElementById("vendorContent");
+
+  content.innerHTML=`
+
+    <div class="card">
+
+      <h3>${existing ? "Edit Product" : "Add Product"}</h3>
+
+      <div class="form-group" style="margin-top:15px">
+
+        <label>Product Name</label>
+
+        <input id="productName"
+          value="${escapeAttr(existing?.name || "")}">
+
+      </div>
+
+      <div class="form-row">
+
+        <div class="form-group">
+
+          <label>Category</label>
+
+          <select id="productCategory"
+            onchange="productCategoryChanged()">
+
+            <option ${existing?.category==="Main Meal"?"selected":""}>
+              Main Meal
+            </option>
+
+            <option ${existing?.category==="Breakfast"?"selected":""}>
+              Breakfast
+            </option>
+
+            <option ${existing?.category==="Drinks"?"selected":""}>
+              Drinks
+            </option>
+
+            <option ${existing?.category==="Snacks"?"selected":""}>
+              Snacks
+            </option>
+
+            <option ${existing?.category==="Groceries"?"selected":""}>
+              Groceries
+            </option>
+
+            <option ${existing?.category==="Other"?"selected":""}>
+              Other
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>Price</label>
+
+          <input id="productPrice"
+            type="number"
+            value="${existing?.price || ""}">
+
+        </div>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>Description</label>
+
+        <textarea id="productDescription">${escapeHtml(existing?.description || "")}</textarea>
+
+      </div>
+
+
+      <label class="checkline">
+
+        <input type="checkbox"
+          id="productAvailable"
+          ${existing?.available !== false ? "checked" : ""}>
+
+        Product is available
+
+      </label>
+
+
+      <label class="checkline">
+
+        <input type="checkbox"
+          id="productFood"
+          ${existing?.modifiers?.length ? "checked" : ""}
+          onchange="toggleFoodModifierEditor()">
+
+        This is a food item customers can customize
+
+      </label>
+
+
+      <div id="foodModifierEditor"
+        class="modifier-editor"
+        style="${existing?.modifiers?.length ? "" : "display:none"}">
+
+        ${renderModifierEditor(existing?.modifiers)}
+
+      </div>
+
+
+      <div class="card-actions"
+        style="margin-top:15px">
+
+        <button class="primary"
+          onclick="${existing ? `updateProduct('${existing.id}')` : "saveProduct()"}">
+
+          ${existing ? "Save Changes" : "Add Product"}
+
+        </button>
+
+        <button class="outline-btn"
+          onclick="vendorTab('products')">
+
+          Cancel
+
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+};
+
+
+function renderModifierEditor(modifiers){
+
+  const defaults=getDefaultModifiers();
+
+  const data=modifiers?.length
+    ? modifiers
+    : defaults;
+
+  return data.map((group,index)=>`
+
+    <div class="modifier-editor-group">
+
+      <div class="modifier-head">
+
+        <h3>${escapeHtml(group.name)}</h3>
+
+      </div>
+
+      <label class="checkline">
+
+        <input type="checkbox"
+          class="modifier-required"
+          data-group="${index}"
+          ${group.required ? "checked":""}>
+
+        Required
+
+      </label>
+
+      <label class="checkline">
+
+        <input type="checkbox"
+          class="modifier-multi"
+          data-group="${index}"
+          ${group.multi ? "checked":""}>
+
+        Allow multiple selections
+
+      </label>
+
+
+      <div class="modifier-options"
+        data-options-group="${index}">
+
+        ${
+          (group.options || []).map(option=>`
+
+            <div class="option-row">
+
+              <input
+                class="option-name"
+                placeholder="Option name"
+                value="${escapeAttr(option.name)}">
+
+              <input
+                class="option-price"
+                type="number"
+                min="0"
+                step="0.01"
+                placeholder="Price"
+                value="${Number(option.price || 0)}">
+
+              <button
+                class="remove-option"
+                onclick="removeModifierOption(this)">
+                ×
+              </button>
+
+            </div>
+
+          `).join("")
+        }
+
+      </div>
+
+
+      <button class="outline-btn"
+        style="margin-top:7px"
+        onclick="addModifierOption(${index})">
+
+        + Add Option
+
+      </button>
+
+    </div>
+
+  `).join("")+
+
+  `
+
+    <button class="outline-btn"
+      onclick="restoreModifierDefaults()">
+
+      Restore Food Defaults
+
+    </button>
+
+  `;
+
+}
+
+
+function getDefaultModifiers(){
+
+  return [
 
     {
-      name: "Protein",
-      required: true,
-      multi: false,
-      options: [
-        {
-          name: "Chicken",
-          price: 10
-        },
-        {
-          name: "Beef",
-          price: 15
-        },
-        {
-          name: "Fish",
-          price: 12
-        }
+      name:"Protein",
+      required:true,
+      multi:false,
+
+      options:[
+        {name:"Chicken",price:10},
+        {name:"Beef",price:15}
       ]
     },
 
     {
-      name: "Extra Soup",
-      required: false,
-      multi: true,
-      options: [
-        {
-          name: "Extra Soup",
-          price: 5
-        },
-        {
-          name: "Large Soup",
-          price: 10
-        }
+      name:"Extra Soup",
+      required:false,
+      multi:true,
+
+      options:[
+        {name:"Extra Soup",price:5},
+        {name:"Large Soup",price:10}
       ]
     },
 
     {
-      name: "Spice Level",
-      required: true,
-      multi: false,
-      options: [
-        {
-          name: "Mild",
-          price: 0
-        },
-        {
-          name: "Medium",
-          price: 0
-        },
-        {
-          name: "Hot",
-          price: 0
-        }
+      name:"Spice Level",
+      required:true,
+      multi:false,
+
+      options:[
+        {name:"Mild",price:0},
+        {name:"Medium",price:0},
+        {name:"Hot",price:0}
       ]
     }
 
   ];
 
-  /* =========================
-     HELPERS
-  ========================= */
+}
 
-  const $ = id =>
-    document.getElementById(id);
 
-  function escapeHTML(value) {
+window.toggleFoodModifierEditor=function(){
 
-    return String(value ?? "")
-      .replace(/[&<>"']/g, function(character) {
+  const checked=
+    document.getElementById("productFood").checked;
 
-        return {
+  const editor=
+    document.getElementById("foodModifierEditor");
 
-          "&": "&amp;",
-          "<": "&lt;",
-          ">": "&gt;",
-          '"': "&quot;",
-          "'": "&#039;"
+  editor.style.display=
+    checked ? "block" : "none";
 
-        }[character];
+};
 
-      });
 
-  }
+window.productCategoryChanged=function(){
 
-  function money(value) {
+  const category=
+    document.getElementById("productCategory").value;
 
-    const number =
-      Number(value);
+  const foodCategories=[
+    "Main Meal",
+    "Breakfast",
+    "Drinks",
+    "Snacks"
+  ];
 
-    if (!Number.isFinite(number)) {
+  const food=document.getElementById("productFood");
 
-      return "GH₵ 0.00";
+  if(foodCategories.includes(category)){
 
-    }
+    food.checked=true;
 
-    return `GH₵ ${number.toFixed(2)}`;
+    toggleFoodModifierEditor();
 
   }
 
-  function toast(message) {
+};
 
-    const element =
-      $("toast");
 
-    element.textContent =
-      message;
+window.addModifierOption=function(groupIndex){
 
-    element.classList.add("show");
-
-    clearTimeout(window.__toastTimer);
-
-    window.__toastTimer =
-      setTimeout(function() {
-
-        element.classList.remove("show");
-
-      }, 2600);
-
-  }
-
-  function showModal(id) {
-
-    $(id).classList.add("show");
-
-  }
-
-  function closeModal(id) {
-
-    $(id).classList.remove("show");
-
-  }
-
-  window.closeModal =
-    closeModal;
-
-  function whatsappURL(phone, message) {
-
-    const digits =
-      String(phone || "")
-        .replace(/\D/g, "");
-
-    return (
-      "https://wa.me/" +
-      digits +
-      "?text=" +
-      encodeURIComponent(message)
+  const container=
+    document.querySelector(
+      `[data-options-group="${groupIndex}"]`
     );
 
-  }
+  if(!container) return;
 
-  function getBusinessById(id) {
+  const row=document.createElement("div");
 
-    return businesses.find(
-      business => business.id === id
-    );
+  row.className="option-row";
 
-  }
+  row.innerHTML=`
 
-  function isFoodProduct(product) {
+    <input
+      class="option-name"
+      placeholder="Option name">
 
-    const category =
-      String(
-        product?.category || ""
-      ).toLowerCase();
+    <input
+      class="option-price"
+      type="number"
+      min="0"
+      step="0.01"
+      placeholder="Price">
 
-    return [
+    <button
+      class="remove-option"
+      onclick="removeModifierOption(this)">
+      ×
+    </button>
 
-      "main meal",
-      "breakfast",
-      "snacks",
-      "drinks",
-      "food",
-      "food vendor",
-      "restaurant"
+  `;
 
-    ].includes(category);
+  container.appendChild(row);
 
-  }
+};
 
-  function cloneDefaultModifiers() {
 
-    return JSON.parse(
-      JSON.stringify(
-        defaultFoodModifiers
-      )
-    );
+window.removeModifierOption=function(button){
 
-  }
+  const row=button.closest(".option-row");
 
-  function getProductModifiers(product) {
+  if(row) row.remove();
 
-    if (
-      Array.isArray(
-        product?.modifiers
-      ) &&
-      product.modifiers.length
-    ) {
+};
 
-      return product.modifiers;
 
-    }
+window.restoreModifierDefaults=function(){
 
-    return cloneDefaultModifiers();
+  document.getElementById("foodModifierEditor")
+    .innerHTML=
+      renderModifierEditor(getDefaultModifiers());
 
-  }
+};
 
-  /* =========================
-     FIREBASE AUTH
-  ========================= */
 
-  onAuthStateChanged(
-    auth,
-    async function(user) {
+function readModifierEditor(){
 
-      if (user) {
+  const groups=
+    [...document.querySelectorAll(
+      ".modifier-editor-group"
+    )];
 
-        currentUser =
-          user;
+  return groups.map((group,index)=>{
 
-        await loadBusinesses();
+    const name=
+      group.querySelector("h3").textContent.trim();
 
-        await loadProperties();
+    const required=
+      group.querySelector(".modifier-required").checked;
 
-      }
+    const multi=
+      group.querySelector(".modifier-multi").checked;
 
-    }
-  );
-
-  try {
-
-    const credential =
-      await signInAnonymously(auth);
-
-    currentUser =
-      credential.user;
-
-    await loadBusinesses();
-
-    await loadProperties();
-
-  }
-  catch (error) {
-
-    console.error(
-      "Firebase Authentication Error:",
-      error
-    );
-
-    toast(
-      "Firebase sign-in failed. Check Anonymous Authentication."
-    );
-
-  }
-
-  /* =========================
-     BUSINESSES
-  ========================= */
-
-  async function loadBusinesses() {
-
-    try {
-
-      const snapshot =
-        await getDocs(
-          collection(
-            db,
-            "businesses"
-          )
-        );
-
-      businesses =
-        snapshot.docs.map(
-          document => ({
-
-            id: document.id,
-
-            ...document.data()
-
-          })
-        );
-
-      renderBusinesses(
-        businesses
-      );
-
-    }
-    catch (error) {
-
-      console.error(error);
-
-      $("businessGrid").innerHTML = `
-
-        <div class="empty">
-
-          Could not load businesses.
-          Check your Firestore rules.
-
-        </div>
-
-      `;
-
-    }
-
-  }
-
-  window.loadBusinesses =
-    loadBusinesses;
-
-  function renderBusinesses(list) {
-
-    if (!list.length) {
-
-      $("businessGrid").innerHTML = `
-
-        <div class="empty">
-
-          No businesses yet.
-
-          <br><br>
-
-          Be the first partner on SefwiGo.
-
-        </div>
-
-      `;
-
-      return;
-
-    }
-
-    $("businessGrid").innerHTML =
-
-      list.map(function(business) {
-
-        return `
-
-          <div class="card">
-
-            <span class="badge">
-
-              ${escapeHTML(
-                business.category ||
-                "Local Business"
-              )}
-
-            </span>
-
-            <h3>
-
-              ${escapeHTML(
-                business.name
-              )}
-
-            </h3>
-
-            <div class="muted">
-
-              📍
-
-              ${escapeHTML(
-                business.location ||
-                "Sefwi Wiawso"
-              )}
-
-            </div>
-
-            <p>
-
-              ${escapeHTML(
-                business.description ||
-                "A local business on SefwiGo."
-              )}
-
-            </p>
-
-            <div class="actions">
-
-              <button
-
-                class="btn btn-primary btn-small"
-
-                onclick="openBusinessMenu('${business.id}')"
-
-              >
-
-                View Products
-
-              </button>
-
-              ${
-                business.phone
-                  ?
-
-                `
-
-                <a
-
-                  class="btn btn-secondary btn-small"
-
-                  href="${whatsappURL(
-
-                    business.phone,
-
-                    `Hello ${business.name}, I found your business on SefwiGo.`
-
-                  )}"
-
-                  target="_blank"
-
-                  rel="noopener"
-
-                >
-
-                  WhatsApp
-
-                </a>
-
-                `
-
-                  : ""
-
-              }
-
-            </div>
-
-          </div>
-
-        `;
-
-      }).join("");
-
-  }
-
-  /* =========================
-     FOOD CATEGORY
-  ========================= */
-
-  window.openFood =
-    async function() {
-
-      const foodBusinesses =
-        businesses.filter(
-          business => {
-
-            const category =
-              String(
-                business.category || ""
-              ).toLowerCase();
-
-            return (
-
-              category === "restaurant" ||
-              category === "food vendor" ||
-              category === "food"
-
-            );
-
-          }
-        );
-
-      if (!foodBusinesses.length) {
-
-        toast(
-          "No food businesses are available yet."
-        );
-
-        return;
-
-      }
-
-      $("menuTitle")
-        .textContent =
-        "Food";
-
-      $("menuSubtitle")
-        .textContent =
-        "Choose a food business";
-
-      $("menuContent").innerHTML =
-
-        foodBusinesses
-          .map(function(business) {
-
-            return `
-
-              <div class="product-row">
-
-                <div class="product-main">
-
-                  <h4>
-
-                    ${escapeHTML(
-                      business.name
-                    )}
-
-                  </h4>
-
-                  <div class="muted">
-
-                    ${escapeHTML(
-                      business.location ||
-                      "Sefwi Wiawso"
-                    )}
-
-                  </div>
-
-                  <div class="food-label">
-
-                    🍲 Food Vendor
-
-                  </div>
-
-                </div>
-
-                <button
-
-                  class="btn btn-primary btn-small"
-
-                  onclick="openBusinessMenu('${business.id}')"
-
-                >
-
-                  View Food
-
-                </button>
-
-              </div>
-
-            `;
-
-          })
-          .join("");
-
-      showModal(
-        "menuModal"
-      );
-
-    };
-
-  /* =========================
-     BUSINESS SEARCH
-  ========================= */
-
-  window.searchBusinesses =
-    function() {
-
-      const query =
-        $("searchInput")
-          .value
-          .trim()
-          .toLowerCase();
-
-      if (!query) {
-
-        renderBusinesses(
-          businesses
-        );
-
-        return;
-
-      }
-
-      const filtered =
-        businesses.filter(
-          function(business) {
-
-            return [
-
-              business.name,
-
-              business.category,
-
-              business.location,
-
-              business.description
-
-            ]
-              .some(
-                value =>
-                  String(value || "")
-                    .toLowerCase()
-                    .includes(query)
-              );
-
-          }
-        );
-
-      renderBusinesses(
-        filtered
-      );
-
-    };
-
-  /* =========================
-     PARTNER DASHBOARD
-  ========================= */
-
-  window.openPartner =
-    async function() {
-
-      showModal(
-        "partnerModal"
-      );
-
-      await renderPartnerDashboard();
-
-    };
-
-  async function getMyBusiness() {
-
-    if (!currentUser) {
-
-      return null;
-
-    }
-
-    let business =
-      businesses.find(
-        item =>
-          item.ownerUid ===
-          currentUser.uid
-      );
-
-    if (business) {
-
-      return business;
-
-    }
-
-    await loadBusinesses();
-
-    business =
-      businesses.find(
-        item =>
-          item.ownerUid ===
-          currentUser.uid
-      );
-
-    return business || null;
-
-  }
-
-  async function renderPartnerDashboard(
-    selectedTab = "overview"
-  ) {
-
-    currentBusiness =
-      await getMyBusiness();
-
-    if (!currentBusiness) {
-
-      $("partnerContent").innerHTML = `
-
-        <div class="notice">
-
-          You need to register your business
-          before you can add products.
-
-        </div>
-
-        ${businessForm()}
-
-      `;
-
-      return;
-
-    }
-
-    $("partnerContent").innerHTML = `
-
-      <div class="dashboard-summary">
-
-        <div class="stat">
-
-          <span class="muted">
-            Business
-          </span>
-
-          <strong>
-            ${escapeHTML(
-              currentBusiness.name
-            )}
-          </strong>
-
-        </div>
-
-        <div class="stat">
-
-          <span class="muted">
-            Products
-          </span>
-
-          <strong id="statProducts">
-            —
-          </strong>
-
-        </div>
-
-        <div class="stat">
-
-          <span class="muted">
-            Status
-          </span>
-
-          <strong>
-            Active
-          </strong>
-
-        </div>
-
-      </div>
-
-      <div class="tabs">
-
-        <button
-
-          class="tab ${
-            selectedTab === "overview"
-              ? "active"
-              : ""
-          }"
-
-          onclick="renderPartnerDashboard('overview')"
-
-        >
-
-          Overview
-
-        </button>
-
-        <button
-
-          class="tab ${
-            selectedTab === "business"
-              ? "active"
-              : ""
-          }"
-
-          onclick="renderPartnerDashboard('business')"
-
-        >
-
-          My Business
-
-        </button>
-
-        <button
-
-          class="tab ${
-            selectedTab === "products"
-              ? "active"
-              : ""
-          }"
-
-          onclick="renderPartnerDashboard('products')"
-
-        >
-
-          Products
-
-        </button>
-
-        <button
-
-          class="tab ${
-            selectedTab === "orders"
-              ? "active"
-              : ""
-          }"
-
-          onclick="renderPartnerDashboard('orders')"
-
-        >
-
-          Orders
-
-        </button>
-
-      </div>
-
-      <div id="partnerTabContent"></div>
-
-    `;
-
-    const content =
-      $("partnerTabContent");
-
-    if (
-      selectedTab ===
-      "overview"
-    ) {
-
-      content.innerHTML = `
-
-        <div
-          class="card"
-          style="box-shadow:none"
-        >
-
-          <h3>
-
-            Welcome,
-            ${escapeHTML(
-              currentBusiness.owner ||
-              "Partner"
-            )}
-
-          </h3>
-
-          <p>
-
-            Your business is connected
-            to Firebase.
-
-            Customers can discover your
-            business and view the products
-            you publish.
-
-          </p>
-
-          <div class="actions">
-
-            <button
-
-              class="btn btn-primary"
-
-              onclick="renderPartnerDashboard('products')"
-
-            >
-
-              Add Products
-
-            </button>
-
-            <button
-
-              class="btn btn-secondary"
-
-              onclick="renderPartnerDashboard('business')"
-
-            >
-
-              Edit Business
-
-            </button>
-
-          </div>
-
-        </div>
-
-      `;
-
-      await updateProductStat();
-
-    }
-
-    else if (
-      selectedTab ===
-      "business"
-    ) {
-
-      content.innerHTML =
-        businessForm(
-          currentBusiness
-        );
-
-      await updateProductStat();
-
-    }
-
-    else if (
-      selectedTab ===
-      "products"
-    ) {
-
-      content.innerHTML =
-        productManager();
-
-      await loadMyProducts();
-
-      await updateProductStat();
-
-    }
-
-    else {
-
-      content.innerHTML = `
-
-        <div class="empty">
-
-          <h3>
-            Orders
-          </h3>
-
-          <p>
-
-            Customer ordering and
-            order management will
-            connect here next.
-
-          </p>
-
-        </div>
-
-      `;
-
-      await updateProductStat();
-
-    }
-
-  }
-
-  window.renderPartnerDashboard =
-    renderPartnerDashboard;
-
-  /* =========================
-     BUSINESS FORM
-  ========================= */
-
-  function businessForm(
-    business = null
-  ) {
-
-    return `
-
-      <form
-        onsubmit="saveBusiness(event)"
-      >
-
-        <div class="form-grid">
-
-          <div class="field">
-
-            <label>
-              Business Name *
-            </label>
-
-            <input
-
-              id="bizName"
-
-              required
-
-              value="${escapeHTML(
-                business?.name
-              )}"
-
-              placeholder="e.g. Sefwi Taste"
-
-            >
-
-          </div>
-
-          <div class="field">
-
-            <label>
-              Category *
-            </label>
-
-            <select
-              id="bizCategory"
-              required
-            >
-
-              ${
-                [
-                  "Restaurant",
-                  "Food Vendor",
-                  "Grocery",
-                  "Shop",
-                  "Pharmacy",
-                  "Fashion",
-                  "Services",
-                  "Other"
-                ]
-                  .map(
-                    category => `
-
-                      <option
-
-                        ${
-                          business?.category ===
-                          category
-                            ? "selected"
-                            : ""
-                        }
-
-                      >
-
-                        ${category}
-
-                      </option>
-
-                    `
-                  )
-                  .join("")
-              }
-
-            </select>
-
-          </div>
-
-          <div class="field">
-
-            <label>
-              Owner / Contact Person *
-            </label>
-
-            <input
-
-              id="bizOwner"
-
-              required
-
-              value="${escapeHTML(
-                business?.owner
-              )}"
-
-              placeholder="Your name"
-
-            >
-
-          </div>
-
-          <div class="field">
-
-            <label>
-              Phone / WhatsApp *
-            </label>
-
-            <input
-
-              id="bizPhone"
-
-              required
-
-              value="${escapeHTML(
-                business?.phone
-              )}"
-
-              placeholder="024..."
-
-            >
-
-          </div>
-
-          <div class="field">
-
-            <label>
-              Location *
-            </label>
-
-            <input
-
-              id="bizLocation"
-
-              required
-
-              value="${escapeHTML(
-                business?.location
-              )}"
-
-              placeholder="Sefwi Wiawso"
-
-            >
-
-          </div>
-
-          <div class="field full">
-
-            <label>
-              Business Description
-            </label>
-
-            <textarea
-
-              id="bizDescription"
-
-              placeholder="Tell customers about your business"
-
-            >${escapeHTML(
-              business?.description
-            )}</textarea>
-
-          </div>
-
-        </div>
-
-        <button
-          class="btn btn-primary"
-          type="submit"
-        >
-
-          ${
-            business
-              ? "Save Business Changes"
-              : "Register Business"
-          }
-
-        </button>
-
-      </form>
-
-    `;
-
-  }
-
-  /* =========================
-     SAVE BUSINESS
-  ========================= */
-
-  window.saveBusiness =
-    async function(event) {
-
-      event.preventDefault();
-
-      if (!currentUser) {
-
-        toast(
-          "Please wait for Firebase sign-in."
-        );
-
-        return;
-
-      }
-
-      const data = {
+    const options=
+      [...group.querySelectorAll(".option-row")]
+      .map(row=>({
 
         name:
-          $("bizName")
-            .value
-            .trim(),
-
-        category:
-          $("bizCategory")
-            .value,
-
-        owner:
-          $("bizOwner")
-            .value
-            .trim(),
-
-        phone:
-          $("bizPhone")
-            .value
-            .trim(),
-
-        location:
-          $("bizLocation")
-            .value
-            .trim(),
-
-        description:
-          $("bizDescription")
-            .value
-            .trim(),
-
-        ownerUid:
-          currentUser.uid
-
-      };
-
-      try {
-
-        if (currentBusiness) {
-
-          await updateDoc(
-
-            doc(
-              db,
-              "businesses",
-              currentBusiness.id
-            ),
-
-            {
-
-              ...data,
-
-              updatedAt:
-                serverTimestamp()
-
-            }
-
-          );
-
-          toast(
-            "Business updated successfully."
-          );
-
-        }
-
-        else {
-
-          const reference =
-            await addDoc(
-
-              collection(
-                db,
-                "businesses"
-              ),
-
-              {
-
-                ...data,
-
-                createdAt:
-                  serverTimestamp()
-
-              }
-
-            );
-
-          currentBusiness = {
-
-            id:
-              reference.id,
-
-            ...data
-
-          };
-
-          toast(
-            "Business registered successfully."
-          );
-
-        }
-
-        await loadBusinesses();
-
-        currentBusiness =
-          await getMyBusiness();
-
-        await renderPartnerDashboard(
-          "overview"
-        );
-
-      }
-
-      catch (error) {
-
-        console.error(
-          "Business Save Error:",
-          error
-        );
-
-        toast(
-          "Could not save business. Check Firestore rules."
-        );
-
-      }
-
-    };
-
-  /* =========================
-     PRODUCT MANAGER
-  ========================= */
-
-  function productManager() {
-
-    return `
-
-      <div class="notice">
-
-        Products you add here belong to
-        your business.
-
-        Customers will only see products
-        marked as <b>Available</b>.
-
-        For food items, you can create
-        Protein, Extra Soup and Spice Level
-        choices below.
-
-      </div>
-
-      <form
-        onsubmit="saveProduct(event)"
-      >
-
-        <input
-          type="hidden"
-          id="productId"
-          value=""
-        >
-
-        <div class="form-grid">
-
-          <div class="field">
-
-            <label>
-              Product / Menu Item *
-            </label>
-
-            <input
-
-              id="productName"
-
-              required
-
-              placeholder="e.g. Jollof Rice"
-
-            >
-
-          </div>
-
-          <div class="field">
-
-            <label>
-              Category *
-            </label>
-
-            <select
-              id="productCategory"
-              onchange="handleProductCategoryChange()"
-              required
-            >
-
-              <option>
-                Main Meal
-              </option>
-
-              <option>
-                Breakfast
-              </option>
-
-              <option>
-                Drinks
-              </option>
-
-              <option>
-                Snacks
-              </option>
-
-              <option>
-                Groceries
-              </option>
-
-              <option>
-                Fashion
-              </option>
-
-              <option>
-                Services
-              </option>
-
-              <option>
-                Other
-              </option>
-
-            </select>
-
-          </div>
-
-          <div class="field">
-
-            <label>
-              Price (GH₵) *
-            </label>
-
-            <input
-
-              id="productPrice"
-
-              type="number"
-
-              min="0"
-
-              step="0.01"
-
-              required
-
-              placeholder="25.00"
-
-            >
-
-          </div>
-
-          <div class="field">
-
-            <label>
-              Availability
-            </label>
-
-            <select
-              id="productAvailable"
-            >
-
-              <option value="true">
-                Available
-              </option>
-
-              <option value="false">
-                Unavailable
-              </option>
-
-            </select>
-
-          </div>
-
-          <div class="field full">
-
-            <label>
-              Description
-            </label>
-
-            <textarea
-
-              id="productDescription"
-
-              placeholder="Short description of the product"
-
-            ></textarea>
-
-          </div>
-
-        </div>
-
-        <div
-          id="foodCustomizationBuilder"
-          class="food-customization"
-        ></div>
-
-        <div class="actions">
-
-          <button
-            id="productSubmit"
-            class="btn btn-primary"
-            type="submit"
-          >
-
-            Add Product
-
-          </button>
-
-          <button
-
-            class="btn btn-secondary"
-
-            type="button"
-
-            onclick="resetProductForm()"
-
-          >
-
-            Clear
-
-          </button>
-
-        </div>
-
-      </form>
-
-      <hr>
-
-      <h3>
-        Your Products
-      </h3>
-
-      <div id="myProducts">
-
-        <div class="loading">
-          Loading products...
-        </div>
-
-      </div>
-
-    `;
-
-  }
-
-  /* =========================
-     PRODUCT CATEGORY CHANGE
-  ========================= */
-
-  window.handleProductCategoryChange =
-    function() {
-
-      const category =
-        $("productCategory")?.value || "";
-
-      const food =
-        [
-
-          "Main Meal",
-          "Breakfast",
-          "Snacks",
-          "Drinks"
-
-        ].includes(category);
-
-      if (!food) {
-
-        $("foodCustomizationBuilder")
-          .innerHTML = "";
-
-        return;
-
-      }
-
-      renderModifierBuilder();
-
-    };
-
-  /* =========================
-     MODIFIER BUILDER
-  ========================= */
-
-  function renderModifierBuilder(
-    existingModifiers = null
-  ) {
-
-    const container =
-      $("foodCustomizationBuilder");
-
-    if (!container) {
-
-      return;
-
-    }
-
-    const modifiers =
-      existingModifiers ||
-      cloneDefaultModifiers();
-
-    container.innerHTML = `
-
-      <h3>
-        🍲 Food Customization
-      </h3>
-
-      <div class="muted">
-
-        Set the choices customers can make
-        before ordering this food.
-
-      </div>
-
-      <div class="modifier-builder">
-
-        ${modifiers
-          .map(
-            function(group, groupIndex) {
-
-              return `
-
-                <div
-                  class="modifier-group-builder"
-                  data-modifier-group="${groupIndex}"
-                >
-
-                  <div class="modifier-group-head">
-
-                    <div>
-
-                      <strong>
-                        ${escapeHTML(
-                          group.name
-                        )}
-                      </strong>
-
-                      <div class="muted">
-
-                        ${
-                          group.multi
-                            ? "Customers can choose more than one."
-                            : "Customers choose one."
-                        }
-
-                      </div>
-
-                    </div>
-
-                    ${
-                      groupIndex > 2
-                        ?
-
-                        `
-
-                        <button
-
-                          type="button"
-
-                          class="btn btn-danger btn-small"
-
-                          onclick="removeModifierGroup(${groupIndex})"
-
-                        >
-
-                          Remove Group
-
-                        </button>
-
-                        `
-
-                        : ""
-
-                    }
-
-                  </div>
-
-                  <div class="modifier-controls">
-
-                    <label>
-
-                      <input
-
-                        type="checkbox"
-
-                        class="modifier-required"
-
-                        ${
-                          group.required
-                            ? "checked"
-                            : ""
-                        }
-
-                      >
-
-                      Required
-
-                    </label>
-
-                    <label>
-
-                      <input
-
-                        type="checkbox"
-
-                        class="modifier-multi"
-
-                        ${
-                          group.multi
-                            ? "checked"
-                            : ""
-                        }
-
-                      >
-
-                      Allow multiple selections
-
-                    </label>
-
-                  </div>
-
-                  <div
-                    id="modifierOptions${groupIndex}"
-                  >
-
-                    ${group.options
-                      .map(
-                        function(option) {
-
-                          return `
-
-                            <div class="modifier-option-row">
-
-                              <input
-
-                                class="modifier-option-name"
-
-                                value="${escapeHTML(
-                                  option.name
-                                )}"
-
-                                placeholder="Option name"
-
-                              >
-
-                              <input
-
-                                class="modifier-option-price"
-
-                                type="number"
-
-                                min="0"
-
-                                step="0.01"
-
-                                value="${Number(
-                                  option.price || 0
-                                )}"
-
-                                placeholder="Price"
-
-                              >
-
-                              <button
-
-                                type="button"
-
-                                class="btn btn-danger btn-small"
-
-                                onclick="removeModifierOption(this)"
-
-                              >
-
-                                Remove
-
-                              </button>
-
-                            </div>
-
-                          `;
-
-                        }
-                      )
-                      .join("")}
-
-                  </div>
-
-                  <button
-
-                    type="button"
-
-                    class="btn btn-secondary btn-small"
-
-                    onclick="addModifierOption(${groupIndex})"
-
-                  >
-
-                    + Add Option
-
-                  </button>
-
-                </div>
-
-              `;
-
-            }
-          )
-          .join("")}
-
-      </div>
-
-      <div class="actions">
-
-        <button
-
-          type="button"
-
-          class="btn btn-secondary btn-small"
-
-          onclick="restoreFoodDefaults()"
-
-        >
-
-          Restore Food Defaults
-
-        </button>
-
-        <button
-
-          type="button"
-
-          class="btn btn-secondary btn-small"
-
-          onclick="addModifierGroup()"
-
-        >
-
-          + Add Option Group
-
-        </button>
-
-      </div>
-
-    `;
-
-  }
-
-  window.restoreFoodDefaults =
-    function() {
-
-      renderModifierBuilder(
-        cloneDefaultModifiers()
-      );
-
-      toast(
-        "Default food options restored."
-      );
-
-    };
-
-  window.addModifierOption =
-    function(groupIndex) {
-
-      const options =
-        $("modifierOptions" + groupIndex);
-
-      if (!options) {
-
-        return;
-
-      }
-
-      const row =
-        document.createElement("div");
-
-      row.className =
-        "modifier-option-row";
-
-      row.innerHTML = `
-
-        <input
-
-          class="modifier-option-name"
-
-          placeholder="Option name"
-
-        >
-
-        <input
-
-          class="modifier-option-price"
-
-          type="number"
-
-          min="0"
-
-          step="0.01"
-
-          value="0"
-
-          placeholder="Price"
-
-        >
-
-        <button
-
-          type="button"
-
-          class="btn btn-danger btn-small"
-
-          onclick="removeModifierOption(this)"
-
-        >
-
-          Remove
-
-        </button>
-
-      `;
-
-      options.appendChild(
-        row
-      );
-
-    };
-
-  window.removeModifierOption =
-    function(button) {
-
-      const row =
-        button.closest(
-          ".modifier-option-row"
-        );
-
-      if (row) {
-
-        row.remove();
-
-      }
-
-    };
-
-  window.removeModifierGroup =
-    function(groupIndex) {
-
-      const group =
-        document.querySelector(
-          `[data-modifier-group="${groupIndex}"]`
-        );
-
-      if (group) {
-
-        group.remove();
-
-      }
-
-    };
-
-  window.addModifierGroup =
-    function() {
-
-      const container =
-        $("foodCustomizationBuilder");
-
-      if (!container) {
-
-        return;
-
-      }
-
-      const builder =
-        container.querySelector(
-          ".modifier-builder"
-        );
-
-      if (!builder) {
-
-        return;
-
-      }
-
-      const groupIndex =
-        Date.now();
-
-      const group =
-        document.createElement("div");
-
-      group.className =
-        "modifier-group-builder";
-
-      group.dataset.modifierGroup =
-        groupIndex;
-
-      group.innerHTML = `
-
-        <div class="modifier-group-head">
-
-          <div>
-
-            <strong>
-              Custom Option Group
-            </strong>
-
-            <div class="muted">
-
-              You can edit the options below.
-
-            </div>
-
-          </div>
-
-          <button
-
-            type="button"
-
-            class="btn btn-danger btn-small"
-
-            onclick="this.closest('.modifier-group-builder').remove()"
-
-          >
-
-            Remove Group
-
-          </button>
-
-        </div>
-
-        <div class="field">
-
-          <label>
-            Group Name
-          </label>
-
-          <input
-
-            class="modifier-group-name"
-
-            value="Custom Option Group"
-
-            oninput="this.closest('.modifier-group-builder').querySelector('strong').textContent=this.value || 'Custom Option Group'"
-
-          >
-
-        </div>
-
-        <div class="modifier-controls">
-
-          <label>
-
-            <input
-              type="checkbox"
-              class="modifier-required"
-            >
-
-            Required
-
-          </label>
-
-          <label>
-
-            <input
-              type="checkbox"
-              class="modifier-multi"
-            >
-
-            Allow multiple selections
-
-          </label>
-
-        </div>
-
-        <div
-          id="modifierOptions${groupIndex}"
-        >
-
-          <div class="modifier-option-row">
-
-            <input
-
-              class="modifier-option-name"
-
-              placeholder="Option name"
-
-            >
-
-            <input
-
-              class="modifier-option-price"
-
-              type="number"
-
-              min="0"
-
-              step="0.01"
-
-              value="0"
-
-              placeholder="Price"
-
-            >
-
-            <button
-
-              type="button"
-
-              class="btn btn-danger btn-small"
-
-              onclick="removeModifierOption(this)"
-
-            >
-
-              Remove
-
-            </button>
-
-          </div>
-
-        </div>
-
-        <button
-
-          type="button"
-
-          class="btn btn-secondary btn-small"
-
-          onclick="addModifierOption(${groupIndex})"
-
-        >
-
-          + Add Option
-
-        </button>
-
-      `;
-
-      builder.appendChild(
-        group
-      );
-
-    };
-
-  function collectModifiers() {
-
-    const container =
-      $("foodCustomizationBuilder");
-
-    if (!container) {
-
-      return [];
-
-    }
-
-    const groups =
-      Array.from(
-        container.querySelectorAll(
-          ".modifier-group-builder"
-        )
-      );
-
-    return groups.map(
-      function(group) {
-
-        const standardGroupName =
-          group.querySelector(
-            "strong"
-          )?.textContent?.trim() || "";
-
-        const customName =
-          group.querySelector(
-            ".modifier-group-name"
-          )?.value?.trim();
-
-        const groupName =
-          customName ||
-          standardGroupName;
-
-        const required =
-          group.querySelector(
-            ".modifier-required"
-          )?.checked === true;
-
-        const multi =
-          group.querySelector(
-            ".modifier-multi"
-          )?.checked === true;
-
-        const options =
-          Array.from(
-            group.querySelectorAll(
-              ".modifier-option-row"
-            )
-          )
-          .map(
-            function(row) {
-
-              const name =
-                row.querySelector(
-                  ".modifier-option-name"
-                )?.value?.trim();
-
-              const price =
-                Number(
-                  row.querySelector(
-                    ".modifier-option-price"
-                  )?.value || 0
-                );
-
-              if (!name) {
-
-                return null;
-
-              }
-
-              return {
-
-                name,
-                price:
-                  Number.isFinite(price)
-                    ? price
-                    : 0
-
-              };
-
-            }
-          )
-          .filter(Boolean);
-
-        return {
-
-          name:
-            groupName,
-
-          required,
-
-          multi,
-
-          options
-
-        };
-
-      }
-    )
-    .filter(
-      group =>
-        group.name &&
-        group.options.length
-    );
-
-  }
-
-  /* =========================
-     LOAD MY PRODUCTS
-  ========================= */
-
-  async function loadMyProducts() {
-
-    if (
-      !currentBusiness ||
-      !currentUser
-    ) {
-
-      return;
-
-    }
-
-    try {
-
-      const snapshot =
-        await getDocs(
-          collection(
-            db,
-            "products"
-          )
-        );
-
-      products =
-        snapshot.docs
-          .map(
-            document => ({
-
-              id:
-                document.id,
-
-              ...document.data()
-
-            })
-          )
-          .filter(
-            product =>
-
-              product.businessId ===
-              currentBusiness.id &&
-
-              product.businessOwnerUid ===
-              currentUser.uid
-
-          );
-
-      renderMyProducts();
-
-      if ($("statProducts")) {
-
-        $("statProducts")
-          .textContent =
-          products.length;
-
-      }
-
-    }
-
-    catch (error) {
-
-      console.error(
-        "Product Load Error:",
-        error
-      );
-
-      if ($("myProducts")) {
-
-        $("myProducts").innerHTML = `
-
-          <div class="empty">
-
-            Could not load products.
-
-          </div>
-
-        `;
-
-      }
-
-    }
-
-  }
-
-  /* =========================
-     RENDER PRODUCTS
-  ========================= */
-
-  function renderMyProducts() {
-
-    if (!products.length) {
-
-      $("myProducts").innerHTML = `
-
-        <div class="empty">
-
-          You have no products yet.
-
-          <br><br>
-
-          Add your first menu item above.
-
-        </div>
-
-      `;
-
-      return;
-
-    }
-
-    $("myProducts").innerHTML =
-
-      products
-        .map(function(product) {
-
-          const available =
-            product.available !== false;
-
-          const food =
-            isFoodProduct(product);
-
-          const modifierCount =
-            Array.isArray(
-              product.modifiers
-            )
-              ? product.modifiers.length
-              : 0;
-
-          return `
-
-            <div class="product-row">
-
-              <div class="product-main">
-
-                <h4>
-
-                  ${escapeHTML(
-                    product.name
-                  )}
-
-                  <span
-                    class="badge ${
-                      available
-                        ? ""
-                        : "off"
-                    }"
-                  >
-
-                    ${
-                      available
-                        ? "Available"
-                        : "Unavailable"
-                    }
-
-                  </span>
-
-                </h4>
-
-                <div class="muted">
-
-                  ${escapeHTML(
-                    product.category ||
-                    "Other"
-                  )}
-
-                  ${product.description
-                    ? " · " +
-                      escapeHTML(
-                        product.description
-                      )
-                    : ""}
-
-                </div>
-
-                <div class="price">
-
-                  ${money(
-                    product.price
-                  )}
-
-                </div>
-
-                ${
-                  food && modifierCount
-                    ?
-
-                    `
-
-                    <div class="food-label">
-
-                      🍲 ${modifierCount}
-                      customization group${
-                        modifierCount === 1
-                          ? ""
-                          : "s"
-                      }
-
-                    </div>
-
-                    `
-
-                    : ""
-
-                }
-
-              </div>
-
-              <div class="product-actions">
-
-                <button
-
-                  class="btn btn-secondary btn-small"
-
-                  onclick="editProduct('${product.id}')"
-
-                >
-
-                  Edit
-
-                </button>
-
-                <button
-
-                  class="btn btn-secondary btn-small"
-
-                  onclick="toggleProductAvailability('${product.id}')"
-
-                >
-
-                  ${
-                    available
-                      ? "Disable"
-                      : "Enable"
-                  }
-
-                </button>
-
-                <button
-
-                  class="btn btn-danger btn-small"
-
-                  onclick="deleteProduct('${product.id}')"
-
-                >
-
-                  Delete
-
-                </button>
-
-              </div>
-
-            </div>
-
-          `;
-
-        })
-        .join("");
-
-  }
-
-  /* =========================
-     SAVE PRODUCT
-  ========================= */
-
-  window.saveProduct =
-    async function(event) {
-
-      event.preventDefault();
-
-      if (
-        !currentUser ||
-        !currentBusiness
-      ) {
-
-        toast(
-          "Register your business first."
-        );
-
-        return;
-
-      }
-
-      const name =
-        $("productName")
-          .value
-          .trim();
-
-      const price =
-        Number(
-          $("productPrice")
-            .value
-        );
-
-      if (
-        !name ||
-        !Number.isFinite(price) ||
-        price < 0
-      ) {
-
-        toast(
-          "Enter a valid product name and price."
-        );
-
-        return;
-
-      }
-
-      const category =
-        $("productCategory")
-          .value;
-
-      const food =
-        [
-
-          "Main Meal",
-          "Breakfast",
-          "Snacks",
-          "Drinks"
-
-        ].includes(category);
-
-      let modifiers = [];
-
-      if (food) {
-
-        modifiers =
-          collectModifiers();
-
-        if (!modifiers.length) {
-
-          toast(
-            "Add at least one food customization group."
-          );
-
-          return;
-
-        }
-
-        for (
-          const group of modifiers
-        ) {
-
-          if (
-            !group.options.length
-          ) {
-
-            toast(
-              `${group.name} needs at least one option.`
-            );
-
-            return;
-
-          }
-
-        }
-
-      }
-
-      const data = {
-
-        businessId:
-          currentBusiness.id,
-
-        businessOwnerUid:
-          currentUser.uid,
-
-        vendorId:
-          currentUser.uid,
-
-        businessName:
-          currentBusiness.name,
-
-        name:
-          name,
-
-        category:
-          category,
+          row.querySelector(".option-name").value.trim(),
 
         price:
-          price,
-
-        description:
-          $("productDescription")
-            .value
-            .trim(),
-
-        available:
-          $("productAvailable")
-            .value === "true",
-
-        modifiers:
-          food
-            ? modifiers
-            : []
-
-      };
-
-      try {
-
-        const productId =
-          $("productId")
-            .value;
-
-        if (productId) {
-
-          await updateDoc(
-
-            doc(
-              db,
-              "products",
-              productId
-            ),
-
-            {
-
-              ...data,
-
-              updatedAt:
-                serverTimestamp()
-
-            }
-
-          );
-
-          toast(
-            "Product updated."
-          );
-
-        }
-
-        else {
-
-          await addDoc(
-
-            collection(
-              db,
-              "products"
-            ),
-
-            {
-
-              ...data,
-
-              createdAt:
-                serverTimestamp()
-
-            }
-
-          );
-
-          toast(
-            "Product added successfully."
-          );
-
-        }
-
-        resetProductForm();
-
-        await loadMyProducts();
-
-      }
-
-      catch (error) {
-
-        console.error(
-          "Product Save Error:",
-          error
-        );
-
-        toast(
-          "Could not save product. Check Firestore rules."
-        );
-
-      }
-
-    };
-
-  /* =========================
-     EDIT PRODUCT
-  ========================= */
-
-  window.editProduct =
-    function(id) {
-
-      const product =
-        products.find(
-          item =>
-            item.id === id
-        );
-
-      if (!product) {
-
-        return;
-
-      }
-
-      $("productId")
-        .value =
-        product.id;
-
-      $("productName")
-        .value =
-        product.name || "";
-
-      $("productCategory")
-        .value =
-        product.category ||
-        "Other";
-
-      $("productPrice")
-        .value =
-        product.price ?? "";
-
-      $("productDescription")
-        .value =
-        product.description || "";
-
-      $("productAvailable")
-        .value =
-        product.available === false
-          ? "false"
-          : "true";
-
-      $("productSubmit")
-        .textContent =
-        "Update Product";
-
-      if (
-        isFoodProduct(product)
-      ) {
-
-        renderModifierBuilder(
-          getProductModifiers(product)
-        );
-
-      }
-      else {
-
-        $("foodCustomizationBuilder")
-          .innerHTML = "";
-
-      }
-
-      $("productName")
-        .focus();
-
-    };
-
-  /* =========================
-     RESET PRODUCT FORM
-  ========================= */
-
-  window.resetProductForm =
-    function() {
-
-      if (!$("productId")) {
-
-        return;
-
-      }
-
-      $("productId")
-        .value = "";
-
-      $("productName")
-        .value = "";
-
-      $("productCategory")
-        .value =
-        "Main Meal";
-
-      $("productPrice")
-        .value = "";
-
-      $("productDescription")
-        .value = "";
-
-      $("productAvailable")
-        .value =
-        "true";
-
-      $("productSubmit")
-        .textContent =
-        "Add Product";
-
-      renderModifierBuilder(
-        cloneDefaultModifiers()
-      );
-
-    };
-
-  /* =========================
-     DELETE PRODUCT
-  ========================= */
-
-  window.deleteProduct =
-    async function(id) {
-
-      const product =
-        products.find(
-          item =>
-            item.id === id
-        );
-
-      if (
-        !product ||
-        product.businessOwnerUid !==
-        currentUser?.uid
-      ) {
-
-        return;
-
-      }
-
-      if (
-        !confirm(
-          `Delete "${product.name}"?`
-        )
-      ) {
-
-        return;
-
-      }
-
-      try {
-
-        await deleteDoc(
-
-          doc(
-            db,
-            "products",
-            id
+          Number(
+            row.querySelector(".option-price").value || 0
           )
 
-        );
+      }))
+      .filter(o=>o.name);
 
-        toast(
-          "Product deleted."
-        );
-
-        await loadMyProducts();
-
-      }
-
-      catch (error) {
-
-        console.error(error);
-
-        toast(
-          "Could not delete product."
-        );
-
-      }
-
-    };
-
-  /* =========================
-     AVAILABILITY
-  ========================= */
-
-  window.toggleProductAvailability =
-    async function(id) {
-
-      const product =
-        products.find(
-          item =>
-            item.id === id
-        );
-
-      if (
-        !product ||
-        product.businessOwnerUid !==
-        currentUser?.uid
-      ) {
-
-        return;
-
-      }
-
-      const newAvailability =
-        product.available === false;
-
-      try {
-
-        await updateDoc(
-
-          doc(
-            db,
-            "products",
-            id
-          ),
-
-          {
-
-            available:
-              newAvailability,
-
-            updatedAt:
-              serverTimestamp()
-
-          }
-
-        );
-
-        toast(
-
-          newAvailability
-            ? "Product is now available."
-            : "Product is now unavailable."
-
-        );
-
-        await loadMyProducts();
-
-      }
-
-      catch (error) {
-
-        console.error(error);
-
-        toast(
-          "Could not update product."
-        );
-
-      }
-
-    };
-
-  /* =========================
-     PRODUCT STAT
-  ========================= */
-
-  async function updateProductStat() {
-
-    const stat =
-      $("statProducts");
-
-    if (
-      !stat ||
-      !currentBusiness ||
-      !currentUser
-    ) {
-
-      return;
-
-    }
-
-    try {
-
-      const snapshot =
-        await getDocs(
-          collection(
-            db,
-            "products"
-          )
-        );
-
-      const count =
-        snapshot.docs.filter(
-          document => {
-
-            const product =
-              document.data();
-
-            return (
-
-              product.businessId ===
-              currentBusiness.id &&
-
-              product.businessOwnerUid ===
-              currentUser.uid
-
-            );
-
-          }
-        ).length;
-
-      stat.textContent =
-        count;
-
-    }
-
-    catch (error) {
-
-      console.error(error);
-
-      stat.textContent =
-        "—";
-
-    }
-
-  }
-
-  /* =========================
-     CUSTOMER BUSINESS MENU
-  ========================= */
-
-  window.openBusinessMenu =
-    async function(id) {
-
-      const business =
-        getBusinessById(id);
-
-      if (!business) {
-
-        return;
-
-      }
-
-      $("menuTitle")
-        .textContent =
-        business.name;
-
-      $("menuSubtitle")
-        .textContent =
-
-        `${business.category || "Local Business"} · ${
-          business.location ||
-          "Sefwi Wiawso"
-        }`;
-
-      $("menuContent").innerHTML = `
-
-        <div class="loading">
-
-          Loading products...
-
-        </div>
-
-      `;
-
-      showModal(
-        "menuModal"
-      );
-
-      try {
-
-        const snapshot =
-          await getDocs(
-            collection(
-              db,
-              "products"
-            )
-          );
-
-        const businessProducts =
-          snapshot.docs
-
-            .map(
-              document => ({
-
-                id:
-                  document.id,
-
-                ...document.data()
-
-              })
-            )
-
-            .filter(
-
-              product =>
-
-                product.businessId ===
-                id &&
-
-                product.available !== false
-
-            );
-
-        if (
-          !businessProducts.length
-        ) {
-
-          $("menuContent").innerHTML = `
-
-            <div class="empty">
-
-              This business has not
-              published any available
-              products yet.
-
-            </div>
-
-          `;
-
-          return;
-
-        }
-
-        $("menuContent").innerHTML =
-
-          businessProducts
-            .map(
-              function(product) {
-
-                const food =
-                  isFoodProduct(product);
-
-                return `
-
-                  <div class="product-row">
-
-                    <div class="product-main">
-
-                      <h4>
-
-                        ${escapeHTML(
-                          product.name
-                        )}
-
-                      </h4>
-
-                      <div class="muted">
-
-                        ${escapeHTML(
-                          product.category ||
-                          ""
-                        )}
-
-                        ${
-                          product.description
-                            ? " · " +
-                              escapeHTML(
-                                product.description
-                              )
-                            : ""
-                        }
-
-                      </div>
-
-                      ${
-                        food &&
-                        Array.isArray(
-                          product.modifiers
-                        ) &&
-                        product.modifiers.length
-                          ?
-
-                          `
-
-                          <div class="food-label">
-
-                            🍲 Customize your order
-
-                          </div>
-
-                          `
-
-                          : ""
-
-                      }
-
-                    </div>
-
-                    <div>
-
-                      <div class="price">
-
-                        ${money(
-                          product.price
-                        )}
-
-                      </div>
-
-                      <div class="actions">
-
-                        ${
-                          food
-                            ?
-
-                            `
-
-                            <button
-
-                              class="btn btn-primary btn-small"
-
-                              onclick="openFoodCustomization('${product.id}','${business.id}')"
-
-                            >
-
-                              Customize & Order
-
-                            </button>
-
-                            `
-
-                            :
-
-                            business.phone
-                              ?
-
-                              `
-
-                              <a
-
-                                class="btn btn-primary btn-small"
-
-                                href="${whatsappURL(
-
-                                  business.phone,
-
-                                  `Hello ${business.name}, I would like to order ${product.name} from your SefwiGo menu.`
-
-                                )}"
-
-                                target="_blank"
-
-                                rel="noopener"
-
-                              >
-
-                                Order
-
-                              </a>
-
-                              `
-
-                              : ""
-
-                        }
-
-                      </div>
-
-                    </div>
-
-                  </div>
-
-                `;
-
-              }
-            )
-            .join("");
-
-        if (business.phone) {
-
-          $("menuContent").innerHTML += `
-
-            <div class="actions">
-
-              <a
-
-                class="btn btn-secondary"
-
-                href="${whatsappURL(
-
-                  business.phone,
-
-                  `Hello ${business.name}, I would like to order from your SefwiGo menu.`
-
-                )}"
-
-                target="_blank"
-
-                rel="noopener"
-
-              >
-
-                Contact / Order on WhatsApp
-
-              </a>
-
-            </div>
-
-          `;
-
-        }
-
-      }
-
-      catch (error) {
-
-        console.error(error);
-
-        $("menuContent").innerHTML = `
-
-          <div class="empty">
-
-            Could not load this business menu.
-
-          </div>
-
-        `;
-
-      }
-
-    };
-
-  /* =========================
-     OPEN FOOD CUSTOMIZATION
-  ========================= */
-
-  window.openFoodCustomization =
-    async function(
-      productId,
-      businessId
-    ) {
-
-      const business =
-        getBusinessById(
-          businessId
-        );
-
-      if (!business) {
-
-        toast(
-          "Business could not be found."
-        );
-
-        return;
-
-      }
-
-      try {
-
-        const snapshot =
-          await getDocs(
-            collection(
-              db,
-              "products"
-            )
-          );
-
-        const productDocument =
-          snapshot.docs.find(
-            document =>
-              document.id ===
-              productId
-          );
-
-        if (!productDocument) {
-
-          toast(
-            "Food item could not be found."
-          );
-
-          return;
-
-        }
-
-        const product = {
-
-          id:
-            productDocument.id,
-
-          ...productDocument.data()
-
-        };
-
-        currentFoodProduct = {
-
-          ...product,
-
-          business
-
-        };
-
-        $("foodModalTitle")
-          .textContent =
-          product.name;
-
-        $("foodModalSubtitle")
-          .textContent =
-          `${business.name} · ${money(product.price)}`;
-
-        renderCustomerFoodOptions(
-          product
-        );
-
-        showModal(
-          "foodModal"
-        );
-
-      }
-
-      catch (error) {
-
-        console.error(
-          "Food Product Error:",
-          error
-        );
-
-        toast(
-          "Could not load food options."
-        );
-
-      }
-
-    };
-
-  /* =========================
-     RENDER CUSTOMER FOOD
-  ========================= */
-
-  function renderCustomerFoodOptions(
-    product
-  ) {
-
-    const modifiers =
-      getProductModifiers(
-        product
-      );
-
-    $("foodModalContent").innerHTML = `
-
-      <div class="card" style="box-shadow:none">
-
-        <div class="muted">
-
-          Base price
-
-        </div>
-
-        <div class="price">
-
-          ${money(
-            product.price
-          )}
-
-        </div>
-
-        <p>
-
-          Choose how you want your food prepared.
-
-        </p>
-
-      </div>
-
-      <div id="customerModifierGroups">
-
-        ${modifiers
-          .map(
-            function(group, groupIndex) {
-
-              return `
-
-                <div
-                  class="modifier-customer-group"
-                  data-customer-group="${groupIndex}"
-                >
-
-                  <h4>
-
-                    ${escapeHTML(
-                      group.name
-                    )}
-
-                    ${
-                      group.required
-                        ?
-
-                        `<span class="muted">
-                          · Required
-                        </span>`
-
-                        : ""
-
-                    }
-
-                  </h4>
-
-                  <div class="muted">
-
-                    ${
-                      group.multi
-                        ? "Choose one or more."
-                        : "Choose one."
-                    }
-
-                  </div>
-
-                  ${group.options
-                    .map(
-                      function(option, optionIndex) {
-
-                        const inputType =
-                          group.multi
-                            ? "checkbox"
-                            : "radio";
-
-                        return `
-
-                          <div class="modifier-customer-option">
-
-                            <label>
-
-                              <input
-
-                                type="${inputType}"
-
-                                name="customerModifier${groupIndex}"
-
-                                value="${optionIndex}"
-
-                                data-group-index="${groupIndex}"
-
-                                data-option-index="${optionIndex}"
-
-                                onchange="updateFoodTotal()"
-
-                              >
-
-                              <span>
-
-                                ${escapeHTML(
-                                  option.name
-                                )}
-
-                              </span>
-
-                            </label>
-
-                            <span class="option-price">
-
-                              ${
-                                Number(
-                                  option.price || 0
-                                ) > 0
-
-                                  ? "+" +
-                                    money(
-                                      option.price
-                                    )
-
-                                  : "Included"
-
-                              }
-
-                            </span>
-
-                          </div>
-
-                        `;
-
-                      }
-                    )
-                    .join("")}
-
-                </div>
-
-              `;
-
-            }
-          )
-          .join("")}
-
-      </div>
-
-      <div class="custom-total">
-
-        <div>
-
-          <div class="muted">
-            Total
-          </div>
-
-          <strong id="foodTotal">
-
-            ${money(
-              product.price
-            )}
-
-          </strong>
-
-        </div>
-
-        <button
-
-          class="btn btn-primary"
-
-          onclick="placeCustomizedFoodOrder()"
-
-        >
-
-          Order on WhatsApp
-
-        </button>
-
-      </div>
-
-    `;
-
-    updateFoodTotal();
-
-  }
-
-  /* =========================
-     GET CUSTOMER SELECTIONS
-  ========================= */
-
-  function getCustomerSelections() {
-
-    if (!currentFoodProduct) {
-
-      return {
-
-        selections: [],
-        totalExtra: 0,
-        valid: false
-
-      };
-
-    }
-
-    const modifiers =
-      getProductModifiers(
-        currentFoodProduct
-      );
-
-    const selections = [];
-
-    let totalExtra = 0;
-
-    for (
-      let groupIndex = 0;
-      groupIndex < modifiers.length;
-      groupIndex++
-    ) {
-
-      const group =
-        modifiers[groupIndex];
-
-      const selectedInputs =
-        Array.from(
-          document.querySelectorAll(
-            `[data-group-index="${groupIndex}"]:checked`
-          )
-        );
-
-      if (
-        group.required &&
-        !selectedInputs.length
-      ) {
-
-        return {
-
-          selections,
-          totalExtra,
-          valid: false,
-          missingGroup:
-            group.name
-
-        };
-
-      }
-
-      const selectedOptions =
-        selectedInputs.map(
-          function(input) {
-
-            const optionIndex =
-              Number(
-                input.dataset.optionIndex
-              );
-
-            const option =
-              group.options[
-                optionIndex
-              ];
-
-            return {
-
-              name:
-                option?.name || "",
-
-              price:
-                Number(
-                  option?.price || 0
-                )
-
-            };
-
-          }
-        );
-
-      selectedOptions.forEach(
-        option => {
-
-          totalExtra +=
-            option.price;
-
-        }
-      );
-
-      selections.push({
-
-        group:
-          group.name,
-
-        options:
-          selectedOptions
-
-      });
-
-    }
 
     return {
-
-      selections,
-
-      totalExtra,
-
-      valid: true
-
+      name,
+      required,
+      multi,
+      options
     };
+
+  });
+
+}
+
+
+window.saveProduct=function(){
+
+  const name=
+    document.getElementById("productName").value.trim();
+
+  const price=
+    Number(
+      document.getElementById("productPrice").value || 0
+    );
+
+  const category=
+    document.getElementById("productCategory").value;
+
+  const description=
+    document.getElementById("productDescription").value;
+
+  const available=
+    document.getElementById("productAvailable").checked;
+
+  const food=
+    document.getElementById("productFood").checked;
+
+
+  if(!name || price<=0){
+
+    showToast("Enter product name and price");
+
+    return;
+  }
+
+
+  const product={
+
+    id:"product"+Date.now(),
+
+    businessId:
+      businesses[0]?.id || "demo1",
+
+    businessOwnerUid:
+      currentUser?.uid || "guest",
+
+    businessName:
+      businesses[0]?.name || "Sefwi Business",
+
+    name,
+
+    category,
+
+    price,
+
+    description,
+
+    available,
+
+    modifiers:
+      food ? readModifierEditor() : []
+
+  };
+
+
+  products.unshift(product);
+
+  renderProducts();
+
+  vendorTab("products");
+
+  showToast("Product added");
+
+};
+
+
+window.editProduct=function(id){
+
+  const product=
+    products.find(p=>p.id===id);
+
+  if(product){
+
+    productManager(product);
 
   }
 
-  /* =========================
-     UPDATE FOOD TOTAL
-  ========================= */
+};
 
-  window.updateFoodTotal =
-    function() {
 
-      if (
-        !currentFoodProduct ||
-        !$("foodTotal")
-      ) {
+window.updateProduct=function(id){
 
-        return;
+  const product=
+    products.find(p=>p.id===id);
 
-      }
+  if(!product) return;
 
-      const result =
-        getCustomerSelections();
 
-      const total =
-        Number(
-          currentFoodProduct.price || 0
-        ) +
-        result.totalExtra;
+  product.name=
+    document.getElementById("productName").value.trim();
 
-      $("foodTotal")
-        .textContent =
-        money(total);
+  product.price=
+    Number(
+      document.getElementById("productPrice").value || 0
+    );
 
-    };
+  product.category=
+    document.getElementById("productCategory").value;
 
-  /* =========================
-     PLACE CUSTOMIZED ORDER
-  ========================= */
+  product.description=
+    document.getElementById("productDescription").value;
 
-  window.placeCustomizedFoodOrder =
-    function() {
+  product.available=
+    document.getElementById("productAvailable").checked;
 
-      if (!currentFoodProduct) {
+  product.modifiers=
+    document.getElementById("productFood").checked
+    ? readModifierEditor()
+    : [];
 
-        return;
 
-      }
+  renderProducts();
 
-      const result =
-        getCustomerSelections();
+  vendorTab("products");
 
-      if (!result.valid) {
+  showToast("Product updated");
 
-        toast(
-          `Please choose ${result.missingGroup}.`
-        );
+};
 
-        return;
 
-      }
+window.removeProduct=function(id){
 
-      const product =
-        currentFoodProduct;
+  products=
+    products.filter(p=>p.id!==id);
 
-      const business =
-        product.business;
+  renderProducts();
 
-      if (!business.phone) {
+  vendorTab("products");
 
-        toast(
-          "This food vendor has no WhatsApp number."
-        );
+  showToast("Product deleted");
 
-        return;
+};
 
-      }
 
-      const total =
-        Number(
-          product.price || 0
-        ) +
-        result.totalExtra;
+/* =========================================================
+   DRIVER
+========================================================= */
 
-      let message =
+function renderDriver(){
 
-        `Hello ${business.name}, I want to order from SefwiGo.%0A`;
+  const content=
+    document.getElementById("driverContent");
 
-      message =
-        `Hello ${business.name}, I want to order from SefwiGo.\n\n` +
-        `Food: ${product.name}\n` +
-        `Base price: ${money(product.price)}\n`;
+  const deliveryOrders=
+    orders.filter(o=>
+      ["Ready","Out for Delivery"].includes(o.status)
+    );
 
-      result.selections.forEach(
-        function(selection) {
 
-          if (
-            !selection.options.length
-          ) {
+  if(!deliveryOrders.length){
 
-            return;
+    content.innerHTML=
+      '<div class="empty">No deliveries available.</div>';
 
-          }
+    return;
+  }
 
-          message +=
-            `\n${selection.group}: `;
 
-          message +=
-            selection.options
-              .map(
-                option =>
-                  `${option.name}${
-                    option.price > 0
-                      ? ` (+${money(option.price)})`
-                      : ""
-                  }`
-              )
-              .join(", ");
+  content.innerHTML=
+    deliveryOrders.map(order=>`
 
-        }
-      );
+      <div class="card" style="margin-bottom:12px">
 
-      message +=
-        `\n\nTotal: ${money(total)}`;
+        <div class="card-top">
 
-      const url =
-        whatsappURL(
-          business.phone,
-          message
-        );
+          <h3>${order.id}</h3>
 
-      window.open(
-        url,
-        "_blank"
-      );
-
-    };
-
-  /* =========================
-     PROPERTY
-     KEPT AS ORIGINAL
-  ========================= */
-
-  async function loadProperties() {
-
-    try {
-
-      const snapshot =
-        await getDocs(
-          collection(
-            db,
-            "properties"
-          )
-        );
-
-      properties =
-        snapshot.docs.map(
-          document => ({
-
-            id:
-              document.id,
-
-            ...document.data()
-
-          })
-        );
-
-      renderProperties(
-        properties.slice(0, 6)
-      );
-
-    }
-
-    catch (error) {
-
-      console.error(error);
-
-      $("propertyGrid").innerHTML = `
-
-        <div class="empty">
-
-          Could not load properties.
+          <span class="badge">
+            ${order.status}
+          </span>
 
         </div>
 
-      `;
+        <p style="margin-top:10px">
+          Order total: GH₵${Number(order.total).toFixed(2)}
+        </p>
 
-    }
+        <div class="card-actions">
+
+          <button class="small-btn"
+            onclick="driverAccept('${order.id}')">
+            Accept Delivery
+          </button>
+
+          <button class="small-btn"
+            onclick="driverUpdate('${order.id}','Out for Delivery')">
+            On the Way
+          </button>
+
+          <button class="small-btn"
+            onclick="driverUpdate('${order.id}','Delivered')">
+            Delivered
+          </button>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+window.showDriverDashboard=function(){
+
+  closeModal("accountModal");
+
+  hidePages();
+
+  document.getElementById("driverPage")
+    .classList.remove("hidden");
+
+  renderDriver();
+
+};
+
+
+window.driverAccept=function(id){
+
+  driverUpdate(id,"Out for Delivery");
+
+};
+
+
+window.driverUpdate=function(id,status){
+
+  const order=orders.find(o=>o.id===id);
+
+  if(order){
+
+    order.status=status;
+
+    renderDriver();
+
+    renderOrders();
+
+    showToast(`${id}: ${status}`);
 
   }
 
-  function renderProperties(list) {
+};
 
-    if (!list.length) {
 
-      $("propertyGrid").innerHTML = `
+/* =========================================================
+   ADMIN
+========================================================= */
 
-        <div class="empty">
+function renderAdmin(){
 
-          No property listings yet.
+  document.getElementById("adminUsers")
+    .textContent="0";
 
-        </div>
+  document.getElementById("adminBusinesses")
+    .textContent=businesses.length;
 
-      `;
+  document.getElementById("adminOrders")
+    .textContent=orders.length;
 
-      return;
 
-    }
+  document.getElementById("adminContent").innerHTML=`
 
-    $("propertyGrid").innerHTML =
+    <div class="card">
 
-      list.map(
-        function(property) {
+      <h3>Business Management</h3>
 
-          return `
+      <div style="margin-top:12px">
 
-            <div class="card">
+        ${businesses.map(b=>`
 
-              <span class="badge">
+          <div class="cart-row">
 
-                ${escapeHTML(
-                  property.type ||
-                  "Property"
-                )}
+            <div>
 
-                ·
+              <strong>
+                ${escapeHtml(b.name)}
+              </strong>
 
-                ${escapeHTML(
-                  property.purpose ||
-                  "For Sale"
-                )}
-
-              </span>
-
-              <h3>
-
-                ${escapeHTML(
-                  property.title
-                )}
-
-              </h3>
-
-              <div class="price">
-
-                ${money(
-                  property.price
-                )}
-
-              </div>
-
-              <div class="muted">
-
-                📍
-
-                ${escapeHTML(
-                  property.location ||
-                  ""
-                )}
-
-              </div>
-
-              <p>
-
-                ${escapeHTML(
-                  property.description ||
-                  ""
-                )}
-
+              <p class="muted">
+                ${escapeHtml(b.category)}
               </p>
-
-              ${
-                property.phone
-                  ?
-
-                `
-
-                <a
-
-                  class="btn btn-primary btn-small"
-
-                  href="${whatsappURL(
-
-                    property.phone,
-
-                    `Hello, I am interested in your SefwiGo property listing: ${property.title}`
-
-                  )}"
-
-                  target="_blank"
-
-                  rel="noopener"
-
-                >
-
-                  Contact Owner
-
-                </a>
-
-                `
-
-                  : ""
-
-              }
 
             </div>
 
-          `;
+            <span class="badge">
+              Active
+            </span>
 
-        }
-      ).join("");
+          </div>
+
+        `).join("")}
+
+      </div>
+
+    </div>
+
+    <div class="card" style="margin-top:15px">
+
+      <h3>Order Management</h3>
+
+      <p class="muted" style="margin-top:6px">
+        Total orders: ${orders.length}
+      </p>
+
+    </div>
+
+    <div class="card" style="margin-top:15px">
+
+      <h3>Property Management</h3>
+
+      <p class="muted" style="margin-top:6px">
+        Total listings: ${properties.length}
+      </p>
+
+    </div>
+
+  `;
+
+}
+
+
+window.showAdminDashboard=function(){
+
+  closeModal("accountModal");
+
+  hidePages();
+
+  document.getElementById("adminPage")
+    .classList.remove("hidden");
+
+  renderAdmin();
+
+};
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+window.searchApp=function(query){
+
+  query=query.toLowerCase().trim();
+
+  if(!query){
+
+    renderBusinesses();
+
+    renderProducts();
+
+    return;
 
   }
 
-  /* =========================
-     PROPERTY MODAL
-     ORIGINAL STRUCTURE
-  ========================= */
 
-  window.openProperty =
-    function() {
+  const filteredBusinesses=
+    businesses.filter(b=>
+      `${b.name} ${b.category} ${b.location}`
+      .toLowerCase()
+      .includes(query)
+    );
 
-      showModal(
-        "propertyModal"
-      );
 
-      propertyTab(
-        "browse"
-      );
+  const filteredProducts=
+    products.filter(p=>
+      `${p.name} ${p.category} ${p.businessName}`
+      .toLowerCase()
+      .includes(query)
+    );
 
-    };
 
-  window.propertyTab =
-    async function(tab) {
+  renderBusinesses(filteredBusinesses);
 
-      [
-        "propBrowseTab",
-        "propRegisterTab",
-        "propMineTab"
-      ]
-        .forEach(
-          id =>
-            $(id)
-              .classList
-              .remove("active")
-        );
+  renderProducts(filteredProducts);
 
-      if (
-        tab === "browse"
-      ) {
+};
 
-        $("propBrowseTab")
-          .classList
-          .add("active");
 
+/* =========================================================
+   UTILITIES
+========================================================= */
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeAttr(value){
+
+  return escapeHtml(value);
+
+}
+
+
+/* =========================================================
+   UPDATE COUNTERS
+========================================================= */
+
+setInterval(()=>{
+
+  document.getElementById("vendorProducts")
+    .textContent=products.length;
+
+  document.getElementById("vendorOrders")
+    .textContent=orders.length;
+
+  document.getElementById("vendorSales")
+    .textContent=
+      "GH₵"+
+      orders.reduce(
+        (sum,o)=>sum+Number(o.total||0),
+        0
+      ).toFixed(2);
+
+  renderAdmin();
+
+},2000);
+
+
+/* =========================================================
+   FIRESTORE HELPERS
+   Ready for connecting real records
+========================================================= */
+
+window.saveBusinessToFirebase=async function(business){
+
+  try{
+
+    await addDoc(
+      collection(db,"businesses"),
+      {
+        ...business,
+        createdAt:serverTimestamp()
       }
+    );
 
-      else if (
-        tab === "register"
-      ) {
+    showToast("Business saved");
 
-        $("propRegisterTab")
-          .classList
-          .add("active");
+  }catch(error){
 
-      }
+    console.error(error);
 
-      else {
-
-        $("propMineTab")
-          .classList
-          .add("active");
-
-      }
-
-      if (
-        tab === "browse"
-      ) {
-
-        $("propertyContent").innerHTML =
-
-          properties.length
-
-            ?
-
-            properties.map(
-              function(property) {
-
-                return `
-
-                  <div class="product-row">
-
-                    <div class="product-main">
-
-                      <h4>
-
-                        ${escapeHTML(
-                          property.title
-                        )}
-
-                      </h4>
-
-                      <div class="muted">
-
-                        ${escapeHTML(
-                          property.type ||
-                          ""
-                        )}
-
-                        ·
-
-                        ${escapeHTML(
-                          property.purpose ||
-                          ""
-                        )}
-
-                        ·
-
-                        ${escapeHTML(
-                          property.location ||
-                          ""
-                        )}
-
-                      </div>
-
-                    </div>
-
-                    <div>
-
-                      <div class="price">
-
-                        ${money(
-                          property.price
-                        )}
-
-                      </div>
-
-                      ${
-                        property.phone
-                          ?
-
-                          `
-
-                          <a
-
-                            class="btn btn-primary btn-small"
-
-                            href="${whatsappURL(
-
-                              property.phone,
-
-                              `Hello, I am interested in: ${property.title}`
-
-                            )}"
-
-                            target="_blank"
-
-                            rel="noopener"
-
-                          >
-
-                            Contact
-
-                          </a>
-
-                          `
-
-                          : ""
-
-                      }
-
-                    </div>
-
-                  </div>
-
-                `;
-
-              }
-            ).join("")
-
-            :
-
-            `
-
-              <div class="empty">
-
-                No properties listed yet.
-
-              </div>
-
-            `;
-
-      }
-
-      else if (
-        tab === "register"
-      ) {
-
-        $("propertyContent")
-          .innerHTML =
-          propertyForm();
-
-      }
-
-      else {
-
-        if (!currentUser) {
-
-          $("propertyContent")
-            .innerHTML = `
-
-              <div class="empty">
-
-                Signing in...
-
-              </div>
-
-            `;
-
-          return;
-
-        }
-
-        const mine =
-          properties.filter(
-            property =>
-              property.ownerUid ===
-              currentUser.uid
-          );
-
-        $("propertyContent")
-          .innerHTML =
-
-          mine.length
-
-            ?
-
-            mine.map(
-              function(property) {
-
-                return `
-
-                  <div class="product-row">
-
-                    <div class="product-main">
-
-                      <h4>
-
-                        ${escapeHTML(
-                          property.title
-                        )}
-
-                      </h4>
-
-                      <div class="muted">
-
-                        ${escapeHTML(
-                          property.location ||
-                          ""
-                        )}
-
-                        ·
-
-                        ${money(
-                          property.price
-                        )}
-
-                      </div>
-
-                    </div>
-
-                    <button
-
-                      class="btn btn-danger btn-small"
-
-                      onclick="deleteProperty('${property.id}')"
-
-                    >
-
-                      Delete
-
-                    </button>
-
-                  </div>
-
-                `;
-
-              }
-            ).join("")
-
-            :
-
-            `
-
-              <div class="empty">
-
-                You have no property listings.
-
-              </div>
-
-            `;
-
-      }
-
-    };
-
-  /* =========================
-     PROPERTY FORM
-     ORIGINAL
-  ========================= */
-
-  function propertyForm() {
-
-    return `
-
-      <form
-        onsubmit="saveProperty(event)"
-      >
-
-        <div class="form-grid">
-
-          <div class="field">
-
-            <label>
-              Title *
-            </label>
-
-            <input
-
-              id="propTitle"
-
-              required
-
-              placeholder="2-bedroom house"
-
-            >
-
-          </div>
-
-          <div class="field">
-
-            <label>
-              Type *
-            </label>
-
-            <select id="propType">
-
-              <option>
-                House
-              </option>
-
-              <option>
-                Apartment
-              </option>
-
-              <option>
-                Land
-              </option>
-
-              <option>
-                Shop
-              </option>
-
-              <option>
-                Office
-              </option>
-
-              <option>
-                Other
-              </option>
-
-            </select>
-
-          </div>
-
-          <div class="field">
-
-            <label>
-              Purpose *
-            </label>
-
-            <select id="propPurpose">
-
-              <option>
-                For Sale
-              </option>
-
-              <option>
-                For Rent
-              </option>
-
-            </select>
-
-          </div>
-
-          <div class="field">
-
-            <label>
-              Price (GH₵) *
-            </label>
-
-            <input
-
-              id="propPrice"
-
-              type="number"
-
-              min="0"
-
-              step="0.01"
-
-              required
-
-            >
-
-          </div>
-
-          <div class="field">
-
-            <label>
-              Location *
-            </label>
-
-            <input
-
-              id="propLocation"
-
-              required
-
-              placeholder="Sefwi Wiawso"
-
-            >
-
-          </div>
-
-          <div class="field">
-
-            <label>
-              Phone *
-            </label>
-
-            <input
-
-              id="propPhone"
-
-              required
-
-              placeholder="024..."
-
-            >
-
-          </div>
-
-          <div class="field full">
-
-            <label>
-              Description
-            </label>
-
-            <textarea
-              id="propDescription"
-            ></textarea>
-
-          </div>
-
-        </div>
-
-        <button
-          class="btn btn-primary"
-          type="submit"
-        >
-
-          Publish Property
-
-        </button>
-
-      </form>
-
-    `;
+    showToast("Failed to save business");
 
   }
 
-  /* =========================
-     SAVE PROPERTY
-     ORIGINAL
-  ========================= */
+};
 
-  window.saveProperty =
-    async function(event) {
 
-      event.preventDefault();
+window.saveProductToFirebase=async function(product){
 
-      if (!currentUser) {
+  try{
 
-        toast(
-          "Please wait for sign-in."
-        );
-
-        return;
-
+    await addDoc(
+      collection(db,"products"),
+      {
+        ...product,
+        createdAt:serverTimestamp()
       }
+    );
 
-      try {
+    showToast("Product saved");
 
-        await addDoc(
+  }catch(error){
 
-          collection(
-            db,
-            "properties"
-          ),
+    console.error(error);
 
-          {
+    showToast("Failed to save product");
 
-            title:
-              $("propTitle")
-                .value
-                .trim(),
+  }
 
-            type:
-              $("propType")
-                .value,
+};
 
-            purpose:
-              $("propPurpose")
-                .value,
 
-            price:
-              Number(
-                $("propPrice")
-                  .value
-              ),
+window.saveOrderToFirebase=async function(order){
 
-            location:
-              $("propLocation")
-                .value
-                .trim(),
+  try{
 
-            phone:
-              $("propPhone")
-                .value
-                .trim(),
-
-            description:
-              $("propDescription")
-                .value
-                .trim(),
-
-            ownerUid:
-              currentUser.uid,
-
-            createdAt:
-              serverTimestamp()
-
-          }
-
-        );
-
-        toast(
-          "Property published."
-        );
-
-        await loadProperties();
-
-        propertyTab(
-          "mine"
-        );
-
+    await addDoc(
+      collection(db,"orders"),
+      {
+        ...order,
+        createdAt:serverTimestamp()
       }
+    );
 
-      catch (error) {
+    showToast("Order saved");
 
-        console.error(error);
+  }catch(error){
 
-        toast(
-          "Could not publish property."
-        );
+    console.error(error);
 
+    showToast("Failed to save order");
+
+  }
+
+};
+
+
+/* =========================================================
+   FIRESTORE PROPERTY SUPPORT
+========================================================= */
+
+window.savePropertyToFirebase=async function(property){
+
+  try{
+
+    await addDoc(
+      collection(db,"properties"),
+      {
+        title:property.title,
+        type:property.type,
+        purpose:property.purpose,
+        price:property.price,
+        location:property.location,
+        phone:property.phone,
+        description:property.description,
+        ownerUid:property.ownerUid,
+        createdAt:serverTimestamp()
       }
+    );
 
-    };
+    showToast("Property saved");
 
-  /* =========================
-     DELETE PROPERTY
-     ORIGINAL
-  ========================= */
+  }catch(error){
 
-  window.deleteProperty =
-    async function(id) {
+    console.error(error);
 
-      const property =
-        properties.find(
-          item =>
-            item.id === id
-        );
+    showToast("Failed to save property");
 
-      if (
-        !property ||
-        property.ownerUid !==
-        currentUser?.uid
-      ) {
+  }
 
-        return;
+};
 
-      }
 
-      if (
-        !confirm(
-          "Delete this property listing?"
-        )
-      ) {
+/* =========================================================
+   INITIAL VENDOR NAME
+========================================================= */
 
-        return;
+document.getElementById("vendorName")
+  .textContent=
+    businesses[0]?.name || "My Business";
 
-      }
-
-      try {
-
-        await deleteDoc(
-
-          doc(
-            db,
-            "properties",
-            id
-          )
-
-        );
-
-        toast(
-          "Property deleted."
-        );
-
-        await loadProperties();
-
-        propertyTab(
-          "mine"
-        );
-
-      }
-
-      catch (error) {
-
-        console.error(error);
-
-        toast(
-          "Could not delete property."
-        );
-
-      }
-
-    };
-
-  /* =========================
-     PARCEL
-  ========================= */
-
-  window.openParcel =
-    function() {
-
-      showModal(
-        "parcelModal"
-      );
-
-    };
-
-  window.requestParcel =
-    function() {
-
-      const number =
-        "233000000000";
-
-      const message =
-        "Hello SefwiGo, I want to request parcel pickup/delivery.";
-
-      const url =
-        `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
-
-      window.open(
-        url,
-        "_blank"
-      );
-
-    };
-
-  /* =========================
-     ORDERS
-  ========================= */
-
-  window.openOrders =
-    function() {
-
-      showModal(
-        "ordersModal"
-      );
-
-    };
-
-  /* =========================
-     ACCOUNT
-  ========================= */
-
-  window.openAccount =
-    function() {
-
-      $("accountContent")
-        .innerHTML = `
-
-        <div
-          class="card"
-          style="box-shadow:none"
-        >
-
-          <h3>
-            SefwiGo Account
-          </h3>
-
-          <p class="muted">
-
-            Your current session uses
-            Firebase Anonymous Authentication.
-
-          </p>
-
-          <p>
-
-            <b>
-              Connection:
-            </b>
-
-            ${
-              currentUser
-                ? "Connected"
-                : "Connecting..."
-            }
-
-          </p>
-
-          <div class="actions">
-
-            <button
-
-              class="btn btn-primary"
-
-              onclick="
-
-                openPartner();
-
-                closeModal('accountModal');
-
-              "
-
-            >
-
-              Partner Dashboard
-
-            </button>
-
-          </div>
-
-        </div>
-
-      `;
-
-      showModal(
-        "accountModal"
-      );
-
-    };
-
-  /* =========================
-     HOME
-  ========================= */
-
-  window.scrollHome =
-    function() {
-
-      closeModal(
-        "partnerModal"
-      );
-
-      closeModal(
-        "propertyModal"
-      );
-
-      closeModal(
-        "menuModal"
-      );
-
-      closeModal(
-        "foodModal"
-      );
-
-      window.scrollTo({
-
-        top: 0,
-
-        behavior: "smooth"
-
-      });
-
-    };
-
-  /* =========================
-     COMING SOON
-  ========================= */
-
-  window.showComingSoon =
-    function(name) {
-
-      toast(
-        `${name} is coming next.`
-      );
-
-    };
-
-  /* =========================
-     CLOSE MODALS
-     BY CLICKING OUTSIDE
-  ========================= */
-
-  window.addEventListener(
-    "click",
-    function(event) {
-
-      if (
-        event.target.classList
-          .contains("modal")
-      ) {
-
-        event.target
-          .classList
-          .remove("show");
-
-      }
-
-    }
-  );
 
 </script>
 
