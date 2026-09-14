@@ -3,781 +3,731 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0b6b3a">
+  <meta name="theme-color" content="#0f766e">
   <title>SefwiGo Management</title>
-  <meta name="description" content="SefwiGo Partnership and business management dashboard.">
+
   <style>
-    :root{
-      --green:#0b6b3a;
-      --green-dark:#064b29;
-      --green-soft:#eaf7ef;
-      --gold:#d7a928;
-      --gold-soft:#fff8df;
-      --ink:#16231c;
-      --muted:#66736b;
-      --line:#dce5df;
-      --bg:#f5f8f6;
-      --white:#fff;
-      --danger:#b42318;
-      --danger-bg:#fff1f0;
-      --shadow:0 12px 35px rgba(20,50,35,.08);
-      --radius:18px;
-    }
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      color:var(--ink);
-      background:var(--bg);
+      font-family:Arial,Helvetica,sans-serif;
+      background:#f5f7f8;
+      color:#17202a;
     }
     button,input,select,textarea{font:inherit}
     button{cursor:pointer}
-    a{color:inherit}
     .hidden{display:none!important}
-    .app{min-height:100vh}
-    .topbar{
-      position:sticky;top:0;z-index:50;
-      background:rgba(255,255,255,.96);
-      backdrop-filter:blur(12px);
-      border-bottom:1px solid var(--line);
-      height:70px;
-      display:flex;align-items:center;justify-content:space-between;
-      padding:0 22px;
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:20;
+      background:#fff;
+      border-bottom:1px solid #e5e7eb;
+      padding:14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
     }
-    .brand{display:flex;align-items:center;gap:11px;text-decoration:none}
-    .brand-mark{
-      width:42px;height:42px;border-radius:13px;
-      background:linear-gradient(135deg,var(--green),#159c58);
-      color:#fff;display:grid;place-items:center;font-weight:900;
-      box-shadow:0 6px 16px rgba(11,107,58,.22)
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:800;
+      font-size:21px;
+      color:#0f766e;
     }
-    .brand-text strong{display:block;font-size:18px}
-    .brand-text small{display:block;color:var(--muted);font-size:11px}
-    .top-actions{display:flex;align-items:center;gap:9px}
-    .user-chip{
-      display:flex;align-items:center;gap:8px;padding:8px 11px;
-      background:var(--green-soft);border-radius:999px;font-size:13px
+    .brand-icon{
+      width:38px;
+      height:38px;
+      border-radius:12px;
+      background:#0f766e;
+      color:white;
+      display:grid;
+      place-items:center;
     }
-    .avatar{
-      width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
-      background:var(--green);color:#fff;font-weight:800;font-size:12px
-    }
-    .layout{display:flex;min-height:calc(100vh - 70px)}
-    .sidebar{
-      width:250px;background:#fff;border-right:1px solid var(--line);
-      padding:20px 14px;position:fixed;top:70px;bottom:0;overflow:auto
-    }
-    .nav-label{
-      color:#8a958f;font-size:11px;text-transform:uppercase;letter-spacing:.08em;
-      margin:12px 10px 7px;font-weight:800
-    }
-    .nav-btn{
-      width:100%;border:0;background:transparent;text-align:left;
-      padding:12px 13px;border-radius:12px;display:flex;align-items:center;gap:11px;
-      color:#46534c;font-weight:650;margin-bottom:4px
-    }
-    .nav-btn:hover{background:#f3f7f4}
-    .nav-btn.active{background:var(--green-soft);color:var(--green)}
-    .nav-icon{width:22px;text-align:center}
-    .main{margin-left:250px;flex:1;padding:28px;max-width:1600px}
-    .page-head{display:flex;justify-content:space-between;align-items:flex-start;gap:15px;margin-bottom:24px}
-    .page-head h1{margin:0 0 6px;font-size:30px}
-    .page-head p{margin:0;color:var(--muted)}
-    .actions{display:flex;gap:9px;flex-wrap:wrap}
-    .btn{
-      border:1px solid var(--line);background:#fff;color:var(--ink);
-      padding:10px 15px;border-radius:11px;font-weight:750
-    }
-    .btn:hover{transform:translateY(-1px)}
-    .btn-primary{background:var(--green);color:#fff;border-color:var(--green)}
-    .btn-gold{background:var(--gold);color:#211a07;border-color:var(--gold)}
-    .btn-danger{background:var(--danger);color:#fff;border-color:var(--danger)}
-    .btn-ghost{background:transparent}
-    .grid{display:grid;gap:16px}
-    .stats{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:20px}
-    .stat,.card{
-      background:#fff;border:1px solid var(--line);border-radius:var(--radius);
-      box-shadow:var(--shadow)
-    }
-    .stat{padding:19px}
-    .stat .label{color:var(--muted);font-size:13px}
-    .stat .value{font-size:28px;font-weight:900;margin-top:6px}
-    .stat .hint{font-size:12px;color:var(--muted);margin-top:5px}
-    .two{grid-template-columns:1.25fr .75fr}
-    .card{padding:20px}
-    .card-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:15px}
-    .card-head h2,.card-head h3{margin:0;font-size:18px}
-    .muted{color:var(--muted)}
-    .welcome{
-      padding:24px;border-radius:22px;margin-bottom:20px;color:#fff;
-      background:linear-gradient(135deg,var(--green-dark),var(--green));
-      position:relative;overflow:hidden
-    }
-    .welcome:after{
-      content:"";position:absolute;width:220px;height:220px;border-radius:50%;
-      right:-80px;top:-100px;background:rgba(255,255,255,.08)
-    }
-    .welcome h2{margin:0 0 6px;font-size:25px}
-    .welcome p{margin:0;opacity:.88;max-width:680px}
-    .form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-    .field{display:flex;flex-direction:column;gap:7px}
-    .field.full{grid-column:1/-1}
-    label{font-size:13px;font-weight:750}
-    input,select,textarea{
-      width:100%;border:1px solid #ccd8d1;border-radius:11px;padding:11px 12px;
-      background:#fff;color:var(--ink);outline:none
-    }
-    input:focus,select:focus,textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(11,107,58,.09)}
-    textarea{min-height:100px;resize:vertical}
-    .table-wrap{overflow:auto}
-    table{width:100%;border-collapse:collapse;min-width:680px}
-    th,td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;font-size:13px;vertical-align:middle}
-    th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.04em}
-    .badge{
-      display:inline-flex;align-items:center;padding:5px 9px;border-radius:999px;
-      font-size:11px;font-weight:800;background:#eef2ef;color:#526058
-    }
-    .badge.green{background:#e6f6ed;color:#08733d}
-    .badge.gold{background:#fff3c9;color:#775a00}
-    .badge.red{background:#ffe9e7;color:#a51c12}
-    .empty{padding:30px;text-align:center;color:var(--muted)}
-    .search-row{display:flex;gap:10px;margin-bottom:15px;flex-wrap:wrap}
-    .search-row input{max-width:360px}
-    .notice{
-      padding:12px 14px;border-radius:12px;background:var(--gold-soft);
-      border:1px solid #f0dda1;color:#6b5505;font-size:13px;margin-bottom:15px
-    }
-    .danger-notice{background:var(--danger-bg);border-color:#f1c5c1;color:#8e2118}
-    .modal{
-      position:fixed;inset:0;background:rgba(7,21,14,.55);z-index:100;
-      display:none;align-items:center;justify-content:center;padding:18px
-    }
-    .modal.show{display:flex}
-    .modal-box{
-      background:#fff;width:min(560px,100%);max-height:90vh;overflow:auto;
-      border-radius:20px;padding:22px;box-shadow:0 25px 70px rgba(0,0,0,.25)
-    }
-    .modal-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:17px}
-    .modal-head h2{margin:0}
-    .icon-btn{border:0;background:#f0f4f1;border-radius:10px;width:36px;height:36px}
-    .auth-screen{
-      min-height:100vh;display:grid;place-items:center;padding:20px;
-      background:radial-gradient(circle at top right,#dff4e7,transparent 45%),var(--bg)
+
+    .auth-wrap{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
     }
     .auth-card{
-      width:min(470px,100%);background:#fff;border:1px solid var(--line);
-      border-radius:24px;padding:28px;box-shadow:0 25px 80px rgba(20,60,40,.12)
+      background:white;
+      width:100%;
+      max-width:450px;
+      border-radius:20px;
+      padding:25px;
+      box-shadow:0 8px 30px rgba(0,0,0,.08);
     }
-    .auth-card .brand{margin-bottom:22px}
-    .auth-card h1{margin:0 0 7px;font-size:26px}
-    .auth-card p{margin:0 0 20px;color:var(--muted)}
-    .tabs{display:flex;background:#f2f6f3;border-radius:12px;padding:4px;margin-bottom:18px}
-    .tab{flex:1;border:0;background:transparent;padding:10px;border-radius:9px;font-weight:750}
-    .tab.active{background:#fff;color:var(--green);box-shadow:0 2px 8px rgba(0,0,0,.06)}
-    .auth-footer{text-align:center;margin-top:15px;font-size:13px;color:var(--muted)}
-    .link-btn{border:0;background:none;color:var(--green);font-weight:800;padding:0}
-    .mobile-menu{display:none;border:0;background:#eef5f0;border-radius:10px;width:40px;height:40px}
-    .toast{
-      position:fixed;right:18px;bottom:18px;z-index:200;max-width:390px;
-      background:#17231c;color:#fff;padding:13px 16px;border-radius:12px;
-      box-shadow:0 15px 35px rgba(0,0,0,.2);display:none;font-size:13px
+
+    .app{
+      max-width:1200px;
+      margin:auto;
+      padding:18px;
     }
-    .toast.show{display:block}
-    .loading{opacity:.65;pointer-events:none}
-    .mini-list{display:grid;gap:9px}
-    .mini-item{display:flex;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}
-    .mini-item:last-child{border-bottom:0}
-    .mini-item strong{font-size:13px}
-    .mini-item small{display:block;color:var(--muted);margin-top:2px}
+
+    .tabs{
+      display:flex;
+      gap:8px;
+      overflow-x:auto;
+      margin-bottom:18px;
+      padding-bottom:4px;
+    }
+    .tab{
+      border:0;
+      background:#e8eeee;
+      color:#334155;
+      padding:11px 15px;
+      border-radius:12px;
+      white-space:nowrap;
+      font-weight:700;
+    }
+    .tab.active{
+      background:#0f766e;
+      color:#fff;
+    }
+
     .section{display:none}
     .section.active{display:block}
-    .footer-note{font-size:12px;color:var(--muted);margin-top:22px;text-align:center}
-    @media(max-width:1050px){
-      .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .two{grid-template-columns:1fr}
+
+    .card{
+      background:#fff;
+      border:1px solid #e5e7eb;
+      border-radius:18px;
+      padding:18px;
+      margin-bottom:18px;
+      box-shadow:0 3px 12px rgba(0,0,0,.03);
     }
-    @media(max-width:780px){
-      .topbar{padding:0 14px}
-      .mobile-menu{display:block}
-      .sidebar{
-        transform:translateX(-105%);transition:.2s;z-index:60;width:270px;
-        box-shadow:10px 0 35px rgba(0,0,0,.08)
-      }
-      .sidebar.open{transform:translateX(0)}
-      .main{margin-left:0;padding:20px 14px}
-      .user-chip .user-email{display:none}
-      .page-head{flex-direction:column}
-      .form-grid{grid-template-columns:1fr}
-      .field.full{grid-column:auto}
+
+    h1,h2,h3{margin-top:0}
+    h2{font-size:21px}
+    h3{font-size:17px}
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px;
     }
-    @media(max-width:500px){
-      .stats{grid-template-columns:1fr}
-      .welcome h2{font-size:21px}
-      .card{padding:15px}
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+    }
+
+    label{
+      display:block;
+      font-size:13px;
+      font-weight:700;
+      margin-bottom:6px;
+    }
+    input,select,textarea{
+      width:100%;
+      border:1px solid #d1d5db;
+      border-radius:11px;
+      padding:11px 12px;
+      background:#fff;
+      outline:none;
+    }
+    textarea{min-height:95px;resize:vertical}
+    input:focus,select:focus,textarea:focus{
+      border-color:#0f766e;
+    }
+
+    .field{margin-bottom:13px}
+
+    .btn{
+      border:0;
+      border-radius:11px;
+      padding:11px 15px;
+      font-weight:700;
+    }
+    .primary{background:#0f766e;color:#fff}
+    .secondary{background:#e8eeee;color:#164e4a}
+    .danger{background:#fee2e2;color:#991b1b}
+    .dark{background:#17202a;color:#fff}
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:12px;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+    }
+    .stat{
+      background:#fff;
+      border:1px solid #e5e7eb;
+      border-radius:16px;
+      padding:18px;
+    }
+    .stat-number{
+      font-size:28px;
+      font-weight:800;
+      color:#0f766e;
+    }
+
+    .item{
+      border:1px solid #e5e7eb;
+      border-radius:15px;
+      padding:14px;
+      margin-top:12px;
+      background:#fff;
+    }
+
+    .item-row{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      align-items:flex-start;
+    }
+
+    .photo{
+      width:100%;
+      max-height:240px;
+      object-fit:cover;
+      border-radius:13px;
+      margin-top:10px;
+    }
+
+    .thumb{
+      width:90px;
+      height:90px;
+      object-fit:cover;
+      border-radius:12px;
+    }
+
+    .muted{color:#64748b;font-size:13px}
+    .price{font-weight:800;color:#0f766e}
+    .badge{
+      display:inline-block;
+      padding:5px 9px;
+      border-radius:999px;
+      background:#ecfdf5;
+      color:#047857;
+      font-size:12px;
+      font-weight:700;
+    }
+
+    .modifier{
+      border:1px solid #dbe3e5;
+      background:#f8fafb;
+      border-radius:14px;
+      padding:13px;
+      margin-top:12px;
+    }
+    .option{
+      display:grid;
+      grid-template-columns:1fr 130px auto;
+      gap:8px;
+      margin-top:8px;
+    }
+
+    .check{
+      display:flex;
+      align-items:center;
+      gap:7px;
+      font-weight:600;
+      margin:0;
+    }
+    .check input{width:auto}
+
+    .upload-box{
+      border:2px dashed #cbd5e1;
+      border-radius:14px;
+      padding:15px;
+      text-align:center;
+      background:#f8fafc;
+    }
+    .preview-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:9px;
+      margin-top:10px;
+    }
+    .preview-grid img{
+      width:100%;
+      height:110px;
+      object-fit:cover;
+      border-radius:11px;
+    }
+
+    .notice{
+      background:#ecfeff;
+      border:1px solid #a5f3fc;
+      color:#155e75;
+      border-radius:12px;
+      padding:12px;
+      font-size:13px;
+      margin-bottom:14px;
+    }
+
+    .error{
+      background:#fef2f2;
+      color:#991b1b;
+      border:1px solid #fecaca;
+      padding:10px;
+      border-radius:10px;
+      margin-bottom:12px;
+    }
+    .success{
+      background:#ecfdf5;
+      color:#065f46;
+      border:1px solid #a7f3d0;
+      padding:10px;
+      border-radius:10px;
+      margin-bottom:12px;
+    }
+
+    @media(max-width:700px){
+      .grid,.grid-3,.stats{grid-template-columns:1fr}
+      .option{grid-template-columns:1fr}
+      .item-row{flex-direction:column}
+      .app{padding:12px}
     }
   </style>
 </head>
+
 <body>
 
-<div id="authScreen" class="auth-screen">
+<header>
+  <div class="brand">
+    <div class="brand-icon">S</div>
+    SefwiGo Management
+  </div>
+  <div>
+    <button id="logoutBtn" class="btn secondary hidden">Sign out</button>
+  </div>
+</header>
+
+<!-- AUTH -->
+<div id="authView" class="auth-wrap">
   <div class="auth-card">
-    <a class="brand" href="#" onclick="return false;">
-      <span class="brand-mark">SG</span>
-      <span class="brand-text"><strong>SefwiGo</strong><small>Management Portal</small></span>
-    </a>
+    <h1>SefwiGo Management</h1>
+    <p class="muted">Manage your business, menu, orders and properties.</p>
 
-    <div class="tabs">
-      <button class="tab active" id="loginTab" type="button">Sign in</button>
-      <button class="tab" id="signupTab" type="button">Partnership sign up</button>
+    <div id="authMessage"></div>
+
+    <div class="field">
+      <label>Email</label>
+      <input id="authEmail" type="email" placeholder="you@example.com">
     </div>
 
-    <form id="loginForm">
-      <h1>Welcome back</h1>
-      <p>Sign in to manage your SefwiGo Partnership account.</p>
-      <div class="field">
-        <label for="loginEmail">Email</label>
-        <input id="loginEmail" type="email" autocomplete="email" required>
-      </div>
-      <br>
-      <div class="field">
-        <label for="loginPassword">Password</label>
-        <input id="loginPassword" type="password" autocomplete="current-password" required>
-      </div>
-      <br>
-      <button class="btn btn-primary" style="width:100%" type="submit">Sign in</button>
-      <div class="auth-footer">
-        <button class="link-btn" id="forgotPassword" type="button">Forgot password?</button>
-      </div>
-    </form>
+    <div class="field">
+      <label>Password</label>
+      <input id="authPassword" type="password" placeholder="Password">
+    </div>
 
-    <form id="signupForm" class="hidden">
-      <h1>Create Partnership account</h1>
-      <p>Join SefwiGo as a verified business or service partner.</p>
+    <div id="signupFields" class="hidden">
       <div class="field">
-        <label for="signupName">Full name / business contact name</label>
-        <input id="signupName" type="text" autocomplete="name" required>
+        <label>Your name</label>
+        <input id="authName" type="text" placeholder="Full name">
       </div>
-      <br>
+
       <div class="field">
-        <label for="signupEmail">Email</label>
-        <input id="signupEmail" type="email" autocomplete="email" required>
+        <label>Management type</label>
+        <select id="authRole">
+          <option value="vendor">Business / Vendor</option>
+          <option value="property_owner">Property Owner</option>
+          <option value="both">Business + Property Owner</option>
+        </select>
       </div>
-      <br>
-      <div class="field">
-        <label for="signupPassword">Password</label>
-        <input id="signupPassword" type="password" autocomplete="new-password" minlength="8" required>
-      </div>
-      <br>
-      <div class="field">
-        <label for="signupConfirm">Confirm password</label>
-        <input id="signupConfirm" type="password" autocomplete="new-password" minlength="8" required>
-      </div>
-      <br>
-      <button class="btn btn-primary" style="width:100%" type="submit">Create Partnership account</button>
-    </form>
+    </div>
+
+    <button id="loginBtn" class="btn primary" style="width:100%">
+      Sign in
+    </button>
+
+    <button id="signupBtn" class="btn secondary" style="width:100%;margin-top:8px">
+      Create management account
+    </button>
+
+    <button id="forgotBtn" class="btn" style="width:100%;margin-top:8px;background:none;color:#0f766e">
+      Forgot password?
+    </button>
   </div>
 </div>
 
-<div id="app" class="app hidden">
-  <header class="topbar">
-    <div style="display:flex;align-items:center;gap:10px">
-      <button id="mobileMenu" class="mobile-menu" type="button" aria-label="Open menu">☰</button>
-      <a class="brand" href="#" onclick="return false;">
-        <span class="brand-mark">SG</span>
-        <span class="brand-text"><strong>SefwiGo</strong><small>Management Portal</small></span>
-      </a>
-    </div>
-    <div class="top-actions">
-      <div class="user-chip">
-        <span class="avatar" id="topAvatar">SG</span>
-        <span>
-          <strong id="topName">Partner</strong>
-          <span class="user-email" id="topEmail">—</span>
-        </span>
-      </div>
-      <button class="btn" id="signOutBtn" type="button">Sign out</button>
-    </div>
-  </header>
+<!-- APP -->
+<div id="appView" class="app hidden">
 
-  <div class="layout">
-    <aside class="sidebar" id="sidebar">
-      <div class="nav-label">Management</div>
-      <button class="nav-btn active" data-section="overview" type="button"><span class="nav-icon">▦</span>Overview</button>
-      <button class="nav-btn" data-section="partnership" type="button"><span class="nav-icon">♟</span>Partnership</button>
-      <button class="nav-btn" data-section="products" type="button"><span class="nav-icon">▣</span>Products</button>
-      <button class="nav-btn" data-section="properties" type="button"><span class="nav-icon">⌂</span>Properties</button>
-      <button class="nav-btn" data-section="orders" type="button"><span class="nav-icon">🛒</span>Orders</button>
-      <button class="nav-btn" data-section="delivery" type="button"><span class="nav-icon">🚚</span>Delivery</button>
+  <div id="globalMessage"></div>
 
-      <div class="nav-label">Account</div>
-      <button class="nav-btn" data-section="settings" type="button"><span class="nav-icon">⚙</span>Settings</button>
-    </aside>
-
-    <main class="main">
-
-      <section id="section-overview" class="section active">
-        <div class="welcome">
-          <h2>Welcome, <span id="welcomeName">Partner</span> 👋</h2>
-          <p>Manage your SefwiGo products, properties, customer orders and deliveries from one place.</p>
-        </div>
-
-        <div class="grid stats">
-          <div class="stat">
-            <div class="label">Products</div>
-            <div class="value" id="statProducts">0</div>
-            <div class="hint">Your listed products</div>
-          </div>
-          <div class="stat">
-            <div class="label">Properties</div>
-            <div class="value" id="statProperties">0</div>
-            <div class="hint">Your listed properties</div>
-          </div>
-          <div class="stat">
-            <div class="label">Orders</div>
-            <div class="value" id="statOrders">0</div>
-            <div class="hint">Orders assigned to you</div>
-          </div>
-          <div class="stat">
-            <div class="label">Deliveries</div>
-            <div class="value" id="statDeliveries">0</div>
-            <div class="hint">Delivery records</div>
-          </div>
-        </div>
-
-        <div class="grid two">
-          <div class="card">
-            <div class="card-head">
-              <h2>Recent activity</h2>
-              <span class="badge green">Local activity</span>
-            </div>
-            <div id="recentActivity" class="mini-list"></div>
-          </div>
-
-          <div class="card">
-            <div class="card-head">
-              <h2>Partnership status</h2>
-            </div>
-            <div id="overviewPartnerCard"></div>
-          </div>
-        </div>
-
-        <div class="footer-note">
-          SefwiGo Management • Firebase-powered Partnership portal
-        </div>
-      </section>
-
-      <section id="section-partnership" class="section">
-        <div class="page-head">
-          <div>
-            <h1>Partnership</h1>
-            <p>Manage your Partnership account information.</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="notice">
-            Your Firebase account UID is used to securely associate your products, properties, orders and deliveries with your Partnership account.
-          </div>
-
-          <form id="partnershipForm">
-            <div class="form-grid">
-              <div class="field">
-                <label for="partnerName">Name</label>
-                <input id="partnerName" type="text" required>
-              </div>
-              <div class="field">
-                <label for="partnerEmail">Email</label>
-                <input id="partnerEmail" type="email" readonly>
-              </div>
-              <div class="field">
-                <label for="partnerPhone">Phone</label>
-                <input id="partnerPhone" type="tel" placeholder="+233...">
-              </div>
-              <div class="field">
-                <label for="partnerBusiness">Business name</label>
-                <input id="partnerBusiness" type="text" placeholder="Your business name">
-              </div>
-              <div class="field">
-                <label for="partnerType">Partnership type</label>
-                <select id="partnerType">
-                  <option value="business">Business</option>
-                  <option value="service">Service provider</option>
-                  <option value="property">Property partner</option>
-                  <option value="delivery">Delivery partner</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="partnerLocation">Location</label>
-                <input id="partnerLocation" type="text" placeholder="Town / city">
-              </div>
-              <div class="field full">
-                <label for="partnerDescription">Description</label>
-                <textarea id="partnerDescription" placeholder="Tell customers about your business or services"></textarea>
-              </div>
-            </div>
-            <br>
-            <button class="btn btn-primary" id="savePartnershipBtn" type="button">Save Partnership profile</button>
-          </form>
-        </div>
-      </section>
-
-      <section id="section-products" class="section">
-        <div class="page-head">
-          <div>
-            <h1>Products</h1>
-            <p>Add and manage products belonging to your Partnership account.</p>
-          </div>
-          <div class="actions">
-            <button class="btn btn-primary" type="button" onclick="openProductModal()">+ Add product</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="search-row">
-            <input id="productSearch" type="search" placeholder="Search products...">
-            <select id="productStatusFilter">
-              <option value="">All statuses</option>
-              <option value="active">Active</option>
-              <option value="draft">Draft</option>
-              <option value="out_of_stock">Out of stock</option>
-              <option value="archived">Archived</option>
-            </select>
-          </div>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Product</th>
-                  <th>Category</th>
-                  <th>Price</th>
-                  <th>Stock</th>
-                  <th>Status</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody id="productsBody"></tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      <section id="section-properties" class="section">
-        <div class="page-head">
-          <div>
-            <h1>Properties</h1>
-            <p>Manage properties and accommodation listings.</p>
-          </div>
-          <div class="actions">
-            <button class="btn btn-primary" type="button" onclick="openPropertyModal()">+ Add property</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="search-row">
-            <input id="propertySearch" type="search" placeholder="Search properties...">
-            <select id="propertyTypeFilter">
-              <option value="">All types</option>
-              <option value="hotel">Hotel</option>
-              <option value="apartment">Apartment</option>
-              <option value="house">House</option>
-              <option value="land">Land</option>
-              <option value="office">Office</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Property</th>
-                  <th>Type</th>
-                  <th>Location</th>
-                  <th>Price</th>
-                  <th>Status</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody id="propertiesBody"></tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      <section id="section-orders" class="section">
-        <div class="page-head">
-          <div>
-            <h1>Orders</h1>
-            <p>View and update orders owned by your Partnership account.</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="notice">
-            Orders appear here when the customer-facing SefwiGo system creates them with your Partnership Firebase UID in <strong>ownerUid</strong>.
-          </div>
-          <div class="search-row">
-            <input id="orderSearch" type="search" placeholder="Search orders...">
-            <select id="orderStatusFilter">
-              <option value="">All statuses</option>
-              <option value="pending">Pending</option>
-              <option value="confirmed">Confirmed</option>
-              <option value="processing">Processing</option>
-              <option value="ready">Ready</option>
-              <option value="completed">Completed</option>
-              <option value="cancelled">Cancelled</option>
-            </select>
-          </div>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Order</th>
-                  <th>Customer</th>
-                  <th>Total</th>
-                  <th>Status</th>
-                  <th>Created</th>
-                  <th>Update</th>
-                </tr>
-              </thead>
-              <tbody id="ordersBody"></tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      <section id="section-delivery" class="section">
-        <div class="page-head">
-          <div>
-            <h1>Delivery</h1>
-            <p>Track delivery records connected to your Partnership account.</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="notice">
-            Delivery records appear here when they contain your Partnership Firebase UID as <strong>ownerUid</strong>.
-          </div>
-          <div class="search-row">
-            <input id="deliverySearch" type="search" placeholder="Search deliveries...">
-            <select id="deliveryStatusFilter">
-              <option value="">All statuses</option>
-              <option value="requested">Requested</option>
-              <option value="assigned">Assigned</option>
-              <option value="picked_up">Picked up</option>
-              <option value="in_transit">In transit</option>
-              <option value="delivered">Delivered</option>
-              <option value="cancelled">Cancelled</option>
-            </select>
-          </div>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Delivery</th>
-                  <th>Order</th>
-                  <th>Destination</th>
-                  <th>Status</th>
-                  <th>Created</th>
-                  <th>Update</th>
-                </tr>
-              </thead>
-              <tbody id="deliveriesBody"></tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      <section id="section-settings" class="section">
-        <div class="page-head">
-          <div>
-            <h1>Settings</h1>
-            <p>Account and security settings.</p>
-          </div>
-        </div>
-
-        <div class="grid two">
-          <div class="card">
-            <div class="card-head">
-              <h2>Account</h2>
-            </div>
-            <div id="accountDetails"></div>
-          </div>
-
-          <div class="card">
-            <div class="card-head">
-              <h2>Security</h2>
-            </div>
-            <p class="muted">Use Firebase Authentication to reset your Partnership account password.</p>
-            <button class="btn btn-primary" id="settingsResetPassword" type="button">Send password reset email</button>
-          </div>
-        </div>
-      </section>
-
-    </main>
+  <div class="tabs">
+    <button class="tab active" data-tab="dashboard">Dashboard</button>
+    <button class="tab" data-tab="business">Business</button>
+    <button class="tab" data-tab="menu">Menu & Products</button>
+    <button class="tab" data-tab="orders">Orders</button>
+    <button class="tab" data-tab="properties">Properties</button>
   </div>
-</div>
 
-<div id="productModal" class="modal">
-  <div class="modal-box">
-    <div class="modal-head">
-      <h2 id="productModalTitle">Add product</h2>
-      <button class="icon-btn" type="button" onclick="closeProductModal()">✕</button>
+  <!-- DASHBOARD -->
+  <section id="dashboard" class="section active">
+    <div class="card">
+      <h2>Welcome, <span id="welcomeName">Manager</span></h2>
+      <p class="muted">
+        Your SefwiGo management dashboard.
+      </p>
     </div>
 
-    <form id="productForm">
-      <input id="productId" type="hidden">
-      <div class="form-grid">
-        <div class="field full">
-          <label for="productName">Product name</label>
-          <input id="productName" type="text" required>
-        </div>
+    <div class="stats">
+      <div class="stat">
+        <div class="muted">Products</div>
+        <div id="statProducts" class="stat-number">0</div>
+      </div>
+
+      <div class="stat">
+        <div class="muted">Orders</div>
+        <div id="statOrders" class="stat-number">0</div>
+      </div>
+
+      <div class="stat">
+        <div class="muted">Properties</div>
+        <div id="statProperties" class="stat-number">0</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUSINESS -->
+  <section id="business" class="section">
+
+    <div class="card">
+      <h2>Business Profile</h2>
+
+      <div class="notice">
+        Create your business here first. Menu items will automatically be linked
+        to this business.
+      </div>
+
+      <div class="grid">
         <div class="field">
-          <label for="productCategory">Category</label>
-          <input id="productCategory" type="text" placeholder="Food, retail, service...">
+          <label>Business name *</label>
+          <input id="businessName" placeholder="Example: Auntie Ama Kitchen">
         </div>
+
         <div class="field">
-          <label for="productPrice">Price</label>
-          <input id="productPrice" type="number" min="0" step="0.01" required>
-        </div>
-        <div class="field">
-          <label for="productCurrency">Currency</label>
-          <select id="productCurrency">
-            <option value="GHS">GHS</option>
-            <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
-            <option value="GBP">GBP</option>
+          <label>Category *</label>
+          <select id="businessCategory">
+            <option value="Restaurant">Restaurant</option>
+            <option value="Food">Food</option>
+            <option value="Groceries">Groceries</option>
+            <option value="Drinks">Drinks</option>
+            <option value="Retail">Retail</option>
+            <option value="Services">Services</option>
+            <option value="Other">Other</option>
           </select>
         </div>
+
         <div class="field">
-          <label for="productStock">Stock</label>
-          <input id="productStock" type="number" min="0" step="1" value="0">
+          <label>Phone</label>
+          <input id="businessPhone" type="tel" placeholder="0240000000">
         </div>
+
         <div class="field">
-          <label for="productStatus">Status</label>
-          <select id="productStatus">
-            <option value="active">Active</option>
-            <option value="draft">Draft</option>
-            <option value="out_of_stock">Out of stock</option>
-            <option value="archived">Archived</option>
-          </select>
-        </div>
-        <div class="field full">
-          <label for="productImage">Image URL</label>
-          <input id="productImage" type="url" placeholder="https://...">
-        </div>
-        <div class="field full">
-          <label for="productDescription">Description</label>
-          <textarea id="productDescription"></textarea>
+          <label>Location</label>
+          <input id="businessLocation" placeholder="Sefwi Wiawso">
         </div>
       </div>
-      <br>
+
+      <div class="field">
+        <label>Business description</label>
+        <textarea id="businessDescription"
+          placeholder="Tell customers about your business"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Business logo / photo</label>
+        <div class="upload-box">
+          <input id="businessImage" type="file" accept="image/*">
+          <p class="muted">Choose a photo from your phone.</p>
+          <img id="businessPreview" class="photo hidden">
+        </div>
+      </div>
+
+      <button id="saveBusinessBtn" class="btn primary">
+        Save Business
+      </button>
+    </div>
+
+    <div class="card">
+      <h2>Your Business</h2>
+      <div id="businessList"></div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu" class="section">
+
+    <div class="card">
+      <h2 id="productFormTitle">Add Food / Product</h2>
+
+      <div class="notice">
+        You can add food items, drinks, groceries or other products.
+        Customers will see the options and extra costs you add here.
+      </div>
+
+      <div class="grid">
+        <div class="field">
+          <label>Product name *</label>
+          <input id="productName" placeholder="Example: Jollof Rice">
+        </div>
+
+        <div class="field">
+          <label>Price (GHS) *</label>
+          <input id="productPrice" type="number" min="0" step="0.01"
+                 placeholder="25">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Description</label>
+        <textarea id="productDescription"
+          placeholder="Describe the food/product"></textarea>
+      </div>
+
+      <div class="field">
+        <label class="check">
+          <input id="productAvailable" type="checkbox" checked>
+          Available for customers
+        </label>
+      </div>
+
+      <div class="field">
+        <label>Product photo</label>
+        <div class="upload-box">
+          <input id="productImage" type="file" accept="image/*" capture="environment">
+          <p class="muted">
+            On supported phones, you can take a photo directly.
+          </p>
+          <img id="productPreview" class="photo hidden">
+        </div>
+      </div>
+
+      <hr>
+
+      <h3>Options / Add-ons</h3>
+      <p class="muted">
+        Example: Size → Small GHS 0, Large GHS 10.
+        Customers will choose these when ordering.
+      </p>
+
+      <div id="modifierGroups"></div>
+
       <div class="actions">
-        <button class="btn" type="button" onclick="closeProductModal()">Cancel</button>
-        <button class="btn btn-primary" type="submit">Save product</button>
+        <button id="addModifierBtn" class="btn secondary">
+          + Add Option Group
+        </button>
       </div>
-    </form>
-  </div>
-</div>
 
-<div id="propertyModal" class="modal">
-  <div class="modal-box">
-    <div class="modal-head">
-      <h2 id="propertyModalTitle">Add property</h2>
-      <button class="icon-btn" type="button" onclick="closePropertyModal()">✕</button>
+      <div class="actions">
+        <button id="saveProductBtn" class="btn primary">
+          Save Product
+        </button>
+
+        <button id="cancelProductBtn" class="btn secondary hidden">
+          Cancel Edit
+        </button>
+      </div>
     </div>
 
-    <form id="propertyForm">
-      <input id="propertyId" type="hidden">
-      <div class="form-grid">
-        <div class="field full">
-          <label for="propertyName">Property name</label>
-          <input id="propertyName" type="text" required>
-        </div>
+    <div class="card">
+      <h2>Your Products</h2>
+      <div id="productList"></div>
+    </div>
+  </section>
+
+  <!-- ORDERS -->
+  <section id="orders" class="section">
+    <div class="card">
+      <h2>Customer Orders</h2>
+      <p class="muted">
+        Orders placed through the SefwiGo customer app.
+      </p>
+
+      <button id="refreshOrdersBtn" class="btn secondary">
+        Refresh Orders
+      </button>
+
+      <div id="orderList"></div>
+    </div>
+  </section>
+
+  <!-- PROPERTIES -->
+  <section id="properties" class="section">
+
+    <div class="card">
+      <h2 id="propertyFormTitle">Add Property</h2>
+
+      <div class="notice">
+        Take photos of the property with your phone or choose photos from
+        your gallery. The first photo becomes the main property photo.
+      </div>
+
+      <div class="grid">
         <div class="field">
-          <label for="propertyType">Property type</label>
-          <select id="propertyType">
-            <option value="hotel">Hotel</option>
-            <option value="apartment">Apartment</option>
-            <option value="house">House</option>
-            <option value="land">Land</option>
-            <option value="office">Office</option>
-            <option value="other">Other</option>
+          <label>Property title *</label>
+          <input id="propertyTitle"
+                 placeholder="Example: 3 Bedroom House for Rent">
+        </div>
+
+        <div class="field">
+          <label>Purpose *</label>
+          <select id="propertyPurpose">
+            <option value="Rent">Rent</option>
+            <option value="Sale">Sale</option>
+            <option value="Lease">Lease</option>
+            <option value="Short Stay">Short Stay</option>
+            <option value="Land">Land</option>
           </select>
         </div>
+
         <div class="field">
-          <label for="propertyPrice">Price</label>
+          <label>Property type *</label>
+          <select id="propertyType">
+            <option value="House">House</option>
+            <option value="Apartment">Apartment</option>
+            <option value="Room">Room</option>
+            <option value="Land">Land</option>
+            <option value="Shop">Shop</option>
+            <option value="Office">Office</option>
+            <option value="Commercial">Commercial</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Price (GHS)</label>
           <input id="propertyPrice" type="number" min="0" step="0.01">
         </div>
+
         <div class="field">
-          <label for="propertyCurrency">Currency</label>
-          <select id="propertyCurrency">
-            <option value="GHS">GHS</option>
-            <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
-            <option value="GBP">GBP</option>
-          </select>
+          <label>Location *</label>
+          <input id="propertyLocation"
+                 placeholder="Sefwi Wiawso">
         </div>
+
         <div class="field">
-          <label for="propertyStatus">Status</label>
-          <select id="propertyStatus">
-            <option value="active">Active</option>
-            <option value="draft">Draft</option>
-            <option value="unavailable">Unavailable</option>
-            <option value="archived">Archived</option>
-          </select>
+          <label>Bedrooms</label>
+          <input id="propertyBedrooms" type="number" min="0">
         </div>
-        <div class="field full">
-          <label for="propertyLocation">Location</label>
-          <input id="propertyLocation" type="text">
+
+        <div class="field">
+          <label>Bathrooms</label>
+          <input id="propertyBathrooms" type="number" min="0">
         </div>
-        <div class="field full">
-          <label for="propertyImage">Image URL</label>
-          <input id="propertyImage" type="url" placeholder="https://...">
+
+        <div class="field">
+          <label>Owner / Agent</label>
+          <input id="propertyOwner" placeholder="Name">
         </div>
-        <div class="field full">
-          <label for="propertyDescription">Description</label>
-          <textarea id="propertyDescription"></textarea>
+
+        <div class="field">
+          <label>Contact phone</label>
+          <input id="propertyPhone" type="tel">
         </div>
       </div>
-      <br>
+
+      <div class="field">
+        <label>Description</label>
+        <textarea id="propertyDescription"
+          placeholder="Describe the property"></textarea>
+      </div>
+
+      <div class="field">
+        <label class="check">
+          <input id="propertyAvailable" type="checkbox" checked>
+          Available for customers
+        </label>
+      </div>
+
+      <div class="field">
+        <label>Property photos</label>
+
+        <div class="upload-box">
+          <p><strong>Take a photo</strong></p>
+          <input id="propertyCamera" type="file"
+                 accept="image/*" capture="environment">
+
+          <p><strong style="display:block;margin-top:12px">Choose photos</strong></p>
+          <input id="propertyGallery" type="file"
+                 accept="image/*" multiple>
+
+          <p class="muted">
+            You can add several photos.
+          </p>
+
+          <div id="propertyPreviewGrid" class="preview-grid"></div>
+        </div>
+      </div>
+
       <div class="actions">
-        <button class="btn" type="button" onclick="closePropertyModal()">Cancel</button>
-        <button class="btn btn-primary" type="submit">Save property</button>
+        <button id="savePropertyBtn" class="btn primary">
+          Save Property
+        </button>
+
+        <button id="cancelPropertyBtn" class="btn secondary hidden">
+          Cancel Edit
+        </button>
       </div>
-    </form>
-  </div>
+    </div>
+
+    <div class="card">
+      <h2>Your Properties</h2>
+      <div id="propertyList"></div>
+    </div>
+  </section>
+
 </div>
 
-<div id="toast" class="toast"></div>
 
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+
+  /* =========================================================
+     FIREBASE
+  ========================================================= */
+
+  import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
   import {
     getAuth,
+    onAuthStateChanged,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    sendPasswordResetEmail,
-    updateProfile,
     signOut,
-    onAuthStateChanged
-  } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+    sendPasswordResetEmail,
+    updateProfile
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
   import {
     getFirestore,
     collection,
     doc,
+    addDoc,
     getDoc,
     getDocs,
-    addDoc,
     setDoc,
     updateDoc,
     deleteDoc,
     query,
     where,
     serverTimestamp
-  } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  import {
+    getStorage,
+    ref,
+    uploadBytes,
+    getDownloadURL,
+    deleteObject
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
 
   const firebaseConfig = {
     apiKey: "AIzaSyDjHGyeObPLLuqTNhNGE5SBRfBL5T29qWA",
@@ -788,25 +738,35 @@
     appId: "1:210398787110:web:f7f76a538a2712a2bb58e7"
   };
 
-  let firebaseApp = null;
-  let auth = null;
-  let db = null;
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+  const storage = getStorage(app);
+
+
+  /* =========================================================
+     STATE
+  ========================================================= */
+
   let currentUser = null;
-  let currentProfile = null;
-  let products = [];
-  let properties = [];
-  let orders = [];
-  let deliveries = [];
+  let currentBusiness = null;
+  let editingProductId = null;
+  let editingPropertyId = null;
+
+  let modifierGroups = [];
+
+  let productImageFile = null;
+  let businessImageFile = null;
+
+  let propertyImageFiles = [];
+  let existingPropertyPhotos = [];
+
+
+  /* =========================================================
+     HELPERS
+  ========================================================= */
 
   const $ = id => document.getElementById(id);
-
-  function toast(message){
-    const el=$("toast");
-    el.textContent=message;
-    el.classList.add("show");
-    clearTimeout(window.__toastTimer);
-    window.__toastTimer=setTimeout(()=>el.classList.remove("show"),3500);
-  }
 
   function escapeHtml(value){
     return String(value ?? "")
@@ -817,993 +777,1855 @@
       .replaceAll("'","&#039;");
   }
 
-  function money(value,currency="GHS"){
-    const amount=Number(value||0);
-    try{
-      return new Intl.NumberFormat(undefined,{
-        style:"currency",
-        currency
-      }).format(amount);
-    }catch{
-      return `${currency} ${amount.toFixed(2)}`;
-    }
+  function money(value){
+    return "GHS " + Number(value || 0).toFixed(2);
   }
 
-  function formatDate(value){
-    if(!value)return "—";
-    let date;
-    if(value?.toDate)date=value.toDate();
-    else if(value?.seconds)date=new Date(value.seconds*1000);
-    else date=new Date(value);
-    if(Number.isNaN(date.getTime()))return "—";
-    return date.toLocaleString();
+  function showMessage(message,type="success"){
+    $("globalMessage").innerHTML =
+      `<div class="${type}">${escapeHtml(message)}</div>`;
+
+    setTimeout(()=>{
+      $("globalMessage").innerHTML="";
+    },5000);
   }
 
-  function statusBadge(status){
-    const s=String(status||"pending").toLowerCase();
-    let cls="";
-    if(["active","confirmed","completed","delivered"].includes(s))cls="green";
-    else if(["draft","processing","ready","assigned","in_transit"].includes(s))cls="gold";
-    else if(["cancelled","archived","unavailable","out_of_stock"].includes(s))cls="red";
-    return `<span class="badge ${cls}">${escapeHtml(s.replaceAll("_"," "))}</span>`;
+  function authMessage(message,type="error"){
+    $("authMessage").innerHTML =
+      `<div class="${type}">${escapeHtml(message)}</div>`;
   }
 
-  async function initFirebase(){
-    if(firebaseApp)return true;
-    try{
-      firebaseApp=initializeApp(firebaseConfig);
-      auth=getAuth(firebaseApp);
-      db=getFirestore(firebaseApp);
-      window.firebaseModules={auth,db};
-      return true;
-    }catch(error){
-      console.error(error);
-      toast("Firebase could not be initialized.");
-      return false;
-    }
-  }
+  function friendlyError(error){
+    const code = error?.code || "";
 
-  async function loadUserProfile(){
-    if(!currentUser||!db)return null;
-    try{
-      const snap=await getDoc(doc(db,"users",currentUser.uid));
-      currentProfile=snap.exists()?snap.data():null;
-      return currentProfile;
-    }catch(error){
-      console.error(error);
-      toast("Could not load your Partnership profile: "+(error.code||error.message||"unknown error"));
-      return null;
-    }
-  }
-
-  function initials(name){
-    return String(name||"SG")
-      .trim()
-      .split(/\s+/)
-      .slice(0,2)
-      .map(x=>x[0]?.toUpperCase()||"")
-      .join("")||"SG";
-  }
-
-  function updateAccountUI(){
-    const name=currentProfile?.name||currentUser?.displayName||"Partner";
-    const email=currentUser?.email||currentProfile?.email||"—";
-    $("topName").textContent=name;
-    $("topEmail").textContent=email;
-    $("topAvatar").textContent=initials(name);
-    $("welcomeName").textContent=name;
-
-    const type=currentProfile?.accountType||"partnership";
-    $("overviewPartnerCard").innerHTML=`
-      <div class="mini-list">
-        <div class="mini-item">
-          <div><strong>Account type</strong><small>Access level</small></div>
-          <span class="badge green">${escapeHtml(type)}</span>
-        </div>
-        <div class="mini-item">
-          <div><strong>Email</strong><small>Firebase Authentication</small></div>
-          <span>${escapeHtml(email)}</span>
-        </div>
-        <div class="mini-item">
-          <div><strong>Status</strong><small>Management access</small></div>
-          <span class="badge green">Active</span>
-        </div>
-      </div>
-    `;
-
-    $("accountDetails").innerHTML=`
-      <div class="mini-list">
-        <div class="mini-item"><div><strong>Name</strong><small>Partnership contact</small></div><span>${escapeHtml(name)}</span></div>
-        <div class="mini-item"><div><strong>Email</strong><small>Authentication email</small></div><span>${escapeHtml(email)}</span></div>
-        <div class="mini-item"><div><strong>Firebase UID</strong><small>Ownership identifier</small></div><span style="word-break:break-all">${escapeHtml(currentUser?.uid||"—")}</span></div>
-        <div class="mini-item"><div><strong>Account type</strong><small>Portal authorization</small></div><span>${escapeHtml(type)}</span></div>
-      </div>
-    `;
-  }
-
-  function fillProfile(){
-    const p=currentProfile||{};
-    $("partnerName").value=p.name||currentUser?.displayName||"";
-    $("partnerEmail").value=currentUser?.email||p.email||"";
-    $("partnerPhone").value=p.phone||"";
-    $("partnerBusiness").value=p.businessName||"";
-    $("partnerType").value=p.partnershipType||"business";
-    $("partnerLocation").value=p.location||"";
-    $("partnerDescription").value=p.description||"";
-  }
-
-  async function savePartnershipProfile(){
-    if(!currentUser||!db)return;
-    const name=$("partnerName").value.trim();
-    if(!name)return toast("Name is required.");
-
-    try{
-      const data={
-        uid:currentUser.uid,
-        name,
-        email:currentUser.email||"",
-        phone:$("partnerPhone").value.trim(),
-        businessName:$("partnerBusiness").value.trim(),
-        partnershipType:$("partnerType").value,
-        location:$("partnerLocation").value.trim(),
-        description:$("partnerDescription").value.trim(),
-        accountType:"partnership",
-        updatedAt:serverTimestamp()
-      };
-
-      await setDoc(doc(db,"users",currentUser.uid),data,{merge:true});
-      await updateProfile(currentUser,{displayName:name});
-
-      currentProfile={...(currentProfile||{}),...data,name};
-      updateAccountUI();
-      addActivity("Partnership profile updated","Your account information was saved.");
-      toast("Partnership profile saved.");
-    }catch(error){
-      console.error(error);
-      toast("Could not save profile: "+(error.code||error.message||"unknown error"));
-    }
-  }
-
-  async function createPartnershipAccount(){
-    if(!(await initFirebase()))return;
-
-    const name=$("signupName").value.trim();
-    const email=$("signupEmail").value.trim();
-    const password=$("signupPassword").value;
-    const confirm=$("signupConfirm").value;
-
-    if(!name||!email||!password||!confirm)
-      return toast("Complete all fields.");
-
-    if(password.length<8)
-      return toast("Password must be at least 8 characters.");
-
-    if(password!==confirm)
-      return toast("Passwords do not match.");
-
-    try{
-      const credential=await createUserWithEmailAndPassword(auth,email,password);
-      const user=credential.user;
-
-      await updateProfile(user,{displayName:name});
-
-      await setDoc(doc(db,"users",user.uid),{
-        uid:user.uid,
-        name,
-        email:user.email||email,
-        accountType:"partnership",
-        createdAt:serverTimestamp(),
-        updatedAt:serverTimestamp()
-      },{merge:true});
-
-      localStorage.setItem("sefwiAccountType","partnership");
-      toast("Partnership account created successfully.");
-      $("signupForm").reset();
-    }catch(error){
-      console.error(error);
-
-      const code=error?.code||"unknown-auth-error";
-      const messages={
-        "auth/email-already-in-use":"An account already exists with this email.",
-        "auth/invalid-email":"Please enter a valid email address.",
-        "auth/weak-password":"Choose a stronger password.",
-        "auth/network-request-failed":"Network error. Check your internet connection.",
-        "auth/operation-not-allowed":"Email/password authentication is not enabled in Firebase.",
-        "auth/admin-restricted-operation":"This sign-up method is currently disabled."
-      };
-
-      toast(messages[code]||("Account creation failed: "+code));
-    }
-  }
-
-  window.createPartnershipAccount=createPartnershipAccount;
-
-  function showSection(name){
-    document.querySelectorAll(".section").forEach(section=>{
-      section.classList.toggle("active",section.id===`section-${name}`);
-    });
-
-    document.querySelectorAll(".nav-btn").forEach(btn=>{
-      btn.classList.toggle("active",btn.dataset.section===name);
-    });
-
-    $("sidebar").classList.remove("open");
-  }
-
-  function resetProductForm(){
-    $("productForm").reset();
-    $("productId").value="";
-    $("productCurrency").value="GHS";
-    $("productStatus").value="active";
-    $("productModalTitle").textContent="Add product";
-  }
-
-  function openProductModal(productId=""){
-    resetProductForm();
-
-    if(productId){
-      const p=products.find(x=>x.id===productId);
-      if(!p)return;
-
-      $("productModalTitle").textContent="Edit product";
-      $("productId").value=p.id;
-      $("productName").value=p.name||"";
-      $("productCategory").value=p.category||"";
-      $("productPrice").value=p.price??"";
-      $("productCurrency").value=p.currency||"GHS";
-      $("productStock").value=p.stock??0;
-      $("productStatus").value=p.status||"active";
-      $("productImage").value=p.imageUrl||p.image||"";
-      $("productDescription").value=p.description||"";
-    }
-
-    $("productModal").classList.add("show");
-  }
-
-  function closeProductModal(){
-    $("productModal").classList.remove("show");
-  }
-
-  window.openProductModal=openProductModal;
-  window.closeProductModal=closeProductModal;
-
-  async function saveProduct(event){
-    event.preventDefault();
-
-    if(!currentUser||!db)return;
-
-    const id=$("productId").value.trim();
-    const data={
-      name:$("productName").value.trim(),
-      category:$("productCategory").value.trim(),
-      price:Number($("productPrice").value||0),
-      currency:$("productCurrency").value,
-      stock:Number($("productStock").value||0),
-      status:$("productStatus").value,
-      imageUrl:$("productImage").value.trim(),
-      description:$("productDescription").value.trim(),
-      ownerUid:currentUser.uid,
-      uid:currentUser.uid,
-      partnerUid:currentUser.uid,
-      updatedAt:serverTimestamp()
+    const messages = {
+      "auth/invalid-credential":"Incorrect email or password.",
+      "auth/email-already-in-use":"This email is already registered.",
+      "auth/weak-password":"Password should be at least 6 characters.",
+      "auth/invalid-email":"Please enter a valid email.",
+      "auth/too-many-requests":"Too many attempts. Please try again later.",
+      "storage/unauthorized":"Storage permission denied. Check your Firebase Storage rules.",
+      "permission-denied":"Firebase permission denied. Check your Firestore rules."
     };
 
-    if(!data.name)return toast("Product name is required.");
-
-    try{
-      if(id){
-        await updateDoc(doc(db,"products",id),data);
-        addActivity("Product updated",data.name);
-        toast("Product updated.");
-      }else{
-        await addDoc(collection(db,"products"),{
-          ...data,
-          createdAt:serverTimestamp()
-        });
-        addActivity("Product created",data.name);
-        toast("Product created.");
-      }
-
-      closeProductModal();
-      await loadProducts();
-    }catch(error){
-      console.error(error);
-      toast("Could not save product: "+(error.code||error.message||"unknown error"));
-    }
+    return messages[code] || error?.message || "Something went wrong.";
   }
 
-  async function deleteProduct(id){
-    const p=products.find(x=>x.id===id);
-    if(!p)return;
-
-    if(!confirm(`Delete "${p.name||"this product"}"?`))return;
-
-    try{
-      await deleteDoc(doc(db,"products",id));
-      addActivity("Product deleted",p.name||id);
-      toast("Product deleted.");
-      await loadProducts();
-    }catch(error){
-      console.error(error);
-      toast("Could not delete product: "+(error.code||error.message||"unknown error"));
-    }
-  }
-
-  window.deleteProduct=deleteProduct;
-
-  async function loadProducts(){
-    if(!currentUser||!db)return;
-
-    try{
-      const snap=await getDocs(
-        query(
-          collection(db,"products"),
-          where("ownerUid","==",currentUser.uid)
-        )
-      );
-
-      products=snap.docs.map(d=>({id:d.id,...d.data()}));
-
-      products.sort((a,b)=>{
-        const aa=a.createdAt?.toMillis?.()||0;
-        const bb=b.createdAt?.toMillis?.()||0;
-        return bb-aa;
-      });
-
-      renderProducts();
-      $("statProducts").textContent=products.length;
-    }catch(error){
-      console.error(error);
-      toast("Could not load products: "+(error.code||error.message||"unknown error"));
-    }
-  }
-
-  function renderProducts(){
-    const body=$("productsBody");
-    const search=$("productSearch").value.trim().toLowerCase();
-    const filter=$("productStatusFilter").value;
-
-    const list=products.filter(p=>
-      (!search||JSON.stringify(p).toLowerCase().includes(search)) &&
-      (!filter||(p.status||"active")===filter)
-    );
-
-    if(!list.length){
-      body.innerHTML=`<tr><td colspan="6"><div class="empty">No products found for this Partnership account.</div></td></tr>`;
-      return;
-    }
-
-    body.innerHTML=list.map(p=>`
-      <tr>
-        <td>
-          <strong>${escapeHtml(p.name||"Unnamed product")}</strong>
-          <br>
-          <small class="muted">${escapeHtml(p.description||"")}</small>
-        </td>
-        <td>${escapeHtml(p.category||"—")}</td>
-        <td>${money(p.price,p.currency||"GHS")}</td>
-        <td>${escapeHtml(p.stock??0)}</td>
-        <td>${statusBadge(p.status||"active")}</td>
-        <td>
-          <div class="actions">
-            <button class="btn" type="button" onclick="openProductModal('${p.id}')">Edit</button>
-            <button class="btn btn-danger" type="button" onclick="deleteProduct('${p.id}')">Delete</button>
-          </div>
-        </td>
-      </tr>
-    `).join("");
-  }
-
-  function resetPropertyForm(){
-    $("propertyForm").reset();
-    $("propertyId").value="";
-    $("propertyCurrency").value="GHS";
-    $("propertyStatus").value="active";
-    $("propertyModalTitle").textContent="Add property";
-  }
-
-  function openPropertyModal(propertyId=""){
-    resetPropertyForm();
-
-    if(propertyId){
-      const p=properties.find(x=>x.id===propertyId);
-      if(!p)return;
-
-      $("propertyModalTitle").textContent="Edit property";
-      $("propertyId").value=p.id;
-      $("propertyName").value=p.name||"";
-      $("propertyType").value=p.type||"other";
-      $("propertyPrice").value=p.price??"";
-      $("propertyCurrency").value=p.currency||"GHS";
-      $("propertyStatus").value=p.status||"active";
-      $("propertyLocation").value=p.location||"";
-      $("propertyImage").value=p.imageUrl||p.image||"";
-      $("propertyDescription").value=p.description||"";
-    }
-
-    $("propertyModal").classList.add("show");
-  }
-
-  function closePropertyModal(){
-    $("propertyModal").classList.remove("show");
-  }
-
-  window.openPropertyModal=openPropertyModal;
-  window.closePropertyModal=closePropertyModal;
-
-  async function saveProperty(event){
-    event.preventDefault();
-
-    if(!currentUser||!db)return;
-
-    const id=$("propertyId").value.trim();
-
-    const data={
-      name:$("propertyName").value.trim(),
-      type:$("propertyType").value,
-      price:Number($("propertyPrice").value||0),
-      currency:$("propertyCurrency").value,
-      status:$("propertyStatus").value,
-      location:$("propertyLocation").value.trim(),
-      imageUrl:$("propertyImage").value.trim(),
-      description:$("propertyDescription").value.trim(),
-      ownerUid:currentUser.uid,
-      uid:currentUser.uid,
-      partnerUid:currentUser.uid,
-      updatedAt:serverTimestamp()
-    };
-
-    if(!data.name)return toast("Property name is required.");
-
-    try{
-      if(id){
-        await updateDoc(doc(db,"properties",id),data);
-        addActivity("Property updated",data.name);
-        toast("Property updated.");
-      }else{
-        await addDoc(collection(db,"properties"),{
-          ...data,
-          createdAt:serverTimestamp()
-        });
-        addActivity("Property created",data.name);
-        toast("Property created.");
-      }
-
-      closePropertyModal();
-      await loadProperties();
-    }catch(error){
-      console.error(error);
-      toast("Could not save property: "+(error.code||error.message||"unknown error"));
-    }
-  }
-
-  async function deleteProperty(id){
-    const p=properties.find(x=>x.id===id);
-    if(!p)return;
-
-    if(!confirm(`Delete "${p.name||"this property"}"?`))return;
-
-    try{
-      await deleteDoc(doc(db,"properties",id));
-      addActivity("Property deleted",p.name||id);
-      toast("Property deleted.");
-      await loadProperties();
-    }catch(error){
-      console.error(error);
-      toast("Could not delete property: "+(error.code||error.message||"unknown error"));
-    }
-  }
-
-  window.deleteProperty=deleteProperty;
-
-  async function loadProperties(){
-    if(!currentUser||!db)return;
-
-    try{
-      const snap=await getDocs(
-        query(
-          collection(db,"properties"),
-          where("ownerUid","==",currentUser.uid)
-        )
-      );
-
-      properties=snap.docs.map(d=>({id:d.id,...d.data()}));
-
-      properties.sort((a,b)=>{
-        const aa=a.createdAt?.toMillis?.()||0;
-        const bb=b.createdAt?.toMillis?.()||0;
-        return bb-aa;
-      });
-
-      renderProperties();
-      $("statProperties").textContent=properties.length;
-    }catch(error){
-      console.error(error);
-      toast("Could not load properties: "+(error.code||error.message||"unknown error"));
-    }
-  }
-
-  function renderProperties(){
-    const body=$("propertiesBody");
-    const search=$("propertySearch").value.trim().toLowerCase();
-    const filter=$("propertyTypeFilter").value;
-
-    const list=properties.filter(p=>
-      (!search||JSON.stringify(p).toLowerCase().includes(search)) &&
-      (!filter||(p.type||"other")===filter)
-    );
-
-    if(!list.length){
-      body.innerHTML=`<tr><td colspan="6"><div class="empty">No properties found for this Partnership account.</div></td></tr>`;
-      return;
-    }
-
-    body.innerHTML=list.map(p=>`
-      <tr>
-        <td>
-          <strong>${escapeHtml(p.name||"Unnamed property")}</strong>
-          <br>
-          <small class="muted">${escapeHtml(p.description||"")}</small>
-        </td>
-        <td>${escapeHtml(p.type||"—")}</td>
-        <td>${escapeHtml(p.location||"—")}</td>
-        <td>${money(p.price,p.currency||"GHS")}</td>
-        <td>${statusBadge(p.status||"active")}</td>
-        <td>
-          <div class="actions">
-            <button class="btn" type="button" onclick="openPropertyModal('${p.id}')">Edit</button>
-            <button class="btn btn-danger" type="button" onclick="deleteProperty('${p.id}')">Delete</button>
-          </div>
-        </td>
-      </tr>
-    `).join("");
-  }
-
-  async function loadOrders(){
-    if(!currentUser||!db)return;
-
-    try{
-      const snap=await getDocs(
-        query(
-          collection(db,"orders"),
-          where("ownerUid","==",currentUser.uid)
-        )
-      );
-
-      orders=snap.docs.map(d=>({id:d.id,...d.data()}));
-
-      orders.sort((a,b)=>
-        (b.createdAt?.toMillis?.()||0)-
-        (a.createdAt?.toMillis?.()||0)
-      );
-
-      renderOrders();
-      $("statOrders").textContent=orders.length;
-    }catch(error){
-      console.error(error);
-      toast("Could not load orders: "+(error.code||error.message||"unknown error"));
-    }
-  }
-
-  function renderOrders(){
-    const body=$("ordersBody");
-    const search=$("orderSearch").value.trim().toLowerCase();
-    const filter=$("orderStatusFilter").value;
-
-    const list=orders.filter(o=>
-      (!search||JSON.stringify(o).toLowerCase().includes(search)) &&
-      (!filter||(o.status||"pending")===filter)
-    );
-
-    if(!list.length){
-      body.innerHTML=`<tr><td colspan="6"><div class="empty">No orders found for this Partnership account.</div></td></tr>`;
-      return;
-    }
-
-    body.innerHTML=list.map(o=>`
-      <tr>
-        <td>
-          <strong>${escapeHtml(o.orderNumber||o.orderId||o.id.slice(0,8))}</strong>
-          <br>
-          <small class="muted">${escapeHtml(o.productName||o.itemName||"Order")}</small>
-        </td>
-        <td>${escapeHtml(o.customerName||o.customer?.name||o.customerEmail||"—")}</td>
-        <td>${money(o.total??o.amount,o.currency||"GHS")}</td>
-        <td>${statusBadge(o.status||"pending")}</td>
-        <td>${formatDate(o.createdAt)}</td>
-        <td>
-          <select onchange="changeOrderStatus('${o.id}',this.value)">
-            ${["pending","confirmed","processing","ready","completed","cancelled"]
-              .map(s=>`<option value="${s}" ${(o.status||"pending")===s?"selected":""}>${s}</option>`)
-              .join("")}
-          </select>
-        </td>
-      </tr>
-    `).join("");
-  }
-
-  async function changeOrderStatus(id,status){
-    try{
-      await updateDoc(
-        doc(db,"orders",id),
-        {
-          status,
-          updatedAt:serverTimestamp()
-        }
-      );
-
-      const o=orders.find(x=>x.id===id);
-      if(o)o.status=status;
-
-      renderOrders();
-      toast("Order status updated.");
-    }catch(error){
-      console.error(error);
-      toast("Could not update order: "+(error.code||error.message||"unknown error"));
-    }
-  }
-
-  window.changeOrderStatus=changeOrderStatus;
-
-  async function loadDeliveries(){
-    if(!currentUser||!db)return;
-
-    try{
-      const snap=await getDocs(
-        query(
-          collection(db,"deliveries"),
-          where("ownerUid","==",currentUser.uid)
-        )
-      );
-
-      deliveries=snap.docs.map(d=>({id:d.id,...d.data()}));
-
-      deliveries.sort((a,b)=>
-        (b.createdAt?.toMillis?.()||0)-
-        (a.createdAt?.toMillis?.()||0)
-      );
-
-      renderDeliveries();
-      $("statDeliveries").textContent=deliveries.length;
-    }catch(error){
-      console.error(error);
-      toast("Could not load deliveries: "+(error.code||error.message||"unknown error"));
-    }
-  }
-
-  function renderDeliveries(){
-    const body=$("deliveriesBody");
-    const search=$("deliverySearch").value.trim().toLowerCase();
-    const filter=$("deliveryStatusFilter").value;
-
-    const list=deliveries.filter(d=>
-      (!search||JSON.stringify(d).toLowerCase().includes(search)) &&
-      (!filter||(d.status||"requested")===filter)
-    );
-
-    if(!list.length){
-      body.innerHTML=`<tr><td colspan="6"><div class="empty">No delivery records found.</div></td></tr>`;
-      return;
-    }
-
-    body.innerHTML=list.map(d=>`
-      <tr>
-        <td><strong>${escapeHtml(d.deliveryNumber||d.id.slice(0,8))}</strong></td>
-        <td>${escapeHtml(d.orderId||d.orderNumber||"—")}</td>
-        <td>${escapeHtml(d.destination||d.address||d.deliveryAddress||"—")}</td>
-        <td>${statusBadge(d.status||"requested")}</td>
-        <td>${formatDate(d.createdAt)}</td>
-        <td>
-          <select onchange="changeDeliveryStatus('${d.id}',this.value)">
-            ${["requested","assigned","picked_up","in_transit","delivered","cancelled"]
-              .map(s=>`<option value="${s}" ${(d.status||"requested")===s?"selected":""}>${s.replaceAll("_"," ")}</option>`)
-              .join("")}
-          </select>
-        </td>
-      </tr>
-    `).join("");
-  }
-
-  async function changeDeliveryStatus(id,status){
-    try{
-      await updateDoc(
-        doc(db,"deliveries",id),
-        {
-          status,
-          updatedAt:serverTimestamp()
-        }
-      );
-
-      const d=deliveries.find(x=>x.id===id);
-      if(d)d.status=status;
-
-      renderDeliveries();
-      toast("Delivery status updated.");
-    }catch(error){
-      console.error(error);
-      toast("Could not update delivery: "+(error.code||error.message||"unknown error"));
-    }
-  }
-
-  window.changeDeliveryStatus=changeDeliveryStatus;
-
-  function addActivity(action,detail){
-    const key="sefwiManagementActivity";
-    const arr=JSON.parse(localStorage.getItem(key)||"[]");
-
-    arr.unshift({
-      action,
-      detail,
-      at:new Date().toISOString()
-    });
-
-    localStorage.setItem(
-      key,
-      JSON.stringify(arr.slice(0,15))
-    );
-
-    renderActivity();
-  }
-
-  function renderActivity(){
-    const el=$("recentActivity");
-    const arr=JSON.parse(
-      localStorage.getItem("sefwiManagementActivity")||"[]"
-    );
-
-    if(!arr.length){
-      el.innerHTML=`<div class="empty">No recent local activity yet.</div>`;
-      return;
-    }
-
-    el.innerHTML=arr.slice(0,8).map(x=>`
-      <div class="mini-item">
-        <div>
-          <strong>${escapeHtml(x.action)}</strong>
-          <small>${escapeHtml(x.detail||"")}</small>
-        </div>
-        <small>${formatDate(x.at)}</small>
-      </div>
-    `).join("");
-  }
-
-  async function loadAllData(){
-    if(!currentUser)return;
-
-    renderActivity();
-
-    await Promise.allSettled([
-      loadProducts(),
-      loadProperties(),
-      loadOrders(),
-      loadDeliveries()
-    ]);
-
-    updateAccountUI();
-  }
-
-  async function signIn(){
-    if(!(await initFirebase()))return;
-
-    const email=$("loginEmail").value.trim();
-    const password=$("loginPassword").value;
-
-    if(!email||!password)
-      return toast("Enter your email and password.");
-
-    try{
-      await signInWithEmailAndPassword(auth,email,password);
-      localStorage.setItem("sefwiAccountType","partnership");
-      toast("Signed in successfully.");
-    }catch(error){
-      console.error(error);
-
-      const code=error?.code||"unknown-auth-error";
-
-      const messages={
-        "auth/invalid-credential":"Email or password is incorrect.",
-        "auth/user-not-found":"No account was found with this email.",
-        "auth/wrong-password":"Email or password is incorrect.",
-        "auth/too-many-requests":"Too many attempts. Please wait and try again.",
-        "auth/network-request-failed":"Network error. Check your internet connection."
+  async function compressImage(file,maxSize=1600,quality=.82){
+    if(!file || !file.type.startsWith("image/")) return file;
+
+    return new Promise(resolve=>{
+      const img = new Image();
+      const reader = new FileReader();
+
+      reader.onload = e=>{
+        img.onload = ()=>{
+          let width = img.width;
+          let height = img.height;
+
+          if(width > maxSize || height > maxSize){
+            if(width > height){
+              height = Math.round(height * maxSize / width);
+              width = maxSize;
+            }else{
+              width = Math.round(width * maxSize / height);
+              height = maxSize;
+            }
+          }
+
+          const canvas = document.createElement("canvas");
+          canvas.width = width;
+          canvas.height = height;
+
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img,0,0,width,height);
+
+          canvas.toBlob(blob=>{
+            resolve(blob || file);
+          }, "image/jpeg", quality);
+        };
+
+        img.src = e.target.result;
       };
 
-      toast(messages[code]||("Sign in failed: "+code));
-    }
+      reader.readAsDataURL(file);
+    });
   }
 
-  async function resetPassword(){
-    if(!(await initFirebase()))return;
+  async function uploadImage(file,path){
+    if(!file) return "";
 
-    const email=$("loginEmail").value.trim();
+    const compressed = await compressImage(file);
+    const fileRef = ref(
+      storage,
+      path + "/" + Date.now() + "-" +
+      Math.random().toString(36).slice(2) + ".jpg"
+    );
 
-    if(!email)
-      return toast("Enter your email first.");
+    await uploadBytes(compressed instanceof Blob ? fileRef : fileRef, compressed);
+    return await getDownloadURL(fileRef);
+  }
+
+  async function deleteStorageFile(url){
+    if(!url) return;
 
     try{
-      await sendPasswordResetEmail(auth,email);
-      toast("Password reset email sent.");
-    }catch(error){
-      console.error(error);
-      toast("Could not send reset email: "+(error.code||error.message||"unknown error"));
+      await deleteObject(ref(storage,url));
+    }catch(e){
+      console.log("Old image could not be deleted:",e);
     }
   }
 
-  function setAuthTab(tab){
-    const login=tab==="login";
 
-    $("loginTab").classList.toggle("active",login);
-    $("signupTab").classList.toggle("active",!login);
+  /* =========================================================
+     AUTH
+  ========================================================= */
 
-    $("loginForm").classList.toggle("hidden",!login);
-    $("signupForm").classList.toggle("hidden",login);
-  }
+  let signupMode = false;
 
-  async function handleSignOut(){
-    if(!auth)return;
+  $("signupBtn").onclick = async ()=>{
+
+    if(!signupMode){
+      signupMode = true;
+
+      $("signupFields").classList.remove("hidden");
+      $("loginBtn").textContent = "Create Account";
+      $("signupBtn").textContent = "I already have an account";
+
+      return;
+    }
+
+    signupMode = false;
+
+    $("signupFields").classList.add("hidden");
+    $("loginBtn").textContent = "Sign in";
+    $("signupBtn").textContent = "Create management account";
+  };
+
+
+  $("loginBtn").onclick = async ()=>{
+
+    const email = $("authEmail").value.trim();
+    const password = $("authPassword").value;
+
+    if(!email || !password){
+      authMessage("Enter your email and password.");
+      return;
+    }
 
     try{
-      await signOut(auth);
-      localStorage.removeItem("sefwiAccountType");
-      toast("Signed out.");
-    }catch(error){
-      toast("Sign out failed: "+(error.code||error.message||"unknown error"));
-    }
-  }
 
-  document.querySelectorAll(".nav-btn").forEach(btn=>{
-    btn.addEventListener("click",()=>{
-      showSection(btn.dataset.section);
-    });
-  });
+      if(signupMode){
 
-  $("mobileMenu").addEventListener(
-    "click",
-    ()=>$("sidebar").classList.toggle("open")
-  );
+        const name = $("authName").value.trim();
+        const role = $("authRole").value;
 
-  $("loginTab").addEventListener(
-    "click",
-    ()=>setAuthTab("login")
-  );
-
-  $("signupTab").addEventListener(
-    "click",
-    ()=>setAuthTab("signup")
-  );
-
-  $("loginForm").addEventListener(
-    "submit",
-    e=>{
-      e.preventDefault();
-      signIn();
-    }
-  );
-
-  $("signupForm").addEventListener(
-    "submit",
-    e=>{
-      e.preventDefault();
-      window.createPartnershipAccount();
-    }
-  );
-
-  $("forgotPassword").addEventListener(
-    "click",
-    resetPassword
-  );
-
-  $("signOutBtn").addEventListener(
-    "click",
-    handleSignOut
-  );
-
-  $("settingsResetPassword").addEventListener(
-    "click",
-    resetPassword
-  );
-
-  $("partnershipForm").addEventListener(
-    "submit",
-    e=>e.preventDefault()
-  );
-
-  $("savePartnershipBtn").addEventListener(
-    "click",
-    savePartnershipProfile
-  );
-
-  $("productForm").addEventListener(
-    "submit",
-    saveProduct
-  );
-
-  $("propertyForm").addEventListener(
-    "submit",
-    saveProperty
-  );
-
-  $("productSearch").addEventListener(
-    "input",
-    renderProducts
-  );
-
-  $("productStatusFilter").addEventListener(
-    "change",
-    renderProducts
-  );
-
-  $("propertySearch").addEventListener(
-    "input",
-    renderProperties
-  );
-
-  $("propertyTypeFilter").addEventListener(
-    "change",
-    renderProperties
-  );
-
-  $("orderSearch").addEventListener(
-    "input",
-    renderOrders
-  );
-
-  $("orderStatusFilter").addEventListener(
-    "change",
-    renderOrders
-  );
-
-  $("deliverySearch").addEventListener(
-    "input",
-    renderDeliveries
-  );
-
-  $("deliveryStatusFilter").addEventListener(
-    "change",
-    renderDeliveries
-  );
-
-  document.querySelectorAll(".modal").forEach(modal=>{
-    modal.addEventListener("click",e=>{
-      if(e.target===modal)
-        modal.classList.remove("show");
-    });
-  });
-
-  (async()=>{
-    if(!(await initFirebase()))return;
-
-    onAuthStateChanged(auth,async user=>{
-      currentUser=user;
-
-      if(user){
-        $("authScreen").classList.add("hidden");
-        $("app").classList.remove("hidden");
-
-        await loadUserProfile();
-
-        if(
-          !currentProfile ||
-          currentProfile.accountType!=="partnership"
-        ){
-          toast(
-            "This account is not registered as a SefwiGo Partnership account."
-          );
-
-          await signOut(auth);
+        if(!name){
+          authMessage("Enter your name.");
           return;
         }
 
-        fillProfile();
-        updateAccountUI();
-        await loadAllData();
+        const cred =
+          await createUserWithEmailAndPassword(
+            auth,email,password
+          );
+
+        await updateProfile(cred.user,{displayName:name});
+
+        let roles = [];
+
+        if(role === "both"){
+          roles = ["vendor","property_owner"];
+        }else{
+          roles = [role];
+        }
+
+        await setDoc(
+          doc(db,"users",cred.user.uid),
+          {
+            uid:cred.user.uid,
+            name:name,
+            email:email,
+            accountType:role,
+            roles:roles,
+            createdAt:serverTimestamp()
+          },
+          {merge:true}
+        );
+
+        authMessage("Account created.","success");
+
       }else{
-        $("app").classList.add("hidden");
-        $("authScreen").classList.remove("hidden");
-        setAuthTab("login");
+
+        await signInWithEmailAndPassword(
+          auth,email,password
+        );
+
       }
+
+    }catch(error){
+      authMessage(friendlyError(error));
+    }
+  };
+
+
+  $("forgotBtn").onclick = async ()=>{
+
+    const email = $("authEmail").value.trim();
+
+    if(!email){
+      authMessage("Enter your email first.");
+      return;
+    }
+
+    try{
+      await sendPasswordResetEmail(auth,email);
+      authMessage("Password reset email sent.","success");
+    }catch(error){
+      authMessage(friendlyError(error));
+    }
+  };
+
+
+  $("logoutBtn").onclick = ()=>signOut(auth);
+
+
+  onAuthStateChanged(auth,async user=>{
+
+    currentUser = user;
+
+    if(user){
+
+      $("authView").classList.add("hidden");
+      $("appView").classList.remove("hidden");
+      $("logoutBtn").classList.remove("hidden");
+
+      $("welcomeName").textContent =
+        user.displayName || user.email || "Manager";
+
+      await ensureProfile();
+
+      await loadBusiness();
+      await loadProducts();
+      await loadProperties();
+      await loadOrders();
+      updateStats();
+
+    }else{
+
+      $("authView").classList.remove("hidden");
+      $("appView").classList.add("hidden");
+      $("logoutBtn").classList.add("hidden");
+    }
+  });
+
+
+  async function ensureProfile(){
+
+    if(!currentUser) return;
+
+    const userRef = doc(db,"users",currentUser.uid);
+    const snap = await getDoc(userRef);
+
+    if(!snap.exists()){
+
+      await setDoc(userRef,{
+        uid:currentUser.uid,
+        name:currentUser.displayName || "",
+        email:currentUser.email || "",
+        accountType:"vendor",
+        roles:["vendor"],
+        createdAt:serverTimestamp()
+      });
+
+    }
+  }
+
+
+  /* =========================================================
+     TABS
+  ========================================================= */
+
+  document.querySelectorAll(".tab").forEach(btn=>{
+
+    btn.onclick = ()=>{
+
+      document.querySelectorAll(".tab")
+        .forEach(x=>x.classList.remove("active"));
+
+      document.querySelectorAll(".section")
+        .forEach(x=>x.classList.remove("active"));
+
+      btn.classList.add("active");
+      $(btn.dataset.tab).classList.add("active");
+    };
+  });
+
+
+  /* =========================================================
+     BUSINESS
+  ========================================================= */
+
+  $("businessImage").onchange = e=>{
+
+    businessImageFile = e.target.files[0] || null;
+
+    if(businessImageFile){
+
+      $("businessPreview").src =
+        URL.createObjectURL(businessImageFile);
+
+      $("businessPreview").classList.remove("hidden");
+    }
+  };
+
+
+  async function loadBusiness(){
+
+    if(!currentUser) return;
+
+    const q = query(
+      collection(db,"businesses"),
+      where("ownerId","==",currentUser.uid)
+    );
+
+    const snap = await getDocs(q);
+
+    if(snap.empty){
+
+      currentBusiness = null;
+      $("businessList").innerHTML =
+        `<p class="muted">You have not registered a business yet.</p>`;
+
+      return;
+    }
+
+    const first = snap.docs[0];
+
+    currentBusiness = {
+      id:first.id,
+      ...first.data()
+    };
+
+    const b = currentBusiness;
+
+    $("businessName").value = b.name || "";
+    $("businessCategory").value = b.category || "Restaurant";
+    $("businessPhone").value = b.phone || "";
+    $("businessLocation").value = b.location || "";
+    $("businessDescription").value = b.description || "";
+
+    if(b.logoUrl){
+      $("businessPreview").src = b.logoUrl;
+      $("businessPreview").classList.remove("hidden");
+    }
+
+    $("businessList").innerHTML = `
+      <div class="item">
+        <div class="item-row">
+          <div>
+            <h3>${escapeHtml(b.name)}</h3>
+            <span class="badge">${escapeHtml(b.category || "Business")}</span>
+            <p class="muted">${escapeHtml(b.location || "")}</p>
+            <p>${escapeHtml(b.description || "")}</p>
+            <p><strong>${escapeHtml(b.phone || "")}</strong></p>
+          </div>
+
+          ${
+            b.logoUrl
+            ? `<img class="thumb" src="${escapeHtml(b.logoUrl)}">`
+            : ""
+          }
+        </div>
+      </div>
+    `;
+  }
+
+
+  $("saveBusinessBtn").onclick = async ()=>{
+
+    if(!currentUser) return;
+
+    const name = $("businessName").value.trim();
+    const category = $("businessCategory").value;
+    const phone = $("businessPhone").value.trim();
+    const location = $("businessLocation").value.trim();
+    const description = $("businessDescription").value.trim();
+
+    if(!name){
+      showMessage("Enter a business name.","error");
+      return;
+    }
+
+    const oldName = currentBusiness?.name || "";
+
+    try{
+
+      let logoUrl = currentBusiness?.logoUrl || "";
+
+      if(businessImageFile){
+
+        logoUrl = await uploadImage(
+          businessImageFile,
+          `businesses/${currentUser.uid}`
+        );
+
+        if(currentBusiness?.logoUrl){
+          await deleteStorageFile(currentBusiness.logoUrl);
+        }
+      }
+
+      const businessRef =
+        currentBusiness
+        ? doc(db,"businesses",currentBusiness.id)
+        : doc(collection(db,"businesses"));
+
+      await setDoc(
+        businessRef,
+        {
+          ownerId:currentUser.uid,
+          name,
+          category,
+          phone,
+          location,
+          description,
+          logoUrl,
+          active:true,
+          approved:true,
+          updatedAt:serverTimestamp(),
+          ...(currentBusiness ? {} : {
+            createdAt:serverTimestamp()
+          })
+        },
+        {merge:true}
+      );
+
+      /*
+        Keep existing products linked to the new business name.
+        This is important because the customer app uses vendorName.
+      */
+      if(oldName && oldName !== name){
+
+        const q = query(
+          collection(db,"products"),
+          where("vendorId","==",currentUser.uid)
+        );
+
+        const snap = await getDocs(q);
+
+        for(const productDoc of snap.docs){
+
+          await updateDoc(
+            doc(db,"products",productDoc.id),
+            {
+              vendorName:name,
+              updatedAt:serverTimestamp()
+            }
+          );
+        }
+      }
+
+      businessImageFile = null;
+
+      await loadBusiness();
+      await loadProducts();
+
+      showMessage("Business saved successfully.");
+
+    }catch(error){
+
+      console.error(error);
+      showMessage(friendlyError(error),"error");
+    }
+  };
+
+
+  /* =========================================================
+     MODIFIER BUILDER
+  ========================================================= */
+
+  function addModifierGroup(){
+
+    modifierGroups.push({
+      name:"",
+      required:false,
+      multiple:false,
+      options:[
+        {name:"",price:0}
+      ]
     });
-  })();
+
+    renderModifierGroups();
+  }
+
+
+  function renderModifierGroups(){
+
+    const box = $("modifierGroups");
+
+    if(!modifierGroups.length){
+
+      box.innerHTML =
+        `<p class="muted">No options added.</p>`;
+
+      return;
+    }
+
+    box.innerHTML = modifierGroups.map((group,gIndex)=>`
+
+      <div class="modifier">
+
+        <div class="grid">
+
+          <div class="field">
+            <label>Option group name</label>
+            <input
+              data-group-name="${gIndex}"
+              value="${escapeHtml(group.name)}"
+              placeholder="Example: Size">
+          </div>
+
+          <div style="display:flex;gap:15px;align-items:center">
+
+            <label class="check">
+              <input
+                type="checkbox"
+                data-group-required="${gIndex}"
+                ${group.required ? "checked":""}>
+              Required
+            </label>
+
+            <label class="check">
+              <input
+                type="checkbox"
+                data-group-multiple="${gIndex}"
+                ${group.multiple ? "checked":""}>
+              Multiple
+            </label>
+
+          </div>
+
+        </div>
+
+        <strong>Choices</strong>
+
+        <div>
+          ${
+            group.options.map((option,oIndex)=>`
+
+              <div class="option">
+
+                <input
+                  data-option-name="${gIndex}-${oIndex}"
+                  value="${escapeHtml(option.name)}"
+                  placeholder="Example: Large">
+
+                <input
+                  data-option-price="${gIndex}-${oIndex}"
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  value="${Number(option.price || 0)}"
+                  placeholder="Extra cost">
+
+                <button
+                  class="btn danger"
+                  data-remove-option="${gIndex}-${oIndex}">
+                  Remove
+                </button>
+
+              </div>
+
+            `).join("")
+          }
+        </div>
+
+        <div class="actions">
+
+          <button
+            class="btn secondary"
+            data-add-option="${gIndex}">
+            + Add choice
+          </button>
+
+          <button
+            class="btn danger"
+            data-remove-group="${gIndex}">
+            Remove group
+          </button>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+
+    document.querySelectorAll("[data-group-name]").forEach(input=>{
+      input.oninput = e=>{
+        const i = Number(e.target.dataset.groupName);
+        modifierGroups[i].name = e.target.value;
+      };
+    });
+
+    document.querySelectorAll("[data-group-required]").forEach(input=>{
+      input.onchange = e=>{
+        const i = Number(e.target.dataset.groupRequired);
+        modifierGroups[i].required = e.target.checked;
+      };
+    });
+
+    document.querySelectorAll("[data-group-multiple]").forEach(input=>{
+      input.onchange = e=>{
+        const i = Number(e.target.dataset.groupMultiple);
+        modifierGroups[i].multiple = e.target.checked;
+      };
+    });
+
+    document.querySelectorAll("[data-option-name]").forEach(input=>{
+      input.oninput = e=>{
+        const [g,o] =
+          e.target.dataset.optionName.split("-").map(Number);
+
+        modifierGroups[g].options[o].name =
+          e.target.value;
+      };
+    });
+
+    document.querySelectorAll("[data-option-price]").forEach(input=>{
+      input.oninput = e=>{
+        const [g,o] =
+          e.target.dataset.optionPrice.split("-").map(Number);
+
+        modifierGroups[g].options[o].price =
+          Number(e.target.value || 0);
+      };
+    });
+
+    document.querySelectorAll("[data-add-option]").forEach(btn=>{
+      btn.onclick = ()=>{
+        const i = Number(btn.dataset.addOption);
+
+        modifierGroups[i].options.push({
+          name:"",
+          price:0
+        });
+
+        renderModifierGroups();
+      };
+    });
+
+    document.querySelectorAll("[data-remove-option]").forEach(btn=>{
+      btn.onclick = ()=>{
+        const [g,o] =
+          btn.dataset.removeOption.split("-").map(Number);
+
+        modifierGroups[g].options.splice(o,1);
+
+        renderModifierGroups();
+      };
+    });
+
+    document.querySelectorAll("[data-remove-group]").forEach(btn=>{
+      btn.onclick = ()=>{
+        const i = Number(btn.dataset.removeGroup);
+
+        modifierGroups.splice(i,1);
+
+        renderModifierGroups();
+      };
+    });
+  }
+
+
+  $("addModifierBtn").onclick = addModifierGroup;
+
+
+  /* =========================================================
+     PRODUCT IMAGE
+  ========================================================= */
+
+  $("productImage").onchange = e=>{
+
+    productImageFile = e.target.files[0] || null;
+
+    if(productImageFile){
+
+      $("productPreview").src =
+        URL.createObjectURL(productImageFile);
+
+      $("productPreview").classList.remove("hidden");
+    }
+  };
+
+
+  /* =========================================================
+     PRODUCTS
+  ========================================================= */
+
+  async function loadProducts(){
+
+    if(!currentUser) return;
+
+    const q = query(
+      collection(db,"products"),
+      where("vendorId","==",currentUser.uid)
+    );
+
+    const snap = await getDocs(q);
+
+    const products = snap.docs.map(d=>({
+      id:d.id,
+      ...d.data()
+    }));
+
+    products.sort((a,b)=>{
+      const aa = a.createdAt?.seconds || 0;
+      const bb = b.createdAt?.seconds || 0;
+      return bb-aa;
+    });
+
+    const list = $("productList");
+
+    if(!products.length){
+
+      list.innerHTML =
+        `<p class="muted">No products yet.</p>`;
+
+      return;
+    }
+
+    list.innerHTML = products.map(p=>`
+
+      <div class="item">
+
+        <div class="item-row">
+
+          <div style="flex:1">
+
+            <h3>${escapeHtml(p.name)}</h3>
+
+            <div class="price">${money(p.price)}</div>
+
+            <p class="muted">
+              ${escapeHtml(p.description || "")}
+            </p>
+
+            <span class="badge">
+              ${p.available ? "Available":"Unavailable"}
+            </span>
+
+            ${
+              p.modifiers?.length
+              ? `
+                <div style="margin-top:12px">
+                  <strong>Options:</strong>
+                  ${p.modifiers.map(g=>`
+                    <p class="muted">
+                      <strong>${escapeHtml(g.name)}</strong>:
+                      ${g.options.map(o=>
+                        escapeHtml(o.name) +
+                        (Number(o.price)>0
+                          ? ` (+${money(o.price)})`
+                          : "")
+                      ).join(", ")}
+                    </p>
+                  `).join("")}
+                </div>
+              `
+              : ""
+            }
+
+            <div class="actions">
+
+              <button
+                class="btn secondary"
+                data-edit-product="${p.id}">
+                Edit
+              </button>
+
+              <button
+                class="btn danger"
+                data-delete-product="${p.id}">
+                Delete
+              </button>
+
+            </div>
+
+          </div>
+
+          ${
+            p.photoUrl
+            ? `<img class="thumb" src="${escapeHtml(p.photoUrl)}">`
+            : ""
+          }
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+
+    document.querySelectorAll("[data-edit-product]").forEach(btn=>{
+      btn.onclick = ()=>{
+        const p = products.find(x=>x.id === btn.dataset.editProduct);
+        if(p) editProduct(p);
+      };
+    });
+
+
+    document.querySelectorAll("[data-delete-product]").forEach(btn=>{
+      btn.onclick = async ()=>{
+
+        if(!confirm("Delete this product?")) return;
+
+        try{
+
+          const p =
+            products.find(x=>x.id === btn.dataset.deleteProduct);
+
+          await deleteDoc(
+            doc(db,"products",btn.dataset.deleteProduct)
+          );
+
+          if(p?.photoUrl){
+            await deleteStorageFile(p.photoUrl);
+          }
+
+          await loadProducts();
+          updateStats();
+
+          showMessage("Product deleted.");
+
+        }catch(error){
+          showMessage(friendlyError(error),"error");
+        }
+      };
+    });
+  }
+
+
+  function editProduct(p){
+
+    editingProductId = p.id;
+
+    $("productFormTitle").textContent = "Edit Product";
+
+    $("productName").value = p.name || "";
+    $("productPrice").value = p.price ?? "";
+    $("productDescription").value = p.description || "";
+    $("productAvailable").checked = p.available !== false;
+
+    modifierGroups =
+      JSON.parse(JSON.stringify(p.modifiers || []));
+
+    renderModifierGroups();
+
+    productImageFile = null;
+
+    if(p.photoUrl){
+
+      $("productPreview").src = p.photoUrl;
+      $("productPreview").classList.remove("hidden");
+    }else{
+
+      $("productPreview").classList.add("hidden");
+    }
+
+    $("cancelProductBtn").classList.remove("hidden");
+
+    window.scrollTo({
+      top:$("menu").offsetTop,
+      behavior:"smooth"
+    });
+  }
+
+
+  function resetProductForm(){
+
+    editingProductId = null;
+
+    $("productFormTitle").textContent =
+      "Add Food / Product";
+
+    $("productName").value = "";
+    $("productPrice").value = "";
+    $("productDescription").value = "";
+    $("productAvailable").checked = true;
+
+    productImageFile = null;
+
+    $("productImage").value = "";
+    $("productPreview").src = "";
+    $("productPreview").classList.add("hidden");
+
+    modifierGroups = [];
+
+    renderModifierGroups();
+
+    $("cancelProductBtn").classList.add("hidden");
+  }
+
+
+  $("cancelProductBtn").onclick = resetProductForm;
+
+
+  $("saveProductBtn").onclick = async ()=>{
+
+    if(!currentUser) return;
+
+    if(!currentBusiness){
+
+      showMessage(
+        "Please save your business profile first.",
+        "error"
+      );
+
+      return;
+    }
+
+    const name = $("productName").value.trim();
+    const price = Number($("productPrice").value || 0);
+    const description = $("productDescription").value.trim();
+    const available = $("productAvailable").checked;
+
+    if(!name){
+
+      showMessage("Enter the product name.","error");
+      return;
+    }
+
+    if(price < 0){
+
+      showMessage("Price cannot be negative.","error");
+      return;
+    }
+
+
+    /* Validate modifiers */
+
+    for(const group of modifierGroups){
+
+      group.name = String(group.name || "").trim();
+
+      if(!group.name){
+
+        showMessage(
+          "Every option group needs a name.",
+          "error"
+        );
+
+        return;
+      }
+
+      if(!group.options.length){
+
+        showMessage(
+          `Add at least one choice to "${group.name}".`,
+          "error"
+        );
+
+        return;
+      }
+
+      for(const option of group.options){
+
+        option.name =
+          String(option.name || "").trim();
+
+        option.price =
+          Number(option.price || 0);
+
+        if(!option.name){
+
+          showMessage(
+            `Every choice in "${group.name}" needs a name.`,
+            "error"
+          );
+
+          return;
+        }
+
+        if(option.price < 0){
+
+          showMessage(
+            "Option cost cannot be negative.",
+            "error"
+          );
+
+          return;
+        }
+      }
+    }
+
+
+    try{
+
+      let oldProduct = null;
+
+      if(editingProductId){
+
+        const oldSnap =
+          await getDoc(
+            doc(db,"products",editingProductId)
+          );
+
+        if(oldSnap.exists()){
+          oldProduct = oldSnap.data();
+        }
+      }
+
+
+      let photoUrl = oldProduct?.photoUrl || "";
+
+
+      if(productImageFile){
+
+        photoUrl = await uploadImage(
+          productImageFile,
+          `products/${currentUser.uid}/${editingProductId || "new"}`
+        );
+
+        if(oldProduct?.photoUrl){
+          await deleteStorageFile(oldProduct.photoUrl);
+        }
+      }
+
+
+      const data = {
+
+        name,
+
+        description,
+
+        price,
+
+        available,
+
+        vendorId:currentUser.uid,
+
+        vendorName:currentBusiness.name,
+
+        photoUrl,
+
+        modifiers:modifierGroups,
+
+        updatedAt:serverTimestamp()
+      };
+
+
+      if(editingProductId){
+
+        await updateDoc(
+          doc(db,"products",editingProductId),
+          data
+        );
+
+      }else{
+
+        const productRef =
+          doc(collection(db,"products"));
+
+        /*
+          Upload again using the real product ID
+          when this is a new product.
+        */
+
+        if(productImageFile){
+
+          photoUrl = await uploadImage(
+            productImageFile,
+            `products/${currentUser.uid}/${productRef.id}`
+          );
+
+          data.photoUrl = photoUrl;
+        }
+
+        data.createdAt = serverTimestamp();
+
+        await setDoc(productRef,data);
+      }
+
+
+      resetProductForm();
+
+      await loadProducts();
+      updateStats();
+
+      showMessage(
+        editingProductId
+        ? "Product updated successfully."
+        : "Product added successfully."
+      );
+
+    }catch(error){
+
+      console.error(error);
+      showMessage(friendlyError(error),"error");
+    }
+  };
+
+
+  /* =========================================================
+     PROPERTY PHOTOS
+  ========================================================= */
+
+  function showPropertyPreviews(){
+
+    const box = $("propertyPreviewGrid");
+
+    box.innerHTML = "";
+
+    existingPropertyPhotos.forEach(url=>{
+
+      const img = document.createElement("img");
+      img.src = url;
+      box.appendChild(img);
+    });
+
+    propertyImageFiles.forEach(file=>{
+
+      const img = document.createElement("img");
+      img.src = URL.createObjectURL(file);
+      box.appendChild(img);
+    });
+  }
+
+
+  function addPropertyFiles(files){
+
+    const incoming = Array.from(files || []);
+
+    propertyImageFiles =
+      propertyImageFiles.concat(incoming).slice(0,6);
+
+    showPropertyPreviews();
+  }
+
+
+  $("propertyCamera").onchange = e=>{
+    addPropertyFiles(e.target.files);
+    $("propertyCamera").value = "";
+  };
+
+
+  $("propertyGallery").onchange = e=>{
+    addPropertyFiles(e.target.files);
+    $("propertyGallery").value = "";
+  };
+
+
+  /* =========================================================
+     PROPERTIES
+  ========================================================= */
+
+  async function loadProperties(){
+
+    if(!currentUser) return;
+
+    const q = query(
+      collection(db,"properties"),
+      where("ownerId","==",currentUser.uid)
+    );
+
+    const snap = await getDocs(q);
+
+    const properties = snap.docs.map(d=>({
+      id:d.id,
+      ...d.data()
+    }));
+
+    properties.sort((a,b)=>{
+      const aa = a.createdAt?.seconds || 0;
+      const bb = b.createdAt?.seconds || 0;
+      return bb-aa;
+    });
+
+    const list = $("propertyList");
+
+    if(!properties.length){
+
+      list.innerHTML =
+        `<p class="muted">No properties listed yet.</p>`;
+
+      return;
+    }
+
+    list.innerHTML = properties.map(p=>{
+
+      const photos =
+        p.photoUrls?.length
+        ? p.photoUrls
+        : (p.photoUrl ? [p.photoUrl] : []);
+
+      return `
+
+        <div class="item">
+
+          <div class="item-row">
+
+            <div style="flex:1">
+
+              <h3>${escapeHtml(p.title)}</h3>
+
+              <span class="badge">
+                ${escapeHtml(p.purpose || "")}
+              </span>
+
+              <p class="price">${money(p.price)}</p>
+
+              <p>
+                ${escapeHtml(p.type || "")}
+                · ${escapeHtml(p.location || "")}
+              </p>
+
+              <p class="muted">
+                Bedrooms: ${p.bedrooms || 0}
+                · Bathrooms: ${p.bathrooms || 0}
+              </p>
+
+              <p class="muted">
+                ${escapeHtml(p.description || "")}
+              </p>
+
+              <p>
+                Contact:
+                <strong>${escapeHtml(p.phone || "")}</strong>
+              </p>
+
+              <span class="badge">
+                ${p.available ? "Available":"Unavailable"}
+              </span>
+
+              <div class="actions">
+
+                <button
+                  class="btn secondary"
+                  data-edit-property="${p.id}">
+                  Edit
+                </button>
+
+                <button
+                  class="btn danger"
+                  data-delete-property="${p.id}">
+                  Delete
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          ${
+            photos.length
+            ? `
+              <div class="preview-grid">
+                ${photos.map(url=>
+                  `<img src="${escapeHtml(url)}">`
+                ).join("")}
+              </div>
+            `
+            : ""
+          }
+
+        </div>
+
+      `;
+    }).join("");
+
+
+    document.querySelectorAll("[data-edit-property]").forEach(btn=>{
+
+      btn.onclick = ()=>{
+
+        const p =
+          properties.find(
+            x=>x.id === btn.dataset.editProperty
+          );
+
+        if(p) editProperty(p);
+      };
+    });
+
+
+    document.querySelectorAll("[data-delete-property]").forEach(btn=>{
+
+      btn.onclick = async ()=>{
+
+        if(!confirm("Delete this property?")) return;
+
+        try{
+
+          const p =
+            properties.find(
+              x=>x.id === btn.dataset.deleteProperty
+            );
+
+          await deleteDoc(
+            doc(db,"properties",btn.dataset.deleteProperty)
+          );
+
+          const photos =
+            p?.photoUrls?.length
+            ? p.photoUrls
+            : (p?.photoUrl ? [p.photoUrl] : []);
+
+          for(const url of photos){
+            await deleteStorageFile(url);
+          }
+
+          await loadProperties();
+          updateStats();
+
+          showMessage("Property deleted.");
+
+        }catch(error){
+
+          showMessage(
+            friendlyError(error),
+            "error"
+          );
+        }
+      };
+    });
+  }
+
+
+  function editProperty(p){
+
+    editingPropertyId = p.id;
+
+    $("propertyFormTitle").textContent =
+      "Edit Property";
+
+    $("propertyTitle").value = p.title || "";
+    $("propertyPurpose").value = p.purpose || "Rent";
+    $("propertyType").value = p.type || "House";
+    $("propertyPrice").value = p.price ?? "";
+    $("propertyLocation").value = p.location || "";
+    $("propertyBedrooms").value = p.bedrooms ?? 0;
+    $("propertyBathrooms").value = p.bathrooms ?? 0;
+    $("propertyOwner").value = p.owner || "";
+    $("propertyPhone").value = p.phone || "";
+    $("propertyDescription").value = p.description || "";
+    $("propertyAvailable").checked = p.available !== false;
+
+    existingPropertyPhotos =
+      p.photoUrls?.length
+      ? [...p.photoUrls]
+      : (p.photoUrl ? [p.photoUrl] : []);
+
+    propertyImageFiles = [];
+
+    showPropertyPreviews();
+
+    $("cancelPropertyBtn").classList.remove("hidden");
+
+    window.scrollTo({
+      top:$("properties").offsetTop,
+      behavior:"smooth"
+    });
+  }
+
+
+  function resetPropertyForm(){
+
+    editingPropertyId = null;
+
+    $("propertyFormTitle").textContent =
+      "Add Property";
+
+    $("propertyTitle").value = "";
+    $("propertyPurpose").value = "Rent";
+    $("propertyType").value = "House";
+    $("propertyPrice").value = "";
+    $("propertyLocation").value = "";
+    $("propertyBedrooms").value = "";
+    $("propertyBathrooms").value = "";
+    $("propertyOwner").value = "";
+    $("propertyPhone").value = "";
+    $("propertyDescription").value = "";
+    $("propertyAvailable").checked = true;
+
+    existingPropertyPhotos = [];
+    propertyImageFiles = [];
+
+    $("propertyCamera").value = "";
+    $("propertyGallery").value = "";
+
+    showPropertyPreviews();
+
+    $("cancelPropertyBtn").classList.add("hidden");
+  }
+
+
+  $("cancelPropertyBtn").onclick =
+    resetPropertyForm;
+
+
+  $("savePropertyBtn").onclick = async ()=>{
+
+    if(!currentUser) return;
+
+    const title =
+      $("propertyTitle").value.trim();
+
+    const purpose =
+      $("propertyPurpose").value;
+
+    const type =
+      $("propertyType").value;
+
+    const price =
+      Number($("propertyPrice").value || 0);
+
+    const location =
+      $("propertyLocation").value.trim();
+
+    const bedrooms =
+      Number($("propertyBedrooms").value || 0);
+
+    const bathrooms =
+      Number($("propertyBathrooms").value || 0);
+
+    const owner =
+      $("propertyOwner").value.trim();
+
+    const phone =
+      $("propertyPhone").value.trim();
+
+    const description =
+      $("propertyDescription").value.trim();
+
+    const available =
+      $("propertyAvailable").checked;
+
+
+    if(!title){
+
+      showMessage(
+        "Enter the property title.",
+        "error"
+      );
+
+      return;
+    }
+
+    if(!location){
+
+      showMessage(
+        "Enter the property location.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    try{
+
+      let oldProperty = null;
+
+      if(editingPropertyId){
+
+        const snap =
+          await getDoc(
+            doc(db,"properties",editingPropertyId)
+          );
+
+        if(snap.exists()){
+          oldProperty = snap.data();
+        }
+      }
+
+
+      let photoUrls =
+        [...existingPropertyPhotos];
+
+
+      /*
+        Upload new property photos.
+      */
+
+      const propertyId =
+        editingPropertyId ||
+        doc(collection(db,"properties")).id;
+
+      for(const file of propertyImageFiles){
+
+        const url =
+          await uploadImage(
+            file,
+            `properties/${currentUser.uid}/${propertyId}`
+          );
+
+        if(url){
+          photoUrls.push(url);
+        }
+      }
+
+
+      /*
+        Keep maximum of six photos.
+      */
+
+      photoUrls = photoUrls.slice(0,6);
+
+
+      const data = {
+
+        title,
+
+        purpose,
+
+        type,
+
+        price,
+
+        location,
+
+        bedrooms,
+
+        bathrooms,
+
+        description,
+
+        owner,
+
+        phone,
+
+        available,
+
+        ownerId:currentUser.uid,
+
+        photoUrl:photoUrls[0] || "",
+
+        photoUrls,
+
+        updatedAt:serverTimestamp()
+      };
+
+
+      if(editingPropertyId){
+
+        /*
+          If the owner replaced the photos, delete old
+          storage files that are no longer being used.
+        */
+
+        const oldPhotos =
+          oldProperty?.photoUrls?.length
+          ? oldProperty.photoUrls
+          : (oldProperty?.photoUrl
+              ? [oldProperty.photoUrl]
+              : []);
+
+        for(const oldUrl of oldPhotos){
+
+          if(!photoUrls.includes(oldUrl)){
+            await deleteStorageFile(oldUrl);
+          }
+        }
+
+        await updateDoc(
+          doc(db,"properties",editingPropertyId),
+          data
+        );
+
+      }else{
+
+        data.createdAt = serverTimestamp();
+
+        await setDoc(
+          doc(db,"properties",propertyId),
+          data
+        );
+      }
+
+
+      resetPropertyForm();
+
+      await loadProperties();
+      updateStats();
+
+      showMessage(
+        editingPropertyId
+        ? "Property updated successfully."
+        : "Property listed successfully."
+      );
+
+    }catch(error){
+
+      console.error(error);
+
+      showMessage(
+        friendlyError(error),
+        "error"
+      );
+    }
+  };
+
+
+  /* =========================================================
+     ORDERS
+  ========================================================= */
+
+  async function loadOrders(){
+
+    if(!currentUser) return;
+
+    try{
+
+      const q = query(
+        collection(db,"orders"),
+        where("vendorId","==",currentUser.uid)
+      );
+
+      const snap = await getDocs(q);
+
+      const orders = snap.docs.map(d=>({
+        id:d.id,
+        ...d.data()
+      }));
+
+      orders.sort((a,b)=>{
+        const aa = a.createdAt?.seconds || 0;
+        const bb = b.createdAt?.seconds || 0;
+        return bb-aa;
+      });
+
+      $("orderList").innerHTML =
+        orders.length
+        ? orders.map(renderOrder).join("")
+        : `<p class="muted">No orders yet.</p>`;
+
+
+      document.querySelectorAll("[data-order-status]").forEach(select=>{
+
+        select.onchange = async e=>{
+
+          const id =
+            e.target.dataset.orderStatus;
+
+          try{
+
+            await updateDoc(
+              doc(db,"orders",id),
+              {
+                status:e.target.value,
+                updatedAt:serverTimestamp()
+              }
+            );
+
+            showMessage("Order status updated.");
+
+            await loadOrders();
+
+          }catch(error){
+
+            showMessage(
+              friendlyError(error),
+              "error"
+            );
+          }
+        };
+      });
+
+    }catch(error){
+
+      console.error(error);
+
+      $("orderList").innerHTML =
+        `<div class="error">${escapeHtml(friendlyError(error))}</div>`;
+    }
+  }
+
+
+  function renderOrder(order){
+
+    const items = order.items || [];
+
+    const itemHtml = items.map(item=>{
+
+      const modifiers =
+        item.modifiers || [];
+
+      return `
+        <div style="margin:8px 0">
+          <strong>
+            ${escapeHtml(item.name)}
+          </strong>
+          × ${Number(item.quantity || 1)}
+
+          ${
+            modifiers.length
+            ? `
+              <div class="muted">
+                ${modifiers.map(m=>
+                  escapeHtml(m.group || m.name || "") +
+                  ": " +
+                  escapeHtml(m.name || "")
+                ).join(" · ")}
+              </div>
+            `
+            : ""
+          }
+        </div>
+      `;
+    }).join("");
+
+
+    const statuses = [
+      "new",
+      "accepted",
+      "preparing",
+      "ready",
+      "assigned",
+      "picked_up",
+      "out_for_delivery",
+      "delivered",
+      "completed",
+      "cancelled"
+    ];
+
+
+    return `
+
+      <div class="item">
+
+        <div class="item-row">
+
+          <div>
+
+            <h3>
+              Order #${escapeHtml(order.orderNumber || order.id.slice(0,8))}
+            </h3>
+
+            <p>
+              <strong>Customer:</strong>
+              ${escapeHtml(order.customerName || "Customer")}
+            </p>
+
+            <p>
+              <strong>Phone:</strong>
+              ${escapeHtml(order.customerPhone || "")}
+            </p>
+
+            <p>
+              <strong>Address:</strong>
+              ${escapeHtml(order.deliveryAddress || "")}
+            </p>
+
+            ${
+              order.note
+              ? `<p><strong>Note:</strong> ${escapeHtml(order.note)}</p>`
+              : ""
+            }
+
+          </div>
+
+          <div>
+            <strong class="price">
+              ${money(order.total)}
+            </strong>
+          </div>
+
+        </div>
+
+        <hr>
+
+        ${itemHtml}
+
+        <div style="margin-top:14px">
+
+          <label>Order status</label>
+
+          <select data-order-status="${order.id}">
+
+            ${
+              statuses.map(status=>
+                `<option value="${status}"
+                  ${order.status === status ? "selected":""}>
+                  ${status.replaceAll("_"," ")}
+                </option>`
+              ).join("")
+            }
+
+          </select>
+
+        </div>
+
+      </div>
+
+    `;
+  }
+
+
+  $("refreshOrdersBtn").onclick = async ()=>{
+    await loadOrders();
+    updateStats();
+  };
+
+
+  /* =========================================================
+     DASHBOARD STATS
+  ========================================================= */
+
+  async function updateStats(){
+
+    if(!currentUser) return;
+
+    try{
+
+      const productsSnap =
+        await getDocs(
+          query(
+            collection(db,"products"),
+            where("vendorId","==",currentUser.uid)
+          )
+        );
+
+      const propertiesSnap =
+        await getDocs(
+          query(
+            collection(db,"properties"),
+            where("ownerId","==",currentUser.uid)
+          )
+        );
+
+      const ordersSnap =
+        await getDocs(
+          query(
+            collection(db,"orders"),
+            where("vendorId","==",currentUser.uid)
+          )
+        );
+
+      $("statProducts").textContent =
+        productsSnap.size;
+
+      $("statProperties").textContent =
+        propertiesSnap.size;
+
+      $("statOrders").textContent =
+        ordersSnap.size;
+
+    }catch(error){
+
+      console.error(error);
+    }
+  }
+
+
+  /* =========================================================
+     STARTUP
+  ========================================================= */
+
+  renderModifierGroups();
+
 </script>
+
 </body>
 </html>
