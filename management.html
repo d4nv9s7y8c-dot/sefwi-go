@@ -8,15 +8,30 @@
 
   <style>
     *{box-sizing:border-box}
+
     body{
       margin:0;
       font-family:Arial,Helvetica,sans-serif;
       background:#f5f7f8;
       color:#17202a;
     }
-    button,input,select,textarea{font:inherit}
-    button{cursor:pointer}
-    .hidden{display:none!important}
+
+    button,input,select,textarea{
+      font:inherit;
+    }
+
+    button{
+      cursor:pointer;
+    }
+
+    button:disabled{
+      opacity:.6;
+      cursor:not-allowed;
+    }
+
+    .hidden{
+      display:none!important;
+    }
 
     header{
       position:sticky;
@@ -29,6 +44,7 @@
       align-items:center;
       justify-content:space-between;
     }
+
     .brand{
       display:flex;
       align-items:center;
@@ -37,12 +53,13 @@
       font-size:21px;
       color:#0f766e;
     }
+
     .brand-icon{
       width:38px;
       height:38px;
       border-radius:12px;
       background:#0f766e;
-      color:white;
+      color:#fff;
       display:grid;
       place-items:center;
     }
@@ -54,8 +71,9 @@
       justify-content:center;
       padding:20px;
     }
+
     .auth-card{
-      background:white;
+      background:#fff;
       width:100%;
       max-width:450px;
       border-radius:20px;
@@ -76,6 +94,7 @@
       margin-bottom:18px;
       padding-bottom:4px;
     }
+
     .tab{
       border:0;
       background:#e8eeee;
@@ -85,13 +104,19 @@
       white-space:nowrap;
       font-weight:700;
     }
+
     .tab.active{
       background:#0f766e;
       color:#fff;
     }
 
-    .section{display:none}
-    .section.active{display:block}
+    .section{
+      display:none;
+    }
+
+    .section.active{
+      display:block;
+    }
 
     .card{
       background:#fff;
@@ -102,15 +127,24 @@
       box-shadow:0 3px 12px rgba(0,0,0,.03);
     }
 
-    h1,h2,h3{margin-top:0}
-    h2{font-size:21px}
-    h3{font-size:17px}
+    h1,h2,h3{
+      margin-top:0;
+    }
+
+    h2{
+      font-size:21px;
+    }
+
+    h3{
+      font-size:17px;
+    }
 
     .grid{
       display:grid;
       grid-template-columns:repeat(2,minmax(0,1fr));
       gap:14px;
     }
+
     .grid-3{
       display:grid;
       grid-template-columns:repeat(3,minmax(0,1fr));
@@ -123,6 +157,7 @@
       font-weight:700;
       margin-bottom:6px;
     }
+
     input,select,textarea{
       width:100%;
       border:1px solid #d1d5db;
@@ -131,12 +166,21 @@
       background:#fff;
       outline:none;
     }
-    textarea{min-height:95px;resize:vertical}
-    input:focus,select:focus,textarea:focus{
+
+    textarea{
+      min-height:95px;
+      resize:vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus{
       border-color:#0f766e;
     }
 
-    .field{margin-bottom:13px}
+    .field{
+      margin-bottom:13px;
+    }
 
     .btn{
       border:0;
@@ -144,10 +188,26 @@
       padding:11px 15px;
       font-weight:700;
     }
-    .primary{background:#0f766e;color:#fff}
-    .secondary{background:#e8eeee;color:#164e4a}
-    .danger{background:#fee2e2;color:#991b1b}
-    .dark{background:#17202a;color:#fff}
+
+    .primary{
+      background:#0f766e;
+      color:#fff;
+    }
+
+    .secondary{
+      background:#e8eeee;
+      color:#164e4a;
+    }
+
+    .danger{
+      background:#fee2e2;
+      color:#991b1b;
+    }
+
+    .dark{
+      background:#17202a;
+      color:#fff;
+    }
 
     .actions{
       display:flex;
@@ -161,12 +221,14 @@
       grid-template-columns:repeat(3,1fr);
       gap:12px;
     }
+
     .stat{
       background:#fff;
       border:1px solid #e5e7eb;
       border-radius:16px;
       padding:18px;
     }
+
     .stat-number{
       font-size:28px;
       font-weight:800;
@@ -203,8 +265,16 @@
       border-radius:12px;
     }
 
-    .muted{color:#64748b;font-size:13px}
-    .price{font-weight:800;color:#0f766e}
+    .muted{
+      color:#64748b;
+      font-size:13px;
+    }
+
+    .price{
+      font-weight:800;
+      color:#0f766e;
+    }
+
     .badge{
       display:inline-block;
       padding:5px 9px;
@@ -222,6 +292,7 @@
       padding:13px;
       margin-top:12px;
     }
+
     .option{
       display:grid;
       grid-template-columns:1fr 130px auto;
@@ -236,7 +307,10 @@
       font-weight:600;
       margin:0;
     }
-    .check input{width:auto}
+
+    .check input{
+      width:auto;
+    }
 
     .upload-box{
       border:2px dashed #cbd5e1;
@@ -245,12 +319,14 @@
       text-align:center;
       background:#f8fafc;
     }
+
     .preview-grid{
       display:grid;
       grid-template-columns:repeat(3,1fr);
       gap:9px;
       margin-top:10px;
     }
+
     .preview-grid img{
       width:100%;
       height:110px;
@@ -276,6 +352,7 @@
       border-radius:10px;
       margin-bottom:12px;
     }
+
     .success{
       background:#ecfdf5;
       color:#065f46;
@@ -285,11 +362,59 @@
       margin-bottom:12px;
     }
 
+    .loading{
+      background:#f8fafc;
+      color:#475569;
+      border:1px solid #e2e8f0;
+      padding:10px;
+      border-radius:10px;
+      margin-bottom:12px;
+    }
+
+    .empty{
+      padding:20px 10px;
+      text-align:center;
+      color:#64748b;
+    }
+
+    hr{
+      border:0;
+      border-top:1px solid #e5e7eb;
+      margin:20px 0;
+    }
+
     @media(max-width:700px){
-      .grid,.grid-3,.stats{grid-template-columns:1fr}
-      .option{grid-template-columns:1fr}
-      .item-row{flex-direction:column}
-      .app{padding:12px}
+
+      .grid,
+      .grid-3,
+      .stats{
+        grid-template-columns:1fr;
+      }
+
+      .option{
+        grid-template-columns:1fr;
+      }
+
+      .item-row{
+        flex-direction:column;
+      }
+
+      .app{
+        padding:12px;
+      }
+
+      .thumb{
+        width:100%;
+        height:180px;
+      }
+
+      header{
+        padding:12px;
+      }
+
+      .brand{
+        font-size:17px;
+      }
     }
   </style>
 </head>
@@ -301,82 +426,160 @@
     <div class="brand-icon">S</div>
     SefwiGo Management
   </div>
+
   <div>
-    <button id="logoutBtn" class="btn secondary hidden">Sign out</button>
+    <button id="logoutBtn" class="btn secondary hidden">
+      Sign out
+    </button>
   </div>
 </header>
 
-<!-- AUTH -->
+
+<!-- =========================================================
+     AUTH
+========================================================= -->
+
 <div id="authView" class="auth-wrap">
+
   <div class="auth-card">
+
     <h1>SefwiGo Management</h1>
-    <p class="muted">Manage your business, menu, orders and properties.</p>
+
+    <p class="muted">
+      Manage your business, menu, orders and properties.
+    </p>
 
     <div id="authMessage"></div>
 
     <div class="field">
       <label>Email</label>
-      <input id="authEmail" type="email" placeholder="you@example.com">
+      <input
+        id="authEmail"
+        type="email"
+        autocomplete="email"
+        placeholder="you@example.com">
     </div>
 
     <div class="field">
       <label>Password</label>
-      <input id="authPassword" type="password" placeholder="Password">
+      <input
+        id="authPassword"
+        type="password"
+        autocomplete="current-password"
+        placeholder="Password">
     </div>
 
     <div id="signupFields" class="hidden">
+
       <div class="field">
         <label>Your name</label>
-        <input id="authName" type="text" placeholder="Full name">
+        <input
+          id="authName"
+          type="text"
+          placeholder="Full name">
       </div>
 
       <div class="field">
         <label>Management type</label>
+
         <select id="authRole">
-          <option value="vendor">Business / Vendor</option>
-          <option value="property_owner">Property Owner</option>
-          <option value="both">Business + Property Owner</option>
+
+          <option value="vendor">
+            Business / Vendor
+          </option>
+
+          <option value="property_owner">
+            Property Owner
+          </option>
+
+          <option value="both">
+            Business + Property Owner
+          </option>
+
         </select>
       </div>
+
     </div>
 
-    <button id="loginBtn" class="btn primary" style="width:100%">
+    <button
+      id="loginBtn"
+      class="btn primary"
+      style="width:100%">
       Sign in
     </button>
 
-    <button id="signupBtn" class="btn secondary" style="width:100%;margin-top:8px">
+    <button
+      id="signupBtn"
+      class="btn secondary"
+      style="width:100%;margin-top:8px">
       Create management account
     </button>
 
-    <button id="forgotBtn" class="btn" style="width:100%;margin-top:8px;background:none;color:#0f766e">
+    <button
+      id="forgotBtn"
+      class="btn"
+      style="width:100%;margin-top:8px;background:none;color:#0f766e">
       Forgot password?
     </button>
+
   </div>
 </div>
 
-<!-- APP -->
+
+<!-- =========================================================
+     APP
+========================================================= -->
+
 <div id="appView" class="app hidden">
 
   <div id="globalMessage"></div>
 
   <div class="tabs">
-    <button class="tab active" data-tab="dashboard">Dashboard</button>
-    <button class="tab" data-tab="business">Business</button>
-    <button class="tab" data-tab="menu">Menu & Products</button>
-    <button class="tab" data-tab="orders">Orders</button>
-    <button class="tab" data-tab="properties">Properties</button>
+
+    <button class="tab active" data-tab="dashboard">
+      Dashboard
+    </button>
+
+    <button class="tab" data-tab="business">
+      Business
+    </button>
+
+    <button class="tab" data-tab="menu">
+      Menu & Products
+    </button>
+
+    <button class="tab" data-tab="orders">
+      Orders
+    </button>
+
+    <button class="tab" data-tab="properties">
+      Properties
+    </button>
+
   </div>
 
-  <!-- DASHBOARD -->
+
+  <!-- =======================================================
+       DASHBOARD
+  ======================================================== -->
+
   <section id="dashboard" class="section active">
+
     <div class="card">
-      <h2>Welcome, <span id="welcomeName">Manager</span></h2>
+
+      <h2>
+        Welcome,
+        <span id="welcomeName">Manager</span>
+      </h2>
+
       <p class="muted">
         Your SefwiGo management dashboard.
       </p>
+
     </div>
 
     <div class="stats">
+
       <div class="stat">
         <div class="muted">Products</div>
         <div id="statProducts" class="stat-number">0</div>
@@ -391,29 +594,45 @@
         <div class="muted">Properties</div>
         <div id="statProperties" class="stat-number">0</div>
       </div>
+
     </div>
+
   </section>
 
-  <!-- BUSINESS -->
+
+  <!-- =======================================================
+       BUSINESS
+  ======================================================== -->
+
   <section id="business" class="section">
 
     <div class="card">
+
       <h2>Business Profile</h2>
 
       <div class="notice">
-        Create your business here first. Menu items will automatically be linked
-        to this business.
+        Create your business here first. Menu items will automatically
+        be linked to this business.
       </div>
 
       <div class="grid">
+
         <div class="field">
+
           <label>Business name *</label>
-          <input id="businessName" placeholder="Example: Auntie Ama Kitchen">
+
+          <input
+            id="businessName"
+            placeholder="Example: Auntie Ama Kitchen">
+
         </div>
 
         <div class="field">
+
           <label>Category *</label>
+
           <select id="businessCategory">
+
             <option value="Restaurant">Restaurant</option>
             <option value="Food">Food</option>
             <option value="Groceries">Groceries</option>
@@ -421,51 +640,98 @@
             <option value="Retail">Retail</option>
             <option value="Services">Services</option>
             <option value="Other">Other</option>
+
           </select>
+
         </div>
 
         <div class="field">
+
           <label>Phone</label>
-          <input id="businessPhone" type="tel" placeholder="0240000000">
+
+          <input
+            id="businessPhone"
+            type="tel"
+            placeholder="0240000000">
+
         </div>
 
         <div class="field">
+
           <label>Location</label>
-          <input id="businessLocation" placeholder="Sefwi Wiawso">
+
+          <input
+            id="businessLocation"
+            placeholder="Sefwi Wiawso">
+
         </div>
+
       </div>
 
       <div class="field">
+
         <label>Business description</label>
-        <textarea id="businessDescription"
+
+        <textarea
+          id="businessDescription"
           placeholder="Tell customers about your business"></textarea>
+
       </div>
 
       <div class="field">
+
         <label>Business logo / photo</label>
+
         <div class="upload-box">
-          <input id="businessImage" type="file" accept="image/*">
-          <p class="muted">Choose a photo from your phone.</p>
-          <img id="businessPreview" class="photo hidden">
+
+          <input
+            id="businessImage"
+            type="file"
+            accept="image/*">
+
+          <p class="muted">
+            Choose a photo from your phone.
+          </p>
+
+          <img
+            id="businessPreview"
+            class="photo hidden">
+
         </div>
+
       </div>
 
-      <button id="saveBusinessBtn" class="btn primary">
+      <button
+        id="saveBusinessBtn"
+        class="btn primary">
         Save Business
       </button>
+
     </div>
+
 
     <div class="card">
+
       <h2>Your Business</h2>
+
       <div id="businessList"></div>
+
     </div>
+
   </section>
 
-  <!-- MENU -->
+
+  <!-- =======================================================
+       MENU
+  ======================================================== -->
+
   <section id="menu" class="section">
 
     <div class="card">
-      <h2 id="productFormTitle">Add Food / Product</h2>
+
+      <h2 id="productFormTitle">
+        Add Food / Product
+      </h2>
 
       <div class="notice">
         You can add food items, drinks, groceries or other products.
@@ -473,45 +739,85 @@
       </div>
 
       <div class="grid">
+
         <div class="field">
+
           <label>Product name *</label>
-          <input id="productName" placeholder="Example: Jollof Rice">
+
+          <input
+            id="productName"
+            placeholder="Example: Jollof Rice">
+
         </div>
 
         <div class="field">
+
           <label>Price (GHS) *</label>
-          <input id="productPrice" type="number" min="0" step="0.01"
-                 placeholder="25">
+
+          <input
+            id="productPrice"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="25">
+
         </div>
+
       </div>
 
       <div class="field">
+
         <label>Description</label>
-        <textarea id="productDescription"
+
+        <textarea
+          id="productDescription"
           placeholder="Describe the food/product"></textarea>
+
       </div>
 
       <div class="field">
+
         <label class="check">
-          <input id="productAvailable" type="checkbox" checked>
+
+          <input
+            id="productAvailable"
+            type="checkbox"
+            checked>
+
           Available for customers
+
         </label>
+
       </div>
 
       <div class="field">
+
         <label>Product photo</label>
+
         <div class="upload-box">
-          <input id="productImage" type="file" accept="image/*" capture="environment">
+
+          <input
+            id="productImage"
+            type="file"
+            accept="image/*"
+            capture="environment">
+
           <p class="muted">
             On supported phones, you can take a photo directly.
           </p>
-          <img id="productPreview" class="photo hidden">
+
+          <img
+            id="productPreview"
+            class="photo hidden">
+
         </div>
+
       </div>
 
       <hr>
 
       <h3>Options / Add-ons</h3>
+
       <p class="muted">
         Example: Size → Small GHS 0, Large GHS 10.
         Customers will choose these when ordering.
@@ -520,76 +826,123 @@
       <div id="modifierGroups"></div>
 
       <div class="actions">
-        <button id="addModifierBtn" class="btn secondary">
+
+        <button
+          id="addModifierBtn"
+          class="btn secondary">
           + Add Option Group
         </button>
+
       </div>
 
       <div class="actions">
-        <button id="saveProductBtn" class="btn primary">
+
+        <button
+          id="saveProductBtn"
+          class="btn primary">
           Save Product
         </button>
 
-        <button id="cancelProductBtn" class="btn secondary hidden">
+        <button
+          id="cancelProductBtn"
+          class="btn secondary hidden">
           Cancel Edit
         </button>
+
       </div>
+
     </div>
 
+
     <div class="card">
+
       <h2>Your Products</h2>
+
       <div id="productList"></div>
+
     </div>
+
   </section>
 
-  <!-- ORDERS -->
+
+  <!-- =======================================================
+       ORDERS
+  ======================================================== -->
+
   <section id="orders" class="section">
+
     <div class="card">
+
       <h2>Customer Orders</h2>
+
       <p class="muted">
         Orders placed through the SefwiGo customer app.
       </p>
 
-      <button id="refreshOrdersBtn" class="btn secondary">
+      <button
+        id="refreshOrdersBtn"
+        class="btn secondary">
         Refresh Orders
       </button>
 
       <div id="orderList"></div>
+
     </div>
+
   </section>
 
-  <!-- PROPERTIES -->
+
+  <!-- =======================================================
+       PROPERTIES
+  ======================================================== -->
+
   <section id="properties" class="section">
 
     <div class="card">
-      <h2 id="propertyFormTitle">Add Property</h2>
+
+      <h2 id="propertyFormTitle">
+        Add Property
+      </h2>
 
       <div class="notice">
-        Take photos of the property with your phone or choose photos from
-        your gallery. The first photo becomes the main property photo.
+        Take photos of the property with your phone or choose photos
+        from your gallery. The first photo becomes the main property photo.
       </div>
 
       <div class="grid">
+
         <div class="field">
+
           <label>Property title *</label>
-          <input id="propertyTitle"
-                 placeholder="Example: 3 Bedroom House for Rent">
+
+          <input
+            id="propertyTitle"
+            placeholder="Example: 3 Bedroom House for Rent">
+
         </div>
 
         <div class="field">
+
           <label>Purpose *</label>
+
           <select id="propertyPurpose">
+
             <option value="Rent">Rent</option>
             <option value="Sale">Sale</option>
             <option value="Lease">Lease</option>
             <option value="Short Stay">Short Stay</option>
             <option value="Land">Land</option>
+
           </select>
+
         </div>
 
         <div class="field">
+
           <label>Property type *</label>
+
           <select id="propertyType">
+
             <option value="House">House</option>
             <option value="Apartment">Apartment</option>
             <option value="Room">Room</option>
@@ -598,89 +951,170 @@
             <option value="Office">Office</option>
             <option value="Commercial">Commercial</option>
             <option value="Other">Other</option>
+
           </select>
+
         </div>
 
         <div class="field">
+
           <label>Price (GHS)</label>
-          <input id="propertyPrice" type="number" min="0" step="0.01">
+
+          <input
+            id="propertyPrice"
+            type="number"
+            min="0"
+            step="0.01">
+
         </div>
 
         <div class="field">
+
           <label>Location *</label>
-          <input id="propertyLocation"
-                 placeholder="Sefwi Wiawso">
+
+          <input
+            id="propertyLocation"
+            placeholder="Sefwi Wiawso">
+
         </div>
 
         <div class="field">
+
           <label>Bedrooms</label>
-          <input id="propertyBedrooms" type="number" min="0">
+
+          <input
+            id="propertyBedrooms"
+            type="number"
+            min="0">
+
         </div>
 
         <div class="field">
+
           <label>Bathrooms</label>
-          <input id="propertyBathrooms" type="number" min="0">
+
+          <input
+            id="propertyBathrooms"
+            type="number"
+            min="0">
+
         </div>
 
         <div class="field">
+
           <label>Owner / Agent</label>
-          <input id="propertyOwner" placeholder="Name">
+
+          <input
+            id="propertyOwner"
+            placeholder="Name">
+
         </div>
 
         <div class="field">
+
           <label>Contact phone</label>
-          <input id="propertyPhone" type="tel">
+
+          <input
+            id="propertyPhone"
+            type="tel">
+
         </div>
+
       </div>
 
       <div class="field">
+
         <label>Description</label>
-        <textarea id="propertyDescription"
+
+        <textarea
+          id="propertyDescription"
           placeholder="Describe the property"></textarea>
+
       </div>
 
       <div class="field">
+
         <label class="check">
-          <input id="propertyAvailable" type="checkbox" checked>
+
+          <input
+            id="propertyAvailable"
+            type="checkbox"
+            checked>
+
           Available for customers
+
         </label>
+
       </div>
 
       <div class="field">
+
         <label>Property photos</label>
 
         <div class="upload-box">
-          <p><strong>Take a photo</strong></p>
-          <input id="propertyCamera" type="file"
-                 accept="image/*" capture="environment">
 
-          <p><strong style="display:block;margin-top:12px">Choose photos</strong></p>
-          <input id="propertyGallery" type="file"
-                 accept="image/*" multiple>
-
-          <p class="muted">
-            You can add several photos.
+          <p>
+            <strong>Take a photo</strong>
           </p>
 
-          <div id="propertyPreviewGrid" class="preview-grid"></div>
+          <input
+            id="propertyCamera"
+            type="file"
+            accept="image/*"
+            capture="environment">
+
+          <p>
+            <strong style="display:block;margin-top:12px">
+              Choose photos
+            </strong>
+          </p>
+
+          <input
+            id="propertyGallery"
+            type="file"
+            accept="image/*"
+            multiple>
+
+          <p class="muted">
+            You can add up to six photos.
+          </p>
+
+          <div
+            id="propertyPreviewGrid"
+            class="preview-grid">
+          </div>
+
         </div>
+
       </div>
 
       <div class="actions">
-        <button id="savePropertyBtn" class="btn primary">
+
+        <button
+          id="savePropertyBtn"
+          class="btn primary">
           Save Property
         </button>
 
-        <button id="cancelPropertyBtn" class="btn secondary hidden">
+        <button
+          id="cancelPropertyBtn"
+          class="btn secondary hidden">
           Cancel Edit
         </button>
+
       </div>
+
     </div>
 
+
     <div class="card">
+
       <h2>Your Properties</h2>
+
       <div id="propertyList"></div>
+
     </div>
+
   </section>
 
 </div>
@@ -688,1673 +1122,790 @@
 
 <script type="module">
 
-  /* =========================================================
-     FIREBASE
-  ========================================================= */
+/* =========================================================
+   FIREBASE IMPORTS
+========================================================= */
 
-  import { initializeApp }
-    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-  import {
-    getAuth,
-    onAuthStateChanged,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    signOut,
-    sendPasswordResetEmail,
-    updateProfile
-  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {
+  getAuth,
+  onAuthStateChanged,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  sendPasswordResetEmail,
+  updateProfile,
+  setPersistence,
+  browserLocalPersistence
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-  import {
-    getFirestore,
-    collection,
-    doc,
-    addDoc,
-    getDoc,
-    getDocs,
-    setDoc,
-    updateDoc,
-    deleteDoc,
-    query,
-    where,
-    serverTimestamp
-  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {
+  getFirestore,
+  collection,
+  doc,
+  addDoc,
+  getDoc,
+  getDocs,
+  setDoc,
+  updateDoc,
+  deleteDoc,
+  query,
+  where,
+  serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-  import {
-    getStorage,
-    ref,
-    uploadBytes,
-    getDownloadURL,
-    deleteObject
-  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  deleteObject
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyDjHGyeObPLLuqTNhNGE5SBRfBL5T29qWA",
-    authDomain: "sefwi-go.firebaseapp.com",
-    projectId: "sefwi-go",
-    storageBucket: "sefwi-go.firebasestorage.app",
-    messagingSenderId: "210398787110",
-    appId: "1:210398787110:web:f7f76a538a2712a2bb58e7"
+/* =========================================================
+   FIREBASE CONFIG
+
+   IMPORTANT:
+   Use the exact Web App config from Firebase Console.
+========================================================= */
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDjHGyoBeqYPLLuqTNhNGE5SBRfBL5T29qWA",
+  authDomain: "sefwi-go.firebaseapp.com",
+  projectId: "sefwi-go",
+  storageBucket: "sefwi-go.firebasestorage.app",
+  messagingSenderId: "210398787110",
+  appId: "1:210398787110:web:f7f76a538a2712a2bb58e7"
+};
+
+
+/* =========================================================
+   INITIALIZE FIREBASE
+========================================================= */
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+const storage = getStorage(app);
+
+
+/* =========================================================
+   AUTH PERSISTENCE
+========================================================= */
+
+try{
+
+  await setPersistence(
+    auth,
+    browserLocalPersistence
+  );
+
+}catch(error){
+
+  console.error(
+    "Auth persistence error:",
+    error
+  );
+
+}
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let currentUser = null;
+
+let currentBusiness = null;
+
+let editingProductId = null;
+
+let editingPropertyId = null;
+
+let modifierGroups = [];
+
+let productImageFile = null;
+
+let businessImageFile = null;
+
+let propertyImageFiles = [];
+
+let existingPropertyPhotos = [];
+
+let savingBusiness = false;
+
+let savingProduct = false;
+
+let savingProperty = false;
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+const $ = id => document.getElementById(id);
+
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+
+function money(value){
+
+  return "GHS " +
+    Number(value || 0).toFixed(2);
+
+}
+
+
+function showMessage(
+  message,
+  type="success"
+){
+
+  $("globalMessage").innerHTML =
+    `<div class="${type}">
+      ${escapeHtml(message)}
+    </div>`;
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+  setTimeout(()=>{
+
+    $("globalMessage").innerHTML="";
+
+  },5000);
+
+}
+
+
+function authMessage(
+  message,
+  type="error"
+){
+
+  $("authMessage").innerHTML =
+    `<div class="${type}">
+      ${escapeHtml(message)}
+    </div>`;
+
+}
+
+
+function friendlyError(error){
+
+  console.error(error);
+
+  const code =
+    error?.code || "";
+
+  const messages = {
+
+    "auth/invalid-credential":
+      "Incorrect email or password.",
+
+    "auth/wrong-password":
+      "Incorrect email or password.",
+
+    "auth/user-not-found":
+      "Incorrect email or password.",
+
+    "auth/email-already-in-use":
+      "This email is already registered.",
+
+    "auth/weak-password":
+      "Password should be at least 6 characters.",
+
+    "auth/invalid-email":
+      "Please enter a valid email.",
+
+    "auth/too-many-requests":
+      "Too many attempts. Please try again later.",
+
+    "auth/api-key-not-valid":
+      "Firebase API key is not valid. Copy the Web App configuration directly from Firebase Console.",
+
+    "auth/network-request-failed":
+      "Network error. Check your internet connection.",
+
+    "storage/unauthorized":
+      "Storage permission denied. Check your Firebase Storage rules.",
+
+    "storage/unknown":
+      "Firebase Storage could not complete the upload.",
+
+    "permission-denied":
+      "Firebase permission denied. Check your Firestore rules.",
+
+    "failed-precondition":
+      "Firebase requires an additional setup step. Check your Firestore configuration.",
+
+    "unavailable":
+      "Firebase is temporarily unavailable. Please try again."
+
   };
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db = getFirestore(app);
-  const storage = getStorage(app);
+  return (
+    messages[code] ||
+    error?.message ||
+    "Something went wrong."
+  );
+
+}
 
 
-  /* =========================================================
-     STATE
-  ========================================================= */
+/* =========================================================
+   BUTTON LOADING
+========================================================= */
 
-  let currentUser = null;
-  let currentBusiness = null;
-  let editingProductId = null;
-  let editingPropertyId = null;
+function setButtonLoading(
+  button,
+  loading,
+  loadingText,
+  normalText
+){
 
-  let modifierGroups = [];
+  if(!button) return;
 
-  let productImageFile = null;
-  let businessImageFile = null;
+  button.disabled = loading;
 
-  let propertyImageFiles = [];
-  let existingPropertyPhotos = [];
+  button.textContent =
+    loading
+    ? loadingText
+    : normalText;
+
+}
 
 
-  /* =========================================================
-     HELPERS
-  ========================================================= */
+/* =========================================================
+   IMAGE COMPRESSION
+========================================================= */
 
-  const $ = id => document.getElementById(id);
+async function compressImage(
+  file,
+  maxSize=1600,
+  quality=.82
+){
 
-  function escapeHtml(value){
-    return String(value ?? "")
-      .replaceAll("&","&amp;")
-      .replaceAll("<","&lt;")
-      .replaceAll(">","&gt;")
-      .replaceAll('"',"&quot;")
-      .replaceAll("'","&#039;");
+  if(
+    !file ||
+    !file.type ||
+    !file.type.startsWith("image/")
+  ){
+
+    return file;
+
   }
 
-  function money(value){
-    return "GHS " + Number(value || 0).toFixed(2);
-  }
+  return new Promise(resolve=>{
 
-  function showMessage(message,type="success"){
-    $("globalMessage").innerHTML =
-      `<div class="${type}">${escapeHtml(message)}</div>`;
+    const img = new Image();
 
-    setTimeout(()=>{
-      $("globalMessage").innerHTML="";
-    },5000);
-  }
+    const reader = new FileReader();
 
-  function authMessage(message,type="error"){
-    $("authMessage").innerHTML =
-      `<div class="${type}">${escapeHtml(message)}</div>`;
-  }
+    reader.onload = event=>{
 
-  function friendlyError(error){
-    const code = error?.code || "";
+      img.onload = ()=>{
 
-    const messages = {
-      "auth/invalid-credential":"Incorrect email or password.",
-      "auth/email-already-in-use":"This email is already registered.",
-      "auth/weak-password":"Password should be at least 6 characters.",
-      "auth/invalid-email":"Please enter a valid email.",
-      "auth/too-many-requests":"Too many attempts. Please try again later.",
-      "storage/unauthorized":"Storage permission denied. Check your Firebase Storage rules.",
-      "permission-denied":"Firebase permission denied. Check your Firestore rules."
-    };
+        let width = img.width;
 
-    return messages[code] || error?.message || "Something went wrong.";
-  }
+        let height = img.height;
 
-  async function compressImage(file,maxSize=1600,quality=.82){
-    if(!file || !file.type.startsWith("image/")) return file;
+        if(
+          width > maxSize ||
+          height > maxSize
+        ){
 
-    return new Promise(resolve=>{
-      const img = new Image();
-      const reader = new FileReader();
+          if(width > height){
 
-      reader.onload = e=>{
-        img.onload = ()=>{
-          let width = img.width;
-          let height = img.height;
+            height =
+              Math.round(
+                height *
+                maxSize /
+                width
+              );
 
-          if(width > maxSize || height > maxSize){
-            if(width > height){
-              height = Math.round(height * maxSize / width);
-              width = maxSize;
-            }else{
-              width = Math.round(width * maxSize / height);
-              height = maxSize;
-            }
+            width = maxSize;
+
+          }else{
+
+            width =
+              Math.round(
+                width *
+                maxSize /
+                height
+              );
+
+            height = maxSize;
+
           }
 
-          const canvas = document.createElement("canvas");
-          canvas.width = width;
-          canvas.height = height;
+        }
 
-          const ctx = canvas.getContext("2d");
-          ctx.drawImage(img,0,0,width,height);
+        const canvas =
+          document.createElement("canvas");
 
-          canvas.toBlob(blob=>{
+        canvas.width = width;
+
+        canvas.height = height;
+
+        const ctx =
+          canvas.getContext("2d");
+
+        ctx.drawImage(
+          img,
+          0,
+          0,
+          width,
+          height
+        );
+
+        canvas.toBlob(
+          blob=>{
             resolve(blob || file);
-          }, "image/jpeg", quality);
-        };
+          },
+          "image/jpeg",
+          quality
+        );
 
-        img.src = e.target.result;
       };
 
-      reader.readAsDataURL(file);
-    });
-  }
+      img.onerror = ()=>{
+        resolve(file);
+      };
 
-  async function uploadImage(file,path){
-    if(!file) return "";
+      img.src = event.target.result;
 
-    const compressed = await compressImage(file);
-    const fileRef = ref(
+    };
+
+    reader.onerror = ()=>{
+      resolve(file);
+    };
+
+    reader.readAsDataURL(file);
+
+  });
+
+}
+
+
+/* =========================================================
+   UPLOAD IMAGE
+========================================================= */
+
+async function uploadImage(
+  file,
+  folder
+){
+
+  if(!file) return "";
+
+  const compressed =
+    await compressImage(file);
+
+  const filename =
+    Date.now() +
+    "-" +
+    Math.random()
+      .toString(36)
+      .slice(2) +
+    ".jpg";
+
+  const fileRef =
+    ref(
       storage,
-      path + "/" + Date.now() + "-" +
-      Math.random().toString(36).slice(2) + ".jpg"
+      `${folder}/${filename}`
     );
 
-    await uploadBytes(compressed instanceof Blob ? fileRef : fileRef, compressed);
-    return await getDownloadURL(fileRef);
+  await uploadBytes(
+    fileRef,
+    compressed,
+    {
+      contentType:"image/jpeg"
+    }
+  );
+
+  return await getDownloadURL(fileRef);
+
+}
+
+
+/* =========================================================
+   DELETE STORAGE IMAGE
+========================================================= */
+
+async function deleteStorageFile(url){
+
+  if(!url) return;
+
+  try{
+
+    await deleteObject(
+      ref(storage,url)
+    );
+
+  }catch(error){
+
+    console.warn(
+      "Could not delete old image:",
+      error
+    );
+
   }
 
-  async function deleteStorageFile(url){
-    if(!url) return;
+}
 
-    try{
-      await deleteObject(ref(storage,url));
-    }catch(e){
-      console.log("Old image could not be deleted:",e);
-    }
+
+/* =========================================================
+   AUTH MODE
+========================================================= */
+
+let signupMode = false;
+
+
+$("signupBtn").onclick = ()=>{
+
+  signupMode = !signupMode;
+
+  if(signupMode){
+
+    $("signupFields")
+      .classList
+      .remove("hidden");
+
+    $("loginBtn").textContent =
+      "Create Account";
+
+    $("signupBtn").textContent =
+      "I already have an account";
+
+    $("authPassword")
+      .setAttribute(
+        "autocomplete",
+        "new-password"
+      );
+
+  }else{
+
+    $("signupFields")
+      .classList
+      .add("hidden");
+
+    $("loginBtn").textContent =
+      "Sign in";
+
+    $("signupBtn").textContent =
+      "Create management account";
+
+    $("authPassword")
+      .setAttribute(
+        "autocomplete",
+        "current-password"
+      );
+
   }
 
-
-  /* =========================================================
-     AUTH
-  ========================================================= */
-
-  let signupMode = false;
-
-  $("signupBtn").onclick = async ()=>{
-
-    if(!signupMode){
-      signupMode = true;
-
-      $("signupFields").classList.remove("hidden");
-      $("loginBtn").textContent = "Create Account";
-      $("signupBtn").textContent = "I already have an account";
-
-      return;
-    }
-
-    signupMode = false;
-
-    $("signupFields").classList.add("hidden");
-    $("loginBtn").textContent = "Sign in";
-    $("signupBtn").textContent = "Create management account";
-  };
+};
 
 
-  $("loginBtn").onclick = async ()=>{
+/* =========================================================
+   LOGIN / SIGNUP
+========================================================= */
 
-    const email = $("authEmail").value.trim();
-    const password = $("authPassword").value;
+$("loginBtn").onclick =
+async ()=>{
 
-    if(!email || !password){
-      authMessage("Enter your email and password.");
-      return;
-    }
+  const email =
+    $("authEmail")
+      .value
+      .trim();
 
-    try{
+  const password =
+    $("authPassword")
+      .value;
 
-      if(signupMode){
+  if(!email){
 
-        const name = $("authName").value.trim();
-        const role = $("authRole").value;
+    authMessage(
+      "Enter your email."
+    );
 
-        if(!name){
-          authMessage("Enter your name.");
-          return;
-        }
+    return;
 
-        const cred =
-          await createUserWithEmailAndPassword(
-            auth,email,password
-          );
+  }
 
-        await updateProfile(cred.user,{displayName:name});
+  if(!password){
 
-        let roles = [];
+    authMessage(
+      "Enter your password."
+    );
 
-        if(role === "both"){
-          roles = ["vendor","property_owner"];
-        }else{
-          roles = [role];
-        }
+    return;
 
-        await setDoc(
-          doc(db,"users",cred.user.uid),
-          {
-            uid:cred.user.uid,
-            name:name,
-            email:email,
-            accountType:role,
-            roles:roles,
-            createdAt:serverTimestamp()
-          },
-          {merge:true}
+  }
+
+  const button =
+    $("loginBtn");
+
+  button.disabled = true;
+
+  button.textContent =
+    signupMode
+    ? "Creating..."
+    : "Signing in...";
+
+  try{
+
+    if(signupMode){
+
+      const name =
+        $("authName")
+          .value
+          .trim();
+
+      const role =
+        $("authRole")
+          .value;
+
+      if(!name){
+
+        authMessage(
+          "Enter your name."
         );
 
-        authMessage("Account created.","success");
-
-      }else{
-
-        await signInWithEmailAndPassword(
-          auth,email,password
-        );
+        return;
 
       }
 
-    }catch(error){
-      authMessage(friendlyError(error));
+      const cred =
+        await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+      await updateProfile(
+        cred.user,
+        {
+          displayName:name
+        }
+      );
+
+      let roles = [];
+
+      if(role === "both"){
+
+        roles = [
+          "vendor",
+          "property_owner"
+        ];
+
+      }else{
+
+        roles = [role];
+
+      }
+
+      await setDoc(
+        doc(
+          db,
+          "users",
+          cred.user.uid
+        ),
+        {
+          uid:cred.user.uid,
+          name,
+          email,
+          accountType:role,
+          roles,
+          createdAt:serverTimestamp(),
+          updatedAt:serverTimestamp()
+        },
+        {
+          merge:true
+        }
+      );
+
+      authMessage(
+        "Account created successfully.",
+        "success"
+      );
+
+    }else{
+
+      await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
     }
-  };
+
+  }catch(error){
+
+    authMessage(
+      friendlyError(error)
+    );
+
+  }finally{
+
+    button.disabled = false;
+
+    button.textContent =
+      signupMode
+      ? "Create Account"
+      : "Sign in";
+
+  }
+
+};
 
 
-  $("forgotBtn").onclick = async ()=>{
+/* =========================================================
+   PASSWORD RESET
+========================================================= */
 
-    const email = $("authEmail").value.trim();
+$("forgotBtn").onclick =
+async ()=>{
 
-    if(!email){
-      authMessage("Enter your email first.");
-      return;
-    }
+  const email =
+    $("authEmail")
+      .value
+      .trim();
 
-    try{
-      await sendPasswordResetEmail(auth,email);
-      authMessage("Password reset email sent.","success");
-    }catch(error){
-      authMessage(friendlyError(error));
-    }
-  };
+  if(!email){
+
+    authMessage(
+      "Enter your email first."
+    );
+
+    return;
+
+  }
+
+  try{
+
+    await sendPasswordResetEmail(
+      auth,
+      email
+    );
+
+    authMessage(
+      "Password reset email sent.",
+      "success"
+    );
+
+  }catch(error){
+
+    authMessage(
+      friendlyError(error)
+    );
+
+  }
+
+};
 
 
-  $("logoutBtn").onclick = ()=>signOut(auth);
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+$("logoutBtn").onclick =
+async ()=>{
+
+  try{
+
+    await signOut(auth);
+
+  }catch(error){
+
+    showMessage(
+      friendlyError(error),
+      "error"
+    );
+
+  }
+
+};
 
 
-  onAuthStateChanged(auth,async user=>{
+/* =========================================================
+   AUTH STATE
+========================================================= */
+
+onAuthStateChanged(
+  auth,
+  async user=>{
 
     currentUser = user;
 
-    if(user){
+    if(!user){
 
-      $("authView").classList.add("hidden");
-      $("appView").classList.remove("hidden");
-      $("logoutBtn").classList.remove("hidden");
+      $("authView")
+        .classList
+        .remove("hidden");
 
-      $("welcomeName").textContent =
-        user.displayName || user.email || "Manager";
+      $("appView")
+        .classList
+        .add("hidden");
+
+      $("logoutBtn")
+        .classList
+        .add("hidden");
+
+      return;
+
+    }
+
+    $("authView")
+      .classList
+      .add("hidden");
+
+    $("appView")
+      .classList
+      .remove("hidden");
+
+    $("logoutBtn")
+      .classList
+      .remove("hidden");
+
+    $("welcomeName")
+      .textContent =
+      user.displayName ||
+      user.email ||
+      "Manager";
+
+    try{
 
       await ensureProfile();
 
-      await loadBusiness();
-      await loadProducts();
-      await loadProperties();
-      await loadOrders();
-      updateStats();
-
-    }else{
-
-      $("authView").classList.remove("hidden");
-      $("appView").classList.add("hidden");
-      $("logoutBtn").classList.add("hidden");
-    }
-  });
-
-
-  async function ensureProfile(){
-
-    if(!currentUser) return;
-
-    const userRef = doc(db,"users",currentUser.uid);
-    const snap = await getDoc(userRef);
-
-    if(!snap.exists()){
-
-      await setDoc(userRef,{
-        uid:currentUser.uid,
-        name:currentUser.displayName || "",
-        email:currentUser.email || "",
-        accountType:"vendor",
-        roles:["vendor"],
-        createdAt:serverTimestamp()
-      });
-
-    }
-  }
-
-
-  /* =========================================================
-     TABS
-  ========================================================= */
-
-  document.querySelectorAll(".tab").forEach(btn=>{
-
-    btn.onclick = ()=>{
-
-      document.querySelectorAll(".tab")
-        .forEach(x=>x.classList.remove("active"));
-
-      document.querySelectorAll(".section")
-        .forEach(x=>x.classList.remove("active"));
-
-      btn.classList.add("active");
-      $(btn.dataset.tab).classList.add("active");
-    };
-  });
-
-
-  /* =========================================================
-     BUSINESS
-  ========================================================= */
-
-  $("businessImage").onchange = e=>{
-
-    businessImageFile = e.target.files[0] || null;
-
-    if(businessImageFile){
-
-      $("businessPreview").src =
-        URL.createObjectURL(businessImageFile);
-
-      $("businessPreview").classList.remove("hidden");
-    }
-  };
-
-
-  async function loadBusiness(){
-
-    if(!currentUser) return;
-
-    const q = query(
-      collection(db,"businesses"),
-      where("ownerId","==",currentUser.uid)
-    );
-
-    const snap = await getDocs(q);
-
-    if(snap.empty){
-
-      currentBusiness = null;
-      $("businessList").innerHTML =
-        `<p class="muted">You have not registered a business yet.</p>`;
-
-      return;
-    }
-
-    const first = snap.docs[0];
-
-    currentBusiness = {
-      id:first.id,
-      ...first.data()
-    };
-
-    const b = currentBusiness;
-
-    $("businessName").value = b.name || "";
-    $("businessCategory").value = b.category || "Restaurant";
-    $("businessPhone").value = b.phone || "";
-    $("businessLocation").value = b.location || "";
-    $("businessDescription").value = b.description || "";
-
-    if(b.logoUrl){
-      $("businessPreview").src = b.logoUrl;
-      $("businessPreview").classList.remove("hidden");
-    }
-
-    $("businessList").innerHTML = `
-      <div class="item">
-        <div class="item-row">
-          <div>
-            <h3>${escapeHtml(b.name)}</h3>
-            <span class="badge">${escapeHtml(b.category || "Business")}</span>
-            <p class="muted">${escapeHtml(b.location || "")}</p>
-            <p>${escapeHtml(b.description || "")}</p>
-            <p><strong>${escapeHtml(b.phone || "")}</strong></p>
-          </div>
-
-          ${
-            b.logoUrl
-            ? `<img class="thumb" src="${escapeHtml(b.logoUrl)}">`
-            : ""
-          }
-        </div>
-      </div>
-    `;
-  }
-
-
-  $("saveBusinessBtn").onclick = async ()=>{
-
-    if(!currentUser) return;
-
-    const name = $("businessName").value.trim();
-    const category = $("businessCategory").value;
-    const phone = $("businessPhone").value.trim();
-    const location = $("businessLocation").value.trim();
-    const description = $("businessDescription").value.trim();
-
-    if(!name){
-      showMessage("Enter a business name.","error");
-      return;
-    }
-
-    const oldName = currentBusiness?.name || "";
-
-    try{
-
-      let logoUrl = currentBusiness?.logoUrl || "";
-
-      if(businessImageFile){
-
-        logoUrl = await uploadImage(
-          businessImageFile,
-          `businesses/${currentUser.uid}`
-        );
-
-        if(currentBusiness?.logoUrl){
-          await deleteStorageFile(currentBusiness.logoUrl);
-        }
-      }
-
-      const businessRef =
-        currentBusiness
-        ? doc(db,"businesses",currentBusiness.id)
-        : doc(collection(db,"businesses"));
-
-      await setDoc(
-        businessRef,
-        {
-          ownerId:currentUser.uid,
-          name,
-          category,
-          phone,
-          location,
-          description,
-          logoUrl,
-          active:true,
-          approved:true,
-          updatedAt:serverTimestamp(),
-          ...(currentBusiness ? {} : {
-            createdAt:serverTimestamp()
-          })
-        },
-        {merge:true}
-      );
-
-      /*
-        Keep existing products linked to the new business name.
-        This is important because the customer app uses vendorName.
-      */
-      if(oldName && oldName !== name){
-
-        const q = query(
-          collection(db,"products"),
-          where("vendorId","==",currentUser.uid)
-        );
-
-        const snap = await getDocs(q);
-
-        for(const productDoc of snap.docs){
-
-          await updateDoc(
-            doc(db,"products",productDoc.id),
-            {
-              vendorName:name,
-              updatedAt:serverTimestamp()
-            }
-          );
-        }
-      }
-
-      businessImageFile = null;
-
-      await loadBusiness();
-      await loadProducts();
-
-      showMessage("Business saved successfully.");
-
-    }catch(error){
-
-      console.error(error);
-      showMessage(friendlyError(error),"error");
-    }
-  };
-
-
-  /* =========================================================
-     MODIFIER BUILDER
-  ========================================================= */
-
-  function addModifierGroup(){
-
-    modifierGroups.push({
-      name:"",
-      required:false,
-      multiple:false,
-      options:[
-        {name:"",price:0}
-      ]
-    });
-
-    renderModifierGroups();
-  }
-
-
-  function renderModifierGroups(){
-
-    const box = $("modifierGroups");
-
-    if(!modifierGroups.length){
-
-      box.innerHTML =
-        `<p class="muted">No options added.</p>`;
-
-      return;
-    }
-
-    box.innerHTML = modifierGroups.map((group,gIndex)=>`
-
-      <div class="modifier">
-
-        <div class="grid">
-
-          <div class="field">
-            <label>Option group name</label>
-            <input
-              data-group-name="${gIndex}"
-              value="${escapeHtml(group.name)}"
-              placeholder="Example: Size">
-          </div>
-
-          <div style="display:flex;gap:15px;align-items:center">
-
-            <label class="check">
-              <input
-                type="checkbox"
-                data-group-required="${gIndex}"
-                ${group.required ? "checked":""}>
-              Required
-            </label>
-
-            <label class="check">
-              <input
-                type="checkbox"
-                data-group-multiple="${gIndex}"
-                ${group.multiple ? "checked":""}>
-              Multiple
-            </label>
-
-          </div>
-
-        </div>
-
-        <strong>Choices</strong>
-
-        <div>
-          ${
-            group.options.map((option,oIndex)=>`
-
-              <div class="option">
-
-                <input
-                  data-option-name="${gIndex}-${oIndex}"
-                  value="${escapeHtml(option.name)}"
-                  placeholder="Example: Large">
-
-                <input
-                  data-option-price="${gIndex}-${oIndex}"
-                  type="number"
-                  min="0"
-                  step="0.01"
-                  value="${Number(option.price || 0)}"
-                  placeholder="Extra cost">
-
-                <button
-                  class="btn danger"
-                  data-remove-option="${gIndex}-${oIndex}">
-                  Remove
-                </button>
-
-              </div>
-
-            `).join("")
-          }
-        </div>
-
-        <div class="actions">
-
-          <button
-            class="btn secondary"
-            data-add-option="${gIndex}">
-            + Add choice
-          </button>
-
-          <button
-            class="btn danger"
-            data-remove-group="${gIndex}">
-            Remove group
-          </button>
-
-        </div>
-
-      </div>
-
-    `).join("");
-
-
-    document.querySelectorAll("[data-group-name]").forEach(input=>{
-      input.oninput = e=>{
-        const i = Number(e.target.dataset.groupName);
-        modifierGroups[i].name = e.target.value;
-      };
-    });
-
-    document.querySelectorAll("[data-group-required]").forEach(input=>{
-      input.onchange = e=>{
-        const i = Number(e.target.dataset.groupRequired);
-        modifierGroups[i].required = e.target.checked;
-      };
-    });
-
-    document.querySelectorAll("[data-group-multiple]").forEach(input=>{
-      input.onchange = e=>{
-        const i = Number(e.target.dataset.groupMultiple);
-        modifierGroups[i].multiple = e.target.checked;
-      };
-    });
-
-    document.querySelectorAll("[data-option-name]").forEach(input=>{
-      input.oninput = e=>{
-        const [g,o] =
-          e.target.dataset.optionName.split("-").map(Number);
-
-        modifierGroups[g].options[o].name =
-          e.target.value;
-      };
-    });
-
-    document.querySelectorAll("[data-option-price]").forEach(input=>{
-      input.oninput = e=>{
-        const [g,o] =
-          e.target.dataset.optionPrice.split("-").map(Number);
-
-        modifierGroups[g].options[o].price =
-          Number(e.target.value || 0);
-      };
-    });
-
-    document.querySelectorAll("[data-add-option]").forEach(btn=>{
-      btn.onclick = ()=>{
-        const i = Number(btn.dataset.addOption);
-
-        modifierGroups[i].options.push({
-          name:"",
-          price:0
-        });
-
-        renderModifierGroups();
-      };
-    });
-
-    document.querySelectorAll("[data-remove-option]").forEach(btn=>{
-      btn.onclick = ()=>{
-        const [g,o] =
-          btn.dataset.removeOption.split("-").map(Number);
-
-        modifierGroups[g].options.splice(o,1);
-
-        renderModifierGroups();
-      };
-    });
-
-    document.querySelectorAll("[data-remove-group]").forEach(btn=>{
-      btn.onclick = ()=>{
-        const i = Number(btn.dataset.removeGroup);
-
-        modifierGroups.splice(i,1);
-
-        renderModifierGroups();
-      };
-    });
-  }
-
-
-  $("addModifierBtn").onclick = addModifierGroup;
-
-
-  /* =========================================================
-     PRODUCT IMAGE
-  ========================================================= */
-
-  $("productImage").onchange = e=>{
-
-    productImageFile = e.target.files[0] || null;
-
-    if(productImageFile){
-
-      $("productPreview").src =
-        URL.createObjectURL(productImageFile);
-
-      $("productPreview").classList.remove("hidden");
-    }
-  };
-
-
-  /* =========================================================
-     PRODUCTS
-  ========================================================= */
-
-  async function loadProducts(){
-
-    if(!currentUser) return;
-
-    const q = query(
-      collection(db,"products"),
-      where("vendorId","==",currentUser.uid)
-    );
-
-    const snap = await getDocs(q);
-
-    const products = snap.docs.map(d=>({
-      id:d.id,
-      ...d.data()
-    }));
-
-    products.sort((a,b)=>{
-      const aa = a.createdAt?.seconds || 0;
-      const bb = b.createdAt?.seconds || 0;
-      return bb-aa;
-    });
-
-    const list = $("productList");
-
-    if(!products.length){
-
-      list.innerHTML =
-        `<p class="muted">No products yet.</p>`;
-
-      return;
-    }
-
-    list.innerHTML = products.map(p=>`
-
-      <div class="item">
-
-        <div class="item-row">
-
-          <div style="flex:1">
-
-            <h3>${escapeHtml(p.name)}</h3>
-
-            <div class="price">${money(p.price)}</div>
-
-            <p class="muted">
-              ${escapeHtml(p.description || "")}
-            </p>
-
-            <span class="badge">
-              ${p.available ? "Available":"Unavailable"}
-            </span>
-
-            ${
-              p.modifiers?.length
-              ? `
-                <div style="margin-top:12px">
-                  <strong>Options:</strong>
-                  ${p.modifiers.map(g=>`
-                    <p class="muted">
-                      <strong>${escapeHtml(g.name)}</strong>:
-                      ${g.options.map(o=>
-                        escapeHtml(o.name) +
-                        (Number(o.price)>0
-                          ? ` (+${money(o.price)})`
-                          : "")
-                      ).join(", ")}
-                    </p>
-                  `).join("")}
-                </div>
-              `
-              : ""
-            }
-
-            <div class="actions">
-
-              <button
-                class="btn secondary"
-                data-edit-product="${p.id}">
-                Edit
-              </button>
-
-              <button
-                class="btn danger"
-                data-delete-product="${p.id}">
-                Delete
-              </button>
-
-            </div>
-
-          </div>
-
-          ${
-            p.photoUrl
-            ? `<img class="thumb" src="${escapeHtml(p.photoUrl)}">`
-            : ""
-          }
-
-        </div>
-
-      </div>
-
-    `).join("");
-
-
-    document.querySelectorAll("[data-edit-product]").forEach(btn=>{
-      btn.onclick = ()=>{
-        const p = products.find(x=>x.id === btn.dataset.editProduct);
-        if(p) editProduct(p);
-      };
-    });
-
-
-    document.querySelectorAll("[data-delete-product]").forEach(btn=>{
-      btn.onclick = async ()=>{
-
-        if(!confirm("Delete this product?")) return;
-
-        try{
-
-          const p =
-            products.find(x=>x.id === btn.dataset.deleteProduct);
-
-          await deleteDoc(
-            doc(db,"products",btn.dataset.deleteProduct)
-          );
-
-          if(p?.photoUrl){
-            await deleteStorageFile(p.photoUrl);
-          }
-
-          await loadProducts();
-          updateStats();
-
-          showMessage("Product deleted.");
-
-        }catch(error){
-          showMessage(friendlyError(error),"error");
-        }
-      };
-    });
-  }
-
-
-  function editProduct(p){
-
-    editingProductId = p.id;
-
-    $("productFormTitle").textContent = "Edit Product";
-
-    $("productName").value = p.name || "";
-    $("productPrice").value = p.price ?? "";
-    $("productDescription").value = p.description || "";
-    $("productAvailable").checked = p.available !== false;
-
-    modifierGroups =
-      JSON.parse(JSON.stringify(p.modifiers || []));
-
-    renderModifierGroups();
-
-    productImageFile = null;
-
-    if(p.photoUrl){
-
-      $("productPreview").src = p.photoUrl;
-      $("productPreview").classList.remove("hidden");
-    }else{
-
-      $("productPreview").classList.add("hidden");
-    }
-
-    $("cancelProductBtn").classList.remove("hidden");
-
-    window.scrollTo({
-      top:$("menu").offsetTop,
-      behavior:"smooth"
-    });
-  }
-
-
-  function resetProductForm(){
-
-    editingProductId = null;
-
-    $("productFormTitle").textContent =
-      "Add Food / Product";
-
-    $("productName").value = "";
-    $("productPrice").value = "";
-    $("productDescription").value = "";
-    $("productAvailable").checked = true;
-
-    productImageFile = null;
-
-    $("productImage").value = "";
-    $("productPreview").src = "";
-    $("productPreview").classList.add("hidden");
-
-    modifierGroups = [];
-
-    renderModifierGroups();
-
-    $("cancelProductBtn").classList.add("hidden");
-  }
-
-
-  $("cancelProductBtn").onclick = resetProductForm;
-
-
-  $("saveProductBtn").onclick = async ()=>{
-
-    if(!currentUser) return;
-
-    if(!currentBusiness){
-
-      showMessage(
-        "Please save your business profile first.",
-        "error"
-      );
-
-      return;
-    }
-
-    const name = $("productName").value.trim();
-    const price = Number($("productPrice").value || 0);
-    const description = $("productDescription").value.trim();
-    const available = $("productAvailable").checked;
-
-    if(!name){
-
-      showMessage("Enter the product name.","error");
-      return;
-    }
-
-    if(price < 0){
-
-      showMessage("Price cannot be negative.","error");
-      return;
-    }
-
-
-    /* Validate modifiers */
-
-    for(const group of modifierGroups){
-
-      group.name = String(group.name || "").trim();
-
-      if(!group.name){
-
-        showMessage(
-          "Every option group needs a name.",
-          "error"
-        );
-
-        return;
-      }
-
-      if(!group.options.length){
-
-        showMessage(
-          `Add at least one choice to "${group.name}".`,
-          "error"
-        );
-
-        return;
-      }
-
-      for(const option of group.options){
-
-        option.name =
-          String(option.name || "").trim();
-
-        option.price =
-          Number(option.price || 0);
-
-        if(!option.name){
-
-          showMessage(
-            `Every choice in "${group.name}" needs a name.`,
-            "error"
-          );
-
-          return;
-        }
-
-        if(option.price < 0){
-
-          showMessage(
-            "Option cost cannot be negative.",
-            "error"
-          );
-
-          return;
-        }
-      }
-    }
-
-
-    try{
-
-      let oldProduct = null;
-
-      if(editingProductId){
-
-        const oldSnap =
-          await getDoc(
-            doc(db,"products",editingProductId)
-          );
-
-        if(oldSnap.exists()){
-          oldProduct = oldSnap.data();
-        }
-      }
-
-
-      let photoUrl = oldProduct?.photoUrl || "";
-
-
-      if(productImageFile){
-
-        photoUrl = await uploadImage(
-          productImageFile,
-          `products/${currentUser.uid}/${editingProductId || "new"}`
-        );
-
-        if(oldProduct?.photoUrl){
-          await deleteStorageFile(oldProduct.photoUrl);
-        }
-      }
-
-
-      const data = {
-
-        name,
-
-        description,
-
-        price,
-
-        available,
-
-        vendorId:currentUser.uid,
-
-        vendorName:currentBusiness.name,
-
-        photoUrl,
-
-        modifiers:modifierGroups,
-
-        updatedAt:serverTimestamp()
-      };
-
-
-      if(editingProductId){
-
-        await updateDoc(
-          doc(db,"products",editingProductId),
-          data
-        );
-
-      }else{
-
-        const productRef =
-          doc(collection(db,"products"));
-
-        /*
-          Upload again using the real product ID
-          when this is a new product.
-        */
-
-        if(productImageFile){
-
-          photoUrl = await uploadImage(
-            productImageFile,
-            `products/${currentUser.uid}/${productRef.id}`
-          );
-
-          data.photoUrl = photoUrl;
-        }
-
-        data.createdAt = serverTimestamp();
-
-        await setDoc(productRef,data);
-      }
-
-
-      resetProductForm();
-
-      await loadProducts();
-      updateStats();
-
-      showMessage(
-        editingProductId
-        ? "Product updated successfully."
-        : "Product added successfully."
-      );
-
-    }catch(error){
-
-      console.error(error);
-      showMessage(friendlyError(error),"error");
-    }
-  };
-
-
-  /* =========================================================
-     PROPERTY PHOTOS
-  ========================================================= */
-
-  function showPropertyPreviews(){
-
-    const box = $("propertyPreviewGrid");
-
-    box.innerHTML = "";
-
-    existingPropertyPhotos.forEach(url=>{
-
-      const img = document.createElement("img");
-      img.src = url;
-      box.appendChild(img);
-    });
-
-    propertyImageFiles.forEach(file=>{
-
-      const img = document.createElement("img");
-      img.src = URL.createObjectURL(file);
-      box.appendChild(img);
-    });
-  }
-
-
-  function addPropertyFiles(files){
-
-    const incoming = Array.from(files || []);
-
-    propertyImageFiles =
-      propertyImageFiles.concat(incoming).slice(0,6);
-
-    showPropertyPreviews();
-  }
-
-
-  $("propertyCamera").onchange = e=>{
-    addPropertyFiles(e.target.files);
-    $("propertyCamera").value = "";
-  };
-
-
-  $("propertyGallery").onchange = e=>{
-    addPropertyFiles(e.target.files);
-    $("propertyGallery").value = "";
-  };
-
-
-  /* =========================================================
-     PROPERTIES
-  ========================================================= */
-
-  async function loadProperties(){
-
-    if(!currentUser) return;
-
-    const q = query(
-      collection(db,"properties"),
-      where("ownerId","==",currentUser.uid)
-    );
-
-    const snap = await getDocs(q);
-
-    const properties = snap.docs.map(d=>({
-      id:d.id,
-      ...d.data()
-    }));
-
-    properties.sort((a,b)=>{
-      const aa = a.createdAt?.seconds || 0;
-      const bb = b.createdAt?.seconds || 0;
-      return bb-aa;
-    });
-
-    const list = $("propertyList");
-
-    if(!properties.length){
-
-      list.innerHTML =
-        `<p class="muted">No properties listed yet.</p>`;
-
-      return;
-    }
-
-    list.innerHTML = properties.map(p=>{
-
-      const photos =
-        p.photoUrls?.length
-        ? p.photoUrls
-        : (p.photoUrl ? [p.photoUrl] : []);
-
-      return `
-
-        <div class="item">
-
-          <div class="item-row">
-
-            <div style="flex:1">
-
-              <h3>${escapeHtml(p.title)}</h3>
-
-              <span class="badge">
-                ${escapeHtml(p.purpose || "")}
-              </span>
-
-              <p class="price">${money(p.price)}</p>
-
-              <p>
-                ${escapeHtml(p.type || "")}
-                · ${escapeHtml(p.location || "")}
-              </p>
-
-              <p class="muted">
-                Bedrooms: ${p.bedrooms || 0}
-                · Bathrooms: ${p.bathrooms || 0}
-              </p>
-
-              <p class="muted">
-                ${escapeHtml(p.description || "")}
-              </p>
-
-              <p>
-                Contact:
-                <strong>${escapeHtml(p.phone || "")}</strong>
-              </p>
-
-              <span class="badge">
-                ${p.available ? "Available":"Unavailable"}
-              </span>
-
-              <div class="actions">
-
-                <button
-                  class="btn secondary"
-                  data-edit-property="${p.id}">
-                  Edit
-                </button>
-
-                <button
-                  class="btn danger"
-                  data-delete-property="${p.id}">
-                  Delete
-                </button>
-
-              </div>
-
-            </div>
-
-          </div>
-
-          ${
-            photos.length
-            ? `
-              <div class="preview-grid">
-                ${photos.map(url=>
-                  `<img src="${escapeHtml(url)}">`
-                ).join("")}
-              </div>
-            `
-            : ""
-          }
-
-        </div>
-
-      `;
-    }).join("");
-
-
-    document.querySelectorAll("[data-edit-property]").forEach(btn=>{
-
-      btn.onclick = ()=>{
-
-        const p =
-          properties.find(
-            x=>x.id === btn.dataset.editProperty
-          );
-
-        if(p) editProperty(p);
-      };
-    });
-
-
-    document.querySelectorAll("[data-delete-property]").forEach(btn=>{
-
-      btn.onclick = async ()=>{
-
-        if(!confirm("Delete this property?")) return;
-
-        try{
-
-          const p =
-            properties.find(
-              x=>x.id === btn.dataset.deleteProperty
-            );
-
-          await deleteDoc(
-            doc(db,"properties",btn.dataset.deleteProperty)
-          );
-
-          const photos =
-            p?.photoUrls?.length
-            ? p.photoUrls
-            : (p?.photoUrl ? [p.photoUrl] : []);
-
-          for(const url of photos){
-            await deleteStorageFile(url);
-          }
-
-          await loadProperties();
-          updateStats();
-
-          showMessage("Property deleted.");
-
-        }catch(error){
-
-          showMessage(
-            friendlyError(error),
-            "error"
-          );
-        }
-      };
-    });
-  }
-
-
-  function editProperty(p){
-
-    editingPropertyId = p.id;
-
-    $("propertyFormTitle").textContent =
-      "Edit Property";
-
-    $("propertyTitle").value = p.title || "";
-    $("propertyPurpose").value = p.purpose || "Rent";
-    $("propertyType").value = p.type || "House";
-    $("propertyPrice").value = p.price ?? "";
-    $("propertyLocation").value = p.location || "";
-    $("propertyBedrooms").value = p.bedrooms ?? 0;
-    $("propertyBathrooms").value = p.bathrooms ?? 0;
-    $("propertyOwner").value = p.owner || "";
-    $("propertyPhone").value = p.phone || "";
-    $("propertyDescription").value = p.description || "";
-    $("propertyAvailable").checked = p.available !== false;
-
-    existingPropertyPhotos =
-      p.photoUrls?.length
-      ? [...p.photoUrls]
-      : (p.photoUrl ? [p.photoUrl] : []);
-
-    propertyImageFiles = [];
-
-    showPropertyPreviews();
-
-    $("cancelPropertyBtn").classList.remove("hidden");
-
-    window.scrollTo({
-      top:$("properties").offsetTop,
-      behavior:"smooth"
-    });
-  }
-
-
-  function resetPropertyForm(){
-
-    editingPropertyId = null;
-
-    $("propertyFormTitle").textContent =
-      "Add Property";
-
-    $("propertyTitle").value = "";
-    $("propertyPurpose").value = "Rent";
-    $("propertyType").value = "House";
-    $("propertyPrice").value = "";
-    $("propertyLocation").value = "";
-    $("propertyBedrooms").value = "";
-    $("propertyBathrooms").value = "";
-    $("propertyOwner").value = "";
-    $("propertyPhone").value = "";
-    $("propertyDescription").value = "";
-    $("propertyAvailable").checked = true;
-
-    existingPropertyPhotos = [];
-    propertyImageFiles = [];
-
-    $("propertyCamera").value = "";
-    $("propertyGallery").value = "";
-
-    showPropertyPreviews();
-
-    $("cancelPropertyBtn").classList.add("hidden");
-  }
-
-
-  $("cancelPropertyBtn").onclick =
-    resetPropertyForm;
-
-
-  $("savePropertyBtn").onclick = async ()=>{
-
-    if(!currentUser) return;
-
-    const title =
-      $("propertyTitle").value.trim();
-
-    const purpose =
-      $("propertyPurpose").value;
-
-    const type =
-      $("propertyType").value;
-
-    const price =
-      Number($("propertyPrice").value || 0);
-
-    const location =
-      $("propertyLocation").value.trim();
-
-    const bedrooms =
-      Number($("propertyBedrooms").value || 0);
-
-    const bathrooms =
-      Number($("propertyBathrooms").value || 0);
-
-    const owner =
-      $("propertyOwner").value.trim();
-
-    const phone =
-      $("propertyPhone").value.trim();
-
-    const description =
-      $("propertyDescription").value.trim();
-
-    const available =
-      $("propertyAvailable").checked;
-
-
-    if(!title){
-
-      showMessage(
-        "Enter the property title.",
-        "error"
-      );
-
-      return;
-    }
-
-    if(!location){
-
-      showMessage(
-        "Enter the property location.",
-        "error"
-      );
-
-      return;
-    }
-
-
-    try{
-
-      let oldProperty = null;
-
-      if(editingPropertyId){
-
-        const snap =
-          await getDoc(
-            doc(db,"properties",editingPropertyId)
-          );
-
-        if(snap.exists()){
-          oldProperty = snap.data();
-        }
-      }
-
-
-      let photoUrls =
-        [...existingPropertyPhotos];
-
-
-      /*
-        Upload new property photos.
-      */
-
-      const propertyId =
-        editingPropertyId ||
-        doc(collection(db,"properties")).id;
-
-      for(const file of propertyImageFiles){
-
-        const url =
-          await uploadImage(
-            file,
-            `properties/${currentUser.uid}/${propertyId}`
-          );
-
-        if(url){
-          photoUrls.push(url);
-        }
-      }
-
-
-      /*
-        Keep maximum of six photos.
-      */
-
-      photoUrls = photoUrls.slice(0,6);
-
-
-      const data = {
-
-        title,
-
-        purpose,
-
-        type,
-
-        price,
-
-        location,
-
-        bedrooms,
-
-        bathrooms,
-
-        description,
-
-        owner,
-
-        phone,
-
-        available,
-
-        ownerId:currentUser.uid,
-
-        photoUrl:photoUrls[0] || "",
-
-        photoUrls,
-
-        updatedAt:serverTimestamp()
-      };
-
-
-      if(editingPropertyId){
-
-        /*
-          If the owner replaced the photos, delete old
-          storage files that are no longer being used.
-        */
-
-        const oldPhotos =
-          oldProperty?.photoUrls?.length
-          ? oldProperty.photoUrls
-          : (oldProperty?.photoUrl
-              ? [oldProperty.photoUrl]
-              : []);
-
-        for(const oldUrl of oldPhotos){
-
-          if(!photoUrls.includes(oldUrl)){
-            await deleteStorageFile(oldUrl);
-          }
-        }
-
-        await updateDoc(
-          doc(db,"properties",editingPropertyId),
-          data
-        );
-
-      }else{
-
-        data.createdAt = serverTimestamp();
-
-        await setDoc(
-          doc(db,"properties",propertyId),
-          data
-        );
-      }
-
-
-      resetPropertyForm();
-
-      await loadProperties();
-      updateStats();
-
-      showMessage(
-        editingPropertyId
-        ? "Property updated successfully."
-        : "Property listed successfully."
-      );
+      await Promise.all([
+        loadBusiness(),
+        loadProducts(),
+        loadProperties(),
+        loadOrders()
+      ]);
+
+      await updateStats();
 
     }catch(error){
 
@@ -2364,64 +1915,1196 @@
         friendlyError(error),
         "error"
       );
+
     }
+
+  }
+);
+
+
+/* =========================================================
+   ENSURE USER PROFILE
+========================================================= */
+
+async function ensureProfile(){
+
+  if(!currentUser) return;
+
+  const userRef =
+    doc(
+      db,
+      "users",
+      currentUser.uid
+    );
+
+  const snap =
+    await getDoc(userRef);
+
+  if(!snap.exists()){
+
+    await setDoc(
+      userRef,
+      {
+        uid:currentUser.uid,
+        name:
+          currentUser.displayName ||
+          "",
+        email:
+          currentUser.email ||
+          "",
+        accountType:"vendor",
+        roles:["vendor"],
+        createdAt:serverTimestamp(),
+        updatedAt:serverTimestamp()
+      },
+      {
+        merge:true
+      }
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   TABS
+========================================================= */
+
+document
+  .querySelectorAll(".tab")
+  .forEach(button=>{
+
+    button.onclick = ()=>{
+
+      document
+        .querySelectorAll(".tab")
+        .forEach(x=>{
+          x.classList.remove("active");
+        });
+
+      document
+        .querySelectorAll(".section")
+        .forEach(x=>{
+          x.classList.remove("active");
+        });
+
+      button.classList.add("active");
+
+      $(button.dataset.tab)
+        .classList
+        .add("active");
+
+    };
+
+  });
+
+
+/* =========================================================
+   BUSINESS IMAGE PREVIEW
+========================================================= */
+
+$("businessImage").onchange =
+event=>{
+
+  businessImageFile =
+    event.target.files[0] ||
+    null;
+
+  if(!businessImageFile){
+
+    return;
+
+  }
+
+  $("businessPreview").src =
+    URL.createObjectURL(
+      businessImageFile
+    );
+
+  $("businessPreview")
+    .classList
+    .remove("hidden");
+
+};
+
+
+/* =========================================================
+   LOAD BUSINESS
+========================================================= */
+
+async function loadBusiness(){
+
+  if(!currentUser) return;
+
+  const q =
+    query(
+      collection(db,"businesses"),
+      where(
+        "ownerId",
+        "==",
+        currentUser.uid
+      )
+    );
+
+  const snap =
+    await getDocs(q);
+
+  if(snap.empty){
+
+    currentBusiness = null;
+
+    $("businessList").innerHTML =
+      `<div class="empty">
+        You have not registered a business yet.
+      </div>`;
+
+    return;
+
+  }
+
+  const first =
+    snap.docs[0];
+
+  currentBusiness = {
+    id:first.id,
+    ...first.data()
   };
 
+  const business =
+    currentBusiness;
 
-  /* =========================================================
-     ORDERS
-  ========================================================= */
+  $("businessName").value =
+    business.name || "";
 
-  async function loadOrders(){
+  $("businessCategory").value =
+    business.category ||
+    "Restaurant";
 
-    if(!currentUser) return;
+  $("businessPhone").value =
+    business.phone || "";
 
-    try{
+  $("businessLocation").value =
+    business.location || "";
 
-      const q = query(
-        collection(db,"orders"),
-        where("vendorId","==",currentUser.uid)
+  $("businessDescription").value =
+    business.description || "";
+
+  if(business.logoUrl){
+
+    $("businessPreview").src =
+      business.logoUrl;
+
+    $("businessPreview")
+      .classList
+      .remove("hidden");
+
+  }
+
+  $("businessList").innerHTML = `
+
+    <div class="item">
+
+      <div class="item-row">
+
+        <div>
+
+          <h3>
+            ${escapeHtml(business.name)}
+          </h3>
+
+          <span class="badge">
+            ${escapeHtml(
+              business.category ||
+              "Business"
+            )}
+          </span>
+
+          <p class="muted">
+            ${escapeHtml(
+              business.location ||
+              ""
+            )}
+          </p>
+
+          <p>
+            ${escapeHtml(
+              business.description ||
+              ""
+            )}
+          </p>
+
+          <p>
+            <strong>
+              ${escapeHtml(
+                business.phone ||
+                ""
+              )}
+            </strong>
+          </p>
+
+        </div>
+
+        ${
+          business.logoUrl
+          ?
+          `<img
+             class="thumb"
+             src="${escapeHtml(
+               business.logoUrl
+             )}"
+             alt="Business photo">`
+          :
+          ""
+        }
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   SAVE BUSINESS
+========================================================= */
+
+$("saveBusinessBtn").onclick =
+async ()=>{
+
+  if(!currentUser) return;
+
+  if(savingBusiness) return;
+
+  const name =
+    $("businessName")
+      .value
+      .trim();
+
+  const category =
+    $("businessCategory")
+      .value;
+
+  const phone =
+    $("businessPhone")
+      .value
+      .trim();
+
+  const location =
+    $("businessLocation")
+      .value
+      .trim();
+
+  const description =
+    $("businessDescription")
+      .value
+      .trim();
+
+  if(!name){
+
+    showMessage(
+      "Enter a business name.",
+      "error"
+    );
+
+    return;
+
+  }
+
+  savingBusiness = true;
+
+  const button =
+    $("saveBusinessBtn");
+
+  setButtonLoading(
+    button,
+    true,
+    "Saving...",
+    "Save Business"
+  );
+
+  try{
+
+    const oldName =
+      currentBusiness?.name ||
+      "";
+
+    let logoUrl =
+      currentBusiness?.logoUrl ||
+      "";
+
+    /*
+      Upload only if a new image
+      was selected.
+    */
+
+    if(businessImageFile){
+
+      const newLogoUrl =
+        await uploadImage(
+          businessImageFile,
+          `businesses/${currentUser.uid}`
+        );
+
+      if(newLogoUrl){
+
+        logoUrl = newLogoUrl;
+
+      }
+
+    }
+
+    /*
+      Reuse existing business document
+      when editing.
+    */
+
+    const businessRef =
+      currentBusiness
+      ?
+      doc(
+        db,
+        "businesses",
+        currentBusiness.id
+      )
+      :
+      doc(
+        collection(
+          db,
+          "businesses"
+        )
       );
 
-      const snap = await getDocs(q);
+    const data = {
 
-      const orders = snap.docs.map(d=>({
-        id:d.id,
-        ...d.data()
-      }));
+      ownerId:currentUser.uid,
 
-      orders.sort((a,b)=>{
-        const aa = a.createdAt?.seconds || 0;
-        const bb = b.createdAt?.seconds || 0;
-        return bb-aa;
-      });
+      name,
 
-      $("orderList").innerHTML =
-        orders.length
-        ? orders.map(renderOrder).join("")
-        : `<p class="muted">No orders yet.</p>`;
+      category,
+
+      phone,
+
+      location,
+
+      description,
+
+      logoUrl,
+
+      active:true,
+
+      approved:true,
+
+      updatedAt:
+        serverTimestamp()
+
+    };
+
+    if(!currentBusiness){
+
+      data.createdAt =
+        serverTimestamp();
+
+    }
+
+    await setDoc(
+      businessRef,
+      data,
+      {
+        merge:true
+      }
+    );
+
+    /*
+      Delete old image only AFTER
+      Firestore has successfully saved.
+    */
+
+    if(
+      businessImageFile &&
+      currentBusiness?.logoUrl &&
+      logoUrl !== currentBusiness.logoUrl
+    ){
+
+      await deleteStorageFile(
+        currentBusiness.logoUrl
+      );
+
+    }
+
+    /*
+      Update products if business
+      name changed.
+    */
+
+    if(
+      oldName &&
+      oldName !== name
+    ){
+
+      const productQuery =
+        query(
+          collection(db,"products"),
+          where(
+            "vendorId",
+            "==",
+            currentUser.uid
+          )
+        );
+
+      const productSnap =
+        await getDocs(
+          productQuery
+        );
+
+      for(
+        const productDoc
+        of productSnap.docs
+      ){
+
+        await updateDoc(
+          productDoc.ref,
+          {
+            vendorName:name,
+            updatedAt:
+              serverTimestamp()
+          }
+        );
+
+      }
+
+    }
+
+    businessImageFile = null;
+
+    $("businessImage").value = "";
+
+    await loadBusiness();
+
+    await loadProducts();
+
+    showMessage(
+      "Business saved successfully."
+    );
+
+  }catch(error){
+
+    showMessage(
+      friendlyError(error),
+      "error"
+    );
+
+  }finally{
+
+    savingBusiness = false;
+
+    setButtonLoading(
+      button,
+      false,
+      "Saving...",
+      "Save Business"
+    );
+
+  }
+
+};
 
 
-      document.querySelectorAll("[data-order-status]").forEach(select=>{
+/* =========================================================
+   MODIFIER BUILDER
+========================================================= */
 
-        select.onchange = async e=>{
+function addModifierGroup(){
 
-          const id =
-            e.target.dataset.orderStatus;
+  modifierGroups.push({
+
+    name:"",
+
+    required:false,
+
+    multiple:false,
+
+    options:[
+      {
+        name:"",
+        price:0
+      }
+    ]
+
+  });
+
+  renderModifierGroups();
+
+}
+
+
+function renderModifierGroups(){
+
+  const box =
+    $("modifierGroups");
+
+  if(!modifierGroups.length){
+
+    box.innerHTML =
+      `<p class="muted">
+        No options added.
+      </p>`;
+
+    return;
+
+  }
+
+  box.innerHTML =
+    modifierGroups
+      .map(
+        (group,gIndex)=>`
+
+    <div class="modifier">
+
+      <div class="grid">
+
+        <div class="field">
+
+          <label>
+            Option group name
+          </label>
+
+          <input
+            data-group-name="${gIndex}"
+            value="${escapeHtml(
+              group.name
+            )}"
+            placeholder="Example: Size">
+
+        </div>
+
+        <div
+          style="
+            display:flex;
+            gap:15px;
+            align-items:center
+          ">
+
+          <label class="check">
+
+            <input
+              type="checkbox"
+              data-group-required="${gIndex}"
+              ${group.required
+                ? "checked"
+                : ""}>
+
+            Required
+
+          </label>
+
+          <label class="check">
+
+            <input
+              type="checkbox"
+              data-group-multiple="${gIndex}"
+              ${group.multiple
+                ? "checked"
+                : ""}>
+
+            Multiple
+
+          </label>
+
+        </div>
+
+      </div>
+
+      <strong>
+        Choices
+      </strong>
+
+      <div>
+
+        ${
+          group.options
+            .map(
+              (option,oIndex)=>`
+
+          <div class="option">
+
+            <input
+              data-option-name="${gIndex}-${oIndex}"
+              value="${escapeHtml(
+                option.name
+              )}"
+              placeholder="Example: Large">
+
+            <input
+              data-option-price="${gIndex}-${oIndex}"
+              type="number"
+              min="0"
+              step="0.01"
+              value="${Number(
+                option.price || 0
+              )}"
+              placeholder="Extra cost">
+
+            <button
+              type="button"
+              class="btn danger"
+              data-remove-option="${gIndex}-${oIndex}">
+              Remove
+            </button>
+
+          </div>
+
+        `
+            )
+            .join("")
+        }
+
+      </div>
+
+      <div class="actions">
+
+        <button
+          type="button"
+          class="btn secondary"
+          data-add-option="${gIndex}">
+          + Add choice
+        </button>
+
+        <button
+          type="button"
+          class="btn danger"
+          data-remove-group="${gIndex}">
+          Remove group
+        </button>
+
+      </div>
+
+    </div>
+
+  `
+      )
+      .join("");
+
+
+  document
+    .querySelectorAll("[data-group-name]")
+    .forEach(input=>{
+
+      input.oninput =
+        event=>{
+
+          const index =
+            Number(
+              event.target
+                .dataset
+                .groupName
+            );
+
+          modifierGroups[index].name =
+            event.target.value;
+
+        };
+
+    });
+
+
+  document
+    .querySelectorAll("[data-group-required]")
+    .forEach(input=>{
+
+      input.onchange =
+        event=>{
+
+          const index =
+            Number(
+              event.target
+                .dataset
+                .groupRequired
+            );
+
+          modifierGroups[index].required =
+            event.target.checked;
+
+        };
+
+    });
+
+
+  document
+    .querySelectorAll("[data-group-multiple]")
+    .forEach(input=>{
+
+      input.onchange =
+        event=>{
+
+          const index =
+            Number(
+              event.target
+                .dataset
+                .groupMultiple
+            );
+
+          modifierGroups[index].multiple =
+            event.target.checked;
+
+        };
+
+    });
+
+
+  document
+    .querySelectorAll("[data-option-name]")
+    .forEach(input=>{
+
+      input.oninput =
+        event=>{
+
+          const [
+            g,
+            o
+          ] =
+            event.target
+              .dataset
+              .optionName
+              .split("-")
+              .map(Number);
+
+          modifierGroups[g]
+            .options[o]
+            .name =
+            event.target.value;
+
+        };
+
+    });
+
+
+  document
+    .querySelectorAll("[data-option-price]")
+    .forEach(input=>{
+
+      input.oninput =
+        event=>{
+
+          const [
+            g,
+            o
+          ] =
+            event.target
+              .dataset
+              .optionPrice
+              .split("-")
+              .map(Number);
+
+          modifierGroups[g]
+            .options[o]
+            .price =
+            Number(
+              event.target.value ||
+              0
+            );
+
+        };
+
+    });
+
+
+  document
+    .querySelectorAll("[data-add-option]")
+    .forEach(button=>{
+
+      button.onclick =
+        ()=>{
+
+          const index =
+            Number(
+              button
+                .dataset
+                .addOption
+            );
+
+          modifierGroups[index]
+            .options
+            .push({
+              name:"",
+              price:0
+            });
+
+          renderModifierGroups();
+
+        };
+
+    });
+
+
+  document
+    .querySelectorAll("[data-remove-option]")
+    .forEach(button=>{
+
+      button.onclick =
+        ()=>{
+
+          const [
+            g,
+            o
+          ] =
+            button
+              .dataset
+              .removeOption
+              .split("-")
+              .map(Number);
+
+          modifierGroups[g]
+            .options
+            .splice(o,1);
+
+          renderModifierGroups();
+
+        };
+
+    });
+
+
+  document
+    .querySelectorAll("[data-remove-group]")
+    .forEach(button=>{
+
+      button.onclick =
+        ()=>{
+
+          const index =
+            Number(
+              button
+                .dataset
+                .removeGroup
+            );
+
+          modifierGroups.splice(
+            index,
+            1
+          );
+
+          renderModifierGroups();
+
+        };
+
+    });
+
+}
+
+
+$("addModifierBtn").onclick =
+addModifierGroup;
+
+
+/* =========================================================
+   PRODUCT IMAGE
+========================================================= */
+
+$("productImage").onchange =
+event=>{
+
+  productImageFile =
+    event.target.files[0] ||
+    null;
+
+  if(productImageFile){
+
+    $("productPreview").src =
+      URL.createObjectURL(
+        productImageFile
+      );
+
+    $("productPreview")
+      .classList
+      .remove("hidden");
+
+  }
+
+};
+
+
+/* =========================================================
+   LOAD PRODUCTS
+========================================================= */
+
+async function loadProducts(){
+
+  if(!currentUser) return;
+
+  const q =
+    query(
+      collection(db,"products"),
+      where(
+        "vendorId",
+        "==",
+        currentUser.uid
+      )
+    );
+
+  const snap =
+    await getDocs(q);
+
+  const products =
+    snap.docs.map(
+      productDoc=>({
+        id:productDoc.id,
+        ...productDoc.data()
+      })
+    );
+
+  products.sort(
+    (a,b)=>{
+
+      const aa =
+        a.createdAt?.seconds ||
+        0;
+
+      const bb =
+        b.createdAt?.seconds ||
+        0;
+
+      return bb-aa;
+
+    }
+  );
+
+  const list =
+    $("productList");
+
+  if(!products.length){
+
+    list.innerHTML =
+      `<div class="empty">
+        No products yet.
+      </div>`;
+
+    return;
+
+  }
+
+  list.innerHTML =
+    products
+      .map(
+        p=>`
+
+    <div class="item">
+
+      <div class="item-row">
+
+        <div style="flex:1">
+
+          <h3>
+            ${escapeHtml(p.name)}
+          </h3>
+
+          <div class="price">
+            ${money(p.price)}
+          </div>
+
+          <p class="muted">
+            ${escapeHtml(
+              p.description || ""
+            )}
+          </p>
+
+          <span class="badge">
+            ${
+              p.available
+              ? "Available"
+              : "Unavailable"
+            }
+          </span>
+
+          ${
+            p.modifiers?.length
+            ?
+            `
+              <div
+                style="margin-top:12px">
+
+                <strong>
+                  Options:
+                </strong>
+
+                ${
+                  p.modifiers
+                    .map(
+                      group=>`
+
+                    <p class="muted">
+
+                      <strong>
+                        ${escapeHtml(
+                          group.name
+                        )}
+                      </strong>:
+
+                      ${
+                        group.options
+                          .map(
+                            option=>
+                              escapeHtml(
+                                option.name
+                              ) +
+                              (
+                                Number(
+                                  option.price
+                                ) > 0
+                                ?
+                                ` (+${money(
+                                  option.price
+                                )})`
+                                :
+                                ""
+                              )
+                          )
+                          .join(", ")
+                      }
+
+                    </p>
+
+                  `
+                    )
+                    .join("")
+                }
+
+              </div>
+            `
+            :
+            ""
+          }
+
+          <div class="actions">
+
+            <button
+              type="button"
+              class="btn secondary"
+              data-edit-product="${p.id}">
+              Edit
+            </button>
+
+            <button
+              type="button"
+              class="btn danger"
+              data-delete-product="${p.id}">
+              Delete
+            </button>
+
+          </div>
+
+        </div>
+
+        ${
+          p.photoUrl
+          ?
+          `<img
+             class="thumb"
+             src="${escapeHtml(
+               p.photoUrl
+             )}"
+             alt="Product photo">`
+          :
+          ""
+        }
+
+      </div>
+
+    </div>
+
+  `
+      )
+      .join("");
+
+
+  document
+    .querySelectorAll(
+      "[data-edit-product]"
+    )
+    .forEach(button=>{
+
+      button.onclick =
+        ()=>{
+
+          const product =
+            products.find(
+              x =>
+                x.id ===
+                button
+                  .dataset
+                  .editProduct
+            );
+
+          if(product){
+
+            editProduct(
+              product
+            );
+
+          }
+
+        };
+
+    });
+
+
+  document
+    .querySelectorAll(
+      "[data-delete-product]"
+    )
+    .forEach(button=>{
+
+      button.onclick =
+        async ()=>{
+
+          if(
+            !confirm(
+              "Delete this product?"
+            )
+          ){
+
+            return;
+
+          }
+
+          const product =
+            products.find(
+              x =>
+                x.id ===
+                button
+                  .dataset
+                  .deleteProduct
+            );
 
           try{
 
-            await updateDoc(
-              doc(db,"orders",id),
-              {
-                status:e.target.value,
-                updatedAt:serverTimestamp()
-              }
+            await deleteDoc(
+              doc(
+                db,
+                "products",
+                button
+                  .dataset
+                  .deleteProduct
+              )
             );
 
-            showMessage("Order status updated.");
+            if(product?.photoUrl){
 
-            await loadOrders();
+              await deleteStorageFile(
+                product.photoUrl
+              );
+
+            }
+
+            await loadProducts();
+
+            await updateStats();
+
+            showMessage(
+              "Product deleted."
+            );
 
           }catch(error){
 
@@ -2429,201 +3112,1951 @@
               friendlyError(error),
               "error"
             );
+
           }
+
         };
-      });
 
-    }catch(error){
+    });
 
-      console.error(error);
+}
 
-      $("orderList").innerHTML =
-        `<div class="error">${escapeHtml(friendlyError(error))}</div>`;
-    }
+
+/* =========================================================
+   EDIT PRODUCT
+========================================================= */
+
+function editProduct(product){
+
+  editingProductId =
+    product.id;
+
+  $("productFormTitle")
+    .textContent =
+    "Edit Product";
+
+  $("productName").value =
+    product.name || "";
+
+  $("productPrice").value =
+    product.price ?? "";
+
+  $("productDescription").value =
+    product.description || "";
+
+  $("productAvailable").checked =
+    product.available !== false;
+
+  modifierGroups =
+    JSON.parse(
+      JSON.stringify(
+        product.modifiers || []
+      )
+    );
+
+  renderModifierGroups();
+
+  productImageFile = null;
+
+  $("productImage").value = "";
+
+  if(product.photoUrl){
+
+    $("productPreview").src =
+      product.photoUrl;
+
+    $("productPreview")
+      .classList
+      .remove("hidden");
+
+  }else{
+
+    $("productPreview")
+      .src = "";
+
+    $("productPreview")
+      .classList
+      .add("hidden");
+
+  }
+
+  $("cancelProductBtn")
+    .classList
+    .remove("hidden");
+
+  document
+    .querySelector(
+      '[data-tab="menu"]'
+    )
+    ?.click();
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =========================================================
+   RESET PRODUCT FORM
+========================================================= */
+
+function resetProductForm(){
+
+  editingProductId = null;
+
+  $("productFormTitle")
+    .textContent =
+    "Add Food / Product";
+
+  $("productName").value = "";
+
+  $("productPrice").value = "";
+
+  $("productDescription").value = "";
+
+  $("productAvailable")
+    .checked = true;
+
+  productImageFile = null;
+
+  $("productImage").value = "";
+
+  $("productPreview").src = "";
+
+  $("productPreview")
+    .classList
+    .add("hidden");
+
+  modifierGroups = [];
+
+  renderModifierGroups();
+
+  $("cancelProductBtn")
+    .classList
+    .add("hidden");
+
+}
+
+
+$("cancelProductBtn").onclick =
+resetProductForm;
+
+
+/* =========================================================
+   SAVE PRODUCT
+========================================================= */
+
+$("saveProductBtn").onclick =
+async ()=>{
+
+  if(!currentUser) return;
+
+  if(savingProduct) return;
+
+  if(!currentBusiness){
+
+    showMessage(
+      "Please save your business profile first.",
+      "error"
+    );
+
+    return;
+
+  }
+
+  const name =
+    $("productName")
+      .value
+      .trim();
+
+  const price =
+    Number(
+      $("productPrice")
+        .value || 0
+    );
+
+  const description =
+    $("productDescription")
+      .value
+      .trim();
+
+  const available =
+    $("productAvailable")
+      .checked;
+
+  if(!name){
+
+    showMessage(
+      "Enter the product name.",
+      "error"
+    );
+
+    return;
+
+  }
+
+  if(!Number.isFinite(price) || price < 0){
+
+    showMessage(
+      "Enter a valid product price.",
+      "error"
+    );
+
+    return;
+
   }
 
 
-  function renderOrder(order){
+  /* Validate modifiers */
 
-    const items = order.items || [];
+  for(
+    const group
+    of modifierGroups
+  ){
 
-    const itemHtml = items.map(item=>{
+    group.name =
+      String(
+        group.name || ""
+      ).trim();
 
-      const modifiers =
-        item.modifiers || [];
+    if(!group.name){
 
-      return `
-        <div style="margin:8px 0">
-          <strong>
-            ${escapeHtml(item.name)}
-          </strong>
-          × ${Number(item.quantity || 1)}
+      showMessage(
+        "Every option group needs a name.",
+        "error"
+      );
+
+      return;
+
+    }
+
+    if(
+      !group.options ||
+      !group.options.length
+    ){
+
+      showMessage(
+        `Add at least one choice to "${group.name}".`,
+        "error"
+      );
+
+      return;
+
+    }
+
+    for(
+      const option
+      of group.options
+    ){
+
+      option.name =
+        String(
+          option.name || ""
+        ).trim();
+
+      option.price =
+        Number(
+          option.price || 0
+        );
+
+      if(!option.name){
+
+        showMessage(
+          `Every choice in "${group.name}" needs a name.`,
+          "error"
+        );
+
+        return;
+
+      }
+
+      if(
+        !Number.isFinite(
+          option.price
+        ) ||
+        option.price < 0
+      ){
+
+        showMessage(
+          "Option cost cannot be negative.",
+          "error"
+        );
+
+        return;
+
+      }
+
+    }
+
+  }
+
+
+  savingProduct = true;
+
+  const button =
+    $("saveProductBtn");
+
+  setButtonLoading(
+    button,
+    true,
+    "Saving...",
+    "Save Product"
+  );
+
+
+  try{
+
+    let oldProduct = null;
+
+    /*
+      Read the existing product when editing.
+    */
+
+    if(editingProductId){
+
+      const oldSnap =
+        await getDoc(
+          doc(
+            db,
+            "products",
+            editingProductId
+          )
+        );
+
+      if(oldSnap.exists()){
+
+        oldProduct =
+          oldSnap.data();
+
+      }
+
+    }
+
+
+    /*
+      IMPORTANT FIX:
+      For a NEW product, create the Firestore
+      document reference FIRST.
+
+      This gives us the real product ID
+      before uploading the image.
+
+      Therefore the image is uploaded only ONCE.
+    */
+
+    const productRef =
+      editingProductId
+      ?
+      doc(
+        db,
+        "products",
+        editingProductId
+      )
+      :
+      doc(
+        collection(
+          db,
+          "products"
+        )
+      );
+
+
+    let photoUrl =
+      oldProduct?.photoUrl ||
+      "";
+
+
+    /*
+      Upload image only once.
+
+      New:
+      products/USER_ID/REAL_PRODUCT_ID/filename.jpg
+
+      Edit:
+      products/USER_ID/REAL_PRODUCT_ID/filename.jpg
+    */
+
+    if(productImageFile){
+
+      const newPhotoUrl =
+        await uploadImage(
+          productImageFile,
+          `products/${currentUser.uid}/${productRef.id}`
+        );
+
+      if(newPhotoUrl){
+
+        photoUrl =
+          newPhotoUrl;
+
+      }
+
+    }
+
+
+    const data = {
+
+      name,
+
+      description,
+
+      price,
+
+      available,
+
+      vendorId:
+        currentUser.uid,
+
+      vendorName:
+        currentBusiness.name,
+
+      photoUrl,
+
+      modifiers:
+        modifierGroups,
+
+      updatedAt:
+        serverTimestamp()
+
+    };
+
+
+    if(!editingProductId){
+
+      data.createdAt =
+        serverTimestamp();
+
+    }
+
+
+    /*
+      Save product AFTER successful image upload.
+    */
+
+    await setDoc(
+      productRef,
+      data,
+      {
+        merge:true
+      }
+    );
+
+
+    /*
+      Delete the old image only AFTER
+      Firestore successfully saved the new URL.
+    */
+
+    if(
+      productImageFile &&
+      oldProduct?.photoUrl &&
+      photoUrl !== oldProduct.photoUrl
+    ){
+
+      await deleteStorageFile(
+        oldProduct.photoUrl
+      );
+
+    }
+
+
+    const wasEditing =
+      Boolean(editingProductId);
+
+    resetProductForm();
+
+    await loadProducts();
+
+    await updateStats();
+
+    showMessage(
+      wasEditing
+      ? "Product updated successfully."
+      : "Product added successfully."
+    );
+
+  }catch(error){
+
+    showMessage(
+      friendlyError(error),
+      "error"
+    );
+
+  }finally{
+
+    savingProduct = false;
+
+    setButtonLoading(
+      button,
+      false,
+      "Saving...",
+      "Save Product"
+    );
+
+  }
+
+};
+
+
+/* =========================================================
+   PROPERTY PREVIEWS
+========================================================= */
+
+function showPropertyPreviews(){
+
+  const box =
+    $("propertyPreviewGrid");
+
+  box.innerHTML = "";
+
+  existingPropertyPhotos
+    .forEach(url=>{
+
+      const img =
+        document.createElement(
+          "img"
+        );
+
+      img.src = url;
+
+      img.alt =
+        "Existing property photo";
+
+      box.appendChild(img);
+
+    });
+
+
+  propertyImageFiles
+    .forEach(file=>{
+
+      const img =
+        document.createElement(
+          "img"
+        );
+
+      img.src =
+        URL.createObjectURL(file);
+
+      img.alt =
+        "New property photo";
+
+      box.appendChild(img);
+
+    });
+
+}
+
+
+function addPropertyFiles(
+  files
+){
+
+  const incoming =
+    Array.from(
+      files || []
+    );
+
+  const remaining =
+    Math.max(
+      0,
+      6 -
+      existingPropertyPhotos.length -
+      propertyImageFiles.length
+    );
+
+  if(!remaining){
+
+    showMessage(
+      "You can have a maximum of six property photos.",
+      "error"
+    );
+
+    return;
+
+  }
+
+  propertyImageFiles =
+    propertyImageFiles
+      .concat(
+        incoming.slice(
+          0,
+          remaining
+        )
+      );
+
+  showPropertyPreviews();
+
+}
+
+
+$("propertyCamera").onchange =
+event=>{
+
+  addPropertyFiles(
+    event.target.files
+  );
+
+  event.target.value = "";
+
+};
+
+
+$("propertyGallery").onchange =
+event=>{
+
+  addPropertyFiles(
+    event.target.files
+  );
+
+  event.target.value = "";
+
+};
+
+
+/* =========================================================
+   LOAD PROPERTIES
+========================================================= */
+
+async function loadProperties(){
+
+  if(!currentUser) return;
+
+  const q =
+    query(
+      collection(db,"properties"),
+      where(
+        "ownerId",
+        "==",
+        currentUser.uid
+      )
+    );
+
+  const snap =
+    await getDocs(q);
+
+  const properties =
+    snap.docs.map(
+      propertyDoc=>({
+        id:propertyDoc.id,
+        ...propertyDoc.data()
+      })
+    );
+
+  properties.sort(
+    (a,b)=>{
+
+      const aa =
+        a.createdAt?.seconds ||
+        0;
+
+      const bb =
+        b.createdAt?.seconds ||
+        0;
+
+      return bb-aa;
+
+    }
+  );
+
+
+  const list =
+    $("propertyList");
+
+
+  if(!properties.length){
+
+    list.innerHTML =
+      `<div class="empty">
+        No properties listed yet.
+      </div>`;
+
+    return;
+
+  }
+
+
+  list.innerHTML =
+    properties
+      .map(property=>{
+
+        const photos =
+          property.photoUrls?.length
+          ?
+          property.photoUrls
+          :
+          (
+            property.photoUrl
+            ?
+            [property.photoUrl]
+            :
+            []
+          );
+
+        return `
+
+          <div class="item">
+
+            <div class="item-row">
+
+              <div style="flex:1">
+
+                <h3>
+                  ${escapeHtml(
+                    property.title
+                  )}
+                </h3>
+
+                <span class="badge">
+                  ${escapeHtml(
+                    property.purpose ||
+                    ""
+                  )}
+                </span>
+
+                <p class="price">
+                  ${money(
+                    property.price
+                  )}
+                </p>
+
+                <p>
+                  ${escapeHtml(
+                    property.type ||
+                    ""
+                  )}
+                  ·
+                  ${escapeHtml(
+                    property.location ||
+                    ""
+                  )}
+                </p>
+
+                <p class="muted">
+                  Bedrooms:
+                  ${Number(
+                    property.bedrooms ||
+                    0
+                  )}
+
+                  ·
+
+                  Bathrooms:
+                  ${Number(
+                    property.bathrooms ||
+                    0
+                  )}
+                </p>
+
+                <p class="muted">
+                  ${escapeHtml(
+                    property.description ||
+                    ""
+                  )}
+                </p>
+
+                <p>
+                  Contact:
+                  <strong>
+                    ${escapeHtml(
+                      property.phone ||
+                      ""
+                    )}
+                  </strong>
+                </p>
+
+                <span class="badge">
+                  ${
+                    property.available
+                    ?
+                    "Available"
+                    :
+                    "Unavailable"
+                  }
+                </span>
+
+                <div class="actions">
+
+                  <button
+                    type="button"
+                    class="btn secondary"
+                    data-edit-property="${property.id}">
+                    Edit
+                  </button>
+
+                  <button
+                    type="button"
+                    class="btn danger"
+                    data-delete-property="${property.id}">
+                    Delete
+                  </button>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            ${
+              photos.length
+              ?
+              `
+                <div class="preview-grid">
+
+                  ${
+                    photos
+                      .map(
+                        url=>
+                          `<img
+                             src="${escapeHtml(url)}"
+                             alt="Property photo">`
+                      )
+                      .join("")
+                  }
+
+                </div>
+              `
+              :
+              ""
+            }
+
+          </div>
+
+        `;
+
+      })
+      .join("");
+
+
+  document
+    .querySelectorAll(
+      "[data-edit-property]"
+    )
+    .forEach(button=>{
+
+      button.onclick =
+        ()=>{
+
+          const property =
+            properties.find(
+              x =>
+                x.id ===
+                button
+                  .dataset
+                  .editProperty
+            );
+
+          if(property){
+
+            editProperty(
+              property
+            );
+
+          }
+
+        };
+
+    });
+
+
+  document
+    .querySelectorAll(
+      "[data-delete-property]"
+    )
+    .forEach(button=>{
+
+      button.onclick =
+        async ()=>{
+
+          if(
+            !confirm(
+              "Delete this property?"
+            )
+          ){
+
+            return;
+
+          }
+
+          const property =
+            properties.find(
+              x =>
+                x.id ===
+                button
+                  .dataset
+                  .deleteProperty
+            );
+
+          try{
+
+            await deleteDoc(
+              doc(
+                db,
+                "properties",
+                button
+                  .dataset
+                  .deleteProperty
+              )
+            );
+
+            const photos =
+              property?.photoUrls?.length
+              ?
+              property.photoUrls
+              :
+              (
+                property?.photoUrl
+                ?
+                [property.photoUrl]
+                :
+                []
+              );
+
+            for(
+              const url
+              of photos
+            ){
+
+              await deleteStorageFile(
+                url
+              );
+
+            }
+
+            await loadProperties();
+
+            await updateStats();
+
+            showMessage(
+              "Property deleted."
+            );
+
+          }catch(error){
+
+            showMessage(
+              friendlyError(error),
+              "error"
+            );
+
+          }
+
+        };
+
+    });
+
+}
+
+
+/* =========================================================
+   EDIT PROPERTY
+========================================================= */
+
+function editProperty(
+  property
+){
+
+  editingPropertyId =
+    property.id;
+
+  $("propertyFormTitle")
+    .textContent =
+    "Edit Property";
+
+  $("propertyTitle").value =
+    property.title || "";
+
+  $("propertyPurpose").value =
+    property.purpose ||
+    "Rent";
+
+  $("propertyType").value =
+    property.type ||
+    "House";
+
+  $("propertyPrice").value =
+    property.price ?? "";
+
+  $("propertyLocation").value =
+    property.location || "";
+
+  $("propertyBedrooms").value =
+    property.bedrooms ?? 0;
+
+  $("propertyBathrooms").value =
+    property.bathrooms ?? 0;
+
+  $("propertyOwner").value =
+    property.owner || "";
+
+  $("propertyPhone").value =
+    property.phone || "";
+
+  $("propertyDescription").value =
+    property.description || "";
+
+  $("propertyAvailable").checked =
+    property.available !== false;
+
+
+  existingPropertyPhotos =
+    property.photoUrls?.length
+    ?
+    [...property.photoUrls]
+    :
+    (
+      property.photoUrl
+      ?
+      [property.photoUrl]
+      :
+      []
+    );
+
+  propertyImageFiles = [];
+
+  showPropertyPreviews();
+
+  $("cancelPropertyBtn")
+    .classList
+    .remove("hidden");
+
+  document
+    .querySelector(
+      '[data-tab="properties"]'
+    )
+    ?.click();
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =========================================================
+   RESET PROPERTY FORM
+========================================================= */
+
+function resetPropertyForm(){
+
+  editingPropertyId = null;
+
+  $("propertyFormTitle")
+    .textContent =
+    "Add Property";
+
+  $("propertyTitle").value = "";
+
+  $("propertyPurpose").value =
+    "Rent";
+
+  $("propertyType").value =
+    "House";
+
+  $("propertyPrice").value = "";
+
+  $("propertyLocation").value = "";
+
+  $("propertyBedrooms").value = "";
+
+  $("propertyBathrooms").value = "";
+
+  $("propertyOwner").value = "";
+
+  $("propertyPhone").value = "";
+
+  $("propertyDescription").value = "";
+
+  $("propertyAvailable")
+    .checked = true;
+
+  existingPropertyPhotos = [];
+
+  propertyImageFiles = [];
+
+  $("propertyCamera").value = "";
+
+  $("propertyGallery").value = "";
+
+  showPropertyPreviews();
+
+  $("cancelPropertyBtn")
+    .classList
+    .add("hidden");
+
+}
+
+
+$("cancelPropertyBtn").onclick =
+resetPropertyForm;
+
+
+/* =========================================================
+   SAVE PROPERTY
+========================================================= */
+
+$("savePropertyBtn").onclick =
+async ()=>{
+
+  if(!currentUser) return;
+
+  if(savingProperty) return;
+
+
+  const title =
+    $("propertyTitle")
+      .value
+      .trim();
+
+  const purpose =
+    $("propertyPurpose")
+      .value;
+
+  const type =
+    $("propertyType")
+      .value;
+
+  const price =
+    Number(
+      $("propertyPrice")
+        .value || 0
+    );
+
+  const location =
+    $("propertyLocation")
+      .value
+      .trim();
+
+  const bedrooms =
+    Number(
+      $("propertyBedrooms")
+        .value || 0
+    );
+
+  const bathrooms =
+    Number(
+      $("propertyBathrooms")
+        .value || 0
+    );
+
+  const owner =
+    $("propertyOwner")
+      .value
+      .trim();
+
+  const phone =
+    $("propertyPhone")
+      .value
+      .trim();
+
+  const description =
+    $("propertyDescription")
+      .value
+      .trim();
+
+  const available =
+    $("propertyAvailable")
+      .checked;
+
+
+  if(!title){
+
+    showMessage(
+      "Enter the property title.",
+      "error"
+    );
+
+    return;
+
+  }
+
+  if(!location){
+
+    showMessage(
+      "Enter the property location.",
+      "error"
+    );
+
+    return;
+
+  }
+
+  if(
+    !Number.isFinite(price) ||
+    price < 0
+  ){
+
+    showMessage(
+      "Enter a valid property price.",
+      "error"
+    );
+
+    return;
+
+  }
+
+  if(
+    !Number.isFinite(bedrooms) ||
+    bedrooms < 0
+  ){
+
+    showMessage(
+      "Bedrooms cannot be negative.",
+      "error"
+    );
+
+    return;
+
+  }
+
+  if(
+    !Number.isFinite(bathrooms) ||
+    bathrooms < 0
+  ){
+
+    showMessage(
+      "Bathrooms cannot be negative.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  savingProperty = true;
+
+  const button =
+    $("savePropertyBtn");
+
+  setButtonLoading(
+    button,
+    true,
+    "Saving...",
+    "Save Property"
+  );
+
+
+  try{
+
+    let oldProperty = null;
+
+    if(editingPropertyId){
+
+      const oldSnap =
+        await getDoc(
+          doc(
+            db,
+            "properties",
+            editingPropertyId
+          )
+        );
+
+      if(oldSnap.exists()){
+
+        oldProperty =
+          oldSnap.data();
+
+      }
+
+    }
+
+
+    /*
+      Use the real Firestore document ID
+      BEFORE uploading any photos.
+    */
+
+    const propertyRef =
+      editingPropertyId
+      ?
+      doc(
+        db,
+        "properties",
+        editingPropertyId
+      )
+      :
+      doc(
+        collection(
+          db,
+          "properties"
+        )
+      );
+
+
+    let photoUrls =
+      [
+        ...existingPropertyPhotos
+      ];
+
+
+    /*
+      Upload new photos.
+
+      Each photo is uploaded once.
+    */
+
+    for(
+      const file
+      of propertyImageFiles
+    ){
+
+      const url =
+        await uploadImage(
+          file,
+          `properties/${currentUser.uid}/${propertyRef.id}`
+        );
+
+      if(url){
+
+        photoUrls.push(url);
+
+      }
+
+    }
+
+
+    photoUrls =
+      photoUrls.slice(0,6);
+
+
+    const data = {
+
+      title,
+
+      purpose,
+
+      type,
+
+      price,
+
+      location,
+
+      bedrooms,
+
+      bathrooms,
+
+      description,
+
+      owner,
+
+      phone,
+
+      available,
+
+      ownerId:
+        currentUser.uid,
+
+      photoUrl:
+        photoUrls[0] ||
+        "",
+
+      photoUrls,
+
+      updatedAt:
+        serverTimestamp()
+
+    };
+
+
+    if(!editingPropertyId){
+
+      data.createdAt =
+        serverTimestamp();
+
+    }
+
+
+    /*
+      Save Firestore only after all
+      photos uploaded successfully.
+    */
+
+    await setDoc(
+      propertyRef,
+      data,
+      {
+        merge:true
+      }
+    );
+
+
+    /*
+      Remove old photos that are no
+      longer being used.
+
+      This happens AFTER successful save.
+    */
+
+    if(editingPropertyId){
+
+      const oldPhotos =
+        oldProperty?.photoUrls?.length
+        ?
+        oldProperty.photoUrls
+        :
+        (
+          oldProperty?.photoUrl
+          ?
+          [oldProperty.photoUrl]
+          :
+          []
+        );
+
+      for(
+        const oldUrl
+        of oldPhotos
+      ){
+
+        if(
+          !photoUrls.includes(oldUrl)
+        ){
+
+          await deleteStorageFile(
+            oldUrl
+          );
+
+        }
+
+      }
+
+    }
+
+
+    const wasEditing =
+      Boolean(editingPropertyId);
+
+    resetPropertyForm();
+
+    await loadProperties();
+
+    await updateStats();
+
+    showMessage(
+      wasEditing
+      ?
+      "Property updated successfully."
+      :
+      "Property listed successfully."
+    );
+
+  }catch(error){
+
+    showMessage(
+      friendlyError(error),
+      "error"
+    );
+
+  }finally{
+
+    savingProperty = false;
+
+    setButtonLoading(
+      button,
+      false,
+      "Saving...",
+      "Save Property"
+    );
+
+  }
+
+};
+
+
+/* =========================================================
+   ORDERS
+========================================================= */
+
+async function loadOrders(){
+
+  if(!currentUser) return;
+
+  try{
+
+    const q =
+      query(
+        collection(db,"orders"),
+        where(
+          "vendorId",
+          "==",
+          currentUser.uid
+        )
+      );
+
+    const snap =
+      await getDocs(q);
+
+    const orders =
+      snap.docs.map(
+        orderDoc=>({
+          id:orderDoc.id,
+          ...orderDoc.data()
+        })
+      );
+
+    orders.sort(
+      (a,b)=>{
+
+        const aa =
+          a.createdAt?.seconds ||
+          0;
+
+        const bb =
+          b.createdAt?.seconds ||
+          0;
+
+        return bb-aa;
+
+      }
+    );
+
+
+    $("orderList").innerHTML =
+      orders.length
+      ?
+      orders
+        .map(renderOrder)
+        .join("")
+      :
+      `<div class="empty">
+        No orders yet.
+      </div>`;
+
+
+    document
+      .querySelectorAll(
+        "[data-order-status]"
+      )
+      .forEach(select=>{
+
+        select.onchange =
+          async event=>{
+
+            const id =
+              event.target
+                .dataset
+                .orderStatus;
+
+            const newStatus =
+              event.target.value;
+
+            event.target.disabled =
+              true;
+
+            try{
+
+              await updateDoc(
+                doc(
+                  db,
+                  "orders",
+                  id
+                ),
+                {
+                  status:newStatus,
+                  updatedAt:
+                    serverTimestamp()
+                }
+              );
+
+              showMessage(
+                "Order status updated."
+              );
+
+              await loadOrders();
+
+            }catch(error){
+
+              showMessage(
+                friendlyError(error),
+                "error"
+              );
+
+              await loadOrders();
+
+            }
+
+          };
+
+      });
+
+  }catch(error){
+
+    console.error(error);
+
+    $("orderList").innerHTML =
+      `<div class="error">
+        ${escapeHtml(
+          friendlyError(error)
+        )}
+      </div>`;
+
+  }
+
+}
+
+
+/* =========================================================
+   RENDER ORDER
+========================================================= */
+
+function renderOrder(
+  order
+){
+
+  const items =
+    order.items || [];
+
+
+  const itemHtml =
+    items
+      .map(item=>{
+
+        const modifiers =
+          item.modifiers || [];
+
+        return `
+
+          <div
+            style="margin:8px 0">
+
+            <strong>
+              ${escapeHtml(
+                item.name
+              )}
+            </strong>
+
+            ×
+            ${Number(
+              item.quantity || 1
+            )}
+
+            ${
+              modifiers.length
+              ?
+              `
+                <div class="muted">
+
+                  ${
+                    modifiers
+                      .map(
+                        modifier=>
+                          escapeHtml(
+                            modifier.group ||
+                            ""
+                          ) +
+                          ": " +
+                          escapeHtml(
+                            modifier.name ||
+                            ""
+                          )
+                      )
+                      .join(" · ")
+                  }
+
+                </div>
+              `
+              :
+              ""
+            }
+
+          </div>
+
+        `;
+
+      })
+      .join("");
+
+
+  const statuses = [
+
+    "new",
+
+    "accepted",
+
+    "preparing",
+
+    "ready",
+
+    "assigned",
+
+    "picked_up",
+
+    "out_for_delivery",
+
+    "delivered",
+
+    "completed",
+
+    "cancelled"
+
+  ];
+
+
+  return `
+
+    <div class="item">
+
+      <div class="item-row">
+
+        <div>
+
+          <h3>
+
+            Order #
+            ${escapeHtml(
+              order.orderNumber ||
+              order.id.slice(0,8)
+            )}
+
+          </h3>
+
+          <p>
+
+            <strong>
+              Customer:
+            </strong>
+
+            ${escapeHtml(
+              order.customerName ||
+              "Customer"
+            )}
+
+          </p>
+
+          <p>
+
+            <strong>
+              Phone:
+            </strong>
+
+            ${escapeHtml(
+              order.customerPhone ||
+              ""
+            )}
+
+          </p>
+
+          <p>
+
+            <strong>
+              Address:
+            </strong>
+
+            ${escapeHtml(
+              order.deliveryAddress ||
+              ""
+            )}
+
+          </p>
 
           ${
-            modifiers.length
-            ? `
-              <div class="muted">
-                ${modifiers.map(m=>
-                  escapeHtml(m.group || m.name || "") +
-                  ": " +
-                  escapeHtml(m.name || "")
-                ).join(" · ")}
-              </div>
+            order.note
+            ?
             `
-            : ""
+              <p>
+
+                <strong>
+                  Note:
+                </strong>
+
+                ${escapeHtml(
+                  order.note
+                )}
+
+              </p>
+            `
+            :
+            ""
           }
-        </div>
-      `;
-    }).join("");
-
-
-    const statuses = [
-      "new",
-      "accepted",
-      "preparing",
-      "ready",
-      "assigned",
-      "picked_up",
-      "out_for_delivery",
-      "delivered",
-      "completed",
-      "cancelled"
-    ];
-
-
-    return `
-
-      <div class="item">
-
-        <div class="item-row">
-
-          <div>
-
-            <h3>
-              Order #${escapeHtml(order.orderNumber || order.id.slice(0,8))}
-            </h3>
-
-            <p>
-              <strong>Customer:</strong>
-              ${escapeHtml(order.customerName || "Customer")}
-            </p>
-
-            <p>
-              <strong>Phone:</strong>
-              ${escapeHtml(order.customerPhone || "")}
-            </p>
-
-            <p>
-              <strong>Address:</strong>
-              ${escapeHtml(order.deliveryAddress || "")}
-            </p>
-
-            ${
-              order.note
-              ? `<p><strong>Note:</strong> ${escapeHtml(order.note)}</p>`
-              : ""
-            }
-
-          </div>
-
-          <div>
-            <strong class="price">
-              ${money(order.total)}
-            </strong>
-          </div>
 
         </div>
 
-        <hr>
+        <div>
 
-        ${itemHtml}
-
-        <div style="margin-top:14px">
-
-          <label>Order status</label>
-
-          <select data-order-status="${order.id}">
-
-            ${
-              statuses.map(status=>
-                `<option value="${status}"
-                  ${order.status === status ? "selected":""}>
-                  ${status.replaceAll("_"," ")}
-                </option>`
-              ).join("")
-            }
-
-          </select>
+          <strong class="price">
+            ${money(
+              order.total
+            )}
+          </strong>
 
         </div>
 
       </div>
 
-    `;
-  }
+      <hr>
+
+      ${itemHtml}
+
+      <div style="margin-top:14px">
+
+        <label>
+          Order status
+        </label>
+
+        <select
+          data-order-status="${order.id}">
+
+          ${
+            statuses
+              .map(
+                status=>
+                  `<option
+                    value="${status}"
+                    ${
+                      order.status === status
+                      ?
+                      "selected"
+                      :
+                      ""
+                    }>
+                    ${status.replaceAll(
+                      "_",
+                      " "
+                    )}
+                  </option>`
+              )
+              .join("")
+          }
+
+        </select>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
 
 
-  $("refreshOrdersBtn").onclick = async ()=>{
+/* =========================================================
+   REFRESH ORDERS
+========================================================= */
+
+$("refreshOrdersBtn").onclick =
+async ()=>{
+
+  const button =
+    $("refreshOrdersBtn");
+
+  setButtonLoading(
+    button,
+    true,
+    "Refreshing...",
+    "Refresh Orders"
+  );
+
+  try{
+
     await loadOrders();
-    updateStats();
-  };
 
+    await updateStats();
 
-  /* =========================================================
-     DASHBOARD STATS
-  ========================================================= */
+    showMessage(
+      "Orders refreshed."
+    );
 
-  async function updateStats(){
+  }catch(error){
 
-    if(!currentUser) return;
+    showMessage(
+      friendlyError(error),
+      "error"
+    );
 
-    try{
+  }finally{
 
-      const productsSnap =
-        await getDocs(
-          query(
-            collection(db,"products"),
-            where("vendorId","==",currentUser.uid)
-          )
-        );
+    setButtonLoading(
+      button,
+      false,
+      "Refreshing...",
+      "Refresh Orders"
+    );
 
-      const propertiesSnap =
-        await getDocs(
-          query(
-            collection(db,"properties"),
-            where("ownerId","==",currentUser.uid)
-          )
-        );
-
-      const ordersSnap =
-        await getDocs(
-          query(
-            collection(db,"orders"),
-            where("vendorId","==",currentUser.uid)
-          )
-        );
-
-      $("statProducts").textContent =
-        productsSnap.size;
-
-      $("statProperties").textContent =
-        propertiesSnap.size;
-
-      $("statOrders").textContent =
-        ordersSnap.size;
-
-    }catch(error){
-
-      console.error(error);
-    }
   }
 
+};
 
-  /* =========================================================
-     STARTUP
-  ========================================================= */
 
-  renderModifierGroups();
+/* =========================================================
+   DASHBOARD STATS
+========================================================= */
+
+async function updateStats(){
+
+  if(!currentUser) return;
+
+  try{
+
+    const productsSnap =
+      await getDocs(
+        query(
+          collection(db,"products"),
+          where(
+            "vendorId",
+            "==",
+            currentUser.uid
+          )
+        )
+      );
+
+
+    const propertiesSnap =
+      await getDocs(
+        query(
+          collection(db,"properties"),
+          where(
+            "ownerId",
+            "==",
+            currentUser.uid
+          )
+        )
+      );
+
+
+    const ordersSnap =
+      await getDocs(
+        query(
+          collection(db,"orders"),
+          where(
+            "vendorId",
+            "==",
+            currentUser.uid
+          )
+        )
+      );
+
+
+    $("statProducts")
+      .textContent =
+      productsSnap.size;
+
+    $("statProperties")
+      .textContent =
+      propertiesSnap.size;
+
+    $("statOrders")
+      .textContent =
+      ordersSnap.size;
+
+  }catch(error){
+
+    console.error(
+      "Stats error:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   STARTUP
+========================================================= */
+
+renderModifierGroups();
 
 </script>
 
