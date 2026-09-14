@@ -1,3866 +1,3733 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#075c3b">
-<meta name="description" content="SefwiGo — local food, businesses, products and properties.">
-<title>SefwiGo | Local Marketplace</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SefwiGo — Local Marketplace</title>
 
-<style>
-:root{
-  --green:#0f7a4f;
-  --dark:#075c3b;
-  --light:#eaf7f0;
-  --gold:#e0ad3d;
-  --text:#17221d;
-  --muted:#718078;
-  --bg:#f5f8f6;
-  --white:#fff;
-  --line:#dfe9e3;
-  --danger:#b53232;
-  --shadow:0 15px 45px rgba(10,50,32,.12);
-}
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
 
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-  padding-bottom:82px;
-}
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-.container{width:min(1160px,92%);margin:auto}
+    body {
+      background: #f6f7f8;
+      color: #172018;
+      padding-bottom: 80px;
+    }
 
-header{
-  position:sticky;
-  top:0;
-  z-index:50;
-  background:rgba(255,255,255,.94);
-  backdrop-filter:blur(15px);
-  border-bottom:1px solid var(--line);
-}
-.nav{
-  height:70px;
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-right:auto;
-  font-size:21px;
-  font-weight:950;
-}
-.logo{
-  width:45px;
-  height:45px;
-  display:grid;
-  place-items:center;
-  border-radius:15px;
-  background:linear-gradient(135deg,var(--green),var(--dark));
-  color:#fff;
-}
-.icon,.account-btn{
-  height:44px;
-  border-radius:14px;
-  border:1px solid var(--line);
-  background:#fff;
-  font-weight:900;
-}
-.icon{width:44px;font-size:20px}
-.account-btn{
-  padding:0 15px;
-  background:var(--green);
-  color:#fff;
-  border-color:var(--green);
-}
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
 
-.hero{
-  margin:24px 0;
-  border-radius:30px;
-  overflow:hidden;
-  color:#fff;
-  background:
-    radial-gradient(circle at 85% 10%,rgba(224,173,61,.35),transparent 25%),
-    linear-gradient(135deg,#064e33,#159460);
-  box-shadow:var(--shadow);
-}
-.hero-inner{
-  padding:48px clamp(22px,6vw,65px);
-  display:grid;
-  grid-template-columns:1.15fr .85fr;
-  gap:30px;
-  align-items:center;
-}
-.eyebrow{
-  text-transform:uppercase;
-  letter-spacing:.14em;
-  font-size:11px;
-  font-weight:950;
-  opacity:.8;
-}
-.hero h1{
-  font-size:clamp(40px,6vw,68px);
-  line-height:.96;
-  letter-spacing:-3px;
-  margin:12px 0 18px;
-}
-.hero p{
-  max-width:620px;
-  font-size:17px;
-  line-height:1.6;
-  color:rgba(255,255,255,.88);
-}
-.hero-art{
-  min-height:230px;
-  border-radius:28px;
-  background:rgba(255,255,255,.1);
-  border:1px solid rgba(255,255,255,.18);
-  display:grid;
-  place-items:center;
-  font-size:105px;
-}
-.actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top:22px;
-}
+    button {
+      cursor: pointer;
+    }
 
-.btn{
-  border:0;
-  border-radius:14px;
-  padding:13px 18px;
-  font-weight:900;
-}
-.white{background:#fff;color:var(--dark)}
-.gold{background:var(--gold);color:#20251e}
-.green{background:var(--green);color:#fff}
-.outline{background:#fff;color:var(--green);border:1px solid var(--line)}
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #fff;
+      border-bottom: 1px solid #e8e8e8;
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-.section{padding:12px 0 28px}
-.section-head{
-  display:flex;
-  align-items:end;
-  justify-content:space-between;
-  gap:15px;
-  margin-bottom:15px;
-}
-.section-head h2{margin:0;font-size:25px}
-.section-head p{margin:5px 0 0;color:var(--muted);font-size:14px}
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      color: #148447;
+    }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:14px;
-}
-.service,.business,.property,.product,.order,.panel{
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:22px;
-}
-.service{
-  min-height:145px;
-  padding:20px;
-  text-align:left;
-  transition:.2s;
-}
-.service:hover,.business:hover,.property:hover{
-  transform:translateY(-3px);
-  box-shadow:var(--shadow);
-}
-.service .emoji{font-size:36px;margin-bottom:12px}
-.service strong{display:block}
-.service span{display:block;color:var(--muted);font-size:13px;margin-top:6px}
+    .header-actions {
+      display: flex;
+      gap: 10px;
+    }
 
-.deals{
-  display:grid;
-  grid-template-columns:1.4fr 1fr;
-  gap:14px;
-}
-.deal{
-  border-radius:22px;
-  overflow:hidden;
-  background:#fff;
-  border:1px solid var(--line);
-}
-.deal-main{
-  min-height:210px;
-  padding:28px;
-  color:#fff;
-  background:
-    radial-gradient(circle at 85% 15%,rgba(224,173,61,.3),transparent 25%),
-    linear-gradient(135deg,#0a6743,#15915f);
-}
-.deal-main h3{font-size:31px;margin:10px 0}
-.deal-main p{max-width:500px;color:rgba(255,255,255,.85)}
-.deal-side{
-  padding:25px;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-.chip{
-  display:inline-flex;
-  width:max-content;
-  padding:7px 10px;
-  border-radius:999px;
-  background:var(--light);
-  color:var(--dark);
-  font-size:11px;
-  font-weight:900;
-}
+    .icon-btn {
+      border: 0;
+      background: #f0f5f1;
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      font-size: 19px;
+      position: relative;
+    }
 
-.business{
-  padding:16px;
-  text-align:left;
-}
-.business-top{
-  display:flex;
-  gap:12px;
-  align-items:center;
-}
-.avatar{
-  width:52px;
-  height:52px;
-  border-radius:16px;
-  background:var(--light);
-  display:grid;
-  place-items:center;
-  font-size:27px;
-}
-.business h3{margin:0;font-size:16px}
-.business p{margin:5px 0 10px;color:var(--muted);font-size:13px}
+    .cart-count {
+      position: absolute;
+      top: -3px;
+      right: -2px;
+      background: #e53935;
+      color: white;
+      font-size: 11px;
+      min-width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-.property{overflow:hidden}
-.property-image{
-  height:165px;
-  display:grid;
-  place-items:center;
-  font-size:65px;
-  background:linear-gradient(135deg,#e0f1e7,#fbf0d2);
-}
-.property-body{padding:16px}
-.property-body h3{margin:8px 0;font-size:17px}
-.property-price{
-  color:var(--dark);
-  font-size:21px;
-  font-weight:950;
-  margin:7px 0;
-}
-.meta{
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px;
-  color:var(--muted);
-  font-size:12px;
-}
-.property-actions{
-  display:flex;
-  gap:8px;
-  margin-top:12px;
-}
-.small{
-  flex:1;
-  border:0;
-  border-radius:11px;
-  padding:10px;
-  background:#edf3ef;
-  color:var(--dark);
-  font-weight:850;
-}
-.small.primary{background:var(--green);color:#fff}
+    .hero {
+      margin: 16px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #168b4b, #0d6336);
+      color: white;
+      padding: 28px 22px;
+    }
 
-.partner{
-  padding:28px;
-  border-radius:25px;
-  background:#10251b;
-  color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-}
-.partner h2{margin:0 0 7px}
-.partner p{margin:0;color:rgba(255,255,255,.7)}
+    .hero h1 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
 
-.bottom{
-  position:fixed;
-  z-index:80;
-  left:0;
-  right:0;
-  bottom:0;
-  height:76px;
-  background:rgba(255,255,255,.96);
-  backdrop-filter:blur(16px);
-  border-top:1px solid var(--line);
-}
-.bottom-inner{
-  height:100%;
-  width:min(620px,100%);
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-}
-.nav-item{
-  border:0;
-  background:none;
-  color:#78827c;
-  font-size:11px;
-  font-weight:850;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:4px;
-}
-.nav-item b{font-size:22px}
-.nav-item.active{color:var(--green)}
+    .hero p {
+      opacity: .92;
+      line-height: 1.5;
+    }
 
-.overlay,.modal{
-  position:fixed;
-  inset:0;
-  z-index:100;
-  background:rgba(5,20,13,.58);
-  display:none;
-}
-.overlay.open,.modal.open{
-  display:flex;
-}
-.drawer{
-  width:min(390px,90vw);
-  height:100%;
-  background:#fff;
-  padding:23px;
-  overflow:auto;
-  box-shadow:20px 0 60px rgba(0,0,0,.2);
-}
-.drawer-head,.modal-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-}
-.drawer-head{margin-bottom:20px}
-.menu{
-  width:100%;
-  border:0;
-  background:#fff;
-  border-radius:14px;
-  padding:14px;
-  text-align:left;
-  font-weight:850;
-  margin-bottom:5px;
-}
-.menu:hover{background:var(--light);color:var(--dark)}
-.close{
-  width:42px;
-  height:42px;
-  border:0;
-  border-radius:13px;
-  background:#eff4f1;
-  font-size:24px;
-}
+    .search-box {
+      margin-top: 20px;
+      background: white;
+      border-radius: 14px;
+      padding: 12px 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-.modal{
-  padding:15px;
-  align-items:center;
-  justify-content:center;
-  overflow:auto;
-}
-.modal-card{
-  width:min(920px,100%);
-  max-height:94vh;
-  overflow:auto;
-  background:#fff;
-  border-radius:28px;
-  box-shadow:0 35px 90px rgba(0,0,0,.3);
-}
-.modal-head{
-  position:sticky;
-  top:0;
-  z-index:3;
-  padding:18px 21px;
-  background:#fff;
-  border-bottom:1px solid var(--line);
-}
-.body{padding:22px}
+    .search-box input {
+      border: 0;
+      outline: 0;
+      width: 100%;
+      color: #222;
+      background: transparent;
+    }
 
-.tabs{
-  display:flex;
-  gap:8px;
-  margin:15px 0;
-}
-.tab{
-  flex:1;
-  padding:13px;
-  border:1px solid var(--line);
-  border-radius:13px;
-  background:#fff;
-  font-weight:900;
-}
-.tab.active{
-  background:var(--green);
-  color:#fff;
-  border-color:var(--green);
-}
+    .section {
+      padding: 10px 16px;
+      margin-top: 18px;
+    }
 
-.form{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:13px;
-}
-.field{
-  display:flex;
-  flex-direction:column;
-  gap:7px;
-}
-.field.full{grid-column:1/-1}
-.field label{font-size:13px;font-weight:900}
-.field input,.field textarea,.field select{
-  width:100%;
-  padding:13px;
-  border:1px solid #d8e3dc;
-  border-radius:13px;
-  background:#fbfcfb;
-  outline:none;
-}
-.field input:focus,.field textarea:focus,.field select:focus{
-  border-color:var(--green);
-  box-shadow:0 0 0 3px rgba(15,122,79,.1);
-}
-.field textarea{min-height:100px;resize:vertical}
-.submit{
-  width:100%;
-  border:0;
-  background:var(--green);
-  color:#fff;
-  padding:14px;
-  border-radius:14px;
-  font-weight:950;
-  margin-top:14px;
-}
-.help{
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.55;
-}
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 13px;
+    }
 
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:13px;
-}
-.product{overflow:hidden}
-.product-image{
-  height:155px;
-  width:100%;
-  object-fit:cover;
-  background:var(--light);
-}
-.product-placeholder{
-  height:155px;
-  display:grid;
-  place-items:center;
-  background:var(--light);
-  font-size:58px;
-}
-.product-body{padding:14px}
-.product-body h3{margin:0 0 5px}
-.price{
-  color:var(--dark);
-  font-size:20px;
-  font-weight:950;
-  margin:8px 0;
-}
+    .section-header h2 {
+      font-size: 20px;
+    }
 
-.modifier{
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:11px;
-  margin:9px 0;
-  background:#fbfcfb;
-}
-.options{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(110px,1fr));
-  gap:7px;
-  margin-top:8px;
-}
-.option{
-  border:1.5px solid var(--line);
-  background:#fff;
-  border-radius:11px;
-  padding:9px;
-  text-align:left;
-}
-.option.selected{
-  border-color:var(--green);
-  background:#eef9f3;
-}
-.option strong{display:block;font-size:12px}
-.option small{color:var(--muted);font-size:10px}
+    .section-header button {
+      border: 0;
+      background: transparent;
+      color: #148447;
+      font-weight: 700;
+    }
 
-.quantity{
-  display:flex;
-  align-items:center;
-  gap:9px;
-  margin:10px 0;
-}
-.quantity button{
-  width:35px;
-  height:35px;
-  border:1px solid var(--line);
-  background:#fff;
-  border-radius:9px;
-  font-size:18px;
-}
-.quantity span{min-width:25px;text-align:center;font-weight:900}
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
 
-.list{
-  display:flex;
-  gap:12px;
-  padding:13px;
-  border:1px solid var(--line);
-  border-radius:16px;
-  margin-bottom:10px;
-}
-.thumb{
-  width:72px;
-  height:65px;
-  border-radius:12px;
-  background:var(--light);
-  display:grid;
-  place-items:center;
-  font-size:29px;
-  flex:none;
-}
-.list h4{margin:0 0 5px}
-.list p{margin:0;color:var(--muted);font-size:12px}
-.list-actions{margin-left:auto}
-.remove{
-  border:0;
-  border-radius:10px;
-  padding:9px;
-  background:#fbeaea;
-  color:var(--danger);
-  font-weight:850;
-}
+    .service-card {
+      background: white;
+      border-radius: 15px;
+      padding: 15px 7px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,.04);
+    }
 
-.checkout{
-  margin-top:15px;
-  padding:15px;
-  border-radius:16px;
-  background:var(--light);
-}
-.row{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  padding:5px 0;
-}
-.empty{
-  padding:35px 16px;
-  text-align:center;
-  border:1px dashed #cbd8d0;
-  border-radius:18px;
-  color:var(--muted);
-}
-.order{
-  padding:16px;
-  margin-bottom:12px;
-}
-.order-top{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-}
-.status{
-  display:inline-block;
-  padding:6px 9px;
-  border-radius:999px;
-  background:var(--light);
-  color:var(--dark);
-  font-size:11px;
-  font-weight:900;
-}
-.status.cancelled{
-  background:#fbeaea;
-  color:var(--danger);
-}
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  margin-bottom:15px;
-}
-.stat{
-  padding:15px;
-  background:#f8fbf9;
-  border:1px solid var(--line);
-  border-radius:16px;
-}
-.stat b{display:block;font-size:24px}
-.stat span{font-size:11px;color:var(--muted)}
+    .service-icon {
+      font-size: 27px;
+      margin-bottom: 7px;
+    }
 
-.toast{
-  position:fixed;
-  z-index:200;
-  left:50%;
-  bottom:94px;
-  transform:translate(-50%,20px);
-  opacity:0;
-  pointer-events:none;
-  transition:.25s;
-  max-width:90%;
-  padding:12px 17px;
-  border-radius:14px;
-  background:#10251b;
-  color:#fff;
-  text-align:center;
-  font-size:13px;
-}
-.toast.show{
-  opacity:1;
-  transform:translate(-50%,0);
-}
+    .service-card span {
+      font-size: 12px;
+      font-weight: 700;
+    }
 
-@media(max-width:820px){
-  .hero-inner{grid-template-columns:1fr}
-  .hero-art{display:none}
-  .grid{grid-template-columns:repeat(2,1fr)}
-  .deals{grid-template-columns:1fr}
-}
-@media(max-width:540px){
-  .grid{gap:10px}
-  .hero{margin-top:14px}
-  .hero-inner{padding:32px 20px}
-  .hero h1{font-size:40px}
-  .form{grid-template-columns:1fr}
-  .field.full{grid-column:auto}
-  .partner{flex-direction:column;align-items:flex-start}
-}
-</style>
+    .business-list,
+    .property-list {
+      display: grid;
+      gap: 13px;
+    }
+
+    .business-card,
+    .property-card {
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px rgba(0,0,0,.06);
+    }
+
+    .business-card {
+      display: flex;
+      padding: 13px;
+      gap: 13px;
+      align-items: center;
+    }
+
+    .business-logo {
+      width: 68px;
+      height: 68px;
+      border-radius: 15px;
+      object-fit: cover;
+      background: #e9f3ec;
+      flex-shrink: 0;
+    }
+
+    .business-placeholder {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 29px;
+    }
+
+    .business-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .business-info h3 {
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .business-info p {
+      color: #6a736c;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .business-info small {
+      color: #148447;
+      font-weight: 700;
+    }
+
+    .open-btn {
+      background: #148447;
+      color: white;
+      border: 0;
+      border-radius: 10px;
+      padding: 9px 12px;
+      font-weight: 700;
+    }
+
+    .property-image {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      background: #e8eee9;
+    }
+
+    .property-placeholder {
+      height: 190px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 65px;
+      background: #e8eee9;
+    }
+
+    .property-content {
+      padding: 15px;
+    }
+
+    .property-content h3 {
+      margin-bottom: 7px;
+    }
+
+    .property-price {
+      color: #148447;
+      font-size: 19px;
+      font-weight: 800;
+      margin-bottom: 7px;
+    }
+
+    .property-meta {
+      color: #687169;
+      font-size: 13px;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .property-content button {
+      width: 100%;
+      border: 0;
+      border-radius: 11px;
+      background: #148447;
+      color: white;
+      padding: 11px;
+      font-weight: 700;
+    }
+
+    .partner {
+      margin: 20px 16px;
+      background: #fff;
+      border-radius: 18px;
+      padding: 20px;
+      text-align: center;
+      border: 1px solid #e2e9e3;
+    }
+
+    .partner h2 {
+      margin-bottom: 8px;
+    }
+
+    .partner p {
+      color: #687169;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+
+    .partner button {
+      border: 0;
+      background: #148447;
+      color: white;
+      border-radius: 11px;
+      padding: 12px 18px;
+      font-weight: 700;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 66px;
+      background: white;
+      border-top: 1px solid #e5e5e5;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 200;
+    }
+
+    .nav-btn {
+      background: transparent;
+      border: 0;
+      color: #687169;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .nav-btn div {
+      font-size: 20px;
+      margin-bottom: 3px;
+    }
+
+    .nav-btn.active {
+      color: #148447;
+      font-weight: 700;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      z-index: 500;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 650px;
+      max-height: 92vh;
+      overflow-y: auto;
+      background: white;
+      border-radius: 24px 24px 0 0;
+      padding: 20px;
+      animation: slideUp .2s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(100%);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .close-btn {
+      width: 35px;
+      height: 35px;
+      border: 0;
+      background: #f0f2f1;
+      border-radius: 50%;
+      font-size: 18px;
+    }
+
+    .form-group {
+      margin-bottom: 13px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #dce2de;
+      border-radius: 11px;
+      outline: 0;
+      background: white;
+    }
+
+    .form-group textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .primary-btn {
+      width: 100%;
+      border: 0;
+      background: #148447;
+      color: white;
+      padding: 13px;
+      border-radius: 12px;
+      font-weight: 800;
+      margin-top: 5px;
+    }
+
+    .secondary-btn {
+      width: 100%;
+      border: 0;
+      background: #eef2ef;
+      color: #172018;
+      padding: 12px;
+      border-radius: 12px;
+      font-weight: 700;
+      margin-top: 9px;
+    }
+
+    .auth-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .auth-tabs button {
+      flex: 1;
+      border: 0;
+      padding: 11px;
+      border-radius: 10px;
+      background: #edf1ee;
+      font-weight: 700;
+    }
+
+    .auth-tabs button.active {
+      background: #148447;
+      color: white;
+    }
+
+    .business-modal-card {
+      display: flex;
+      gap: 13px;
+      align-items: center;
+      margin-bottom: 17px;
+    }
+
+    .business-modal-card img,
+    .business-modal-card .business-placeholder {
+      width: 70px;
+      height: 70px;
+      border-radius: 15px;
+      object-fit: cover;
+    }
+
+    .business-modal-card .business-placeholder {
+      background: #e8f1ea;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .product-card {
+      border: 1px solid #e4e9e5;
+      border-radius: 15px;
+      overflow: hidden;
+      margin-bottom: 13px;
+      background: white;
+    }
+
+    .product-top {
+      display: flex;
+      gap: 12px;
+      padding: 12px;
+    }
+
+    .product-photo {
+      width: 82px;
+      height: 82px;
+      border-radius: 12px;
+      object-fit: cover;
+      background: #edf2ee;
+      flex-shrink: 0;
+    }
+
+    .product-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 31px;
+    }
+
+    .product-info {
+      flex: 1;
+    }
+
+    .product-info h3 {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .product-info p {
+      color: #6d756e;
+      font-size: 13px;
+      line-height: 1.4;
+      margin-bottom: 6px;
+    }
+
+    .product-price {
+      color: #148447;
+      font-weight: 800;
+    }
+
+    .modifier-box {
+      padding: 0 12px 12px;
+    }
+
+    .modifier-group {
+      border-top: 1px solid #edf0ed;
+      padding-top: 12px;
+      margin-top: 10px;
+    }
+
+    .modifier-title {
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .required-text {
+      color: #e53935;
+      font-size: 11px;
+      margin-left: 5px;
+    }
+
+    .modifier-option {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 9px;
+      border-radius: 10px;
+      background: #f7f9f7;
+      margin-bottom: 6px;
+    }
+
+    .modifier-option label {
+      flex: 1;
+      font-size: 13px;
+    }
+
+    .modifier-option input {
+      width: 18px;
+      height: 18px;
+      accent-color: #148447;
+    }
+
+    .product-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 12px 12px;
+      gap: 10px;
+    }
+
+    .add-btn {
+      border: 0;
+      background: #148447;
+      color: white;
+      border-radius: 10px;
+      padding: 10px 15px;
+      font-weight: 800;
+    }
+
+    .cart-item {
+      padding: 13px 0;
+      border-bottom: 1px solid #ecefec;
+    }
+
+    .cart-item:last-child {
+      border-bottom: 0;
+    }
+
+    .cart-item-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .cart-item h4 {
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .cart-item small {
+      color: #707870;
+      line-height: 1.5;
+    }
+
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .qty-controls button {
+      width: 30px;
+      height: 30px;
+      border: 0;
+      border-radius: 8px;
+      background: #edf1ee;
+      font-weight: 800;
+    }
+
+    .cart-total {
+      margin-top: 15px;
+      background: #f1f6f2;
+      border-radius: 13px;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .order-card {
+      background: #f7f9f7;
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+
+    .order-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 7px;
+    }
+
+    .status {
+      background: #e4f3e8;
+      color: #148447;
+      padding: 5px 9px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: capitalize;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 30px 15px;
+      color: #747c75;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 25px;
+      color: #6e776f;
+    }
+
+    .error {
+      background: #fff1f1;
+      color: #b3261e;
+      padding: 12px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      font-size: 13px;
+    }
+
+    .photo-gallery {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      margin-bottom: 15px;
+    }
+
+    .photo-gallery img {
+      width: 145px;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 12px;
+      flex-shrink: 0;
+    }
+
+    .detail-box {
+      background: #f7f9f7;
+      border-radius: 13px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+
+    .detail-box p {
+      margin: 6px 0;
+      color: #59625b;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    @media (min-width: 700px) {
+      .business-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .property-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .modal {
+        align-items: center;
+        padding: 20px;
+      }
+
+      .modal-box {
+        border-radius: 20px;
+        max-height: 90vh;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <div class="container nav">
+<header class="header">
+  <div class="logo">SefwiGo</div>
 
-    <button class="icon" onclick="openMenu()" aria-label="Menu">☰</button>
-
-    <a class="brand" href="#home">
-      <span class="logo">S</span>
-      <span>SefwiGo</span>
-    </a>
-
-    <button class="icon" onclick="openCart()" aria-label="Cart">
-      🛒<sup id="cartCount">0</sup>
+  <div class="header-actions">
+    <button class="icon-btn" onclick="openCart()">
+      🛒
+      <span class="cart-count" id="cartCount">0</span>
     </button>
 
-    <button class="account-btn" onclick="openAccount()">
-      Account
-    </button>
-
+    <button class="icon-btn" onclick="openAccount()">👤</button>
   </div>
 </header>
 
-
-<main id="home">
-
-<div class="container">
-
 <section class="hero">
+  <h1>Your local Sefwi marketplace</h1>
+  <p>Discover food, shops, services and properties around Sefwi Wiawso.</p>
 
-<div class="hero-inner">
-
-<div>
-
-<div class="eyebrow">
-Sefwi Wiawso • Local Marketplace
-</div>
-
-<h1>
-Your town. Your marketplace. One SefwiGo.
-</h1>
-
-<p>
-Order food, discover local businesses, browse products and find rent or property listings — all in one place.
-</p>
-
-<div class="actions">
-
-<button class="btn white" onclick="showBusinesses('Food')">
-🍔 Order Food
-</button>
-
-<button class="btn gold" onclick="scrollToId('property')">
-🏠 Find Property
-</button>
-
-</div>
-
-</div>
-
-<div class="hero-art">
-🛵
-</div>
-
-</div>
-
+  <div class="search-box">
+    🔎
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Search businesses, food, products..."
+      oninput="runSearch()"
+    >
+  </div>
 </section>
-
-
-<section class="section" id="services">
-
-<div class="section-head">
-
-<div>
-<h2>What do you need?</h2>
-<p>Choose a service and get started.</p>
-</div>
-
-</div>
-
-<div class="grid">
-
-<button class="service" onclick="showBusinesses('Food')">
-<div class="emoji">🍔</div>
-<strong>Food</strong>
-<span>Meals and local favourites</span>
-</button>
-
-<button class="service" onclick="showBusinesses('Groceries')">
-<div class="emoji">🛒</div>
-<strong>Groceries</strong>
-<span>Everyday shopping</span>
-</button>
-
-<button class="service" onclick="showToast('Parcel delivery is coming soon.')">
-<div class="emoji">📦</div>
-<strong>Parcels</strong>
-<span>Send items around town</span>
-</button>
-
-<button class="service" onclick="scrollToId('property')">
-<div class="emoji">🏠</div>
-<strong>Rent & Property</strong>
-<span>Homes, rooms, land and more</span>
-</button>
-
-</div>
-
-</section>
-
 
 <section class="section">
+  <div class="section-header">
+    <h2>Services</h2>
+  </div>
 
-<div class="section-head">
+  <div class="service-grid">
+    <button class="service-card" onclick="filterBusinesses('Food')">
+      <div class="service-icon">🍲</div>
+      <span>Food</span>
+    </button>
 
-<div>
-<h2>🔥 Featured on SefwiGo</h2>
-<p>Local offers and everyday essentials.</p>
-</div>
+    <button class="service-card" onclick="filterBusinesses('Shop')">
+      <div class="service-icon">🛍️</div>
+      <span>Shops</span>
+    </button>
 
-</div>
+    <button class="service-card" onclick="filterBusinesses('Service')">
+      <div class="service-icon">🛠️</div>
+      <span>Services</span>
+    </button>
 
-<div class="deals">
-
-<div class="deal">
-
-<div class="deal-main">
-
-<div class="eyebrow">Today's spotlight</div>
-
-<h3>
-Local food, delivered.
-</h3>
-
-<p>
-Choose a meal, customize available options and place your order through SefwiGo.
-</p>
-
-<button class="btn gold" onclick="showBusinesses('Food')">
-Explore Food
-</button>
-
-</div>
-
-</div>
-
-
-<div class="deal deal-side">
-
-<div>
-
-<span class="chip">
-⚡ Local delivery
-</span>
-
-<h3>
-Built for Sefwi Wiawso
-</h3>
-
-<p class="help">
-Simple ordering and local services in one place.
-</p>
-
-</div>
-
-<strong style="font-size:23px;color:var(--dark)">
-SefwiGo
-</strong>
-
-</div>
-
-</div>
-
+    <button class="service-card" onclick="scrollToProperties()">
+      <div class="service-icon">🏠</div>
+      <span>Properties</span>
+    </button>
+  </div>
 </section>
 
+<section class="section" id="businessSection">
+  <div class="section-header">
+    <h2>Local Businesses</h2>
+    <button onclick="showAllBusinesses()">See all</button>
+  </div>
 
-<section class="section" id="businesses">
-
-<div class="section-head">
-
-<div>
-<h2>⭐ Local businesses</h2>
-<p>Open a business to view its available menu.</p>
-</div>
-
-</div>
-
-<div class="grid" id="businessGrid">
-
-<button class="business" onclick="openBusiness('Wiawso Chop Bar','Food')">
-
-<div class="business-top">
-
-<div class="avatar">🍲</div>
-
-<div>
-<h3>Wiawso Chop Bar</h3>
-<p>Food • Local meals</p>
-</div>
-
-</div>
-
-<span class="chip">Local</span>
-
-</button>
-
-
-<button class="business" onclick="openBusiness('Auntie Ama Kitchen','Food')">
-
-<div class="business-top">
-
-<div class="avatar">👩🏾‍🍳</div>
-
-<div>
-<h3>Auntie Ama Kitchen</h3>
-<p>Food • Homemade meals</p>
-</div>
-
-</div>
-
-<span class="chip">Popular</span>
-
-</button>
-
-
-<button class="business" onclick="openBusiness('Sefwi Fresh Mart','Groceries')">
-
-<div class="business-top">
-
-<div class="avatar">🛍️</div>
-
-<div>
-<h3>Sefwi Fresh Mart</h3>
-<p>Groceries • Shopping</p>
-</div>
-
-</div>
-
-<span class="chip">Groceries</span>
-
-</button>
-
-
-<button class="business" onclick="openBusiness('Wiawso Drinks Spot','Drinks')">
-
-<div class="business-top">
-
-<div class="avatar">🥤</div>
-
-<div>
-<h3>Wiawso Drinks Spot</h3>
-<p>Drinks • Refreshments</p>
-</div>
-
-</div>
-
-<span class="chip">Local</span>
-
-</button>
-
-</div>
-
+  <div id="businessList" class="business-list">
+    <div class="loading">Loading businesses...</div>
+  </div>
 </section>
 
+<section class="section" id="propertySection">
+  <div class="section-header">
+    <h2>Properties</h2>
+    <button onclick="loadProperties()">Refresh</button>
+  </div>
 
-<section class="section" id="property">
-
-<div class="section-head">
-
-<div>
-<h2>🏠 Rent & Property</h2>
-<p>Available properties published by SefwiGo partners.</p>
-</div>
-
-</div>
-
-<div class="grid" id="propertyGrid"></div>
-
+  <div id="propertyList" class="property-list">
+    <div class="loading">Loading properties...</div>
+  </div>
 </section>
 
+<section class="partner">
+  <h2>Grow with SefwiGo</h2>
+  <p>
+    Are you a local business or property owner?
+    Join SefwiGo and reach more customers in Sefwi.
+  </p>
 
-<section class="section">
-
-<div class="partner">
-
-<div>
-
-<h2>
-Own a business or property?
-</h2>
-
-<p>
-Partnership registration is handled through the separate SefwiGo management website.
-</p>
-
-</div>
-
-<button class="btn gold" onclick="showToast('Partnership registration is handled through the SefwiGo management website.')">
-Become a Partner
-</button>
-
-</div>
-
+  <button onclick="showPartnerMessage()">Become a partner</button>
 </section>
 
-</div>
+<nav class="bottom-nav">
+  <button class="nav-btn active" onclick="goHome()">
+    <div>🏠</div>
+    Home
+  </button>
 
-</main>
+  <button class="nav-btn" onclick="openCart()">
+    <div>🛒</div>
+    Cart
+  </button>
 
+  <button class="nav-btn" onclick="openOrders()">
+    <div>📦</div>
+    Orders
+  </button>
 
-<nav class="bottom">
-
-<div class="bottom-inner">
-
-<button class="nav-item active" onclick="goHome()">
-<b>⌂</b>
-Home
-</button>
-
-<button class="nav-item" onclick="scrollToId('businesses')">
-<b>🔥</b>
-Explore
-</button>
-
-<button class="nav-item" onclick="openMenu()">
-<b>☰</b>
-Menu
-</button>
-
-<button class="nav-item" onclick="openAccount()">
-<b>◉</b>
-Account
-</button>
-
-</div>
-
+  <button class="nav-btn" onclick="openAccount()">
+    <div>👤</div>
+    Account
+  </button>
 </nav>
 
-
-<div class="overlay" id="menuOverlay" onclick="closeMenu(event)">
-
-<aside class="drawer" onclick="event.stopPropagation()">
-
-<div class="drawer-head">
-
-<strong style="font-size:23px">
-SefwiGo
-</strong>
-
-<button class="close" onclick="closeMenu()">
-×
-</button>
-
-</div>
-
-<button class="menu" onclick="goHome()">
-🏠 Home
-</button>
-
-<button class="menu" onclick="scrollToId('services')">
-🛍️ Services
-</button>
-
-<button class="menu" onclick="scrollToId('businesses')">
-⭐ Businesses
-</button>
-
-<button class="menu" onclick="scrollToId('property')">
-🏠 Rent & Property
-</button>
-
-<button class="menu" onclick="openCart();closeMenu()">
-🛒 My Cart
-</button>
-
-<button class="menu" onclick="openOrders();closeMenu()">
-📋 My Orders
-</button>
-
-<button class="menu" onclick="openCustomerDashboard();closeMenu()">
-👤 Customer Dashboard
-</button>
-
-<button class="menu" onclick="openAccount();closeMenu()">
-🔐 Sign In / Create Account
-</button>
-
-<div style="height:1px;background:var(--line);margin:15px 0"></div>
-
-<p class="help">
-SefwiGo connects customers with local businesses, food, products, delivery and property listings.
-</p>
-
-</aside>
-
-</div>
-
-
-<div class="modal" id="businessModal">
-
-<div class="modal-card">
-
-<div class="modal-head">
-
-<strong id="businessTitle">
-Business Menu
-</strong>
-
-<button class="close" onclick="closeModal('businessModal')">
-×
-</button>
-
-</div>
-
-<div class="body" id="businessBody"></div>
-
-</div>
-
-</div>
-
-
-<div class="modal" id="accountModal">
-
-<div class="modal-card">
-
-<div class="modal-head">
-
-<strong>
-My SefwiGo Account
-</strong>
-
-<button class="close" onclick="closeModal('accountModal')">
-×
-</button>
-
-</div>
-
-<div class="body" id="accountBody"></div>
-
-</div>
-
-</div>
-
-
-<div class="modal" id="customerDashboardModal">
-
-<div class="modal-card">
-
-<div class="modal-head">
-
-<strong>
-Customer Dashboard
-</strong>
-
-<button class="close" onclick="closeModal('customerDashboardModal')">
-×
-</button>
-
-</div>
-
-<div class="body" id="customerDashboard"></div>
-
-</div>
-
-</div>
-
-
-<div class="modal" id="cartModal">
-
-<div class="modal-card">
-
-<div class="modal-head">
-
-<strong>
-🛒 Your Cart
-</strong>
-
-<button class="close" onclick="closeModal('cartModal')">
-×
-</button>
-
-</div>
-
-<div class="body" id="cartBody"></div>
-
-</div>
-
-</div>
-
-
-<div class="modal" id="checkoutModal">
-
-<div class="modal-card">
-
-<div class="modal-head">
-
-<strong>
-📦 Checkout
-</strong>
-
-<button class="close" onclick="closeModal('checkoutModal')">
-×
-</button>
-
-</div>
-
-<div class="body" id="checkoutBody"></div>
-
-</div>
-
-</div>
-
-
-<div class="modal" id="ordersModal">
-
-<div class="modal-card">
-
-<div class="modal-head">
-
-<strong>
-📋 My Orders
-</strong>
-
-<button class="close" onclick="closeModal('ordersModal')">
-×
-</button>
-
-</div>
-
-<div class="body" id="ordersBody"></div>
-
-</div>
-
-</div>
-
-
-<div class="toast" id="toast"></div>
-
-
-<script>
-
-/* =========================================================
-   SEFWIGO FIREBASE CONFIGURATION
-   ========================================================= */
-
-const firebaseConfig={
-  apiKey:"AIzaSyDjHGyeObPLLuqTNhNGE5SBRfBL5T29qWA",
-  authDomain:"sefwi-go.firebaseapp.com",
-  projectId:"sefwi-go",
-  storageBucket:"sefwi-go.firebasestorage.app",
-  messagingSenderId:"210398787110",
-  appId:"1:210398787110:web:f7f76a538a2712a2bb58e7"
-};
-
-
-/* =========================================================
-   FIREBASE
-   ========================================================= */
-
-let auth=null;
-let db=null;
-let firebaseReady=false;
-
-let ff={};
-
-const authFns={};
-
-
-async function initFirebase(){
-
-  if(firebaseReady)return true;
-
-  try{
-
-    const appModule=await import(
-      "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"
-    );
-
-    const authModule=await import(
-      "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"
-    );
-
-    const firestoreModule=await import(
-      "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"
-    );
-
-    const app=appModule.initializeApp(firebaseConfig);
-
-    auth=authModule.getAuth(app);
-
-    db=firestoreModule.getFirestore(app);
-
-    ff={
-      collection:firestoreModule.collection,
-      doc:firestoreModule.doc,
-      addDoc:firestoreModule.addDoc,
-      getDoc:firestoreModule.getDoc,
-      getDocs:firestoreModule.getDocs,
-      setDoc:firestoreModule.setDoc,
-      query:firestoreModule.query,
-      where:firestoreModule.where,
-      serverTimestamp:firestoreModule.serverTimestamp
-    };
-
-    authFns.create=authModule.createUserWithEmailAndPassword;
-    authFns.login=authModule.signInWithEmailAndPassword;
-    authFns.logout=authModule.signOut;
-    authFns.updateProfile=authModule.updateProfile;
-    authFns.reset=authModule.sendPasswordResetEmail;
-
-    authModule.onAuthStateChanged(auth,function(){
-      updateAccountButton();
-    });
-
-    firebaseReady=true;
-
-    return true;
-
-  }catch(error){
-
-    console.error("Firebase initialization failed:",error);
-
-    showToast(
-      "Firebase could not load. Please check your internet connection and Firebase settings."
-    );
-
-    return false;
-
-  }
-
-}
-
-
-/* =========================================================
-   BASIC HELPERS
-   ========================================================= */
-
-function $(id){
-  return document.getElementById(id);
-}
-
-
-function escapeHTML(value){
-
-  return String(value??"").replace(
-    /[&<>"']/g,
-    function(c){
-      return {
-        "&":"&amp;",
-        "<":"&lt;",
-        ">":"&gt;",
-        '"':"&quot;",
-        "'":"&#039;"
-      }[c];
-    }
-  );
-
-}
-
-
-function showToast(message){
-
-  const t=$("toast");
-
-  t.textContent=message;
-
-  t.classList.add("show");
-
-  clearTimeout(window.toastTimer);
-
-  window.toastTimer=setTimeout(
-    function(){
-      t.classList.remove("show");
-    },
-    3500
-  );
-
-}
-
-
-window.showToast=showToast;
-
-
-function scrollToId(id){
-
-  const element=$(id);
-
-  if(element){
-
-    element.scrollIntoView({
-      behavior:"smooth",
-      block:"start"
-    });
-
-  }
-
-  closeMenu();
-
-}
-
-
-window.scrollToId=scrollToId;
-
-
-function goHome(){
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-  closeMenu();
-
-}
-
-
-window.goHome=goHome;
-
-
-/* =========================================================
-   MENU
-   ========================================================= */
-
-function openMenu(){
-
-  $("menuOverlay").classList.add("open");
-
-}
-
-
-function closeMenu(event){
-
-  if(
-    !event ||
-    event.target===$("menuOverlay")
-  ){
-
-    $("menuOverlay").classList.remove("open");
-
-  }
-
-}
-
-
-window.openMenu=openMenu;
-window.closeMenu=closeMenu;
-
-
-function closeModal(id){
-
-  const element=$(id);
-
-  if(element)
-    element.classList.remove("open");
-
-}
-
-
-window.closeModal=closeModal;
-
-
-/* =========================================================
-   ACCOUNT
-   ========================================================= */
-
-function openAccount(){
-
-  $("accountModal").classList.add("open");
-
-  renderAccount();
-
-}
-
-
-window.openAccount=openAccount;
-
-
-function updateAccountButton(){
-
-  const btn=document.querySelector(".account-btn");
-
-  if(!btn)return;
-
-  if(auth?.currentUser){
-
-    btn.textContent="My Account";
-
-  }else{
-
-    btn.textContent="Account";
-
-  }
-
-}
-
-
-async function getProfile(){
-
-  if(!auth?.currentUser || !db)
-    return null;
-
-  try{
-
-    const snap=await ff.getDoc(
-      ff.doc(
-        db,
-        "users",
-        auth.currentUser.uid
-      )
-    );
-
-    if(snap.exists())
-      return snap.data();
-
-  }catch(error){
-
-    console.error(error);
-
-  }
-
-  return null;
-
-}
-
-
-async function renderAccount(){
-
-  if(
-    !(await initFirebase())
-  )
-    return;
-
-
-  if(auth.currentUser){
-
-    const user=auth.currentUser;
-
-    const profile=await getProfile();
-
-    $("accountBody").innerHTML=`
-
-      <div style="text-align:center">
-
-        <div style="font-size:55px">👤</div>
-
-        <h2>
-          Welcome, ${escapeHTML(
-            user.displayName||
-            profile?.name||
-            "Customer"
-          )}
-        </h2>
-
-        <p class="help">
-          ${escapeHTML(user.email||"")}
-          <br>
-          Customer account
-        </p>
-
-        <button
-          class="submit"
-          onclick="openCustomerDashboard();closeModal('accountModal')">
-
-          👤 Customer Dashboard
-
-        </button>
-
-        <button
-          class="submit"
-          style="background:#fff;color:var(--green);border:1px solid var(--line)"
-          onclick="openOrders();closeModal('accountModal')">
-
-          📋 My Orders
-
-        </button>
-
-        <button
-          class="submit"
-          style="background:#fff;color:var(--green);border:1px solid var(--line)"
-          onclick="openCart();closeModal('accountModal')">
-
-          🛒 My Cart
-
-        </button>
-
-        <button
-          class="submit"
-          style="background:#fbeaea;color:var(--danger)"
-          onclick="logout()">
-
-          Sign Out
-
-        </button>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-  $("accountBody").innerHTML=`
-
-    <h2 style="margin-top:0">
-      Create a SefwiGo account
-    </h2>
-
-    <p class="help">
-      Create a free customer account to order food,
-      browse local businesses, view properties and
-      track your orders.
-    </p>
-
-    <div class="tabs">
-
-      <button
-        class="tab active"
-        id="signupTab"
-        onclick="switchAuthTab('signup')">
-
-        Create Account
-
-      </button>
-
-      <button
-        class="tab"
-        id="loginTab"
-        onclick="switchAuthTab('login')">
-
-        Sign In
-
-      </button>
-
+<!-- AUTH MODAL -->
+<div class="modal" id="authModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2 id="authTitle">Sign in</h2>
+      <button class="close-btn" onclick="closeModal('authModal')">×</button>
     </div>
 
-    <div id="authArea"></div>
+    <div class="auth-tabs">
+      <button id="loginTab" class="active" onclick="showLogin()">Sign in</button>
+      <button id="signupTab" onclick="showSignup()">Create account</button>
+    </div>
 
-  `;
+    <div id="authError"></div>
 
-  switchAuthTab("signup");
-
-}
-
-
-window.switchAuthTab=function(type){
-
-  $("signupTab")?.classList.toggle(
-    "active",
-    type==="signup"
-  );
-
-  $("loginTab")?.classList.toggle(
-    "active",
-    type==="login"
-  );
-
-
-  if(type==="signup"){
-
-    $("authArea").innerHTML=`
-
-      <div class="form">
-
-        <div class="field full">
-          <label>Full name *</label>
-          <input
-            id="signupName"
-            autocomplete="name"
-            placeholder="Your full name">
-        </div>
-
-        <div class="field full">
-          <label>Email *</label>
-          <input
-            id="signupEmail"
-            type="email"
-            autocomplete="email"
-            placeholder="you@example.com">
-        </div>
-
-        <div class="field">
-          <label>Password *</label>
-          <input
-            id="signupPassword"
-            type="password"
-            autocomplete="new-password"
-            placeholder="At least 6 characters">
-        </div>
-
-        <div class="field">
-          <label>Confirm password *</label>
-          <input
-            id="signupConfirm"
-            type="password"
-            autocomplete="new-password"
-            placeholder="Repeat password">
-        </div>
-
+    <div id="loginForm">
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="loginEmail" placeholder="you@example.com">
       </div>
 
-      <button
-        class="submit"
-        onclick="createCustomerAccount()">
-
-        Create Customer Account
-
-      </button>
-
-      <p class="help">
-        Your account will be created as a Customer.
-        Partnership management is handled separately.
-      </p>
-
-    `;
-
-  }else{
-
-    $("authArea").innerHTML=`
-
-      <div class="form">
-
-        <div class="field full">
-          <label>Email *</label>
-          <input
-            id="loginEmail"
-            type="email"
-            autocomplete="email"
-            placeholder="Your email address">
-        </div>
-
-        <div class="field full">
-          <label>Password *</label>
-          <input
-            id="loginPassword"
-            type="password"
-            autocomplete="current-password"
-            placeholder="Your password">
-        </div>
-
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="loginPassword" placeholder="Password">
       </div>
 
-      <button
-        class="submit"
-        onclick="signInCustomer()">
+      <button class="primary-btn" onclick="signInUser()">Sign in</button>
 
-        Sign In
-
-      </button>
-
-      <button
-        style="
-          width:100%;
-          border:0;
-          background:none;
-          color:var(--green);
-          font-weight:850;
-          padding:13px;
-        "
-        onclick="resetPassword()">
-
+      <button class="secondary-btn" onclick="resetPassword()">
         Forgot password?
+      </button>
+    </div>
 
+    <div id="signupForm" style="display:none;">
+      <div class="form-group">
+        <label>Full name</label>
+        <input type="text" id="signupName" placeholder="Your name">
+      </div>
+
+      <div class="form-group">
+        <label>Phone</label>
+        <input type="tel" id="signupPhone" placeholder="Phone number">
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="signupEmail" placeholder="you@example.com">
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="signupPassword" placeholder="At least 6 characters">
+      </div>
+
+      <button class="primary-btn" onclick="signUpUser()">Create account</button>
+    </div>
+  </div>
+</div>
+
+<!-- ACCOUNT MODAL -->
+<div class="modal" id="accountModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2>My Account</h2>
+      <button class="close-btn" onclick="closeModal('accountModal')">×</button>
+    </div>
+
+    <div id="accountContent"></div>
+  </div>
+</div>
+
+<!-- BUSINESS MODAL -->
+<div class="modal" id="businessModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2 id="businessModalTitle">Business</h2>
+      <button class="close-btn" onclick="closeModal('businessModal')">×</button>
+    </div>
+
+    <div id="businessContent"></div>
+  </div>
+</div>
+
+<!-- PRODUCT MODAL -->
+<div class="modal" id="productModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2 id="productModalTitle">Product</h2>
+      <button class="close-btn" onclick="closeModal('productModal')">×</button>
+    </div>
+
+    <div id="productContent"></div>
+  </div>
+</div>
+
+<!-- CART MODAL -->
+<div class="modal" id="cartModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2>Your Cart</h2>
+      <button class="close-btn" onclick="closeModal('cartModal')">×</button>
+    </div>
+
+    <div id="cartContent"></div>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal" id="checkoutModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2>Checkout</h2>
+      <button class="close-btn" onclick="closeModal('checkoutModal')">×</button>
+    </div>
+
+    <div id="checkoutContent"></div>
+  </div>
+</div>
+
+<!-- ORDERS MODAL -->
+<div class="modal" id="ordersModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2>My Orders</h2>
+      <button class="close-btn" onclick="closeModal('ordersModal')">×</button>
+    </div>
+
+    <div id="ordersContent"></div>
+  </div>
+</div>
+
+<!-- PROPERTY MODAL -->
+<div class="modal" id="propertyModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2>Property</h2>
+      <button class="close-btn" onclick="closeModal('propertyModal')">×</button>
+    </div>
+
+    <div id="propertyContent"></div>
+  </div>
+</div>
+
+<script type="module">
+
+  import {
+    initializeApp
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+  import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    sendPasswordResetEmail,
+    signOut,
+    onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  import {
+    getFirestore,
+    collection,
+    doc,
+    getDoc,
+    getDocs,
+    addDoc,
+    query,
+    where,
+    orderBy,
+    serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDjHGyoBeOPpllQTuTNhNGE5SBRfBL5T29qWA",
+    authDomain: "sefwi-go.firebaseapp.com",
+    projectId: "sefwi-go",
+    storageBucket: "sefwi-go.firebasestorage.app",
+    messagingSenderId: "210398787110",
+    appId: "1:210398787110:web:f7f76a538a2712a2bb58e7"
+  };
+
+  /*
+    IMPORTANT:
+    The API key above is intentionally the Firebase web config.
+    Firebase web API keys are identifiers, not passwords.
+  */
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+
+  let currentUser = null;
+  let currentProfile = null;
+
+  let businesses = [];
+  let properties = [];
+  let cart = [];
+
+  let selectedBusiness = null;
+  let selectedProduct = null;
+
+
+  /* =========================
+     BASIC HELPERS
+  ========================= */
+
+  window.closeModal = function(id) {
+    document.getElementById(id).classList.remove("show");
+  };
+
+  function openModal(id) {
+    document.getElementById(id).classList.add("show");
+  }
+
+  function escapeHtml(value) {
+    if (value === null || value === undefined) return "";
+
+    return String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  function money(value) {
+    const number = Number(value || 0);
+
+    return new Intl.NumberFormat("en-GH", {
+      style: "currency",
+      currency: "GHS"
+    }).format(number);
+  }
+
+  function propertyIcon(type) {
+    const value = String(type || "").toLowerCase();
+
+    if (value.includes("house")) return "🏠";
+    if (value.includes("room")) return "🛏️";
+    if (value.includes("land")) return "🌱";
+    if (value.includes("shop")) return "🏪";
+    if (value.includes("apartment")) return "🏢";
+
+    return "🏠";
+  }
+
+  function normalizeArray(value) {
+    return Array.isArray(value) ? value : [];
+  }
+
+
+  /* =========================
+     CART STORAGE
+  ========================= */
+
+  function loadCart() {
+    try {
+      const saved = localStorage.getItem("sefwiGoCart");
+
+      if (saved) {
+        cart = JSON.parse(saved);
+      }
+    } catch {
+      cart = [];
+    }
+
+    updateCartCount();
+  }
+
+  function saveCart() {
+    localStorage.setItem("sefwiGoCart", JSON.stringify(cart));
+    updateCartCount();
+  }
+
+  function updateCartCount() {
+    const count = cart.reduce((total, item) => {
+      return total + Number(item.quantity || 0);
+    }, 0);
+
+    document.getElementById("cartCount").textContent = count;
+  }
+
+
+  /* =========================
+     AUTH
+  ========================= */
+
+  onAuthStateChanged(auth, async user => {
+    currentUser = user || null;
+
+    if (currentUser) {
+      await loadCustomerProfile();
+    } else {
+      currentProfile = null;
+    }
+
+    if (document.getElementById("accountModal").classList.contains("show")) {
+      renderAccount();
+    }
+  });
+
+
+  async function loadCustomerProfile() {
+    if (!currentUser) return;
+
+    try {
+      const snap = await getDoc(doc(db, "users", currentUser.uid));
+
+      if (snap.exists()) {
+        currentProfile = {
+          id: snap.id,
+          ...snap.data()
+        };
+      } else {
+        currentProfile = {
+          name: currentUser.displayName || "",
+          email: currentUser.email || "",
+          phone: "",
+          accountType: "customer"
+        };
+      }
+    } catch (error) {
+      console.error("Profile error:", error);
+
+      currentProfile = {
+        name: currentUser.displayName || "",
+        email: currentUser.email || "",
+        phone: "",
+        accountType: "customer"
+      };
+    }
+  }
+
+
+  window.openAccount = function() {
+    renderAccount();
+    openModal("accountModal");
+  };
+
+
+  function renderAccount() {
+
+    const content = document.getElementById("accountContent");
+
+    if (!currentUser) {
+
+      content.innerHTML = `
+        <div class="empty">
+          <div style="font-size:50px;margin-bottom:10px;">👤</div>
+          <h3>Welcome to SefwiGo</h3>
+          <p style="margin:8px 0 18px;">
+            Sign in or create an account to place orders and view your orders.
+          </p>
+
+          <button class="primary-btn" onclick="closeModal('accountModal');showLogin();openModal('authModal')">
+            Sign in
+          </button>
+
+          <button class="secondary-btn" onclick="closeModal('accountModal');showSignup();openModal('authModal')">
+            Create account
+          </button>
+        </div>
+      `;
+
+      return;
+    }
+
+
+    const name =
+      currentProfile?.name ||
+      currentUser.displayName ||
+      "Customer";
+
+
+    content.innerHTML = `
+      <div style="text-align:center;margin-bottom:20px;">
+        <div style="
+          width:75px;
+          height:75px;
+          border-radius:50%;
+          background:#e4f3e8;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          margin:auto;
+          font-size:35px;
+        ">
+          👤
+        </div>
+
+        <h3 style="margin-top:10px;">${escapeHtml(name)}</h3>
+
+        <p style="color:#707870;font-size:13px;margin-top:4px;">
+          ${escapeHtml(currentUser.email || "")}
+        </p>
+      </div>
+
+      <button class="primary-btn" onclick="closeModal('accountModal');openOrders()">
+        📦 My Orders
       </button>
 
+      <button class="secondary-btn" onclick="closeModal('accountModal');openCart()">
+        🛒 My Cart
+      </button>
+
+      <button class="secondary-btn" onclick="logoutUser()">
+        Sign out
+      </button>
     `;
-
-  }
-
-};
-
-
-window.createCustomerAccount=async function(){
-
-  const name=$("signupName")?.value.trim();
-  const email=$("signupEmail")?.value.trim();
-  const password=$("signupPassword")?.value;
-  const confirm=$("signupConfirm")?.value;
-
-
-  if(!name || !email || !password || !confirm){
-
-    showToast(
-      "Please fill in all required fields."
-    );
-
-    return;
-
   }
 
 
-  if(password.length<6){
+  window.showLogin = function() {
 
-    showToast(
-      "Password must be at least 6 characters."
-    );
+    document.getElementById("loginForm").style.display = "block";
+    document.getElementById("signupForm").style.display = "none";
 
-    return;
+    document.getElementById("loginTab").classList.add("active");
+    document.getElementById("signupTab").classList.remove("active");
 
+    document.getElementById("authTitle").textContent = "Sign in";
+
+    clearAuthError();
+  };
+
+
+  window.showSignup = function() {
+
+    document.getElementById("loginForm").style.display = "none";
+    document.getElementById("signupForm").style.display = "block";
+
+    document.getElementById("loginTab").classList.remove("active");
+    document.getElementById("signupTab").classList.add("active");
+
+    document.getElementById("authTitle").textContent = "Create account";
+
+    clearAuthError();
+  };
+
+
+  function showAuthError(message) {
+
+    document.getElementById("authError").innerHTML = `
+      <div class="error">${escapeHtml(message)}</div>
+    `;
   }
 
 
-  if(password!==confirm){
-
-    showToast(
-      "Passwords do not match."
-    );
-
-    return;
-
+  function clearAuthError() {
+    document.getElementById("authError").innerHTML = "";
   }
 
 
-  if(!(await initFirebase()))
-    return;
+  window.signUpUser = async function() {
+
+    clearAuthError();
+
+    const name =
+      document.getElementById("signupName").value.trim();
+
+    const phone =
+      document.getElementById("signupPhone").value.trim();
+
+    const email =
+      document.getElementById("signupEmail").value.trim();
+
+    const password =
+      document.getElementById("signupPassword").value;
 
 
-  try{
+    if (!name || !email || !password) {
+      showAuthError("Please enter your name, email and password.");
+      return;
+    }
 
-    const result=
-      await authFns.create(
+    if (password.length < 6) {
+      showAuthError("Password must be at least 6 characters.");
+      return;
+    }
+
+
+    try {
+
+      const result =
+        await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+
+      await import(
+        "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"
+      ).then(async firestore => {
+
+        await firestore.setDoc(
+          firestore.doc(db, "users", result.user.uid),
+          {
+            name,
+            phone,
+            email,
+            accountType: "customer",
+            createdAt: firestore.serverTimestamp()
+          }
+        );
+
+      });
+
+
+      closeModal("authModal");
+
+      await loadCustomerProfile();
+
+      alert("Account created successfully.");
+
+    } catch (error) {
+
+      console.error(error);
+
+      showAuthError(
+        firebaseErrorMessage(error)
+      );
+    }
+  };
+
+
+  window.signInUser = async function() {
+
+    clearAuthError();
+
+    const email =
+      document.getElementById("loginEmail").value.trim();
+
+    const password =
+      document.getElementById("loginPassword").value;
+
+
+    if (!email || !password) {
+      showAuthError("Please enter your email and password.");
+      return;
+    }
+
+
+    try {
+
+      await signInWithEmailAndPassword(
         auth,
         email,
         password
       );
 
+      closeModal("authModal");
 
-    await authFns.updateProfile(
-      result.user,
-      {
-        displayName:name
-      }
-    );
+    } catch (error) {
 
+      console.error(error);
 
-    await ff.setDoc(
-      ff.doc(
-        db,
-        "users",
-        result.user.uid
-      ),
-      {
-        uid:result.user.uid,
-        name:name,
-        email:email,
-        accountType:"customer",
-        createdAt:ff.serverTimestamp()
-      },
-      {
-        merge:true
-      }
-    );
-
-
-    localStorage.setItem(
-      "sefwiAccountType",
-      "customer"
-    );
-
-    localStorage.setItem(
-      "sefwiUserName",
-      name
-    );
-
-
-    closeModal("accountModal");
-
-    showToast(
-      "Customer account created successfully."
-    );
-
-
-    setTimeout(
-      function(){
-        openCustomerDashboard();
-      },
-      400
-    );
-
-
-  }catch(error){
-
-    console.error(
-      "Account creation error:",
-      error
-    );
-
-
-    let message="Could not create account.";
-
-
-    switch(error.code){
-
-      case "auth/email-already-in-use":
-        message="That email is already registered.";
-        break;
-
-      case "auth/invalid-email":
-        message="Please enter a valid email address.";
-        break;
-
-      case "auth/weak-password":
-        message="Password is too weak.";
-        break;
-
-      case "auth/operation-not-allowed":
-        message="Email/Password sign-in is not enabled in Firebase Authentication.";
-        break;
-
-      case "auth/unauthorized-domain":
-        message="This GitHub Pages domain is not authorized in Firebase Authentication.";
-        break;
-
-      case "auth/network-request-failed":
-        message="Network error. Check your internet connection.";
-        break;
-
-      case "auth/api-key-not-valid":
-        message="Firebase API key is invalid. Check the Firebase configuration.";
-        break;
-
-      default:
-
-        if(error.code)
-          message="Firebase error: "+error.code;
-
-    }
-
-
-    showToast(message);
-
-  }
-
-};
-
-
-window.signInCustomer=async function(){
-
-  const email=$("loginEmail")?.value.trim();
-  const password=$("loginPassword")?.value;
-
-
-  if(!email || !password){
-
-    showToast(
-      "Enter your email and password."
-    );
-
-    return;
-
-  }
-
-
-  if(!(await initFirebase()))
-    return;
-
-
-  try{
-
-    await authFns.login(
-      auth,
-      email,
-      password
-    );
-
-
-    localStorage.setItem(
-      "sefwiAccountType",
-      "customer"
-    );
-
-
-    closeModal("accountModal");
-
-    showToast(
-      "Signed in successfully."
-    );
-
-
-    setTimeout(
-      openCustomerDashboard,
-      300
-    );
-
-
-  }catch(error){
-
-    console.error(error);
-
-
-    let message="Could not sign in.";
-
-
-    if(
-      error.code==="auth/invalid-credential" ||
-      error.code==="auth/wrong-password" ||
-      error.code==="auth/user-not-found"
-    ){
-
-      message="Email or password is incorrect.";
-
-    }else if(
-      error.code==="auth/unauthorized-domain"
-    ){
-
-      message="This GitHub Pages domain is not authorized in Firebase.";
-
-    }else{
-
-      message=
-        "Firebase error: "+
-        (error.code||"unknown");
-
-    }
-
-
-    showToast(message);
-
-  }
-
-};
-
-
-window.resetPassword=async function(){
-
-  const email=$("loginEmail")?.value.trim();
-
-
-  if(!email){
-
-    showToast(
-      "Enter your email address first."
-    );
-
-    return;
-
-  }
-
-
-  if(!(await initFirebase()))
-    return;
-
-
-  try{
-
-    await authFns.reset(
-      auth,
-      email
-    );
-
-    showToast(
-      "Password reset email sent."
-    );
-
-  }catch(error){
-
-    console.error(error);
-
-    showToast(
-      "Could not send the password reset email."
-    );
-
-  }
-
-};
-
-
-window.logout=async function(){
-
-  if(
-    auth &&
-    auth.currentUser
-  ){
-
-    await authFns.logout(auth);
-
-  }
-
-
-  localStorage.removeItem(
-    "sefwiAccountType"
-  );
-
-  localStorage.removeItem(
-    "sefwiUserName"
-  );
-
-
-  closeModal("accountModal");
-
-  showToast(
-    "Signed out successfully."
-  );
-
-};
-
-
-/* =========================================================
-   CUSTOMER DASHBOARD
-   ========================================================= */
-
-window.openCustomerDashboard=async function(){
-
-  if(
-    !(await initFirebase()) ||
-    !auth.currentUser
-  ){
-
-    showToast(
-      "Please sign in to your customer account first."
-    );
-
-    openAccount();
-
-    return;
-
-  }
-
-
-  $("customerDashboardModal")
-    .classList.add("open");
-
-
-  renderCustomerDashboard();
-
-};
-
-
-async function renderCustomerDashboard(){
-
-  const user=auth.currentUser;
-  const profile=await getProfile();
-
-  let orderCount=0;
-
-
-  try{
-
-    const snap=await ff.getDocs(
-      ff.query(
-        ff.collection(db,"orders"),
-        ff.where(
-          "customerUid",
-          "==",
-          user.uid
-        )
-      )
-    );
-
-    orderCount=snap.size;
-
-  }catch(error){
-
-    console.error(error);
-
-  }
-
-
-  const cartCount=cart.reduce(
-    (sum,item)=>
-      sum+Number(item.qty||1),
-    0
-  );
-
-
-  $("customerDashboard").innerHTML=`
-
-    <div class="stats">
-
-      <div class="stat">
-        <b>✓</b>
-        <span>Customer account</span>
-      </div>
-
-      <div class="stat">
-        <b>${cartCount}</b>
-        <span>Cart items</span>
-      </div>
-
-      <div class="stat">
-        <b>${orderCount}</b>
-        <span>Orders</span>
-      </div>
-
-    </div>
-
-    <div class="grid">
-
-      <button
-        class="service"
-        onclick="openOrders();closeModal('customerDashboardModal')">
-
-        <div class="emoji">📋</div>
-        <strong>My Orders</strong>
-        <span>View your order history and status.</span>
-
-      </button>
-
-      <button
-        class="service"
-        onclick="openCart();closeModal('customerDashboardModal')">
-
-        <div class="emoji">🛒</div>
-        <strong>My Cart</strong>
-        <span>Review your items and checkout.</span>
-
-      </button>
-
-      <button
-        class="service"
-        onclick="showBusinesses('Food');closeModal('customerDashboardModal')">
-
-        <div class="emoji">🍔</div>
-        <strong>Order Food</strong>
-        <span>Browse local food businesses.</span>
-
-      </button>
-
-      <button
-        class="service"
-        onclick="scrollToId('property');closeModal('customerDashboardModal')">
-
-        <div class="emoji">🏠</div>
-        <strong>Properties</strong>
-        <span>Browse available listings.</span>
-
-      </button>
-
-    </div>
-
-    <div class="panel" style="padding:18px;margin-top:15px">
-
-      <h3 style="margin-top:0">
-        Your account
-      </h3>
-
-      <p class="help">
-
-        <b>
-        ${escapeHTML(
-          user.displayName||
-          profile?.name||
-          "Customer"
-        )}
-        </b>
-
-        <br>
-
-        ${escapeHTML(user.email||"")}
-
-      </p>
-
-    </div>
-
-  `;
-
-}
-
-
-/* =========================================================
-   BUSINESSES / PRODUCTS
-   ========================================================= */
-
-function showBusinesses(category){
-
-  scrollToId("businesses");
-
-  showToast(
-    category+
-    " businesses are shown below."
-  );
-
-}
-
-
-window.showBusinesses=showBusinesses;
-
-
-async function openBusiness(name,category){
-
-  $("businessTitle").textContent=name;
-
-  $("businessModal").classList.add("open");
-
-  $("businessBody").innerHTML=`
-    <div class="empty">
-      Loading menu…
-    </div>
-  `;
-
-
-  if(!(await initFirebase()))
-    return;
-
-
-  try{
-
-    const snap=await ff.getDocs(
-      ff.query(
-        ff.collection(db,"products"),
-        ff.where(
-          "vendorName",
-          "==",
-          name
-        )
-      )
-    );
-
-
-    const products=snap.docs
-      .map(
-        doc=>({
-          id:doc.id,
-          ...doc.data()
-        })
-      )
-      .filter(
-        p=>p.available!==false
+      showAuthError(
+        firebaseErrorMessage(error)
       );
+    }
+  };
 
 
-    if(!products.length){
+  window.resetPassword = async function() {
 
-      $("businessBody").innerHTML=`
+    const email =
+      document.getElementById("loginEmail").value.trim();
 
-        <div class="empty">
+    if (!email) {
+      showAuthError("Enter your email first.");
+      return;
+    }
 
-          <div style="font-size:50px">
-            🍲
-          </div>
 
-          <strong>
-            No products published yet.
-          </strong>
+    try {
 
-          <p>
-            Products will appear here when this business publishes them.
-          </p>
+      await sendPasswordResetEmail(auth, email);
 
+      alert("Password reset email sent.");
+
+    } catch (error) {
+
+      showAuthError(
+        firebaseErrorMessage(error)
+      );
+    }
+  };
+
+
+  window.logoutUser = async function() {
+
+    try {
+
+      await signOut(auth);
+
+      closeModal("accountModal");
+
+      alert("You have been signed out.");
+
+    } catch (error) {
+
+      console.error(error);
+
+      alert("Could not sign out.");
+    }
+  };
+
+
+  function firebaseErrorMessage(error) {
+
+    const code = error?.code || "";
+
+    if (code.includes("email-already-in-use")) {
+      return "That email is already registered.";
+    }
+
+    if (code.includes("invalid-email")) {
+      return "Please enter a valid email address.";
+    }
+
+    if (
+      code.includes("invalid-credential") ||
+      code.includes("wrong-password") ||
+      code.includes("user-not-found")
+    ) {
+      return "Email or password is incorrect.";
+    }
+
+    if (code.includes("weak-password")) {
+      return "Password is too weak.";
+    }
+
+    return error?.message || "Something went wrong.";
+  }
+
+
+  /* =========================
+     BUSINESSES
+  ========================= */
+
+  async function loadBusinesses() {
+
+    const container =
+      document.getElementById("businessList");
+
+    container.innerHTML =
+      `<div class="loading">Loading businesses...</div>`;
+
+
+    try {
+
+      const snap =
+        await getDocs(collection(db, "businesses"));
+
+
+      businesses = [];
+
+      snap.forEach(item => {
+
+        const data = item.data();
+
+        if (data.approved === false) return;
+
+        businesses.push({
+          id: item.id,
+          ...data
+        });
+      });
+
+
+      businesses.sort((a, b) => {
+
+        const nameA =
+          String(a.name || "").toLowerCase();
+
+        const nameB =
+          String(b.name || "").toLowerCase();
+
+        return nameA.localeCompare(nameB);
+      });
+
+
+      renderBusinesses(businesses);
+
+    } catch (error) {
+
+      console.error("Business loading error:", error);
+
+      container.innerHTML = `
+        <div class="error">
+          Could not load businesses. Please refresh the page.
         </div>
+      `;
+    }
+  }
 
+
+  function renderBusinesses(list) {
+
+    const container =
+      document.getElementById("businessList");
+
+
+    if (!list.length) {
+
+      container.innerHTML = `
+        <div class="empty">
+          <div style="font-size:45px;">🏪</div>
+          <p>No businesses found yet.</p>
+        </div>
       `;
 
       return;
-
     }
 
 
-    $("businessBody").innerHTML=`
+    container.innerHTML =
+      list.map(business => {
 
-      <span class="chip">
-        ${escapeHTML(category)}
-      </span>
+        const name =
+          business.name ||
+          "Local Business";
 
-      <h2>
-        ${escapeHTML(name)}
-      </h2>
+        const category =
+          business.category ||
+          "Local business";
 
-      <p class="help">
-        Choose a product and customize available options.
-      </p>
-
-      <div class="products">
-        ${products.map(renderProduct).join("")}
-      </div>
-
-    `;
+        const location =
+          business.location ||
+          "Sefwi Wiawso";
 
 
-  }catch(error){
+        const logo =
+          business.logoUrl ||
+          business.photoUrl ||
+          "";
 
-    console.error(error);
 
-    $("businessBody").innerHTML=`
+        const logoHtml = logo
+          ? `
+            <img
+              class="business-logo"
+              src="${escapeHtml(logo)}"
+              alt="${escapeHtml(name)}"
+            >
+          `
+          : `
+            <div class="business-logo business-placeholder">
+              🏪
+            </div>
+          `;
 
-      <div class="empty">
-        The menu could not be loaded.
-      </div>
 
-    `;
+        return `
+          <div class="business-card">
 
+            ${logoHtml}
+
+            <div class="business-info">
+
+              <h3>${escapeHtml(name)}</h3>
+
+              <p>${escapeHtml(category)}</p>
+
+              <small>📍 ${escapeHtml(location)}</small>
+
+            </div>
+
+            <button
+              class="open-btn"
+              onclick="openBusiness('${business.id}')"
+            >
+              View
+            </button>
+
+          </div>
+        `;
+
+      }).join("");
   }
 
-}
+
+  window.openBusiness = async function(businessId) {
+
+    const business =
+      businesses.find(item => item.id === businessId);
+
+    if (!business) return;
+
+    selectedBusiness = business;
+
+    document.getElementById("businessModalTitle").textContent =
+      business.name || "Business";
 
 
-window.openBusiness=openBusiness;
+    const content =
+      document.getElementById("businessContent");
 
 
-function renderProduct(product){
+    const logo =
+      business.logoUrl ||
+      business.photoUrl ||
+      "";
 
-  return `
 
-    <article
-      class="product"
-      data-product="${escapeHTML(product.id)}">
+    content.innerHTML = `
+      <div class="business-modal-card">
+
+        ${
+          logo
+          ? `<img src="${escapeHtml(logo)}" alt="${escapeHtml(business.name || "")}">`
+          : `<div class="business-placeholder">🏪</div>`
+        }
+
+        <div>
+          <h3>${escapeHtml(business.name || "Business")}</h3>
+
+          <p style="color:#6d756e;font-size:13px;margin-top:4px;">
+            ${escapeHtml(business.category || "Local business")}
+          </p>
+
+          <p style="color:#148447;font-size:13px;margin-top:5px;">
+            📍 ${escapeHtml(business.location || "Sefwi Wiawso")}
+          </p>
+        </div>
+
+      </div>
 
       ${
-        product.photoUrl
+        business.description
+        ? `
+          <div class="detail-box">
+            <p>${escapeHtml(business.description)}</p>
+          </div>
+        `
+        : ""
+      }
 
-        ?
+      ${
+        business.phone
+        ? `
+          <button
+            class="secondary-btn"
+            onclick="window.location.href='tel:${escapeHtml(business.phone)}'"
+          >
+            📞 Call business
+          </button>
+        `
+        : ""
+      }
 
-        `<img
-          class="product-image"
-          src="${escapeHTML(product.photoUrl)}"
-          alt="${escapeHTML(product.name||"Product")}">`
+      <h3 style="margin:20px 0 12px;">Menu & Products</h3>
 
-        :
+      <div id="businessProducts">
+        <div class="loading">Loading products...</div>
+      </div>
+    `;
 
-        `<div class="product-placeholder">
-          🍲
-        </div>`
+
+    openModal("businessModal");
+
+    await loadBusinessProducts(business);
+  };
+
+
+  async function loadBusinessProducts(business) {
+
+    const container =
+      document.getElementById("businessProducts");
+
+
+    try {
+
+      let products = [];
+
+
+      /*
+        First try vendorId.
+
+        This is the best method because business names
+        can change.
+      */
+
+      if (business.id) {
+
+        try {
+
+          const q =
+            query(
+              collection(db, "products"),
+              where("vendorId", "==", business.id)
+            );
+
+          const snap =
+            await getDocs(q);
+
+          snap.forEach(item => {
+
+            products.push({
+              id: item.id,
+              ...item.data()
+            });
+
+          });
+
+        } catch (error) {
+
+          console.warn(
+            "vendorId query failed:",
+            error
+          );
+        }
       }
 
 
-      <div class="product-body">
+      /*
+        Some older products may only have vendorName.
+      */
 
-        <h3>
-          ${escapeHTML(product.name||"Product")}
-        </h3>
+      if (!products.length && business.name) {
 
-        <p class="help">
-          ${escapeHTML(product.description||"")}
-        </p>
+        try {
 
-        <div class="price">
-          GH₵ ${Number(product.price||0).toLocaleString()}
+          const q =
+            query(
+              collection(db, "products"),
+              where("vendorName", "==", business.name)
+            );
+
+            const snap =
+              await getDocs(q);
+
+            snap.forEach(item => {
+
+              products.push({
+                id: item.id,
+                ...item.data()
+              });
+
+            });
+
+        } catch (error) {
+
+          console.warn(
+            "vendorName query failed:",
+            error
+          );
+        }
+      }
+
+
+      products =
+        products.filter(product =>
+          product.available !== false
+        );
+
+
+      if (!products.length) {
+
+        container.innerHTML = `
+          <div class="empty">
+            <div style="font-size:40px;">🍽️</div>
+            <p>This business has no available products yet.</p>
+          </div>
+        `;
+
+        return;
+      }
+
+
+      container.innerHTML =
+        products.map(product =>
+          renderProductCard(product)
+        ).join("");
+
+
+    } catch (error) {
+
+      console.error(
+        "Product loading error:",
+        error
+      );
+
+      container.innerHTML = `
+        <div class="error">
+          Could not load this business's products.
+        </div>
+      `;
+    }
+  }
+
+
+  function renderProductCard(product) {
+
+    const image =
+      product.photoUrl ||
+      product.imageUrl ||
+      "";
+
+
+    const modifiers =
+      normalizeArray(product.modifiers);
+
+
+    let modifierSummary = "";
+
+
+    if (modifiers.length) {
+
+      modifierSummary =
+        `<small style="color:#6c746d;">
+          Custom options available
+        </small>`;
+    }
+
+
+    return `
+      <div class="product-card">
+
+        <div class="product-top">
+
+          ${
+            image
+            ? `
+              <img
+                class="product-photo"
+                src="${escapeHtml(image)}"
+                alt="${escapeHtml(product.name || "")}"
+              >
+            `
+            : `
+              <div class="product-photo product-placeholder">
+                🍲
+              </div>
+            `
+          }
+
+          <div class="product-info">
+
+            <h3>${escapeHtml(product.name || "Product")}</h3>
+
+            ${
+              product.description
+              ? `<p>${escapeHtml(product.description)}</p>`
+              : ""
+            }
+
+            <div class="product-price">
+              ${money(product.price)}
+            </div>
+
+            ${modifierSummary}
+
+          </div>
+
         </div>
 
+        <div class="product-footer">
 
-        ${
-          (product.modifiers||[])
-          .map(
-            (group,gIndex)=>`
+          <span style="font-size:12px;color:#6e776f;">
+            ${
+              modifiers.length
+              ? "Choose options"
+              : "Ready to order"
+            }
+          </span>
 
-              <div
-                class="modifier"
-                data-modifier="${gIndex}">
+          <button
+            class="add-btn"
+            onclick="openProduct('${product.id}', '${selectedBusiness?.id || ""}', '${encodeURIComponent(JSON.stringify(product))}')"
+          >
+            ${modifiers.length ? "Customize" : "Add"}
+          </button>
+
+        </div>
+
+      </div>
+    `;
+  }
+
+
+  /*
+    Product data is passed safely through encodeURIComponent.
+  */
+
+  window.openProduct = function(
+    productId,
+    businessId,
+    encodedProduct
+  ) {
+
+    let product = null;
+
+    try {
+      product =
+        JSON.parse(
+          decodeURIComponent(encodedProduct)
+        );
+    } catch {
+      return;
+    }
+
+
+    selectedProduct = product;
+
+
+    document.getElementById("productModalTitle").textContent =
+      product.name || "Product";
+
+
+    const content =
+      document.getElementById("productContent");
+
+
+    const image =
+      product.photoUrl ||
+      product.imageUrl ||
+      "";
+
+
+    const modifiers =
+      normalizeArray(product.modifiers);
+
+
+    content.innerHTML = `
+      ${
+        image
+        ? `
+          <img
+            src="${escapeHtml(image)}"
+            alt="${escapeHtml(product.name || "")}"
+            style="
+              width:100%;
+              height:220px;
+              object-fit:cover;
+              border-radius:15px;
+              margin-bottom:14px;
+            "
+          >
+        `
+        : `
+          <div style="
+            height:180px;
+            background:#edf2ee;
+            border-radius:15px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            font-size:65px;
+            margin-bottom:14px;
+          ">
+            🍲
+          </div>
+        `
+      }
+
+      <h2>${escapeHtml(product.name || "Product")}</h2>
+
+      ${
+        product.description
+        ? `
+          <p style="
+            color:#687169;
+            line-height:1.5;
+            font-size:14px;
+            margin:8px 0;
+          ">
+            ${escapeHtml(product.description)}
+          </p>
+        `
+        : ""
+      }
+
+      <div style="
+        color:#148447;
+        font-weight:800;
+        font-size:20px;
+        margin:10px 0 15px;
+      ">
+        ${money(product.price)}
+      </div>
+
+      <div id="modifierContainer"></div>
+
+      <div class="form-group" style="margin-top:15px;">
+        <label>Quantity</label>
+
+        <input
+          id="productQuantity"
+          type="number"
+          min="1"
+          value="1"
+        >
+      </div>
+
+      <div
+        id="productTotalPreview"
+        style="
+          background:#f1f6f2;
+          padding:13px;
+          border-radius:11px;
+          font-weight:800;
+          margin-bottom:10px;
+        "
+      >
+        Total: ${money(product.price)}
+      </div>
+
+      <button
+        class="primary-btn"
+        onclick="addSelectedProductToCart()"
+      >
+        Add to cart
+      </button>
+    `;
+
+
+    renderModifiers(product);
+
+    const quantity =
+      document.getElementById("productQuantity");
+
+    quantity.addEventListener("input", updateProductTotal);
+
+    openModal("productModal");
+  };
+
+
+  function renderModifiers(product) {
+
+    const container =
+      document.getElementById("modifierContainer");
+
+    const modifiers =
+      normalizeArray(product.modifiers);
+
+
+    if (!modifiers.length) {
+
+      container.innerHTML = "";
+
+      return;
+    }
+
+
+    container.innerHTML =
+      modifiers.map((group, groupIndex) => {
+
+        const options =
+          normalizeArray(group.options);
+
+
+        if (!options.length) return "";
+
+
+        const required =
+          group.required === true;
+
+
+        const multiple =
+          group.multiple === true;
+
+
+        return `
+          <div
+            class="modifier-group"
+            data-group-index="${groupIndex}"
+          >
+
+            <div class="modifier-title">
+
+              ${escapeHtml(group.name || "Options")}
+
+              ${
+                required
+                ? `<span class="required-text">Required</span>`
+                : ""
+              }
+
+            </div>
+
+            ${
+              options.map((option, optionIndex) => {
+
+                const inputType =
+                  multiple
+                  ? "checkbox"
+                  : "radio";
+
+
+                const inputName =
+                  `modifier_${groupIndex}`;
+
+
+                return `
+                  <div class="modifier-option">
+
+                    <label for="${inputName}_${optionIndex}">
+                      ${escapeHtml(option.name || "Option")}
+
+                      ${
+                        Number(option.price || 0) > 0
+                        ? ` (+${money(option.price)})`
+                        : ""
+                      }
+                    </label>
+
+                    <input
+                      id="${inputName}_${optionIndex}"
+                      type="${inputType}"
+                      name="${inputName}"
+                      value="${optionIndex}"
+                      data-group-index="${groupIndex}"
+                      data-option-index="${optionIndex}"
+                      onchange="updateProductTotal()"
+                    >
+
+                  </div>
+                `;
+
+              }).join("")
+            }
+
+          </div>
+        `;
+
+      }).join("");
+  }
+
+
+  function getSelectedModifiers(product) {
+
+    const result = [];
+
+    const modifiers =
+      normalizeArray(product.modifiers);
+
+
+    modifiers.forEach((group, groupIndex) => {
+
+      const inputs =
+        document.querySelectorAll(
+          `[data-group-index="${groupIndex}"]`
+        );
+
+
+      const selected = [];
+
+
+      inputs.forEach(input => {
+
+        if (!input.checked) return;
+
+
+        const optionIndex =
+          Number(input.dataset.optionIndex);
+
+
+        const option =
+          normalizeArray(group.options)[optionIndex];
+
+
+        if (!option) return;
+
+
+        selected.push({
+          name: option.name || "Option",
+          price: Number(option.price || 0)
+        });
+
+      });
+
+
+      if (group.required && !selected.length) {
+
+        result.error =
+          `Please choose an option for "${group.name || "this option"}".`;
+
+        return;
+      }
+
+
+      if (selected.length) {
+
+        result.push({
+          name: group.name || "Options",
+          options: selected
+        });
+
+      }
+
+    });
+
+
+    return result;
+  }
+
+
+  function calculateModifierTotal(modifiers) {
+
+    return modifiers.reduce((total, group) => {
+
+      const groupTotal =
+        normalizeArray(group.options)
+          .reduce(
+            (sum, option) =>
+              sum + Number(option.price || 0),
+            0
+          );
+
+      return total + groupTotal;
+
+    }, 0);
+  }
+
+
+  function updateProductTotal() {
+
+    if (!selectedProduct) return;
+
+
+    const quantity =
+      Math.max(
+        1,
+        Number(
+          document.getElementById("productQuantity")?.value || 1
+        )
+      );
+
+
+    const modifiers =
+      getSelectedModifiers(selectedProduct);
+
+
+    const modifierTotal =
+      modifiers.error
+      ? 0
+      : calculateModifierTotal(modifiers);
+
+
+    const total =
+      (Number(selectedProduct.price || 0) + modifierTotal) *
+      quantity;
+
+
+    const preview =
+      document.getElementById("productTotalPreview");
+
+
+    if (preview) {
+
+      preview.textContent =
+        `Total: ${money(total)}`;
+    }
+  }
+
+
+  window.addSelectedProductToCart = function() {
+
+    if (!selectedProduct) return;
+
+
+    const modifiers =
+      getSelectedModifiers(selectedProduct);
+
+
+    if (modifiers.error) {
+
+      alert(modifiers.error);
+
+      return;
+    }
+
+
+    const quantity =
+      Math.max(
+        1,
+        Number(
+          document.getElementById("productQuantity")?.value || 1
+        )
+      );
+
+
+    const modifierTotal =
+      calculateModifierTotal(modifiers);
+
+
+    const unitPrice =
+      Number(selectedProduct.price || 0) +
+      modifierTotal;
+
+
+    const modifierKey =
+      JSON.stringify(modifiers);
+
+
+    const existingIndex =
+      cart.findIndex(item =>
+        item.productId === selectedProduct.id &&
+        item.vendorId === selectedBusiness?.id &&
+        JSON.stringify(item.modifiers) === modifierKey
+      );
+
+
+    if (existingIndex >= 0) {
+
+      cart[existingIndex].quantity += quantity;
+
+    } else {
+
+      cart.push({
+
+        productId:
+          selectedProduct.id,
+
+        name:
+          selectedProduct.name || "Product",
+
+        basePrice:
+          Number(selectedProduct.price || 0),
+
+        unitPrice,
+
+        quantity,
+
+        vendorId:
+          selectedBusiness?.id ||
+          selectedProduct.vendorId ||
+          "",
+
+        vendorName:
+          selectedBusiness?.name ||
+          selectedProduct.vendorName ||
+          "Local Business",
+
+        photoUrl:
+          selectedProduct.photoUrl ||
+          selectedProduct.imageUrl ||
+          "",
+
+        modifiers
+
+      });
+    }
+
+
+    saveCart();
+
+    closeModal("productModal");
+
+    alert("Added to cart.");
+  };
+
+
+  /* =========================
+     SEARCH
+  ========================= */
+
+  window.runSearch = function() {
+
+    const value =
+      document.getElementById("searchInput")
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    if (!value) {
+
+      renderBusinesses(businesses);
+
+      return;
+    }
+
+
+    const filtered =
+      businesses.filter(business => {
+
+        const text = [
+          business.name,
+          business.category,
+          business.location,
+          business.description
+        ]
+        .join(" ")
+        .toLowerCase();
+
+
+        return text.includes(value);
+
+      });
+
+
+    renderBusinesses(filtered);
+  };
+
+
+  window.filterBusinesses = function(category) {
+
+    const filtered =
+      businesses.filter(business => {
+
+        const value =
+          String(business.category || "")
+            .toLowerCase();
+
+
+        const search =
+          category.toLowerCase();
+
+
+        return (
+          value.includes(search) ||
+          (
+            category === "Food" &&
+            (
+              value.includes("restaurant") ||
+              value.includes("chop") ||
+              value.includes("kitchen")
+            )
+          )
+        );
+      });
+
+
+    renderBusinesses(filtered);
+
+    document
+      .getElementById("businessSection")
+      .scrollIntoView({
+        behavior: "smooth"
+      });
+  };
+
+
+  window.showAllBusinesses = function() {
+
+    document.getElementById("searchInput").value = "";
+
+    renderBusinesses(businesses);
+  };
+
+
+  /* =========================
+     CART
+  ========================= */
+
+  window.openCart = function() {
+
+    renderCart();
+
+    openModal("cartModal");
+  };
+
+
+  function renderCart() {
+
+    const container =
+      document.getElementById("cartContent");
+
+
+    if (!cart.length) {
+
+      container.innerHTML = `
+        <div class="empty">
+
+          <div style="font-size:55px;margin-bottom:10px;">
+            🛒
+          </div>
+
+          <h3>Your cart is empty</h3>
+
+          <p style="margin-top:7px;">
+            Add food or products from local businesses.
+          </p>
+
+        </div>
+      `;
+
+      return;
+    }
+
+
+    const grouped = {};
+
+
+    cart.forEach((item, index) => {
+
+      const vendor =
+        item.vendorId ||
+        item.vendorName ||
+        "vendor";
+
+
+      if (!grouped[vendor]) {
+        grouped[vendor] = [];
+      }
+
+
+      grouped[vendor].push({
+        ...item,
+        cartIndex: index
+      });
+
+    });
+
+
+    let html = "";
+
+
+    Object.keys(grouped).forEach(vendor => {
+
+      const items =
+        grouped[vendor];
+
+
+      html += `
+        <h3 style="margin:12px 0 5px;">
+          ${escapeHtml(items[0].vendorName || "Business")}
+        </h3>
+      `;
+
+
+      items.forEach(item => {
+
+        const modifiersText =
+          normalizeArray(item.modifiers)
+            .map(group => {
+
+              const names =
+                normalizeArray(group.options)
+                  .map(option => option.name)
+                  .join(", ");
+
+
+              return `${group.name}: ${names}`;
+
+            })
+            .join(" • ");
+
+
+        html += `
+          <div class="cart-item">
+
+            <div class="cart-item-head">
+
+              <div>
+
+                <h4>${escapeHtml(item.name)}</h4>
+
+                ${
+                  modifiersText
+                  ? `
+                    <small>
+                      ${escapeHtml(modifiersText)}
+                    </small>
+                  `
+                  : ""
+                }
 
                 <div style="
-                  display:flex;
-                  justify-content:space-between;
-                  gap:8px;
+                  color:#148447;
+                  font-weight:800;
+                  margin-top:5px;
                 ">
-
-                  <b>
-                    ${escapeHTML(group.name||"Options")}
-                    ${group.required?" *":""}
-                  </b>
-
-                  <small class="help">
-                    ${group.multiple?"Multiple":"Choose one"}
-                  </small>
-
-                </div>
-
-
-                <div class="options">
-
-                  ${
-                    (group.options||[])
-                    .map(
-                      (option,oIndex)=>`
-
-                        <button
-                          type="button"
-                          class="option"
-                          data-group="${gIndex}"
-                          data-index="${oIndex}"
-                          data-multiple="${group.multiple?"1":"0"}"
-                          onclick="selectOption(this)">
-
-                          <strong>
-                            ${escapeHTML(option.name)}
-                          </strong>
-
-                          <small>
-                            ${
-                              Number(option.price||0)
-                              ?
-
-                              "+ GH₵ "+
-                              Number(option.price)
-                              .toLocaleString()
-
-                              :
-
-                              "Included"
-                            }
-                          </small>
-
-                        </button>
-
-                      `
-                    )
-                    .join("")
-                  }
-
+                  ${money(item.unitPrice)}
                 </div>
 
               </div>
 
-            `
-          )
-          .join("")
-        }
-
-
-        <div class="quantity">
-
-          <b>Qty</b>
-
-          <button
-            onclick="changeProductQty('${escapeHTML(product.id)}',-1)">
-            −
-          </button>
-
-          <span id="qty_${escapeHTML(product.id)}">
-            1
-          </span>
-
-          <button
-            onclick="changeProductQty('${escapeHTML(product.id)}',1)">
-            +
-          </button>
-
-        </div>
-
-
-        <button
-          class="submit"
-          onclick='addToCart(${JSON.stringify(product).replace(/</g,"\\u003c")})'>
-
-          🛒 Add to Cart
-
-        </button>
-
-      </div>
-
-    </article>
-
-  `;
-
-}
-
-
-window.selectOption=function(button){
-
-  const group=button.dataset.group;
-  const multiple=button.dataset.multiple==="1";
-
-  const card=button.closest(".product");
-
-
-  if(!multiple){
-
-    card
-      .querySelectorAll(
-        `.option[data-group="${group}"]`
-      )
-      .forEach(
-        b=>b.classList.remove("selected")
-      );
-
-  }
-
-
-  button.classList.toggle("selected");
-
-};
-
-
-window.changeProductQty=function(id,direction){
-
-  const element=$("qty_"+id);
-
-  if(!element)return;
-
-  const current=Number(
-    element.textContent
-  )||1;
-
-
-  element.textContent=Math.max(
-    1,
-    Math.min(
-      20,
-      current+direction
-    )
-  );
-
-};
-
-
-window.addToCart=function(product){
-
-  const card=document.querySelector(
-    `[data-product="${CSS.escape(product.id)}"]`
-  );
-
-
-  if(!card)return;
-
-
-  const modifiers=[];
-  let extra=0;
-
-
-  for(
-    let i=0;
-    i<(product.modifiers||[]).length;
-    i++
-  ){
-
-    const group=product.modifiers[i];
-
-    const selected=[
-      ...card.querySelectorAll(
-        `.option[data-group="${i}"].selected`
-      )
-    ];
-
-
-    if(
-      group.required &&
-      !selected.length
-    ){
-
-      showToast(
-        "Please choose an option for "+
-        group.name+"."
-      );
-
-      return;
-
-    }
-
-
-    selected.forEach(
-      button=>{
-
-        const option=
-          group.options[
-            Number(button.dataset.index)
-          ];
-
-
-        if(option){
-
-          extra+=Number(
-            option.price||0
-          );
-
-          modifiers.push({
-            group:group.name,
-            name:option.name,
-            price:Number(option.price||0)
-          });
-
-        }
-
-      }
-    );
-
-  }
-
-
-  const quantity=Number(
-    $("qty_"+product.id)?.textContent||1
-  );
-
-
-  cart.push({
-
-    id:Date.now().toString(),
-
-    productId:product.id,
-
-    name:product.name,
-
-    basePrice:Number(
-      product.price||0
-    ),
-
-    price:
-      Number(product.price||0)+extra,
-
-    qty:quantity,
-
-    vendorId:
-      product.vendorId||
-      null,
-
-    vendorName:
-      product.vendorName||
-      "SefwiGo business",
-
-    modifiers:modifiers,
-
-    photoUrl:
-      product.photoUrl||
-      null
-
-  });
-
-
-  saveCart();
-
-  closeModal("businessModal");
-
-  showToast(
-    "Item added to your cart."
-  );
-
-};
-
-
-/* =========================================================
-   CART
-   ========================================================= */
-
-let cart=[];
-
-
-try{
-
-  cart=JSON.parse(
-    localStorage.getItem("sefwiCart")||"[]"
-  );
-
-  if(!Array.isArray(cart))
-    cart=[];
-
-}catch(error){
-
-  cart=[];
-
-}
-
-
-function saveCart(){
-
-  localStorage.setItem(
-    "sefwiCart",
-    JSON.stringify(cart)
-  );
-
-  updateCartCount();
-
-}
-
-
-function updateCartCount(){
-
-  const count=cart.reduce(
-    (sum,item)=>
-      sum+Number(item.qty||1),
-    0
-  );
-
-  $("cartCount").textContent=count;
-
-}
-
-
-window.openCart=function(){
-
-  renderCart();
-
-  $("cartModal").classList.add("open");
-
-};
-
-
-function renderCart(){
-
-  if(!cart.length){
-
-    $("cartBody").innerHTML=`
-
-      <div class="empty">
-
-        <div style="font-size:50px">
-          🛒
-        </div>
-
-        <strong>
-          Your cart is empty.
-        </strong>
-
-        <p>
-          Open a business and add products to your cart.
-        </p>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-  const total=cart.reduce(
-    (sum,item)=>
-      sum+
-      Number(item.price||0)*
-      Number(item.qty||1),
-    0
-  );
-
-
-  $("cartBody").innerHTML=
-
-    cart.map(
-      (item,index)=>`
-
-        <div class="list">
-
-          <div class="thumb">
-
-            ${
-              item.photoUrl
-
-              ?
-
-              `<img
-                src="${escapeHTML(item.photoUrl)}"
-                style="
-                  width:72px;
-                  height:65px;
-                  object-fit:cover;
-                  border-radius:12px;
-                ">`
-
-              :
-
-              "🍔"
-            }
-
-          </div>
-
-
-          <div>
-
-            <h4>
-              ${escapeHTML(item.name)}
-            </h4>
-
-            <p>
-              GH₵ ${Number(item.price||0).toLocaleString()}
-              × ${item.qty}
-            </p>
-
-            ${
-              item.modifiers?.length
-
-              ?
-
-              `<p>
-                ${escapeHTML(
-                  item.modifiers
-                    .map(m=>m.group+": "+m.name)
-                    .join(" • ")
-                )}
-              </p>`
-
-              :
-
-              ""
-            }
-
-          </div>
-
-
-          <div class="list-actions">
-
-            <button
-              class="remove"
-              onclick="removeFromCart(${index})">
-
-              Remove
-
-            </button>
-
-          </div>
-
-        </div>
-
-      `
-    ).join("")
-
-    +
-
-    `
-
-      <div class="checkout">
-
-        <div class="row">
-
-          <b>Total</b>
-
-          <b style="
-            color:var(--dark);
-            font-size:20px;
-          ">
-            GH₵ ${total.toLocaleString()}
-          </b>
-
-        </div>
-
-
-        <button
-          class="submit"
-          onclick="startCheckout()">
-
-          📦 Continue to Checkout
-
-        </button>
-
-      </div>
-
-    `;
-
-}
-
-
-window.removeFromCart=function(index){
-
-  cart.splice(index,1);
-
-  saveCart();
-
-  renderCart();
-
-};
-
-
-/* =========================================================
-   CHECKOUT
-   ========================================================= */
-
-window.startCheckout=async function(){
-
-  if(!cart.length){
-
-    showToast(
-      "Your cart is empty."
-    );
-
-    return;
-
-  }
-
-
-  if(
-    !(await initFirebase()) ||
-    !auth.currentUser
-  ){
-
-    closeModal("cartModal");
-
-    openAccount();
-
-    showToast(
-      "Please sign in before placing an order."
-    );
-
-    return;
-
-  }
-
-
-  closeModal("cartModal");
-
-  renderCheckout();
-
-  $("checkoutModal")
-    .classList.add("open");
-
-};
-
-
-function renderCheckout(){
-
-  const total=cart.reduce(
-    (sum,item)=>
-      sum+
-      Number(item.price||0)*
-      Number(item.qty||1),
-    0
-  );
-
-
-  $("checkoutBody").innerHTML=`
-
-    <div class="checkout">
-
-      <b>Order Summary</b>
-
-      ${
-        cart.map(
-          item=>`
-
-            <div class="row">
-
-              <span>
-                ${escapeHTML(item.name)}
-                × ${item.qty}
-              </span>
-
-              <b>
-                GH₵ ${(
-                  item.price*item.qty
-                ).toLocaleString()}
-              </b>
+              <strong>
+                ${money(item.unitPrice * item.quantity)}
+              </strong>
 
             </div>
 
-          `
-        ).join("")
-      }
+            <div class="qty-controls">
+
+              <button onclick="changeCartQuantity(${item.cartIndex}, -1)">
+                −
+              </button>
+
+              <strong>${item.quantity}</strong>
+
+              <button onclick="changeCartQuantity(${item.cartIndex}, 1)">
+                +
+              </button>
+
+              <button
+                style="
+                  margin-left:auto;
+                  background:#ffecec;
+                  color:#b3261e;
+                "
+                onclick="removeCartItem(${item.cartIndex})"
+              >
+                🗑
+              </button>
+
+            </div>
+
+          </div>
+        `;
+
+      });
+
+    });
 
 
-      <div
-        class="row"
-        style="
-          border-top:1px solid var(--line);
-          margin-top:8px;
-          padding-top:10px;
-        ">
-
-        <b>Total</b>
-
-        <b>
-          GH₵ ${total.toLocaleString()}
-        </b>
-
-      </div>
-
-    </div>
-
-
-    <div class="form">
-
-      <div class="field full">
-
-        <label>
-          Name *
-        </label>
-
-        <input
-          id="orderName"
-          value="${escapeHTML(
-            auth.currentUser?.displayName||""
-          )}"
-          placeholder="Your name">
-
-      </div>
-
-
-      <div class="field full">
-
-        <label>
-          Phone *
-        </label>
-
-        <input
-          id="orderPhone"
-          type="tel"
-          inputmode="tel"
-          placeholder="+233...">
-
-      </div>
-
-
-      <div class="field full">
-
-        <label>
-          Delivery location *
-        </label>
-
-        <input
-          id="orderAddress"
-          placeholder="House, landmark or location">
-
-      </div>
-
-
-      <div class="field full">
-
-        <label>
-          Delivery note
-        </label>
-
-        <textarea
-          id="orderNote"
-          placeholder="Optional delivery instructions"></textarea>
-
-      </div>
-
-    </div>
-
-
-    <button
-      class="submit"
-      onclick="placeOrder()">
-
-      📦 Place Order
-
-    </button>
-
-  `;
-
-}
-
-
-window.placeOrder=async function(){
-
-  const name=$("orderName")?.value.trim();
-  const phone=$("orderPhone")?.value.trim();
-  const address=$("orderAddress")?.value.trim();
-  const note=$("orderNote")?.value.trim();
-
-
-  if(!name || !phone || !address){
-
-    showToast(
-      "Please enter your name, phone and delivery location."
-    );
-
-    return;
-
-  }
-
-
-  if(
-    !(await initFirebase()) ||
-    !auth.currentUser
-  ){
-
-    showToast(
-      "Please sign in again."
-    );
-
-    return;
-
-  }
-
-
-  try{
-
-    const groups={};
-
-
-    cart.forEach(
-      item=>{
-
-        const key=
-          item.vendorId||
-          item.vendorName||
-          "sefwi-business";
-
-        if(!groups[key])
-          groups[key]=[];
-
-        groups[key].push(item);
-
-      }
-    );
-
-
-    for(
-      const key of Object.keys(groups)
-    ){
-
-      const items=groups[key];
-
-      const total=items.reduce(
-        (sum,item)=>
-          sum+
-          Number(item.price||0)*
-          Number(item.qty||1),
+    const total =
+      cart.reduce(
+        (sum, item) =>
+          sum + Number(item.unitPrice || 0) * Number(item.quantity || 0),
         0
       );
 
 
-      await ff.addDoc(
-        ff.collection(
-          db,
-          "orders"
-        ),
-        {
+    html += `
+      <div class="cart-total">
 
-          orderNumber:
-            "SG-"+Date.now().toString().slice(-8),
+        <span>Total</span>
 
-          customerUid:
-            auth.currentUser.uid,
+        <span>${money(total)}</span>
 
-          customerName:name,
+      </div>
 
-          customerPhone:phone,
+      <button
+        class="primary-btn"
+        onclick="startCheckout()"
+      >
+        Continue to checkout
+      </button>
 
-          deliveryAddress:address,
+      <button
+        class="secondary-btn"
+        onclick="clearCart()"
+      >
+        Clear cart
+      </button>
+    `;
 
-          note:note,
 
-          vendorId:
-            items[0].vendorId||
-            null,
+    container.innerHTML = html;
+  }
 
-          vendorName:
-            items[0].vendorName||
-            "SefwiGo business",
 
-          items:
-            items.map(
-              item=>({
+  window.changeCartQuantity = function(index, amount) {
 
-                productId:
-                  item.productId||null,
+    if (!cart[index]) return;
 
-                name:item.name,
 
-                price:Number(item.price||0),
+    cart[index].quantity =
+      Number(cart[index].quantity || 0) +
+      amount;
 
-                basePrice:
-                  Number(
-                    item.basePrice||
-                    item.price||
-                    0
-                  ),
 
-                qty:Number(item.qty||1),
+    if (cart[index].quantity <= 0) {
 
-                modifiers:
-                  item.modifiers||[],
-
-                photoUrl:
-                  item.photoUrl||
-                  null
-
-              })
-            ),
-
-          total:total,
-
-          status:"new",
-
-          createdAt:
-            ff.serverTimestamp()
-
-        }
-      );
-
+      cart.splice(index, 1);
     }
 
-
-    cart=[];
 
     saveCart();
 
-    closeModal(
-      "checkoutModal"
-    );
-
-    showToast(
-      "Your order has been placed successfully."
-    );
-
-
-    setTimeout(
-      openOrders,
-      500
-    );
-
-
-  }catch(error){
-
-    console.error(
-      "Order error:",
-      error
-    );
-
-    showToast(
-      "Could not place the order. Please check your Firebase Firestore permissions."
-    );
-
-  }
-
-};
-
-
-/* =========================================================
-   ORDERS
-   ========================================================= */
-
-function orderStatus(status){
-
-  const labels={
-
-    new:"Pending",
-
-    accepted:"Accepted",
-
-    preparing:"Preparing",
-
-    ready:"Ready",
-
-    assigned:"Driver assigned",
-
-    picked_up:"Picked up",
-
-    out_for_delivery:"Out for delivery",
-
-    delivered:"Delivered",
-
-    completed:"Delivered",
-
-    cancelled:"Cancelled"
-
+    renderCart();
   };
 
 
-  return labels[status]||
-    "Pending";
+  window.removeCartItem = function(index) {
 
-}
-
-
-function formatDate(value){
-
-  try{
-
-    if(value?.toDate)
-      return value.toDate().toLocaleString();
-
-    if(value?.seconds)
-      return new Date(
-        value.seconds*1000
-      ).toLocaleString();
-
-  }catch(error){}
-
-  return "Recently";
-
-}
+    if (!cart[index]) return;
 
 
-window.openOrders=async function(){
+    cart.splice(index, 1);
 
-  $("ordersModal")
-    .classList.add("open");
+    saveCart();
 
-
-  $("ordersBody").innerHTML=`
-
-    <div class="empty">
-      Loading your orders…
-    </div>
-
-  `;
+    renderCart();
+  };
 
 
-  if(
-    !(await initFirebase()) ||
-    !auth.currentUser
-  ){
+  window.clearCart = function() {
 
-    $("ordersBody").innerHTML=`
-
-      <div class="empty">
-
-        <strong>
-          Please sign in to view your orders.
-        </strong>
-
-        <button
-          class="submit"
-          onclick="closeModal('ordersModal');openAccount()">
-
-          Sign In
-
-        </button>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
+    if (!cart.length) return;
 
 
-  try{
+    if (
+      confirm("Remove everything from your cart?")
+    ) {
 
-    const snap=await ff.getDocs(
-      ff.query(
-        ff.collection(db,"orders"),
-        ff.where(
-          "customerUid",
-          "==",
-          auth.currentUser.uid
-        )
-      )
-    );
+      cart = [];
 
+      saveCart();
 
-    const orders=snap.docs.map(
-      doc=>({
-        id:doc.id,
-        ...doc.data()
-      })
-    );
+      renderCart();
+    }
+  };
 
 
-    orders.sort(
-      (a,b)=>
-        (b.createdAt?.seconds||0)-
-        (a.createdAt?.seconds||0)
-    );
+  /* =========================
+     CHECKOUT
+  ========================= */
 
+  window.startCheckout = function() {
 
-    if(!orders.length){
+    if (!cart.length) {
 
-      $("ordersBody").innerHTML=`
-
-        <div class="empty">
-
-          <div style="font-size:50px">
-            📦
-          </div>
-
-          <strong>
-            No orders yet.
-          </strong>
-
-          <p>
-            Your orders will appear here after checkout.
-          </p>
-
-        </div>
-
-      `;
+      alert("Your cart is empty.");
 
       return;
-
     }
 
 
-    $("ordersBody").innerHTML=
+    if (!currentUser) {
 
-      orders.map(
-        order=>`
+      closeModal("cartModal");
 
-          <article class="order">
+      showLogin();
 
-            <div class="order-top">
+      openModal("authModal");
 
-              <div>
+      return;
+    }
 
-                <b>
-                  Order #${escapeHTML(
-                    order.orderNumber||
-                    order.id
+
+    renderCheckout();
+
+    closeModal("cartModal");
+
+    openModal("checkoutModal");
+  };
+
+
+  function renderCheckout() {
+
+    const container =
+      document.getElementById("checkoutContent");
+
+
+    const total =
+      cart.reduce(
+        (sum, item) =>
+          sum + Number(item.unitPrice || 0) * Number(item.quantity || 0),
+        0
+      );
+
+
+    const defaultName =
+      currentProfile?.name ||
+      currentUser?.displayName ||
+      "";
+
+
+    const defaultPhone =
+      currentProfile?.phone ||
+      "";
+
+
+    container.innerHTML = `
+
+      <div class="detail-box">
+
+        <strong>Order total</strong>
+
+        <div style="
+          color:#148447;
+          font-size:22px;
+          font-weight:800;
+          margin-top:5px;
+        ">
+          ${money(total)}
+        </div>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>Full name</label>
+
+        <input
+          id="checkoutName"
+          value="${escapeHtml(defaultName)}"
+          placeholder="Your name"
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>Phone number</label>
+
+        <input
+          id="checkoutPhone"
+          value="${escapeHtml(defaultPhone)}"
+          placeholder="Phone number"
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>Delivery address</label>
+
+        <textarea
+          id="checkoutAddress"
+          placeholder="Where should the order be delivered?"
+        ></textarea>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>Order note</label>
+
+        <textarea
+          id="checkoutNote"
+          placeholder="Optional note for the seller"
+        ></textarea>
+
+      </div>
+
+
+      <button
+        class="primary-btn"
+        onclick="placeOrders()"
+      >
+        Place order
+      </button>
+    `;
+  }
+
+
+  window.placeOrders = async function() {
+
+    if (!currentUser) {
+
+      alert("Please sign in first.");
+
+      return;
+    }
+
+
+    if (!cart.length) {
+
+      alert("Your cart is empty.");
+
+      return;
+    }
+
+
+    const name =
+      document.getElementById("checkoutName")
+        .value
+        .trim();
+
+
+    const phone =
+      document.getElementById("checkoutPhone")
+        .value
+        .trim();
+
+
+    const address =
+      document.getElementById("checkoutAddress")
+        .value
+        .trim();
+
+
+    const note =
+      document.getElementById("checkoutNote")
+        .value
+        .trim();
+
+
+    if (!name || !phone || !address) {
+
+      alert(
+        "Please enter your name, phone number and delivery address."
+      );
+
+      return;
+    }
+
+
+    const grouped = {};
+
+
+    cart.forEach(item => {
+
+      const vendorId =
+        item.vendorId ||
+        item.vendorName ||
+        "unknown";
+
+
+      if (!grouped[vendorId]) {
+
+        grouped[vendorId] = [];
+      }
+
+
+      grouped[vendorId].push(item);
+    });
+
+
+    try {
+
+      const createdOrders = [];
+
+
+      for (const vendorId of Object.keys(grouped)) {
+
+        const items =
+          grouped[vendorId];
+
+
+        const total =
+          items.reduce(
+            (sum, item) =>
+              sum +
+              Number(item.unitPrice || 0) *
+              Number(item.quantity || 0),
+            0
+          );
+
+
+        const vendorName =
+          items[0].vendorName ||
+          "Local Business";
+
+
+        const orderNumber =
+          "SG-" +
+          Date.now().toString().slice(-7) +
+          "-" +
+          Math.floor(Math.random() * 90 + 10);
+
+
+        const order = {
+
+          orderNumber,
+
+          customerUid:
+            currentUser.uid,
+
+          customerName:
+            name,
+
+          customerPhone:
+            phone,
+
+          deliveryAddress:
+            address,
+
+          note:
+            note || "",
+
+          vendorId:
+            items[0].vendorId || "",
+
+          vendorName,
+
+          items:
+            items.map(item => ({
+
+              productId:
+                item.productId,
+
+              name:
+                item.name,
+
+              price:
+                Number(item.unitPrice || 0),
+
+              basePrice:
+                Number(item.basePrice || 0),
+
+              quantity:
+                Number(item.quantity || 0),
+
+              modifiers:
+                normalizeArray(item.modifiers)
+
+            })),
+
+          total,
+
+          status:
+            "new",
+
+          createdAt:
+            serverTimestamp()
+        };
+
+
+        const ref =
+          await addDoc(
+            collection(db, "orders"),
+            order
+          );
+
+
+        createdOrders.push(ref.id);
+      }
+
+
+      cart = [];
+
+      saveCart();
+
+      closeModal("checkoutModal");
+
+
+      alert(
+        `Order placed successfully!\n${createdOrders.length} order(s) sent to the business.`
+      );
+
+
+      openOrders();
+
+    } catch (error) {
+
+      console.error(
+        "Checkout error:",
+        error
+      );
+
+
+      alert(
+        "Could not place your order. Please try again."
+      );
+    }
+  };
+
+
+  /* =========================
+     ORDERS
+  ========================= */
+
+  window.openOrders = async function() {
+
+    openModal("ordersModal");
+
+    const container =
+      document.getElementById("ordersContent");
+
+
+    if (!currentUser) {
+
+      container.innerHTML = `
+        <div class="empty">
+
+          <div style="font-size:50px;">📦</div>
+
+          <h3>Sign in to see your orders</h3>
+
+          <button
+            class="primary-btn"
+            onclick="closeModal('ordersModal');showLogin();openModal('authModal')"
+          >
+            Sign in
+          </button>
+
+        </div>
+      `;
+
+      return;
+    }
+
+
+    container.innerHTML =
+      `<div class="loading">Loading orders...</div>`;
+
+
+    try {
+
+      const q =
+        query(
+          collection(db, "orders"),
+          where(
+            "customerUid",
+            "==",
+            currentUser.uid
+          )
+        );
+
+
+      const snap =
+        await getDocs(q);
+
+
+      const orders = [];
+
+
+      snap.forEach(item => {
+
+        orders.push({
+          id: item.id,
+          ...item.data()
+        });
+
+      });
+
+
+      orders.sort((a, b) => {
+
+        const aTime =
+          a.createdAt?.seconds || 0;
+
+        const bTime =
+          b.createdAt?.seconds || 0;
+
+        return bTime - aTime;
+      });
+
+
+      if (!orders.length) {
+
+        container.innerHTML = `
+          <div class="empty">
+
+            <div style="font-size:50px;">📦</div>
+
+            <h3>No orders yet</h3>
+
+            <p style="margin-top:7px;">
+              Your completed orders will appear here.
+            </p>
+
+          </div>
+        `;
+
+        return;
+      }
+
+
+      container.innerHTML =
+        orders.map(order => {
+
+          const items =
+            normalizeArray(order.items);
+
+
+          return `
+            <div class="order-card">
+
+              <div class="order-head">
+
+                <strong>
+                  ${escapeHtml(
+                    order.orderNumber || "Order"
                   )}
-                </b>
+                </strong>
 
-                <p class="help">
-
-                  ${escapeHTML(
-                    order.vendorName||
-                    "SefwiGo business"
+                <span class="status">
+                  ${escapeHtml(
+                    order.status || "new"
                   )}
-
-                  <br>
-
-                  ${escapeHTML(
-                    formatDate(
-                      order.createdAt
-                    )
-                  )}
-
-                </p>
+                </span>
 
               </div>
 
-
-              <span
-                class="status ${
-                  order.status==="cancelled"
-                  ?"cancelled"
-                  :""
-                }">
-
-                ${escapeHTML(
-                  orderStatus(
-                    order.status
-                  )
+              <div style="
+                color:#148447;
+                font-weight:800;
+                margin-bottom:7px;
+              ">
+                ${escapeHtml(
+                  order.vendorName || "Business"
                 )}
+              </div>
 
-              </span>
-
-            </div>
-
-
-            <div
-              style="
-                margin:12px 0;
-                color:var(--muted);
+              <div style="
                 font-size:13px;
+                color:#687169;
+                line-height:1.5;
               ">
 
-              ${
-                (order.items||[])
-                .map(
-                  item=>`
+                ${
+                  items.map(item =>
+                    `${escapeHtml(item.name)} × ${Number(item.quantity || 0)}`
+                  ).join("<br>")
+                }
 
-                    <div class="row">
+              </div>
 
-                      <span>
-                        ${escapeHTML(item.name)}
-                        × ${item.qty}
-                      </span>
-
-                      <b>
-                        GH₵ ${(
-                          Number(item.price||0)*
-                          Number(item.qty||1)
-                        ).toLocaleString()}
-                      </b>
-
-                    </div>
-
-                  `
-                )
-                .join("")
-              }
-
-            </div>
-
-
-            <div
-              class="row"
-              style="
-                border-top:1px solid var(--line);
-                padding-top:9px;
+              <div style="
+                margin-top:10px;
+                font-weight:800;
               ">
-
-              <b>Total</b>
-
-              <b>
-                GH₵ ${Number(
-                  order.total||0
-                ).toLocaleString()}
-              </b>
+                ${money(order.total)}
+              </div>
 
             </div>
+          `;
+
+        }).join("");
 
 
-            <p class="help">
+    } catch (error) {
 
-              📍 ${escapeHTML(
-                order.deliveryAddress||""
-              )}
-
-            </p>
-
-          </article>
-
-        `
-      ).join("");
+      console.error(
+        "Orders error:",
+        error
+      );
 
 
-  }catch(error){
-
-    console.error(
-      "Order loading error:",
-      error
-    );
-
-
-    $("ordersBody").innerHTML=`
-
-      <div class="empty">
-        Could not load your orders.
-      </div>
-
-    `;
-
-  }
-
-};
-
-
-/* =========================================================
-   PROPERTIES
-   ========================================================= */
-
-let properties=[];
-
-
-function propertyIcon(type){
-
-  if(type==="Land")
-    return "🌳";
-
-  if(type==="Commercial")
-    return "🏢";
-
-  if(type==="Room")
-    return "🛏️";
-
-  if(type==="Apartment")
-    return "🏬";
-
-  return "🏠";
-
-}
-
-
-async function loadProperties(){
-
-  const grid=$("propertyGrid");
-
-
-  try{
-
-    if(!(await initFirebase()))
-      throw new Error("Firebase unavailable");
-
-
-    const snap=await ff.getDocs(
-      ff.query(
-        ff.collection(db,"properties"),
-        ff.where(
-          "available",
-          "==",
-          true
-        )
-      )
-    );
-
-
-    properties=snap.docs.map(
-      doc=>({
-        id:doc.id,
-        ...doc.data()
-      })
-    );
-
-
-    renderProperties();
-
-  }catch(error){
-
-    console.error(
-      "Property loading error:",
-      error
-    );
-
-
-    properties=[];
-
-    grid.innerHTML=`
-
-      <div
-        class="empty"
-        style="grid-column:1/-1">
-
-        <div style="font-size:48px">
-          🏠
+      container.innerHTML = `
+        <div class="error">
+          Could not load your orders.
         </div>
-
-        <strong>
-          No property listings available yet.
-        </strong>
-
-        <p>
-          New properties will appear here when partners publish them.
-        </p>
-
-      </div>
-
-    `;
-
-  }
-
-}
+      `;
+    }
+  };
 
 
-function renderProperties(){
+  /* =========================
+     PROPERTIES
+  ========================= */
 
-  const grid=$("propertyGrid");
+  async function loadProperties() {
 
-
-  if(!properties.length){
-
-    grid.innerHTML=`
-
-      <div
-        class="empty"
-        style="grid-column:1/-1">
-
-        <div style="font-size:48px">
-          🏠
-        </div>
-
-        <strong>
-          No property listings available yet.
-        </strong>
-
-        <p>
-          New properties will appear here when SefwiGo partners publish them.
-        </p>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
+    const container =
+      document.getElementById("propertyList");
 
 
-  grid.innerHTML=
+    container.innerHTML =
+      `<div class="loading">Loading properties...</div>`;
 
-    properties.map(
-      (property,index)=>`
 
-        <article class="property">
+    try {
 
-          <div class="property-image">
-            ${propertyIcon(property.type)}
+      const q =
+        query(
+          collection(db, "properties"),
+          where("available", "==", true)
+        );
+
+
+      const snap =
+        await getDocs(q);
+
+
+      properties = [];
+
+
+      snap.forEach(item => {
+
+        properties.push({
+          id: item.id,
+          ...item.data()
+        });
+
+      });
+
+
+      renderProperties();
+
+    } catch (error) {
+
+      console.error(
+        "Properties error:",
+        error
+      );
+
+
+      /*
+        Fallback for older documents that may not
+        have an available field.
+      */
+
+      try {
+
+        const snap =
+          await getDocs(
+            collection(db, "properties")
+          );
+
+
+        properties = [];
+
+
+        snap.forEach(item => {
+
+          const data = item.data();
+
+          if (data.available === false) return;
+
+          properties.push({
+            id: item.id,
+            ...data
+          });
+
+        });
+
+
+        renderProperties();
+
+      } catch (secondError) {
+
+        console.error(secondError);
+
+        container.innerHTML = `
+          <div class="error">
+            Could not load properties.
           </div>
+        `;
+      }
+    }
+  }
 
-          <div class="property-body">
 
-            <span class="chip">
-              ${escapeHTML(
-                property.purpose||
-                "Property"
-              )}
-            </span>
+  function getPropertyImages(property) {
 
-            <h3>
-              ${escapeHTML(
-                property.title||
-                "Property"
-              )}
-            </h3>
+    let images = [];
 
-            <div class="property-price">
-              GH₵ ${Number(
-                property.price||0
-              ).toLocaleString()}
+
+    if (Array.isArray(property.photoUrls)) {
+
+      images.push(
+        ...property.photoUrls.filter(Boolean)
+      );
+    }
+
+
+    if (property.photoUrl) {
+
+      if (!images.includes(property.photoUrl)) {
+        images.unshift(property.photoUrl);
+      }
+    }
+
+
+    if (property.imageUrl) {
+
+      if (!images.includes(property.imageUrl)) {
+        images.unshift(property.imageUrl);
+      }
+    }
+
+
+    return images;
+  }
+
+
+  function renderProperties() {
+
+    const container =
+      document.getElementById("propertyList");
+
+
+    if (!properties.length) {
+
+      container.innerHTML = `
+        <div class="empty">
+
+          <div style="font-size:50px;">🏠</div>
+
+          <p>
+            No properties are available right now.
+          </p>
+
+        </div>
+      `;
+
+      return;
+    }
+
+
+    container.innerHTML =
+      properties.map(property => {
+
+        const images =
+          getPropertyImages(property);
+
+
+        const imageHtml =
+          images.length
+          ? `
+            <img
+              class="property-image"
+              src="${escapeHtml(images[0])}"
+              alt="${escapeHtml(property.title || "Property")}"
+            >
+          `
+          : `
+            <div class="property-placeholder">
+              ${propertyIcon(property.type)}
             </div>
+          `;
 
-            <div class="meta">
 
-              <span>
-                📍 ${escapeHTML(
-                  property.location||""
+        const bedrooms =
+          property.bedrooms !== undefined &&
+          property.bedrooms !== null &&
+          property.bedrooms !== ""
+          ? `${escapeHtml(property.bedrooms)} beds`
+          : "";
+
+
+        const bathrooms =
+          property.bathrooms !== undefined &&
+          property.bathrooms !== null &&
+          property.bathrooms !== ""
+          ? `${escapeHtml(property.bathrooms)} baths`
+          : "";
+
+
+        const meta =
+          [
+            property.type,
+            bedrooms,
+            bathrooms,
+            property.location
+          ]
+          .filter(Boolean)
+          .join(" • ");
+
+
+        return `
+          <div class="property-card">
+
+            ${imageHtml}
+
+            <div class="property-content">
+
+              <h3>
+                ${escapeHtml(
+                  property.title || "Property"
                 )}
-              </span>
+              </h3>
+
+              <div class="property-price">
+                ${money(property.price)}
+              </div>
 
               ${
-                property.bedrooms
-
-                ?
-
-                `<span>
-                  🛏️ ${escapeHTML(property.bedrooms)}
-                </span>`
-
-                :
-
-                ""
+                meta
+                ? `
+                  <div class="property-meta">
+                    ${escapeHtml(meta)}
+                  </div>
+                `
+                : ""
               }
 
-              ${
-                property.bathrooms
-
-                ?
-
-                `<span>
-                  🚿 ${escapeHTML(property.bathrooms)}
-                </span>`
-
-                :
-
-                ""
-              }
-
-            </div>
-
-            <p class="help">
-              ${escapeHTML(
-                String(
-                  property.description||""
-                ).slice(0,120)
-              )}
-            </p>
-
-            <div class="property-actions">
-
               <button
-                class="small"
-                onclick="showProperty(${index})">
-
-                Details
-
-              </button>
-
-              <button
-                class="small primary"
-                onclick="contactProperty(${index})">
-
-                Contact
-
+                onclick="openProperty('${property.id}')"
+              >
+                View property
               </button>
 
             </div>
 
           </div>
+        `;
 
-        </article>
+      }).join("");
+  }
 
+
+  window.openProperty = function(propertyId) {
+
+    const property =
+      properties.find(
+        item => item.id === propertyId
+      );
+
+
+    if (!property) return;
+
+
+    const container =
+      document.getElementById("propertyContent");
+
+
+    const images =
+      getPropertyImages(property);
+
+
+    const photosHtml =
+      images.length
+      ? `
+        <div class="photo-gallery">
+
+          ${
+            images.map(image => `
+              <img
+                src="${escapeHtml(image)}"
+                alt="${escapeHtml(property.title || "Property")}"
+              >
+            `).join("")
+          }
+
+        </div>
       `
-    ).join("");
-
-}
-
-
-window.showProperty=function(index){
-
-  const p=properties[index];
-
-  if(!p)return;
+      : `
+        <div class="property-placeholder" style="
+          border-radius:15px;
+          margin-bottom:15px;
+        ">
+          ${propertyIcon(property.type)}
+        </div>
+      `;
 
 
-  alert(
+    container.innerHTML = `
 
-    (p.title||"Property")+
-    "\n\n"+
-    (p.purpose||"")+
-    " • "+
-    (p.type||"")+
-    "\nGH₵ "+
-    Number(p.price||0).toLocaleString()+
-    "\n"+
-    (p.location||"")+
-    "\n\n"+
-    (p.description||"")+
-    "\n\nOwner/Agent: "+
-    (p.owner||"—")+
-    "\nPhone: "+
-    (p.phone||"—")
+      ${photosHtml}
 
-  );
-
-};
+      <h2>
+        ${escapeHtml(
+          property.title || "Property"
+        )}
+      </h2>
 
 
-window.contactProperty=function(index){
-
-  const p=properties[index];
-
-  if(!p)return;
+      <div class="property-price" style="margin-top:8px;">
+        ${money(property.price)}
+      </div>
 
 
-  const phone=
-    String(p.phone||"")
-    .replace(/\D/g,"");
+      <div class="detail-box">
+
+        ${
+          property.purpose
+          ? `<p><strong>Purpose:</strong> ${escapeHtml(property.purpose)}</p>`
+          : ""
+        }
+
+        ${
+          property.type
+          ? `<p><strong>Type:</strong> ${escapeHtml(property.type)}</p>`
+          : ""
+        }
+
+        ${
+          property.location
+          ? `<p><strong>Location:</strong> ${escapeHtml(property.location)}</p>`
+          : ""
+        }
+
+        ${
+          property.bedrooms !== undefined &&
+          property.bedrooms !== ""
+          ? `<p><strong>Bedrooms:</strong> ${escapeHtml(property.bedrooms)}</p>`
+          : ""
+        }
+
+        ${
+          property.bathrooms !== undefined &&
+          property.bathrooms !== ""
+          ? `<p><strong>Bathrooms:</strong> ${escapeHtml(property.bathrooms)}</p>`
+          : ""
+        }
+
+      </div>
 
 
-  if(phone){
+      ${
+        property.description
+        ? `
+          <div class="detail-box">
+            <strong>Description</strong>
 
-    location.href=
-      "tel:+"+phone;
+            <p>
+              ${escapeHtml(property.description)}
+            </p>
+          </div>
+        `
+        : ""
+      }
 
-  }else{
 
-    showToast(
-      "No contact number was added to this property."
+      ${
+        property.owner
+        ? `
+          <div class="detail-box">
+            <p>
+              <strong>Owner:</strong>
+              ${escapeHtml(property.owner)}
+            </p>
+          </div>
+        `
+        : ""
+      }
+
+
+      ${
+        property.phone
+        ? `
+          <button
+            class="primary-btn"
+            onclick="window.location.href='tel:${escapeHtml(property.phone)}'"
+          >
+            📞 Contact owner
+          </button>
+        `
+        : ""
+      }
+
+    `;
+
+
+    openModal("propertyModal");
+  };
+
+
+  window.scrollToProperties = function() {
+
+    document
+      .getElementById("propertySection")
+      .scrollIntoView({
+        behavior: "smooth"
+      });
+  };
+
+
+  /* =========================
+     PARTNER
+  ========================= */
+
+  window.showPartnerMessage = function() {
+
+    alert(
+      "To become a SefwiGo partner, please contact the SefwiGo team."
     );
-
-  }
-
-};
+  };
 
 
-/* =========================================================
-   START APP
-   ========================================================= */
+  /* =========================
+     HOME
+  ========================= */
 
-window.addEventListener(
-  "load",
-  async function(){
+  window.goHome = function() {
 
-    updateCartCount();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
 
-    await initFirebase();
 
-    await loadProperties();
+  /* =========================
+     CLOSE MODALS BY BACKDROP
+  ========================= */
 
-    updateAccountButton();
+  document
+    .querySelectorAll(".modal")
+    .forEach(modal => {
 
-  }
-);
+      modal.addEventListener("click", event => {
+
+        if (event.target === modal) {
+
+          modal.classList.remove("show");
+        }
+
+      });
+
+    });
+
+
+  /* =========================
+     START APP
+  ========================= */
+
+  loadCart();
+
+  loadBusinesses();
+
+  loadProperties();
 
 </script>
 
