@@ -1,1 +1,5554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#075c3b">
+<title>SefwiGo Management</title>
 
+<style>
+:root{
+  --green:#0f7a4f;
+  --dark:#075c3b;
+  --light:#eaf7f0;
+  --gold:#e0ad3d;
+  --ink:#17221d;
+  --muted:#718078;
+  --bg:#f5f8f6;
+  --white:#fff;
+  --line:#dfe9e3;
+  --danger:#b83b3b;
+  --shadow:0 18px 50px rgba(16,55,38,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  padding-bottom:80px;
+}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.55;cursor:not-allowed}
+.container{width:min(1150px,92%);margin:auto}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:rgba(255,255,255,.95);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid var(--line);
+}
+.nav{
+  height:72px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-right:auto;
+  font-size:21px;
+  font-weight:950;
+}
+.logo{
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  color:white;
+  background:linear-gradient(135deg,var(--green),var(--dark));
+}
+.icon,.account-btn{
+  height:44px;
+  border:1px solid var(--line);
+  border-radius:13px;
+  background:#fff;
+  font-weight:850;
+}
+.icon{width:44px;font-size:20px}
+.account-btn{
+  padding:0 14px;
+  color:white;
+  background:var(--green);
+  border-color:var(--green);
+}
+
+.hero{
+  margin:24px 0;
+  border-radius:30px;
+  overflow:hidden;
+  color:#fff;
+  background:
+    radial-gradient(circle at 85% 15%,rgba(224,173,61,.35),transparent 25%),
+    linear-gradient(135deg,#064f34,#159461 65%,#0b7048);
+  box-shadow:var(--shadow);
+}
+.hero-inner{
+  padding:44px clamp(22px,6vw,62px);
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:30px;
+  align-items:center;
+}
+.eyebrow{
+  text-transform:uppercase;
+  letter-spacing:.15em;
+  font-size:12px;
+  font-weight:900;
+  opacity:.8;
+}
+.hero h1{
+  margin:10px 0 16px;
+  font-size:clamp(38px,6vw,65px);
+  line-height:.98;
+  letter-spacing:-3px;
+}
+.hero p{
+  max-width:650px;
+  line-height:1.65;
+  color:rgba(255,255,255,.88);
+}
+.hero-art{
+  min-height:230px;
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:28px;
+  background:rgba(255,255,255,.09);
+  display:grid;
+  place-items:center;
+  font-size:105px;
+  transform:rotate(2deg);
+}
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:20px;
+}
+.btn{
+  border:0;
+  border-radius:13px;
+  padding:12px 17px;
+  font-weight:900;
+}
+.white{background:white;color:var(--dark)}
+.gold{background:var(--gold);color:#17221d}
+.green{background:var(--green);color:#fff}
+
+.section{padding:10px 0 28px}
+.section-head{
+  margin-bottom:15px;
+}
+.section-head h2{
+  margin:0;
+  font-size:25px;
+}
+.section-head p{
+  margin:5px 0 0;
+  color:var(--muted);
+}
+.tools{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:13px;
+}
+.card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:18px;
+  box-shadow:0 5px 20px rgba(20,45,32,.04);
+}
+.tool{
+  min-height:135px;
+  text-align:left;
+  transition:.2s;
+}
+.tool:hover{
+  transform:translateY(-3px);
+  box-shadow:var(--shadow);
+}
+.tool b{
+  display:block;
+  font-size:31px;
+  margin-bottom:12px;
+}
+.tool strong{display:block}
+.tool span{
+  display:block;
+  margin-top:5px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+.partner-box{
+  padding:25px;
+  border-radius:24px;
+  background:#10251b;
+  color:#fff;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+}
+.partner-box h2{margin:0 0 7px}
+.partner-box p{
+  margin:0;
+  color:rgba(255,255,255,.72);
+}
+
+.bottom{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  height:72px;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(15px);
+  border-top:1px solid var(--line);
+  z-index:30;
+}
+.bottom-inner{
+  width:min(650px,100%);
+  height:100%;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+}
+.nav-item{
+  border:0;
+  background:none;
+  color:#78837c;
+  font-size:11px;
+  font-weight:800;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:3px;
+}
+.nav-item b{font-size:22px}
+.nav-item.active{color:var(--green)}
+
+.overlay,.modal{
+  position:fixed;
+  inset:0;
+  z-index:50;
+  background:rgba(5,18,12,.62);
+  display:none;
+}
+.overlay.open,.modal.open{display:flex}
+
+.drawer{
+  width:min(390px,90vw);
+  height:100%;
+  background:#fff;
+  padding:22px;
+  overflow:auto;
+}
+.drawer-head,.modal-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.drawer-head{margin-bottom:18px}
+.menu{
+  width:100%;
+  border:0;
+  background:#fff;
+  border-radius:14px;
+  padding:14px;
+  text-align:left;
+  font-weight:850;
+  display:flex;
+  gap:11px;
+}
+.menu:hover{
+  background:var(--light);
+  color:var(--dark);
+}
+.divider{
+  height:1px;
+  background:var(--line);
+  margin:14px 0;
+}
+
+.modal{
+  padding:14px;
+  align-items:center;
+  justify-content:center;
+  overflow:auto;
+}
+.modal-card{
+  width:min(1000px,100%);
+  max-height:94vh;
+  overflow:auto;
+  background:#fff;
+  border-radius:27px;
+  box-shadow:0 35px 90px rgba(0,0,0,.3);
+}
+.modal-head{
+  position:sticky;
+  top:0;
+  z-index:5;
+  padding:17px 20px;
+  background:#fff;
+  border-bottom:1px solid var(--line);
+}
+.close{
+  border:0;
+  background:#eef3f0;
+  width:40px;
+  height:40px;
+  border-radius:12px;
+  font-size:21px;
+}
+.body{padding:20px}
+
+.dashboard-head{
+  padding:24px;
+  color:#fff;
+  background:linear-gradient(135deg,#0a6743,#15915f);
+}
+.dashboard-head h2{
+  margin:0;
+  font-size:28px;
+}
+.dashboard-head p{
+  margin:7px 0 0;
+  color:rgba(255,255,255,.8);
+}
+
+.tabs{
+  display:flex;
+  gap:7px;
+  overflow:auto;
+  margin-bottom:17px;
+}
+.tab{
+  white-space:nowrap;
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:11px;
+  padding:10px 14px;
+  font-weight:850;
+}
+.tab.active{
+  background:var(--green);
+  border-color:var(--green);
+  color:#fff;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin:15px 0;
+}
+.stat{
+  padding:16px;
+  border:1px solid var(--line);
+  background:#f8fbf9;
+  border-radius:16px;
+}
+.stat b{
+  display:block;
+  font-size:25px;
+}
+.stat span{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.form{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:13px;
+}
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.field.full{grid-column:1/-1}
+.field label{
+  font-size:13px;
+  font-weight:900;
+}
+.field input,
+.field select,
+.field textarea{
+  width:100%;
+  border:1px solid #d7e2db;
+  background:#fbfcfb;
+  border-radius:12px;
+  padding:12px;
+  outline:0;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  border-color:var(--green);
+  box-shadow:0 0 0 3px rgba(15,122,79,.1);
+}
+textarea{
+  min-height:105px;
+  resize:vertical;
+}
+.submit{
+  width:100%;
+  border:0;
+  background:var(--green);
+  color:#fff;
+  border-radius:13px;
+  padding:14px;
+  font-weight:950;
+}
+.small{
+  border:0;
+  background:#eef3f0;
+  color:var(--dark);
+  border-radius:11px;
+  padding:9px 11px;
+  font-weight:850;
+}
+.danger{
+  background:#fff0f0;
+  color:var(--danger);
+}
+.help{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+}
+.empty{
+  padding:32px 15px;
+  text-align:center;
+  border:1px dashed #c8d6cd;
+  border-radius:18px;
+  color:var(--muted);
+  background:#fff;
+}
+
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:12px;
+}
+.product{
+  border:1px solid var(--line);
+  border-radius:18px;
+  overflow:hidden;
+  background:#fff;
+}
+.product-image{
+  width:100%;
+  height:150px;
+  object-fit:cover;
+  background:var(--light);
+}
+.product-body{padding:14px}
+.product-body h3{margin:0 0 5px}
+.price{
+  color:var(--dark);
+  font-size:20px;
+  font-weight:950;
+  margin:7px 0;
+}
+
+.modifier{
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:11px;
+  margin:9px 0;
+  background:#fbfcfb;
+}
+.modifier-row{
+  display:grid;
+  grid-template-columns:1fr 90px auto;
+  gap:6px;
+  margin-top:6px;
+}
+.modifier-row input{
+  width:100%;
+  border:1px solid #d7e2db;
+  border-radius:9px;
+  padding:8px;
+}
+
+.property-image{
+  height:150px;
+  border-radius:15px;
+  background:linear-gradient(135deg,#dff1e7,#fbf1d6);
+  display:grid;
+  place-items:center;
+  font-size:60px;
+  overflow:hidden;
+}
+.property-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.preview{
+  min-height:100px;
+  border:1px dashed #cbd8d0;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+}
+.preview img{
+  max-width:100%;
+  max-height:170px;
+  object-fit:cover;
+}
+
+.order{
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:16px;
+  margin-bottom:11px;
+  background:#fff;
+}
+.order-top{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+}
+.order-items{
+  margin:12px 0;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.order-row{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:8px 0;
+}
+.status{
+  display:inline-flex;
+  align-items:center;
+  height:max-content;
+  padding:6px 9px;
+  border-radius:999px;
+  background:var(--light);
+  color:var(--dark);
+  font-size:11px;
+  font-weight:900;
+}
+
+.role{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin:10px 0 15px;
+}
+.role-card{
+  border:2px solid var(--line);
+  border-radius:16px;
+  padding:14px;
+  background:#fff;
+  text-align:left;
+}
+.role-card.selected{
+  border-color:var(--green);
+  background:#f0faf5;
+}
+.role-card strong{display:block}
+.role-card span{
+  display:block;
+  margin-top:4px;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:88px;
+  transform:translateX(-50%) translateY(20px);
+  background:#10251b;
+  color:#fff;
+  padding:13px 17px;
+  border-radius:13px;
+  z-index:100;
+  opacity:0;
+  pointer-events:none;
+  transition:.2s;
+  max-width:min(90vw,500px);
+  text-align:center;
+  font-weight:750;
+}
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+.hidden{display:none!important}
+
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr}
+  .tools{grid-template-columns:repeat(2,1fr)}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .hero-art{min-height:150px}
+}
+@media(max-width:620px){
+  .tools{grid-template-columns:1fr}
+  .form{grid-template-columns:1fr}
+  .field.full{grid-column:auto}
+  .role{grid-template-columns:1fr}
+  .partner-box{display:block}
+  .partner-box .btn{margin-top:15px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+    <button class="icon" onclick="openDrawer()">☰</button>
+
+    <div class="brand">
+      <div class="logo">SG</div>
+      SefwiGo Management
+    </div>
+
+    <button class="account-btn" id="accountBtn" onclick="openAccount()">
+      Sign in
+    </button>
+  </div>
+</header>
+
+<main class="container">
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow">SefwiGo Operations</div>
+
+      <h1>
+        Manage your business,
+        products and orders.
+      </h1>
+
+      <p>
+        Partners and vendors use this website to publish their businesses,
+        food, products and properties. Customer orders are received here
+        and can then be prepared for delivery.
+      </p>
+
+      <div class="actions">
+        <button class="btn white" onclick="openAccount()">
+          Partner Sign In
+        </button>
+
+        <button class="btn gold" onclick="openPartner()">
+          Open Dashboard
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-art">🏪</div>
+  </div>
+</section>
+
+<section class="section">
+
+  <div class="section-head">
+    <h2>Management Tools</h2>
+    <p>
+      Everything partners need to connect their items to SefwiGo.
+    </p>
+  </div>
+
+  <div class="tools">
+
+    <button class="card tool"
+      onclick="openPartner();showTab('business')">
+      <b>🏪</b>
+      <strong>My Business</strong>
+      <span>Create or update your public business.</span>
+    </button>
+
+    <button class="card tool"
+      onclick="openPartner();showTab('products')">
+      <b>🍲</b>
+      <strong>Products</strong>
+      <span>Add food, products, prices and photos.</span>
+    </button>
+
+    <button class="card tool"
+      onclick="openPartner();showTab('properties')">
+      <b>🏠</b>
+      <strong>Properties</strong>
+      <span>Register and manage properties.</span>
+    </button>
+
+    <button class="card tool"
+      onclick="openPartner();showTab('orders')">
+      <b>📦</b>
+      <strong>Orders</strong>
+      <span>Accept, prepare and mark orders ready.</span>
+    </button>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="partner-box">
+    <div>
+      <h2>Connect your business to SefwiGo</h2>
+      <p>
+        Products published here use the same Firebase project as the customer app.
+      </p>
+    </div>
+
+    <button class="btn gold" onclick="openAccount()">
+      Create Partnership Account
+    </button>
+  </div>
+</section>
+
+</main>
+
+<nav class="bottom">
+  <div class="bottom-inner">
+
+    <button class="nav-item active"
+      onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <b>⌂</b>
+      Home
+    </button>
+
+    <button class="nav-item"
+      onclick="openPartner()">
+      <b>🏪</b>
+      Partner
+    </button>
+
+    <button class="nav-item"
+      onclick="openDeliveryDashboard()">
+      <b>🛵</b>
+      Delivery
+    </button>
+
+    <button class="nav-item"
+      onclick="openAdminDashboard()">
+      <b>⚙</b>
+      Admin
+    </button>
+
+  </div>
+</nav>
+
+
+<!-- DRAWER -->
+
+<div class="overlay" id="drawerOverlay"
+  onclick="if(event.target===this)closeDrawer()">
+
+  <aside class="drawer">
+
+    <div class="drawer-head">
+      <div class="brand">
+        <div class="logo">SG</div>
+        Menu
+      </div>
+
+      <button class="close" onclick="closeDrawer()">×</button>
+    </div>
+
+    <button class="menu"
+      onclick="closeDrawer();openPartner()">
+      🤝 Partner Dashboard
+    </button>
+
+    <button class="menu"
+      onclick="closeDrawer();openPartner();showTab('business')">
+      🏪 My Business
+    </button>
+
+    <button class="menu"
+      onclick="closeDrawer();openPartner();showTab('products')">
+      🍲 Products
+    </button>
+
+    <button class="menu"
+      onclick="closeDrawer();openPartner();showTab('properties')">
+      🏠 Properties
+    </button>
+
+    <button class="menu"
+      onclick="closeDrawer();openPartner();showTab('orders')">
+      📦 Vendor Orders
+    </button>
+
+    <div class="divider"></div>
+
+    <button class="menu"
+      onclick="closeDrawer();openDeliveryDashboard()">
+      🛵 Delivery Dashboard
+    </button>
+
+    <button class="menu"
+      onclick="closeDrawer();openAdminDashboard()">
+      ⚙ Admin Dashboard
+    </button>
+
+    <div class="divider"></div>
+
+    <button class="menu"
+      onclick="closeDrawer();openAccount()">
+      👤 Account
+    </button>
+
+  </aside>
+</div>
+
+
+<!-- ACCOUNT -->
+
+<div class="modal" id="accountModal">
+
+  <div class="modal-card">
+
+    <div class="modal-head">
+      <strong id="accountTitle">
+        SefwiGo Management Account
+      </strong>
+
+      <button class="close"
+        onclick="closeModal('accountModal')">
+        ×
+      </button>
+    </div>
+
+    <div class="body">
+
+      <div id="authIntro" class="help"
+        style="font-size:14px;margin-bottom:13px">
+        Create a partnership account to manage your business,
+        products, properties and vendor orders.
+      </div>
+
+      <div id="authRole" class="role">
+
+        <button id="rolePartner"
+          class="role-card selected"
+          onclick="selectRole('partnership')">
+
+          <strong>🤝 Partnership</strong>
+
+          <span>
+            Manage a business, products, properties and orders.
+          </span>
+
+        </button>
+
+        <button id="roleCustomer"
+          class="role-card"
+          onclick="selectRole('customer')">
+
+          <strong>👤 Customer</strong>
+
+          <span>
+            Customer accounts are created in the customer app.
+          </span>
+
+        </button>
+
+      </div>
+
+      <div id="signupBox">
+
+        <form class="form"
+          onsubmit="signup(event)">
+
+          <div class="field full">
+            <label>Full name *</label>
+            <input
+              id="signupName"
+              required
+              autocomplete="name">
+          </div>
+
+          <div class="field full">
+            <label>Email *</label>
+            <input
+              id="signupEmail"
+              type="email"
+              required
+              autocomplete="email">
+          </div>
+
+          <div class="field">
+            <label>Password *</label>
+            <input
+              id="signupPass"
+              type="password"
+              minlength="6"
+              required
+              autocomplete="new-password">
+          </div>
+
+          <div class="field">
+            <label>Confirm password *</label>
+            <input
+              id="signupPass2"
+              type="password"
+              minlength="6"
+              required
+              autocomplete="new-password">
+          </div>
+
+          <div class="field full">
+            <button class="submit">
+              Create Partnership Account
+            </button>
+          </div>
+
+        </form>
+
+        <p class="help">
+          Your partnership account is saved in Firebase Authentication
+          and Firestore.
+        </p>
+
+        <button class="small"
+          onclick="toggleAuth(false)">
+          Already have an account? Sign in
+        </button>
+
+      </div>
+
+      <div id="loginBox" class="hidden">
+
+        <form class="form"
+          onsubmit="login(event)">
+
+          <div class="field full">
+            <label>Email *</label>
+            <input
+              id="loginEmail"
+              type="email"
+              autocomplete="email">
+          </div>
+
+          <div class="field full">
+            <label>Password *</label>
+            <input
+              id="loginPass"
+              type="password"
+              autocomplete="current-password">
+          </div>
+
+          <div class="field full">
+            <button class="submit">
+              Sign In
+            </button>
+          </div>
+
+        </form>
+
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+
+          <button class="small"
+            onclick="resetPassword()">
+            Forgot password?
+          </button>
+
+          <button class="small"
+            onclick="toggleAuth(true)">
+            Create partnership account
+          </button>
+
+        </div>
+
+      </div>
+
+      <div id="accountSigned" class="hidden"></div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- PARTNER DASHBOARD -->
+
+<div class="modal" id="partnerModal">
+
+  <div class="modal-card">
+
+    <div class="dashboard-head">
+
+      <div class="modal-head"
+        style="padding:0;background:transparent;border:0">
+
+        <div>
+          <h2>Partner Dashboard</h2>
+          <p id="partnerSub">
+            Manage your SefwiGo business.
+          </p>
+        </div>
+
+        <button class="close"
+          onclick="closeModal('partnerModal')">
+          ×
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="body">
+
+      <div id="partnerStats" class="stats"></div>
+
+      <div class="tabs">
+
+        <button
+          class="tab active"
+          data-tab="overview"
+          onclick="showTab('overview')">
+          Overview
+        </button>
+
+        <button
+          class="tab"
+          data-tab="business"
+          onclick="showTab('business')">
+          My Business
+        </button>
+
+        <button
+          class="tab"
+          data-tab="products"
+          onclick="showTab('products')">
+          Products
+        </button>
+
+        <button
+          class="tab"
+          data-tab="properties"
+          onclick="showTab('properties')">
+          Properties
+        </button>
+
+        <button
+          class="tab"
+          data-tab="orders"
+          onclick="showTab('orders')">
+          Orders
+        </button>
+
+      </div>
+
+      <div id="dashboardContent"></div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<!-- DELIVERY -->
+
+<div class="modal" id="deliveryModal">
+
+  <div class="modal-card">
+
+    <div class="modal-head">
+
+      <strong>Delivery Dashboard</strong>
+
+      <button class="close"
+        onclick="closeModal('deliveryModal')">
+        ×
+      </button>
+
+    </div>
+
+    <div class="body" id="deliveryContent"></div>
+
+  </div>
+
+</div>
+
+
+<!-- ADMIN -->
+
+<div class="modal" id="adminModal">
+
+  <div class="modal-card">
+
+    <div class="modal-head">
+
+      <strong>Admin Dashboard</strong>
+
+      <button class="close"
+        onclick="closeModal('adminModal')">
+        ×
+      </button>
+
+    </div>
+
+    <div class="body" id="adminContent"></div>
+
+  </div>
+
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script type="module">
+
+/* =========================================================
+   FIREBASE CONFIGURATION
+========================================================= */
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDjHGyeObPLLuqTNhNGE5SBRfBL5T29qWA",
+  authDomain: "sefwi-go.firebaseapp.com",
+  projectId: "sefwi-go",
+  storageBucket: "sefwi-go.firebasestorage.app",
+  messagingSenderId: "210398787110",
+  appId: "1:210398787110:web:f7f76a538a2712a2bb58e7"
+};
+
+
+/* =========================================================
+   GLOBAL VARIABLES
+========================================================= */
+
+let app = null;
+let auth = null;
+let db = null;
+let storage = null;
+
+let authFns = null;
+let fs = null;
+let sf = null;
+
+let firebaseReady = false;
+
+let modifierGroups = [];
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+const $ = id => document.getElementById(id);
+
+function esc(value){
+  return String(value ?? "")
+    .replace(/[&<>"']/g, char => ({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+    }[char]));
+}
+
+function toast(message){
+
+  const el = $("toast");
+
+  el.textContent = message;
+  el.classList.add("show");
+
+  clearTimeout(window.__toastTimer);
+
+  window.__toastTimer = setTimeout(()=>{
+    el.classList.remove("show");
+  },3000);
+}
+
+window.toast = toast;
+
+
+/* =========================================================
+   FIREBASE INITIALIZATION
+========================================================= */
+
+async function initFirebase(){
+
+  if(firebaseReady){
+    return true;
+  }
+
+  try{
+
+    const firebaseApp =
+      await import(
+        "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"
+      );
+
+    const firebaseAuth =
+      await import(
+        "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"
+      );
+
+    const firebaseFirestore =
+      await import(
+        "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"
+      );
+
+    const firebaseStorage =
+      await import(
+        "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js"
+      );
+
+
+    app = firebaseApp.initializeApp(firebaseConfig);
+
+    auth = firebaseAuth.getAuth(app);
+
+    db = firebaseFirestore.getFirestore(app);
+
+    storage = firebaseStorage.getStorage(app);
+
+
+    authFns = {
+      createUserWithEmailAndPassword:
+        firebaseAuth.createUserWithEmailAndPassword,
+
+      signInWithEmailAndPassword:
+        firebaseAuth.signInWithEmailAndPassword,
+
+      updateProfile:
+        firebaseAuth.updateProfile,
+
+      sendPasswordResetEmail:
+        firebaseAuth.sendPasswordResetEmail,
+
+      signOut:
+        firebaseAuth.signOut
+    };
+
+
+    fs = {
+
+      collection:
+        firebaseFirestore.collection,
+
+      doc:
+        firebaseFirestore.doc,
+
+      addDoc:
+        firebaseFirestore.addDoc,
+
+      getDoc:
+        firebaseFirestore.getDoc,
+
+      getDocs:
+        firebaseFirestore.getDocs,
+
+      setDoc:
+        firebaseFirestore.setDoc,
+
+      updateDoc:
+        firebaseFirestore.updateDoc,
+
+      deleteDoc:
+        firebaseFirestore.deleteDoc,
+
+      query:
+        firebaseFirestore.query,
+
+      where:
+        firebaseFirestore.where,
+
+      serverTimestamp:
+        firebaseFirestore.serverTimestamp
+    };
+
+
+    sf = {
+
+      ref:
+        firebaseStorage.ref,
+
+      uploadBytes:
+        firebaseStorage.uploadBytes,
+
+      getDownloadURL:
+        firebaseStorage.getDownloadURL
+    };
+
+
+    firebaseReady = true;
+
+    auth.onAuthStateChanged(user => {
+
+      $("accountBtn").textContent =
+        user ? "Account" : "Sign in";
+
+    });
+
+    return true;
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      "Firebase could not start. Check the Firebase configuration."
+    );
+
+    return false;
+  }
+}
+
+
+/* =========================================================
+   DRAWER / MODALS
+========================================================= */
+
+window.openDrawer = function(){
+  $("drawerOverlay").classList.add("open");
+};
+
+window.closeDrawer = function(){
+  $("drawerOverlay").classList.remove("open");
+};
+
+window.closeModal = function(id){
+  $(id).classList.remove("open");
+};
+
+
+/* =========================================================
+   ACCOUNT
+========================================================= */
+
+window.openAccount = async function(){
+
+  await initFirebase();
+
+  $("accountModal").classList.add("open");
+
+  const user = auth?.currentUser;
+
+  if(user){
+
+    $("authIntro").classList.add("hidden");
+    $("authRole").classList.add("hidden");
+    $("signupBox").classList.add("hidden");
+    $("loginBox").classList.add("hidden");
+
+    $("accountSigned").classList.remove("hidden");
+
+    $("accountSigned").innerHTML = `
+
+      <div class="card">
+
+        <h3 style="margin-top:0">
+          Signed in
+        </h3>
+
+        <p class="help">
+          <b>${esc(user.displayName || "SefwiGo User")}</b>
+          <br>
+          ${esc(user.email || "")}
+        </p>
+
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+
+          <button
+            class="submit"
+            style="flex:1"
+            onclick="
+              closeModal('accountModal');
+              openPartner();
+            ">
+            Partner Dashboard
+          </button>
+
+          <button
+            class="small danger"
+            onclick="logout()">
+            Sign out
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }else{
+
+    $("authIntro").classList.remove("hidden");
+    $("authRole").classList.remove("hidden");
+    $("accountSigned").classList.add("hidden");
+
+    toggleAuth(true);
+  }
+};
+
+
+window.toggleAuth = function(signupMode){
+
+  $("signupBox")
+    .classList.toggle("hidden",!signupMode);
+
+  $("loginBox")
+    .classList.toggle("hidden",signupMode);
+
+  $("accountTitle").textContent =
+    signupMode
+      ? "Create Partnership Account"
+      : "Sign In to SefwiGo Management";
+};
+
+
+window.selectRole = function(type){
+
+  if(type !== "partnership"){
+
+    toast(
+      "Customer accounts should be created in the customer app."
+    );
+
+    return;
+  }
+
+  $("rolePartner").classList.add("selected");
+  $("roleCustomer").classList.remove("selected");
+};
+
+
+/* =========================================================
+   CREATE PARTNERSHIP ACCOUNT
+========================================================= */
+
+window.signup = async function(event){
+
+  event.preventDefault();
+
+  if(!(await initFirebase())){
+    return;
+  }
+
+  const name =
+    $("signupName").value.trim();
+
+  const email =
+    $("signupEmail").value.trim();
+
+  const password =
+    $("signupPass").value;
+
+  const confirmPassword =
+    $("signupPass2").value;
+
+
+  if(!name || !email || !password || !confirmPassword){
+
+    toast("Please fill in all required fields.");
+
+    return;
+  }
+
+
+  if(password.length < 6){
+
+    toast(
+      "Password must be at least 6 characters."
+    );
+
+    return;
+  }
+
+
+  if(password !== confirmPassword){
+
+    toast("Passwords do not match.");
+
+    return;
+  }
+
+
+  try{
+
+    const credential =
+      await authFns.createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+
+    await authFns.updateProfile(
+      credential.user,
+      {
+        displayName:name
+      }
+    );
+
+
+    await fs.setDoc(
+      fs.doc(
+        db,
+        "users",
+        credential.user.uid
+      ),
+      {
+        name:name,
+        email:email,
+        accountType:"partnership",
+        createdAt:fs.serverTimestamp()
+      },
+      {
+        merge:true
+      }
+    );
+
+
+    localStorage.setItem(
+      "sefwiAccountType",
+      "partnership"
+    );
+
+
+    closeModal("accountModal");
+
+    toast(
+      "Partnership account created successfully."
+    );
+
+
+    openPartner();
+
+  }catch(error){
+
+    console.error(error);
+
+    let message =
+      "Could not create the account.";
+
+    if(error.code ===
+      "auth/email-already-in-use"){
+
+      message =
+        "That email is already registered.";
+
+    }else if(
+      error.code ===
+      "auth/invalid-email"
+    ){
+
+      message =
+        "Enter a valid email address.";
+
+    }else if(
+      error.code ===
+      "auth/weak-password"
+    ){
+
+      message =
+        "Password is too weak.";
+
+    }else{
+
+      message =
+        "Could not create the account. Make sure Email/Password is enabled in Firebase Authentication.";
+    }
+
+    toast(message);
+  }
+};
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+window.login = async function(event){
+
+  event.preventDefault();
+
+  if(!(await initFirebase())){
+    return;
+  }
+
+  const email =
+    $("loginEmail").value.trim();
+
+  const password =
+    $("loginPass").value;
+
+
+  if(!email || !password){
+
+    toast("Enter your email and password.");
+
+    return;
+  }
+
+
+  try{
+
+    const credential =
+      await authFns.signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+
+    const profile =
+      await fs.getDoc(
+        fs.doc(
+          db,
+          "users",
+          credential.user.uid
+        )
+      );
+
+
+    const data =
+      profile.exists()
+        ? profile.data()
+        : {};
+
+
+    if(
+      data.accountType &&
+      data.accountType !== "partnership"
+    ){
+
+      await authFns.signOut(auth);
+
+      toast(
+        "This account is not a partnership account."
+      );
+
+      return;
+    }
+
+
+    localStorage.setItem(
+      "sefwiAccountType",
+      "partnership"
+    );
+
+
+    closeModal("accountModal");
+
+    toast("Signed in successfully.");
+
+    openPartner();
+
+  }catch(error){
+
+    console.error(error);
+
+    if(
+      error.code ===
+      "auth/invalid-credential" ||
+      error.code ===
+      "auth/wrong-password"
+    ){
+
+      toast(
+        "Email or password is incorrect."
+      );
+
+    }else{
+
+      toast(
+        "Could not sign in."
+      );
+    }
+  }
+};
+
+
+/* =========================================================
+   PASSWORD RESET
+========================================================= */
+
+window.resetPassword = async function(){
+
+  if(!(await initFirebase())){
+    return;
+  }
+
+  const email =
+    $("loginEmail").value.trim();
+
+  if(!email){
+
+    toast(
+      "Enter your email first."
+    );
+
+    return;
+  }
+
+  try{
+
+    await authFns.sendPasswordResetEmail(
+      auth,
+      email
+    );
+
+    toast(
+      "Password reset email sent."
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      "Could not send the reset email."
+    );
+  }
+};
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+window.logout = async function(){
+
+  try{
+
+    if(auth){
+      await authFns.signOut(auth);
+    }
+
+  }catch(error){}
+
+  localStorage.removeItem(
+    "sefwiAccountType"
+  );
+
+  closeModal("accountModal");
+  closeModal("partnerModal");
+
+  toast("Signed out.");
+};
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+async function getProfile(){
+
+  if(!auth?.currentUser){
+    return null;
+  }
+
+  const snap =
+    await fs.getDoc(
+      fs.doc(
+        db,
+        "users",
+        auth.currentUser.uid
+      )
+    );
+
+  return snap.exists()
+    ? snap.data()
+    : null;
+}
+
+
+/* =========================================================
+   PARTNER DASHBOARD
+========================================================= */
+
+window.openPartner = async function(){
+
+  if(!(await initFirebase())){
+    return;
+  }
+
+  if(!auth.currentUser){
+
+    toast(
+      "Please sign in with a partnership account first."
+    );
+
+    openAccount();
+
+    return;
+  }
+
+
+  const profile =
+    await getProfile();
+
+
+  if(
+    profile?.accountType &&
+    profile.accountType !== "partnership"
+  ){
+
+    toast(
+      "This account is not a partnership account."
+    );
+
+    return;
+  }
+
+
+  $("partnerModal")
+    .classList.add("open");
+
+
+  await renderStats();
+
+  await showTab("overview");
+};
+
+
+window.showTab = async function(tab){
+
+  if(
+    !$("partnerModal")
+      .classList.contains("open")
+  ){
+
+    $("partnerModal")
+      .classList.add("open");
+  }
+
+
+  document
+    .querySelectorAll(".tab")
+    .forEach(button => {
+
+      button.classList.toggle(
+        "active",
+        button.dataset.tab === tab
+      );
+
+    });
+
+
+  if(tab === "overview"){
+    renderOverview();
+  }
+
+  if(tab === "business"){
+    renderBusinessForm();
+  }
+
+  if(tab === "products"){
+    await renderProducts();
+  }
+
+  if(tab === "properties"){
+    await renderProperties();
+  }
+
+  if(tab === "orders"){
+    await renderVendorOrders();
+  }
+};
+
+
+/* =========================================================
+   BUSINESS
+========================================================= */
+
+async function getBusiness(){
+
+  const snap =
+    await fs.getDoc(
+      fs.doc(
+        db,
+        "businesses",
+        auth.currentUser.uid
+      )
+    );
+
+  return snap.exists()
+    ? {
+        id:snap.id,
+        ...snap.data()
+      }
+    : null;
+}
+
+
+async function renderStats(){
+
+  try{
+
+    const business =
+      await getBusiness();
+
+
+    const products =
+      await fs.getDocs(
+        fs.query(
+          fs.collection(db,"products"),
+          fs.where(
+            "vendorId",
+            "==",
+            auth.currentUser.uid
+          )
+        )
+      );
+
+
+    const properties =
+      await fs.getDocs(
+        fs.query(
+          fs.collection(db,"properties"),
+          fs.where(
+            "ownerUid",
+            "==",
+            auth.currentUser.uid
+          )
+        )
+      );
+
+
+    const orders =
+      await getVendorOrders();
+
+
+    $("partnerStats").innerHTML = `
+
+      <div class="stat">
+        <b>${business ? "✓" : "—"}</b>
+        <span>Business</span>
+      </div>
+
+      <div class="stat">
+        <b>${products.size}</b>
+        <span>Products</span>
+      </div>
+
+      <div class="stat">
+        <b>${properties.size}</b>
+        <span>Properties</span>
+      </div>
+
+      <div class="stat">
+        <b>${orders.length}</b>
+        <span>Orders</span>
+      </div>
+
+    `;
+
+
+    $("partnerSub").textContent =
+      business
+        ? `${business.name} • ${business.category || "Business"}`
+        : "Create your business profile to start publishing.";
+
+  }catch(error){
+
+    console.error(error);
+
+    $("partnerStats").innerHTML = "";
+  }
+}
+
+
+function renderOverview(){
+
+  $("dashboardContent").innerHTML = `
+
+    <div class="card">
+
+      <h3 style="margin-top:0">
+        Welcome to SefwiGo Management
+      </h3>
+
+      <p class="help" style="font-size:14px">
+
+        Create your business first.
+        Then publish your products.
+        Products are saved with your vendor ID and business name,
+        allowing the customer app to display them automatically.
+
+      </p>
+
+      <div class="tools" style="margin-top:15px">
+
+        <button class="card tool"
+          onclick="showTab('business')">
+          <b>🏪</b>
+          <strong>1. Business</strong>
+          <span>
+            Set your public business details.
+          </span>
+        </button>
+
+        <button class="card tool"
+          onclick="showTab('products')">
+          <b>🍲</b>
+          <strong>2. Products</strong>
+          <span>
+            Publish products customers can order.
+          </span>
+        </button>
+
+        <button class="card tool"
+          onclick="showTab('properties')">
+          <b>🏠</b>
+          <strong>3. Properties</strong>
+          <span>
+            Add available property listings.
+          </span>
+        </button>
+
+        <button class="card tool"
+          onclick="showTab('orders')">
+          <b>📦</b>
+          <strong>4. Orders</strong>
+          <span>
+            Process customer orders.
+          </span>
+        </button>
+
+      </div>
+
+    </div>
+  `;
+}
+
+
+function renderBusinessForm(){
+
+  getBusiness().then(business => {
+
+    $("dashboardContent").innerHTML = `
+
+      <div class="card">
+
+        <h3 style="margin-top:0">
+          ${business
+            ? "Edit Business"
+            : "Create Your Business"}
+        </h3>
+
+        <p class="help">
+
+          This business is linked to your partnership account.
+          The customer app can use it to find your products.
+
+        </p>
+
+        <form
+          class="form"
+          onsubmit="saveBusiness(event)">
+
+          <div class="field">
+
+            <label>
+              Business name *
+            </label>
+
+            <input
+              id="businessName"
+              required
+              value="${esc(business?.name || "")}">
+
+          </div>
+
+
+          <div class="field">
+
+            <label>
+              Category *
+            </label>
+
+            <select id="businessCategory" required>
+
+              <option value="">
+                Select category
+              </option>
+
+              ${[
+                "Restaurant",
+                "Chop Bar",
+                "Food Vendor",
+                "Provision Shop",
+                "Pharmacy",
+                "Clothing",
+                "Electronics",
+                "Other"
+              ].map(category => `
+
+                <option
+                  value="${esc(category)}"
+                  ${business?.category === category
+                    ? "selected"
+                    : ""}>
+
+                  ${esc(category)}
+
+                </option>
+
+              `).join("")}
+
+            </select>
+
+          </div>
+
+
+          <div class="field">
+
+            <label>
+              Owner / Contact Name
+            </label>
+
+            <input
+              id="businessOwner"
+              value="${esc(
+                business?.owner ||
+                auth.currentUser.displayName ||
+                ""
+              )}">
+
+          </div>
+
+
+          <div class="field">
+
+            <label>
+              Phone
+            </label>
+
+            <input
+              id="businessPhone"
+              inputmode="tel"
+              value="${esc(
+                business?.phone || ""
+              )}">
+
+          </div>
+
+
+          <div class="field">
+
+            <label>
+              Location
+            </label>
+
+            <input
+              id="businessLocation"
+              placeholder="Sefwi Wiawso"
+              value="${esc(
+                business?.location || ""
+              )}">
+
+          </div>
+
+
+          <div class="field">
+
+            <label>
+              Business Emoji
+            </label>
+
+            <input
+              id="businessEmoji"
+              maxlength="4"
+              value="${esc(
+                business?.emoji || "🏪"
+              )}">
+
+          </div>
+
+
+          <div class="field full">
+
+            <label>
+              Description
+            </label>
+
+            <textarea id="businessDescription">${esc(
+              business?.description || ""
+            )}</textarea>
+
+          </div>
+
+
+          <div class="field full">
+
+            <button class="submit">
+
+              ${business
+                ? "Save Business Changes"
+                : "Create Business"}
+
+            </button>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    `;
+  });
+}
+
+
+window.saveBusiness = async function(event){
+
+  event.preventDefault();
+
+  if(!auth.currentUser){
+    return;
+  }
+
+
+  try{
+
+    const ref =
+      fs.doc(
+        db,
+        "businesses",
+        auth.currentUser.uid
+      );
+
+
+    const old =
+      await fs.getDoc(ref);
+
+
+    await fs.setDoc(
+      ref,
+      {
+
+        name:
+          $("businessName")
+            .value
+            .trim(),
+
+        category:
+          $("businessCategory")
+            .value,
+
+        owner:
+          $("businessOwner")
+            .value
+            .trim(),
+
+        phone:
+          $("businessPhone")
+            .value
+            .trim(),
+
+        location:
+          $("businessLocation")
+            .value
+            .trim(),
+
+        emoji:
+          $("businessEmoji")
+            .value
+            .trim() || "🏪",
+
+        description:
+          $("businessDescription")
+            .value
+            .trim(),
+
+        ownerUid:
+          auth.currentUser.uid,
+
+        available:true,
+
+        updatedAt:
+          fs.serverTimestamp(),
+
+        createdAt:
+          old.exists()
+            ? old.data().createdAt
+            : fs.serverTimestamp()
+
+      },
+      {
+        merge:true
+      }
+    );
+
+
+    toast(
+      "Business saved successfully."
+    );
+
+
+    await renderStats();
+
+    renderBusinessForm();
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      "Could not save business. Check Firestore rules."
+    );
+  }
+};
+
+
+/* =========================================================
+   PRODUCTS
+========================================================= */
+
+async function renderProducts(){
+
+  const container =
+    $("dashboardContent");
+
+  container.innerHTML =
+    `<div class="empty">
+      Loading products…
+    </div>`;
+
+
+  try{
+
+    const snapshot =
+      await fs.getDocs(
+        fs.query(
+          fs.collection(db,"products"),
+          fs.where(
+            "vendorId",
+            "==",
+            auth.currentUser.uid
+          )
+        )
+      );
+
+
+    const products =
+      snapshot.docs.map(doc => ({
+        id:doc.id,
+        ...doc.data()
+      }));
+
+
+    container.innerHTML = `
+
+      <div class="card">
+
+        <div style="
+          display:flex;
+          justify-content:space-between;
+          align-items:center;
+          gap:10px;
+          flex-wrap:wrap;
+        ">
+
+          <div>
+
+            <h3 style="margin:0">
+              My Products
+            </h3>
+
+            <p class="help">
+              Published products appear in the customer app
+              when availability is enabled.
+            </p>
+
+          </div>
+
+          <button
+            class="btn green"
+            onclick="newProduct()">
+
+            + Add Product
+
+          </button>
+
+        </div>
+
+
+        <div class="product-grid"
+          style="margin-top:15px">
+
+          ${
+            products.length
+              ? products.map(productCard).join("")
+              : `
+                <div class="empty"
+                  style="grid-column:1/-1">
+
+                  <div style="font-size:45px">
+                    🍲
+                  </div>
+
+                  <b>
+                    No products yet.
+                  </b>
+
+                  <p>
+                    Add your first product.
+                  </p>
+
+                </div>
+              `
+          }
+
+        </div>
+
+      </div>
+
+    `;
+
+  }catch(error){
+
+    console.error(error);
+
+    container.innerHTML = `
+      <div class="empty">
+        Could not load products.
+        Check Firestore permissions.
+      </div>
+    `;
+  }
+}
+
+
+function productCard(product){
+
+  return `
+
+    <article class="product">
+
+      ${
+        product.photoUrl
+          ? `
+            <img
+              class="product-image"
+              src="${esc(product.photoUrl)}"
+              alt="${esc(product.name)}">
+          `
+          : `
+            <div
+              class="product-image"
+              style="
+                display:grid;
+                place-items:center;
+                font-size:55px;
+              ">
+
+              🍲
+
+            </div>
+          `
+      }
+
+
+      <div class="product-body">
+
+        <h3>
+          ${esc(product.name)}
+        </h3>
+
+        <div class="price">
+          GH₵ ${Number(
+            product.price || 0
+          ).toLocaleString()}
+        </div>
+
+        <p class="help">
+          ${esc(
+            product.description || ""
+          )}
+        </p>
+
+        <p class="help">
+
+          <b>Status:</b>
+
+          ${
+            product.available === false
+              ? "Hidden"
+              : "Published"
+          }
+
+        </p>
+
+        <div style="
+          display:flex;
+          gap:7px;
+          flex-wrap:wrap;
+        ">
+
+          <button
+            class="small"
+            onclick="editProduct('${product.id}')">
+            Edit
+          </button>
+
+          <button
+            class="small"
+            onclick="
+              toggleProduct(
+                '${product.id}',
+                ${product.available !== false}
+              )
+            ">
+
+            ${
+              product.available === false
+                ? "Publish"
+                : "Hide"
+            }
+
+          </button>
+
+          <button
+            class="small danger"
+            onclick="
+              deleteProduct('${product.id}')
+            ">
+
+            Delete
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+
+  `;
+}
+
+
+window.newProduct = function(){
+
+  modifierGroups = [];
+
+  renderProductForm();
+};
+
+
+async function editProduct(id){
+
+  try{
+
+    const snapshot =
+      await fs.getDoc(
+        fs.doc(
+          db,
+          "products",
+          id
+        )
+      );
+
+
+    if(!snapshot.exists()){
+
+      toast(
+        "Product not found."
+      );
+
+      return;
+    }
+
+
+    renderProductForm({
+      id,
+      ...snapshot.data()
+    });
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      "Could not open product."
+    );
+  }
+}
+
+window.editProduct = editProduct;
+
+
+function renderProductForm(existing = null){
+
+  modifierGroups =
+    (existing?.modifiers || [])
+      .map(group => ({
+        name:group.name,
+        required:!!group.required,
+        multiple:!!group.multiple,
+        options:(group.options || [])
+          .map(option => ({
+            name:option.name,
+            price:Number(
+              option.price || 0
+            )
+          }))
+      }));
+
+
+  $("dashboardContent").innerHTML = `
+
+    <div class="card">
+
+      <h3 style="margin-top:0">
+
+        ${
+          existing
+            ? "Edit Product"
+            : "Add Product"
+        }
+
+      </h3>
+
+
+      <form
+        class="form"
+        onsubmit="
+          saveProduct(
+            event,
+            '${existing?.id || ""}'
+          )
+        ">
+
+
+        <div class="field">
+
+          <label>
+            Product name *
+          </label>
+
+          <input
+            id="productName"
+            required
+            value="${esc(
+              existing?.name || ""
+            )}">
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Price (GH₵) *
+          </label>
+
+          <input
+            id="productPrice"
+            type="number"
+            min="0"
+            step="0.01"
+            required
+            value="${Number(
+              existing?.price || 0
+            )}">
+
+        </div>
+
+
+        <div class="field full">
+
+          <label>
+            Description
+          </label>
+
+          <textarea
+            id="productDescription"
+          >${esc(
+            existing?.description || ""
+          )}</textarea>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Product Photo
+            ${
+              existing
+                ? "(optional new photo)"
+                : ""
+            }
+          </label>
+
+          <input
+            id="productFile"
+            type="file"
+            accept="image/*"
+            ${
+              existing
+                ? ""
+                : "required"
+            }
+            onchange="previewProductPhoto(event)">
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Preview
+          </label>
+
+          <div
+            id="productPreview"
+            class="preview">
+
+            ${
+              existing?.photoUrl
+                ? `
+                  <img
+                    src="${esc(
+                      existing.photoUrl
+                    )}">
+                `
+                : "No photo selected"
+            }
+
+          </div>
+
+        </div>
+
+
+        <div class="field full">
+
+          <label>
+            Customer Choices
+          </label>
+
+          <div id="modifierBuilder"></div>
+
+          <div style="
+            display:flex;
+            gap:7px;
+            flex-wrap:wrap;
+          ">
+
+            <button
+              type="button"
+              class="small"
+              onclick="
+                addModifierGroup(
+                  'Protein',
+                  true,
+                  false
+                )
+              ">
+              + Protein
+            </button>
+
+            <button
+              type="button"
+              class="small"
+              onclick="
+                addModifierGroup(
+                  'Extra Soup',
+                  false,
+                  true
+                )
+              ">
+              + Extra Soup
+            </button>
+
+            <button
+              type="button"
+              class="small"
+              onclick="
+                addModifierGroup(
+                  'Spice Level',
+                  true,
+                  false
+                )
+              ">
+              + Spice Level
+            </button>
+
+            <button
+              type="button"
+              class="small"
+              onclick="
+                addModifierGroup(
+                  'Custom',
+                  false,
+                  false
+                )
+              ">
+              + Custom
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="field full">
+
+          <div style="
+            display:flex;
+            gap:8px;
+          ">
+
+            <button
+              class="submit">
+
+              ${
+                existing
+                  ? "Save Product"
+                  : "Publish Product"
+              }
+
+            </button>
+
+            <button
+              type="button"
+              class="small"
+              onclick="renderProducts()">
+
+              Cancel
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  `;
+
+
+  renderModifierBuilder();
+}
+
+
+window.previewProductPhoto = function(event){
+
+  const file =
+    event.target.files?.[0];
+
+  if(!file){
+    return;
+  }
+
+
+  if(
+    file.size >
+    5 * 1024 * 1024
+  ){
+
+    event.target.value = "";
+
+    toast(
+      "Photo must be under 5 MB."
+    );
+
+    return;
+  }
+
+
+  const reader =
+    new FileReader();
+
+
+  reader.onload = () => {
+
+    $("productPreview").innerHTML = `
+      <img src="${reader.result}">
+    `;
+
+  };
+
+
+  reader.readAsDataURL(file);
+};
+
+
+window.addModifierGroup =
+function(name,required,multiple){
+
+  let options = [];
+
+
+  if(name === "Protein"){
+
+    options = [
+      {
+        name:"Chicken",
+        price:10
+      },
+      {
+        name:"Beef",
+        price:15
+      }
+    ];
+
+  }else if(name === "Extra Soup"){
+
+    options = [
+      {
+        name:"Extra Soup",
+        price:5
+      },
+      {
+        name:"Large Soup",
+        price:10
+      }
+    ];
+
+  }else if(name === "Spice Level"){
+
+    options = [
+      {
+        name:"Mild",
+        price:0
+      },
+      {
+        name:"Medium",
+        price:0
+      },
+      {
+        name:"Hot",
+        price:0
+      }
+    ];
+
+  }else{
+
+    options = [
+      {
+        name:"Option 1",
+        price:0
+      }
+    ];
+
+  }
+
+
+  modifierGroups.push({
+    name,
+    required,
+    multiple,
+    options
+  });
+
+
+  renderModifierBuilder();
+};
+
+
+window.removeModifierGroup =
+function(index){
+
+  modifierGroups.splice(
+    index,
+    1
+  );
+
+  renderModifierBuilder();
+};
+
+
+window.removeModifierOption =
+function(groupIndex,optionIndex){
+
+  modifierGroups[
+    groupIndex
+  ].options.splice(
+    optionIndex,
+    1
+  );
+
+  renderModifierBuilder();
+};
+
+
+window.addModifierOption =
+function(groupIndex){
+
+  modifierGroups[
+    groupIndex
+  ].options.push({
+    name:"New option",
+    price:0
+  });
+
+  renderModifierBuilder();
+};
+
+
+function renderModifierBuilder(){
+
+  const container =
+    $("modifierBuilder");
+
+  if(!container){
+    return;
+  }
+
+
+  if(!modifierGroups.length){
+
+    container.innerHTML = `
+      <p class="help">
+        No customer choices added.
+      </p>
+    `;
+
+    return;
+  }
+
+
+  container.innerHTML =
+    modifierGroups.map(
+      (group,index) => `
+
+        <div class="modifier">
+
+          <div style="
+            display:flex;
+            gap:8px;
+            align-items:center;
+          ">
+
+            <input
+              style="
+                flex:1;
+                border:1px solid #d7e2db;
+                border-radius:9px;
+                padding:8px;
+              "
+              value="${esc(group.name)}"
+              onchange="
+                modifierGroups[
+                  ${index}
+                ].name=this.value
+              ">
+
+            <button
+              type="button"
+              class="small danger"
+              onclick="
+                removeModifierGroup(
+                  ${index}
+                )
+              ">
+              Remove
+            </button>
+
+          </div>
+
+
+          <div class="help"
+            style="margin-top:7px">
+
+            <label>
+              <input
+                type="checkbox"
+                ${
+                  group.required
+                    ? "checked"
+                    : ""
+                }
+                onchange="
+                  modifierGroups[
+                    ${index}
+                  ].required=this.checked
+                ">
+
+              Required
+
+            </label>
+
+            &nbsp;
+
+            <label>
+              <input
+                type="checkbox"
+                ${
+                  group.multiple
+                    ? "checked"
+                    : ""
+                }
+                onchange="
+                  modifierGroups[
+                    ${index}
+                  ].multiple=this.checked
+                ">
+
+              Multiple selections
+
+            </label>
+
+          </div>
+
+
+          ${
+            group.options
+              .map(
+                (option,optionIndex) => `
+
+                  <div class="modifier-row">
+
+                    <input
+                      value="${esc(
+                        option.name
+                      )}"
+                      onchange="
+                        modifierGroups[
+                          ${index}
+                        ].options[
+                          ${optionIndex}
+                        ].name=this.value
+                      ">
+
+                    <input
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      value="${Number(
+                        option.price || 0
+                      )}"
+                      onchange="
+                        modifierGroups[
+                          ${index}
+                        ].options[
+                          ${optionIndex}
+                        ].price=
+                          Number(
+                            this.value || 0
+                          )
+                      ">
+
+                    <button
+                      type="button"
+                      class="small danger"
+                      onclick="
+                        removeModifierOption(
+                          ${index},
+                          ${optionIndex}
+                        )
+                      ">
+                      ×
+                    </button>
+
+                  </div>
+
+                `
+              )
+              .join("")
+          }
+
+
+          <button
+            type="button"
+            class="small"
+            style="margin-top:7px"
+            onclick="
+              addModifierOption(
+                ${index}
+              )
+            ">
+
+            + Option
+
+          </button>
+
+        </div>
+
+      `
+    )
+    .join("");
+}
+
+
+window.saveProduct =
+async function(event,id){
+
+  event.preventDefault();
+
+
+  if(!(await initFirebase())){
+    return;
+  }
+
+
+  if(!auth.currentUser){
+    return;
+  }
+
+
+  const business =
+    await getBusiness();
+
+
+  if(!business){
+
+    toast(
+      "Create your business before adding products."
+    );
+
+    return;
+  }
+
+
+  const file =
+    $("productFile")
+      .files?.[0];
+
+
+  if(
+    file &&
+    file.size >
+    5 * 1024 * 1024
+  ){
+
+    toast(
+      "Photo must be under 5 MB."
+    );
+
+    return;
+  }
+
+
+  try{
+
+    let photoUrl = "";
+
+
+    if(id){
+
+      const old =
+        await fs.getDoc(
+          fs.doc(
+            db,
+            "products",
+            id
+          )
+        );
+
+      photoUrl =
+        old.exists()
+          ? old.data().photoUrl || ""
+          : "";
+    }
+
+
+    if(file){
+
+      toast(
+        "Uploading product photo…"
+      );
+
+
+      const safeName =
+        file.name.replace(
+          /[^a-zA-Z0-9._-]/g,
+          "_"
+        );
+
+
+      const path =
+        `productPhotos/${auth.currentUser.uid}/${Date.now()}_${safeName}`;
+
+
+      const storageRef =
+        sf.ref(
+          storage,
+          path
+        );
+
+
+      await sf.uploadBytes(
+        storageRef,
+        file,
+        {
+          contentType:file.type
+        }
+      );
+
+
+      photoUrl =
+        await sf.getDownloadURL(
+          storageRef
+        );
+    }
+
+
+    const cleanModifiers =
+      modifierGroups
+        .filter(
+          group =>
+            group.name &&
+            group.options &&
+            group.options.length
+        )
+        .map(group => ({
+          name:group.name,
+          required:!!group.required,
+          multiple:!!group.multiple,
+          options:
+            group.options.map(
+              option => ({
+                name:option.name,
+                price:Number(
+                  option.price || 0
+                )
+              })
+            )
+        }));
+
+
+    const data = {
+
+      name:
+        $("productName")
+          .value
+          .trim(),
+
+      price:
+        Number(
+          $("productPrice")
+            .value || 0
+        ),
+
+      description:
+        $("productDescription")
+          .value
+          .trim(),
+
+      photoUrl,
+
+      modifiers:
+        cleanModifiers,
+
+      vendorId:
+        auth.currentUser.uid,
+
+      vendorName:
+        business.name,
+
+      available:true,
+
+      updatedAt:
+        fs.serverTimestamp()
+
+    };
+
+
+    if(id){
+
+      await fs.updateDoc(
+        fs.doc(
+          db,
+          "products",
+          id
+        ),
+        data
+      );
+
+    }else{
+
+      await fs.addDoc(
+        fs.collection(
+          db,
+          "products"
+        ),
+        {
+          ...data,
+          createdAt:
+            fs.serverTimestamp()
+        }
+      );
+    }
+
+
+    toast(
+      id
+        ? "Product updated successfully."
+        : "Product published successfully."
+    );
+
+
+    await renderStats();
+
+    await renderProducts();
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      "Could not save product. Check Firestore and Storage rules."
+    );
+  }
+};
+
+
+window.toggleProduct =
+async function(id,current){
+
+  try{
+
+    await fs.updateDoc(
+      fs.doc(
+        db,
+        "products",
+        id
+      ),
+      {
+        available:!current,
+        updatedAt:
+          fs.serverTimestamp()
+      }
+    );
+
+
+    toast(
+      current
+        ? "Product hidden."
+        : "Product published."
+    );
+
+
+    renderProducts();
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      "Could not update product."
+    );
+  }
+};
+
+
+window.deleteProduct =
+async function(id){
+
+  if(
+    !confirm(
+      "Delete this product?"
+    )
+  ){
+    return;
+  }
+
+
+  try{
+
+    await fs.deleteDoc(
+      fs.doc(
+        db,
+        "products",
+        id
+      )
+    );
+
+
+    toast(
+      "Product deleted."
+    );
+
+
+    await renderStats();
+
+    renderProducts();
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      "Could not delete product."
+    );
+  }
+};
+
+
+/* =========================================================
+   PROPERTIES
+========================================================= */
+
+function propertyCard(property){
+
+  return `
+
+    <article class="card">
+
+      <div class="property-image">
+
+        ${
+          property.photoUrl
+            ? `
+              <img
+                src="${esc(
+                  property.photoUrl
+                )}"
+                alt="${esc(
+                  property.title ||
+                  property.type ||
+                  "Property"
+                )}">
+            `
+            : "🏠"
+        }
+
+      </div>
+
+
+      <h3>
+        ${esc(
+          property.title ||
+          property.type ||
+          "Property"
+        )}
+      </h3>
+
+
+      <div class="price">
+        GH₵ ${Number(
+          property.price || 0
+        ).toLocaleString()}
+      </div>
+
+
+      <p class="help">
+
+        ${esc(
+          property.type || ""
+        )}
+
+        •
+
+        ${esc(
+          property.purpose || ""
+        )}
+
+        <br>
+
+        ${esc(
+          property.location || ""
+        )}
+
+        <br>
+
+        ${Number(
+          property.bedrooms || 0
+        )}
+        bedrooms •
+
+        ${Number(
+          property.bathrooms || 0
+        )}
+        bathrooms
+
+      </p>
+
+
+      <p class="help">
+
+        <b>Status:</b>
+
+        ${
+          property.available === false
+            ? "Hidden"
+            : "Published"
+        }
+
+      </p>
+
+
+      <div style="
+        display:flex;
+        gap:7px;
+        flex-wrap:wrap;
+      ">
+
+        <button
+          class="small"
+          onclick="
+            editProperty(
+              '${property.id}'
+            )
+          ">
+          Edit
+        </button>
+
+        <button
+          class="small"
+          onclick="
+            toggleProperty(
+              '${property.id}',
+              ${property.available !== false}
+            )
+          ">
+
+          ${
+            property.available === false
+              ? "Publish"
+              : "Hide"
+          }
+
+        </button>
+
+        <button
+          class="small danger"
+          onclick="
+            deleteProperty(
+              '${property.id}'
+            )
+          ">
+          Delete
+        </button>
+
+      </div>
+
+    </article>
+
+  `;
+}
+
+
+async function renderProperties(){
+
+  const container =
+    $("dashboardContent");
+
+  container.innerHTML =
+    `<div class="empty">
+      Loading properties…
+    </div>`;
+
+
+  try{
+
+    const snapshot =
+      await fs.getDocs(
+        fs.query(
+          fs.collection(
+            db,
+            "properties"
+          ),
+          fs.where(
+            "ownerUid",
+            "==",
+            auth.currentUser.uid
+          )
+        )
+      );
+
+
+    const properties =
+      snapshot.docs.map(doc => ({
+        id:doc.id,
+        ...doc.data()
+      }));
+
+
+    container.innerHTML = `
+
+      <div class="card">
+
+        <div style="
+          display:flex;
+          justify-content:space-between;
+          align-items:center;
+          gap:10px;
+          flex-wrap:wrap;
+        ">
+
+          <div>
+
+            <h3 style="margin:0">
+              My Properties
+            </h3>
+
+            <p class="help">
+              Available listings can be displayed
+              in the customer app.
+            </p>
+
+          </div>
+
+          <button
+            class="btn green"
+            onclick="newProperty()">
+
+            + Register Property
+
+          </button>
+
+        </div>
+
+
+        <div
+          class="product-grid"
+          style="margin-top:15px">
+
+          ${
+            properties.length
+              ? properties
+                  .map(propertyCard)
+                  .join("")
+              : `
+                <div
+                  class="empty"
+                  style="grid-column:1/-1">
+
+                  <div style="font-size:45px">
+                    🏠
+                  </div>
+
+                  <b>
+                    No properties registered yet.
+                  </b>
+
+                  <p>
+                    Add your first property.
+                  </p>
+
+                </div>
+              `
+          }
+
+        </div>
+
+      </div>
+
+    `;
+
+  }catch(error){
+
+    console.error(error);
+
+    container.innerHTML = `
+      <div class="empty">
+        Could not load properties.
+      </div>
+    `;
+  }
+}
+
+
+window.newProperty =
+function(){
+
+  renderPropertyForm();
+};
+
+
+window.editProperty =
+async function(id){
+
+  try{
+
+    const snapshot =
+      await fs.getDoc(
+        fs.doc(
+          db,
+          "properties",
+          id
+        )
+      );
+
+
+    if(!snapshot.exists()){
+
+      toast(
+        "Property not found."
+      );
+
+      return;
+    }
+
+
+    renderPropertyForm({
+      id,
+      ...snapshot.data()
+    });
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      "Could not open property."
+    );
+  }
+};
+
+
+function renderPropertyForm(property=null){
+
+  $("dashboardContent").innerHTML = `
+
+    <div class="card">
+
+      <h3 style="margin-top:0">
+
+        ${
+          property
+            ? "Edit Property"
+            : "Register Property"
+        }
+
+      </h3>
+
+
+      <form
+        class="form"
+        onsubmit="
+          saveProperty(
+            event,
+            '${property?.id || ""}'
+          )
+        ">
+
+
+        <div class="field">
+
+          <label>
+            Purpose *
+          </label>
+
+          <select
+            id="propertyPurpose"
+            required>
+
+            <option value="">
+              Select
+            </option>
+
+            <option
+              value="Rent"
+              ${
+                property?.purpose === "Rent"
+                  ? "selected"
+                  : ""
+              }>
+              Rent
+            </option>
+
+            <option
+              value="Sale"
+              ${
+                property?.purpose === "Sale"
+                  ? "selected"
+                  : ""
+              }>
+              Sale
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Type *
+          </label>
+
+          <select
+            id="propertyType"
+            required>
+
+            <option value="">
+              Select
+            </option>
+
+            ${
+              [
+                "House",
+                "Apartment",
+                "Room",
+                "Land",
+                "Shop",
+                "Office",
+                "Other"
+              ].map(type => `
+
+                <option
+                  value="${esc(type)}"
+                  ${
+                    property?.type === type
+                      ? "selected"
+                      : ""
+                  }>
+
+                  ${esc(type)}
+
+                </option>
+
+              `).join("")
+            }
+
+          </select>
+
+        </div>
+
+
+        <div class="field full">
+
+          <label>
+            Title *
+          </label>
+
+          <input
+            id="propertyTitle"
+            required
+            placeholder="3-bedroom house for rent"
+            value="${esc(
+              property?.title || ""
+            )}">
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Price (GH₵) *
+          </label>
+
+          <input
+            id="propertyPrice"
+            type="number"
+            min="0"
+            step="0.01"
+            required
+            value="${Number(
+              property?.price || 0
+            )}">
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Location *
+          </label>
+
+          <input
+            id="propertyLocation"
+            required
+            placeholder="Sefwi Wiawso"
+            value="${esc(
+              property?.location || ""
+            )}">
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Bedrooms
+          </label>
+
+          <input
+            id="propertyBedrooms"
+            type="number"
+            min="0"
+            value="${Number(
+              property?.bedrooms || 0
+            )}">
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Bathrooms
+          </label>
+
+          <input
+            id="propertyBathrooms"
+            type="number"
+            min="0"
+            value="${Number(
+              property?.bathrooms || 0
+            )}">
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Owner name
+          </label>
+
+          <input
+            id="propertyOwner"
+            value="${esc(
+              property?.owner ||
+              auth.currentUser.displayName ||
+              ""
+            )}">
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Phone
+          </label>
+
+          <input
+            id="propertyPhone"
+            inputmode="tel"
+            value="${esc(
+              property?.phone || ""
+            )}">
+
+        </div>
+
+
+        <div class="field full">
+
+          <label>
+            Description
+          </label>
+
+          <textarea
+            id="propertyDescription"
+          >${esc(
+            property?.description || ""
+          )}</textarea>
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Property Photo
+          </label>
+
+          <input
+            id="propertyFile"
+            type="file"
+            accept="image/*"
+            onchange="
+              previewPropertyPhoto(event)
+            ">
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Preview
+          </label>
+
+          <div
+            id="propertyPreview"
+            class="preview">
+
+            ${
+              property?.photoUrl
+                ? `
+                  <img
+                    src="${esc(
+                      property.photoUrl
+                    )}">
+                `
+                : "No photo selected"
+            }
+
+          </div>
+
+        </div>
+
+
+        <div class="field full">
+
+          <button class="submit">
+
+            ${
+              property
+                ? "Save Property"
+                : "Publish Property"
+            }
+
+          </button>
+
+          <button
+            type="button"
+            class="small"
+            style="
+              margin-top:8px;
+              width:100%;
+            "
+            onclick="
+              renderProperties()
+            ">
+
+            Cancel
+
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  `;
+}
+
+
+window.previewPropertyPhoto =
+function(event){
+
+  const file =
+    event.target.files?.[0];
+
+  if(!file){
+    return;
+  }
+
+
+  if(
+    file.size >
+    5 * 1024 * 1024
+  ){
+
+    event.target.value = "";
+
+    toast(
+      "Photo must be under 5 MB."
+    );
+
+    return;
+  }
+
+
+  const reader =
+    new FileReader();
+
+
+  reader.onload = () => {
+
+    $("propertyPreview").innerHTML = `
+      <img src="${reader.result}">
+    `;
+
+  };
+
+
+  reader.readAsDataURL(file);
+};
+
+
+window.saveProperty =
+async function(event,id){
+
+  event.preventDefault();
+
+
+  if(!(await initFirebase())){
+    return;
+  }
+
+
+  const file =
+    $("propertyFile")
+      .files?.[0];
+
+
+  if(
+    file &&
+    file.size >
+    5 * 1024 * 1024
+  ){
+
+    toast(
+      "Photo must be under 5 MB."
+    );
+
+    return;
+  }
+
+
+  try{
+
+    let photoUrl = "";
+
+
+    if(id){
+
+      const old =
+        await fs.getDoc(
+          fs.doc(
+            db,
+            "properties",
+            id
+          )
+        );
+
+
+      photoUrl =
+        old.exists()
+          ? old.data().photoUrl || ""
+          : "";
+    }
+
+
+    if(file){
+
+      toast(
+        "Uploading property photo…"
+      );
+
+
+      const safeName =
+        file.name.replace(
+          /[^a-zA-Z0-9._-]/g,
+          "_"
+        );
+
+
+      const path =
+        `propertyPhotos/${auth.currentUser.uid}/${Date.now()}_${safeName}`;
+
+
+      const storageRef =
+        sf.ref(
+          storage,
+          path
+        );
+
+
+      await sf.uploadBytes(
+        storageRef,
+        file,
+        {
+          contentType:file.type
+        }
+      );
+
+
+      photoUrl =
+        await sf.getDownloadURL(
+          storageRef
+        );
+    }
+
+
+    const data = {
+
+      purpose:
+        $("propertyPurpose")
+          .value,
+
+      type:
+        $("propertyType")
+          .value,
+
+      title:
+        $("propertyTitle")
+          .value
+          .trim(),
+
+      price:
+        Number(
+          $("propertyPrice")
+            .value || 0
+        ),
+
+      location:
+        $("propertyLocation")
+          .value
+          .trim(),
+
+      bedrooms:
+        Number(
+          $("propertyBedrooms")
+            .value || 0
+        ),
+
+      bathrooms:
+        Number(
+          $("propertyBathrooms")
+            .value || 0
+        ),
+
+      owner:
+        $("propertyOwner")
+          .value
+          .trim(),
+
+      phone:
+        $("propertyPhone")
+          .value
+          .trim(),
+
+      description:
+        $("propertyDescription")
+          .value
+          .trim(),
+
+      photoUrl,
+
+      ownerUid:
+        auth.currentUser.uid,
+
+      available:true,
+
+      updatedAt:
+        fs.serverTimestamp()
+
+    };
+
+
+    if(id){
+
+      await fs.updateDoc(
+        fs.doc(
+          db,
+          "properties",
+          id
+        ),
+        data
+      );
+
+    }else{
+
+      await fs.addDoc(
+        fs.collection(
+          db,
+          "properties"
+        ),
+        {
+          ...data,
+          createdAt:
+            fs.serverTimestamp()
+        }
+      );
+    }
+
+
+    toast(
+      id
+        ? "Property updated successfully."
+        : "Property published successfully."
+    );
+
+
+    await renderStats();
+
+    renderProperties();
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      "Could not save property. Check Firestore and Storage rules."
+    );
+  }
+};
+
+
+window.toggleProperty =
+async function(id,current){
+
+  try{
+
+    await fs.updateDoc(
+      fs.doc(
+        db,
+        "properties",
+        id
+      ),
+      {
+        available:!current,
+        updatedAt:
+          fs.serverTimestamp()
+      }
+    );
+
+
+    toast(
+      current
+        ? "Property hidden."
+        : "Property published."
+    );
+
+
+    renderProperties();
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      "Could not update property."
+    );
+  }
+};
+
+
+window.deleteProperty =
+async function(id){
+
+  if(
+    !confirm(
+      "Delete this property?"
+    )
+  ){
+    return;
+  }
+
+
+  try{
+
+    await fs.deleteDoc(
+      fs.doc(
+        db,
+        "properties",
+        id
+      )
+    );
+
+
+    toast(
+      "Property deleted."
+    );
+
+
+    await renderStats();
+
+    renderProperties();
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      "Could not delete property."
+    );
+  }
+};
+
+
+/* =========================================================
+   ORDERS
+========================================================= */
+
+async function getVendorOrders(){
+
+  const business =
+    await getBusiness();
+
+
+  const orders = [];
+
+
+  const byVendor =
+    await fs.getDocs(
+      fs.query(
+        fs.collection(
+          db,
+          "orders"
+        ),
+        fs.where(
+          "vendorId",
+          "==",
+          auth.currentUser.uid
+        )
+      )
+    );
+
+
+  byVendor.docs.forEach(
+    document => {
+
+      orders.push({
+        id:document.id,
+        ...document.data()
+      });
+
+    }
+  );
+
+
+  if(business?.name){
+
+    try{
+
+      const byName =
+        await fs.getDocs(
+          fs.query(
+            fs.collection(
+              db,
+              "orders"
+            ),
+            fs.where(
+              "vendorName",
+              "==",
+              business.name
+            )
+          )
+        );
+
+
+      const existing =
+        new Set(
+          orders.map(
+            order => order.id
+          )
+        );
+
+
+      byName.docs.forEach(
+        document => {
+
+          if(
+            !existing.has(
+              document.id
+            )
+          ){
+
+            orders.push({
+              id:document.id,
+              ...document.data()
+            });
+
+          }
+
+        }
+      );
+
+    }catch(error){}
+  }
+
+
+  orders.sort(
+    (a,b) =>
+      (b.createdAt?.seconds || 0) -
+      (a.createdAt?.seconds || 0)
+  );
+
+
+  return orders;
+}
+
+
+function statusLabel(status){
+
+  return {
+
+    new:"New",
+
+    accepted:"Accepted",
+
+    preparing:"Preparing",
+
+    ready:"Ready",
+
+    assigned:"Assigned",
+
+    picked_up:"Picked up",
+
+    out_for_delivery:
+      "Out for delivery",
+
+    delivered:"Delivered",
+
+    cancelled:"Cancelled",
+
+    completed:"Completed"
+
+  }[status] || status || "New";
+}
+
+
+function orderDate(order){
+
+  if(order.createdAt?.seconds){
+
+    return new Date(
+      order.createdAt.seconds * 1000
+    ).toLocaleString();
+
+  }
+
+  return "Recent order";
+}
+
+
+async function renderVendorOrders(){
+
+  const container =
+    $("dashboardContent");
+
+  container.innerHTML =
+    `<div class="empty">
+      Loading orders…
+    </div>`;
+
+
+  try{
+
+    const orders =
+      await getVendorOrders();
+
+
+    if(!orders.length){
+
+      container.innerHTML = `
+
+        <div class="empty">
+
+          <div style="font-size:45px">
+            📦
+          </div>
+
+          <b>
+            No customer orders yet.
+          </b>
+
+          <p>
+            Orders placed through the customer
+            app will appear here.
+          </p>
+
+        </div>
+
+      `;
+
+      return;
+    }
+
+
+    container.innerHTML =
+      orders
+        .map(
+          renderVendorOrder
+        )
+        .join("");
+
+  }catch(error){
+
+    console.error(error);
+
+    container.innerHTML = `
+      <div class="empty">
+        Could not load orders.
+        Check Firestore permissions.
+      </div>
+    `;
+  }
+}
+
+
+function renderVendorOrder(order){
+
+  const nextStatus = {
+
+    new:[
+      "accepted",
+      "Accept Order"
+    ],
+
+    accepted:[
+      "preparing",
+      "Start Preparing"
+    ],
+
+    preparing:[
+      "ready",
+      "Mark Ready"
+    ]
+
+  }[
+    order.status || "new"
+  ];
+
+
+  return `
+
+    <article class="order">
+
+      <div class="order-top">
+
+        <div>
+
+          <b>
+            Order #${esc(
+              (
+                order.orderNumber ||
+                order.id
+              )
+              .slice(-10)
+              .toUpperCase()
+            )}
+          </b>
+
+          <p class="help">
+
+            ${esc(
+              orderDate(order)
+            )}
+
+            <br>
+
+            ${esc(
+              order.customerName ||
+              "Customer"
+            )}
+
+            •
+
+            ${esc(
+              order.customerPhone ||
+              ""
+            )}
+
+          </p>
+
+        </div>
+
+
+        <span class="status">
+
+          ${esc(
+            statusLabel(
+              order.status
+            )
+          )}
+
+        </span>
+
+      </div>
+
+
+      <div class="order-items">
+
+        ${
+          (order.items || [])
+            .map(
+              item => `
+
+                <div class="order-row">
+
+                  <span>
+
+                    ${esc(
+                      item.name
+                    )}
+
+                    ×
+
+                    ${Number(
+                      item.qty || 1
+                    )}
+
+                  </span>
+
+                  <b>
+
+                    GH₵ ${
+                      (
+                        Number(
+                          item.price || 0
+                        ) *
+                        Number(
+                          item.qty || 1
+                        )
+                      ).toLocaleString()
+                    }
+
+                  </b>
+
+                </div>
+
+              `
+            )
+            .join("")
+        }
+
+      </div>
+
+
+      <div class="order-row">
+
+        <b>
+          Total
+        </b>
+
+        <b>
+          GH₵ ${Number(
+            order.total || 0
+          ).toLocaleString()}
+        </b>
+
+      </div>
+
+
+      <p class="help">
+
+        📍
+
+        ${esc(
+          order.deliveryAddress ||
+          order.address ||
+          ""
+        )}
+
+        ${
+          order.note
+            ? `
+              <br>
+              📝
+              ${esc(order.note)}
+            `
+            : ""
+        }
+
+      </p>
+
+
+      ${
+        nextStatus
+          ? `
+
+            <button
+              class="submit"
+              onclick="
+                updateOrder(
+                  '${order.id}',
+                  '${nextStatus[0]}'
+                )
+              ">
+
+              ${nextStatus[1]}
+
+            </button>
+
+          `
+          : ""
+      }
+
+
+      ${
+        ![
+          "delivered",
+          "completed",
+          "cancelled"
+        ].includes(
+          order.status
+        )
+          ? `
+
+            <button
+              class="small danger"
+              style="
+                width:100%;
+                margin-top:8px;
+              "
+              onclick="
+                updateOrder(
+                  '${order.id}',
+                  'cancelled'
+                )
+              ">
+
+              Cancel Order
+
+            </button>
+
+          `
+          : ""
+      }
+
+    </article>
+
+  `;
+}
+
+
+window.updateOrder =
+async function(id,status){
+
+  try{
+
+    await fs.updateDoc(
+      fs.doc(
+        db,
+        "orders",
+        id
+      ),
+      {
+        status,
+        updatedAt:
+          fs.serverTimestamp()
+      }
+    );
+
+
+    toast(
+      "Order status updated."
+    );
+
+
+    renderVendorOrders();
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      "Could not update order. Check Firestore rules."
+    );
+  }
+};
+
+
+/* =========================================================
+   DELIVERY DASHBOARD
+========================================================= */
+
+async function getClaims(){
+
+  try{
+
+    const result =
+      await auth.currentUser
+        .getIdTokenResult(true);
+
+    return result.claims || {};
+
+  }catch(error){
+
+    return {};
+  }
+}
+
+
+window.openDeliveryDashboard =
+async function(){
+
+  await initFirebase();
+
+  $("deliveryModal")
+    .classList.add("open");
+
+  renderDelivery();
+};
+
+
+async function renderDelivery(){
+
+  const container =
+    $("deliveryContent");
+
+
+  container.innerHTML =
+    `<div class="empty">
+      Checking delivery access…
+    </div>`;
+
+
+  if(!auth.currentUser){
+
+    container.innerHTML = `
+
+      <div class="empty">
+
+        <b>
+          Sign in required.
+        </b>
+
+        <p>
+          Delivery accounts must be signed in.
+        </p>
+
+        <button
+          class="submit"
+          onclick="
+            closeModal('deliveryModal');
+            openAccount();
+          ">
+
+          Sign In
+
+        </button>
+
+      </div>
+
+    `;
+
+    return;
+  }
+
+
+  const claims =
+    await getClaims();
+
+
+  if(
+    claims.delivery !== true &&
+    claims.admin !== true
+  ){
+
+    container.innerHTML = `
+
+      <div class="empty">
+
+        <b>
+          Access denied.
+        </b>
+
+        <p>
+          A SefwiGo administrator must grant
+          this account the Firebase
+          <code>delivery:true</code> claim.
+        </p>
+
+      </div>
+
+    `;
+
+    return;
+  }
+
+
+  try{
+
+    const snapshot =
+      await fs.getDocs(
+        fs.query(
+          fs.collection(
+            db,
+            "orders"
+          ),
+          fs.where(
+            "status",
+            "in",
+            [
+              "ready",
+              "assigned",
+              "picked_up",
+              "out_for_delivery"
+            ]
+          )
+        )
+      );
+
+
+    const orders =
+      snapshot.docs.map(
+        document => ({
+          id:document.id,
+          ...document.data()
+        })
+      );
+
+
+    if(!orders.length){
+
+      container.innerHTML = `
+        <div class="empty">
+          🛵 No delivery jobs right now.
+        </div>
+      `;
+
+      return;
+    }
+
+
+    container.innerHTML =
+      orders
+        .map(
+          deliveryCard
+        )
+        .join("");
+
+  }catch(error){
+
+    console.error(error);
+
+    container.innerHTML = `
+      <div class="empty">
+        Could not load delivery jobs.
+      </div>
+    `;
+  }
+}
+
+
+function deliveryCard(order){
+
+  const mine =
+    order.driverUid ===
+    auth.currentUser.uid;
+
+
+  const next = {
+
+    ready:[
+      "assigned",
+      "Accept Delivery"
+    ],
+
+    assigned:[
+      "picked_up",
+      "Picked Up"
+    ],
+
+    picked_up:[
+      "out_for_delivery",
+      "Out for Delivery"
+    ],
+
+    out_for_delivery:[
+      "delivered",
+      "Mark Delivered"
+    ]
+
+  }[
+    order.status
+  ];
+
+
+  return `
+
+    <article class="order">
+
+      <div class="order-top">
+
+        <div>
+
+          <b>
+            Order #${esc(
+              (
+                order.orderNumber ||
+                order.id
+              )
+              .slice(-10)
+              .toUpperCase()
+            )}
+          </b>
+
+          <p class="help">
+
+            ${esc(
+              order.customerName ||
+              "Customer"
+            )}
+
+            •
+
+            ${esc(
+              order.customerPhone ||
+              ""
+            )}
+
+          </p>
+
+        </div>
+
+
+        <span class="status">
+
+          ${esc(
+            statusLabel(
+              order.status
+            )
+          )}
+
+        </span>
+
+      </div>
+
+
+      <p class="help">
+
+        📍
+
+        ${esc(
+          order.deliveryAddress ||
+          order.address ||
+          ""
+        )}
+
+      </p>
+
+
+      ${
+        next &&
+        (
+          order.status === "ready" ||
+          mine
+        )
+          ? `
+
+            <button
+              class="submit"
+              onclick="
+                deliveryUpdate(
+                  '${order.id}',
+                  '${next[0]}'
+                )
+              ">
+
+              ${next[1]}
+
+            </button>
+
+          `
+          : ""
+      }
+
+    </article>
+
+  `;
+}
+
+
+window.deliveryUpdate =
+async function(id,status){
+
+  try{
+
+    const data = {
+
+      status,
+
+      updatedAt:
+        fs.serverTimestamp()
+
+    };
+
+
+    if(status === "assigned"){
+
+      data.driverUid =
+        auth.currentUser.uid;
+    }
+
+
+    await fs.updateDoc(
+      fs.doc(
+        db,
+        "orders",
+        id
+      ),
+      data
+    );
+
+
+    toast(
+      "Delivery status updated."
+    );
+
+
+    renderDelivery();
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      "Could not update delivery."
+    );
+  }
+};
+
+
+/* =========================================================
+   ADMIN DASHBOARD
+========================================================= */
+
+window.openAdminDashboard =
+async function(){
+
+  await initFirebase();
+
+  $("adminModal")
+    .classList.add("open");
+
+  renderAdmin();
+};
+
+
+async function renderAdmin(){
+
+  const container =
+    $("adminContent");
+
+
+  container.innerHTML =
+    `<div class="empty">
+      Checking administrator access…
+    </div>`;
+
+
+  if(!auth.currentUser){
+
+    container.innerHTML = `
+
+      <div class="empty">
+
+        <b>
+          Sign in required.
+        </b>
+
+        <button
+          class="submit"
+          style="margin-top:10px"
+          onclick="
+            closeModal('adminModal');
+            openAccount();
+          ">
+
+          Sign In
+
+        </button>
+
+      </div>
+
+    `;
+
+    return;
+  }
+
+
+  const claims =
+    await getClaims();
+
+
+  if(claims.admin !== true){
+
+    container.innerHTML = `
+
+      <div class="empty">
+
+        <b>
+          Access denied.
+        </b>
+
+        <p>
+          Admin access requires the Firebase
+          Authentication custom claim
+          <code>admin:true</code>.
+        </p>
+
+      </div>
+
+    `;
+
+    return;
+  }
+
+
+  try{
+
+    const [
+      users,
+      businesses,
+      products,
+      orders
+    ] = await Promise.all([
+
+      fs.getDocs(
+        fs.collection(
+          db,
+          "users"
+        )
+      ),
+
+      fs.getDocs(
+        fs.collection(
+          db,
+          "businesses"
+        )
+      ),
+
+      fs.getDocs(
+        fs.collection(
+          db,
+          "products"
+        )
+      ),
+
+      fs.getDocs(
+        fs.collection(
+          db,
+          "orders"
+        )
+      )
+
+    ]);
+
+
+    container.innerHTML = `
+
+      <div class="stats">
+
+        <div class="stat">
+          <b>${users.size}</b>
+          <span>Users</span>
+        </div>
+
+        <div class="stat">
+          <b>${businesses.size}</b>
+          <span>Businesses</span>
+        </div>
+
+        <div class="stat">
+          <b>${products.size}</b>
+          <span>Products</span>
+        </div>
+
+        <div class="stat">
+          <b>${orders.size}</b>
+          <span>Orders</span>
+        </div>
+
+      </div>
+
+
+      <div class="card">
+
+        <h3 style="margin-top:0">
+          Accounts
+        </h3>
+
+        ${
+          users.docs
+            .slice(0,100)
+            .map(document => {
+
+              const user =
+                document.data();
+
+              return `
+
+                <div
+                  style="
+                    padding:10px 0;
+                    border-bottom:1px solid var(--line);
+                  ">
+
+                  <b>
+                    ${esc(
+                      user.name ||
+                      "User"
+                    )}
+                  </b>
+
+                  <div class="help">
+
+                    ${esc(
+                      user.email ||
+                      ""
+                    )}
+
+                    •
+
+                    ${esc(
+                      user.accountType ||
+                      "customer"
+                    )}
+
+                  </div>
+
+                </div>
+
+              `;
+
+            })
+            .join("")
+        }
+
+      </div>
+
+      <div
+        class="card"
+        style="margin-top:12px">
+
+        <h3 style="margin-top:0">
+          Security
+        </h3>
+
+        <p class="help">
+
+          Admin access is controlled by Firebase
+          Authentication custom claims.
+          A normal user cannot make themselves
+          an administrator from this website.
+
+        </p>
+
+      </div>
+
+    `;
+
+  }catch(error){
+
+    console.error(error);
+
+    container.innerHTML = `
+      <div class="empty">
+        Could not load administrator data.
+        Check Firestore permissions.
+      </div>
+    `;
+  }
+}
+
+
+/* =========================================================
+   PAGE START
+========================================================= */
+
+window.addEventListener(
+  "load",
+  async () => {
+
+    await initFirebase();
+
+  }
+);
+
+</script>
+
+</body>
+</html>
