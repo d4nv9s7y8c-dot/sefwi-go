@@ -1,2557 +1,4654 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#075c3b">
-<title>SefwiGo | Local Marketplace</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#087f5b">
+<meta name="description" content="SefwiGo - Food, Groceries, Parcels, Property and Delivery">
+<title>SefwiGo</title>
+
 <style>
-:root{--g:#0f7a4f;--gd:#075c3b;--gold:#e0ad3d;--bg:#f5f8f6;--card:#fff;--ink:#17221d;--muted:#708078;--line:#e1eae5;--bad:#b52f36;--shadow:0 18px 50px #163d2b14}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,sans-serif;padding-bottom:78px}
+:root{
+  --green:#087f5b;
+  --dark:#064d3a;
+  --deep:#043b2d;
+  --gold:#d4af37;
+  --gold2:#f0d56b;
+  --light:#f3f8f6;
+  --white:#fff;
+  --text:#16372d;
+  --muted:#6b8179;
+  --border:#dce8e3;
+  --danger:#c62828;
+  --shadow:0 12px 35px rgba(4,59,45,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Inter,Arial,sans-serif;
+  background:linear-gradient(180deg,#f5faf8 0,#fff 55%,#f5faf8 100%);
+  color:var(--text);
+  padding-bottom:82px;
+}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
 button:disabled{opacity:.55;cursor:not-allowed}
-.wrap{width:min(1160px,92%);margin:auto}
-.top{position:sticky;top:0;z-index:20;background:#ffffffed;backdrop-filter:blur(15px);border-bottom:1px solid var(--line)}
-.nav{height:70px;display:flex;align-items:center;gap:10px}
-.logo{width:44px;height:44px;border-radius:15px;background:linear-gradient(135deg,var(--g),var(--gd));color:#fff;display:grid;place-items:center;font-weight:950;font-size:22px}
-.brand{display:flex;align-items:center;gap:9px;font-size:21px;font-weight:950;margin-right:auto}
-.ico{height:44px;min-width:44px;border:1px solid var(--line);border-radius:13px;background:#fff}
-.acct{height:44px;border:0;border-radius:13px;padding:0 15px;background:var(--g);color:#fff;font-weight:900}
-.hero{margin:22px 0;border-radius:31px;overflow:hidden;color:#fff;background:radial-gradient(circle at 86% 10%,#e0ad3d55,transparent 25%),linear-gradient(135deg,#064f34,#159461 65%,#0b7048);box-shadow:var(--shadow)}
-.heroIn{padding:46px clamp(22px,6vw,65px);display:grid;grid-template-columns:1.2fr .8fr;gap:25px;align-items:center}
-.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.16em;font-weight:950;opacity:.8}
-.hero h1{font-size:clamp(38px,6vw,67px);line-height:.96;letter-spacing:-3px;margin:12px 0 16px}
-.hero p{max-width:650px;line-height:1.65;color:#ffffffdf}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
-.btn{border:0;border-radius:14px;padding:13px 17px;font-weight:900}
-.white{background:#fff;color:var(--gd)}
-.gold{background:var(--gold);color:#18231d}
-.ghost{background:#ffffff18;color:#fff;border:1px solid #ffffff35}
-.heroArt{height:230px;border-radius:29px;background:#ffffff12;border:1px solid #ffffff2b;display:grid;place-items:center;font-size:105px;transform:rotate(2deg)}
-section{padding:10px 0 28px}
-.head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:14px}
-.head h2{margin:0;font-size:25px}
-.head p{margin:5px 0 0;color:var(--muted);font-size:13px}
-.link{border:0;background:none;color:var(--g);font-weight:900}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:0 5px 20px #163d2b08}
-.service{border:0;text-align:left;padding:19px;min-height:145px;background:#fff}
-.service b{display:block;font-size:16px}
-.service span{display:block;color:var(--muted);font-size:12px;margin-top:6px}
-.service i{display:block;font-style:normal;font-size:35px;margin-bottom:12px}
-.biz{padding:16px;text-align:left;border:1px solid var(--line);border-radius:22px;background:#fff}
-.bizTop{display:flex;gap:11px;align-items:center}
-.avatar{width:52px;height:52px;border-radius:16px;background:#eaf7f0;display:grid;place-items:center;font-size:27px}
-.biz h3{margin:0;font-size:16px}
-.biz p{margin:4px 0;color:var(--muted);font-size:12px}
-.chip{display:inline-block;padding:6px 9px;border-radius:999px;background:#eaf7f0;color:var(--gd);font-size:11px;font-weight:900;margin-top:10px}
-.property{overflow:hidden}
-.propPic{height:155px;background:linear-gradient(135deg,#dff1e7,#fbf1d6);display:grid;place-items:center;font-size:65px}
-.propBody{padding:15px}
-.propBody h3{margin:6px 0}
-.price{font-weight:950;color:var(--gd);font-size:21px}
-.muted{color:var(--muted);font-size:12px}
-.row{display:flex;gap:8px;align-items:center;justify-content:space-between}
-.actions2{display:flex;gap:7px;margin-top:12px}
-.small{border:0;border-radius:11px;padding:10px 12px;background:#eef3f0;color:var(--gd);font-weight:850}
-.primary{background:var(--g);color:#fff}
-.danger{background:#fbeaea;color:var(--bad)}
-.partner{padding:25px;border-radius:25px;background:#10251b;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:15px}
-.partner h2{margin:0 0 6px}
-.partner p{margin:0;color:#ffffffb8}
-.bottom{position:fixed;z-index:30;bottom:0;left:0;right:0;height:76px;background:#ffffffef;border-top:1px solid var(--line);backdrop-filter:blur(15px)}
-.bottomIn{height:100%;width:min(600px,100%);margin:auto;display:grid;grid-template-columns:repeat(4,1fr)}
-.bottom button{border:0;background:none;color:#7b847f;font-weight:800;font-size:11px}
-.bottom button b{display:block;font-size:22px;margin-bottom:3px}
-.modal{position:fixed;inset:0;z-index:100;background:#06140d99;display:none;align-items:center;justify-content:center;padding:15px}
-.modal.open{display:flex}
-.box{width:min(940px,100%);max-height:94vh;overflow:auto;background:#fff;border-radius:28px;box-shadow:0 35px 90px #0005}
-.modalHead{position:sticky;top:0;z-index:2;background:#fff;border-bottom:1px solid var(--line);padding:17px 20px;display:flex;align-items:center;justify-content:space-between}
-.close{border:0;background:#eef3f0;border-radius:11px;width:40px;height:40px;font-size:21px}
-.body{padding:20px}
-.dashHead{padding:23px;color:#fff;background:linear-gradient(135deg,#0a6743,#15915f)}
-.dashHead h2{margin:0}
-.dashHead p{margin:6px 0 0;color:#ffffffc9}
-.tabs{display:flex;gap:7px;overflow:auto;margin-bottom:17px}
-.tab{white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:11px;padding:10px 13px;font-weight:850}
-.tab.active{background:var(--g);color:#fff;border-color:var(--g)}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:12px 0}
-.stat{background:#f7faf8;border:1px solid var(--line);border-radius:16px;padding:14px}
-.stat b{font-size:24px;display:block}
+a{text-decoration:none;color:inherit}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(4,59,45,.96);
+  backdrop-filter:blur(16px);
+  color:#fff;
+  height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 max(18px,calc((100% - 1180px)/2));
+  box-shadow:0 5px 25px #0002;
+}
+.logo{
+  font-size:26px;
+  font-weight:900;
+  letter-spacing:-1px;
+}
+.logo span{color:var(--gold2)}
+.header-actions{display:flex;gap:8px;align-items:center}
+.header-btn{
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.1);
+  color:white;
+  padding:10px 13px;
+  border-radius:13px;
+}
+.header-btn:hover{background:rgba(255,255,255,.18)}
+
+.container{
+  width:min(1180px,100%);
+  margin:auto;
+  padding:22px 18px;
+}
+
+.hero{
+  position:relative;
+  overflow:hidden;
+  min-height:390px;
+  border-radius:30px;
+  background:
+    radial-gradient(circle at 90% 10%,rgba(212,175,55,.35),transparent 25%),
+    radial-gradient(circle at 5% 95%,rgba(255,255,255,.10),transparent 28%),
+    linear-gradient(135deg,#075b43,#087f5b 60%,#0a916a);
+  color:#fff;
+  padding:48px 35px;
+  display:flex;
+  align-items:center;
+  box-shadow:0 20px 50px rgba(8,127,91,.22);
+  margin-bottom:28px;
+}
+.hero:after{
+  content:"";
+  position:absolute;
+  width:270px;height:270px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:50%;
+  right:-70px;bottom:-100px;
+  box-shadow:0 0 0 35px rgba(255,255,255,.03),0 0 0 70px rgba(255,255,255,.02);
+}
+.hero-content{max-width:680px;position:relative;z-index:2}
+.hero-badge{
+  display:inline-flex;
+  gap:7px;
+  align-items:center;
+  padding:7px 12px;
+  border-radius:30px;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.15);
+  font-size:13px;
+  margin-bottom:17px;
+}
+.hero h1{
+  font-size:clamp(34px,6vw,58px);
+  line-height:1.02;
+  letter-spacing:-2px;
+  margin-bottom:15px;
+}
+.hero h1 span{color:var(--gold2)}
+.hero p{font-size:17px;line-height:1.7;color:#e8f7f2}
+.hero-buttons{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px}
+
+.btn{
+  border:0;
+  border-radius:13px;
+  padding:12px 17px;
+  background:var(--green);
+  color:#fff;
+  font-weight:800;
+  transition:.2s;
+}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.04)}
+.btn-gold{background:var(--gold);color:#17352b}
+.btn-dark{background:var(--deep);color:#fff}
+.btn-light{background:#edf6f3;color:var(--green)}
+.btn-danger{background:var(--danger);color:#fff}
+.btn-outline{
+  background:transparent;
+  color:var(--green);
+  border:1px solid var(--green);
+}
+.hero .btn-outline{
+  color:#fff;
+  border-color:rgba(255,255,255,.4);
+}
+.full{width:100%}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:15px;
+  margin:34px 0 14px;
+}
+.section-head h2{font-size:25px}
+.section-head p{color:var(--muted);font-size:14px;margin-top:4px}
+
+.service-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+.service-card{
+  position:relative;
+  overflow:hidden;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:22px;
+  box-shadow:var(--shadow);
+  transition:.25s;
+  cursor:pointer;
+}
+.service-card:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(4,59,45,.15)}
+.service-card .service-icon{
+  width:58px;height:58px;
+  border-radius:17px;
+  display:grid;place-items:center;
+  font-size:30px;
+  background:#eaf7f2;
+  margin-bottom:15px;
+}
+.service-card h3{font-size:18px;margin-bottom:6px}
+.service-card p{font-size:13px;color:var(--muted);line-height:1.5}
+.service-card .arrow{
+  position:absolute;right:17px;top:18px;
+  width:30px;height:30px;border-radius:50%;
+  display:grid;place-items:center;
+  background:#f4f8f6;color:var(--green);
+}
+
+.card-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+.card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:18px;
+  box-shadow:var(--shadow);
+}
+.food-card{
+  overflow:hidden;
+  padding:0;
+  transition:.22s;
+}
+.food-card:hover{transform:translateY(-4px)}
+.food-image{
+  height:145px;
+  display:grid;
+  place-items:center;
+  font-size:64px;
+  background:linear-gradient(135deg,#e9f7f2,#fff7da);
+}
+.food-body{padding:17px}
+.food-body h3{font-size:18px;margin-bottom:7px}
+.food-body p{font-size:13px;color:var(--muted);line-height:1.5;min-height:39px}
+.food-price{font-size:19px;font-weight:900;color:var(--green);margin:13px 0}
+.business-card{
+  display:flex;align-items:center;gap:13px;
+}
+.business-icon{
+  width:55px;height:55px;border-radius:16px;
+  display:grid;place-items:center;font-size:27px;
+  background:#edf8f4;flex:none;
+}
+.property-card{overflow:hidden;padding:0}
+.property-cover{
+  height:150px;
+  display:grid;place-items:center;
+  font-size:60px;
+  background:linear-gradient(135deg,#e7f4ef,#fff5cf);
+}
+.property-body{padding:17px}
+.property-body h3{margin-bottom:7px}
+.property-meta{color:var(--muted);font-size:13px;line-height:1.7}
+.property-price{font-size:19px;font-weight:900;color:var(--green);margin:10px 0}
+
+.bottom-nav{
+  position:fixed;
+  bottom:0;left:0;right:0;
+  height:76px;
+  background:rgba(255,255,255,.97);
+  backdrop-filter:blur(15px);
+  border-top:1px solid var(--border);
+  z-index:200;
+  display:flex;
+  justify-content:center;
+  gap:min(7vw,65px);
+}
+.nav-btn{
+  border:0;background:none;color:#688078;
+  min-width:55px;
+  font-size:11px;
+  font-weight:700;
+}
+.nav-btn .nav-icon{display:block;font-size:22px;margin-bottom:3px}
+.nav-btn.active{color:var(--green)}
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:500;
+  background:rgba(2,27,20,.68);
+  backdrop-filter:blur(5px);
+  padding:15px;
+  overflow:auto;
+}
+.modal.open{display:block}
+.modal-box{
+  width:min(760px,100%);
+  margin:25px auto 80px;
+  background:#fff;
+  border-radius:25px;
+  box-shadow:0 25px 80px #0004;
+  padding:24px;
+  animation:pop .18s ease-out;
+}
+.modal-wide{width:min(1050px,100%)}
+@keyframes pop{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+.modal-header{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:15px;margin-bottom:20px;
+}
+.modal-header h2{font-size:25px}
+.close{
+  border:0;background:#edf2f0;color:#17352b;
+  width:37px;height:37px;border-radius:50%;
+  font-size:23px;line-height:1;
+}
+
+.form-group{margin-bottom:13px}
+.form-group label{
+  display:block;
+  font-size:13px;
+  font-weight:800;
+  margin-bottom:6px;
+}
+input,select,textarea{
+  width:100%;
+  border:1px solid var(--border);
+  background:#fbfdfc;
+  color:var(--text);
+  border-radius:12px;
+  padding:12px 13px;
+  outline:none;
+}
+input:focus,select:focus,textarea:focus{
+  border-color:var(--green);
+  box-shadow:0 0 0 3px rgba(8,127,91,.1);
+}
+textarea{min-height:95px;resize:vertical}
+
+.auth-role{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin:15px 0;
+}
+.role-option{
+  position:relative;
+}
+.role-option input{position:absolute;opacity:0}
+.role-label{
+  display:block;
+  border:2px solid var(--border);
+  border-radius:17px;
+  padding:16px;
+  cursor:pointer;
+  transition:.2s;
+}
+.role-option input:checked+.role-label{
+  border-color:var(--green);
+  background:#eef9f5;
+  box-shadow:0 0 0 3px rgba(8,127,91,.08);
+}
+.role-icon{font-size:29px;margin-bottom:7px}
+.role-label b{display:block;margin-bottom:4px}
+.role-label span{font-size:12px;color:var(--muted)}
+
+.tabs{
+  display:flex;
+  gap:7px;
+  background:#f1f6f4;
+  padding:5px;
+  border-radius:14px;
+  margin-bottom:18px;
+}
+.tab{
+  flex:1;
+  border:0;
+  background:transparent;
+  padding:11px;
+  border-radius:10px;
+  color:#658078;
+  font-weight:800;
+}
+.tab.active{background:#fff;color:var(--green);box-shadow:0 3px 10px #0000000b}
+
+.notice{
+  background:#fff8df;
+  border:1px solid #f1df9d;
+  color:#6c5a1b;
+  padding:12px 14px;
+  border-radius:13px;
+  font-size:13px;
+  line-height:1.5;
+  margin:10px 0 15px;
+}
+.success{
+  background:#eaf8f2;
+  color:#086047;
+  border:1px solid #c8eadc;
+}
+.dashboard-top{
+  background:linear-gradient(135deg,#064d3a,#087f5b);
+  color:#fff;
+  border-radius:20px;
+  padding:20px;
+  margin-bottom:16px;
+}
+.dashboard-top small{opacity:.75}
+.dashboard-top h2{margin:5px 0}
+.dashboard-tabs{
+  display:flex;
+  gap:8px;
+  overflow:auto;
+  padding-bottom:5px;
+  margin-bottom:17px;
+}
+.dashboard-tab{
+  flex:none;
+  border:1px solid var(--border);
+  background:#fff;
+  color:#557269;
+  padding:10px 13px;
+  border-radius:12px;
+  font-weight:800;
+}
+.dashboard-tab.active{background:var(--green);color:#fff;border-color:var(--green)}
+
+.dashboard-section{display:none}
+.dashboard-section.active{display:block}
+
+.stat-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:11px;
+  margin-bottom:18px;
+}
+.stat{
+  background:#f6faf8;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:15px;
+}
+.stat-icon{font-size:21px}
+.stat b{display:block;font-size:23px;margin-top:5px}
 .stat span{font-size:11px;color:var(--muted)}
-.form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.field{display:flex;flex-direction:column;gap:6px}
-.full{grid-column:1/-1}
-.field label{font-size:12px;font-weight:900}
-.field input,.field select,.field textarea{border:1px solid #d8e2dc;background:#fbfcfb;border-radius:12px;padding:11px;outline:0}
-.field textarea{min-height:95px;resize:vertical}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--g);box-shadow:0 0 0 3px #0f7a4f18}
-.submit{width:100%;border:0;border-radius:13px;background:var(--g);color:#fff;padding:13px;font-weight:950}
-.help{font-size:12px;color:var(--muted);line-height:1.5}
-.empty{text-align:center;padding:32px 15px;border:1px dashed #c9d7ce;border-radius:18px;color:var(--muted)}
-.roles{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.role{border:2px solid var(--line);background:#fff;border-radius:16px;padding:14px;text-align:left}
-.role.sel{border-color:var(--g);background:#effaf4}
-.role strong,.role span{display:block}
-.role span{font-size:11px;color:var(--muted);margin-top:4px}
-.productGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-.product{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff}
-.product img,.photo{height:145px;width:100%;object-fit:cover;background:#eaf7f0}
-.productBody{padding:13px}
-.mod{margin-top:10px;padding:11px;border:1px solid var(--line);border-radius:14px;background:#fbfcfb}
-.choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(105px,1fr));gap:7px;margin-top:7px}
-.choice{border:1.5px solid var(--line);background:#fff;border-radius:11px;padding:9px;text-align:left}
-.choice.sel{border-color:var(--g);background:#effaf4}
-.choice strong,.choice small{display:block}
-.choice small{font-size:10px;color:var(--muted)}
-.qty{display:flex;align-items:center;gap:9px;margin-top:10px}
-.qty button{width:34px;height:34px;border:1px solid var(--line);border-radius:9px;background:#fff}
-.order,.list{border:1px solid var(--line);border-radius:17px;padding:15px;margin-bottom:10px}
-.orderTop{display:flex;justify-content:space-between;gap:10px}
-.status{display:inline-block;padding:5px 8px;border-radius:999px;background:#eaf7f0;color:var(--gd);font-size:10px;font-weight:900}
-.status.bad{background:#fbeaea;color:var(--bad)}
-.list{display:flex;gap:12px;align-items:center}
-.thumb{width:68px;height:62px;border-radius:12px;background:#eaf7f0;display:grid;place-items:center;font-size:29px;flex:none}
-.toast{position:fixed;z-index:200;bottom:92px;left:50%;transform:translate(-50%,15px);opacity:0;background:#10251b;color:#fff;padding:11px 15px;border-radius:13px;font-size:12px;transition:.25s}
-.toast.show{opacity:1;transform:translate(-50%,0)}
-@media(max-width:820px){.heroIn{grid-template-columns:1fr}.heroArt{display:none}.grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:540px){.grid,.form,.roles{grid-template-columns:1fr}.hero{margin-top:12px}.heroIn{padding:31px 20px}.hero h1{font-size:40px}.partner{flex-direction:column;align-items:flex-start}.nav .acct{padding:0 11px}}
+
+.option-group{
+  background:#fbfdfc;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:15px;
+  margin:13px 0;
+}
+.option-group h4{margin-bottom:4px}
+.option-help{font-size:12px;color:var(--muted);margin-bottom:10px}
+.choice{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:11px 10px;
+  border:1px solid #e5eeea;
+  background:#fff;
+  border-radius:11px;
+  margin:7px 0;
+  cursor:pointer;
+}
+.choice:hover{border-color:#9ccfc0}
+.choice-left{display:flex;align-items:center;gap:9px}
+.choice input{width:auto;margin:0}
+.choice-price{font-size:12px;font-weight:800;color:var(--green)}
+
+.qty-control{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.qty-control button{
+  width:35px;height:35px;
+  padding:0;border-radius:10px;
+  background:#eaf5f1;color:var(--green);
+  font-weight:900;
+}
+.qty-number{font-weight:900;min-width:25px;text-align:center}
+
+.total-box{
+  display:flex;justify-content:space-between;align-items:center;
+  background:#064d3a;color:#fff;
+  padding:17px;border-radius:15px;
+  margin:15px 0;
+}
+.total-box strong{font-size:21px;color:var(--gold2)}
+
+.cart-item,.order-item,.property-manage-item{
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:14px;
+  margin:10px 0;
+  background:#fff;
+}
+.cart-item-head,.item-row{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:flex-start;
+}
+.item-title{font-weight:900}
+.item-muted{font-size:12px;color:var(--muted);line-height:1.6;margin-top:4px}
+.item-price{font-weight:900;color:var(--green)}
+.item-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:11px}
+
+.status{
+  display:inline-flex;
+  align-items:center;
+  padding:5px 9px;
+  border-radius:20px;
+  background:#e8f6f1;
+  color:#087f5b;
+  font-size:11px;
+  font-weight:900;
+  text-transform:capitalize;
+}
+.status.new{background:#fff5d9;color:#806600}
+.status.accepted,.status.preparing{background:#e6f1ff;color:#1765a5}
+.status.ready{background:#e9f8e9;color:#2c7b32}
+.status.completed{background:#e5f8ee;color:#08724e}
+.status.cancelled{background:#ffebeb;color:#b32121}
+
+.empty{
+  text-align:center;
+  padding:35px 15px;
+  color:var(--muted);
+}
+.empty-icon{font-size:42px;margin-bottom:8px}
+
+.search{
+  display:flex;
+  gap:8px;
+  margin-bottom:15px;
+}
+.search input{margin:0}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:95px;
+  transform:translateX(-50%) translateY(20px);
+  z-index:1000;
+  background:#16372d;
+  color:#fff;
+  padding:12px 17px;
+  border-radius:13px;
+  box-shadow:0 10px 30px #0003;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  font-size:13px;
+  max-width:90%;
+  text-align:center;
+}
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+.hide{display:none!important}
+.divider{height:1px;background:var(--border);margin:20px 0}
+.muted{color:var(--muted)}
+.small{font-size:12px}
+.center{text-align:center}
+.badge{
+  display:inline-block;
+  padding:5px 9px;
+  background:#edf7f3;
+  color:var(--green);
+  border-radius:20px;
+  font-size:11px;
+  font-weight:900;
+}
+
+@media(max-width:900px){
+  .service-grid,.card-grid{grid-template-columns:repeat(2,1fr)}
+  .stat-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  header{height:62px}
+  .logo{font-size:23px}
+  .container{padding:14px}
+  .hero{min-height:430px;padding:30px 22px;border-radius:24px}
+  .hero h1{font-size:40px}
+  .service-grid,.card-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .service-card{padding:15px;border-radius:16px}
+  .service-card .service-icon{width:48px;height:48px;font-size:25px}
+  .service-card h3{font-size:15px}
+  .service-card p{font-size:11px}
+  .food-image,.property-cover{height:120px}
+  .food-body,.property-body{padding:13px}
+  .modal{padding:8px}
+  .modal-box{padding:18px;border-radius:20px;margin-top:10px}
+  .auth-role{grid-template-columns:1fr}
+  .bottom-nav{gap:3px}
+  .nav-btn{min-width:54px}
+}
 </style>
 </head>
 
 <body>
-<header class="top">
-<div class="wrap nav">
-<button class="ico" onclick="menu()">☰</button>
-<a class="brand" href="#home"><span class="logo">S</span>SefwiGo</a>
-<button class="ico" onclick="cartOpen()">🛒<sup id="cartN">0</sup></button>
-<button class="acct" onclick="account()">Account</button>
-</div>
+
+<header>
+  <div class="logo">Sefwi<span>Go</span></div>
+  <div class="header-actions">
+    <button class="header-btn" onclick="openCart()">🛒 <span id="cartCount">0</span></button>
+    <button class="header-btn" onclick="openAccount()">👤 Account</button>
+  </div>
 </header>
 
-<main id="home">
-<div class="wrap">
+<main class="container">
 
 <section class="hero">
-<div class="heroIn">
-<div>
-<div class="eyebrow">Sefwi Wiawso • Local marketplace</div>
-<h1>Your town. Your marketplace. One SefwiGo.</h1>
-<p>Order food, discover local businesses, track deliveries and find rent or property listings — all in one simple app.</p>
-<div class="actions">
-<button class="btn white" onclick="exploreFood()">🍔 Order Food</button>
-<button class="btn ghost" onclick="partner()">🏪 Become a Partner</button>
-</div>
-</div>
-<div class="heroArt">🛵</div>
-</div>
+  <div class="hero-content">
+    <div class="hero-badge">📍 Sefwi Wiawso's local marketplace</div>
+    <h1>Everything you need.<br><span>Right here.</span></h1>
+    <p>Order food, shop for essentials, send parcels and discover properties through SefwiGo.</p>
+    <div class="hero-buttons">
+      <button class="btn btn-gold" onclick="showFoods()">🍛 Order Food</button>
+      <button class="btn btn-outline" onclick="openAccount()">Create Account</button>
+    </div>
+  </div>
 </section>
 
-<section>
-<div class="head">
-<div><h2>What do you need?</h2><p>Choose a service and get started.</p></div>
+<div class="section-head">
+  <div>
+    <h2>What do you need?</h2>
+    <p>Choose a SefwiGo service</p>
+  </div>
 </div>
-<div class="grid">
-<button class="service card" onclick="exploreFood()"><i>🍔</i><b>Food</b><span>Meals & local favourites</span></button>
-<button class="service card" onclick="toast('Choose a grocery business below.')"><i>🛒</i><b>Groceries</b><span>Everyday shopping</span></button>
-<button class="service card" onclick="toast('Parcel delivery is coming soon.')"><i>📦</i><b>Parcels</b><span>Send it around town</span></button>
-<button class="service card" onclick="document.getElementById('property').scrollIntoView({behavior:'smooth'})"><i>🏠</i><b>Rent & Property</b><span>Homes, rooms, land & more</span></button>
-</div>
-</section>
 
-<section>
-<div class="head">
-<div><h2>⭐ Popular businesses</h2><p>Open a business to see its menu.</p></div>
+<div class="service-grid">
+  <div class="service-card" onclick="showFoods()">
+    <div class="arrow">→</div>
+    <div class="service-icon">🍛</div>
+    <h3>Food</h3>
+    <p>Customize your meal and order directly in the app.</p>
+  </div>
+  <div class="service-card" onclick="showGroceries()">
+    <div class="arrow">→</div>
+    <div class="service-icon">🛒</div>
+    <h3>Groceries</h3>
+    <p>Get everyday groceries and essentials.</p>
+  </div>
+  <div class="service-card" onclick="showParcel()">
+    <div class="arrow">→</div>
+    <div class="service-icon">📦</div>
+    <h3>Parcels</h3>
+    <p>Request local parcel pickup and delivery.</p>
+  </div>
+  <div class="service-card" onclick="showProperty()">
+    <div class="arrow">→</div>
+    <div class="service-icon">🏠</div>
+    <h3>Property</h3>
+    <p>Explore homes, shops, land and other properties.</p>
+  </div>
 </div>
-<div class="grid" id="businesses"></div>
-</section>
 
-<section id="property">
-<div class="head">
-<div><h2>🏠 Rent & Property</h2><p>Properties published by SefwiGo partners.</p></div>
-<button class="link" onclick="partner('property')">List yours</button>
+<div class="section-head">
+  <div>
+    <h2>Featured Food</h2>
+    <p>Customize your meal before adding it to your cart</p>
+  </div>
+  <button class="btn btn-light" onclick="showFoods()">View all</button>
 </div>
-<div class="grid" id="properties"></div>
-</section>
+<div id="foodList" class="card-grid"></div>
 
-<section>
-<div class="partner">
-<div><h2>Own a business or property?</h2><p>Join SefwiGo and reach customers around Sefwi Wiawso.</p></div>
-<button class="btn gold" onclick="partner()">Become a SefwiGo Partner</button>
+<div class="section-head">
+  <div>
+    <h2>Popular Businesses</h2>
+    <p>Local businesses on SefwiGo</p>
+  </div>
 </div>
-</section>
+<div id="businessList" class="card-grid"></div>
 
+<div class="section-head">
+  <div>
+    <h2>Property</h2>
+    <p>Available properties</p>
+  </div>
+  <button class="btn btn-light" onclick="showProperty()">View all</button>
 </div>
+<div id="propertyList" class="card-grid"></div>
+
 </main>
 
-<nav class="bottom">
-<div class="bottomIn">
-<button onclick="scrollTo(0,0)"><b>⌂</b>Home</button>
-<button onclick="exploreFood()"><b>🔥</b>Explore</button>
-<button onclick="menu()"><b>☰</b>Menu</button>
-<button onclick="account()"><b>◉</b>Account</button>
-</div>
+<nav class="bottom-nav">
+  <button class="nav-btn active" onclick="home()"><span class="nav-icon">🏠</span>Home</button>
+  <button class="nav-btn" onclick="showFoods()"><span class="nav-icon">🍛</span>Food</button>
+  <button class="nav-btn" onclick="openCart()"><span class="nav-icon">🛒</span>Cart</button>
+  <button class="nav-btn" onclick="openCustomerDashboard()"><span class="nav-icon">📋</span>Orders</button>
+  <button class="nav-btn" onclick="openAccount()"><span class="nav-icon">👤</span>Account</button>
 </nav>
 
-<div class="modal" id="menuM">
-<div class="box">
-<div class="modalHead"><b>SefwiGo</b><button class="close" onclick="closeM('menuM')">×</button></div>
-<div class="body">
-<button class="submit" onclick="closeM('menuM');scrollTo(0,0)">🏠 Home</button>
-<button class="small" style="width:100%;margin-top:8px" onclick="closeM('menuM');exploreFood()">🍔 Food & Businesses</button>
-<button class="small" style="width:100%;margin-top:8px" onclick="closeM('menuM');document.getElementById('property').scrollIntoView({behavior:'smooth'})">🏠 Rent & Property</button>
-<button class="small" style="width:100%;margin-top:8px" onclick="closeM('menuM');partner()">🏪 Partner Dashboard</button>
-<button class="small" style="width:100%;margin-top:8px" onclick="closeM('menuM');customerDash()">👤 Customer Dashboard</button>
-<button class="small" style="width:100%;margin-top:8px" onclick="closeM('menuM');cartOpen()">🛒 My Cart</button>
-<button class="small" style="width:100%;margin-top:8px" onclick="closeM('menuM');deliveryDash()">🛵 Delivery Dashboard</button>
-<button class="small" style="width:100%;margin-top:8px" onclick="closeM('menuM');adminDash()">🛡️ Admin Dashboard</button>
-</div>
+<!-- ACCOUNT MODAL -->
+<div class="modal" id="accountModal">
+<div class="modal-box">
+  <div class="modal-header">
+    <div>
+      <h2>Your Account</h2>
+      <p class="small muted">Access your SefwiGo dashboard</p>
+    </div>
+    <button class="close" onclick="closeModal('accountModal')">×</button>
+  </div>
+
+  <div id="loggedOut">
+
+    <div class="tabs">
+      <button id="signupTab" class="tab active" onclick="showSignup()">Create Account</button>
+      <button id="loginTab" class="tab" onclick="showLogin()">Sign In</button>
+    </div>
+
+    <div id="signupBox">
+
+      <label style="font-weight:900;font-size:14px">Choose your account type</label>
+
+      <div class="auth-role">
+        <div class="role-option">
+          <input type="radio" id="roleCustomer" name="signupRole" value="customer" checked>
+          <label class="role-label" for="roleCustomer">
+            <div class="role-icon">🛍️</div>
+            <b>Customer</b>
+            <span>Order food, shop and manage your orders.</span>
+          </label>
+        </div>
+
+        <div class="role-option">
+          <input type="radio" id="rolePartner" name="signupRole" value="partner">
+          <label class="role-label" for="rolePartner">
+            <div class="role-icon">🤝</div>
+            <b>Partnership</b>
+            <span>Manage your business and add properties.</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="notice">
+        <b>Partnership account:</b> You will get access to the Partnership Dashboard, including Business, Food and Property management.
+      </div>
+
+      <div class="form-group">
+        <label>Full Name</label>
+        <input id="signupName" placeholder="Enter your full name">
+      </div>
+
+      <div class="form-group">
+        <label>Email Address</label>
+        <input id="signupEmail" type="email" placeholder="you@example.com">
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input id="signupPassword" type="password" placeholder="At least 6 characters">
+      </div>
+
+      <div class="form-group">
+        <label>Confirm Password</label>
+        <input id="signupConfirm" type="password" placeholder="Confirm your password">
+      </div>
+
+      <button class="btn full" onclick="emailSignup()">Create My Account</button>
+    </div>
+
+    <div id="loginBox" class="hide">
+
+      <div class="notice success">
+        Sign in with the email and password you used when creating your SefwiGo account.
+      </div>
+
+      <div class="form-group">
+        <label>Email Address</label>
+        <input id="loginEmail" type="email" placeholder="you@example.com">
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input id="loginPassword" type="password" placeholder="Your password">
+      </div>
+
+      <button class="btn full" onclick="emailLogin()">Sign In</button>
+      <br><br>
+      <button class="btn btn-light full" onclick="resetPassword()">Forgot Password?</button>
+    </div>
+
+  </div>
+
+  <div id="loggedIn" class="hide">
+
+    <div class="dashboard-top">
+      <small>Welcome back</small>
+      <h2 id="accountName">SefwiGo User</h2>
+      <p id="accountEmail"></p>
+      <br>
+      <span class="badge" id="accountRole">Customer</span>
+    </div>
+
+    <div id="customerAccountButtons">
+      <button class="btn full" onclick="openCustomerDashboard()">📋 Customer Dashboard</button>
+      <br><br>
+      <button class="btn btn-light full" onclick="openCart()">🛒 My Cart</button>
+    </div>
+
+    <div id="partnerAccountButtons" class="hide">
+      <button class="btn btn-gold full" onclick="openPartnershipDashboard()">🤝 Partnership Dashboard</button>
+      <br><br>
+      <p class="small muted center">Your Partnership Dashboard contains Business, Food and Property management.</p>
+    </div>
+
+    <div id="adminAccountButton" class="hide">
+      <br>
+      <button class="btn btn-dark full" onclick="openAdminDashboard()">🔐 Admin Dashboard</button>
+    </div>
+
+    <div id="deliveryAccountButton" class="hide">
+      <br>
+      <button class="btn btn-light full" onclick="openDeliveryDashboard()">🚴 Delivery Dashboard</button>
+    </div>
+
+    <div class="divider"></div>
+    <button class="btn btn-danger full" onclick="logout()">Sign Out</button>
+  </div>
 </div>
 </div>
 
-<div class="modal" id="accountM">
-<div class="box">
-<div class="modalHead"><b>My SefwiGo Account</b><button class="close" onclick="closeM('accountM')">×</button></div>
-<div class="body" id="accountBody"></div>
+<!-- FOOD CUSTOMIZER -->
+<div class="modal" id="foodModal">
+<div class="modal-box">
+  <div class="modal-header">
+    <div>
+      <h2 id="foodTitle">Customize Food</h2>
+      <p class="small muted">Choose exactly how you want your meal.</p>
+    </div>
+    <button class="close" onclick="closeModal('foodModal')">×</button>
+  </div>
+  <div id="foodDetails"></div>
 </div>
 </div>
 
-<div class="modal" id="businessM">
-<div class="box">
-<div class="modalHead"><b id="bizTitle">Business</b><button class="close" onclick="closeM('businessM')">×</button></div>
-<div class="body" id="bizBody"></div>
+<!-- CART -->
+<div class="modal" id="cartModal">
+<div class="modal-box">
+  <div class="modal-header">
+    <div>
+      <h2>🛒 Your Cart</h2>
+      <p class="small muted">Review your items before checkout.</p>
+    </div>
+    <button class="close" onclick="closeModal('cartModal')">×</button>
+  </div>
+
+  <div id="cartItems"></div>
+
+  <div class="total-box">
+    <span>Cart Total</span>
+    <strong id="cartTotal">GH₵0</strong>
+  </div>
+
+  <button class="btn btn-gold full" onclick="checkout()">Proceed to Checkout</button>
 </div>
 </div>
 
-<div class="modal" id="partnerM">
-<div class="box">
-<div class="dashHead">
-<div class="row">
-<div><h2>Partner Dashboard</h2><p>Manage your business, products, properties and orders.</p></div>
-<button class="close" onclick="closeM('partnerM')">×</button>
-</div>
-</div>
-<div class="body">
-<div class="tabs">
-<button class="tab active" id="t0" onclick="tab('overview')">Overview</button>
-<button class="tab" id="t1" onclick="tab('business')">My Business</button>
-<button class="tab" id="t2" onclick="tab('products')">🍽️ Products</button>
-<button class="tab" id="t3" onclick="tab('property')">🏠 Register Property</button>
-<button class="tab" id="t4" onclick="tab('myprops')">My Properties</button>
-<button class="tab" id="t5" onclick="tab('orders')">📦 Orders</button>
-</div>
-<div id="partnerBody"></div>
-</div>
+<!-- CHECKOUT -->
+<div class="modal" id="checkoutModal">
+<div class="modal-box">
+  <div class="modal-header">
+    <div>
+      <h2>Checkout</h2>
+      <p class="small muted">Complete your in-app food order.</p>
+    </div>
+    <button class="close" onclick="closeModal('checkoutModal')">×</button>
+  </div>
+
+  <div class="notice success">
+    🍛 <b>In-app ordering:</b> Your food order is sent through SefwiGo. No WhatsApp ordering is required.
+  </div>
+
+  <div id="checkoutSummary"></div>
+
+  <div class="form-group">
+    <label>Delivery Address</label>
+    <textarea id="deliveryAddress" placeholder="Enter the address where you want the food delivered"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label>Phone Number</label>
+    <input id="deliveryPhone" placeholder="Your phone number">
+  </div>
+
+  <div class="form-group">
+    <label>Payment Method</label>
+    <select id="paymentMethod">
+      <option value="cash">Cash on Delivery</option>
+      <option value="mobile">Mobile Money</option>
+    </select>
+  </div>
+
+  <button class="btn btn-gold full" onclick="placeOrder()">✓ Place Order</button>
 </div>
 </div>
 
-<div class="modal" id="customerM">
-<div class="box">
-<div class="dashHead">
-<div class="row">
-<div><h2>Customer Dashboard</h2><p>Your account, cart and orders.</p></div>
-<button class="close" onclick="closeM('customerM')">×</button>
-</div>
-</div>
-<div class="body" id="customerBody"></div>
+<!-- CUSTOMER DASHBOARD -->
+<div class="modal" id="customerDashboard">
+<div class="modal-box modal-wide">
+  <div class="modal-header">
+    <div>
+      <h2>Customer Dashboard</h2>
+      <p class="small muted">Manage your SefwiGo orders.</p>
+    </div>
+    <button class="close" onclick="closeModal('customerDashboard')">×</button>
+  </div>
+
+  <div class="dashboard-top">
+    <small>Customer account</small>
+    <h2 id="customerDashName">My Orders</h2>
+    <p>Track your orders and delivery progress.</p>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat"><span>📦 Orders</span><b id="customerOrderCount">0</b></div>
+    <div class="stat"><span>🛒 Cart Items</span><b id="customerCartCount">0</b></div>
+    <div class="stat"><span>🚚 Active</span><b id="customerActiveCount">0</b></div>
+    <div class="stat"><span>✓ Completed</span><b id="customerCompletedCount">0</b></div>
+  </div>
+
+  <div class="dashboard-tabs">
+    <button class="dashboard-tab active" onclick="customerTab('orders',this)">📋 My Orders</button>
+    <button class="dashboard-tab" onclick="customerTab('cart',this)">🛒 My Cart</button>
+    <button class="dashboard-tab" onclick="showFoods();closeModal('customerDashboard')">🍛 Order Food</button>
+  </div>
+
+  <div id="customerOrdersSection" class="dashboard-section active">
+    <div id="customerOrders"></div>
+  </div>
+
+  <div id="customerCartSection" class="dashboard-section">
+    <div id="customerDashCart"></div>
+  </div>
 </div>
 </div>
 
-<div class="modal" id="deliveryM">
-<div class="box">
-<div class="dashHead">
-<div class="row">
-<div><h2>Delivery Dashboard</h2><p>Manage delivery jobs.</p></div>
-<button class="close" onclick="closeM('deliveryM')">×</button>
-</div>
-</div>
-<div class="body" id="deliveryBody"></div>
+<!-- PARTNERSHIP DASHBOARD -->
+<div class="modal" id="partnershipDashboard">
+<div class="modal-box modal-wide">
+
+  <div class="modal-header">
+    <div>
+      <h2>🤝 Partnership Dashboard</h2>
+      <p class="small muted">Business, food and property management</p>
+    </div>
+    <button class="close" onclick="closeModal('partnershipDashboard')">×</button>
+  </div>
+
+  <div class="dashboard-top">
+    <small>Partnership account</small>
+    <h2 id="partnerDashName">Partner</h2>
+    <p>Manage your SefwiGo business and properties from one dashboard.</p>
+  </div>
+
+  <div class="notice success">
+    <b>Trial Partnership:</b> You can test your business, food and property management here.
+  </div>
+
+  <div class="dashboard-tabs">
+    <button class="dashboard-tab active" onclick="partnerTab('overview',this)">📊 Overview</button>
+    <button class="dashboard-tab" onclick="partnerTab('business',this)">🏪 Business</button>
+    <button class="dashboard-tab" onclick="partnerTab('food',this)">🍛 Food</button>
+    <button class="dashboard-tab" onclick="partnerTab('properties',this)">🏠 Properties</button>
+    <button class="dashboard-tab" onclick="partnerTab('orders',this)">📦 Orders</button>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div id="partnerOverviewSection" class="dashboard-section active">
+    <div class="stat-grid">
+      <div class="stat"><span>🏪 Business</span><b id="partnerBusinessStat">1</b></div>
+      <div class="stat"><span>🍛 Food Items</span><b id="partnerFoodStat">0</b></div>
+      <div class="stat"><span>🏠 Properties</span><b id="partnerPropertyStat">0</b></div>
+      <div class="stat"><span>📦 Orders</span><b id="partnerOrderStat">0</b></div>
+    </div>
+
+    <div class="card">
+      <h3>Quick Actions</h3>
+      <p class="item-muted">Everything you need as a SefwiGo partner is available below.</p>
+      <br>
+      <div class="grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px">
+        <button class="btn btn-light" onclick="partnerTab('business')">🏪 Manage Business</button>
+        <button class="btn btn-light" onclick="partnerTab('food')">🍛 Manage Food</button>
+        <button class="btn btn-light" onclick="partnerTab('properties')">🏠 Add Property</button>
+        <button class="btn btn-light" onclick="partnerTab('orders')">📦 View Orders</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUSINESS -->
+  <div id="partnerBusinessSection" class="dashboard-section">
+    <div class="card">
+      <h3>🏪 Business Information</h3>
+      <p class="item-muted">Set the information customers see about your business.</p>
+      <br>
+
+      <div class="form-group">
+        <label>Business Name</label>
+        <input id="partnerBusinessName" placeholder="Your business name">
+      </div>
+
+      <div class="form-group">
+        <label>Category</label>
+        <select id="partnerBusinessCategory">
+          <option value="Food">Food</option>
+          <option value="Groceries">Groceries</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Business Description</label>
+        <textarea id="partnerBusinessDescription" placeholder="Tell customers about your business"></textarea>
+      </div>
+
+      <button class="btn" onclick="savePartnerBusiness()">Save Business</button>
+    </div>
+  </div>
+
+  <!-- FOOD -->
+  <div id="partnerFoodSection" class="dashboard-section">
+
+    <div class="card">
+      <h3>🍛 Add Food Item</h3>
+      <p class="item-muted">Create a meal and customize the protein, soup and spice options.</p>
+      <br>
+
+      <div class="form-group">
+        <label>Food Name</label>
+        <input id="partnerFoodName" placeholder="e.g. Banku & Tilapia">
+      </div>
+
+      <div class="form-group">
+        <label>Base Price (GH₵)</label>
+        <input id="partnerFoodPrice" type="number" min="0" placeholder="35">
+      </div>
+
+      <div class="form-group">
+        <label>Description</label>
+        <textarea id="partnerFoodDescription" placeholder="Describe the meal"></textarea>
+      </div>
+
+      <div class="option-group">
+        <h4>🥩 Protein Options</h4>
+        <div class="option-help">Customers must choose one protein.</div>
+        <input id="proteinOptions" placeholder="Chicken:10, Beef:15, Fish:12">
+        <p class="small muted">Format: Option:Price, Option:Price</p>
+      </div>
+
+      <div class="option-group">
+        <h4>🥣 Extra Soup Options</h4>
+        <div class="option-help">Customers may choose more than one.</div>
+        <input id="soupOptions" placeholder="Extra Soup:5, Large Soup:10">
+        <p class="small muted">Format: Option:Price, Option:Price</p>
+      </div>
+
+      <div class="option-group">
+        <h4>🌶️ Spice Options</h4>
+        <div class="option-help">Customers must choose one.</div>
+        <input id="spiceOptions" placeholder="Mild:0, Medium:0, Hot:0">
+        <p class="small muted">Format: Option:Price, Option:Price</p>
+      </div>
+
+      <button class="btn btn-gold" onclick="addPartnerFood()">+ Add Food Item</button>
+    </div>
+
+    <div class="section-head">
+      <div>
+        <h3>Your Food Items</h3>
+        <p>Items customers can order</p>
+      </div>
+    </div>
+    <div id="partnerFoodList"></div>
+  </div>
+
+  <!-- PROPERTIES -->
+  <div id="partnerPropertiesSection" class="dashboard-section">
+
+    <div class="card" style="background:linear-gradient(135deg,#f0faf6,#fffaf0)">
+      <h3>🏠 Property Management</h3>
+      <p class="item-muted">Add your property directly from your Partnership Dashboard. You do NOT need a separate property account.</p>
+    </div>
+
+    <div class="card">
+      <h3>Add New Property</h3>
+      <p class="item-muted">Your property will be associated with your Partnership account.</p>
+      <br>
+
+      <div class="form-group">
+        <label>Property Title</label>
+        <input id="partnerPropertyTitle" placeholder="e.g. 3 Bedroom House">
+      </div>
+
+      <div class="form-group">
+        <label>Property Type</label>
+        <select id="partnerPropertyType">
+          <option>House</option>
+          <option>Apartment</option>
+          <option>Land</option>
+          <option>Shop</option>
+          <option>Office</option>
+          <option>Warehouse</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Location</label>
+        <input id="partnerPropertyLocation" placeholder="e.g. Sefwi Wiawso">
+      </div>
+
+      <div class="form-group">
+        <label>Price</label>
+        <input id="partnerPropertyPrice" type="number" min="0" placeholder="250000">
+      </div>
+
+      <div class="form-group">
+        <label>Property Description</label>
+        <textarea id="partnerPropertyDescription" placeholder="Describe the property"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Contact Phone</label>
+        <input id="partnerPropertyPhone" placeholder="Phone number for property enquiries">
+      </div>
+
+      <button class="btn btn-gold full" onclick="addPartnerProperty()">+ Add Property</button>
+    </div>
+
+    <div class="section-head">
+      <div>
+        <h3>My Properties</h3>
+        <p>Properties added by your Partnership account</p>
+      </div>
+    </div>
+
+    <div id="partnerPropertiesList"></div>
+  </div>
+
+  <!-- ORDERS -->
+  <div id="partnerOrdersSection" class="dashboard-section">
+    <div class="notice">
+      📦 Incoming food orders are displayed here. This is an in-app order system — no WhatsApp order is required.
+    </div>
+    <div id="partnerOrders"></div>
+  </div>
+
 </div>
 </div>
 
-<div class="modal" id="adminM">
-<div class="box">
-<div class="dashHead">
-<div class="row">
-<div><h2>Admin Dashboard</h2><p>Restricted SefwiGo administration.</p></div>
-<button class="close" onclick="closeM('adminM')">×</button>
-</div>
-</div>
-<div class="body" id="adminBody"></div>
+<!-- DELIVERY DASHBOARD -->
+<div class="modal" id="deliveryDashboard">
+<div class="modal-box modal-wide">
+  <div class="modal-header">
+    <div>
+      <h2>🚴 Delivery Dashboard</h2>
+      <p class="small muted">Manage assigned deliveries</p>
+    </div>
+    <button class="close" onclick="closeModal('deliveryDashboard')">×</button>
+  </div>
+
+  <div id="deliveryAccess"></div>
+  <div id="deliveryContent" class="hide">
+    <div class="stat-grid">
+      <div class="stat"><span>📦 Available</span><b id="deliveryAvailable">0</b></div>
+      <div class="stat"><span>🚴 Accepted</span><b id="deliveryAccepted">0</b></div>
+      <div class="stat"><span>✓ Delivered</span><b id="deliveryCompleted">0</b></div>
+      <div class="stat"><span>💰 Earnings</span><b>—</b></div>
+    </div>
+    <div id="deliveryOrders"></div>
+  </div>
 </div>
 </div>
 
-<div class="modal" id="cartM">
-<div class="box">
-<div class="modalHead"><b>🛒 Your Cart</b><button class="close" onclick="closeM('cartM')">×</button></div>
-<div class="body" id="cartBody"></div>
+<!-- ADMIN DASHBOARD -->
+<div class="modal" id="adminDashboard">
+<div class="modal-box modal-wide">
+  <div class="modal-header">
+    <div>
+      <h2>🔐 Admin Dashboard</h2>
+      <p class="small muted">SefwiGo administration</p>
+    </div>
+    <button class="close" onclick="closeModal('adminDashboard')">×</button>
+  </div>
+
+  <div id="adminAccess"></div>
+
+  <div id="adminContent" class="hide">
+    <div class="dashboard-tabs">
+      <button class="dashboard-tab active" onclick="adminTab('orders',this)">📦 Orders</button>
+      <button class="dashboard-tab" onclick="adminTab('users',this)">👥 Users</button>
+      <button class="dashboard-tab" onclick="adminTab('properties',this)">🏠 Properties</button>
+    </div>
+
+    <div id="adminOrdersSection" class="dashboard-section active">
+      <div id="adminOrders"></div>
+    </div>
+
+    <div id="adminUsersSection" class="dashboard-section">
+      <div id="adminUsers"></div>
+    </div>
+
+    <div id="adminPropertiesSection" class="dashboard-section">
+      <div id="adminProperties"></div>
+    </div>
+  </div>
 </div>
 </div>
 
-<div class="modal" id="checkoutM">
-<div class="box">
-<div class="modalHead"><b>📦 Checkout</b><button class="close" onclick="closeM('checkoutM')">×</button></div>
-<div class="body" id="checkoutBody"></div>
+<!-- PROPERTY VIEW -->
+<div class="modal" id="propertyModal">
+<div class="modal-box">
+  <div class="modal-header">
+    <h2 id="propertyViewTitle">Property</h2>
+    <button class="close" onclick="closeModal('propertyModal')">×</button>
+  </div>
+  <div id="propertyView"></div>
 </div>
 </div>
 
-<div class="modal" id="ordersM">
-<div class="box">
-<div class="modalHead"><b>📋 My Orders</b><button class="close" onclick="closeM('ordersM')">×</button></div>
-<div class="body" id="ordersBody"></div>
+<!-- PARCEL -->
+<div class="modal" id="parcelModal">
+<div class="modal-box">
+  <div class="modal-header">
+    <div>
+      <h2>📦 Parcel Delivery</h2>
+      <p class="small muted">Request a local delivery</p>
+    </div>
+    <button class="close" onclick="closeModal('parcelModal')">×</button>
+  </div>
+
+  <div class="notice">
+    Parcel requests are submitted through your SefwiGo account.
+  </div>
+
+  <div class="form-group">
+    <label>Pickup Location</label>
+    <input id="parcelPickup" placeholder="Where should we pick it up?">
+  </div>
+
+  <div class="form-group">
+    <label>Destination</label>
+    <input id="parcelDestination" placeholder="Where should we deliver it?">
+  </div>
+
+  <div class="form-group">
+    <label>Parcel Description</label>
+    <textarea id="parcelDescription" placeholder="What are you sending?"></textarea>
+  </div>
+
+  <button class="btn btn-gold full" onclick="requestParcel()">Request Delivery</button>
 </div>
 </div>
 
-<div class="toast" id="toast"></div>
+<div id="toast" class="toast"></div>
 
-<script>
-const cfg={
-apiKey:"AIzaSyDjHGyeObPLLuqTNhNGE5SBRfBL5T29qWA",
-authDomain:"sefwi-go.firebaseapp.com",
-projectId:"sefwi-go",
-storageBucket:"sefwi-go.firebasestorage.app",
-messagingSenderId:"210398787110",
-appId:"1:210398787110:web:f7f76a538a2712a2bb58e7"
+<script type="module">
+
+/* ============================================================
+   FIREBASE
+============================================================ */
+
+const firebaseConfig={
+  apiKey:"AIzaSyDjHGyeObPLLuqTNhNGE5SBRfBL5T29qWA",
+  authDomain:"sefwi-go.firebaseapp.com",
+  projectId:"sefwi-go",
+  storageBucket:"sefwi-go.firebasestorage.app",
+  messagingSenderId:"210398787110",
+  appId:"1:210398787110:web:f7f76a538a2712a2bb58e7"
 };
 
-let auth,db,st,fb,ready=false;
-let cart=JSON.parse(localStorage.getItem("sgCart")||"[]");
-let mods=[];
+let auth=null;
+let db=null;
+let currentUser=null;
 
-const $=id=>document.getElementById(id);
+let createUserWithEmailAndPasswordFn=null;
+let signInWithEmailAndPasswordFn=null;
+let sendPasswordResetEmailFn=null;
+let updateProfileFn=null;
+let signOutFn=null;
 
-const esc=x=>String(x??"").replace(/[&<>"']/g,c=>({
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-'"':"&quot;",
-"'":"&#039;"
-}[c]));
+let addDocFn=null;
+let collectionFn=null;
+let getDocsFn=null;
+let queryFn=null;
+let whereFn=null;
+let serverTimestampFn=null;
+let docFn=null;
+let updateDocFn=null;
 
-async function init(){
-if(ready)return true;
-try{
-const a=await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js");
-const u=await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js");
-const f=await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
-const s=await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js");
+let firebaseReady=false;
 
-const app=a.initializeApp(cfg);
-auth=u.getAuth(app);
-db=f.getFirestore(app);
-st=s.getStorage(app);
+/* ============================================================
+   ACCOUNT ROLE
+   CUSTOMER = CUSTOMER DASHBOARD
+   PARTNER  = PARTNERSHIP DASHBOARD + PROPERTY MANAGEMENT
+   DELIVERY = DELIVERY DASHBOARD
+   ADMIN    = ADMIN DASHBOARD
+============================================================ */
 
-fb={
-...f,
-create:u.createUserWithEmailAndPassword,
-login:u.signInWithEmailAndPassword,
-reset:u.sendPasswordResetEmail,
-update:u.updateProfile,
-out:u.signOut,
-ref:s.ref,
-uploadBytes:s.uploadBytes,
-getDownloadURL:s.getDownloadURL
-};
+let currentRole=localStorage.getItem("sefwiRole")||"customer";
 
-ready=true;
+/* ============================================================
+   LOCAL DATA
+============================================================ */
 
-u.onAuthStateChanged(auth,()=>{
-if($("accountM").classList.contains("open"))renderAccount();
-});
+let cart=JSON.parse(localStorage.getItem("sefwiCart")||"[]");
 
-return true;
-}catch(e){
-console.error(e);
-toast("Firebase could not load.");
-return false;
-}
-}
-
-function toast(x){
-const t=$("toast");
-t.textContent=x;
-t.classList.add("show");
-setTimeout(()=>t.classList.remove("show"),2600);
-}
-
-function closeM(id){
-$(id).classList.remove("open");
-}
-
-function menu(){
-$("menuM").classList.add("open");
-}
-
-function account(){
-$("accountM").classList.add("open");
-renderAccount();
-}
-
-function role(){
-return localStorage.getItem("sgRole")||"customer";
-}
-
-async function prof(){
-if(!auth?.currentUser)return null;
-try{
-const s=await fb.getDoc(fb.doc(db,"users",auth.currentUser.uid));
-return s.exists()?s.data():null;
-}catch(e){
-return null;
-}
-}
-
-async function claims(){
-try{
-return(await auth.currentUser.getIdTokenResult(true)).claims||{};
-}catch(e){
-return {};
-}
-}
-
-async function saveProf(type,name,email){
-try{
-await fb.setDoc(
-fb.doc(db,"users",auth.currentUser.uid),
-{
-uid:auth.currentUser.uid,
-name,
-email,
-accountType:type,
-updatedAt:fb.serverTimestamp()
-},
-{merge:true}
+let partnerProperties=JSON.parse(
+  localStorage.getItem("sefwiPartnerProperties")||"[]"
 );
-}catch(e){
-console.error(e);
-}
-}
 
-async function renderAccount(){
-const u=auth?.currentUser;
-
-if(!u){
-$("accountBody").innerHTML=`
-<h2>Welcome to SefwiGo</h2>
-<p class="help">Create an account and choose Customer or Partnership.</p>
-
-<div class="tabs">
-<button class="tab active" id="suTab" onclick="authTab('signup')">Create Account</button>
-<button class="tab" id="liTab" onclick="authTab('login')">Sign In</button>
-</div>
-
-<div id="authArea"></div>
-`;
-
-authTab("signup");
-return;
-}
-
-const p=await prof();
-const c=await claims();
-const r=p?.accountType||role();
-
-localStorage.setItem("sgRole",r);
-
-$("accountBody").innerHTML=`
-<div style="text-align:center">
-<div style="font-size:55px">${r==="partnership"?"🏪":"👤"}</div>
-
-<h2>Welcome, ${esc(u.displayName||p?.name||"SefwiGo user")}</h2>
-
-<p class="help">
-${esc(u.email||"")}<br>
-<b>${r==="partnership"?"Partnership account":"Customer account"}</b>
-</p>
-
-<button class="submit" onclick="closeM('accountM');${r==="partnership"?"partner()":"customerDash()"}">
-${r==="partnership"?"🏪 Partner Dashboard":"👤 Customer Dashboard"}
-</button>
-
-<button class="small" style="width:100%;margin-top:8px" onclick="closeM('accountM');ordersOpen()">
-📋 My Orders
-</button>
-
-${c.delivery||c.admin?`
-<button class="small" style="width:100%;margin-top:8px" onclick="closeM('accountM');deliveryDash()">
-🛵 Delivery Dashboard
-</button>`:""}
-
-${c.admin?`
-<button class="small" style="width:100%;margin-top:8px" onclick="closeM('accountM');adminDash()">
-🛡️ Admin Dashboard
-</button>`:""}
-
-<button class="small danger" style="width:100%;margin-top:8px" onclick="logout()">
-Sign Out
-</button>
-</div>
-`;
-}
-
-function authTab(t){
-$("suTab")?.classList.toggle("active",t==="signup");
-$("liTab")?.classList.toggle("active",t==="login");
-
-$("authArea").innerHTML=t==="signup"?`
-<div class="field">
-<label>Account type *</label>
-
-<div class="roles">
-<button class="role sel" id="rc" onclick="setRole('customer')">
-<strong>👤 Customer</strong>
-<span>Order food and track deliveries.</span>
-</button>
-
-<button class="role" id="rp" onclick="setRole('partnership')">
-<strong>🏪 Partnership</strong>
-<span>Manage business, products and property.</span>
-</button>
-</div>
-
-<input type="hidden" id="rt" value="customer">
-</div>
-
-<div class="form">
-<div class="field full">
-<label>Full name *</label>
-<input id="sn" placeholder="Your full name">
-</div>
-
-<div class="field full">
-<label>Email *</label>
-<input id="se" type="email" placeholder="you@example.com">
-</div>
-
-<div class="field">
-<label>Password *</label>
-<input id="sp" type="password" placeholder="At least 6 characters">
-</div>
-
-<div class="field">
-<label>Confirm password *</label>
-<input id="sp2" type="password" placeholder="Repeat password">
-</div>
-</div>
-
-<button class="submit" style="margin-top:13px" onclick="signup()">
-Create SefwiGo Account
-</button>
-`
-:
-`
-<div class="form">
-<div class="field full">
-<label>Email *</label>
-<input id="le" type="email">
-</div>
-
-<div class="field full">
-<label>Password *</label>
-<input id="lp" type="password">
-</div>
-</div>
-
-<button class="submit" style="margin-top:13px" onclick="login()">
-Sign In
-</button>
-
-<button class="link" style="width:100%;padding:12px;border:0;background:none;color:var(--g);font-weight:900" onclick="reset()">
-Forgot password?
-</button>
-`;
-}
-
-function setRole(r){
-$("rt").value=r;
-$("rc").classList.toggle("sel",r==="customer");
-$("rp").classList.toggle("sel",r==="partnership");
-}
-
-async function signup(){
-const n=$("sn").value.trim();
-const e=$("se").value.trim();
-const p=$("sp").value;
-const p2=$("sp2").value;
-const r=$("rt").value;
-
-if(!n||!e||!p||!p2)return toast("Fill in all required fields.");
-if(p.length<6)return toast("Password must be at least 6 characters.");
-if(p!==p2)return toast("Passwords do not match.");
-if(!(await init()))return;
-
-try{
-const cr=await fb.create(auth,e,p);
-
-await fb.update(cr.user,{displayName:n});
-
-localStorage.setItem("sgRole",r);
-
-await saveProf(r,n,e);
-
-closeM("accountM");
-
-toast("Account created successfully.");
-
-setTimeout(()=>{
-r==="partnership"?partner():customerDash();
-},300);
-
-}catch(x){
-console.error(x);
-toast(
-x.code==="auth/email-already-in-use"
-?"That email is already registered."
-:"Could not create account."
+let partnerFoods=JSON.parse(
+  localStorage.getItem("sefwiPartnerFoods")||"[]"
 );
+
+let partnerBusiness=JSON.parse(
+  localStorage.getItem("sefwiPartnerBusiness")||"null"
+);
+
+const businesses=[
+  {
+    id:"b1",
+    name:"Sefwi Kitchen",
+    category:"Food",
+    description:"Local Ghanaian meals",
+    icon:"🍛"
+  },
+  {
+    id:"b2",
+    name:"Wiawso Fresh Mart",
+    category:"Groceries",
+    description:"Fresh groceries and essentials",
+    icon:"🛒"
+  },
+  {
+    id:"b3",
+    name:"Sefwi Express",
+    category:"Food",
+    description:"Fast meals and drinks",
+    icon:"🍔"
+  }
+];
+
+const defaultModifiers=[
+  {
+    name:"Protein",
+    required:true,
+    multi:false,
+    options:[
+      {name:"Chicken",price:10},
+      {name:"Beef",price:15},
+      {name:"Fish",price:12}
+    ]
+  },
+  {
+    name:"Extra Soup",
+    required:false,
+    multi:true,
+    options:[
+      {name:"Extra Soup",price:5},
+      {name:"Large Soup",price:10}
+    ]
+  },
+  {
+    name:"Spice Level",
+    required:true,
+    multi:false,
+    options:[
+      {name:"Mild",price:0},
+      {name:"Medium",price:0},
+      {name:"Hot",price:0}
+    ]
+  }
+];
+
+let foods=[
+  {
+    id:"f1",
+    businessId:"b1",
+    name:"Jollof Rice",
+    description:"Jollof rice with your choice of protein",
+    price:35,
+    icon:"🍛",
+    modifiers:JSON.parse(JSON.stringify(defaultModifiers))
+  },
+  {
+    id:"f2",
+    businessId:"b1",
+    name:"Fufu & Soup",
+    description:"Traditional fufu with soup",
+    price:40,
+    icon:"🥣",
+    modifiers:JSON.parse(JSON.stringify(defaultModifiers))
+  },
+  {
+    id:"f3",
+    businessId:"b3",
+    name:"Fried Rice",
+    description:"Fried rice with your choice of protein",
+    price:38,
+    icon:"🍚",
+    modifiers:JSON.parse(JSON.stringify(defaultModifiers))
+  },
+  {
+    id:"f4",
+    businessId:"b3",
+    name:"Burger",
+    description:"Fresh burger",
+    price:30,
+    icon:"🍔",
+    modifiers:JSON.parse(JSON.stringify(defaultModifiers))
+  }
+];
+
+const baseProperties=[
+  {
+    id:"p1",
+    title:"Modern House",
+    location:"Sefwi Wiawso",
+    price:250000,
+    type:"House",
+    description:"Beautiful family house."
+  },
+  {
+    id:"p2",
+    title:"Shop Space",
+    location:"Wiawso",
+    price:1500,
+    type:"Shop",
+    description:"Commercial shop space."
+  }
+];
+
+let selectedFood=null;
+let selectedQty=1;
+
+/* ============================================================
+   HELPERS
+============================================================ */
+
+function toast(message){
+  const el=document.getElementById("toast");
+  el.textContent=message;
+  el.classList.add("show");
+  clearTimeout(window.__toastTimer);
+  window.__toastTimer=setTimeout(
+    ()=>el.classList.remove("show"),
+    3000
+  );
 }
+
+window.toast=toast;
+
+function openModal(id){
+  document.getElementById(id)?.classList.add("open");
 }
 
-async function login(){
-const e=$("le").value.trim();
-const p=$("lp").value;
-
-if(!e||!p)return toast("Enter email and password.");
-if(!(await init()))return;
-
-try{
-await fb.login(auth,e,p);
-
-const x=await prof();
-const r=x?.accountType||role();
-
-localStorage.setItem("sgRole",r);
-
-closeM("accountM");
-
-toast("Signed in successfully.");
-
-setTimeout(()=>{
-r==="partnership"?partner():customerDash();
-},300);
-
-}catch(e){
-toast("Email or password is incorrect.");
-}
+function closeModal(id){
+  document.getElementById(id)?.classList.remove("open");
 }
 
-async function reset(){
-const e=$("le")?.value.trim();
+window.closeModal=closeModal;
 
-if(!e)return toast("Enter your email first.");
+function money(value){
+  return "GH₵"+Number(value||0).toLocaleString();
+}
 
-try{
-await fb.reset(auth,e);
-toast("Password reset email sent.");
-}catch(e){
-toast("Could not send reset email.");
+function esc(value){
+  return String(value??"")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 }
+
+function saveLocalData(){
+  localStorage.setItem(
+    "sefwiCart",
+    JSON.stringify(cart)
+  );
+
+  localStorage.setItem(
+    "sefwiPartnerProperties",
+    JSON.stringify(partnerProperties)
+  );
+
+  localStorage.setItem(
+    "sefwiPartnerFoods",
+    JSON.stringify(partnerFoods)
+  );
+
+  localStorage.setItem(
+    "sefwiPartnerBusiness",
+    JSON.stringify(partnerBusiness)
+  );
+
+  updateCartCount();
 }
+
+/* ============================================================
+   FIREBASE INITIALIZATION
+============================================================ */
+
+async function initFirebase(){
+
+  if(firebaseReady)return true;
+
+  try{
+
+    const appMod=await import(
+      "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"
+    );
+
+    const authMod=await import(
+      "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"
+    );
+
+    const fs=await import(
+      "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"
+    );
+
+    const app=appMod.initializeApp(firebaseConfig);
+
+    auth=authMod.getAuth(app);
+    db=fs.getFirestore(app);
+
+    createUserWithEmailAndPasswordFn=
+      authMod.createUserWithEmailAndPassword;
+
+    signInWithEmailAndPasswordFn=
+      authMod.signInWithEmailAndPassword;
+
+    sendPasswordResetEmailFn=
+      authMod.sendPasswordResetEmail;
+
+    updateProfileFn=authMod.updateProfile;
+    signOutFn=authMod.signOut;
+
+    addDocFn=fs.addDoc;
+    collectionFn=fs.collection;
+    getDocsFn=fs.getDocs;
+    queryFn=fs.query;
+    whereFn=fs.where;
+    serverTimestampFn=fs.serverTimestamp;
+    docFn=fs.doc;
+    updateDocFn=fs.updateDoc;
+
+    authMod.onAuthStateChanged(auth,async user=>{
+
+      currentUser=user;
+
+      if(user){
+        await loadUserRole();
+      }else{
+        currentRole="customer";
+        localStorage.removeItem("sefwiRole");
+      }
+
+      updateAccountUI();
+    });
+
+    firebaseReady=true;
+    return true;
+
+  }catch(error){
+
+    console.error("Firebase initialization failed:",error);
+    toast("Firebase could not load. Please check your connection.");
+    return false;
+  }
+}
+
+/* ============================================================
+   AUTH
+============================================================ */
+
+function getSignupRole(){
+  return document.querySelector(
+    'input[name="signupRole"]:checked'
+  )?.value||"customer";
+}
+
+async function emailSignup(){
+
+  const role=getSignupRole();
+
+  const name=document
+    .getElementById("signupName")
+    .value.trim();
+
+  const email=document
+    .getElementById("signupEmail")
+    .value.trim();
+
+  const password=document
+    .getElementById("signupPassword")
+    .value;
+
+  const confirm=document
+    .getElementById("signupConfirm")
+    .value;
+
+  if(!name||!email||!password)
+    return toast("Please complete all fields.");
+
+  if(password.length<6)
+    return toast("Password must be at least 6 characters.");
+
+  if(password!==confirm)
+    return toast("Passwords do not match.");
+
+  if(!firebaseReady)
+    await initFirebase();
+
+  try{
+
+    const cred=await createUserWithEmailAndPasswordFn(
+      auth,
+      email,
+      password
+    );
+
+    if(updateProfileFn){
+      await updateProfileFn(
+        cred.user,
+        {displayName:name}
+      );
+    }
+
+    currentUser=cred.user;
+    currentRole=role;
+
+    localStorage.setItem("sefwiRole",role);
+    localStorage.setItem("sefwiUserName",name);
+
+    if(db){
+
+      try{
+
+        await addDocFn(
+          collectionFn(db,"users"),
+          {
+            uid:cred.user.uid,
+            name,
+            email,
+            role,
+            createdAt:serverTimestampFn()
+          }
+        );
+
+      }catch(userWriteError){
+        console.warn(
+          "User profile Firestore write failed:",
+          userWriteError
+        );
+      }
+    }
+
+    updateAccountUI();
+    toast("Account created successfully.");
+
+    setTimeout(()=>{
+
+      closeModal("accountModal");
+
+      if(role==="partner"){
+        openPartnershipDashboard();
+      }else{
+        openCustomerDashboard();
+      }
+
+    },400);
+
+  }catch(error){
+
+    console.error(error);
+
+    let message=error.message||"Account creation failed.";
+
+    if(error.code==="auth/email-already-in-use"){
+      message="This email already has an account. Please sign in.";
+    }
+
+    if(error.code==="auth/invalid-email"){
+      message="Please enter a valid email address.";
+    }
+
+    toast(message);
+  }
+}
+
+window.emailSignup=emailSignup;
+
+async function emailLogin(){
+
+  const email=document
+    .getElementById("loginEmail")
+    .value.trim();
+
+  const password=document
+    .getElementById("loginPassword")
+    .value;
+
+  if(!email||!password)
+    return toast("Enter your email and password.");
+
+  if(!firebaseReady)
+    await initFirebase();
+
+  try{
+
+    const cred=await signInWithEmailAndPasswordFn(
+      auth,
+      email,
+      password
+    );
+
+    currentUser=cred.user;
+
+    await loadUserRole();
+
+    toast("Welcome back.");
+
+  }catch(error){
+
+    console.error(error);
+
+    let message=error.message||"Sign in failed.";
+
+    if(
+      error.code==="auth/invalid-credential"||
+      error.code==="auth/wrong-password"||
+      error.code==="auth/user-not-found"
+    ){
+      message="Email or password is incorrect.";
+    }
+
+    toast(message);
+  }
+}
+
+window.emailLogin=emailLogin;
+
+async function resetPassword(){
+
+  const email=document
+    .getElementById("loginEmail")
+    .value.trim();
+
+  if(!email)
+    return toast("Enter your email first.");
+
+  try{
+
+    await sendPasswordResetEmailFn(auth,email);
+
+    toast("Password reset email sent.");
+
+  }catch(error){
+
+    toast(error.message||"Could not send reset email.");
+  }
+}
+
+window.resetPassword=resetPassword;
 
 async function logout(){
-try{
-await fb.out(auth);
-}catch(e){}
 
-localStorage.removeItem("sgRole");
-closeM("accountM");
-toast("Signed out.");
+  try{
+
+    if(signOutFn&&auth)
+      await signOutFn(auth);
+
+  }catch(error){
+    console.error(error);
+  }
+
+  currentUser=null;
+  currentRole="customer";
+
+  localStorage.removeItem("sefwiRole");
+
+  closeModal("accountModal");
+
+  toast("You have been signed out.");
 }
 
-const demoBiz=[
-["Wiawso Chop Bar","Food","🍲"],
-["Auntie Ama Kitchen","Food","👩🏾‍🍳"],
-["Sefwi Fresh Mart","Groceries","🛍️"],
-["Wiawso Drinks Spot","Drinks","🥤"]
-];
+window.logout=logout;
 
-function renderBusinesses(){
-$("businesses").innerHTML=demoBiz.map(b=>`
-<button class="biz" onclick="business('${b[0]}','${b[1]}')">
-<div class="bizTop">
-<div class="avatar">${b[2]}</div>
-<div>
-<h3>${b[0]}</h3>
-<p>${b[1]} • Local business</p>
-</div>
-</div>
-<span class="chip">Open menu</span>
-</button>
-`).join("");
+async function loadUserRole(){
+
+  if(!currentUser)return;
+
+  let role=localStorage.getItem("sefwiRole");
+
+  /*
+    The Firestore user profile is checked when available.
+    This keeps the selected Partnership account associated
+    with the Partnership Dashboard.
+  */
+
+  if(db){
+
+    try{
+
+      const q=queryFn(
+        collectionFn(db,"users"),
+        whereFn("uid","==",currentUser.uid)
+      );
+
+      const snap=await getDocsFn(q);
+
+      if(!snap.empty){
+
+        const userData=snap.docs[0].data();
+
+        if(
+          userData.role==="customer"||
+          userData.role==="partner"||
+          userData.role==="delivery"||
+          userData.role==="admin"
+        ){
+          role=userData.role;
+        }
+      }
+
+    }catch(error){
+      console.warn("Role lookup failed:",error);
+    }
+  }
+
+  currentRole=role||"customer";
+
+  localStorage.setItem(
+    "sefwiRole",
+    currentRole
+  );
+
+  updateAccountUI();
 }
 
-async function business(name,cat){
-$("bizTitle").textContent=name;
-$("bizBody").innerHTML='<div class="empty">Loading menu…</div>';
-$("businessM").classList.add("open");
+/* ============================================================
+   ACCOUNT UI
+============================================================ */
 
-try{
-if(!(await init()))throw 0;
-
-const s=await fb.getDocs(
-fb.query(
-fb.collection(db,"products"),
-fb.where("vendorName","==",name)
-)
-);
-
-const p=s.docs
-.map(d=>({id:d.id,...d.data()}))
-.filter(x=>x.available!==false);
-
-$("bizBody").innerHTML=p.length?
-`
-<span class="chip">${esc(cat)}</span>
-<h2>${esc(name)}</h2>
-<p class="help">Choose your options, then add to your cart.</p>
-<div class="productGrid">
-${p.map(product).join("")}
-</div>
-`
-:
-`
-<div class="empty">
-🍲
-<h3>No products published yet.</h3>
-<p>The partner can add products from the Products tab.</p>
-</div>
-`;
-
-}catch(e){
-$("bizBody").innerHTML='<div class="empty">Menu is not available yet.</div>';
-}
+function openAccount(){
+  openModal("accountModal");
+  updateAccountUI();
 }
 
-function product(p){
-return `
-<article class="product" data-p="${p.id}">
+window.openAccount=openAccount;
 
-${p.photoUrl?
-`<img src="${esc(p.photoUrl)}" alt="${esc(p.name)}">`
-:
-`<div class="photo" style="display:grid;place-items:center;font-size:55px">🍲</div>`
+function showSignup(){
+
+  document
+    .getElementById("signupBox")
+    .classList.remove("hide");
+
+  document
+    .getElementById("loginBox")
+    .classList.add("hide");
+
+  document
+    .getElementById("signupTab")
+    .classList.add("active");
+
+  document
+    .getElementById("loginTab")
+    .classList.remove("active");
 }
 
-<div class="productBody">
+window.showSignup=showSignup;
 
-<h3 style="margin:0">${esc(p.name)}</h3>
+function showLogin(){
 
-<p class="help">${esc(p.description||"")}</p>
+  document
+    .getElementById("signupBox")
+    .classList.add("hide");
 
-<div class="price">
-GH₵ ${Number(p.price||0).toLocaleString()}
-</div>
+  document
+    .getElementById("loginBox")
+    .classList.remove("hide");
 
-${(p.modifiers||[]).map((g,i)=>`
-<div class="mod">
+  document
+    .getElementById("signupTab")
+    .classList.remove("active");
 
-<div class="row">
-<b>${esc(g.name)}${g.required?" *":""}</b>
-<span class="help">${g.multiple?"Choose any":"Choose one"}</span>
-</div>
-
-<div class="choices">
-
-${(g.options||[]).map((o,j)=>`
-<button
-class="choice"
-data-g="${p.id}-${i}"
-data-j="${j}"
-data-m="${g.multiple?"1":"0"}"
-onclick="choose(this)">
-
-<strong>${esc(o.name)}</strong>
-
-<small>
-${Number(o.price||0)?
-"+ GH₵ "+Number(o.price).toLocaleString():
-"Included"}
-</small>
-
-</button>
-`).join("")}
-
-</div>
-</div>
-`).join("")}
-
-<div class="qty">
-<button onclick="changeQty('${p.id}',-1)">−</button>
-<b id="q-${p.id}">1</b>
-<button onclick="changeQty('${p.id}',1)">+</button>
-<span style="margin-left:auto;font-weight:950" id="tot-${p.id}">
-GH₵ ${Number(p.price||0).toLocaleString()}
-</span>
-</div>
-
-<button class="submit" onclick='addProduct(${JSON.stringify(p).replace(/'/g,"&#39;")})'>
-Add to Cart
-</button>
-
-</div>
-</article>
-`;
+  document
+    .getElementById("loginTab")
+    .classList.add("active");
 }
 
-function choose(b){
-if(b.dataset.m==="1"){
-b.classList.toggle("sel");
-}else{
-document
-.querySelectorAll(`[data-g="${b.dataset.g}"]`)
-.forEach(x=>x.classList.remove("sel"));
+window.showLogin=showLogin;
 
-b.classList.add("sel");
+function updateAccountUI(){
+
+  const loggedOut=document.getElementById("loggedOut");
+  const loggedIn=document.getElementById("loggedIn");
+
+  if(!currentUser){
+
+    loggedOut.classList.remove("hide");
+    loggedIn.classList.add("hide");
+
+    return;
+  }
+
+  loggedOut.classList.add("hide");
+  loggedIn.classList.remove("hide");
+
+  const name=
+    currentUser.displayName||
+    localStorage.getItem("sefwiUserName")||
+    "SefwiGo User";
+
+  document.getElementById("accountName").textContent=name;
+  document.getElementById("accountEmail").textContent=
+    currentUser.email||"";
+
+  const roleText={
+    customer:"Customer",
+    partner:"Partnership",
+    delivery:"Delivery Partner",
+    admin:"Administrator"
+  };
+
+  document.getElementById("accountRole").textContent=
+    roleText[currentRole]||"Customer";
+
+  document
+    .getElementById("customerAccountButtons")
+    .classList.toggle(
+      "hide",
+      currentRole!=="customer"
+    );
+
+  document
+    .getElementById("partnerAccountButtons")
+    .classList.toggle(
+      "hide",
+      currentRole!=="partner"
+    );
+
+  document
+    .getElementById("deliveryAccountButton")
+    .classList.toggle(
+      "hide",
+      currentRole!=="delivery"&&currentRole!=="admin"
+    );
+
+  document
+    .getElementById("adminAccountButton")
+    .classList.toggle(
+      "hide",
+      currentRole!=="admin"
+    );
 }
 
-updateTotal(b.closest(".product"));
+/* ============================================================
+   HOME
+============================================================ */
+
+function home(){
+
+  document
+    .querySelectorAll(".modal")
+    .forEach(x=>x.classList.remove("open"));
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 }
 
-function changeQty(id,d){
-const q=$(`q-${id}`);
-q.textContent=Math.max(1,Number(q.textContent)+d);
+window.home=home;
 
-const card=document.querySelector(`[data-p="${id}"]`);
-updateTotal(card);
+/* ============================================================
+   FOOD
+============================================================ */
+
+function allFoods(){
+  return [
+    ...foods,
+    ...partnerFoods
+  ];
 }
 
-function updateTotal(card){
-if(!card)return;
+function renderFoods(){
 
-const id=card.dataset.p;
+  const list=document.getElementById("foodList");
 
-const base=Number(
-card.querySelector(".price")
-.textContent.replace(/[^0-9.]/g,"")
-)||0;
+  const data=allFoods().slice(0,8);
 
-let n=base*Number($(`q-${id}`).textContent);
+  if(!data.length){
 
-card.querySelectorAll(".choice.sel").forEach(x=>{
-const txt=x.querySelector("small").textContent.match(/[0-9,.]+/);
+    list.innerHTML=`
+      <div class="empty">
+        <div class="empty-icon">🍛</div>
+        No food available yet.
+      </div>
+    `;
 
-if(txt){
-n+=Number(txt[0].replace(/,/g,""));
-}
-});
+    return;
+  }
 
-$(`tot-${id}`).textContent="GH₵ "+n.toLocaleString();
-}
+  list.innerHTML=data.map(food=>`
 
-function addProduct(p){
-const card=document.querySelector(`[data-p="${p.id}"]`);
-const chosen=[];
+    <div class="card food-card">
 
-for(const g of p.modifiers||[]){
+      <div class="food-image">${esc(food.icon||"🍽️")}</div>
 
-const gi=p.modifiers.indexOf(g);
+      <div class="food-body">
 
-const xs=[
-...card.querySelectorAll(
-`[data-g="${p.id}-${gi}"].sel`
-)
-];
+        <span class="badge">
+          ${food.businessId==="partner"?"Partner":"SefwiGo"}
+        </span>
 
-if(g.required&&!xs.length){
-return toast("Please choose "+g.name+".");
-}
+        <h3>${esc(food.name)}</h3>
 
-xs.forEach(x=>{
-const o=g.options[Number(x.dataset.j)];
+        <p>${esc(food.description||"Delicious local food.")}</p>
 
-chosen.push({
-group:g.name,
-name:o.name,
-price:Number(o.price||0)
-});
-});
+        <div class="food-price">
+          ${money(food.price)}
+        </div>
+
+        <button class="btn full"
+          onclick="openFood('${esc(food.id)}')">
+          Customize & Order
+        </button>
+
+      </div>
+    </div>
+
+  `).join("");
 }
 
-const q=Number($(`q-${p.id}`).textContent);
+function showFoods(){
 
-let total=
-Number(p.price||0)+
-chosen.reduce((n,x)=>n+x.price,0);
+  document
+    .querySelectorAll(".modal")
+    .forEach(x=>x.classList.remove("open"));
 
-cart.push({
-id:Date.now().toString(),
-productId:p.id,
-name:p.name,
-basePrice:Number(p.price||0),
-price:total,
-qty:q,
-modifiers:chosen,
-vendorId:p.vendorId||null,
-vendorName:p.vendorName||"SefwiGo business",
-photoUrl:p.photoUrl||null
-});
+  const target=document.getElementById("foodList");
 
-saveCart();
-
-toast("Added to cart.");
+  target.scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
 }
 
-function saveCart(){
-localStorage.setItem("sgCart",JSON.stringify(cart));
-$("cartN").textContent=
-cart.reduce((n,x)=>n+Number(x.qty||1),0);
+window.showFoods=showFoods;
+
+function openFood(id){
+
+  selectedFood=allFoods().find(
+    f=>f.id===id
+  );
+
+  if(!selectedFood)
+    return toast("Food item not found.");
+
+  selectedQty=1;
+
+  document.getElementById("foodTitle").textContent=
+    selectedFood.name;
+
+  let html=`
+
+    <div class="card" style="background:linear-gradient(135deg,#effaf6,#fff9df)">
+
+      <div style="font-size:58px;margin-bottom:8px">
+        ${esc(selectedFood.icon||"🍽️")}
+      </div>
+
+      <h3>${esc(selectedFood.name)}</h3>
+
+      <p class="item-muted">
+        ${esc(selectedFood.description||"")}
+      </p>
+
+      <br>
+
+      <span class="price">
+        Base price: ${money(selectedFood.price)}
+      </span>
+
+    </div>
+  `;
+
+  (selectedFood.modifiers||[]).forEach(
+    (modifier,mi)=>{
+
+      html+=`
+
+        <div class="option-group">
+
+          <h4>
+            ${esc(modifier.name)}
+            ${modifier.required
+              ?'<span style="color:#c62828">*</span>'
+              :''}
+          </h4>
+
+          <div class="option-help">
+            ${modifier.multi
+              ?"Choose one or more."
+              :"Choose one option."}
+          </div>
+
+      `;
+
+      modifier.options.forEach(
+        (option,oi)=>{
+
+          const type=
+            modifier.multi
+              ?"checkbox"
+              :"radio";
+
+          html+=`
+
+            <label class="choice">
+
+              <div class="choice-left">
+
+                <input
+                  type="${type}"
+                  name="foodModifier_${mi}"
+                  data-mi="${mi}"
+                  data-oi="${oi}"
+                  onchange="updateFoodPrice()"
+                >
+
+                <span>${esc(option.name)}</span>
+
+              </div>
+
+              <span class="choice-price">
+                ${Number(option.price)>0
+                  ?"+"+money(option.price)
+                  :"Included"}
+              </span>
+
+            </label>
+
+          `;
+        }
+      );
+
+      html+=`</div>`;
+    }
+  );
+
+  html+=`
+
+    <div class="card">
+
+      <div class="item-row">
+
+        <div>
+          <b>Quantity</b>
+          <p class="item-muted">How many do you want?</p>
+        </div>
+
+        <div class="qty-control">
+          <button onclick="changeQty(-1)">−</button>
+          <span id="foodQty" class="qty-number">1</span>
+          <button onclick="changeQty(1)">+</button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="total-box">
+      <span>Total</span>
+      <strong id="foodTotal">
+        ${money(selectedFood.price)}
+      </strong>
+    </div>
+
+    <button class="btn btn-gold full"
+      onclick="addFoodToCart()">
+      🛒 Add to Cart
+    </button>
+
+  `;
+
+  document.getElementById("foodDetails").innerHTML=html;
+
+  openModal("foodModal");
 }
 
-function cartOpen(){
-renderCart();
-$("cartM").classList.add("open");
+window.openFood=openFood;
+
+function changeQty(amount){
+
+  selectedQty=Math.max(
+    1,
+    selectedQty+amount
+  );
+
+  const qty=document.getElementById("foodQty");
+
+  if(qty)
+    qty.textContent=selectedQty;
+
+  updateFoodPrice();
 }
+
+window.changeQty=changeQty;
+
+function getFoodSelection(){
+
+  if(!selectedFood)
+    return{
+      valid:false,
+      items:[],
+      extra:0
+    };
+
+  let valid=true;
+  let items=[];
+  let extra=0;
+
+  (selectedFood.modifiers||[]).forEach(
+    (modifier,mi)=>{
+
+      const checked=[
+        ...document.querySelectorAll(
+          `[data-mi="${mi}"]:checked`
+        )
+      ];
+
+      if(
+        modifier.required&&
+        checked.length===0
+      ){
+        valid=false;
+      }
+
+      checked.forEach(input=>{
+
+        const option=
+          modifier.options[
+            Number(input.dataset.oi)
+          ];
+
+        if(!option)return;
+
+        items.push({
+          group:modifier.name,
+          name:option.name,
+          price:Number(option.price)||0
+        });
+
+        extra+=Number(option.price)||0;
+      });
+    }
+  );
+
+  return{
+    valid,
+    items,
+    extra
+  };
+}
+
+function updateFoodPrice(){
+
+  if(!selectedFood)return;
+
+  const result=getFoodSelection();
+
+  const total=
+    (Number(selectedFood.price)+result.extra)*
+    selectedQty;
+
+  const totalEl=
+    document.getElementById("foodTotal");
+
+  if(totalEl)
+    totalEl.textContent=money(total);
+}
+
+window.updateFoodPrice=updateFoodPrice;
+
+function addFoodToCart(){
+
+  const result=getFoodSelection();
+
+  if(!result.valid)
+    return toast(
+      "Please choose all required options."
+    );
+
+  const unitPrice=
+    Number(selectedFood.price)+result.extra;
+
+  cart.push({
+
+    id:"cart_"+Date.now(),
+
+    foodId:selectedFood.id,
+
+    name:selectedFood.name,
+
+    icon:selectedFood.icon||"🍽️",
+
+    basePrice:Number(selectedFood.price),
+
+    modifiers:result.items,
+
+    unitPrice,
+
+    qty:selectedQty,
+
+    total:unitPrice*selectedQty,
+
+    businessId:selectedFood.businessId||"partner"
+
+  });
+
+  saveLocalData();
+
+  closeModal("foodModal");
+
+  toast("Food added to your cart.");
+
+  updateCartCount();
+}
+
+window.addFoodToCart=addFoodToCart;
+
+/* ============================================================
+   CART
+============================================================ */
+
+function cartTotal(){
+
+  return cart.reduce(
+    (sum,item)=>sum+Number(item.total||0),
+    0
+  );
+}
+
+function updateCartCount(){
+
+  const count=cart.reduce(
+    (sum,item)=>sum+Number(item.qty||1),
+    0
+  );
+
+  const el=document.getElementById("cartCount");
+
+  if(el)el.textContent=count;
+}
+
+function openCart(){
+
+  renderCart();
+  openModal("cartModal");
+}
+
+window.openCart=openCart;
 
 function renderCart(){
 
-if(!cart.length){
-$("cartBody").innerHTML=`
-<div class="empty">
-🛒
-<h3>Your cart is empty.</h3>
-<p>Choose food from a business menu.</p>
-</div>`;
-return;
+  const el=document.getElementById("cartItems");
+
+  if(!cart.length){
+
+    el.innerHTML=`
+      <div class="empty">
+        <div class="empty-icon">🛒</div>
+        <h3>Your cart is empty</h3>
+        <p>Add food to your cart to get started.</p>
+        <br>
+        <button class="btn" onclick="showFoods();closeModal('cartModal')">
+          Browse Food
+        </button>
+      </div>
+    `;
+
+    document.getElementById("cartTotal").textContent=
+      money(0);
+
+    return;
+  }
+
+  el.innerHTML=cart.map((item,index)=>`
+
+    <div class="cart-item">
+
+      <div class="cart-item-head">
+
+        <div>
+
+          <div class="item-title">
+            ${esc(item.icon||"🍽️")}
+            ${esc(item.name)}
+          </div>
+
+          <div class="item-muted">
+            ${
+              (item.modifiers||[])
+              .map(m=>`${esc(m.group)}: ${esc(m.name)}`)
+              .join(" • ")
+            }
+          </div>
+
+          <div class="item-muted">
+            Quantity: ${item.qty}
+          </div>
+
+        </div>
+
+        <div class="item-price">
+          ${money(item.total)}
+        </div>
+
+      </div>
+
+      <div class="item-actions">
+
+        <button class="btn btn-light small"
+          onclick="removeCartItem(${index})">
+          Remove
+        </button>
+
+      </div>
+
+    </div>
+
+  `).join("");
+
+  document.getElementById("cartTotal").textContent=
+    money(cartTotal());
 }
 
-const total=cart.reduce(
-(n,x)=>n+x.price*x.qty,
-0
-);
+window.renderCart=renderCart;
 
-$("cartBody").innerHTML=
-cart.map((x,i)=>`
-<div class="list">
+function removeCartItem(index){
 
-<div class="thumb">🍔</div>
+  cart.splice(index,1);
 
-<div style="flex:1">
-<b>${esc(x.name)}</b>
+  saveLocalData();
 
-<p class="muted">
-${x.modifiers?.length?
-esc(x.modifiers.map(m=>m.name).join(", "))+"<br>":
-""}
-GH₵ ${x.price.toLocaleString()} × ${x.qty}
-</p>
-</div>
+  renderCart();
 
-<button class="small danger"
-onclick="cart.splice(${i},1);saveCart();renderCart()">
-Remove
-</button>
-
-</div>
-`).join("")
-+
-`
-<div class="card" style="padding:16px">
-
-<div class="row">
-<b>Total</b>
-<b class="price">GH₵ ${total.toLocaleString()}</b>
-</div>
-
-<button class="submit" style="margin-top:12px" onclick="checkout()">
-📦 Continue to Checkout
-</button>
-
-</div>
-`;
+  toast("Item removed.");
 }
 
-async function checkout(){
+window.removeCartItem=removeCartItem;
 
-if(!cart.length)return toast("Your cart is empty.");
+/* ============================================================
+   CHECKOUT
+============================================================ */
 
-if(!(await init())||!auth.currentUser){
-closeM("cartM");
-account();
-return toast("Please sign in before placing an order.");
+function checkout(){
+
+  if(!currentUser){
+
+    closeModal("cartModal");
+    openAccount();
+
+    toast(
+      "Create a Customer account before ordering."
+    );
+
+    return;
+  }
+
+  if(currentRole!=="customer"){
+
+    return toast(
+      "Food ordering is available from a Customer account."
+    );
+  }
+
+  if(!cart.length)
+    return toast("Your cart is empty.");
+
+  document.getElementById("checkoutSummary").innerHTML=`
+
+    <div class="card" style="margin-bottom:15px">
+
+      <div class="item-row">
+        <span>Items</span>
+        <b>${cart.length}</b>
+      </div>
+
+      <div class="item-row" style="margin-top:8px">
+        <span>Total</span>
+        <b class="item-price">${money(cartTotal())}</b>
+      </div>
+
+    </div>
+  `;
+
+  closeModal("cartModal");
+  openModal("checkoutModal");
 }
 
-closeM("cartM");
-
-const u=auth.currentUser;
-
-$("checkoutBody").innerHTML=`
-<div class="card" style="padding:15px">
-<b>
-Order total:
-GH₵ ${cart.reduce((n,x)=>n+x.price*x.qty,0).toLocaleString()}
-</b>
-</div>
-
-<div class="form" style="margin-top:13px">
-
-<div class="field full">
-<label>Name *</label>
-<input id="on" value="${esc(u.displayName||"")}">
-</div>
-
-<div class="field full">
-<label>Phone *</label>
-<input id="op" placeholder="024... or +233...">
-</div>
-
-<div class="field full">
-<label>Delivery address *</label>
-<input id="oa" placeholder="House, landmark or location">
-</div>
-
-<div class="field full">
-<label>Note</label>
-<textarea id="ot" placeholder="Optional delivery note"></textarea>
-</div>
-
-</div>
-
-<button class="submit" style="margin-top:13px" onclick="placeOrder()">
-📦 Place Order
-</button>
-`;
-
-$("checkoutM").classList.add("open");
-}
+window.checkout=checkout;
 
 async function placeOrder(){
 
-const n=$("on").value.trim();
-const p=$("op").value.trim();
-const a=$("oa").value.trim();
-const note=$("ot").value.trim();
+  if(!currentUser)
+    return toast("Please sign in.");
 
-if(!n||!p||!a){
-return toast("Enter name, phone and delivery address.");
-}
+  if(currentRole!=="customer")
+    return toast("Only Customer accounts can place food orders.");
+
+  if(!cart.length)
+    return toast("Your cart is empty.");
+
+  const address=document
+    .getElementById("deliveryAddress")
+    .value.trim();
+
+  const phone=document
+    .getElementById("deliveryPhone")
+    .value.trim();
+
+  const payment=document
+    .getElementById("paymentMethod")
+    .value;
+
+  if(!address||!phone)
+    return toast(
+      "Please enter your delivery address and phone number."
+    );
+
+  if(!db)
+    return toast(
+      "Order database is not available. Check your connection."
+    );
+
+  const order={
+
+    customerUid:currentUser.uid,
+
+    customerName:
+      currentUser.displayName||
+      localStorage.getItem("sefwiUserName")||
+      "Customer",
+
+    customerEmail:
+      currentUser.email||"",
+
+    items:JSON.parse(
+      JSON.stringify(cart)
+    ),
+
+    total:cartTotal(),
+
+    deliveryAddress:address,
 
-try{
+    phone,
 
-const groups={};
+    paymentMethod:payment,
 
-cart.forEach(x=>
-(groups[x.vendorId||x.vendorName]??=[]).push(x)
-);
+    status:"new",
 
-for(const k of Object.keys(groups)){
+    vendorStatus:"new",
 
-const xs=groups[k];
-const v=xs[0];
+    driverStatus:"unassigned",
 
-const data={
-orderNumber:"SG-"+Date.now().toString().slice(-8),
-vendorId:v.vendorId||null,
-vendorName:v.vendorName,
-items:xs.map(x=>({
-name:x.name,
-price:x.price,
-qty:x.qty,
-productId:x.productId,
-modifiers:x.modifiers||[]
-})),
-total:xs.reduce((z,x)=>z+x.price*x.qty,0),
-customerName:n,
-customerPhone:p,
-deliveryAddress:a,
-note,
-status:"new",
-customerUid:auth.currentUser.uid,
-createdAt:fb.serverTimestamp()
-};
+    createdAt:serverTimestampFn()
 
-await fb.addDoc(
-fb.collection(db,"orders"),
-data
-);
+  };
+
+  try{
+
+    await addDocFn(
+      collectionFn(db,"orders"),
+      order
+    );
+
+    cart=[];
+
+    saveLocalData();
+
+    document.getElementById("deliveryAddress").value="";
+    document.getElementById("deliveryPhone").value="";
+
+    closeModal("checkoutModal");
+
+    toast(
+      "🎉 Order placed successfully!"
+    );
+
+    openCustomerDashboard();
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      "Your order could not be placed. Please try again."
+    );
+  }
 }
+
+window.placeOrder=placeOrder;
+
+/* ============================================================
+   CUSTOMER DASHBOARD
+============================================================ */
+
+function openCustomerDashboard(){
+
+  if(!currentUser){
 
-cart=[];
-saveCart();
+    openAccount();
+    showLogin();
 
-closeM("checkoutM");
+    toast("Please sign in to view your Customer Dashboard.");
 
-toast("Order placed successfully.");
+    return;
+  }
 
-ordersOpen();
+  if(currentRole!=="customer"){
 
-}catch(e){
-console.error(e);
-toast("Could not place order. Check Firestore rules.");
+    toast(
+      "This is not a Customer account. Partnership accounts use the Partnership Dashboard."
+    );
+
+    return;
+  }
+
+  closeModal("accountModal");
+
+  openModal("customerDashboard");
+
+  loadCustomerDashboard();
 }
+
+window.openCustomerDashboard=openCustomerDashboard;
+
+function customerTab(tab,button){
+
+  document
+    .querySelectorAll(
+      "#customerDashboard .dashboard-section"
+    )
+    .forEach(x=>x.classList.remove("active"));
+
+  document
+    .querySelectorAll(
+      "#customerDashboard .dashboard-tab"
+    )
+    .forEach(x=>x.classList.remove("active"));
+
+  document
+    .getElementById(
+      "customer"+
+      tab.charAt(0).toUpperCase()+
+      tab.slice(1)+
+      "Section"
+    )
+    ?.classList.add("active");
+
+  button?.classList.add("active");
+
+  if(tab==="cart")
+    renderCustomerDashCart();
 }
+
+async function loadCustomerDashboard(){
+
+  const name=
+    currentUser.displayName||
+    localStorage.getItem("sefwiUserName")||
+    "Customer";
+
+  document.getElementById(
+    "customerDashName"
+  ).textContent=name;
+
+  document.getElementById(
+    "customerCartCount"
+  ).textContent=cart.length;
 
-async function ordersOpen(){
+  renderCustomerDashCart();
 
-if(!(await init())||!auth.currentUser){
-return account();
+  await loadCustomerOrders();
 }
 
-$("ordersM").classList.add("open");
+async function loadCustomerOrders(){
 
-$("ordersBody").innerHTML=
-'<div class="empty">Loading orders…</div>';
+  const el=document.getElementById("customerOrders");
 
-try{
+  el.innerHTML=`
+    <div class="empty">
+      <div class="empty-icon">⏳</div>
+      Loading your orders...
+    </div>
+  `;
 
-const s=await fb.getDocs(
-fb.query(
-fb.collection(db,"orders"),
-fb.where("customerUid","==",auth.currentUser.uid)
-)
-);
+  if(!db||!currentUser){
 
-const os=s.docs.map(d=>({
-id:d.id,
-...d.data()
-}));
+    el.innerHTML=`
+      <div class="empty">
+        <div class="empty-icon">📋</div>
+        Sign in to view your orders.
+      </div>
+    `;
 
-$("ordersBody").innerHTML=os.length?
-os.map(o=>`
+    return;
+  }
 
-<article class="order">
+  try{
 
-<div class="orderTop">
+    const q=queryFn(
+      collectionFn(db,"orders"),
+      whereFn(
+        "customerUid",
+        "==",
+        currentUser.uid
+      )
+    );
 
-<div>
-<b>
-Order #${esc(
-(o.orderNumber||o.id).slice(-10).toUpperCase()
-)}
-</b>
+    const snap=await getDocsFn(q);
 
-<p class="muted">
-${esc(o.vendorName||"Business")}
-</p>
-</div>
+    const orders=snap.docs.map(
+      d=>({
+        id:d.id,
+        ...d.data()
+      })
+    );
 
-<span class="status">
-${esc(label(o.status))}
-</span>
+    const active=orders.filter(
+      o=>!["completed","cancelled"].includes(
+        o.status
+      )
+    ).length;
 
-</div>
+    const completed=orders.filter(
+      o=>o.status==="completed"
+    ).length;
 
-${(o.items||[]).map(x=>`
-<div class="row">
-<span>${esc(x.name)} × ${x.qty}</span>
-<b>GH₵ ${(x.price*x.qty).toLocaleString()}</b>
-</div>
-`).join("")}
+    document.getElementById(
+      "customerOrderCount"
+    ).textContent=orders.length;
 
-<hr>
+    document.getElementById(
+      "customerActiveCount"
+    ).textContent=active;
 
-<div class="row">
-<b>Total</b>
-<b>GH₵ ${Number(o.total||0).toLocaleString()}</b>
-</div>
+    document.getElementById(
+      "customerCompletedCount"
+    ).textContent=completed;
 
-<p class="help">
-📍 ${esc(o.deliveryAddress||"")}
-</p>
+    if(!orders.length){
 
-</article>
+      el.innerHTML=`
+        <div class="empty">
+          <div class="empty-icon">🍛</div>
+          <h3>No orders yet</h3>
+          <p>Your food orders will appear here.</p>
+          <br>
+          <button class="btn" onclick="showFoods();closeModal('customerDashboard')">
+            Order Food
+          </button>
+        </div>
+      `;
 
-`).join("")
-:
-`
-<div class="empty">
-📦
-<h3>No orders yet.</h3>
-<p>Your SefwiGo orders will appear here.</p>
-</div>
-`;
+      return;
+    }
 
-}catch(e){
+    orders.sort(
+      (a,b)=>{
+        const aa=a.createdAt?.seconds||0;
+        const bb=b.createdAt?.seconds||0;
+        return bb-aa;
+      }
+    );
 
-$("ordersBody").innerHTML=
-'<div class="empty">Could not load orders. Check Firestore permissions.</div>';
-}
-}
+    el.innerHTML=orders.map(
+      order=>`
 
-function label(s){
-return({
-new:"Pending",
-accepted:"Accepted",
-preparing:"Preparing",
-ready:"Ready for pickup",
-assigned:"Driver assigned",
-picked_up:"Picked up",
-out_for_delivery:"Out for delivery",
-delivered:"Delivered",
-completed:"Delivered",
-cancelled:"Cancelled"
-}[s||"new"]||"Pending");
-}
+      <div class="order-item">
+
+        <div class="item-row">
+
+          <div>
+            <div class="item-title">
+              Order #${esc(order.id.slice(0,8))}
+            </div>
+
+            <div class="item-muted">
+              ${order.items?.length||0} item(s)
+            </div>
+          </div>
+
+          <span class="status ${esc(order.status||"new")}">
+            ${esc(order.status||"new")}
+          </span>
+
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="item-row">
+          <span>Total</span>
+          <b class="item-price">${money(order.total)}</b>
+        </div>
+
+        <div class="item-muted">
+          📍 ${esc(order.deliveryAddress||"")}
+        </div>
+
+        <div class="item-muted">
+          🚚 Delivery: ${esc(order.driverStatus||"unassigned")}
+        </div>
+
+        <div class="item-actions">
+
+          <button
+            class="btn btn-light small"
+            onclick='showOrderDetails(${JSON.stringify(order).replaceAll("'","&#039;")})'>
+            View Details
+          </button>
+
+        </div>
 
-async function customerDash(){
+      </div>
 
-if(!(await init())||!auth.currentUser){
-account();
-return;
+      `
+    ).join("");
+
+  }catch(error){
+
+    console.error(error);
+
+    el.innerHTML=`
+      <div class="empty">
+        <div class="empty-icon">⚠️</div>
+        <p>Could not load your orders.</p>
+        <br>
+        <button class="btn btn-light"
+          onclick="loadCustomerOrders()">
+          Try Again
+        </button>
+      </div>
+    `;
+  }
 }
+
+window.loadCustomerOrders=loadCustomerOrders;
+
+function showOrderDetails(order){
+
+  const items=(order.items||[]).map(
+    item=>`
+
+      <div class="cart-item">
+
+        <div class="item-row">
+
+          <div>
+            <b>${esc(item.name)}</b>
+            <div class="item-muted">
+              ${
+                (item.modifiers||[])
+                .map(
+                  m=>`${esc(m.group)}: ${esc(m.name)}`
+                )
+                .join(" • ")
+              }
+            </div>
+            <div class="item-muted">
+              Quantity: ${item.qty}
+            </div>
+          </div>
+
+          <b class="item-price">
+            ${money(item.total)}
+          </b>
+
+        </div>
+
+      </div>
+
+    `
+  ).join("");
+
+  document.getElementById("checkoutSummary").innerHTML=`
+
+    <div class="card">
 
-const p=await prof();
+      <h3>
+        Order #${esc(order.id?.slice(0,8)||"")}
+      </h3>
 
-if((p?.accountType||role())!=="customer"){
-return partner();
+      <br>
+
+      <p>
+        Status:
+        <span class="status ${esc(order.status||"new")}">
+          ${esc(order.status||"new")}
+        </span>
+      </p>
+
+      <div class="divider"></div>
+
+      ${items}
+
+      <div class="total-box">
+        <span>Total</span>
+        <strong>${money(order.total)}</strong>
+      </div>
+
+    </div>
+
+  `;
+
+  openModal("checkoutModal");
+
+  document.querySelector(
+    "#checkoutModal .modal-header h2"
+  ).textContent="Order Details";
 }
+
+window.showOrderDetails=showOrderDetails;
 
-$("customerM").classList.add("open");
+function renderCustomerDashCart(){
 
-$("customerBody").innerHTML=`
+  const el=document.getElementById(
+    "customerDashCart"
+  );
 
-<div class="stats">
+  if(!cart.length){
 
-<div class="stat">
-<b>👤</b>
-<span>Customer</span>
-</div>
+    el.innerHTML=`
+      <div class="empty">
+        <div class="empty-icon">🛒</div>
+        <h3>Your cart is empty</h3>
+        <p>Choose a meal to start your order.</p>
+      </div>
+    `;
 
-<div class="stat">
-<b>${cart.length}</b>
-<span>Cart lines</span>
-</div>
+    return;
+  }
 
-<div class="stat">
-<b>📦</b>
-<span>Orders</span>
-</div>
+  el.innerHTML=cart.map(
+    (item,index)=>`
 
-</div>
+      <div class="cart-item">
 
-<div class="grid">
+        <div class="item-row">
 
-<button class="service card"
-onclick="closeM('customerM');ordersOpen()">
-<i>📋</i>
-<b>My Orders</b>
-<span>Track your orders.</span>
-</button>
+          <div>
+            <b>${esc(item.name)}</b>
+            <div class="item-muted">
+              ${item.qty} × ${money(item.unitPrice)}
+            </div>
+          </div>
 
-<button class="service card"
-onclick="closeM('customerM');cartOpen()">
-<i>🛒</i>
-<b>My Cart</b>
-<span>Review and checkout.</span>
-</button>
+          <b class="item-price">
+            ${money(item.total)}
+          </b>
 
-<button class="service card"
-onclick="closeM('customerM');exploreFood()">
-<i>🍔</i>
-<b>Order Food</b>
-<span>Customize your meal.</span>
-</button>
+        </div>
 
-</div>
+        <button
+          class="btn btn-light small"
+          onclick="removeCartItem(${index});renderCustomerDashCart()">
+          Remove
+        </button>
 
-<div class="card" style="padding:16px;margin-top:12px">
+      </div>
 
-<b>
-${esc(auth.currentUser.displayName||p?.name||"Customer")}
-</b>
+    `
+  ).join("")+
+  `
 
-<p class="help">
-${esc(auth.currentUser.email||"")}
-</p>
+    <div class="total-box">
+      <span>Total</span>
+      <strong>${money(cartTotal())}</strong>
+    </div>
 
-</div>
-`;
+    <button class="btn btn-gold full"
+      onclick="checkout()">
+      Proceed to Checkout
+    </button>
+  `;
 }
+
+/* ============================================================
+   PARTNERSHIP DASHBOARD
+   IMPORTANT:
+   PROPERTY IS INSIDE THE PARTNERSHIP DASHBOARD.
+   A PARTNER DOES NOT NEED A SEPARATE PROPERTY ROLE.
+============================================================ */
+
+function openPartnershipDashboard(){
+
+  if(!currentUser){
+
+    openAccount();
+    showSignup();
+
+    toast("Create a Partnership account first.");
+
+    return;
+  }
 
-async function partner(start){
+  if(currentRole!=="partner"){
 
-if(!(await init())||!auth.currentUser){
-account();
-return;
+    toast(
+      "Only Partnership accounts can access this dashboard."
+    );
+
+    return;
+  }
+
+  closeModal("accountModal");
+
+  openModal("partnershipDashboard");
+
+  document.getElementById(
+    "partnerDashName"
+  ).textContent=
+    currentUser.displayName||
+    localStorage.getItem("sefwiUserName")||
+    "Partner";
+
+  loadPartnerDashboard();
 }
+
+window.openPartnershipDashboard=openPartnershipDashboard;
+
+/* Compatibility alias */
+window.openVendorDashboard=openPartnershipDashboard;
+
+function partnerTab(tab,button){
+
+  document
+    .querySelectorAll(
+      "#partnershipDashboard .dashboard-section"
+    )
+    .forEach(x=>x.classList.remove("active"));
+
+  document
+    .querySelectorAll(
+      "#partnershipDashboard .dashboard-tab"
+    )
+    .forEach(x=>x.classList.remove("active"));
+
+  const idMap={
+    overview:"partnerOverviewSection",
+    business:"partnerBusinessSection",
+    food:"partnerFoodSection",
+    properties:"partnerPropertiesSection",
+    orders:"partnerOrdersSection"
+  };
+
+  document
+    .getElementById(idMap[tab])
+    ?.classList.add("active");
+
+  button?.classList.add("active");
+
+  if(tab==="food")
+    renderPartnerFoodList();
+
+  if(tab==="properties")
+    renderPartnerProperties();
 
-const p=await prof();
+  if(tab==="orders")
+    loadPartnerOrders();
 
-if((p?.accountType||role())!=="partnership"){
-return toast(
-"This is a Customer account. Partner Dashboard is for Partnership accounts."
-);
+  if(tab==="business")
+    loadPartnerBusiness();
 }
 
-$("partnerM").classList.add("open");
+window.partnerTab=partnerTab;
 
-tab(start==="property"?"property":"overview");
+function loadPartnerDashboard(){
+
+  document.getElementById(
+    "partnerFoodStat"
+  ).textContent=partnerFoods.length;
+
+  document.getElementById(
+    "partnerPropertyStat"
+  ).textContent=partnerProperties.length;
+
+  loadPartnerBusiness();
+  renderPartnerFoodList();
+  renderPartnerProperties();
+  loadPartnerOrders();
 }
 
-function tab(t){
+function loadPartnerBusiness(){
 
-["overview","business","products","property","myprops","orders"]
-.forEach((x,i)=>{
-$(`t${i}`).classList.toggle("active",x===t);
-});
+  if(!partnerBusiness)return;
 
-({
-overview:overview,
-business:businessForm,
-products:products,
-property:propertyForm,
-myprops:myProperties,
-orders:vendorOrders
-}[t])();
+  document.getElementById(
+    "partnerBusinessName"
+  ).value=partnerBusiness.name||"";
+
+  document.getElementById(
+    "partnerBusinessCategory"
+  ).value=partnerBusiness.category||"Food";
+
+  document.getElementById(
+    "partnerBusinessDescription"
+  ).value=partnerBusiness.description||"";
 }
 
-function overview(){
+function savePartnerBusiness(){
 
-$("partnerBody").innerHTML=`
+  if(!currentUser)
+    return toast("Please sign in.");
 
-<div class="stats">
+  partnerBusiness={
+    ownerUid:currentUser.uid,
+    name:document
+      .getElementById("partnerBusinessName")
+      .value.trim(),
 
-<div class="stat">
-<b>🏪</b>
-<span>Partner</span>
-</div>
+    category:document
+      .getElementById("partnerBusinessCategory")
+      .value,
 
-<div class="stat">
-<b id="pc">0</b>
-<span>Products</span>
-</div>
+    description:document
+      .getElementById("partnerBusinessDescription")
+      .value.trim()
+  };
 
-<div class="stat">
-<b id="prc">0</b>
-<span>Properties</span>
-</div>
+  if(!partnerBusiness.name)
+    return toast("Enter your business name.");
 
-</div>
+  saveLocalData();
 
-<div class="grid">
+  toast("Business information saved.");
+}
 
-<button class="service card" onclick="tab('business')">
-<i>🏪</i>
-<b>My Business</b>
-<span>Set your business name and category.</span>
-</button>
+window.savePartnerBusiness=savePartnerBusiness;
 
-<button class="service card" onclick="tab('products')">
-<i>🍽️</i>
-<b>Products</b>
-<span>Publish meals and modifiers.</span>
-</button>
+/* ============================================================
+   PARTNER FOOD MANAGEMENT
+============================================================ */
 
-<button class="service card" onclick="tab('property')">
-<i>🏠</i>
-<b>Register Property</b>
-<span>Add a rent or sale listing.</span>
-</button>
+function parseOptions(text){
 
-<button class="service card" onclick="tab('orders')">
-<i>📦</i>
-<b>Orders</b>
-<span>Accept and prepare customer orders.</span>
-</button>
+  return text
+    .split(",")
+    .map(x=>x.trim())
+    .filter(Boolean)
+    .map(x=>{
 
-</div>
-`;
+      const parts=x.split(":");
+      const name=parts[0]?.trim();
+      const price=Number(parts[1]||0);
 
-countPartner();
+      return{
+        name,
+        price:isNaN(price)?0:price
+      };
+    })
+    .filter(x=>x.name);
 }
 
-function getBiz(){
-return JSON.parse(localStorage.getItem("sgBiz")||"{}");
-}
+function addPartnerFood(){
 
-function businessForm(){
+  if(!currentUser||currentRole!=="partner")
+    return toast("Partnership access required.");
 
-const b=getBiz();
+  const name=document
+    .getElementById("partnerFoodName")
+    .value.trim();
 
-$("partnerBody").innerHTML=`
+  const price=Number(
+    document.getElementById("partnerFoodPrice").value
+  );
 
-<div class="form">
+  const description=document
+    .getElementById("partnerFoodDescription")
+    .value.trim();
 
-<div class="field full">
-<label>Business name *</label>
-<input id="bn"
-value="${esc(b.name||"")}"
-placeholder="Your business name">
-</div>
+  const proteins=parseOptions(
+    document.getElementById("proteinOptions").value
+  );
 
-<div class="field">
-<label>Category</label>
-<select id="bc">
-<option>Food</option>
-<option>Groceries</option>
-<option>Drinks</option>
-<option>Services</option>
-</select>
-</div>
+  const soups=parseOptions(
+    document.getElementById("soupOptions").value
+  );
 
-<div class="field">
-<label>Phone</label>
-<input id="bp"
-value="${esc(b.phone||"")}"
-placeholder="024...">
-</div>
+  const spices=parseOptions(
+    document.getElementById("spiceOptions").value
+  );
 
-<div class="field full">
-<label>Description</label>
-<textarea id="bd"
-placeholder="Tell customers about your business">${esc(b.desc||"")}</textarea>
-</div>
+  if(!name||!price)
+    return toast(
+      "Enter the food name and base price."
+    );
 
-</div>
+  if(!proteins.length)
+    return toast(
+      "Add at least one protein option."
+    );
 
-<button class="submit" style="margin-top:13px" onclick="saveBiz()">
-Save Business
-</button>
-`;
+  if(!spices.length)
+    return toast(
+      "Add at least one spice option."
+    );
 
-if(b.cat)$("bc").value=b.cat;
-}
+  const food={
 
-function saveBiz(){
+    id:"partnerFood_"+Date.now(),
 
-const b={
-name:$("bn").value.trim(),
-cat:$("bc").value,
-phone:$("bp").value.trim(),
-desc:$("bd").value.trim(),
-ownerUid:auth.currentUser.uid
-};
+    ownerUid:currentUser.uid,
 
-if(!b.name)return toast("Business name is required.");
+    businessId:"partner",
 
-localStorage.setItem("sgBiz",JSON.stringify(b));
+    name,
 
-toast("Business saved.");
-}
+    description,
 
-async function countPartner(){
+    price,
 
-try{
+    icon:"🍽️",
 
-const [p,r]=await Promise.all([
+    modifiers:[
 
-fb.getDocs(
-fb.query(
-fb.collection(db,"products"),
-fb.where("vendorId","==",auth.currentUser.uid)
-)
-),
+      {
+        name:"Protein",
+        required:true,
+        multi:false,
+        options:proteins
+      },
 
-fb.getDocs(
-fb.query(
-fb.collection(db,"properties"),
-fb.where("ownerUid","==",auth.currentUser.uid)
-)
-)
+      {
+        name:"Extra Soup",
+        required:false,
+        multi:true,
+        options:soups
+      },
 
-]);
+      {
+        name:"Spice Level",
+        required:true,
+        multi:false,
+        options:spices
+      }
 
-$("pc").textContent=p.size;
-$("prc").textContent=r.size;
+    ]
 
-}catch(e){}
-}
+  };
+
+  partnerFoods.push(food);
 
-function products(){
+  saveLocalData();
 
-$("partnerBody").innerHTML=`
+  renderFoods();
+  renderPartnerFoodList();
 
-<div class="row">
+  document.getElementById(
+    "partnerFoodName"
+  ).value="";
 
-<div>
-<h3>🍽️ My Products</h3>
-<p class="help">
-Create menus with Protein, Extra Soup and Spice Level choices.
-</p>
-</div>
+  document.getElementById(
+    "partnerFoodPrice"
+  ).value="";
 
-<button class="small primary" onclick="productForm()">
-+ Add Product
-</button>
+  document.getElementById(
+    "partnerFoodDescription"
+  ).value="";
 
-</div>
+  document.getElementById(
+    "proteinOptions"
+  ).value="Chicken:10, Beef:15";
 
-<div id="productList" style="margin-top:12px"></div>
-`;
+  document.getElementById(
+    "soupOptions"
+  ).value="Extra Soup:5, Large Soup:10";
 
-loadMyProducts();
+  document.getElementById(
+    "spiceOptions"
+  ).value="Mild:0, Medium:0, Hot:0";
+
+  document.getElementById(
+    "partnerFoodStat"
+  ).textContent=partnerFoods.length;
+
+  toast("Food item added successfully.");
 }
+
+window.addPartnerFood=addPartnerFood;
+
+function renderPartnerFoodList(){
 
-async function loadMyProducts(){
+  const el=document.getElementById(
+    "partnerFoodList"
+  );
 
-try{
+  if(!partnerFoods.length){
 
-const s=await fb.getDocs(
-fb.query(
-fb.collection(db,"products"),
-fb.where("vendorId","==",auth.currentUser.uid)
-)
-);
+    el.innerHTML=`
+      <div class="empty">
+        <div class="empty-icon">🍛</div>
+        <h3>No partner food items yet</h3>
+        <p>Add your first food item above.</p>
+      </div>
+    `;
 
-$("productList").innerHTML=s.size?
-[...s.docs].map(d=>{
+    return;
+  }
 
-const x=d.data();
+  el.innerHTML=partnerFoods.map(
+    (food,index)=>`
 
-return `
-<div class="list">
+      <div class="property-manage-item">
 
-<div class="thumb">🍽️</div>
+        <div class="item-row">
 
-<div style="flex:1">
-<b>${esc(x.name)}</b>
+          <div>
+            <div class="item-title">
+              ${esc(food.icon||"🍽️")}
+              ${esc(food.name)}
+            </div>
 
-<p class="muted">
-GH₵ ${Number(x.price||0).toLocaleString()}
-•
-${x.available===false?"Unavailable":"Available"}
-</p>
-</div>
+            <div class="item-muted">
+              ${esc(food.description||"")}
+            </div>
 
-<button class="small"
-onclick="toggleProd('${d.id}',${x.available!==false})">
-${x.available===false?"Enable":"Disable"}
-</button>
+            <div class="item-muted">
+              Base price: ${money(food.price)}
+            </div>
+          </div>
 
-<button class="small danger"
-onclick="delProd('${d.id}')">
-Delete
-</button>
+          <b class="item-price">
+            ${money(food.price)}
+          </b>
 
-</div>
-`;
+        </div>
 
-}).join("")
-:
-`
-<div class="empty">
-No products yet. Add your first product.
-</div>
-`;
+        <div class="divider"></div>
 
-}catch(e){
+        <div class="item-muted">
+          <b>Protein:</b>
+          ${(food.modifiers?.[0]?.options||[])
+            .map(o=>`${esc(o.name)} +${money(o.price)}`)
+            .join(" • ")}
+        </div>
 
-$("productList").innerHTML=
-'<div class="empty">Could not load products.</div>';
+        <div class="item-muted">
+          <b>Soup:</b>
+          ${(food.modifiers?.[1]?.options||[])
+            .map(o=>`${esc(o.name)} +${money(o.price)}`)
+            .join(" • ")||"None"}
+        </div>
+
+        <div class="item-muted">
+          <b>Spice:</b>
+          ${(food.modifiers?.[2]?.options||[])
+            .map(o=>esc(o.name))
+            .join(" • ")}
+        </div>
+
+        <div class="item-actions">
+
+          <button class="btn btn-light small"
+            onclick="openFood('${esc(food.id)}')">
+            Preview
+          </button>
+
+          <button class="btn btn-danger small"
+            onclick="deletePartnerFood(${index})">
+            Delete
+          </button>
+
+        </div>
+
+      </div>
+
+    `
+  ).join("");
 }
+
+function deletePartnerFood(index){
+
+  if(!confirm("Remove this food item?"))
+    return;
+
+  partnerFoods.splice(index,1);
+
+  saveLocalData();
+
+  renderFoods();
+  renderPartnerFoodList();
+
+  document.getElementById(
+    "partnerFoodStat"
+  ).textContent=partnerFoods.length;
+
+  toast("Food item removed.");
 }
 
-function productForm(){
+window.deletePartnerFood=deletePartnerFood;
 
-mods=[];
+/* ============================================================
+   PARTNER PROPERTY MANAGEMENT
+============================================================ */
 
-addMod("Protein",true,false);
-addMod("Extra Soup",false,true);
-addMod("Spice Level",true,false);
+function addPartnerProperty(){
 
-$("partnerBody").innerHTML=`
+  if(!currentUser||currentRole!=="partner"){
 
-<form onsubmit="saveProduct(event)">
+    return toast(
+      "Please use a Partnership account to add properties."
+    );
+  }
 
-<div class="form">
+  const title=document
+    .getElementById("partnerPropertyTitle")
+    .value.trim();
 
-<div class="field full">
-<label>Product name *</label>
-<input id="pn" required placeholder="Jollof Rice">
-</div>
+  const type=document
+    .getElementById("partnerPropertyType")
+    .value;
 
-<div class="field">
-<label>Base price *</label>
-<input id="pp" required type="number" min="0" step="0.01" placeholder="35">
-</div>
+  const location=document
+    .getElementById("partnerPropertyLocation")
+    .value.trim();
 
-<div class="field">
-<label>Photo</label>
-<input id="pf" type="file" accept="image/*">
-</div>
+  const price=Number(
+    document.getElementById("partnerPropertyPrice").value
+  );
 
-<div class="field full">
-<label>Description</label>
-<textarea id="pd" placeholder="Describe the meal"></textarea>
-</div>
+  const description=document
+    .getElementById("partnerPropertyDescription")
+    .value.trim();
 
-<div class="field full">
-<label>Customer choices</label>
+  const phone=document
+    .getElementById("partnerPropertyPhone")
+    .value.trim();
 
-<div id="mods"></div>
+  if(!title||!location||!price)
+    return toast(
+      "Complete the property title, location and price."
+    );
 
-<div style="display:flex;gap:7px;flex-wrap:wrap">
+  const property={
 
-<button type="button" class="small"
-onclick="addMod('Protein',true,false)">
-+ Protein
-</button>
+    id:"partnerProperty_"+Date.now(),
 
-<button type="button" class="small"
-onclick="addMod('Extra Soup',false,true)">
-+ Extra Soup
-</button>
+    ownerUid:currentUser.uid,
 
-<button type="button" class="small"
-onclick="addMod('Spice Level',true,false)">
-+ Spice Level
-</button>
+    title,
 
-</div>
-</div>
+    type,
 
-</div>
+    location,
 
-<button class="submit" style="margin-top:13px">
-Publish Product
-</button>
+    price,
 
-</form>
-`;
+    description,
 
-renderMods();
-}
+    phone,
+
+    createdAt:Date.now()
+
+  };
+
+  partnerProperties.push(property);
+
+  saveLocalData();
+
+  renderProperties();
+  renderPartnerProperties();
+
+  document.getElementById(
+    "partnerPropertyTitle"
+  ).value="";
 
-function addMod(name,required,multiple){
+  document.getElementById(
+    "partnerPropertyLocation"
+  ).value="";
 
-if(mods.some(x=>x.name===name))return;
+  document.getElementById(
+    "partnerPropertyPrice"
+  ).value="";
 
-mods.push({
-name,
-required,
-multiple,
-options:
-name==="Protein"
-?
-[
-{name:"Chicken",price:10},
-{name:"Beef",price:15}
-]
-:
-name==="Extra Soup"
-?
-[
-{name:"Extra Soup",price:5},
-{name:"Large Soup",price:10}
-]
-:
-[
-{name:"Mild",price:0},
-{name:"Medium",price:0},
-{name:"Hot",price:0}
-]
-});
+  document.getElementById(
+    "partnerPropertyDescription"
+  ).value="";
 
-if($("mods"))renderMods();
+  document.getElementById(
+    "partnerPropertyPhone"
+  ).value="";
+
+  document.getElementById(
+    "partnerPropertyStat"
+  ).textContent=partnerProperties.length;
+
+  toast(
+    "🏠 Property added successfully."
+  );
 }
+
+window.addPartnerProperty=addPartnerProperty;
+
+function renderPartnerProperties(){
 
-function renderMods(){
+  const el=document.getElementById(
+    "partnerPropertiesList"
+  );
 
-$("mods").innerHTML=mods.map((g,i)=>`
+  const mine=partnerProperties.filter(
+    p=>p.ownerUid===currentUser?.uid
+  );
 
-<div class="mod">
+  document.getElementById(
+    "partnerPropertyStat"
+  ).textContent=mine.length;
 
-<div class="row">
+  if(!mine.length){
 
-<b>${esc(g.name)}</b>
+    el.innerHTML=`
+      <div class="empty">
+        <div class="empty-icon">🏠</div>
+        <h3>No properties yet</h3>
+        <p>Add a property above. It will belong to this Partnership account.</p>
+      </div>
+    `;
 
-<button
-type="button"
-class="small danger"
-onclick="mods.splice(${i},1);renderMods()">
-Remove
-</button>
+    return;
+  }
 
-</div>
+  el.innerHTML=mine.map(
+    (property,index)=>`
 
-<label class="help">
+      <div class="property-manage-item">
 
-<input
-type="checkbox"
-${g.required?"checked":""}
-onchange="mods[${i}].required=this.checked">
+        <div class="item-row">
 
-Required
+          <div>
 
-</label>
+            <div class="item-title">
+              🏠 ${esc(property.title)}
+            </div>
 
-${g.options.map((o,j)=>`
+            <div class="item-muted">
+              ${esc(property.type)} • ${esc(property.location)}
+            </div>
 
-<div style="display:grid;grid-template-columns:1fr 90px auto;gap:6px;margin-top:6px">
+          </div>
 
-<input
-value="${esc(o.name)}"
-onchange="mods[${i}].options[${j}].name=this.value">
+          <b class="item-price">
+            ${money(property.price)}
+          </b>
 
-<input
-type="number"
-value="${o.price}"
-min="0"
-onchange="mods[${i}].options[${j}].price=Number(this.value||0)">
+        </div>
 
-<button
-type="button"
-class="small danger"
-onclick="mods[${i}].options.splice(${j},1);renderMods()">
-×
-</button>
+        <div class="item-muted">
+          ${esc(property.description||"No description")}
+        </div>
 
-</div>
+        <div class="item-muted">
+          📞 ${esc(property.phone||"No phone added")}
+        </div>
 
-`).join("")}
+        <div class="item-actions">
 
-<button
-type="button"
-class="small"
-style="margin-top:7px"
-onclick="mods[${i}].options.push({name:'New option',price:0});renderMods()">
-+ Option
-</button>
+          <button
+            class="btn btn-light small"
+            onclick="viewProperty('${esc(property.id)}')">
+            View
+          </button>
 
-</div>
+          <button
+            class="btn btn-light small"
+            onclick="editPartnerProperty('${esc(property.id)}')">
+            Edit
+          </button>
 
-`).join("");
+          <button
+            class="btn btn-danger small"
+            onclick="deletePartnerProperty('${esc(property.id)}')">
+            Delete
+          </button>
+
+        </div>
+
+      </div>
+
+    `
+  ).join("");
 }
 
-async function saveProduct(e){
+function editPartnerProperty(id){
 
-e.preventDefault();
+  const property=partnerProperties.find(
+    p=>p.id===id
+  );
 
-const n=$("pn").value.trim();
+  if(!property)
+    return;
 
-if(!n)return toast("Product name is required.");
+  document.getElementById(
+    "partnerPropertyTitle"
+  ).value=property.title||"";
 
-try{
+  document.getElementById(
+    "partnerPropertyType"
+  ).value=property.type||"House";
 
-let url=null;
-const f=$("pf").files?.[0];
+  document.getElementById(
+    "partnerPropertyLocation"
+  ).value=property.location||"";
 
-if(f){
+  document.getElementById(
+    "partnerPropertyPrice"
+  ).value=property.price||"";
 
-if(f.size>5e6)
-return toast("Photo must be under 5 MB.");
+  document.getElementById(
+    "partnerPropertyDescription"
+  ).value=property.description||"";
 
-const path=
-`productPhotos/${auth.currentUser.uid}/${Date.now()}_${f.name.replace(/[^a-zA-Z0-9._-]/g,"_")}`;
+  document.getElementById(
+    "partnerPropertyPhone"
+  ).value=property.phone||"";
 
-const r=fb.ref(st,path);
+  partnerProperties=
+    partnerProperties.filter(
+      p=>p.id!==id
+    );
 
-await fb.uploadBytes(r,f,{
-contentType:f.type
-});
+  saveLocalData();
+  renderPartnerProperties();
 
-url=await fb.getDownloadURL(r);
+  toast(
+    "Property loaded. Update the details and add it again."
+  );
 }
 
-const b=getBiz();
+window.editPartnerProperty=editPartnerProperty;
 
-await fb.addDoc(
-fb.collection(db,"products"),
-{
-name:n,
-price:Number($("pp").value||0),
-description:$("pd").value.trim(),
-photoUrl:url,
-modifiers:mods.filter(x=>x.options.length),
-vendorId:auth.currentUser.uid,
-vendorName:b.name||"SefwiGo business",
-available:true,
-createdAt:fb.serverTimestamp()
-}
-);
+function deletePartnerProperty(id){
 
-toast("Product published.");
+  if(!confirm("Delete this property?"))
+    return;
 
-products();
+  partnerProperties=
+    partnerProperties.filter(
+      p=>p.id!==id
+    );
 
-}catch(e){
+  saveLocalData();
 
-console.error(e);
+  renderProperties();
+  renderPartnerProperties();
 
-toast(
-"Could not publish product. Check Firebase Storage and Firestore rules."
-);
+  toast("Property removed.");
 }
-}
 
-async function toggleProd(id,current){
+window.deletePartnerProperty=deletePartnerProperty;
 
-try{
+/* ============================================================
+   PROPERTY DISPLAY
+============================================================ */
 
-await fb.updateDoc(
-fb.doc(db,"products",id),
-{
-available:!current,
-updatedAt:fb.serverTimestamp()
+function allProperties(){
+
+  return[
+    ...baseProperties,
+    ...partnerProperties
+  ];
 }
-);
 
-loadMyProducts();
+function renderProperties(){
 
-}catch(e){
-toast("Could not update product.");
-}
-}
+  const el=document.getElementById(
+    "propertyList"
+  );
 
-async function delProd(id){
+  const list=allProperties().slice(0,8);
 
-if(!confirm("Delete this product?"))return;
+  el.innerHTML=list.map(
+    p=>`
 
-try{
+      <div class="card property-card">
 
-await fb.deleteDoc(
-fb.doc(db,"products",id)
-);
+        <div class="property-cover">
+          🏠
+        </div>
 
-loadMyProducts();
+        <div class="property-body">
 
-}catch(e){
-toast("Could not delete product.");
-}
+          <span class="badge">
+            ${esc(p.type||"Property")}
+          </span>
+
+          <h3>${esc(p.title)}</h3>
+
+          <div class="property-meta">
+            📍 ${esc(p.location)}
+          </div>
+
+          <div class="property-price">
+            ${money(p.price)}
+          </div>
+
+          <button
+            class="btn full"
+            onclick="viewProperty('${esc(p.id)}')">
+            View Property
+          </button>
+
+        </div>
+
+      </div>
+
+    `
+  ).join("");
 }
 
-function propertyForm(){
+function showProperty(){
 
-$("partnerBody").innerHTML=`
+  const target=document.getElementById(
+    "propertyList"
+  );
 
-<h3>🏠 Register Property</h3>
+  target.scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+}
 
-<p class="help">
-Your listing is saved to your Partnership account in Firestore.
-</p>
+window.showProperty=showProperty;
 
-<div class="form">
+function viewProperty(id){
 
-<div class="field">
-<label>Purpose *</label>
-<select id="ppurpose">
-<option>For Rent</option>
-<option>For Sale</option>
-</select>
-</div>
+  const property=allProperties().find(
+    p=>p.id===id
+  );
 
-<div class="field">
-<label>Property type *</label>
-<select id="ptype">
-<option>House</option>
-<option>Apartment</option>
-<option>Room</option>
-<option>Land</option>
-<option>Commercial</option>
-</select>
-</div>
+  if(!property)
+    return toast("Property not found.");
 
-<div class="field full">
-<label>Title *</label>
-<input id="ptitle" placeholder="2-bedroom house for rent">
-</div>
+  document.getElementById(
+    "propertyViewTitle"
+  ).textContent=property.title;
 
-<div class="field">
-<label>Price (GH₵) *</label>
-<input id="pprice" type="number" min="0">
-</div>
+  document.getElementById(
+    "propertyView"
+  ).innerHTML=`
 
-<div class="field">
-<label>Location *</label>
-<input id="ploc" placeholder="Wiawso">
-</div>
+    <div class="property-cover"
+      style="border-radius:18px;margin-bottom:17px">
+      🏠
+    </div>
 
-<div class="field">
-<label>Bedrooms</label>
-<input id="pbed" type="number" min="0">
-</div>
+    <span class="badge">
+      ${esc(property.type||"Property")}
+    </span>
 
-<div class="field">
-<label>Bathrooms</label>
-<input id="pbath" type="number" min="0">
-</div>
+    <h2 style="margin:10px 0">
+      ${esc(property.title)}
+    </h2>
 
-<div class="field">
-<label>Owner / Agent *</label>
-<input id="powner"
-value="${esc(auth.currentUser.displayName||"")}">
-</div>
+    <p class="item-muted">
+      📍 ${esc(property.location)}
+    </p>
 
-<div class="field">
-<label>Phone *</label>
-<input id="pphone" placeholder="024... or +233...">
-</div>
+    <div class="total-box">
+      <span>Price</span>
+      <strong>${money(property.price)}</strong>
+    </div>
 
-<div class="field full">
-<label>Description</label>
-<textarea id="pdesc" placeholder="Landmarks, facilities, terms and details"></textarea>
-</div>
+    <div class="card">
+      <h3>Description</h3>
+      <p style="line-height:1.7;margin-top:8px">
+        ${esc(property.description||"No description available.")}
+      </p>
+    </div>
 
-<div class="field full">
-<label>
-<input id="pavail" type="checkbox" checked>
-Available for customers
-</label>
-</div>
+    ${
+      property.phone
+      ?`
+        <br>
+        <div class="card">
+          <h3>Contact</h3>
+          <p class="item-muted">
+            📞 ${esc(property.phone)}
+          </p>
+        </div>
+      `
+      :""
+    }
 
-</div>
+  `;
 
-<button class="submit" style="margin-top:13px" onclick="publishProp()">
-🚀 Publish Property
-</button>
-`;
+  openModal("propertyModal");
 }
 
-async function publishProp(){
+window.viewProperty=viewProperty;
 
-const x={
-purpose:$("ppurpose").value,
-type:$("ptype").value,
-title:$("ptitle").value.trim(),
-price:Number($("pprice").value||0),
-location:$("ploc").value.trim(),
-bedrooms:Number($("pbed").value||0),
-bathrooms:Number($("pbath").value||0),
-owner:$("powner").value.trim(),
-phone:$("pphone").value.trim(),
-description:$("pdesc").value.trim(),
-available:$("pavail").checked,
-ownerUid:auth.currentUser.uid,
-createdAt:fb.serverTimestamp()
-};
+/* ============================================================
+   PARTNER ORDERS
+============================================================ */
 
-if(!x.title||!x.location||!x.owner||!x.phone)
-return toast("Fill in the required property fields.");
+async function loadPartnerOrders(){
 
-try{
+  const el=document.getElementById(
+    "partnerOrders"
+  );
 
-await fb.addDoc(
-fb.collection(db,"properties"),
-x
-);
+  if(!db){
 
-toast("Property published.");
+    el.innerHTML=`
+      <div class="empty">
+        <div class="empty-icon">📦</div>
+        Order database is unavailable.
+      </div>
+    `;
 
-loadProperties();
+    return;
+  }
 
-tab("myprops");
+  try{
 
-}catch(e){
+    const snap=await getDocsFn(
+      collectionFn(db,"orders")
+    );
 
-console.error(e);
+    if(snap.empty){
 
-toast(
-"Could not publish property. Check Firestore rules."
-);
-}
-}
+      el.innerHTML=`
+        <div class="empty">
+          <div class="empty-icon">📦</div>
+          <h3>No incoming orders</h3>
+          <p>Customer orders will appear here.</p>
+        </div>
+      `;
 
-async function myProperties(){
+      document.getElementById(
+        "partnerOrderStat"
+      ).textContent="0";
 
-$("partnerBody").innerHTML=
-'<div class="empty">Loading your properties…</div>';
+      return;
+    }
 
-try{
+    const orders=snap.docs.map(
+      d=>({
+        id:d.id,
+        ...d.data()
+      })
+    );
 
-const s=await fb.getDocs(
-fb.query(
-fb.collection(db,"properties"),
-fb.where("ownerUid","==",auth.currentUser.uid)
-)
-);
+    document.getElementById(
+      "partnerOrderStat"
+    ).textContent=orders.length;
 
-const a=s.docs.map(d=>({
-id:d.id,
-...d.data()
-}));
+    el.innerHTML=orders.map(
+      order=>`
 
-if(!a.length){
+      <div class="order-item">
 
-$("partnerBody").innerHTML=`
-<div class="empty">
-🏠
-<h3>No properties yet.</h3>
-<p>Register your first property.</p>
+        <div class="item-row">
 
-<button class="submit" onclick="tab('property')">
-Register Property
-</button>
-</div>
-`;
+          <div>
+            <div class="item-title">
+              Order #${esc(order.id.slice(0,8))}
+            </div>
 
-return;
-}
+            <div class="item-muted">
+              Customer:
+              ${esc(order.customerName||"Customer")}
+            </div>
+          </div>
 
-$("partnerBody").innerHTML=
+          <span class="status ${esc(order.status||"new")}">
+            ${esc(order.status||"new")}
+          </span>
 
-a.map(x=>`
+        </div>
 
-<div class="list">
+        <div class="divider"></div>
 
-<div class="thumb">
-${x.type==="Land"?"🌳":x.type==="Commercial"?"🏢":"🏠"}
-</div>
+        <div class="item-row">
+          <span>Total</span>
+          <b class="item-price">
+            ${money(order.total)}
+          </b>
+        </div>
 
-<div style="flex:1">
+        <div class="item-muted">
+          📍 ${esc(order.deliveryAddress||"")}
+        </div>
 
-<b>${esc(x.title)}</b>
+        <div class="item-muted">
+          📞 ${esc(order.phone||"")}
+        </div>
 
-<p class="muted">
-${esc(x.purpose)}
-•
-GH₵ ${Number(x.price||0).toLocaleString()}
-•
-${esc(x.location)}
-</p>
+        <div class="item-actions">
 
-<span class="status">
-${x.available===false?"Unavailable":"Available"}
-</span>
+          <button
+            class="btn small"
+            onclick="updatePartnerOrder('${esc(order.id)}','accepted')">
+            Accept
+          </button>
 
-</div>
+          <button
+            class="btn btn-light small"
+            onclick="updatePartnerOrder('${esc(order.id)}','preparing')">
+            Preparing
+          </button>
 
-<button class="small"
-onclick="toggleProp('${x.id}',${x.available!==false})">
-${x.available===false?"Make available":"Mark unavailable"}
-</button>
+          <button
+            class="btn btn-gold small"
+            onclick="updatePartnerOrder('${esc(order.id)}','ready')">
+            Ready
+          </button>
 
-<button class="small danger"
-onclick="delProp('${x.id}')">
-Delete
-</button>
+          <button
+            class="btn btn-danger small"
+            onclick="updatePartnerOrder('${esc(order.id)}','cancelled')">
+            Reject
+          </button>
 
-</div>
+        </div>
 
-`).join("")
-+
-`
-<button class="submit" onclick="tab('property')">
-+ Add Property
-</button>
-`;
+      </div>
 
-}catch(e){
+      `
+    ).join("");
 
-console.error(e);
+  }catch(error){
 
-$("partnerBody").innerHTML=
-'<div class="empty">Could not load properties. Check Firestore rules.</div>';
-}
+    console.error(error);
+
+    el.innerHTML=`
+      <div class="empty">
+        <div class="empty-icon">⚠️</div>
+        Could not load incoming orders.
+      </div>
+    `;
+  }
 }
 
-async function toggleProp(id,c){
+window.loadPartnerOrders=loadPartnerOrders;
 
-try{
+async function updatePartnerOrder(id,status){
 
-await fb.updateDoc(
-fb.doc(db,"properties",id),
-{
-available:!c,
-updatedAt:fb.serverTimestamp()
-}
-);
+  if(!db)
+    return toast("Database unavailable.");
 
-myProperties();
-loadProperties();
+  try{
 
-}catch(e){
+    await updateDocFn(
+      docFn(db,"orders",id),
+      {
+        status,
+        vendorStatus:status,
+        updatedAt:serverTimestampFn()
+      }
+    );
 
-toast("Could not update property.");
-}
+    toast("Order status updated.");
+
+    loadPartnerOrders();
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      "Could not update the order."
+    );
+  }
 }
 
-async function delProp(id){
+window.updatePartnerOrder=updatePartnerOrder;
 
-if(!confirm("Delete this property?"))return;
+/* ============================================================
+   DELIVERY DASHBOARD
+============================================================ */
 
-try{
+function openDeliveryDashboard(){
 
-await fb.deleteDoc(
-fb.doc(db,"properties",id)
-);
+  if(!currentUser){
 
-myProperties();
-loadProperties();
+    openAccount();
 
-}catch(e){
+    return;
+  }
 
-toast("Could not delete property.");
-}
+  if(
+    currentRole!=="delivery"&&
+    currentRole!=="admin"
+  ){
+
+    toast(
+      "Only approved Delivery accounts can access this dashboard."
+    );
+
+    return;
+  }
+
+  openModal("deliveryDashboard");
+
+  document.getElementById(
+    "deliveryAccess"
+  ).innerHTML=`
+    <div class="notice success">
+      ✓ Delivery dashboard access confirmed.
+    </div>
+  `;
+
+  document.getElementById(
+    "deliveryContent"
+  ).classList.remove("hide");
+
+  loadDeliveryOrders();
 }
 
-async function loadProperties(){
+window.openDeliveryDashboard=openDeliveryDashboard;
 
-try{
+async function loadDeliveryOrders(){
 
-if(!(await init()))return;
+  const el=document.getElementById(
+    "deliveryOrders"
+  );
 
-const s=await fb.getDocs(
-fb.query(
-fb.collection(db,"properties"),
-fb.where("available","==",true)
-)
-);
+  if(!db)return;
 
-const a=s.docs.map(d=>({
-id:d.id,
-...d.data()
-}));
+  try{
 
-$("properties").innerHTML=a.length?
+    const snap=await getDocsFn(
+      collectionFn(db,"orders")
+    );
 
-a.map(x=>`
+    const orders=snap.docs.map(
+      d=>({
+        id:d.id,
+        ...d.data()
+      })
+    );
 
-<article class="property card">
+    const available=orders.filter(
+      o=>
+        o.status==="ready"&&
+        !o.driverUid
+    );
 
-<div class="propPic">
-${x.type==="Land"?"🌳":
-x.type==="Commercial"?"🏢":
-x.type==="Room"?"🛏️":"🏠"}
-</div>
+    const accepted=orders.filter(
+      o=>
+        o.driverUid===currentUser?.uid&&
+        o.driverStatus!=="delivered"
+    );
 
-<div class="propBody">
+    const completed=orders.filter(
+      o=>
+        o.driverUid===currentUser?.uid&&
+        o.driverStatus==="delivered"
+    );
 
-<span class="chip">
-${esc(x.purpose)}
-</span>
+    document.getElementById(
+      "deliveryAvailable"
+    ).textContent=available.length;
 
-<h3>${esc(x.title)}</h3>
+    document.getElementById(
+      "deliveryAccepted"
+    ).textContent=accepted.length;
 
-<div class="price">
-GH₵ ${Number(x.price||0).toLocaleString()}
-</div>
+    document.getElementById(
+      "deliveryCompleted"
+    ).textContent=completed.length;
 
-<p class="muted">
-📍 ${esc(x.location)}
-•
-🛏️ ${x.bedrooms||0}
-•
-🛁 ${x.bathrooms||0}
-</p>
+    const list=orders.filter(
+      o=>
+        o.status==="ready"||
+        o.driverUid===currentUser?.uid
+    );
 
-<p class="help">
-${esc(x.description||"")}
-</p>
+    if(!list.length){
 
-<div class="actions2">
+      el.innerHTML=`
+        <div class="empty">
+          <div class="empty-icon">🚴</div>
+          No delivery jobs available.
+        </div>
+      `;
 
-<button
-class="small primary"
-onclick="alert('Property contact: '+${JSON.stringify(x.phone||"")})">
-Contact
-</button>
+      return;
+    }
 
-</div>
+    el.innerHTML=list.map(
+      order=>`
 
-</div>
-</article>
+      <div class="order-item">
 
-`).join("")
+        <div class="item-row">
 
-:
+          <div>
+            <b>
+              Delivery #${esc(order.id.slice(0,8))}
+            </b>
 
-`
-<div class="empty" style="grid-column:1/-1">
-🏠
-<h3>No property listings yet.</h3>
-<p>Partnership accounts can publish listings here.</p>
-</div>
-`;
+            <div class="item-muted">
+              ${esc(order.customerName||"Customer")}
+            </div>
+          </div>
 
-}catch(e){
-console.error(e);
-}
-}
+          <span class="status">
+            ${esc(order.driverStatus||"unassigned")}
+          </span>
 
-async function vendorOrders(){
+        </div>
 
-$("partnerBody").innerHTML=
-'<div class="empty">Loading orders…</div>';
+        <div class="divider"></div>
 
-try{
+        <p class="item-muted">
+          📍 ${esc(order.deliveryAddress||"")}
+        </p>
 
-const s=await fb.getDocs(
-fb.query(
-fb.collection(db,"orders"),
-fb.where("vendorId","==",auth.currentUser.uid)
-)
-);
+        <div class="item-actions">
 
-const a=s.docs.map(d=>({
-id:d.id,
-...d.data()
-}));
+          ${
+            !order.driverUid
+            ?`
+              <button class="btn small"
+                onclick="updateDriver('${esc(order.id)}','accepted')">
+                Accept Delivery
+              </button>
+            `
+            :""
+          }
 
-$("partnerBody").innerHTML=a.length?
+          ${
+            order.driverUid===currentUser?.uid
+            ?`
+              <button class="btn btn-gold small"
+                onclick="updateDriver('${esc(order.id)}','picked_up')">
+                Picked Up
+              </button>
 
-a.map(o=>{
+              <button class="btn btn-light small"
+                onclick="updateDriver('${esc(order.id)}','delivered')">
+                Delivered
+              </button>
+            `
+            :""
+          }
 
-const nx={
-new:["accepted","Accept"],
-accepted:["preparing","Start preparing"],
-preparing:["ready","Mark ready"]
-}[o.status];
+        </div>
 
-return `
+      </div>
 
-<article class="order">
+      `
+    ).join("");
 
-<div class="orderTop">
+  }catch(error){
 
-<div>
-<b>
-Order #${esc(
-(o.orderNumber||o.id).slice(-8).toUpperCase()
-)}
-</b>
+    console.error(error);
 
-<p class="muted">
-${esc(o.customerName||"Customer")}
-•
-${esc(o.customerPhone||"")}
-</p>
-</div>
+    el.innerHTML=`
+      <div class="empty">
+        Could not load deliveries.
+      </div>
+    `;
+  }
+}
 
-<span class="status">
-${esc(label(o.status))}
-</span>
+window.loadDeliveryOrders=loadDeliveryOrders;
 
-</div>
+async function updateDriver(id,status){
 
-${(o.items||[]).map(x=>`
-<div class="row">
-<span>${esc(x.name)} × ${x.qty}</span>
-<b>GH₵ ${(x.price*x.qty).toLocaleString()}</b>
-</div>
-`).join("")}
+  if(!db)return;
 
-<div class="row">
-<b>Total</b>
-<b>GH₵ ${Number(o.total||0).toLocaleString()}</b>
-</div>
+  try{
 
-<p class="help">
-📍 ${esc(o.deliveryAddress||"")}
-</p>
+    const data={
+      driverUid:currentUser.uid,
+      driverStatus:status,
+      updatedAt:serverTimestampFn()
+    };
 
-${nx?
-`
-<button class="submit"
-onclick="orderUpdate('${o.id}','${nx[0]}')">
-${nx[1]}
-</button>
-`
-:""}
+    if(status==="delivered"){
+      data.status="completed";
+    }
 
-</article>
-`;
+    if(status==="accepted"){
+      data.status="ready";
+    }
 
-}).join("")
+    await updateDocFn(
+      docFn(db,"orders",id),
+      data
+    );
 
-:
+    toast("Delivery updated.");
 
-`
-<div class="empty">
-📦
-<h3>No orders yet.</h3>
-<p>Customer orders will appear here.</p>
-</div>
-`;
+    loadDeliveryOrders();
 
-}catch(e){
+  }catch(error){
 
-$("partnerBody").innerHTML=
-'<div class="empty">Could not load orders. Check Firestore rules.</div>';
-}
+    console.error(error);
+
+    toast(
+      "Could not update delivery."
+    );
+  }
 }
 
-async function orderUpdate(id,status){
+window.updateDriver=updateDriver;
 
-try{
+/* ============================================================
+   ADMIN DASHBOARD
+   REAL ADMIN ACCESS MUST COME FROM FIREBASE CUSTOM CLAIM:
+   request.auth.token.admin == true
+============================================================ */
 
-await fb.updateDoc(
-fb.doc(db,"orders",id),
-{
-status,
-updatedAt:fb.serverTimestamp()
-}
-);
+async function isAdmin(){
 
-toast("Order status updated.");
+  if(!currentUser||!auth)
+    return false;
 
-vendorOrders();
+  try{
 
-}catch(e){
+    const token=
+      await currentUser.getIdTokenResult(true);
 
-toast("Could not update order.");
-}
-}
+    return token.claims.admin===true;
 
-async function deliveryDash(){
+  }catch(error){
 
-if(!(await init())||!auth.currentUser){
-account();
-return;
+    console.error(error);
+
+    return false;
+  }
 }
+
+async function openAdminDashboard(){
+
+  if(!currentUser){
+
+    openAccount();
+
+    return;
+  }
+
+  openModal("adminDashboard");
 
-$("deliveryM").classList.add("open");
+  const access=
+    document.getElementById("adminAccess");
 
-$("deliveryBody").innerHTML=
-'<div class="empty">Checking access…</div>';
+  access.innerHTML=`
+    <div class="notice">
+      Checking administrator access...
+    </div>
+  `;
 
-const c=await claims();
+  const allowed=await isAdmin();
 
-if(!c.delivery&&!c.admin){
+  if(!allowed){
 
-return $("deliveryBody").innerHTML=`
-<div class="empty">
-🛵
-<h3>Access denied.</h3>
-<p>
-An administrator must grant the
-<code>delivery:true</code>
-Firebase claim.
-</p>
-</div>
-`;
+    document.getElementById(
+      "adminContent"
+    ).classList.add("hide");
+
+    access.innerHTML=`
+      <div class="notice" style="background:#ffebeb;border-color:#f2c2c2;color:#a51e1e">
+        🔒 <b>Administrator access denied.</b><br>
+        Your Firebase account does not have the admin custom claim.
+      </div>
+    `;
+
+    return;
+  }
+
+  access.innerHTML=`
+    <div class="notice success">
+      ✓ Administrator access verified.
+    </div>
+  `;
+
+  document.getElementById(
+    "adminContent"
+  ).classList.remove("hide");
+
+  loadAdminOrders();
+  loadAdminUsers();
+  loadAdminProperties();
 }
 
-try{
+window.openAdminDashboard=openAdminDashboard;
 
-const s=await fb.getDocs(
-fb.query(
-fb.collection(db,"orders"),
-fb.where(
-"status",
-"in",
-["ready","assigned","picked_up","out_for_delivery"]
-)
-)
-);
+function adminTab(tab,button){
 
-const a=s.docs.map(d=>({
-id:d.id,
-...d.data()
-}));
+  document
+    .querySelectorAll(
+      "#adminDashboard .dashboard-section"
+    )
+    .forEach(
+      x=>x.classList.remove("active")
+    );
 
-$("deliveryBody").innerHTML=a.length?
+  document
+    .querySelectorAll(
+      "#adminDashboard .dashboard-tab"
+    )
+    .forEach(
+      x=>x.classList.remove("active")
+    );
 
-a.map(o=>{
+  const map={
+    orders:"adminOrdersSection",
+    users:"adminUsersSection",
+    properties:"adminPropertiesSection"
+  };
 
-const me=o.driverUid===auth.currentUser.uid;
+  document
+    .getElementById(map[tab])
+    ?.classList.add("active");
 
-const n={
-ready:["assigned","Accept delivery"],
-assigned:["picked_up","Picked up"],
-picked_up:["out_for_delivery","Out for delivery"],
-out_for_delivery:["delivered","Mark delivered"]
-}[o.status];
+  button?.classList.add("active");
+}
 
-return `
+window.adminTab=adminTab;
 
-<article class="order">
+async function loadAdminOrders(){
 
-<div class="orderTop">
+  const el=document.getElementById(
+    "adminOrders"
+  );
 
-<div>
-<b>
-Order #${esc(
-(o.orderNumber||o.id).slice(-8).toUpperCase()
-)}
-</b>
+  try{
 
-<p class="muted">
-${esc(o.customerName||"Customer")}
-•
-${esc(o.customerPhone||"")}
-</p>
-</div>
+    const snap=await getDocsFn(
+      collectionFn(db,"orders")
+    );
 
-<span class="status">
-${esc(label(o.status))}
-</span>
+    if(snap.empty){
 
-</div>
+      el.innerHTML=`
+        <div class="empty">
+          No orders found.
+        </div>
+      `;
 
-<p class="help">
-📍 ${esc(o.deliveryAddress||"")}
-</p>
+      return;
+    }
 
-${n&&(o.status==="ready"||me)?
-`
-<button class="submit"
-onclick="deliveryUpdate('${o.id}','${n[0]}')">
-${n[1]}
-</button>
-`
-:""}
+    el.innerHTML=snap.docs.map(
+      d=>{
 
-</article>
-`;
+        const o=d.data();
 
-}).join("")
+        return`
 
-:
+          <div class="order-item">
 
-`
-<div class="empty">
-🛵
-No delivery jobs right now.
-</div>
-`;
+            <div class="item-row">
 
-}catch(e){
+              <b>
+                Order #${esc(d.id.slice(0,8))}
+              </b>
 
-$("deliveryBody").innerHTML=
-'<div class="empty">Could not load delivery jobs.</div>';
-}
-}
+              <span class="status">
+                ${esc(o.status||"new")}
+              </span>
+
+            </div>
 
-async function deliveryUpdate(id,status){
+            <div class="item-muted">
+              Customer: ${esc(o.customerEmail||"")}
+            </div>
 
-try{
+            <div class="item-muted">
+              Total: ${money(o.total)}
+            </div>
 
-const d={
-status,
-updatedAt:fb.serverTimestamp()
-};
+          </div>
+        `;
+      }
+    ).join("");
 
-if(status==="assigned"){
-d.driverUid=auth.currentUser.uid;
+  }catch(error){
+
+    el.innerHTML=`
+      <div class="empty">
+        Unable to load orders.
+      </div>
+    `;
+  }
 }
 
-await fb.updateDoc(
-fb.doc(db,"orders",id),
-d
-);
+async function loadAdminUsers(){
 
-toast("Delivery status updated.");
+  const el=document.getElementById(
+    "adminUsers"
+  );
 
-deliveryDash();
+  try{
 
-}catch(e){
+    const snap=await getDocsFn(
+      collectionFn(db,"users")
+    );
 
-toast("Could not update delivery.");
-}
-}
+    if(snap.empty){
+
+      el.innerHTML=`
+        <div class="empty">
+          No users found.
+        </div>
+      `;
+
+      return;
+    }
+
+    el.innerHTML=snap.docs.map(
+      d=>{
 
-async function adminDash(){
+        const u=d.data();
 
-if(!(await init())||!auth.currentUser){
-account();
-return;
+        return`
+
+          <div class="order-item">
+
+            <div class="item-row">
+
+              <div>
+                <b>${esc(u.name||"User")}</b>
+
+                <div class="item-muted">
+                  ${esc(u.email||"")}
+                </div>
+              </div>
+
+              <span class="badge">
+                ${esc(u.role||"customer")}
+              </span>
+
+            </div>
+
+          </div>
+        `;
+      }
+    ).join("");
+
+  }catch(error){
+
+    el.innerHTML=`
+      <div class="empty">
+        Unable to load users.
+      </div>
+    `;
+  }
 }
+
+async function loadAdminProperties(){
+
+  const el=document.getElementById(
+    "adminProperties"
+  );
+
+  const list=allProperties();
+
+  if(!list.length){
+
+    el.innerHTML=`
+      <div class="empty">
+        No properties found.
+      </div>
+    `;
+
+    return;
+  }
 
-$("adminM").classList.add("open");
+  el.innerHTML=list.map(
+    p=>`
 
-$("adminBody").innerHTML=
-'<div class="empty">Checking administrator access…</div>';
+      <div class="order-item">
 
-const c=await claims();
+        <div class="item-row">
 
-if(!c.admin){
+          <div>
+            <b>${esc(p.title)}</b>
 
-return $("adminBody").innerHTML=`
-<div class="empty">
-<h3>Access denied.</h3>
-<p>
-Admin access requires the Firebase Authentication
-custom claim <code>admin:true</code>.
-</p>
-</div>
-`;
+            <div class="item-muted">
+              ${esc(p.type)} • ${esc(p.location)}
+            </div>
+          </div>
+
+          <b class="item-price">
+            ${money(p.price)}
+          </b>
+
+        </div>
+
+      </div>
+
+    `
+  ).join("");
 }
 
-try{
+/* ============================================================
+   GROCERIES
+============================================================ */
 
-const [u,o]=await Promise.all([
+function showGroceries(){
 
-fb.getDocs(
-fb.collection(db,"users")
-),
+  toast(
+    "🛒 Grocery marketplace is being prepared for in-app shopping."
+  );
+}
 
-fb.getDocs(
-fb.collection(db,"orders")
-)
+window.showGroceries=showGroceries;
 
-]);
+/* ============================================================
+   PARCEL
+============================================================ */
 
-$("adminBody").innerHTML=`
+function showParcel(){
 
-<div class="stats">
+  if(!currentUser){
 
-<div class="stat">
-<b>${u.size}</b>
-<span>Users</span>
-</div>
+    openAccount();
 
-<div class="stat">
-<b>${o.size}</b>
-<span>Orders</span>
-</div>
+    toast(
+      "Create an account to request parcel delivery."
+    );
 
-<div class="stat">
-<b>
-${o.docs.filter(
-d=>(d.data().status||"new")==="new"
-).length}
-</b>
-<span>New orders</span>
-</div>
+    return;
+  }
 
-</div>
+  openModal("parcelModal");
+}
 
-<div class="card" style="padding:15px">
+window.showParcel=showParcel;
 
-<h3>Accounts</h3>
+async function requestParcel(){
 
-${u.docs.slice(0,60).map(d=>{
+  if(!currentUser)
+    return toast("Please sign in.");
 
-const x=d.data();
+  const pickup=document
+    .getElementById("parcelPickup")
+    .value.trim();
 
-return `
-<div style="padding:8px 0;border-bottom:1px solid var(--line)">
+  const destination=document
+    .getElementById("parcelDestination")
+    .value.trim();
 
-<b>${esc(x.name||"User")}</b>
+  const description=document
+    .getElementById("parcelDescription")
+    .value.trim();
 
-<div class="muted">
-${esc(x.email||"")}
-•
-${esc(x.accountType||"customer")}
-</div>
+  if(!pickup||!destination)
+    return toast(
+      "Enter pickup and destination."
+    );
 
-</div>
-`;
+  if(!db)
+    return toast("Database unavailable.");
 
-}).join("")||"<p class=\"help\">No accounts.</p>"}
+  try{
 
-</div>
+    await addDocFn(
+      collectionFn(db,"parcelRequests"),
+      {
+        customerUid:currentUser.uid,
+        customerName:
+          currentUser.displayName||"Customer",
+        pickup,
+        destination,
+        description,
+        status:"new",
+        createdAt:serverTimestampFn()
+      }
+    );
 
-<div class="card" style="padding:15px;margin-top:12px">
+    document.getElementById(
+      "parcelPickup"
+    ).value="";
 
-<b>Security</b>
+    document.getElementById(
+      "parcelDestination"
+    ).value="";
 
-<p class="help">
-Admin access is enforced by Firebase Authentication
-custom claims, not by localStorage or a hidden button.
-</p>
+    document.getElementById(
+      "parcelDescription"
+    ).value="";
 
-</div>
-`;
+    closeModal("parcelModal");
 
-}catch(e){
+    toast(
+      "📦 Parcel request submitted."
+    );
 
-$("adminBody").innerHTML=
-'<div class="empty">Could not load admin data. Check Firestore rules.</div>';
-}
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      "Could not submit parcel request."
+    );
+  }
 }
+
+window.requestParcel=requestParcel;
+
+/* ============================================================
+   BUSINESS DISPLAY
+============================================================ */
+
+function renderBusinesses(){
+
+  document.getElementById(
+    "businessList"
+  ).innerHTML=businesses.map(
+    b=>`
+
+      <div class="card business-card">
+
+        <div class="business-icon">
+          ${esc(b.icon)}
+        </div>
 
-function exploreFood(){
+        <div>
+          <h3>${esc(b.name)}</h3>
+          <p class="small muted">
+            ${esc(b.category)}
+          </p>
+          <p class="small muted">
+            ${esc(b.description)}
+          </p>
+        </div>
 
-document
-.getElementById("businesses")
-.scrollIntoView({behavior:"smooth"});
+      </div>
 
-toast("Choose a food business to open its menu.");
+    `
+  ).join("");
 }
 
-window.addEventListener("load",async()=>{
+/* ============================================================
+   START
+============================================================ */
 
 renderBusinesses();
+renderFoods();
+renderProperties();
+updateCartCount();
 
-saveCart();
+document.getElementById(
+  "proteinOptions"
+).value="Chicken:10, Beef:15";
 
-await init();
+document.getElementById(
+  "soupOptions"
+).value="Extra Soup:5, Large Soup:10";
 
-await loadProperties();
+document.getElementById(
+  "spiceOptions"
+).value="Mild:0, Medium:0, Hot:0";
 
-});
+initFirebase();
+
 </script>
 
 </body>
