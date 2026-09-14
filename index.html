@@ -2,1070 +2,664 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#0f7a4f">
-<meta name="description" content="SefwiGo - Local food, groceries, parcels and property marketplace for Sefwi Wiawso">
-<title>SefwiGo</title>
+<meta name="description" content="SefwiGo — food, groceries, parcels, services and property around Sefwi Wiawso.">
+<title>SefwiGo | Delivery & Local Marketplace</title>
 
 <style>
 :root{
   --green:#0f7a4f;
-  --dark:#075c3b;
-  --soft:#eaf7f0;
+  --green-dark:#075c3b;
+  --green-soft:#eaf7f0;
   --gold:#e0ad3d;
-  --white:#fff;
-  --black:#17201b;
-  --muted:#66736c;
-  --border:#dfe8e3;
-  --shadow:0 8px 25px rgba(0,0,0,.08);
-  --danger:#c62828;
+  --ink:#17221d;
+  --muted:#6f7b75;
+  --bg:#f5f7f6;
+  --card:#ffffff;
+  --line:#e6ebe8;
+  --danger:#c63b3b;
+  --shadow:0 12px 30px rgba(18,45,33,.08);
+  --radius:22px;
 }
-
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-  background:#f7faf8;
-  color:var(--black);
-  line-height:1.5;
+  margin:0;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--ink);
+  background:var(--bg);
+  padding-bottom:82px;
 }
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.container{width:min(1120px,92%);margin:auto}
 
-button,
-input,
-select,
-textarea{
-  font:inherit;
+/* Header */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
 }
-
-button{
-  cursor:pointer;
+.nav{
+  height:72px;display:flex;align-items:center;justify-content:space-between;gap:14px;
 }
-
-.hidden{
-  display:none!important;
-}
-
-/* HEADER */
-header{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  height:64px;
-  background:var(--white);
-  border-bottom:1px solid var(--border);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 16px;
-}
-
-.header-left,
-.header-right{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.icon-btn{
-  width:40px;
-  height:40px;
-  border:0;
-  background:transparent;
-  border-radius:12px;
-  font-size:21px;
-}
-
-.icon-btn:hover{
-  background:var(--soft);
-}
-
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:-.5px}
 .logo{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  font-size:21px;
-  font-weight:800;
-  color:var(--green);
+  width:44px;height:44px;border-radius:14px;
+  background:linear-gradient(135deg,var(--green),var(--green-dark));
+  color:#fff;display:grid;place-items:center;font-size:23px;
+  box-shadow:0 7px 18px rgba(15,122,79,.25);
+}
+.brand span{font-size:21px}
+.nav-actions{display:flex;align-items:center;gap:8px}
+.icon-btn{
+  width:44px;height:44px;border:1px solid var(--line);background:#fff;
+  border-radius:14px;display:grid;place-items:center;font-size:20px;
+}
+.account-btn{
+  border:0;background:var(--green);color:#fff;border-radius:14px;
+  padding:11px 15px;font-weight:800;
 }
 
-.logo-mark{
-  width:34px;
-  height:34px;
-  background:var(--green);
-  color:white;
-  border-radius:10px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:900;
-}
-
-.cart-btn{
-  position:relative;
-}
-
-.cart-count{
-  position:absolute;
-  top:1px;
-  right:1px;
-  min-width:17px;
-  height:17px;
-  padding:0 4px;
-  background:#d62828;
-  color:#fff;
-  border-radius:20px;
-  font-size:10px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-/* MAIN */
-main{
-  max-width:1150px;
-  margin:auto;
-  padding-bottom:90px;
-}
-
+/* Hero */
 .hero{
-  margin:16px;
-  padding:28px 22px;
-  background:linear-gradient(135deg,var(--dark),var(--green));
-  color:white;
-  border-radius:22px;
-  box-shadow:var(--shadow);
-}
-
-.hero h1{
-  font-size:32px;
-  line-height:1.1;
-  margin-bottom:10px;
-}
-
-.hero p{
-  color:#e7fff2;
-  max-width:620px;
-  margin-bottom:20px;
-}
-
-.hero-actions{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
-
-.primary,
-.secondary,
-.danger{
-  border:0;
-  border-radius:12px;
-  padding:12px 17px;
-  font-weight:700;
-}
-
-.primary{
-  background:var(--gold);
-  color:#1d1604;
-}
-
-.secondary{
-  background:#fff;
-  color:var(--green);
-}
-
-.danger{
-  background:#ffe9e9;
-  color:var(--danger);
-}
-
-.section{
-  padding:16px;
-}
-
-.section-title{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  margin-bottom:14px;
-}
-
-.section-title h2{
-  font-size:21px;
-}
-
-.section-title span{
-  color:var(--green);
-  font-size:13px;
-  font-weight:700;
-}
-
-/* SEARCH */
-.search-box{
-  margin:0 16px 8px;
+  margin:22px 0;
+  border-radius:30px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 85% 15%,rgba(224,173,61,.34),transparent 27%),
+    linear-gradient(135deg,#075c3b,#15915f 65%,#0c6e48);
+  color:#fff;box-shadow:var(--shadow);
   position:relative;
 }
-
-.search-box input{
-  width:100%;
-  border:1px solid var(--border);
-  background:#fff;
-  border-radius:15px;
-  padding:14px 16px 14px 43px;
-  outline:none;
+.hero-inner{padding:34px clamp(22px,5vw,56px);display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:center}
+.eyebrow{font-size:13px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.hero h1{font-size:clamp(34px,6vw,62px);line-height:.98;margin:12px 0;letter-spacing:-2.8px;max-width:680px}
+.hero p{font-size:17px;line-height:1.6;max-width:600px;color:rgba(255,255,255,.88)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.primary,.secondary,.gold-btn{
+  border:0;border-radius:15px;padding:14px 19px;font-weight:900;
+}
+.primary{background:#fff;color:var(--green-dark)}
+.secondary{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.24)}
+.gold-btn{background:var(--gold);color:#1d271f}
+.hero-art{
+  min-height:220px;border-radius:28px;background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.15);display:grid;place-items:center;
+  font-size:110px;transform:rotate(2deg);
 }
 
-.search-box input:focus{
-  border-color:var(--green);
-}
+/* Sections */
+.section{padding:14px 0 28px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:15px}
+.section-head h2{margin:0;font-size:24px;letter-spacing:-.8px}
+.section-head p{margin:5px 0 0;color:var(--muted);font-size:14px}
+.text-btn{border:0;background:none;color:var(--green);font-weight:900}
 
-.search-icon{
-  position:absolute;
-  left:15px;
-  top:50%;
-  transform:translateY(-50%);
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.service-card,.business-card,.property-card,.deal-card,.dash-card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:0 5px 18px rgba(20,40,30,.04);
 }
+.service-card{padding:20px;min-height:145px;transition:.2s}
+.service-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.service-icon{font-size:35px;margin-bottom:12px}
+.service-card strong{display:block;font-size:16px}
+.service-card span{font-size:13px;color:var(--muted);display:block;margin-top:5px}
 
-/* SERVICE CARDS */
-.service-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
+.deals{display:grid;grid-template-columns:1.4fr 1fr;gap:15px}
+.deal-card{overflow:hidden;min-height:190px;position:relative}
+.deal-main{
+  padding:28px;background:
+    radial-gradient(circle at 85% 20%,rgba(224,173,61,.3),transparent 25%),
+    linear-gradient(135deg,#0b6d47,#1a9968);color:#fff;height:100%;
 }
+.deal-main h3{font-size:30px;line-height:1;margin:8px 0}
+.deal-main p{opacity:.9;max-width:480px}
+.deal-side{padding:22px;display:flex;flex-direction:column;justify-content:space-between}
+.price{font-size:26px;font-weight:950;color:var(--green-dark)}
 
-.service-card{
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:17px;
-  padding:17px 10px;
-  text-align:center;
-  box-shadow:0 3px 12px rgba(0,0,0,.035);
-  transition:.2s;
+.business-card{padding:16px}
+.business-top{display:flex;align-items:center;gap:12px}
+.avatar{width:50px;height:50px;border-radius:16px;background:var(--green-soft);display:grid;place-items:center;font-size:25px}
+.business-card h3{margin:0;font-size:16px}
+.business-card p{margin:5px 0;color:var(--muted);font-size:13px}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:7px 10px;border-radius:999px;background:var(--green-soft);color:var(--green-dark);font-size:12px;font-weight:800}
+
+/* Properties */
+.property-card{overflow:hidden}
+.property-image{
+  height:170px;display:grid;place-items:center;font-size:65px;
+  background:linear-gradient(135deg,#dcefe5,#f8f0d7);
 }
+.property-body{padding:16px}
+.property-body h3{margin:0 0 6px;font-size:17px}
+.property-meta{display:flex;flex-wrap:wrap;gap:8px;color:var(--muted);font-size:12px;margin:10px 0}
+.property-price{font-size:21px;font-weight:950;color:var(--green-dark)}
+.property-actions{display:flex;gap:8px;margin-top:13px}
+.small-btn{flex:1;border:0;border-radius:12px;padding:10px;font-weight:800;background:#eef3f0;color:var(--green-dark)}
+.small-btn.primary-small{background:var(--green);color:#fff}
 
-.service-card:hover{
-  transform:translateY(-2px);
-  border-color:#b8d9c8;
+/* Partner banner */
+.partner{
+  padding:26px;border-radius:26px;background:#10221a;color:#fff;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
 }
+.partner h2{margin:0 0 7px}
+.partner p{margin:0;color:rgba(255,255,255,.7)}
 
-.service-icon{
-  font-size:28px;
-  margin-bottom:6px;
-}
-
-.service-card strong{
-  display:block;
-  font-size:14px;
-}
-
-.service-card small{
-  color:var(--muted);
-  font-size:11px;
-}
-
-/* CARDS */
-.card-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px;
-}
-
-.business-card,
-.food-card,
-.property-card{
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:17px;
-  overflow:hidden;
-  box-shadow:0 4px 14px rgba(0,0,0,.04);
-}
-
-.card-image{
-  height:150px;
-  background:var(--soft);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:48px;
-}
-
-.card-body{
-  padding:14px;
-}
-
-.card-body h3{
-  font-size:17px;
-  margin-bottom:4px;
-}
-
-.card-body p{
-  color:var(--muted);
-  font-size:13px;
-  margin-bottom:10px;
-}
-
-.price{
-  color:var(--green);
-  font-weight:800;
-}
-
-.small-btn{
-  border:1px solid var(--green);
-  background:#fff;
-  color:var(--green);
-  padding:8px 11px;
-  border-radius:9px;
-  font-size:12px;
-  font-weight:700;
-}
-
-/* PROPERTY */
-.property-info{
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px;
-  margin:8px 0;
-}
-
-.badge{
-  display:inline-block;
-  background:var(--soft);
-  color:var(--dark);
-  padding:5px 8px;
-  border-radius:8px;
-  font-size:11px;
-  font-weight:700;
-}
-
-/* BOTTOM NAV */
+/* Bottom nav */
 .bottom-nav{
-  position:fixed;
-  left:0;
-  right:0;
-  bottom:0;
-  height:67px;
-  background:#fff;
-  border-top:1px solid var(--border);
-  z-index:1000;
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
+  position:fixed;bottom:0;left:0;right:0;z-index:80;
+  height:76px;background:rgba(255,255,255,.96);backdrop-filter:blur(18px);
+  border-top:1px solid var(--line);display:flex;justify-content:center;
 }
-
-.bottom-nav button{
-  border:0;
-  background:transparent;
-  color:#68746e;
+.bottom-inner{width:min(620px,100%);display:grid;grid-template-columns:repeat(4,1fr)}
+.nav-item{
+  border:0;background:transparent;color:#737b77;font-weight:700;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
   font-size:11px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:3px;
 }
+.nav-item .nav-icon{font-size:23px;line-height:1}
+.nav-item.active{color:var(--green)}
+.nav-item.active .nav-icon{transform:translateY(-1px)}
 
-.bottom-nav button.active{
-  color:var(--green);
-  font-weight:800;
+/* Side menu */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:90;display:none}
+.overlay.open{display:block}
+.drawer{
+  position:absolute;left:0;top:0;bottom:0;width:min(360px,88vw);background:#fff;
+  padding:24px;overflow:auto;box-shadow:20px 0 50px rgba(0,0,0,.15);
 }
-
-.bottom-nav .nav-icon{
-  font-size:21px;
-}
-
-/* SIDE MENU */
-.overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.45);
-  z-index:1500;
-  display:none;
-}
-
-.overlay.open{
-  display:block;
-}
-
-.side-menu{
-  position:fixed;
-  left:0;
-  top:0;
-  bottom:0;
-  width:min(310px,86vw);
-  background:#fff;
-  z-index:1600;
-  transform:translateX(-105%);
-  transition:.25s;
-  overflow-y:auto;
-  box-shadow:8px 0 25px rgba(0,0,0,.15);
-}
-
-.side-menu.open{
-  transform:translateX(0);
-}
-
-.menu-head{
-  background:var(--green);
-  color:white;
-  padding:25px 18px;
-}
-
-.menu-head h2{
-  margin-bottom:4px;
-}
-
-.menu-head p{
-  opacity:.85;
-  font-size:13px;
-}
-
-.menu-list{
-  padding:12px;
-}
-
+.drawer-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}
+.drawer h2{margin:0}
 .menu-link{
-  width:100%;
-  border:0;
-  background:transparent;
-  text-align:left;
-  padding:14px 12px;
-  border-radius:11px;
-  font-weight:600;
-  color:var(--black);
+  width:100%;display:flex;align-items:center;gap:12px;padding:14px;
+  border:0;background:#fff;border-radius:15px;text-align:left;font-weight:800;
 }
+.menu-link:hover{background:var(--green-soft);color:var(--green-dark)}
+.menu-divider{height:1px;background:var(--line);margin:14px 0}
 
-.menu-link:hover{
-  background:var(--soft);
+/* Modal / dashboard */
+.modal{position:fixed;inset:0;background:rgba(7,20,14,.58);z-index:100;display:none;padding:18px;overflow:auto}
+.modal.open{display:flex;align-items:center;justify-content:center}
+.modal-card{
+  width:min(900px,100%);max-height:94vh;overflow:auto;background:#fff;border-radius:28px;
+  box-shadow:0 30px 80px rgba(0,0,0,.25);
 }
+.modal-head{position:sticky;top:0;z-index:2;background:#fff;padding:20px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.close{border:0;background:#f1f4f2;width:40px;height:40px;border-radius:12px;font-size:20px}
+.modal-body{padding:22px}
+.tabs{display:flex;gap:8px;overflow:auto;margin-bottom:18px}
+.tab{white-space:nowrap;border:1px solid var(--line);background:#fff;padding:10px 14px;border-radius:12px;font-weight:800}
+.tab.active{background:var(--green);color:#fff;border-color:var(--green)}
 
-/* MODAL */
-.modal-wrap{
-  position:fixed;
-  inset:0;
-  z-index:2000;
-  background:rgba(0,0,0,.5);
-  display:none;
-  align-items:flex-end;
-  justify-content:center;
+.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+.field label{font-size:13px;font-weight:850}
+.field input,.field select,.field textarea{
+  width:100%;border:1px solid #dce4df;background:#fbfcfb;border-radius:13px;
+  padding:12px 13px;outline:none;
 }
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(15,122,79,.1)}
+.field textarea{min-height:110px;resize:vertical}
+.submit{width:100%;border:0;background:var(--green);color:#fff;border-radius:14px;padding:14px;font-weight:950}
+.help{font-size:12px;color:var(--muted);line-height:1.5}
 
-.modal-wrap.open{
-  display:flex;
+.dashboard-head{
+  background:linear-gradient(135deg,#0b6844,#15915f);color:#fff;padding:24px;
 }
+.dashboard-head h2{margin:0;font-size:27px}
+.dashboard-head p{margin:7px 0 0;color:rgba(255,255,255,.8)}
+.dash-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}
+.stat{padding:17px;border-radius:17px;background:#f7faf8;border:1px solid var(--line)}
+.stat b{display:block;font-size:25px}
+.stat span{font-size:12px;color:var(--muted)}
+.my-property{display:flex;gap:13px;padding:13px;border:1px solid var(--line);border-radius:17px;margin-bottom:10px}
+.my-property .thumb{width:78px;height:70px;border-radius:13px;background:var(--green-soft);display:grid;place-items:center;font-size:32px;flex:none}
+.my-property h4{margin:0 0 5px}
+.my-property p{margin:0;color:var(--muted);font-size:12px}
+.status{display:inline-block;margin-top:7px;padding:5px 8px;border-radius:999px;background:#fff4d7;color:#856300;font-size:11px;font-weight:900}
+.status.on{background:#e5f7ec;color:#147244}
+.status.off{background:#fde8e8;color:#9d2929}
 
-.modal{
-  width:min(620px,100%);
-  max-height:92vh;
-  overflow-y:auto;
-  background:#fff;
-  border-radius:24px 24px 0 0;
-  padding:20px;
-  animation:slideUp .2s ease;
-}
+/* Food */
+.food-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.food-card{padding:16px;border:1px solid var(--line);border-radius:18px;background:#fff}
+.food-top{display:flex;justify-content:space-between;gap:12px}
+.food-icon{width:56px;height:56px;border-radius:16px;background:var(--green-soft);display:grid;place-items:center;font-size:29px;flex:none}
+.food-card h3{margin:0;font-size:16px}
+.food-card p{margin:5px 0;color:var(--muted);font-size:12px;line-height:1.5}
+.food-price{font-size:19px;font-weight:950;color:var(--green-dark);margin-top:10px}
+.food-card .small-btn{margin-top:10px}
 
-@keyframes slideUp{
-  from{transform:translateY(30px);opacity:0}
-  to{transform:translateY(0);opacity:1}
-}
+/* Cart */
+.cart-item{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.cart-item:last-child{border-bottom:0}
+.cart-icon{width:48px;height:48px;border-radius:14px;background:var(--green-soft);display:grid;place-items:center;font-size:24px;flex:none}
+.cart-info{flex:1;min-width:0}
+.cart-info strong{display:block}
+.cart-info small{display:block;color:var(--muted);margin-top:3px}
+.qty{display:flex;align-items:center;gap:7px}
+.qty button{width:30px;height:30px;border:0;border-radius:9px;background:#edf2ef;font-weight:900}
+.cart-total{display:flex;justify-content:space-between;padding:16px 0;font-size:18px;font-weight:950}
 
-.modal-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:12px;
-  margin-bottom:18px;
-}
+/* Checkout / Orders */
+.checkout-summary{background:#f7faf8;border:1px solid var(--line);border-radius:18px;padding:15px;margin-bottom:18px}
+.checkout-row{display:flex;justify-content:space-between;gap:12px;padding:7px 0;font-size:13px}
+.checkout-total{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:12px;margin-top:8px;font-weight:950;font-size:18px;color:var(--green-dark)}
+.order-card{border:1px solid var(--line);border-radius:18px;padding:17px;margin-bottom:12px;background:#fff}
+.order-items{margin:12px 0}
+.order-item-row{display:flex;justify-content:space-between;gap:12px;padding:7px 0;font-size:13px}
+.order-item-row small{color:var(--muted);margin-top:3px}
+.order-status{display:inline-block;padding:7px 10px;border-radius:999px;background:#fff4d7;color:#856300;font-size:11px;font-weight:900}
+.order-status.on{background:#e5f7ec;color:#147244}
+.order-status.off{background:#fde8e8;color:#9d2929}
 
-.modal-head h2{
-  font-size:21px;
-}
+/* Modifier */
+.modifier-box{border:1px solid var(--line);border-radius:16px;padding:15px;margin-bottom:12px}
+.modifier-title{font-weight:900;margin-bottom:10px}
+.modifier-option{display:flex;align-items:center;gap:9px;padding:9px 0;font-size:14px}
+.modifier-option input{accent-color:var(--green)}
+.modifier-option span:last-child{margin-left:auto;color:var(--green-dark);font-weight:800}
 
-.close-btn{
-  border:0;
-  width:38px;
-  height:38px;
-  background:#f1f5f3;
-  border-radius:50%;
-  font-size:20px;
-}
+/* Empty */
+.empty{text-align:center;padding:30px 15px;color:var(--muted)}
+.empty strong{display:block;color:var(--ink);font-size:17px;margin:7px 0}
+.empty p{margin:5px auto 16px;max-width:420px;font-size:13px;line-height:1.5}
 
-.form-group{
-  margin-bottom:13px;
-}
-
-.form-group label{
-  display:block;
-  margin-bottom:5px;
-  font-weight:700;
-  font-size:13px;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea{
-  width:100%;
-  border:1px solid var(--border);
-  border-radius:11px;
-  padding:12px;
-  outline:none;
-  background:#fff;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus{
-  border-color:var(--green);
-}
-
-.form-group textarea{
-  min-height:90px;
-  resize:vertical;
-}
-
-.full-btn{
-  width:100%;
-  border:0;
-  border-radius:12px;
-  padding:13px;
-  background:var(--green);
-  color:#fff;
-  font-weight:800;
-}
-
-.form-note{
-  text-align:center;
-  color:var(--muted);
-  font-size:12px;
-  margin:10px 0;
-}
-
-.link-btn{
-  border:0;
-  background:none;
-  color:var(--green);
-  font-weight:700;
-  cursor:pointer;
-}
-
-.auth-tabs{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:5px;
-  background:#f0f4f2;
-  padding:4px;
-  border-radius:12px;
-  margin-bottom:18px;
-}
-
-.auth-tabs button{
-  border:0;
-  background:transparent;
-  padding:10px 5px;
-  border-radius:9px;
-  font-weight:700;
-  font-size:12px;
-  color:#617069;
-}
-
-.auth-tabs button.active{
-  background:#fff;
-  color:var(--green);
-  box-shadow:0 2px 6px rgba(0,0,0,.06);
-}
-
-.auth-panel{
-  display:none;
-}
-
-.auth-panel.active{
-  display:block;
-}
-
-.auth-divider{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin:16px 0;
-  color:#88938e;
-  font-size:12px;
-}
-
-.auth-divider:before,
-.auth-divider:after{
-  content:"";
-  height:1px;
-  background:var(--border);
-  flex:1;
-}
-
-/* TOAST */
+/* Toast */
 .toast{
-  position:fixed;
-  left:50%;
-  bottom:83px;
-  transform:translateX(-50%) translateY(20px);
-  background:#1d2822;
-  color:#fff;
-  padding:11px 15px;
-  border-radius:11px;
-  z-index:4000;
-  opacity:0;
-  pointer-events:none;
-  transition:.25s;
-  font-size:13px;
-  max-width:90%;
-  text-align:center;
+  position:fixed;left:50%;bottom:92px;transform:translate(-50%,20px);
+  background:#17221d;color:#fff;padding:12px 17px;border-radius:13px;
+  font-size:13px;font-weight:800;z-index:300;opacity:0;pointer-events:none;transition:.25s;
+  max-width:90%;text-align:center;
 }
+.toast.show{opacity:1;transform:translate(-50%,0)}
 
-.toast.show{
-  opacity:1;
-  transform:translateX(-50%) translateY(0);
+/* Responsive */
+@media(max-width:850px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .hero-inner{grid-template-columns:1fr}
+  .hero-art{min-height:150px;font-size:80px}
+  .deals{grid-template-columns:1fr}
 }
-
-/* ACCOUNT */
-.account-box{
-  background:var(--soft);
-  border-radius:16px;
-  padding:16px;
-  margin-bottom:15px;
-}
-
-.account-box strong{
-  color:var(--dark);
-}
-
-.account-actions{
-  display:grid;
-  gap:9px;
-}
-
-/* CART */
-.cart-item{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:12px 0;
-  border-bottom:1px solid var(--border);
-}
-
-.cart-item-icon{
-  width:45px;
-  height:45px;
-  border-radius:11px;
-  background:var(--soft);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:23px;
-}
-
-.cart-item-main{
-  flex:1;
-}
-
-.cart-item-main strong{
-  display:block;
-  font-size:14px;
-}
-
-.cart-item-main small{
-  color:var(--muted);
-}
-
-.cart-total{
-  display:flex;
-  justify-content:space-between;
-  font-weight:800;
-  font-size:18px;
-  padding:16px 0;
-}
-
-/* DASHBOARD */
-.dashboard-tabs{
-  display:flex;
-  gap:7px;
-  overflow-x:auto;
-  padding-bottom:8px;
-  margin-bottom:15px;
-}
-
-.dashboard-tabs button{
-  white-space:nowrap;
-  border:1px solid var(--border);
-  background:#fff;
-  color:var(--green);
-  padding:9px 12px;
-  border-radius:10px;
-  font-size:12px;
-  font-weight:700;
-}
-
-.dashboard-tabs button.active{
-  background:var(--green);
-  color:#fff;
-}
-
-.empty{
-  padding:30px 15px;
-  text-align:center;
-  color:var(--muted);
-}
-
-.empty strong{
-  display:block;
-  color:var(--black);
-  margin-bottom:4px;
-}
-
-.property-dashboard-card{
-  border:1px solid var(--border);
-  border-radius:13px;
-  padding:13px;
-  margin-bottom:10px;
-}
-
-.property-dashboard-card h4{
-  margin-bottom:5px;
-}
-
-/* RESPONSIVE */
-@media(max-width:760px){
-  .service-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .card-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-}
-
-@media(max-width:500px){
-  .hero h1{
-    font-size:27px;
-  }
-
-  .card-grid{
-    grid-template-columns:1fr;
-  }
-
-  .service-grid{
-    gap:8px;
-  }
-
-  .service-card{
-    padding:14px 7px;
-  }
+@media(max-width:620px){
+  .brand span{font-size:19px}
+  .account-btn{padding:10px 12px}
+  .nav{height:66px}
+  .hero{margin:15px 0;border-radius:23px}
+  .hero-inner{padding:27px 20px}
+  .hero h1{font-size:40px;letter-spacing:-2px}
+  .grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .service-card{padding:15px;min-height:130px}
+  .food-grid{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .field.full{grid-column:auto}
+  .dash-stats{grid-template-columns:1fr 1fr}
+  .modal{padding:8px}
+  .modal-card{border-radius:22px}
+  .modal-head{padding:16px}
+  .modal-body{padding:16px}
+  .partner{display:none}
 }
 </style>
 </head>
 
 <body>
 
-<!-- SIDE MENU -->
-<div id="overlay" class="overlay" onclick="closeMenu()"></div>
+<header class="topbar">
+  <div class="container nav">
+    <a class="brand" href="#" onclick="goHome();return false;">
+      <div class="logo">S</div>
+      <span>SefwiGo</span>
+    </a>
 
-<aside id="sideMenu" class="side-menu">
-  <div class="menu-head">
-    <h2>SefwiGo</h2>
-    <p>Your local marketplace in Sefwi Wiawso</p>
-  </div>
-
-  <div class="menu-list">
-    <button class="menu-link" onclick="goHome();closeMenu()">🏠 Home</button>
-    <button class="menu-link" onclick="openFood();closeMenu()">🍲 Food</button>
-    <button class="menu-link" onclick="openGroceries();closeMenu()">🛒 Groceries</button>
-    <button class="menu-link" onclick="openParcel();closeMenu()">📦 Parcels</button>
-    <button class="menu-link" onclick="openProperties();closeMenu()">🏠 Rent & Property</button>
-    <button class="menu-link" onclick="openCart();closeMenu()">🛍️ Cart</button>
-    <button class="menu-link" onclick="openAccount();closeMenu()">👤 Account</button>
-  </div>
-</aside>
-
-<!-- HEADER -->
-<header>
-  <div class="header-left">
-    <button class="icon-btn" onclick="openMenu()" aria-label="Menu">☰</button>
-
-    <div class="logo">
-      <div class="logo-mark">S</div>
-      SefwiGo
+    <div class="nav-actions">
+      <button class="icon-btn" onclick="openCart()" aria-label="Cart">🛒</button>
+      <button class="account-btn" onclick="openAccount()" id="accountButton">Account</button>
     </div>
-  </div>
-
-  <div class="header-right">
-    <button class="icon-btn cart-btn" onclick="openCart()" aria-label="Cart">
-      🛒
-      <span id="cartCount" class="cart-count">0</span>
-    </button>
-
-    <button class="icon-btn" onclick="openAccount()" aria-label="Account">👤</button>
   </div>
 </header>
 
-<main id="homePage">
+<main class="container">
 
-  <!-- SEARCH -->
-  <div class="search-box" style="margin-top:16px">
-    <span class="search-icon">🔍</span>
-    <input
-      id="globalSearch"
-      type="search"
-      placeholder="Search food, shops, groceries or property..."
-      oninput="performSearch(this.value)"
-    >
-  </div>
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow">Sefwi Wiawso's local marketplace</div>
+        <h1>Everything local. One SefwiGo.</h1>
+        <p>
+          Order food, shop for groceries, send parcels and discover local
+          services and properties around Sefwi Wiawso.
+        </p>
 
-  <!-- HERO -->
-  <section class="hero">
-    <h1>Everything you need,<br>right here in Sefwi.</h1>
-    <p>
-      Order food, buy groceries, send parcels and discover properties
-      around Sefwi Wiawso with SefwiGo.
-    </p>
+        <div class="hero-actions">
+          <button class="primary" onclick="filterService('Food')">Order Food</button>
+          <button class="secondary" onclick="filterService('Groceries')">Shop Groceries</button>
+          <button class="gold-btn" onclick="openAccount()">Create Account</button>
+        </div>
+      </div>
 
-    <div class="hero-actions">
-      <button class="primary" onclick="openFood()">ORDER NOW</button>
+      <div class="hero-art">🛵</div>
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section class="section">
-    <div class="section-title">
-      <h2>What do you need?</h2>
+  <section class="section" id="services">
+    <div class="section-head">
+      <div>
+        <h2>What do you need?</h2>
+        <p>Choose a SefwiGo service.</p>
+      </div>
     </div>
 
-    <div class="service-grid">
-      <button class="service-card" onclick="openFood()">
-        <div class="service-icon">🍲</div>
+    <div class="grid">
+      <button class="service-card" onclick="filterService('Food')">
+        <div class="service-icon">🍛</div>
         <strong>Food</strong>
-        <small>Meals & restaurants</small>
+        <span>Order meals from local businesses.</span>
       </button>
 
-      <button class="service-card" onclick="openGroceries()">
+      <button class="service-card" onclick="filterService('Groceries')">
         <div class="service-icon">🛒</div>
         <strong>Groceries</strong>
-        <small>Daily essentials</small>
+        <span>Shop everyday essentials.</span>
       </button>
 
       <button class="service-card" onclick="openParcel()">
         <div class="service-icon">📦</div>
         <strong>Parcels</strong>
-        <small>Send & receive</small>
+        <span>Send packages around town.</span>
       </button>
 
-      <button class="service-card" onclick="openProperties()">
+      <button class="service-card" onclick="filterService('Property')">
         <div class="service-icon">🏠</div>
         <strong>Property</strong>
-        <small>Rent & property</small>
+        <span>Discover local properties.</span>
       </button>
     </div>
   </section>
 
-  <!-- FEATURED -->
+  <section class="section" id="foodSection">
+    <div class="section-head">
+      <div>
+        <h2>Featured Food</h2>
+        <p>Order directly through SefwiGo.</p>
+      </div>
+      <button class="text-btn" onclick="filterService('Food')">See all</button>
+    </div>
+
+    <div class="deals">
+      <div class="deal-card">
+        <div class="deal-main">
+          <div class="eyebrow">Today's local pick</div>
+          <h3>Fresh meals.<br>Delivered.</h3>
+          <p>Choose your meal, customise it and complete your order inside SefwiGo.</p>
+          <button class="primary" onclick="filterService('Food')">Browse Food</button>
+        </div>
+      </div>
+
+      <div class="deal-card">
+        <div class="deal-side">
+          <div>
+            <span class="chip">SefwiGo Food</span>
+            <h3 style="margin:12px 0 4px">Jollof Rice</h3>
+            <p style="margin:0;color:var(--muted)">Choose your protein and spice level.</p>
+          </div>
+          <div class="price">GH₵ 35</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="foodList" style="margin-top:15px"></div>
+  </section>
+
+  <section class="section" id="businessSection">
+    <div class="section-head">
+      <div>
+        <h2>Popular Businesses</h2>
+        <p>Local businesses available on SefwiGo.</p>
+      </div>
+    </div>
+
+    <div class="grid" id="businessList"></div>
+  </section>
+
+  <section class="section" id="propertySection">
+    <div class="section-head">
+      <div>
+        <h2>Properties</h2>
+        <p>Trial property listings around Sefwi Wiawso.</p>
+      </div>
+    </div>
+
+    <div class="grid" id="propertyList"></div>
+  </section>
+
   <section class="section">
-    <div class="section-title">
-      <h2>Featured</h2>
-      <span onclick="openFood()" style="cursor:pointer">See all</span>
-    </div>
-
-    <div id="featuredGrid" class="card-grid"></div>
-  </section>
-
-  <!-- BUSINESSES -->
-  <section class="section">
-    <div class="section-title">
-      <h2>Popular businesses</h2>
-    </div>
-
-    <div id="businessGrid" class="card-grid"></div>
-  </section>
-
-  <!-- PROPERTY -->
-  <section id="propertySection" class="section">
-    <div class="section-title">
-      <h2>Rent & Property</h2>
-      <span onclick="openProperties()" style="cursor:pointer">See all</span>
-    </div>
-
-    <div id="propertyGrid" class="card-grid"></div>
-  </section>
-
-  <!-- PARTNER PROMOTION HIDDEN -->
-  <section class="section" style="display:none">
-    <div class="hero">
-      <h2>Grow with SefwiGo</h2>
-      <p>Register your business and reach more customers.</p>
-      <button class="primary" onclick="openPartner()">Become a Partner</button>
+    <div class="partner">
+      <div>
+        <h2>Partner with SefwiGo</h2>
+        <p>Businesses can trial the SefwiGo partner dashboard.</p>
+      </div>
+      <button class="gold-btn" onclick="openDashboard()">Partner Dashboard</button>
     </div>
   </section>
 
 </main>
 
-<!-- BOTTOM NAV -->
 <nav class="bottom-nav">
-  <button class="active" onclick="goHome()">
-    <span class="nav-icon">🏠</span>
-    Home
-  </button>
+  <div class="bottom-inner">
+    <button class="nav-item active" onclick="goHome()">
+      <span class="nav-icon">⌂</span>
+      Home
+    </button>
 
-  <button onclick="openFood()">
-    <span class="nav-icon">🔥</span>
-    Deals
-  </button>
+    <button class="nav-item" onclick="filterService('Food')">
+      <span class="nav-icon">🍛</span>
+      Food
+    </button>
 
-  <button onclick="openMenu()">
-    <span class="nav-icon">☰</span>
-    Menu
-  </button>
+    <button class="nav-item" onclick="openOrders()">
+      <span class="nav-icon">📋</span>
+      Orders
+    </button>
 
-  <button onclick="openAccount()">
-    <span class="nav-icon">👤</span>
-    Account
-  </button>
+    <button class="nav-item" onclick="openMenu()">
+      <span class="nav-icon">☰</span>
+      Menu
+    </button>
+  </div>
 </nav>
 
-<!-- ACCOUNT MODAL -->
-<div id="accountModal" class="modal-wrap" onclick="modalOutside(event,'accountModal')">
-  <div class="modal">
-
-    <div class="modal-head">
-      <h2>My Account</h2>
-      <button class="close-btn" onclick="closeModal('accountModal')">×</button>
+<!-- Side Menu -->
+<div class="overlay" id="menuOverlay" onclick="closeMenu()">
+  <aside class="drawer" onclick="event.stopPropagation()">
+    <div class="drawer-head">
+      <h2>SefwiGo</h2>
+      <button class="close" onclick="closeMenu()">×</button>
     </div>
 
-    <div id="accountContent"></div>
+    <button class="menu-link" onclick="closeMenu();goHome()">🏠 Home</button>
+    <button class="menu-link" onclick="closeMenu();filterService('Food')">🍛 Food</button>
+    <button class="menu-link" onclick="closeMenu();filterService('Groceries')">🛒 Groceries</button>
+    <button class="menu-link" onclick="closeMenu();openParcel()">📦 Send Parcel</button>
+    <button class="menu-link" onclick="closeMenu();filterService('Property')">🏠 Properties</button>
+
+    <div class="menu-divider"></div>
+
+    <button class="menu-link" onclick="closeMenu();openOrders()">📋 My Orders</button>
+    <button class="menu-link" onclick="closeMenu();openAccount()">👤 My Account</button>
+    <button class="menu-link" onclick="closeMenu();openCart()">🛒 Cart</button>
+
+    <div class="menu-divider"></div>
+
+    <button class="menu-link" onclick="closeMenu();openDashboard()">💼 Partner Dashboard</button>
+  </aside>
+</div>
+
+<!-- Account Modal -->
+<div class="modal" id="accountModal" onclick="modalOutside(event,'accountModal')">
+  <div class="modal-card">
+    <div class="modal-head">
+      <strong>My Account</strong>
+      <button class="close" onclick="closeModal('accountModal')">×</button>
+    </div>
+    <div class="modal-body" id="accountContent"></div>
+  </div>
+</div>
+
+<!-- Business Modal -->
+<div class="modal" id="businessModal" onclick="modalOutside(event,'businessModal')">
+  <div class="modal-card">
+    <div class="modal-head">
+      <strong id="businessModalTitle">Business</strong>
+      <button class="close" onclick="closeModal('businessModal')">×</button>
+    </div>
+    <div class="modal-body" id="businessContent"></div>
+  </div>
+</div>
+
+<!-- Food Modal -->
+<div class="modal" id="foodModal" onclick="modalOutside(event,'foodModal')">
+  <div class="modal-card">
+    <div class="modal-head">
+      <strong id="foodModalTitle">Food</strong>
+      <button class="close" onclick="closeModal('foodModal')">×</button>
+    </div>
+    <div class="modal-body" id="foodContent"></div>
+  </div>
+</div>
+
+<!-- Property Modal -->
+<div class="modal" id="propertyModal" onclick="modalOutside(event,'propertyModal')">
+  <div class="modal-card">
+    <div class="modal-head">
+      <strong id="propertyModalTitle">Property</strong>
+      <button class="close" onclick="closeModal('propertyModal')">×</button>
+    </div>
+    <div class="modal-body" id="propertyContent"></div>
+  </div>
+</div>
+
+<!-- Parcel Modal -->
+<div class="modal" id="parcelModal" onclick="modalOutside(event,'parcelModal')">
+  <div class="modal-card">
+    <div class="modal-head">
+      <strong>Send a Parcel</strong>
+      <button class="close" onclick="closeModal('parcelModal')">×</button>
+    </div>
+    <div class="modal-body">
+      <p class="help">
+        Parcel requests are currently a trial feature and will open WhatsApp
+        for the request.
+      </p>
+
+      <div class="form-grid">
+        <div class="field">
+          <label>Your name</label>
+          <input id="parcelName" placeholder="Full name">
+        </div>
+
+        <div class="field">
+          <label>Phone number</label>
+          <input id="parcelPhone" placeholder="Phone number">
+        </div>
+
+        <div class="field">
+          <label>Pickup location</label>
+          <input id="parcelPickup" placeholder="Pickup location">
+        </div>
+
+        <div class="field">
+          <label>Delivery location</label>
+          <input id="parcelDelivery" placeholder="Delivery location">
+        </div>
+
+        <div class="field full">
+          <label>Parcel details</label>
+          <textarea id="parcelDetails" placeholder="Describe the parcel"></textarea>
+        </div>
+      </div>
+
+      <button class="submit" style="margin-top:15px" onclick="sendParcel()">Request Parcel Delivery</button>
+    </div>
+  </div>
+</div>
+
+<!-- Cart Modal -->
+<div class="modal" id="cartModal" onclick="modalOutside(event,'cartModal')">
+  <div class="modal-card">
+    <div class="modal-head">
+      <strong>🛒 Your Cart</strong>
+      <button class="close" onclick="closeModal('cartModal')">×</button>
+    </div>
+    <div class="modal-body" id="cartContent"></div>
+  </div>
+</div>
+
+<!-- Checkout Modal -->
+<div class="modal" id="checkoutModal" onclick="modalOutside(event,'checkoutModal')">
+  <div class="modal-card">
+    <div class="modal-head">
+      <strong>Checkout</strong>
+      <button class="close" onclick="closeModal('checkoutModal')">×</button>
+    </div>
+
+    <div class="modal-body">
+      <div id="checkoutContent"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Orders Modal -->
+<div class="modal" id="ordersModal" onclick="modalOutside(event,'ordersModal')">
+  <div class="modal-card">
+    <div class="modal-head">
+      <strong>📋 My Orders</strong>
+      <button class="close" onclick="closeModal('ordersModal')">×</button>
+    </div>
+    <div class="modal-body" id="ordersContent"></div>
+  </div>
+</div>
+
+<!-- Partner Dashboard -->
+<div class="modal" id="dashboardModal" onclick="modalOutside(event,'dashboardModal')">
+  <div class="modal-card">
+
+    <div class="dashboard-head">
+      <div style="display:flex;justify-content:space-between;align-items:start;gap:15px">
+        <div>
+          <h2>Partner Dashboard</h2>
+          <p>Trial business and property management.</p>
+        </div>
+        <button class="close" onclick="closeModal('dashboardModal')">×</button>
+      </div>
+    </div>
+
+    <div class="modal-body">
+      <div class="tabs">
+        <button class="tab active" id="dashTabOverview" onclick="showDashTab('overview')">Overview</button>
+        <button class="tab" id="dashTabBusiness" onclick="showDashTab('business')">Business</button>
+        <button class="tab" id="dashTabFood" onclick="showDashTab('food')">Food</button>
+        <button class="tab" id="dashTabOrders" onclick="showDashTab('orders')">Orders <span id="orderBadge" style="display:none;background:#d22;color:#fff;border-radius:999px;padding:2px 6px;font-size:10px">0</span></button>
+        <button class="tab" id="dashTabProperty" onclick="showDashTab('property')">Property</button>
+      </div>
+
+      <div id="dashboardContent"></div>
+    </div>
 
   </div>
 </div>
 
-<!-- FOOD MODAL -->
-<div id="foodModal" class="modal-wrap" onclick="modalOutside(event,'foodModal')">
-  <div class="modal">
+<div class="toast" id="toast"></div>
 
-    <div class="modal-head">
-      <h2>Food</h2>
-      <button class="close-btn" onclick="closeModal('foodModal')">×</button>
-    </div>
-
-    <div id="foodContent"></div>
-
-  </div>
-</div>
-
-<!-- BUSINESS MODAL -->
-<div id="businessModal" class="modal-wrap" onclick="modalOutside(event,'businessModal')">
-  <div class="modal">
-
-    <div class="modal-head">
-      <h2 id="businessModalTitle">Business</h2>
-      <button class="close-btn" onclick="closeModal('businessModal')">×</button>
-    </div>
-
-    <div id="businessModalContent"></div>
-
-  </div>
-</div>
-
-<!-- PROPERTY MODAL -->
-<div id="propertyModal" class="modal-wrap" onclick="modalOutside(event,'propertyModal')">
-  <div class="modal">
-
-    <div class="modal-head">
-      <h2>Rent & Property</h2>
-      <button class="close-btn" onclick="closeModal('propertyModal')">×</button>
-    </div>
-
-    <div id="propertyModalContent"></div>
-
-  </div>
-</div>
-
-<!-- PARCEL MODAL -->
-<div id="parcelModal" class="modal-wrap" onclick="modalOutside(event,'parcelModal')">
-  <div class="modal">
-
-    <div class="modal-head">
-      <h2>Send a Parcel</h2>
-      <button class="close-btn" onclick="closeModal('parcelModal')">×</button>
-    </div>
-
-    <div class="form-group">
-      <label>Pickup location</label>
-      <input id="parcelPickup" placeholder="Where should we collect it?">
-    </div>
-
-    <div class="form-group">
-      <label>Delivery location</label>
-      <input id="parcelDropoff" placeholder="Where should we deliver it?">
-    </div>
-
-    <div class="form-group">
-      <label>Receiver name</label>
-      <input id="parcelReceiver" placeholder="Receiver's name">
-    </div>
-
-    <div class="form-group">
-      <label>Receiver phone</label>
-      <input id="parcelPhone" placeholder="Phone number">
-    </div>
-
-    <div class="form-group">
-      <label>Parcel description</label>
-      <textarea id="parcelDescription" placeholder="What are you sending?"></textarea>
-    </div>
-
-    <button class="full-btn" onclick="sendParcel()">Request Delivery</button>
-
-  </div>
-</div>
-
-<!-- CART MODAL -->
-<div id="cartModal" class="modal-wrap" onclick="modalOutside(event,'cartModal')">
-  <div class="modal">
-
-    <div class="modal-head">
-      <h2>Your Cart</h2>
-      <button class="close-btn" onclick="closeModal('cartModal')">×</button>
-    </div>
-
-    <div id="cartContent"></div>
-
-  </div>
-</div>
-
-<!-- PARTNER DASHBOARD MODAL -->
-<div id="partnerModal" class="modal-wrap" onclick="modalOutside(event,'partnerModal')">
-  <div class="modal">
-
-    <div class="modal-head">
-      <h2>Partner Dashboard</h2>
-      <button class="close-btn" onclick="closeModal('partnerModal')">×</button>
-    </div>
-
-    <div class="dashboard-tabs">
-      <button id="dashOverviewBtn" onclick="dashboardTab('overview')">Overview</button>
-      <button id="dashBusinessBtn" onclick="dashboardTab('business')">Business</button>
-      <button id="dashPropertyBtn" onclick="dashboardTab('property')">Property</button>
-      <button id="dashListingsBtn" onclick="dashboardTab('listings')">My Listings</button>
-    </div>
-
-    <div id="dashboardContent"></div>
-
-  </div>
-</div>
-
-<!-- TOAST -->
-<div id="toast" class="toast"></div>
-
-<script type="module">
-
-/* =========================================================
-   FIREBASE
-========================================================= */
-
+<script>
 const firebaseConfig = {
   apiKey: "AIzaSyDjHGyeObPLLuqTNhNGE5SBRfBL5T29qWA",
   authDomain: "sefwi-go.firebaseapp.com",
@@ -1076,6 +670,7 @@ const firebaseConfig = {
 };
 
 let auth = null;
+let db = null;
 let firebaseReady = false;
 
 let signInWithPhoneNumberFn = null;
@@ -1086,81 +681,21 @@ let signOutFn = null;
 let sendPasswordResetEmailFn = null;
 let updateProfileFn = null;
 
-async function initFirebase(){
+const firestoreFns = {
+  collection:null,
+  addDoc:null,
+  serverTimestamp:null,
+  query:null,
+  where:null,
+  getDocs:null,
+  onSnapshot:null,
+  updateDoc:null,
+  doc:null
+};
 
-  if(firebaseReady) return true;
-
-  try{
-
-    const appMod = await import(
-      "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"
-    );
-
-    const authMod = await import(
-      "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"
-    );
-
-    const app = appMod.initializeApp(firebaseConfig);
-
-    auth = authMod.getAuth(app);
-
-    signInWithPhoneNumberFn =
-      authMod.signInWithPhoneNumber;
-
-    createUserWithEmailAndPasswordFn =
-      authMod.createUserWithEmailAndPassword;
-
-    signInWithEmailAndPasswordFn =
-      authMod.signInWithEmailAndPassword;
-
-    RecaptchaVerifierFn =
-      authMod.RecaptchaVerifier;
-
-    signOutFn =
-      authMod.signOut;
-
-    sendPasswordResetEmailFn =
-      authMod.sendPasswordResetEmail;
-
-    updateProfileFn =
-      authMod.updateProfile;
-
-    authMod.onAuthStateChanged(auth,()=>{
-
-      if(
-        document
-          .getElementById("accountModal")
-          ?.classList
-          .contains("open")
-      ){
-        renderAccount();
-      }
-
-    });
-
-    firebaseReady=true;
-
-    return true;
-
-  }catch(e){
-
-    console.error("Firebase initialization failed",e);
-
-    showToast(
-      "Account demo is available. Firebase could not load."
-    );
-
-    return false;
-  }
-}
-
-
-/* =========================================================
-   DATA
-========================================================= */
+let ordersUnsubscribe = null;
 
 const businesses = [
-
   {
     id:"b1",
     name:"Sefwi Kitchen",
@@ -1169,7 +704,6 @@ const businesses = [
     icon:"🍛",
     phone:"0550000001"
   },
-
   {
     id:"b2",
     name:"Wiawso Fresh Mart",
@@ -1178,7 +712,6 @@ const businesses = [
     icon:"🛒",
     phone:"0550000002"
   },
-
   {
     id:"b3",
     name:"Sefwi Express",
@@ -1187,2620 +720,2338 @@ const businesses = [
     icon:"🍔",
     phone:"0550000003"
   }
-
 ];
 
 const foods = [
-
   {
     id:"f1",
     businessId:"b1",
     name:"Jollof Rice",
     description:"Jollof rice with your choice of protein",
     price:35,
-    icon:"🍛"
+    icon:"🍛",
+    modifiers:[
+      {
+        name:"Protein",
+        required:true,
+        multi:false,
+        options:[
+          {name:"Chicken",price:10},
+          {name:"Beef",price:15}
+        ]
+      },
+      {
+        name:"Extra Soup",
+        required:false,
+        multi:true,
+        options:[
+          {name:"Extra Soup",price:5},
+          {name:"Large Soup",price:10}
+        ]
+      },
+      {
+        name:"Spice Level",
+        required:true,
+        multi:false,
+        options:[
+          {name:"Mild",price:0},
+          {name:"Medium",price:0},
+          {name:"Hot",price:0}
+        ]
+      }
+    ]
   },
-
   {
     id:"f2",
     businessId:"b1",
     name:"Fufu & Soup",
     description:"Traditional fufu with soup",
     price:40,
-    icon:"🥣"
+    icon:"🥣",
+    modifiers:[
+      {
+        name:"Protein",
+        required:true,
+        multi:false,
+        options:[
+          {name:"Chicken",price:10},
+          {name:"Beef",price:15}
+        ]
+      },
+      {
+        name:"Extra Soup",
+        required:false,
+        multi:true,
+        options:[
+          {name:"Extra Soup",price:5},
+          {name:"Large Soup",price:10}
+        ]
+      },
+      {
+        name:"Spice Level",
+        required:true,
+        multi:false,
+        options:[
+          {name:"Mild",price:0},
+          {name:"Medium",price:0},
+          {name:"Hot",price:0}
+        ]
+      }
+    ]
   },
-
   {
     id:"f3",
     businessId:"b3",
     name:"Fried Rice",
     description:"Fried rice with chicken",
     price:38,
-    icon:"🍚"
+    icon:"🍚",
+    modifiers:[
+      {
+        name:"Protein",
+        required:true,
+        multi:false,
+        options:[
+          {name:"Chicken",price:10},
+          {name:"Beef",price:15}
+        ]
+      },
+      {
+        name:"Extra Soup",
+        required:false,
+        multi:true,
+        options:[
+          {name:"Extra Soup",price:5},
+          {name:"Large Soup",price:10}
+        ]
+      },
+      {
+        name:"Spice Level",
+        required:true,
+        multi:false,
+        options:[
+          {name:"Mild",price:0},
+          {name:"Medium",price:0},
+          {name:"Hot",price:0}
+        ]
+      }
+    ]
   },
-
   {
     id:"f4",
     businessId:"b3",
     name:"Burger",
     description:"Fresh burger",
     price:30,
-    icon:"🍔"
+    icon:"🍔",
+    modifiers:[
+      {
+        name:"Protein",
+        required:true,
+        multi:false,
+        options:[
+          {name:"Chicken",price:10},
+          {name:"Beef",price:15}
+        ]
+      },
+      {
+        name:"Extra Soup",
+        required:false,
+        multi:true,
+        options:[
+          {name:"Extra Soup",price:5},
+          {name:"Large Soup",price:10}
+        ]
+      },
+      {
+        name:"Spice Level",
+        required:true,
+        multi:false,
+        options:[
+          {name:"Mild",price:0},
+          {name:"Medium",price:0},
+          {name:"Hot",price:0}
+        ]
+      }
+    ]
   }
-
 ];
 
-
-/* =========================================================
-   LOCAL STORAGE
-========================================================= */
-
-function getCart(){
-
-  try{
-    return JSON.parse(
-      localStorage.getItem("sefwiCart") || "[]"
-    );
-  }catch{
-    return [];
+let properties = JSON.parse(localStorage.getItem("sefwiProperties") || "null") || [
+  {
+    id:"p1",
+    title:"Modern 2 Bedroom House",
+    location:"Sefwi Wiawso",
+    price:180000,
+    type:"For Sale",
+    icon:"🏠",
+    description:"Modern two bedroom property in a convenient location."
+  },
+  {
+    id:"p2",
+    title:"Shop Space",
+    location:"Wiawso Central",
+    price:1500,
+    type:"For Rent",
+    icon:"🏪",
+    description:"Commercial shop space in a busy area."
   }
+];
 
+let cart = JSON.parse(localStorage.getItem("sefwiCart") || "[]");
+
+function $(id){
+  return document.getElementById(id);
 }
 
-function saveCart(cart){
-
-  localStorage.setItem(
-    "sefwiCart",
-    JSON.stringify(cart)
-  );
-
-  updateCartCount();
-
+function escapeHtml(value){
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 }
-
-function getProperties(){
-
-  try{
-    return JSON.parse(
-      localStorage.getItem("sefwiProperties") || "[]"
-    );
-  }catch{
-    return [];
-  }
-
-}
-
-function saveProperties(properties){
-
-  localStorage.setItem(
-    "sefwiProperties",
-    JSON.stringify(properties)
-  );
-
-}
-
-
-/* =========================================================
-   GENERAL UI
-========================================================= */
 
 function showToast(message){
+  const t=$("toast");
+  if(!t)return;
+  t.textContent=message;
+  t.classList.add("show");
+  clearTimeout(window.__toastTimer);
+  window.__toastTimer=setTimeout(()=>t.classList.remove("show"),3000);
+}
 
-  const toast=document.getElementById("toast");
+function closeModal(id){
+  $(id)?.classList.remove("open");
+}
 
-  toast.textContent=message;
-
-  toast.classList.add("show");
-
-  clearTimeout(window.toastTimer);
-
-  window.toastTimer=setTimeout(()=>{
-    toast.classList.remove("show");
-  },3000);
-
+function modalOutside(e,id){
+  if(e.target === $(id)) closeModal(id);
 }
 
 function openMenu(){
-
-  document
-    .getElementById("sideMenu")
-    .classList.add("open");
-
-  document
-    .getElementById("overlay")
-    .classList.add("open");
-
+  $("menuOverlay").classList.add("open");
 }
 
 function closeMenu(){
-
-  document
-    .getElementById("sideMenu")
-    .classList.remove("open");
-
-  document
-    .getElementById("overlay")
-    .classList.remove("open");
-
+  $("menuOverlay").classList.remove("open");
 }
-
-window.openMenu=openMenu;
-window.closeMenu=closeMenu;
-
-function closeModal(id){
-
-  document
-    .getElementById(id)
-    .classList.remove("open");
-
-}
-
-window.closeModal=closeModal;
-
-function modalOutside(event,id){
-
-  if(event.target.id===id){
-    closeModal(id);
-  }
-
-}
-
-
-/* =========================================================
-   HOME
-========================================================= */
 
 function goHome(){
-
-  closeAllModals();
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 
-window.goHome=goHome;
-
-function closeAllModals(){
-
-  document
-    .querySelectorAll(".modal-wrap")
-    .forEach(el=>el.classList.remove("open"));
-
-}
-
-function renderHome(){
-
-  renderFeatured();
-
-  renderBusinesses();
-
-  renderProperties();
-
-  updateCartCount();
-
-}
-
-function renderFeatured(){
-
-  const grid=document.getElementById("featuredGrid");
-
-  grid.innerHTML=foods.slice(0,3).map(food=>`
-
-    <div class="food-card">
-
-      <div class="card-image">${food.icon}</div>
-
-      <div class="card-body">
-
-        <h3>${food.name}</h3>
-
-        <p>${food.description}</p>
-
-        <div style="display:flex;justify-content:space-between;align-items:center">
-
-          <span class="price">
-            GH₵ ${food.price}
-          </span>
-
-          <button
-            class="small-btn"
-            onclick="addFoodToCart('${food.id}')"
-          >
-            Add
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  `).join("");
-
-}
-
-function renderBusinesses(){
-
-  const grid=document.getElementById("businessGrid");
-
-  grid.innerHTML=businesses.map(b=>`
-
-    <div class="business-card">
-
-      <div class="card-image">${b.icon}</div>
-
-      <div class="card-body">
-
-        <h3>${b.name}</h3>
-
-        <p>${b.description}</p>
-
-        <button
-          class="small-btn"
-          onclick="openBusiness('${b.id}')"
-        >
-          View business
-        </button>
-
-      </div>
-
-    </div>
-
-  `).join("");
-
-}
-
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-function performSearch(value){
-
-  const q=value.trim().toLowerCase();
-
-  if(!q){
-
-    renderHome();
-
-    return;
+function filterService(category){
+  if(category==="Food"){
+    $("foodSection")?.scrollIntoView({behavior:"smooth"});
+    renderFoodList();
+  }else if(category==="Property"){
+    $("propertySection")?.scrollIntoView({behavior:"smooth"});
+  }else if(category==="Groceries"){
+    $("businessSection")?.scrollIntoView({behavior:"smooth"});
+    showToast("Groceries are currently available as a trial service.");
   }
-
-  const matchingFoods=foods.filter(
-    f =>
-      f.name.toLowerCase().includes(q) ||
-      f.description.toLowerCase().includes(q)
-  );
-
-  const matchingBusinesses=businesses.filter(
-    b =>
-      b.name.toLowerCase().includes(q) ||
-      b.category.toLowerCase().includes(q)
-  );
-
-  const propertyMatches=getProperties().filter(
-    p =>
-      p.title.toLowerCase().includes(q) ||
-      p.location.toLowerCase().includes(q) ||
-      p.type.toLowerCase().includes(q)
-  );
-
-  document.getElementById("featuredGrid").innerHTML =
-    matchingFoods.length
-    ? matchingFoods.map(food=>`
-
-      <div class="food-card">
-
-        <div class="card-image">${food.icon}</div>
-
-        <div class="card-body">
-
-          <h3>${food.name}</h3>
-
-          <p>${food.description}</p>
-
-          <button
-            class="small-btn"
-            onclick="addFoodToCart('${food.id}')"
-          >
-            Add · GH₵ ${food.price}
-          </button>
-
-        </div>
-
-      </div>
-
-    `).join("")
-    : `<div class="empty">No food found.</div>`;
-
-  document.getElementById("businessGrid").innerHTML =
-    matchingBusinesses.length
-    ? matchingBusinesses.map(b=>`
-
-      <div class="business-card">
-
-        <div class="card-image">${b.icon}</div>
-
-        <div class="card-body">
-
-          <h3>${b.name}</h3>
-
-          <p>${b.description}</p>
-
-          <button
-            class="small-btn"
-            onclick="openBusiness('${b.id}')"
-          >
-            View business
-          </button>
-
-        </div>
-
-      </div>
-
-    `).join("")
-    : `<div class="empty">No businesses found.</div>`;
-
-  document.getElementById("propertyGrid").innerHTML =
-    propertyMatches.length
-    ? propertyMatches.map(renderPropertyCard).join("")
-    : `<div class="empty">
-        <strong>No properties found.</strong>
-        <p>Try another search.</p>
-      </div>`;
-
 }
 
-
-/* =========================================================
-   FOOD
-========================================================= */
-
-function openFood(){
-
-  document
-    .getElementById("foodModal")
-    .classList.add("open");
-
-  renderFood();
-
-}
-
-window.openFood=openFood;
-
-function renderFood(){
-
-  const container=document.getElementById("foodContent");
-
-  container.innerHTML=`
-
-    <div class="search-box" style="margin:0 0 15px">
-      <span class="search-icon">🔍</span>
-      <input
-        id="foodSearch"
-        placeholder="Search food..."
-        oninput="filterFood(this.value)"
-      >
-    </div>
-
-    <div id="foodList"></div>
-
-  `;
-
-  renderFoodList(foods);
-
-}
-
-function filterFood(value){
-
-  const q=value.toLowerCase().trim();
-
-  renderFoodList(
-    foods.filter(f=>
-      f.name.toLowerCase().includes(q) ||
-      f.description.toLowerCase().includes(q)
-    )
-  );
-
-}
-
-window.filterFood=filterFood;
-
-function renderFoodList(list){
-
-  const container=document.getElementById("foodList");
-
-  if(!list.length){
-
-    container.innerHTML=
-      `<div class="empty">No food found.</div>`;
-
-    return;
-  }
-
-  container.innerHTML=list.map(food=>`
-
-    <div class="food-card" style="margin-bottom:12px">
-
-      <div class="card-image">${food.icon}</div>
-
-      <div class="card-body">
-
-        <h3>${food.name}</h3>
-
-        <p>${food.description}</p>
-
-        <div style="display:flex;justify-content:space-between;align-items:center">
-
-          <span class="price">
-            GH₵ ${food.price}
-          </span>
-
-          <button
-            class="primary"
-            onclick="addFoodToCart('${food.id}')"
-          >
-            Add to cart
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  `).join("");
-
-}
-
-function addFoodToCart(foodId){
-
-  const food=foods.find(f=>f.id===foodId);
-
-  if(!food) return;
-
-  const cart=getCart();
-
-  cart.push({
-
-    id:Date.now().toString(),
-
-    type:"food",
-
-    itemId:food.id,
-
-    name:food.name,
-
-    price:food.price,
-
-    quantity:1,
-
-    icon:food.icon,
-
-    modifiers:[]
-
-  });
-
-  saveCart(cart);
-
-  showToast(`${food.name} added to cart`);
-
-}
-
-window.addFoodToCart=addFoodToCart;
-
-
-/* =========================================================
-   BUSINESS
-========================================================= */
-
-function openBusiness(id){
-
-  const business=businesses.find(b=>b.id===id);
-
-  if(!business) return;
-
-  document.getElementById(
-    "businessModalTitle"
-  ).textContent=business.name;
-
-  const businessFoods=
-    foods.filter(f=>f.businessId===business.id);
-
-  document.getElementById(
-    "businessModalContent"
-  ).innerHTML=`
-
-    <div class="account-box">
-
-      <strong>${business.icon} ${business.name}</strong>
-
-      <p style="color:var(--muted);font-size:13px">
-        ${business.description}
-      </p>
-
-    </div>
-
-    <h3 style="margin-bottom:10px">Menu</h3>
-
-    ${
-      businessFoods.length
-      ? businessFoods.map(food=>`
-
-        <div class="property-dashboard-card">
-
-          <div style="display:flex;align-items:center;gap:10px">
-
-            <div style="font-size:30px">${food.icon}</div>
-
-            <div style="flex:1">
-
-              <h4>${food.name}</h4>
-
-              <small>${food.description}</small>
-
-            </div>
-
-            <button
-              class="small-btn"
-              onclick="addFoodToCart('${food.id}')"
-            >
-              GH₵ ${food.price}
-            </button>
-
-          </div>
-
-        </div>
-
-      `).join("")
-      : `<div class="empty">No menu items yet.</div>`
-    }
-
-  `;
-
-  document
-    .getElementById("businessModal")
-    .classList.add("open");
-
-}
-
-window.openBusiness=openBusiness;
-
-
-/* =========================================================
-   GROCERIES
-========================================================= */
-
-function openGroceries(){
-
-  showToast(
-    "Groceries section is ready for grocery listings."
-  );
-
-}
-
-window.openGroceries=openGroceries;
-
-
-/* =========================================================
-   PARCEL
-========================================================= */
-
-function openParcel(){
-
-  document
-    .getElementById("parcelModal")
-    .classList.add("open");
-
-}
-
-window.openParcel=openParcel;
-
-function sendParcel(){
-
-  const pickup=
-    document.getElementById("parcelPickup").value.trim();
-
-  const dropoff=
-    document.getElementById("parcelDropoff").value.trim();
-
-  const receiver=
-    document.getElementById("parcelReceiver").value.trim();
-
-  const phone=
-    document.getElementById("parcelPhone").value.trim();
-
-  const description=
-    document.getElementById("parcelDescription").value.trim();
-
-  if(!pickup || !dropoff || !receiver || !phone){
-
-    showToast("Please complete the required fields.");
-
-    return;
-  }
-
-  const message=
-`Hello SefwiGo, I want to send a parcel.
-
-Pickup: ${pickup}
-Delivery: ${dropoff}
-Receiver: ${receiver}
-Phone: ${phone}
-Parcel: ${description}`;
-
-  window.open(
-    "https://wa.me/?text="+encodeURIComponent(message),
-    "_blank"
-  );
-
-}
-
-window.sendParcel=sendParcel;
-
-
-/* =========================================================
-   PROPERTY
-========================================================= */
-
-function openProperties(){
-
-  document
-    .getElementById("propertyModal")
-    .classList.add("open");
-
-  renderPropertyModal();
-
-}
-
-window.openProperties=openProperties;
-
-function renderProperties(){
-
-  const grid=document.getElementById("propertyGrid");
-
-  const properties=getProperties();
-
-  if(!properties.length){
-
-    grid.innerHTML=`
-
-      <div class="empty"
-           style="grid-column:1/-1">
-
-        <strong>No properties published yet.</strong>
-
-        <p>
-          Property listings will appear here when available.
-        </p>
-
-      </div>
-
-    `;
-
-    return;
-  }
-
-  grid.innerHTML=
-    properties
-      .filter(p=>p.available!==false)
-      .slice(0,6)
-      .map(renderPropertyCard)
-      .join("");
-
-}
-
-function renderPropertyCard(property){
-
-  return `
-
-    <div class="property-card">
-
-      <div class="card-image">🏠</div>
-
-      <div class="card-body">
-
-        <h3>${escapeHtml(property.title)}</h3>
-
-        <p>
-          ${escapeHtml(property.location)}
-        </p>
-
-        <div class="property-info">
-
-          <span class="badge">
-            ${escapeHtml(property.type)}
-          </span>
-
-          ${
-            property.bedrooms
-            ? `<span class="badge">
-                ${property.bedrooms} beds
-              </span>`
-            : ""
-          }
-
-          ${
-            property.bathrooms
-            ? `<span class="badge">
-                ${property.bathrooms} baths
-              </span>`
-            : ""
-          }
-
-        </div>
-
-        <p class="price">
-          GH₵ ${Number(property.price || 0).toLocaleString()}
-        </p>
-
-        <button
-          class="small-btn"
-          onclick="showProperty('${property.id}')"
-        >
-          View property
-        </button>
-
-      </div>
-
-    </div>
-
-  `;
-
-}
-
-function renderPropertyModal(){
-
-  const properties=getProperties();
-
-  document.getElementById(
-    "propertyModalContent"
-  ).innerHTML=`
-
-    <div class="form-group">
-      <input
-        id="propertySearch"
-        placeholder="Search properties..."
-        oninput="filterProperties(this.value)"
-      >
-    </div>
-
-    <div id="propertyModalList">
-
-      ${
-        properties.length
-        ? properties
-            .filter(p=>p.available!==false)
-            .map(renderPropertyCard)
-            .join("")
-        : `
-          <div class="empty">
-
-            <strong>No properties published yet.</strong>
-
-            <p>
-              Property listings will appear here when available.
-            </p>
-
-          </div>
-        `
+async function initFirebase(){
+  if(firebaseReady)return true;
+
+  try{
+    const appMod=await import(
+      "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"
+    );
+
+    const authMod=await import(
+      "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"
+    );
+
+    const firestoreMod=await import(
+      "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"
+    );
+
+    const app=appMod.initializeApp(firebaseConfig);
+
+    auth=authMod.getAuth(app);
+    db=firestoreMod.getFirestore(app);
+
+    signInWithPhoneNumberFn=authMod.signInWithPhoneNumber;
+    createUserWithEmailAndPasswordFn=authMod.createUserWithEmailAndPassword;
+    signInWithEmailAndPasswordFn=authMod.signInWithEmailAndPassword;
+    RecaptchaVerifierFn=authMod.RecaptchaVerifier;
+    signOutFn=authMod.signOut;
+    sendPasswordResetEmailFn=authMod.sendPasswordResetEmail;
+    updateProfileFn=authMod.updateProfile;
+
+    firestoreFns.collection=firestoreMod.collection;
+    firestoreFns.addDoc=firestoreMod.addDoc;
+    firestoreFns.serverTimestamp=firestoreMod.serverTimestamp;
+    firestoreFns.query=firestoreMod.query;
+    firestoreFns.where=firestoreMod.where;
+    firestoreFns.getDocs=firestoreMod.getDocs;
+    firestoreFns.onSnapshot=firestoreMod.onSnapshot;
+    firestoreFns.updateDoc=firestoreMod.updateDoc;
+    firestoreFns.doc=firestoreMod.doc;
+
+    authMod.onAuthStateChanged(auth,()=>{
+      updateAccountButton();
+
+      if($("accountModal")?.classList.contains("open")){
+        renderAccount();
       }
+    });
 
-    </div>
+    firebaseReady=true;
+    return true;
 
-  `;
-
+  }catch(e){
+    console.error("Firebase initialization failed",e);
+    showToast("Firebase could not load. Please check your internet connection.");
+    return false;
+  }
 }
 
-function filterProperties(value){
+function updateAccountButton(){
+  const btn=$("accountButton");
+  if(!btn)return;
 
-  const q=value.toLowerCase().trim();
-
-  const properties=getProperties().filter(
-    p =>
-      p.available!==false &&
-      (
-        p.title.toLowerCase().includes(q) ||
-        p.location.toLowerCase().includes(q) ||
-        p.type.toLowerCase().includes(q)
-      )
-  );
-
-  document.getElementById(
-    "propertyModalList"
-  ).innerHTML=
-
-    properties.length
-    ? properties.map(renderPropertyCard).join("")
-    : `<div class="empty">No matching properties.</div>`;
-
-}
-
-window.filterProperties=filterProperties;
-
-function showProperty(id){
-
-  const property=
-    getProperties().find(p=>p.id===id);
-
-  if(!property) return;
-
-  document.getElementById(
-    "propertyModalContent"
-  ).innerHTML=`
-
-    <div class="card-image"
-         style="height:180px;border-radius:15px">
-      🏠
-    </div>
-
-    <div style="padding-top:15px">
-
-      <h2>${escapeHtml(property.title)}</h2>
-
-      <p style="color:var(--muted);margin:5px 0 12px">
-        ${escapeHtml(property.location)}
-      </p>
-
-      <div class="property-info">
-
-        <span class="badge">
-          ${escapeHtml(property.type)}
-        </span>
-
-        ${
-          property.purpose
-          ? `<span class="badge">
-              ${escapeHtml(property.purpose)}
-            </span>`
-          : ""
-        }
-
-        ${
-          property.bedrooms
-          ? `<span class="badge">
-              ${property.bedrooms} bedrooms
-            </span>`
-          : ""
-        }
-
-        ${
-          property.bathrooms
-          ? `<span class="badge">
-              ${property.bathrooms} bathrooms
-            </span>`
-          : ""
-        }
-
-      </div>
-
-      <h2 class="price" style="margin:12px 0">
-        GH₵ ${Number(property.price||0).toLocaleString()}
-      </h2>
-
-      <p style="margin-bottom:15px">
-        ${escapeHtml(property.description || "No description provided.")}
-      </p>
-
-      <div class="account-box">
-
-        <strong>Owner</strong>
-
-        <p>${escapeHtml(property.owner || "Property owner")}</p>
-
-      </div>
-
-      <button
-        class="full-btn"
-        onclick="contactProperty('${property.id}')"
-      >
-        Contact Owner
-      </button>
-
-      <button
-        class="small-btn"
-        style="width:100%;margin-top:8px"
-        onclick="renderPropertyModal()"
-      >
-        Back to properties
-      </button>
-
-    </div>
-
-  `;
-
-}
-
-window.showProperty=showProperty;
-
-function contactProperty(id){
-
-  const property=
-    getProperties().find(p=>p.id===id);
-
-  if(!property) return;
-
-  const phone=
-    String(property.phone||"").replace(/\D/g,"");
-
-  const message=
-`Hello, I saw your property on SefwiGo.
-
-Property: ${property.title}
-Location: ${property.location}`;
-
-  if(phone){
-
-    window.open(
-      "https://wa.me/"+phone+
-      "?text="+encodeURIComponent(message),
-      "_blank"
-    );
-
+  if(auth?.currentUser){
+    btn.textContent="My Account";
   }else{
-
-    showToast(
-      "Owner contact information is not available."
-    );
-
+    btn.textContent="Account";
   }
-
 }
 
-window.contactProperty=contactProperty;
-
-
-/* =========================================================
-   CART
-========================================================= */
-
-function updateCartCount(){
-
-  const cart=getCart();
-
-  const count=cart.reduce(
-    (sum,item)=>sum+Number(item.quantity||1),
-    0
-  );
-
-  document.getElementById(
-    "cartCount"
-  ).textContent=count;
-
-}
-
-function openCart(){
-
-  document
-    .getElementById("cartModal")
-    .classList.add("open");
-
-  renderCart();
-
-}
-
-window.openCart=openCart;
-
-function renderCart(){
-
-  const container=document.getElementById("cartContent");
-
-  const cart=getCart();
-
-  if(!cart.length){
-
-    container.innerHTML=`
-
-      <div class="empty">
-
-        <div style="font-size:45px;margin-bottom:8px">
-          🛒
-        </div>
-
-        <strong>Your cart is empty.</strong>
-
-        <p>Add something from Food to get started.</p>
-
-      </div>
-
-    `;
-
-    return;
+function getTestAccount(){
+  try{
+    return JSON.parse(localStorage.getItem("sefwiTestAccount") || "null");
+  }catch(e){
+    return null;
   }
-
-  const total=cart.reduce(
-    (sum,item)=>
-      sum+
-      Number(item.price||0)*
-      Number(item.quantity||1),
-    0
-  );
-
-  container.innerHTML=
-
-    cart.map((item,index)=>`
-
-      <div class="cart-item">
-
-        <div class="cart-item-icon">
-          ${item.icon||"🛍️"}
-        </div>
-
-        <div class="cart-item-main">
-
-          <strong>${escapeHtml(item.name)}</strong>
-
-          <small>
-            GH₵ ${Number(item.price||0).toLocaleString()}
-          </small>
-
-        </div>
-
-        <div style="display:flex;align-items:center;gap:5px">
-
-          <button
-            class="small-btn"
-            onclick="changeCartQuantity(${index},-1)"
-          >
-            −
-          </button>
-
-          <strong>${item.quantity||1}</strong>
-
-          <button
-            class="small-btn"
-            onclick="changeCartQuantity(${index},1)"
-          >
-            +
-          </button>
-
-        </div>
-
-        <button
-          class="link-btn"
-          onclick="removeCartItem(${index})"
-        >
-          Remove
-        </button>
-
-      </div>
-
-    `).join("")+
-
-    `
-
-      <div class="cart-total">
-
-        <span>Total</span>
-
-        <span class="price">
-          GH₵ ${total.toLocaleString()}
-        </span>
-
-      </div>
-
-      <button
-        class="full-btn"
-        onclick="checkoutCart()"
-      >
-        Order via WhatsApp
-      </button>
-
-    `;
-
 }
 
-function changeCartQuantity(index,change){
-
-  const cart=getCart();
-
-  if(!cart[index]) return;
-
-  cart[index].quantity=
-    Number(cart[index].quantity||1)+change;
-
-  if(cart[index].quantity<=0){
-
-    cart.splice(index,1);
-
-  }
-
-  saveCart(cart);
-
-  renderCart();
-
+function setTestAccount(account){
+  localStorage.setItem("sefwiTestAccount",JSON.stringify(account));
 }
 
-window.changeCartQuantity=changeCartQuantity;
-
-function removeCartItem(index){
-
-  const cart=getCart();
-
-  cart.splice(index,1);
-
-  saveCart(cart);
-
-  renderCart();
-
+function clearTestAccount(){
+  localStorage.removeItem("sefwiTestAccount");
 }
 
-window.removeCartItem=removeCartItem;
-
-function checkoutCart(){
-
-  const cart=getCart();
-
-  if(!cart.length){
-
-    showToast("Your cart is empty.");
-
-    return;
-  }
-
-  const lines=cart.map(item=>
-    `- ${item.name} x${item.quantity} = GH₵ ${
-      Number(item.price||0)*
-      Number(item.quantity||1)
-    }`
-  );
-
-  const total=cart.reduce(
-    (sum,item)=>
-      sum+
-      Number(item.price||0)*
-      Number(item.quantity||1),
-    0
-  );
-
-  const message=
-`Hello SefwiGo, I want to place an order.
-
-${lines.join("\n")}
-
-Total: GH₵ ${total}`;
-
-  window.open(
-    "https://wa.me/?text="+encodeURIComponent(message),
-    "_blank"
-  );
-
-}
-
-window.checkoutCart=checkoutCart;
-
-
-/* =========================================================
-   ACCOUNT AUTHENTICATION
-========================================================= */
-
-window.accountAuthTab=function(tab){
-
-  document
-    .querySelectorAll(".auth-tabs button")
-    .forEach(btn=>btn.classList.remove("active"));
-
-  document
-    .querySelectorAll(".auth-panel")
-    .forEach(panel=>panel.classList.remove("active"));
-
-  const button=
-    document.querySelector(
-      `[data-auth-tab="${tab}"]`
-    );
-
-  const panel=
-    document.getElementById(
-      `auth-${tab}`
-    );
-
-  if(button) button.classList.add("active");
-
-  if(panel) panel.classList.add("active");
-
+window.openAccount=async function(){
+  $("accountModal").classList.add("open");
+  await initFirebase();
+  renderAccount();
 };
 
+window.renderAccount=function(){
+  const box=$("accountContent");
+  const user=auth?.currentUser;
 
-async function signUpAccount(){
+  if(user){
+    box.innerHTML=`
+      <div style="background:var(--green-soft);padding:18px;border-radius:18px;margin-bottom:18px">
+        <div style="font-size:42px">👤</div>
+        <h3 style="margin:8px 0 4px">${escapeHtml(user.displayName || "SefwiGo Customer")}</h3>
+        <p class="help" style="margin:0">${escapeHtml(user.email || "")}</p>
+      </div>
 
-  const name=
-    document.getElementById("signupName")
-      .value.trim();
+      <button class="menu-link" style="background:#f7faf8;margin-bottom:8px" onclick="closeModal('accountModal');openOrders()">
+        📋 My Orders
+      </button>
 
-  const email=
-    document.getElementById("signupEmail")
-      .value.trim();
+      <button class="menu-link" style="background:#f7faf8;margin-bottom:8px" onclick="closeModal('accountModal');openCart()">
+        🛒 My Cart
+      </button>
 
-  const password=
-    document.getElementById("signupPassword")
-      .value;
+      <button class="menu-link" style="background:#fff0f0;color:#a12b2b" onclick="logoutAccount()">
+        🚪 Sign Out
+      </button>
+    `;
+    return;
+  }
 
-  const confirmPassword=
-    document.getElementById("signupConfirm")
-      .value;
+  const test=getTestAccount();
 
-  if(!name || !email || !password || !confirmPassword){
+  if(test){
+    box.innerHTML=`
+      <div style="background:var(--green-soft);padding:18px;border-radius:18px;margin-bottom:18px">
+        <div style="font-size:42px">👤</div>
+        <h3 style="margin:8px 0 4px">${escapeHtml(test.name || "Test Customer")}</h3>
+        <p class="help" style="margin:0">${escapeHtml(test.email || "")}</p>
+      </div>
 
+      <p class="help">
+        You are using the SefwiGo trial account. For real customer orders,
+        sign up with your email and password.
+      </p>
+
+      <button class="submit" onclick="clearTestAccount();renderAccount()">
+        Sign Out of Trial Account
+      </button>
+    `;
+    return;
+  }
+
+  box.innerHTML=`
+    <div class="tabs">
+      <button class="tab active" id="loginTab" onclick="showAuthTab('login')">Sign In</button>
+      <button class="tab" id="signupTab" onclick="showAuthTab('signup')">Create Account</button>
+    </div>
+
+    <div id="authForms"></div>
+  `;
+
+  showAuthTab("login");
+};
+
+window.showAuthTab=function(mode){
+  const loginTab=$("loginTab");
+  const signupTab=$("signupTab");
+
+  if(loginTab)loginTab.classList.toggle("active",mode==="login");
+  if(signupTab)signupTab.classList.toggle("active",mode==="signup");
+
+  const box=$("authForms");
+  if(!box)return;
+
+  if(mode==="signup"){
+    box.innerHTML=`
+      <form onsubmit="signupEmail(event)">
+        <div class="form-grid">
+          <div class="field full">
+            <label>Full name</label>
+            <input id="signupName" required placeholder="Your full name">
+          </div>
+
+          <div class="field full">
+            <label>Email address</label>
+            <input id="signupEmail" type="email" required autocomplete="email" placeholder="you@example.com">
+          </div>
+
+          <div class="field full">
+            <label>Password</label>
+            <input id="signupPassword" type="password" minlength="6" required autocomplete="new-password" placeholder="At least 6 characters">
+          </div>
+        </div>
+
+        <button class="submit" style="margin-top:15px">Create Account</button>
+      </form>
+
+      <p class="help" style="margin-top:12px">
+        Your email and password are used to create your SefwiGo customer account.
+      </p>
+    `;
+  }else{
+    box.innerHTML=`
+      <form onsubmit="loginEmail(event)">
+        <div class="form-grid">
+          <div class="field full">
+            <label>Email address</label>
+            <input id="loginEmail" type="email" required autocomplete="email" placeholder="you@example.com">
+          </div>
+
+          <div class="field full">
+            <label>Password</label>
+            <input id="loginPassword" type="password" required autocomplete="current-password" placeholder="Your password">
+          </div>
+        </div>
+
+        <button class="submit" style="margin-top:15px">Sign In</button>
+      </form>
+
+      <button class="text-btn" style="margin-top:14px" onclick="resetPassword()">
+        Forgot password?
+      </button>
+
+      <div style="margin-top:20px;border-top:1px solid var(--line);padding-top:18px">
+        <button class="small-btn" style="width:100%" onclick="useTrialAccount()">
+          Continue with Trial Account
+        </button>
+      </div>
+    `;
+  }
+};
+
+window.signupEmail=async function(e){
+  e.preventDefault();
+
+  const name=$("signupName").value.trim();
+  const email=$("signupEmail").value.trim();
+  const password=$("signupPassword").value;
+
+  if(!name || !email || !password){
     showToast("Please complete all fields.");
-
     return;
   }
 
   if(password.length<6){
-
-    showToast(
-      "Password must be at least 6 characters."
-    );
-
-    return;
-  }
-
-  if(password!==confirmPassword){
-
-    showToast("Passwords do not match.");
-
+    showToast("Password must be at least 6 characters.");
     return;
   }
 
   const ready=await initFirebase();
 
   if(!ready || !createUserWithEmailAndPasswordFn){
-
-    showToast(
-      "Firebase Authentication is not available."
-    );
-
+    showToast("Firebase email signup is not available right now.");
     return;
   }
 
   try{
+    const credential=await createUserWithEmailAndPasswordFn(auth,email,password);
 
-    const result=
-      await createUserWithEmailAndPasswordFn(
-        auth,
-        email,
-        password
-      );
-
-    if(
-      result.user &&
-      updateProfileFn
-    ){
-
-      try{
-
-        await updateProfileFn(
-          result.user,
-          {
-            displayName:name
-          }
-        );
-
-      }catch(profileError){
-
-        console.warn(
-          "Could not update profile name",
-          profileError
-        );
-
-      }
-
+    if(updateProfileFn && credential.user){
+      await updateProfileFn(credential.user,{displayName:name});
     }
 
-    localStorage.setItem(
-      "sefwiUserName",
-      name
-    );
-
-    showToast(
-      "Account created successfully!"
-    );
-
+    showToast("Account created successfully.");
     renderAccount();
 
-  }catch(error){
+  }catch(e){
+    console.error(e);
 
-    console.error(error);
+    const messages={
+      "auth/email-already-in-use":"This email is already registered.",
+      "auth/invalid-email":"Please enter a valid email address.",
+      "auth/weak-password":"Please choose a stronger password.",
+      "auth/network-request-failed":"Network error. Please try again."
+    };
 
-    let message=
-      "Could not create your account.";
-
-    if(error.code==="auth/email-already-in-use"){
-      message="This email is already registered.";
-    }
-    else if(error.code==="auth/invalid-email"){
-      message="Please enter a valid email address.";
-    }
-    else if(error.code==="auth/weak-password"){
-      message="Your password is too weak.";
-    }
-
-    showToast(message);
-
+    showToast(messages[e.code] || e.message || "Could not create account.");
   }
+};
 
-}
+window.loginEmail=async function(e){
+  e.preventDefault();
 
-window.signUpAccount=signUpAccount;
-
-
-async function loginAccount(){
-
-  const email=
-    document.getElementById("loginEmail")
-      .value.trim();
-
-  const password=
-    document.getElementById("loginPassword")
-      .value;
-
-  if(!email || !password){
-
-    showToast(
-      "Enter your email and password."
-    );
-
-    return;
-  }
+  const email=$("loginEmail").value.trim();
+  const password=$("loginPassword").value;
 
   const ready=await initFirebase();
 
   if(!ready || !signInWithEmailAndPasswordFn){
-
-    showToast(
-      "Firebase Authentication is not available."
-    );
-
+    showToast("Firebase email login is not available right now.");
     return;
   }
 
   try{
-
-    await signInWithEmailAndPasswordFn(
-      auth,
-      email,
-      password
-    );
-
-    showToast("Signed in successfully!");
-
+    await signInWithEmailAndPasswordFn(auth,email,password);
+    showToast("Welcome back to SefwiGo.");
     renderAccount();
 
-  }catch(error){
+  }catch(e){
+    console.error(e);
 
-    console.error(error);
+    const messages={
+      "auth/invalid-credential":"Incorrect email or password.",
+      "auth/user-not-found":"No account was found with this email.",
+      "auth/wrong-password":"Incorrect email or password.",
+      "auth/invalid-email":"Please enter a valid email address.",
+      "auth/network-request-failed":"Network error. Please try again."
+    };
 
-    let message=
-      "Could not sign in.";
-
-    if(
-      error.code==="auth/invalid-credential" ||
-      error.code==="auth/wrong-password" ||
-      error.code==="auth/user-not-found"
-    ){
-
-      message=
-        "Incorrect email or password.";
-
-    }
-    else if(error.code==="auth/invalid-email"){
-
-      message=
-        "Please enter a valid email.";
-
-    }
-
-    showToast(message);
-
+    showToast(messages[e.code] || e.message || "Could not sign in.");
   }
+};
 
-}
+window.resetPassword=async function(){
+  const email=prompt("Enter your SefwiGo account email:");
 
-window.loginAccount=loginAccount;
-
-
-async function resetPassword(){
-
-  const email=
-    document.getElementById("loginEmail")
-      ?.value.trim();
-
-  if(!email){
-
-    showToast(
-      "Enter your email first."
-    );
-
-    return;
-  }
+  if(!email)return;
 
   const ready=await initFirebase();
 
   if(!ready || !sendPasswordResetEmailFn){
-
-    showToast(
-      "Password reset is not available."
-    );
-
+    showToast("Password reset is not available right now.");
     return;
   }
 
   try{
+    await sendPasswordResetEmailFn(auth,email.trim());
+    showToast("Password reset email sent.");
+  }catch(e){
+    console.error(e);
+    showToast(e.message || "Could not send password reset email.");
+  }
+};
 
-    await sendPasswordResetEmailFn(
-      auth,
-      email
-    );
+window.useTrialAccount=function(){
+  setTestAccount({
+    name:"Trial Customer",
+    email:"trial@sefwi-go.local"
+  });
 
-    showToast(
-      "Password reset email sent."
-    );
+  showToast("Trial account activated.");
+  renderAccount();
+};
 
-  }catch(error){
-
-    console.error(error);
-
-    showToast(
-      "Could not send password reset email."
-    );
-
+window.logoutAccount=async function(){
+  try{
+    if(auth && signOutFn){
+      await signOutFn(auth);
+    }
+  }catch(e){
+    console.error(e);
   }
 
+  clearTestAccount();
+  showToast("You have been signed out.");
+  renderAccount();
+};
+
+function renderBusinesses(){
+  const box=$("businessList");
+
+  box.innerHTML=businesses.map(b=>`
+    <article class="business-card">
+      <div class="business-top">
+        <div class="avatar">${escapeHtml(b.icon)}</div>
+        <div style="flex:1">
+          <h3>${escapeHtml(b.name)}</h3>
+          <p>${escapeHtml(b.description)}</p>
+          <span class="chip">${escapeHtml(b.category)}</span>
+        </div>
+      </div>
+
+      <button class="small-btn primary-small" style="width:100%;margin-top:13px"
+        onclick="openBusiness('${b.id}')">
+        View Business
+      </button>
+    </article>
+  `).join("");
 }
 
-window.resetPassword=resetPassword;
+window.openBusiness=function(id){
+  const b=businesses.find(x=>x.id===id);
+  if(!b)return;
 
+  $("businessModalTitle").textContent=b.name;
 
-/* =========================================================
-   PHONE OTP
-========================================================= */
+  const businessFoods=foods.filter(f=>f.businessId===id);
 
-let recaptchaVerifier=null;
-let confirmationResult=null;
+  $("businessContent").innerHTML=`
+    <div class="business-top" style="margin-bottom:18px">
+      <div class="avatar" style="width:65px;height:65px;font-size:32px">${escapeHtml(b.icon)}</div>
+      <div>
+        <h2 style="margin:0">${escapeHtml(b.name)}</h2>
+        <p style="margin:5px 0;color:var(--muted)">${escapeHtml(b.description)}</p>
+        <span class="chip">${escapeHtml(b.category)}</span>
+      </div>
+    </div>
 
-async function setupRecaptcha(){
+    ${
+      businessFoods.length
+      ? `<h3 style="margin:0 0 12px">Menu</h3>
+         <div class="food-grid">
+           ${businessFoods.map(renderFoodCard).join("")}
+         </div>`
+      : `<div class="empty">
+           <div style="font-size:40px">🛒</div>
+           <strong>Groceries</strong>
+           <p>This business is currently a trial grocery listing.</p>
+         </div>`
+    }
+  `;
+
+  $("businessModal").classList.add("open");
+};
+
+function renderFoodCard(f){
+  return `
+    <article class="food-card">
+      <div class="food-top">
+        <div>
+          <h3>${escapeHtml(f.name)}</h3>
+          <p>${escapeHtml(f.description)}</p>
+          <div class="food-price">GH₵ ${Number(f.price).toLocaleString()}</div>
+        </div>
+        <div class="food-icon">${escapeHtml(f.icon)}</div>
+      </div>
+
+      <button class="small-btn primary-small" style="width:100%"
+        onclick="openFood('${f.id}')">
+        Customize & Add
+      </button>
+    </article>
+  `;
+}
+
+function renderFoodList(){
+  const box=$("foodList");
+
+  box.innerHTML=`
+    <div class="food-grid">
+      ${foods.map(renderFoodCard).join("")}
+    </div>
+  `;
+}
+
+window.openFood=function(id){
+  const food=foods.find(x=>x.id===id);
+  if(!food)return;
+
+  const business=businesses.find(b=>b.id===food.businessId);
+
+  $("foodModalTitle").textContent=food.name;
+
+  $("foodContent").innerHTML=`
+    <div class="food-top" style="margin-bottom:18px">
+      <div>
+        <span class="chip">${escapeHtml(business?.name || "SefwiGo Food")}</span>
+        <h2 style="margin:10px 0 5px">${escapeHtml(food.name)}</h2>
+        <p style="margin:0;color:var(--muted)">${escapeHtml(food.description)}</p>
+        <div class="food-price">Base price: GH₵ ${Number(food.price).toLocaleString()}</div>
+      </div>
+      <div class="food-icon" style="width:72px;height:72px;font-size:36px">${escapeHtml(food.icon)}</div>
+    </div>
+
+    <div id="modifierArea">
+      ${food.modifiers?.map((m,i)=>renderModifier(m,i)).join("") || ""}
+    </div>
+
+    <div style="background:var(--green-soft);border-radius:17px;padding:15px;margin-top:15px">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <strong>Total per item</strong>
+        <strong id="foodDynamicPrice" style="font-size:21px;color:var(--green-dark)">
+          GH₵ ${Number(food.price).toLocaleString()}
+        </strong>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:10px;margin-top:15px">
+      <div class="field" style="flex:1">
+        <label>Quantity</label>
+        <input id="foodQty" type="number" min="1" value="1">
+      </div>
+      <button class="submit" style="flex:2;align-self:end"
+        onclick="addFoodToCart('${food.id}')">
+        Add to Cart
+      </button>
+    </div>
+  `;
+
+  $("foodModal").classList.add("open");
+
+  document.querySelectorAll("#modifierArea input").forEach(input=>{
+    input.addEventListener("change",()=>updateFoodDynamicPrice(food.id));
+  });
+
+  updateFoodDynamicPrice(food.id);
+};
+
+function renderModifier(modifier,index){
+  return `
+    <div class="modifier-box">
+      <div class="modifier-title">
+        ${escapeHtml(modifier.name)}
+        ${modifier.required ? `<span style="color:var(--danger);font-size:11px">Required</span>` : `<span style="color:var(--muted);font-size:11px">Optional</span>`}
+      </div>
+
+      ${modifier.options.map((option,j)=>{
+        const inputType=modifier.multi?"checkbox":"radio";
+        const name=`modifier_${index}`;
+
+        return `
+          <label class="modifier-option">
+            <input
+              type="${inputType}"
+              name="${name}"
+              value="${j}"
+              data-modifier-index="${index}"
+              data-option-index="${j}"
+              data-price="${Number(option.price)}"
+              data-option-name="${escapeHtml(option.name)}"
+            >
+            <span>${escapeHtml(option.name)}</span>
+            <span>${Number(option.price)>0?`+ GH₵ ${Number(option.price).toLocaleString()}`:"Included"}</span>
+          </label>
+        `;
+      }).join("")}
+    </div>
+  `;
+}
+
+function getSelectedModifiers(food){
+  const selected=[];
+
+  food.modifiers?.forEach((modifier,index)=>{
+    const inputs=document.querySelectorAll(
+      `#modifierArea input[data-modifier-index="${index}"]:checked`
+    );
+
+    inputs.forEach(input=>{
+      const optionIndex=Number(input.dataset.optionIndex);
+      const option=modifier.options[optionIndex];
+
+      if(option){
+        selected.push({
+          modifier:modifier.name,
+          name:option.name,
+          price:Number(option.price || 0)
+        });
+      }
+    });
+  });
+
+  return selected;
+}
+
+function validateModifiers(food){
+  for(let i=0;i<(food.modifiers||[]).length;i++){
+    const modifier=food.modifiers[i];
+
+    if(modifier.required){
+      const selected=document.querySelectorAll(
+        `#modifierArea input[data-modifier-index="${i}"]:checked`
+      );
+
+      if(!selected.length){
+        showToast(`Please choose ${modifier.name}.`);
+        return false;
+      }
+    }
+  }
+
+  return true;
+}
+
+function calculateFoodPrice(food){
+  let price=Number(food.price || 0);
+
+  getSelectedModifiers(food).forEach(m=>{
+    price+=Number(m.price || 0);
+  });
+
+  return price;
+}
+
+function updateFoodDynamicPrice(foodId){
+  const food=foods.find(x=>x.id===foodId);
+  if(!food)return;
+
+  const price=calculateFoodPrice(food);
+
+  if($("foodDynamicPrice")){
+    $("foodDynamicPrice").textContent=`GH₵ ${price.toLocaleString()}`;
+  }
+}
+
+window.addFoodToCart=function(foodId){
+  const food=foods.find(x=>x.id===foodId);
+
+  if(!food)return;
+
+  if(!validateModifiers(food))return;
+
+  const quantity=Math.max(1,Number($("foodQty")?.value || 1));
+  const modifiers=getSelectedModifiers(food);
+  const unitPrice=calculateFoodPrice(food);
+
+  const modifierKey=modifiers
+    .map(m=>`${m.modifier}:${m.name}`)
+    .sort()
+    .join("|");
+
+  const existing=cart.find(item=>
+    item.foodId===food.id &&
+    JSON.stringify(item.modifiers || [])===JSON.stringify(modifiers)
+  );
+
+  if(existing){
+    existing.qty+=quantity;
+  }else{
+    cart.push({
+      id:`cart_${Date.now()}_${Math.random().toString(36).slice(2,8)}`,
+      foodId:food.id,
+      businessId:food.businessId,
+      name:food.name,
+      icon:food.icon,
+      basePrice:Number(food.price),
+      price:unitPrice,
+      qty:quantity,
+      modifiers
+    });
+  }
+
+  localStorage.setItem("sefwiCart",JSON.stringify(cart));
+  updateCartCount();
+
+  closeModal("foodModal");
+  showToast("Added to cart.");
+};
+
+function updateCartCount(){
+  const count=cart.reduce((sum,item)=>sum+Number(item.qty||0),0);
+
+  const button=document.querySelector(".icon-btn");
+  if(button){
+    button.innerHTML=count
+      ? `🛒<span style="position:absolute;background:#d22;color:#fff;border-radius:999px;font-size:10px;padding:2px 6px;margin:-25px 0 0 22px">${count}</span>`
+      : "🛒";
+
+    button.style.position="relative";
+  }
+}
+
+window.openCart=function(){
+  $("cartModal").classList.add("open");
+  renderCart();
+};
+
+window.renderCart=function(){
+  const box=$("cartContent");
+
+  if(!cart.length){
+    box.innerHTML=`
+      <div class="empty">
+        <div style="font-size:45px">🛒</div>
+        <strong>Your cart is empty.</strong>
+        <p>Add food to your cart and continue to checkout.</p>
+        <button class="submit" style="max-width:260px;margin:auto"
+          onclick="closeModal('cartModal');filterService('Food')">
+          Browse Food
+        </button>
+      </div>
+    `;
+    return;
+  }
+
+  const total=cart.reduce((sum,item)=>
+    sum+Number(item.price||0)*Number(item.qty||1),0
+  );
+
+  box.innerHTML=`
+    ${cart.map((item,index)=>`
+      <div class="cart-item">
+        <div class="cart-icon">${escapeHtml(item.icon || "🍛")}</div>
+
+        <div class="cart-info">
+          <strong>${escapeHtml(item.name)}</strong>
+          <small>
+            ${item.modifiers?.length
+              ? escapeHtml(item.modifiers.map(m=>m.name).join(", "))
+              : "Standard item"}
+          </small>
+          <div style="color:var(--green-dark);font-weight:900;margin-top:4px">
+            GH₵ ${(Number(item.price)*Number(item.qty)).toLocaleString()}
+          </div>
+        </div>
+
+        <div class="qty">
+          <button onclick="changeCartQty(${index},-1)">−</button>
+          <strong>${Number(item.qty)}</strong>
+          <button onclick="changeCartQty(${index},1)">+</button>
+        </div>
+
+        <button class="close" onclick="removeCartItem(${index})">×</button>
+      </div>
+    `).join("")}
+
+    <div class="cart-total">
+      <span>Total</span>
+      <span style="color:var(--green-dark)">GH₵ ${total.toLocaleString()}</span>
+    </div>
+
+    <button class="submit" onclick="checkoutCart()">
+      Continue to Checkout
+    </button>
+  `;
+};
+
+window.changeCartQty=function(index,change){
+  if(!cart[index])return;
+
+  cart[index].qty=Math.max(0,Number(cart[index].qty)+change);
+
+  if(cart[index].qty===0){
+    cart.splice(index,1);
+  }
+
+  localStorage.setItem("sefwiCart",JSON.stringify(cart));
+  updateCartCount();
+  renderCart();
+};
+
+window.removeCartItem=function(index){
+  cart.splice(index,1);
+  localStorage.setItem("sefwiCart",JSON.stringify(cart));
+  updateCartCount();
+  renderCart();
+};
+
+window.checkoutCart=async function(){
+  if(!cart.length){
+    showToast("Your cart is empty.");
+    return;
+  }
 
   const ready=await initFirebase();
 
-  if(!ready || !RecaptchaVerifierFn){
+  const user=ready&&auth?auth.currentUser:null;
+  const test=getTestAccount();
 
-    return false;
+  if(!user && !test){
+    closeModal("cartModal");
+    openAccount();
+    showToast("Please sign in before checking out.");
+    return;
   }
 
+  closeModal("cartModal");
+  $("checkoutModal").classList.add("open");
+  renderCheckout();
+};
+
+window.renderCheckout=function(){
+  const box=$("checkoutContent");
+
+  const total=cart.reduce((sum,item)=>
+    sum+Number(item.price||0)*Number(item.qty||1),0
+  );
+
+  const user=auth?.currentUser;
+  const test=getTestAccount();
+
+  const defaultName=user?.displayName || test?.name || "";
+  const defaultEmail=user?.email || test?.email || "";
+
+  box.innerHTML=`
+    <div class="checkout-summary">
+      <strong>Order Summary</strong>
+
+      ${cart.map(item=>`
+        <div class="checkout-row">
+          <span>${escapeHtml(item.name)} × ${Number(item.qty)}</span>
+          <strong>GH₵ ${(Number(item.price)*Number(item.qty)).toLocaleString()}</strong>
+        </div>
+      `).join("")}
+
+      <div class="checkout-total">
+        <span>Total</span>
+        <span>GH₵ ${total.toLocaleString()}</span>
+      </div>
+    </div>
+
+    <div class="form-grid">
+
+      <div class="field">
+        <label>Full name</label>
+        <input id="checkoutName" value="${escapeHtml(defaultName)}" placeholder="Your full name">
+      </div>
+
+      <div class="field">
+        <label>Email</label>
+        <input id="checkoutEmail" type="email" value="${escapeHtml(defaultEmail)}" placeholder="you@example.com">
+      </div>
+
+      <div class="field">
+        <label>Phone number</label>
+        <input id="checkoutPhone" placeholder="Your phone number">
+      </div>
+
+      <div class="field">
+        <label>Delivery address</label>
+        <input id="checkoutAddress" placeholder="Where should we deliver?">
+      </div>
+
+      <div class="field full">
+        <label>Order note</label>
+        <textarea id="checkoutNote" placeholder="Optional note for the vendor or delivery driver"></textarea>
+      </div>
+
+    </div>
+
+    <button class="submit" style="margin-top:15px" onclick="submitOrder()">
+      Place Order
+    </button>
+
+    <p class="help" style="margin-top:10px">
+      Your order will be saved to your SefwiGo account and will appear in My Orders.
+    </p>
+  `;
+};
+
+window.submitOrder=async function(){
+  if(!cart.length){
+    showToast("Your cart is empty.");
+    return;
+  }
+
+  const name=$("checkoutName").value.trim();
+  const email=$("checkoutEmail").value.trim();
+  const phone=$("checkoutPhone").value.trim();
+  const address=$("checkoutAddress").value.trim();
+  const note=$("checkoutNote").value.trim();
+
+  if(!name || !email || !phone || !address){
+    showToast("Please complete your name, email, phone and delivery address.");
+    return;
+  }
+
+  const ready=await initFirebase();
+  const user=ready&&auth?auth.currentUser:null;
+  const test=getTestAccount();
+
+  if(!user&&!test){
+    showToast("Please sign in before placing your order.");
+    return;
+  }
+
+  const total=cart.reduce((sum,item)=>
+    sum+Number(item.price||0)*Number(item.qty||1),0
+  );
+
+  const firstBusiness=businesses.find(b=>b.id===cart[0]?.businessId);
+
+  const createdOrders=[];
+
+  /*
+    Orders are grouped by business so each vendor can receive
+    only the items belonging to that vendor.
+  */
+  const grouped={};
+
+  cart.forEach(item=>{
+    const key=item.businessId || "unknown";
+
+    if(!grouped[key])grouped[key]=[];
+
+    grouped[key].push({
+      foodId:item.foodId,
+      name:item.name,
+      icon:item.icon,
+      qty:Number(item.qty||1),
+      price:Number(item.price||0),
+      modifiers:item.modifiers || []
+    });
+  });
+
   try{
+    for(const businessId of Object.keys(grouped)){
+      const business=businesses.find(b=>b.id===businessId);
 
-    if(recaptchaVerifier){
+      const businessTotal=grouped[businessId].reduce(
+        (sum,item)=>sum+Number(item.price||0)*Number(item.qty||1),0
+      );
 
-      recaptchaVerifier.clear();
+      const orderData={
+        customerUid:user?.uid || null,
+        customerName:name,
+        customerEmail:email,
+        customerPhone:phone,
+        vendorId:businessId,
+        vendorName:business?.name || firstBusiness?.name || "SefwiGo Business",
+        items:grouped[businessId],
+        total:businessTotal,
+        deliveryAddress:address,
+        note,
+        status:"new",
+        paymentStatus:"pending",
+        createdAt:firestoreFns.serverTimestamp
+          ? firestoreFns.serverTimestamp()
+          : new Date().toISOString()
+      };
 
+      if(user && db && firestoreFns.addDoc){
+        const ref=await firestoreFns.addDoc(
+          firestoreFns.collection(db,"orders"),
+          orderData
+        );
+
+        createdOrders.push({
+          id:ref.id,
+          ...orderData,
+          createdAt:new Date().toISOString()
+        });
+      }else{
+        createdOrders.push({
+          id:`trial_${Date.now()}_${Math.random().toString(36).slice(2,7)}`,
+          ...orderData,
+          createdAt:new Date().toISOString(),
+          localOnly:true
+        });
+      }
     }
 
-    recaptchaVerifier=
-      new RecaptchaVerifierFn(
-        auth,
-        "recaptcha-container",
-        {
-          size:"normal"
-        }
+    /*
+      Trial account order history is stored locally.
+      Real Firebase customer orders are stored in Firestore.
+    */
+    if(test || !user){
+      const localOrders=JSON.parse(
+        localStorage.getItem("sefwiCustomerOrders") || "[]"
       );
 
-    await recaptchaVerifier.render();
+      localOrders.unshift(
+        ...createdOrders.map(o=>({
+          ...o,
+          customerUid:null,
+          createdAt:new Date().toISOString(),
+          localOnly:true
+        }))
+      );
 
-    return true;
+      localStorage.setItem(
+        "sefwiCustomerOrders",
+        JSON.stringify(localOrders)
+      );
+    }
 
-  }catch(error){
+    cart=[];
+    localStorage.setItem("sefwiCart","[]");
+    updateCartCount();
 
-    console.error(error);
+    closeModal("checkoutModal");
 
-    return false;
+    showToast("Order placed successfully.");
+
+    openOrders();
+
+  }catch(e){
+    console.error(e);
+    showToast(
+      "Could not place order. Check your Firebase Firestore setup."
+    );
   }
+};
 
+function formatCustomerOrderDate(o){
+  try{
+    if(o.createdAt?.toDate){
+      return o.createdAt.toDate().toLocaleString();
+    }
+
+    if(o.createdAt?.seconds){
+      return new Date(o.createdAt.seconds*1000).toLocaleString();
+    }
+
+    if(o.createdAt){
+      return new Date(o.createdAt).toLocaleString();
+    }
+  }catch(e){}
+
+  return "Just now";
 }
 
-async function sendOTP(){
+function customerStatusLabel(status){
+  return ({
+    new:"Pending",
+    accepted:"Accepted",
+    preparing:"Preparing",
+    ready:"Ready",
+    completed:"Delivered",
+    cancelled:"Cancelled"
+  }[status || "new"] || "Pending");
+}
 
-  const phone=
-    document.getElementById("phoneNumber")
-      .value.trim();
+function renderCustomerOrder(o){
+  const status=o.status || "new";
 
-  if(!phone){
+  const statusClass=
+    status==="completed"
+      ? "on"
+      : status==="cancelled"
+      ? "off"
+      : "";
 
-    showToast(
-      "Enter your phone number."
-    );
+  return `
+    <article class="order-card">
 
+      <div style="display:flex;justify-content:space-between;gap:10px;align-items:start">
+
+        <div>
+          <strong>
+            Order #${escapeHtml(
+              (o.orderNumber || o.id || "").slice(-12).toUpperCase()
+            )}
+          </strong>
+
+          <p class="help" style="margin:5px 0">
+            ${escapeHtml(formatCustomerOrderDate(o))}
+          </p>
+        </div>
+
+        <span class="order-status ${statusClass}">
+          ${escapeHtml(customerStatusLabel(status))}
+        </span>
+
+      </div>
+
+      <p class="help" style="margin:6px 0">
+        <strong>Vendor:</strong>
+        ${escapeHtml(o.vendorName || "SefwiGo business")}
+      </p>
+
+      <div class="order-items">
+        ${(o.items || []).map(x=>`
+          <div class="order-item-row">
+
+            <span>
+              ${escapeHtml(x.name)}
+              × ${Number(x.qty || 1)}
+
+              ${
+                x.modifiers?.length
+                ? `<small style="display:block">
+                    ${escapeHtml(
+                      x.modifiers.map(m=>m.name).join(", ")
+                    )}
+                  </small>`
+                : ""
+              }
+            </span>
+
+            <strong>
+              GH₵ ${
+                (
+                  Number(x.price || 0) *
+                  Number(x.qty || 1)
+                ).toLocaleString()
+              }
+            </strong>
+
+          </div>
+        `).join("")}
+      </div>
+
+      <div style="display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:10px">
+        <strong>Total</strong>
+        <strong style="color:var(--green-dark)">
+          GH₵ ${Number(o.total || 0).toLocaleString()}
+        </strong>
+      </div>
+
+      <p class="help" style="margin:10px 0 0">
+        📍 ${escapeHtml(o.deliveryAddress || "")}
+
+        ${
+          o.note
+          ? `<br>📝 ${escapeHtml(o.note)}`
+          : ""
+        }
+      </p>
+
+    </article>
+  `;
+}
+
+window.openOrders=async function(){
+  $("ordersModal").classList.add("open");
+  await renderCustomerOrders();
+};
+
+window.renderCustomerOrders=async function(){
+  const box=$("ordersContent");
+
+  box.innerHTML=`
+    <div class="empty">
+      <div style="font-size:38px">📋</div>
+      <strong>Loading your orders…</strong>
+      <p>Checking your SefwiGo order history.</p>
+    </div>
+  `;
+
+  const test=getTestAccount();
+
+  const ready=await initFirebase();
+  const firebaseUser=ready&&auth?auth.currentUser:null;
+
+  if(!firebaseUser&&!test){
+    box.innerHTML=`
+      <div class="empty">
+        <div style="font-size:38px">🔐</div>
+        <strong>Sign in to view your orders.</strong>
+        <p>Your SefwiGo order history belongs to your account.</p>
+
+        <button
+          class="submit"
+          style="max-width:260px"
+          onclick="closeModal('ordersModal');openAccount()">
+          Sign in
+        </button>
+      </div>
+    `;
     return;
   }
 
-  const ready=await initFirebase();
+  try{
+    let orders=[];
 
-  if(!ready || !signInWithPhoneNumberFn){
+    if(
+      firebaseUser &&
+      db &&
+      firestoreFns.getDocs &&
+      firestoreFns.query &&
+      firestoreFns.where
+    ){
+      const snap=await firestoreFns.getDocs(
+        firestoreFns.query(
+          firestoreFns.collection(db,"orders"),
+          firestoreFns.where(
+            "customerUid",
+            "==",
+            firebaseUser.uid
+          )
+        )
+      );
 
-    showToast(
-      "Phone login is currently unavailable."
+      orders=snap.docs.map(d=>({
+        id:d.id,
+        ...d.data()
+      }));
+    }
+
+    if(test){
+      const localOrders=JSON.parse(
+        localStorage.getItem("sefwiCustomerOrders") || "[]"
+      );
+
+      orders=[...localOrders,...orders];
+    }
+
+    orders.sort((a,b)=>{
+      const getTime=o=>
+        o.createdAt?.seconds
+          ? o.createdAt.seconds*1000
+          : typeof o.createdAt==="string"
+          ? new Date(o.createdAt).getTime()
+          : 0;
+
+      return getTime(b)-getTime(a);
+    });
+
+    if(!orders.length){
+      box.innerHTML=`
+        <div class="empty">
+          <div style="font-size:42px">📦</div>
+          <strong>You have no orders yet.</strong>
+          <p>Your completed and active SefwiGo orders will appear here.</p>
+
+          <button
+            class="submit"
+            style="max-width:260px"
+            onclick="closeModal('ordersModal');filterService('Food')">
+            Start shopping
+          </button>
+        </div>
+      `;
+      return;
+    }
+
+    box.innerHTML=`
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px">
+
+        <div>
+          <h3 style="margin:0">📋 My Orders</h3>
+          <p class="help">
+            Track your SefwiGo orders from one place.
+          </p>
+        </div>
+
+        <button
+          class="small-btn primary-small"
+          onclick="renderCustomerOrders()">
+          ↻ Refresh
+        </button>
+
+      </div>
+
+      ${orders.map(renderCustomerOrder).join("")}
+    `;
+
+  }catch(e){
+    console.error(e);
+
+    box.innerHTML=`
+      <div class="empty">
+        <strong>Could not load your orders.</strong>
+
+        <p>
+          ${escapeHtml(
+            e.message || "Check Firestore permissions."
+          )}
+        </p>
+
+        <button
+          class="small-btn"
+          onclick="renderCustomerOrders()">
+          Try again
+        </button>
+      </div>
+    `;
+  }
+};
+
+/* Vendor order inbox */
+
+async function getVendorOrders(){
+  if(
+    !(await initFirebase()) ||
+    !db ||
+    !auth?.currentUser
+  ){
+    return [];
+  }
+
+  const b=
+    JSON.parse(
+      localStorage.getItem("sefwiBusiness") || "null"
+    ) || {};
+
+  const qs=[];
+
+  if(auth.currentUser.uid){
+    qs.push(
+      firestoreFns.getDocs(
+        firestoreFns.query(
+          firestoreFns.collection(db,"orders"),
+          firestoreFns.where(
+            "vendorId",
+            "==",
+            auth.currentUser.uid
+          )
+        )
+      )
     );
+  }
+
+  if(b.name){
+    qs.push(
+      firestoreFns.getDocs(
+        firestoreFns.query(
+          firestoreFns.collection(db,"orders"),
+          firestoreFns.where(
+            "vendorName",
+            "==",
+            b.name
+          )
+        )
+      )
+    );
+  }
+
+  const snaps=await Promise.all(qs);
+
+  const map=new Map();
+
+  snaps.forEach(sn=>{
+    sn.forEach(d=>{
+      map.set(
+        d.id,
+        {
+          id:d.id,
+          ...d.data()
+        }
+      );
+    });
+  });
+
+  return [...map.values()].sort((a,b)=>{
+    const ta=a.createdAt?.seconds || 0;
+    const tb=b.createdAt?.seconds || 0;
+    return tb-ta;
+  });
+}
+
+function orderDate(o){
+  return o.createdAt?.toDate
+    ? o.createdAt.toDate().toLocaleString()
+    : "Just now";
+}
+
+window.renderVendorOrders=async function(){
+  const box=$("dashboardContent");
+
+  box.innerHTML=`
+    <div class="empty">
+      <div style="font-size:38px">📦</div>
+      <strong>Loading orders…</strong>
+      <p>Checking your Firebase order inbox.</p>
+    </div>
+  `;
+
+  if(
+    !(await initFirebase()) ||
+    !auth?.currentUser
+  ){
+    box.innerHTML=`
+      <div class="empty">
+        <div style="font-size:38px">🔐</div>
+        <strong>Vendor sign-in required</strong>
+        <p>
+          Sign in with the vendor's Firebase account before opening Orders.
+        </p>
+
+        <button
+          class="submit"
+          style="max-width:260px"
+          onclick="openAccount()">
+          Sign in
+        </button>
+      </div>
+    `;
 
     return;
   }
 
   try{
+    const orders=await getVendorOrders();
 
-    const captchaReady=
-      await setupRecaptcha();
+    const counts={
+      new:0,
+      accepted:0,
+      preparing:0,
+      ready:0,
+      completed:0,
+      cancelled:0
+    };
 
-    if(!captchaReady){
+    orders.forEach(o=>{
+      counts[o.status || "new"]++;
+    });
 
-      showToast(
-        "Could not start verification."
-      );
+    const badge=$("orderBadge");
+
+    if(badge){
+      badge.textContent=counts.new;
+      badge.style.display=
+        counts.new
+        ? "inline-block"
+        : "none";
+    }
+
+    if(!orders.length){
+      box.innerHTML=`
+        <div class="empty">
+          <div style="font-size:42px">📦</div>
+          <strong>No orders yet.</strong>
+          <p>
+            New customer orders will appear here automatically.
+          </p>
+        </div>
+      `;
 
       return;
     }
 
-    confirmationResult=
-      await signInWithPhoneNumberFn(
-        auth,
-        phone,
-        recaptchaVerifier
-      );
+    box.innerHTML=`
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px">
 
-    document
-      .getElementById("otpArea")
-      .classList.remove("hidden");
+        <div>
+          <h3 style="margin:0">📦 Customer Orders</h3>
 
-    showToast(
-      "Verification code sent."
-    );
+          <p class="help">
+            New: ${counts.new}
+            • Accepted: ${counts.accepted}
+            • Preparing: ${counts.preparing}
+            • Ready: ${counts.ready}
+          </p>
+        </div>
 
-  }catch(error){
+        <button
+          class="small-btn primary-small"
+          onclick="renderVendorOrders()">
+          ↻ Refresh
+        </button>
 
-    console.error(error);
+      </div>
 
-    showToast(
-      "Could not send verification code."
-    );
+      ${orders.map(renderOrderCard).join("")}
+    `;
 
+  }catch(e){
+    console.error(e);
+
+    box.innerHTML=`
+      <div class="empty">
+        <strong>Could not load orders.</strong>
+        <p>
+          ${escapeHtml(
+            e.message ||
+            "Check Firestore permissions."
+          )}
+        </p>
+      </div>
+    `;
   }
+};
 
+function renderOrderCard(o){
+  const status=o.status || "new";
+
+  const next={
+    new:["accepted","Accept"],
+    accepted:["preparing","Start preparing"],
+    preparing:["ready","Mark ready"],
+    ready:["completed","Complete"],
+    completed:[null,"Completed"],
+    cancelled:[null,"Cancelled"]
+  }[status] || [null,""];
+
+  return `
+    <div class="dash-card" style="padding:18px;margin-bottom:12px">
+
+      <div style="display:flex;justify-content:space-between;gap:12px;align-items:start">
+
+        <div>
+          <strong>
+            Order #${escapeHtml(
+              o.id.slice(-6).toUpperCase()
+            )}
+          </strong>
+
+          <p class="help" style="margin:5px 0">
+            ${escapeHtml(orderDate(o))}
+            •
+            ${escapeHtml(o.customerName || "Customer")}
+            •
+            ${escapeHtml(o.customerPhone || "")}
+          </p>
+        </div>
+
+        <span class="status ${
+          status==="completed"
+            ? "on"
+            : status==="cancelled"
+            ? "off"
+            : ""
+        }">
+          ${escapeHtml(status.toUpperCase())}
+        </span>
+
+      </div>
+
+      <div style="margin:12px 0">
+
+        ${(o.items || []).map(x=>`
+          <div style="display:flex;justify-content:space-between;gap:10px;padding:5px 0">
+
+            <span>
+              ${escapeHtml(x.name)}
+              × ${Number(x.qty || 1)}
+            </span>
+
+            <strong>
+              GH₵ ${
+                (
+                  Number(x.price || 0) *
+                  Number(x.qty || 1)
+                ).toLocaleString()
+              }
+            </strong>
+
+          </div>
+        `).join("")}
+
+        <hr style="border:0;border-top:1px solid #eee">
+
+        <div style="display:flex;justify-content:space-between">
+          <strong>Total</strong>
+          <strong>
+            GH₵ ${Number(o.total || 0).toLocaleString()}
+          </strong>
+        </div>
+
+      </div>
+
+      <p class="help">
+        📍 ${escapeHtml(o.deliveryAddress || "")}
+
+        ${
+          o.note
+          ? `<br>📝 ${escapeHtml(o.note)}`
+          : ""
+        }
+      </p>
+
+      ${
+        next[0]
+        ? `
+          <button
+            class="submit"
+            onclick="updateOrderStatus('${o.id}','${next[0]}')">
+            ${next[1]}
+          </button>
+        `
+        : ""
+      }
+
+      ${
+        status!=="completed" &&
+        status!=="cancelled"
+        ? `
+          <button
+            class="small-btn"
+            style="margin-top:8px"
+            onclick="updateOrderStatus('${o.id}','cancelled')">
+            Cancel order
+          </button>
+        `
+        : ""
+      }
+
+    </div>
+  `;
 }
 
-window.sendOTP=sendOTP;
-
-async function verifyOTP(){
-
-  const code=
-    document.getElementById("otpCode")
-      .value.trim();
-
-  if(!code){
-
-    showToast(
-      "Enter the verification code."
-    );
-
-    return;
-  }
-
-  if(!confirmationResult){
-
-    showToast(
-      "Please request a new code."
-    );
-
-    return;
+window.updateOrderStatus=async function(id,status){
+  if(
+    !(await initFirebase()) ||
+    !db
+  ){
+    return showToast("Firebase is not ready.");
   }
 
   try{
-
-    await confirmationResult.confirm(code);
-
-    showToast(
-      "Phone number verified!"
+    await firestoreFns.updateDoc(
+      firestoreFns.doc(db,"orders",id),
+      {
+        status,
+        updatedAt:firestoreFns.serverTimestamp()
+      }
     );
 
-    renderAccount();
+    showToast("Order status updated.");
+    renderVendorOrders();
 
-  }catch(error){
-
-    console.error(error);
-
+  }catch(e){
+    console.error(e);
     showToast(
-      "Invalid verification code."
+      "Could not update order. Check Firestore permissions."
     );
-
   }
-
-}
-
-window.verifyOTP=verifyOTP;
-
-
-/* =========================================================
-   ACCOUNT DISPLAY
-========================================================= */
-
-function openAccount(){
-
-  document
-    .getElementById("accountModal")
-    .classList.add("open");
-
-  renderAccount();
-
-}
-
-window.openAccount=openAccount;
-
-async function renderAccount(){
-
-  const container=
-    document.getElementById("accountContent");
-
-  const ready=await initFirebase();
-
-  const firebaseUser=
-    ready && auth
-    ? auth.currentUser
-    : null;
-
-  if(firebaseUser){
-
-    const displayName=
-      firebaseUser.displayName ||
-      localStorage.getItem("sefwiUserName") ||
-      "SefwiGo customer";
-
-    const contact=
-      firebaseUser.email ||
-      firebaseUser.phoneNumber ||
-      "";
-
-    container.innerHTML=`
-
-      <div class="account-box">
-
-        <strong>
-          👋 Welcome, ${escapeHtml(displayName)}
-        </strong>
-
-        <p style="font-size:13px;color:var(--muted);margin-top:5px">
-          ${escapeHtml(contact)}
-        </p>
-
-      </div>
-
-      <div class="account-actions">
-
-        <button
-          class="full-btn"
-          onclick="openCart()"
-        >
-          🛒 My Cart
-        </button>
-
-        <button
-          class="small-btn"
-          style="width:100%"
-          onclick="openProperties()"
-        >
-          🏠 Browse Properties
-        </button>
-
-        <button
-          class="danger"
-          onclick="logoutAccount()"
-        >
-          Sign Out
-        </button>
-
-      </div>
-
-    `;
-
-    return;
-  }
-
-  container.innerHTML=`
-
-    <div class="auth-tabs">
-
-      <button
-        class="active"
-        data-auth-tab="signup"
-        onclick="accountAuthTab('signup')"
-      >
-        Create Account
-      </button>
-
-      <button
-        data-auth-tab="login"
-        onclick="accountAuthTab('login')"
-      >
-        Sign In
-      </button>
-
-      <button
-        data-auth-tab="phone"
-        onclick="accountAuthTab('phone')"
-      >
-        Phone
-      </button>
-
-    </div>
-
-
-    <!-- SIGN UP -->
-
-    <div
-      id="auth-signup"
-      class="auth-panel active"
-    >
-
-      <div class="form-group">
-        <label>Full name</label>
-
-        <input
-          id="signupName"
-          type="text"
-          placeholder="Your full name"
-        >
-      </div>
-
-      <div class="form-group">
-        <label>Email address</label>
-
-        <input
-          id="signupEmail"
-          type="email"
-          placeholder="you@example.com"
-        >
-      </div>
-
-      <div class="form-group">
-        <label>Password</label>
-
-        <input
-          id="signupPassword"
-          type="password"
-          placeholder="At least 6 characters"
-        >
-      </div>
-
-      <div class="form-group">
-        <label>Confirm password</label>
-
-        <input
-          id="signupConfirm"
-          type="password"
-          placeholder="Enter password again"
-        >
-      </div>
-
-      <button
-        class="full-btn"
-        onclick="signUpAccount()"
-      >
-        Create Account
-      </button>
-
-      <div class="form-note">
-        By creating an account, you can use SefwiGo
-        as a registered customer.
-      </div>
-
-    </div>
-
-
-    <!-- LOGIN -->
-
-    <div
-      id="auth-login"
-      class="auth-panel"
-    >
-
-      <div class="form-group">
-        <label>Email address</label>
-
-        <input
-          id="loginEmail"
-          type="email"
-          placeholder="you@example.com"
-        >
-      </div>
-
-      <div class="form-group">
-        <label>Password</label>
-
-        <input
-          id="loginPassword"
-          type="password"
-          placeholder="Your password"
-        >
-      </div>
-
-      <button
-        class="full-btn"
-        onclick="loginAccount()"
-      >
-        Sign In
-      </button>
-
-      <div style="text-align:center;margin-top:12px">
-
-        <button
-          class="link-btn"
-          onclick="resetPassword()"
-        >
-          Forgot password?
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <!-- PHONE -->
-
-    <div
-      id="auth-phone"
-      class="auth-panel"
-    >
-
-      <div class="form-group">
-
-        <label>Phone number</label>
-
-        <input
-          id="phoneNumber"
-          type="tel"
-          placeholder="+233..."
-        >
-
-      </div>
-
-      <div id="recaptcha-container"></div>
-
-      <button
-        class="full-btn"
-        style="margin-top:12px"
-        onclick="sendOTP()"
-      >
-        Send Verification Code
-      </button>
-
-      <div
-        id="otpArea"
-        class="hidden"
-        style="margin-top:15px"
-      >
-
-        <div class="form-group">
-
-          <label>Verification code</label>
-
-          <input
-            id="otpCode"
-            type="text"
-            inputmode="numeric"
-            placeholder="123456"
-          >
-
-        </div>
-
-        <button
-          class="full-btn"
-          onclick="verifyOTP()"
-        >
-          Verify Code
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <div class="auth-divider">
-      or
-    </div>
-
-    <div class="account-box">
-
-      <strong>Demo account</strong>
-
-      <p style="font-size:12px;color:var(--muted)">
-        You can also test the rest of the SefwiGo
-        interface without creating an account.
-      </p>
-
-      <button
-        class="small-btn"
-        style="margin-top:8px"
-        onclick="demoAccount()"
-      >
-        Continue as Demo
-      </button>
-
-    </div>
-
-  `;
-
-}
-
-async function logoutAccount(){
-
-  const ready=await initFirebase();
-
-  if(
-    ready &&
-    auth &&
-    signOutFn
-  ){
-
-    try{
-
-      await signOutFn(auth);
-
-    }catch(error){
-
-      console.error(error);
-
+};
+
+async function loadVendorOrderCount(){
+  try{
+    const orders=await getVendorOrders();
+
+    const n=orders.filter(
+      o=>(o.status || "new")==="new"
+    ).length;
+
+    const b=$("orderBadge");
+    const s=$("overviewOrderCount");
+
+    if(b){
+      b.textContent=n;
+      b.style.display=n
+        ? "inline-block"
+        : "none";
     }
 
+    if(s){
+      s.textContent=orders.length;
+    }
+
+  }catch(e){
+    const s=$("overviewOrderCount");
+
+    if(s){
+      s.textContent="0";
+    }
   }
-
-  localStorage.removeItem("sefwiUserName");
-
-  showToast("Signed out.");
-
-  renderAccount();
-
 }
 
-window.logoutAccount=logoutAccount;
+/* Property */
 
-function demoAccount(){
+function renderProperties(){
+  const box=$("propertyList");
 
-  localStorage.setItem(
-    "sefwiUserName",
-    "Demo Customer"
-  );
+  box.innerHTML=properties.map(p=>`
+    <article class="property-card">
 
-  showToast(
-    "Demo account activated."
-  );
-
-  renderAccount();
-
-}
-
-window.demoAccount=demoAccount;
-
-
-/* =========================================================
-   PARTNER DASHBOARD
-   Kept available for future partner registration.
-   Main-screen partnership promotion is hidden.
-========================================================= */
-
-function openPartner(){
-
-  document
-    .getElementById("partnerModal")
-    .classList.add("open");
-
-  dashboardTab("overview");
-
-}
-
-window.openPartner=openPartner;
-
-function dashboardTab(tab){
-
-  document
-    .querySelectorAll(".dashboard-tabs button")
-    .forEach(btn=>btn.classList.remove("active"));
-
-  const buttons={
-    overview:"dashOverviewBtn",
-    business:"dashBusinessBtn",
-    property:"dashPropertyBtn",
-    listings:"dashListingsBtn"
-  };
-
-  if(buttons[tab]){
-
-    document
-      .getElementById(buttons[tab])
-      .classList.add("active");
-
-  }
-
-  if(tab==="overview"){
-    renderDashboardOverview();
-  }
-
-  if(tab==="business"){
-    renderBusiness();
-  }
-
-  if(tab==="property"){
-    renderPropertyForm();
-  }
-
-  if(tab==="listings"){
-    renderMyProperties();
-  }
-
-}
-
-window.dashboardTab=dashboardTab;
-
-function renderDashboardOverview(){
-
-  const properties=getProperties();
-
-  document.getElementById(
-    "dashboardContent"
-  ).innerHTML=`
-
-    <div class="account-box">
-
-      <h3>Welcome to your dashboard</h3>
-
-      <p style="color:var(--muted);font-size:13px;margin-top:5px">
-        Manage your business and property listings
-        from one place.
-      </p>
-
-    </div>
-
-    <div class="card-grid">
-
-      <div class="property-dashboard-card">
-        <h4>🏪 Business</h4>
-        <p style="font-size:12px;color:var(--muted)">
-          Add or update your business details.
-        </p>
+      <div class="property-image">
+        ${escapeHtml(p.icon || "🏠")}
       </div>
 
-      <div class="property-dashboard-card">
-        <h4>🏠 Properties</h4>
-        <p style="font-size:12px;color:var(--muted)">
-          ${properties.length} listing(s)
-        </p>
-      </div>
+      <div class="property-body">
 
-    </div>
+        <h3>${escapeHtml(p.title)}</h3>
 
-  `;
-
-}
-
-function renderBusiness(){
-
-  document.getElementById(
-    "dashboardContent"
-  ).innerHTML=`
-
-    <div class="form-group">
-      <label>Business name</label>
-      <input
-        id="partnerBusinessName"
-        placeholder="Business name"
-      >
-    </div>
-
-    <div class="form-group">
-      <label>Category</label>
-
-      <select id="partnerBusinessCategory">
-
-        <option>Food</option>
-        <option>Groceries</option>
-        <option>Restaurant</option>
-        <option>Other</option>
-
-      </select>
-
-    </div>
-
-    <div class="form-group">
-      <label>Phone</label>
-
-      <input
-        id="partnerBusinessPhone"
-        placeholder="Phone number"
-      >
-
-    </div>
-
-    <div class="form-group">
-
-      <label>Description</label>
-
-      <textarea
-        id="partnerBusinessDescription"
-        placeholder="Tell customers about your business"
-      ></textarea>
-
-    </div>
-
-    <button
-      class="full-btn"
-      onclick="saveBusiness()"
-    >
-      Save Business
-    </button>
-
-  `;
-
-}
-
-function saveBusiness(){
-
-  const business={
-
-    name:
-      document.getElementById(
-        "partnerBusinessName"
-      ).value.trim(),
-
-    category:
-      document.getElementById(
-        "partnerBusinessCategory"
-      ).value,
-
-    phone:
-      document.getElementById(
-        "partnerBusinessPhone"
-      ).value.trim(),
-
-    description:
-      document.getElementById(
-        "partnerBusinessDescription"
-      ).value.trim()
-
-  };
-
-  localStorage.setItem(
-    "sefwiPartnerBusiness",
-    JSON.stringify(business)
-  );
-
-  showToast(
-    "Business information saved."
-  );
-
-}
-
-window.saveBusiness=saveBusiness;
-
-
-/* =========================================================
-   PROPERTY REGISTRATION
-========================================================= */
-
-function renderPropertyForm(){
-
-  document.getElementById(
-    "dashboardContent"
-  ).innerHTML=`
-
-    <div class="form-group">
-
-      <label>Purpose</label>
-
-      <select id="propertyPurpose">
-
-        <option value="For Rent">
-          For Rent
-        </option>
-
-        <option value="For Sale">
-          For Sale
-        </option>
-
-      </select>
-
-    </div>
-
-    <div class="form-group">
-
-      <label>Property type</label>
-
-      <select id="propertyType">
-
-        <option>House</option>
-        <option>Apartment</option>
-        <option>Room</option>
-        <option>Shop</option>
-        <option>Land</option>
-        <option>Office</option>
-        <option>Other</option>
-
-      </select>
-
-    </div>
-
-    <div class="form-group">
-
-      <label>Property title</label>
-
-      <input
-        id="propertyTitle"
-        placeholder="e.g. 2 Bedroom House"
-      >
-
-    </div>
-
-    <div class="form-group">
-
-      <label>Price</label>
-
-      <input
-        id="propertyPrice"
-        type="number"
-        placeholder="Price in GH₵"
-      >
-
-    </div>
-
-    <div class="form-group">
-
-      <label>Location</label>
-
-      <input
-        id="propertyLocation"
-        placeholder="Location"
-      >
-
-    </div>
-
-    <div class="form-group">
-
-      <label>Bedrooms</label>
-
-      <input
-        id="propertyBedrooms"
-        type="number"
-        min="0"
-        placeholder="Number of bedrooms"
-      >
-
-    </div>
-
-    <div class="form-group">
-
-      <label>Bathrooms</label>
-
-      <input
-        id="propertyBathrooms"
-        type="number"
-        min="0"
-        placeholder="Number of bathrooms"
-      >
-
-    </div>
-
-    <div class="form-group">
-
-      <label>Owner name</label>
-
-      <input
-        id="propertyOwner"
-        placeholder="Owner name"
-      >
-
-    </div>
-
-    <div class="form-group">
-
-      <label>Owner phone</label>
-
-      <input
-        id="propertyPhone"
-        placeholder="Phone number"
-      >
-
-    </div>
-
-    <div class="form-group">
-
-      <label>Description</label>
-
-      <textarea
-        id="propertyDescription"
-        placeholder="Describe the property"
-      ></textarea>
-
-    </div>
-
-    <div class="form-group">
-
-      <label>Property photo</label>
-
-      <input
-        id="propertyPhoto"
-        type="file"
-        accept="image/*"
-      >
-
-    </div>
-
-    <button
-      class="full-btn"
-      onclick="publishProperty()"
-    >
-      Publish Property
-    </button>
-
-  `;
-
-}
-
-function publishProperty(){
-
-  const title=
-    document.getElementById("propertyTitle")
-      .value.trim();
-
-  const location=
-    document.getElementById("propertyLocation")
-      .value.trim();
-
-  const price=
-    document.getElementById("propertyPrice")
-      .value;
-
-  if(!title || !location || !price){
-
-    showToast(
-      "Please enter title, location and price."
-    );
-
-    return;
-  }
-
-  const property={
-
-    id:"p_"+Date.now(),
-
-    purpose:
-      document.getElementById(
-        "propertyPurpose"
-      ).value,
-
-    type:
-      document.getElementById(
-        "propertyType"
-      ).value,
-
-    title,
-
-    price:Number(price),
-
-    location,
-
-    bedrooms:
-      Number(
-        document.getElementById(
-          "propertyBedrooms"
-        ).value || 0
-      ),
-
-    bathrooms:
-      Number(
-        document.getElementById(
-          "propertyBathrooms"
-        ).value || 0
-      ),
-
-    owner:
-      document.getElementById(
-        "propertyOwner"
-      ).value.trim(),
-
-    phone:
-      document.getElementById(
-        "propertyPhone"
-      ).value.trim(),
-
-    description:
-      document.getElementById(
-        "propertyDescription"
-      ).value.trim(),
-
-    available:true,
-
-    createdAt:
-      new Date().toISOString()
-
-  };
-
-  const properties=getProperties();
-
-  properties.unshift(property);
-
-  saveProperties(properties);
-
-  renderProperties();
-
-  showToast(
-    "Property published successfully."
-  );
-
-  renderMyProperties();
-
-}
-
-window.publishProperty=publishProperty;
-
-
-/* =========================================================
-   MY PROPERTIES
-========================================================= */
-
-function renderMyProperties(){
-
-  const properties=getProperties();
-
-  const container=
-    document.getElementById(
-      "dashboardContent"
-    );
-
-  if(!properties.length){
-
-    container.innerHTML=`
-
-      <div class="empty">
-
-        <strong>No properties yet.</strong>
-
-        <p>
-          Add a property from the Property tab.
-        </p>
-
-      </div>
-
-    `;
-
-    return;
-  }
-
-  container.innerHTML=
-
-    properties.map(property=>`
-
-      <div class="property-dashboard-card">
-
-        <div style="display:flex;justify-content:space-between;gap:10px">
-
-          <div>
-
-            <h4>
-              ${escapeHtml(property.title)}
-            </h4>
-
-            <p style="font-size:12px;color:var(--muted)">
-              ${escapeHtml(property.location)}
-            </p>
-
-            <p class="price">
-              GH₵ ${Number(property.price||0).toLocaleString()}
-            </p>
-
-          </div>
-
-          <span class="badge">
-            ${
-              property.available===false
-              ? "Unavailable"
-              : "Available"
-            }
-          </span>
-
+        <div class="property-meta">
+          <span>📍 ${escapeHtml(p.location)}</span>
+          <span>🏷️ ${escapeHtml(p.type)}</span>
         </div>
 
-        <div style="display:flex;gap:7px;margin-top:10px">
+        <div class="property-price">
+          GH₵ ${Number(p.price).toLocaleString()}
+        </div>
+
+        <div class="property-actions">
 
           <button
             class="small-btn"
-            onclick="toggleProperty('${property.id}')"
-          >
-            ${
-              property.available===false
-              ? "Make available"
-              : "Mark unavailable"
-            }
+            onclick="openProperty('${p.id}')">
+            Details
           </button>
 
           <button
-            class="danger"
-            onclick="deleteProperty('${property.id}')"
-          >
-            Delete
+            class="small-btn primary-small"
+            onclick="contactProperty('${p.id}')">
+            Contact
           </button>
 
         </div>
 
       </div>
 
-    `).join("");
-
+    </article>
+  `).join("");
 }
 
-function toggleProperty(id){
+window.openProperty=function(id){
+  const p=properties.find(x=>x.id===id);
+  if(!p)return;
 
-  const properties=getProperties();
+  $("propertyModalTitle").textContent=p.title;
 
-  const property=
-    properties.find(p=>p.id===id);
+  $("propertyContent").innerHTML=`
+    <div class="property-image" style="height:210px;border-radius:18px;margin-bottom:18px">
+      ${escapeHtml(p.icon || "🏠")}
+    </div>
 
-  if(!property) return;
+    <span class="chip">${escapeHtml(p.type)}</span>
 
-  property.available=
-    property.available===false;
+    <h2 style="margin:10px 0 5px">
+      ${escapeHtml(p.title)}
+    </h2>
 
-  saveProperties(properties);
+    <p style="color:var(--muted)">
+      📍 ${escapeHtml(p.location)}
+    </p>
 
-  renderProperties();
+    <div class="property-price">
+      GH₵ ${Number(p.price).toLocaleString()}
+    </div>
 
-  renderMyProperties();
+    <p style="line-height:1.6;color:var(--muted)">
+      ${escapeHtml(p.description || "")}
+    </p>
 
-}
+    <button
+      class="submit"
+      onclick="contactProperty('${p.id}')">
+      Contact About Property
+    </button>
+  `;
 
-window.toggleProperty=toggleProperty;
+  $("propertyModal").classList.add("open");
+};
 
-function deleteProperty(id){
+window.contactProperty=function(id){
+  const p=properties.find(x=>x.id===id);
+  if(!p)return;
 
-  const properties=
-    getProperties().filter(
-      p=>p.id!==id
-    );
+  const text=
+`Hello SefwiGo, I am interested in this property:
 
-  saveProperties(properties);
+${p.title}
+Location: ${p.location}
+Type: ${p.type}
+Price: GH₵ ${Number(p.price).toLocaleString()}`;
 
-  renderProperties();
+  const phone="233550000003";
 
-  renderMyProperties();
+  window.open(
+    `https://wa.me/${phone}?text=${encodeURIComponent(text)}`,
+    "_blank"
+  );
+};
 
-  showToast(
-    "Property deleted."
+/* Parcel */
+
+window.openParcel=function(){
+  $("parcelModal").classList.add("open");
+};
+
+window.sendParcel=function(){
+  const name=$("parcelName").value.trim();
+  const phone=$("parcelPhone").value.trim();
+  const pickup=$("parcelPickup").value.trim();
+  const delivery=$("parcelDelivery").value.trim();
+  const details=$("parcelDetails").value.trim();
+
+  if(!name || !phone || !pickup || !delivery){
+    showToast("Please complete the required parcel details.");
+    return;
+  }
+
+  const message=
+`Hello SefwiGo, I want to request parcel delivery.
+
+Name: ${name}
+Phone: ${phone}
+Pickup: ${pickup}
+Delivery: ${delivery}
+Parcel: ${details}`;
+
+  const sefwiGoWhatsApp="233550000003";
+
+  window.open(
+    `https://wa.me/${sefwiGoWhatsApp}?text=${encodeURIComponent(message)}`,
+    "_blank"
+  );
+};
+
+/* Dashboard */
+
+window.openDashboard=async function(){
+  $("dashboardModal").classList.add("open");
+  await initFirebase();
+  showDashTab("overview");
+};
+
+window.showDashTab=function(tab){
+  [
+    "overview",
+    "business",
+    "food",
+    "orders",
+    "property"
+  ].forEach(x=>{
+    const button=$("dashTab"+x.charAt(0).toUpperCase()+x.slice(1));
+
+    if(button){
+      button.classList.toggle("active",x===tab);
+    }
+  });
+
+  const box=$("dashboardContent");
+
+  if(tab==="orders"){
+    renderVendorOrders();
+    return;
+  }
+
+  if(tab==="overview"){
+    box.innerHTML=`
+      <div class="dash-stats">
+
+        <div class="stat">
+          <b id="overviewOrderCount">0</b>
+          <span>Customer Orders</span>
+        </div>
+
+        <div class="stat">
+          <b>${businesses.length}</b>
+          <span>Trial Businesses</span>
+        </div>
+
+        <div class="stat">
+          <b>${properties.length}</b>
+          <span>Properties</span>
+        </div>
+
+      </div>
+
+      <div class="dash-card" style="padding:18px">
+        <h3 style="margin-top:0">Welcome to the trial dashboard</h3>
+        <p class="help">
+          This dashboard is for testing the SefwiGo partner experience.
+          Customer food orders can appear in the Orders section when the
+          vendor account has access to the matching Firebase orders.
+        </p>
+
+        <button
+          class="submit"
+          onclick="showDashTab('orders')">
+          View Customer Orders
+        </button>
+      </div>
+    `;
+
+    loadVendorOrderCount();
+    return;
+  }
+
+  if(tab==="business"){
+    const saved=
+      JSON.parse(
+        localStorage.getItem("sefwiBusiness") || "null"
+      ) || {};
+
+    box.innerHTML=`
+      <h3 style="margin-top:0">Business Details</h3>
+
+      <p class="help">
+        Trial business profile. This does not make the business a live vendor yet.
+      </p>
+
+      <div class="form-grid">
+
+        <div class="field full">
+          <label>Business name</label>
+          <input id="dashBusinessName"
+            value="${escapeHtml(saved.name || "")}"
+            placeholder="Business name">
+        </div>
+
+        <div class="field">
+          <label>Category</label>
+          <select id="dashBusinessCategory">
+            <option ${saved.category==="Food"?"selected":""}>Food</option>
+            <option ${saved.category==="Groceries"?"selected":""}>Groceries</option>
+            <option ${saved.category==="Services"?"selected":""}>Services</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Phone</label>
+          <input id="dashBusinessPhone"
+            value="${escapeHtml(saved.phone || "")}"
+            placeholder="Phone number">
+        </div>
+
+        <div class="field full">
+          <label>Description</label>
+          <textarea id="dashBusinessDescription"
+            placeholder="Describe the business">${escapeHtml(saved.description || "")}</textarea>
+        </div>
+
+      </div>
+
+      <button class="submit" style="margin-top:15px"
+        onclick="saveBusinessTrial()">
+        Save Trial Business
+      </button>
+    `;
+
+    return;
+  }
+
+  if(tab==="food"){
+    box.innerHTML=`
+      <h3 style="margin-top:0">Food Menu Trial</h3>
+
+      <p class="help">
+        These are the current trial food items. Food ordering is handled
+        inside SefwiGo.
+      </p>
+
+      <div class="food-grid">
+        ${foods.map(f=>`
+          <div class="food-card">
+
+            <div class="food-top">
+              <div>
+                <h3>${escapeHtml(f.name)}</h3>
+                <p>${escapeHtml(f.description)}</p>
+                <div class="food-price">
+                  GH₵ ${Number(f.price).toLocaleString()}
+                </div>
+              </div>
+
+              <div class="food-icon">
+                ${escapeHtml(f.icon)}
+              </div>
+            </div>
+
+            <div style="margin-top:12px">
+              ${
+                (f.modifiers || []).map(m=>`
+                  <div class="chip" style="margin:3px">
+                    ${escapeHtml(m.name)}
+                  </div>
+                `).join("")
+              }
+            </div>
+
+          </div>
+        `).join("")}
+      </div>
+    `;
+
+    return;
+  }
+
+  if(tab==="property"){
+    box.innerHTML=`
+      <h3 style="margin-top:0">Property Trial Listings</h3>
+
+      <p class="help">
+        Property listings are currently for testing the SefwiGo marketplace.
+      </p>
+
+      <button
+        class="submit"
+        style="margin-bottom:15px"
+        onclick="showPropertyForm()">
+        Add Trial Property
+      </button>
+
+      <div>
+        ${properties.map(p=>`
+          <div class="my-property">
+
+            <div class="thumb">
+              ${escapeHtml(p.icon || "🏠")}
+            </div>
+
+            <div style="flex:1">
+              <h4>${escapeHtml(p.title)}</h4>
+
+              <p>
+                ${escapeHtml(p.location)}
+                •
+                ${escapeHtml(p.type)}
+              </p>
+
+              <strong style="color:var(--green-dark)">
+                GH₵ ${Number(p.price).toLocaleString()}
+              </strong>
+
+              <br>
+
+              <button
+                class="small-btn"
+                style="margin-top:8px"
+                onclick="deleteProperty('${p.id}')">
+                Remove
+              </button>
+            </div>
+
+          </div>
+        `).join("")}
+      </div>
+    `;
+
+    return;
+  }
+};
+
+window.saveBusinessTrial=function(){
+  const business={
+    name:$("dashBusinessName").value.trim(),
+    category:$("dashBusinessCategory").value,
+    phone:$("dashBusinessPhone").value.trim(),
+    description:$("dashBusinessDescription").value.trim()
+  };
+
+  if(!business.name){
+    showToast("Enter a business name.");
+    return;
+  }
+
+  localStorage.setItem(
+    "sefwiBusiness",
+    JSON.stringify(business)
   );
 
-}
+  showToast("Trial business saved.");
+};
 
-window.deleteProperty=deleteProperty;
+window.showPropertyForm=function(){
+  const box=$("dashboardContent");
 
+  box.innerHTML=`
+    <h3 style="margin-top:0">Add Trial Property</h3>
 
-/* =========================================================
-   HELPERS
-========================================================= */
+    <div class="form-grid">
 
-function escapeHtml(value){
+      <div class="field full">
+        <label>Property title</label>
+        <input id="newPropertyTitle" placeholder="Property title">
+      </div>
 
-  return String(value??"")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+      <div class="field">
+        <label>Location</label>
+        <input id="newPropertyLocation" placeholder="Location">
+      </div>
 
-}
+      <div class="field">
+        <label>Type</label>
+        <select id="newPropertyType">
+          <option>For Sale</option>
+          <option>For Rent</option>
+        </select>
+      </div>
 
+      <div class="field">
+        <label>Price</label>
+        <input id="newPropertyPrice" type="number" placeholder="Price">
+      </div>
 
-/* =========================================================
-   START APP
-========================================================= */
+      <div class="field">
+        <label>Icon</label>
+        <input id="newPropertyIcon" value="🏠">
+      </div>
 
-renderHome();
+      <div class="field full">
+        <label>Description</label>
+        <textarea id="newPropertyDescription"></textarea>
+      </div>
 
-initFirebase();
+    </div>
 
+    <button
+      class="submit"
+      style="margin-top:15px"
+      onclick="addTrialProperty()">
+      Save Property
+    </button>
+
+    <button
+      class="small-btn"
+      style="width:100%;margin-top:8px"
+      onclick="showDashTab('property')">
+      Cancel
+    </button>
+  `;
+};
+
+window.addTrialProperty=function(){
+  const property={
+    id:`p_${Date.now()}`,
+    title:$("newPropertyTitle").value.trim(),
+    location:$("newPropertyLocation").value.trim(),
+    type:$("newPropertyType").value,
+    price:Number($("newPropertyPrice").value || 0),
+    icon:$("newPropertyIcon").value || "🏠",
+    description:$("newPropertyDescription").value.trim()
+  };
+
+  if(
+    !property.title ||
+    !property.location ||
+    !property.price
+  ){
+    showToast("Please complete the property details.");
+    return;
+  }
+
+  properties.push(property);
+
+  localStorage.setItem(
+    "sefwiProperties",
+    JSON.stringify(properties)
+  );
+
+  renderProperties();
+  showToast("Trial property added.");
+  showDashTab("property");
+};
+
+window.deleteProperty=function(id){
+  properties=properties.filter(p=>p.id!==id);
+
+  localStorage.setItem(
+    "sefwiProperties",
+    JSON.stringify(properties)
+  );
+
+  renderProperties();
+  showToast("Trial property removed.");
+  showDashTab("property");
+};
+
+/* Initial render */
+
+renderBusinesses();
+renderFoodList();
+renderProperties();
+updateCartCount();
+updateAccountButton();
 </script>
 
 </body>
