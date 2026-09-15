@@ -42,8 +42,8 @@ a{text-decoration:none;color:inherit}
 .head h2{margin:0;font-size:25px;letter-spacing:-.8px}
 .head p{margin:5px 0 0;color:var(--muted);font-size:14px}
 .link{border:0;background:none;color:var(--g);font-weight:900}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .service,.business,.property,.deal,.dash{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 5px 20px rgba(20,45,32,.04)}
 .service{padding:20px;min-height:150px;text-align:left;transition:.2s}
 .service:hover,.business:hover,.property:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
@@ -73,12 +73,6 @@ a{text-decoration:none;color:inherit}
 .prop-meta{display:flex;flex-wrap:wrap;gap:7px;color:var(--muted);font-size:12px}
 .prop-price{font-size:21px;font-weight:950;color:var(--gd);margin-top:7px}
 .prop-actions{display:flex;gap:8px;margin-top:13px}
-.small{border:0;border-radius:12px;padding:10px 12px;background:#eef3f0;color:var(--gd);font-weight:850;flex:1}
-.small.primary{background:var(--g);color:#fff}
-
-.partner{padding:27px;border-radius:27px;background:#10251b;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.partner h2{margin:0 0 7px}
-.partner p{margin:0;color:rgba(255,255,255,.7)}
 
 .bottom{position:fixed;bottom:0;left:0;right:0;height:76px;background:rgba(255,255,255,.95);backdrop-filter:blur(18px);border-top:1px solid var(--line);z-index:80}
 .bottom-in{width:min(620px,100%);height:100%;margin:auto;display:grid;grid-template-columns:repeat(4,1fr)}
@@ -101,19 +95,17 @@ a{text-decoration:none;color:inherit}
 .modal-head{position:sticky;top:0;z-index:3;padding:18px 21px;background:#fff;border-bottom:1px solid var(--line)}
 .close{border:0;background:#f0f4f1;width:40px;height:40px;border-radius:12px;font-size:21px}
 .body{padding:22px}
+
 .dash-head{padding:24px;color:#fff;background:linear-gradient(135deg,#0a6743,#15915f)}
 .dash-head h2{margin:0;font-size:27px}
 .dash-head p{margin:7px 0 0;color:rgba(255,255,255,.8)}
-
 .tabs{display:flex;gap:8px;overflow:auto;margin-bottom:18px}
 .tab{white-space:nowrap;border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 14px;font-weight:850}
 .tab.active{background:var(--g);border-color:var(--g);color:#fff}
-
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:15px 0}
 .stat{padding:17px;border:1px solid var(--line);background:#f8fbf9;border-radius:17px}
 .stat b{display:block;font-size:25px}
 .stat span{color:var(--muted);font-size:12px}
-
 .dash{padding:18px}
 .dashgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .tile{border:1px solid var(--line);border-radius:18px;padding:17px;background:#fff;text-align:left;font-weight:850}
@@ -130,12 +122,6 @@ textarea{min-height:105px;resize:vertical}
 .help{color:var(--muted);font-size:12px;line-height:1.55}
 .empty{padding:34px 16px;text-align:center;border:1px dashed #cbd8d0;border-radius:20px;color:var(--muted);background:#fff}
 
-.role{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0 14px}
-.rolecard{border:2px solid var(--line);background:#fff;border-radius:17px;padding:15px;text-align:left}
-.rolecard.selected{border-color:var(--g);background:#f0faf5;box-shadow:0 7px 22px rgba(15,122,79,.1)}
-.rolecard strong{display:block}
-.rolecard span{display:block;font-size:12px;color:var(--muted);margin-top:5px}
-
 .product{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fff}
 .product img,.product-photo{width:100%;height:155px;object-fit:cover;background:var(--gs)}
 .product-body{padding:14px}
@@ -145,30 +131,27 @@ textarea{min-height:105px;resize:vertical}
 .choice.selected{border-color:var(--g);background:#effaf4;box-shadow:0 0 0 2px rgba(15,122,79,.08)}
 .choice strong{display:block;font-size:13px}
 .choice small{color:var(--muted);font-size:11px}
+.qty{display:flex;align-items:center;gap:10px;margin:12px 0}
+.qty button{border:0;background:#eef3f0;color:var(--gd);width:34px;height:34px;border-radius:10px;font-weight:950}
 
-.qty{display:flex;align-items:center;gap:10px;margin:10px 0}
-.qty button{width:35px;height:35px;border:1px solid var(--line);background:#fff;border-radius:10px;font-size:18px}
-.qty span{min-width:28px;text-align:center;font-weight:900}
+.list{display:grid;grid-template-columns:76px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.thumb{width:76px;height:68px;border-radius:13px;background:var(--gs);display:grid;place-items:center;font-size:28px}
+.list h4{margin:0 0 4px}
+.list p{margin:3px 0;color:var(--muted);font-size:13px}
+.list-actions{display:flex;gap:7px}
+.small{border:0;border-radius:12px;padding:10px 12px;background:#eef3f0;color:var(--gd);font-weight:850;flex:1}
+.small.primary{background:var(--g);color:#fff}
+.small.danger{background:#fff0f0;color:var(--danger)}
 
-.list{display:flex;gap:12px;padding:13px;border:1px solid var(--line);border-radius:17px;margin-bottom:10px}
-.thumb{width:76px;height:68px;border-radius:13px;background:var(--gs);display:grid;place-items:center;font-size:31px;flex:none}
-.list h4{margin:0 0 5px}
-.list p{margin:0;color:var(--muted);font-size:12px}
-.list-actions{margin-left:auto;display:flex;flex-direction:column;gap:6px;justify-content:center}
-.danger{color:#a62e2e;background:#fceeee}
-
-.status{display:inline-block;padding:5px 8px;border-radius:999px;background:var(--gs);color:var(--gd);font-size:11px;font-weight:900;margin-top:6px}
-.status.off{background:#fbe9e9;color:#a12e2e}
-
-.order{border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:12px}
-.order-top{display:flex;justify-content:space-between;gap:10px;align-items:start}
-.order-items{margin:11px 0;color:var(--muted);font-size:13px}
-.order-row{display:flex;justify-content:space-between;gap:10px;padding:5px 0}
-
-.checkout{background:var(--gs);border-radius:17px;padding:15px;margin-bottom:15px}
-
-.toast{position:fixed;z-index:200;left:50%;bottom:94px;transform:translate(-50%,20px);background:#10251b;color:#fff;padding:12px 16px;border-radius:14px;opacity:0;pointer-events:none;transition:.25s;font-size:13px;box-shadow:0 14px 40px rgba(0,0,0,.25)}
-.toast.show{opacity:1;transform:translate(-50%,0)}
+.checkout{padding:16px;border:1px solid var(--line);border-radius:18px;background:#fbfcfb;margin-top:13px}
+.order-row{display:flex;justify-content:space-between;gap:12px;padding:8px 0}
+.order{border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:12px;background:#fff}
+.order-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.order-items{margin:10px 0}
+.status{display:inline-flex;padding:7px 10px;border-radius:999px;background:var(--gs);color:var(--gd);font-size:11px;font-weight:900}
+.status.off{background:#fff0f0;color:var(--danger)}
+.toast{position:fixed;left:50%;bottom:94px;transform:translateX(-50%) translateY(20px);background:#10251b;color:#fff;padding:12px 16px;border-radius:14px;opacity:0;pointer-events:none;transition:.25s;z-index:300;font-weight:800;font-size:13px}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 @media(max-width:820px){
 .hero-in{grid-template-columns:1fr}
@@ -184,12 +167,11 @@ textarea{min-height:105px;resize:vertical}
 .hero-in{padding:31px 20px}
 .hero h1{font-size:40px}
 .grid{gap:10px}
-.form,.role,.dashgrid{grid-template-columns:1fr}
+.form,.dashgrid{grid-template-columns:1fr}
 .field.full{grid-column:auto}
 .stats{gap:7px}
 .stat{padding:13px 9px}
 .stat b{font-size:20px}
-.partner{flex-direction:column;align-items:flex-start}
 .head{align-items:flex-start}
 .prop-img{height:145px}
 }
@@ -200,20 +182,10 @@ textarea{min-height:105px;resize:vertical}
 
 <header class="top">
 <div class="container nav">
-
 <button class="icon" onclick="openMenu()" aria-label="Menu">☰</button>
-
-<a class="brand" href="#home">
-<span class="logo">S</span>
-<span>SefwiGo</span>
-</a>
-
-<button class="icon" onclick="openCart()" aria-label="Cart">
-🛒<sup id="cartCount">0</sup>
-</button>
-
+<a class="brand" href="#home"><span class="logo">S</span><span>SefwiGo</span></a>
+<button class="icon" onclick="openCart()" aria-label="Cart">🛒<sup id="cartCount">0</sup></button>
 <button class="acct" onclick="openAccount()">Account</button>
-
 </div>
 </header>
 
@@ -223,34 +195,18 @@ textarea{min-height:105px;resize:vertical}
 <section class="hero">
 <div class="hero-in">
 <div>
-
 <div class="eyebrow">Sefwi Wiawso • Local marketplace</div>
-
 <h1>Your town. Your marketplace. One SefwiGo.</h1>
-
-<p>
-Order food, discover local businesses and find rent or property listings — all in one simple app.
-</p>
-
+<p>Order food, discover local businesses and find rent or property listings — all in one simple app.</p>
 <div class="actions">
-<button class="btn white" onclick="filterService('Food')">
-🍔 Order Food
-</button>
-
-<button class="btn ghost" onclick="showToast('Partnership applications are handled through the SefwiGo management website.')">
-🏪 Become a Partner
-</button>
+<button class="btn white" onclick="filterService('Food')">🍔 Order Food</button>
 </div>
-
 </div>
-
 <div class="hero-art">🛵</div>
-
 </div>
 </section>
 
 <section class="section" id="services">
-
 <div class="head">
 <div>
 <h2>What do you need?</h2>
@@ -259,7 +215,6 @@ Order food, discover local businesses and find rent or property listings — all
 </div>
 
 <div class="grid">
-
 <button class="service" onclick="filterService('Food')">
 <div class="ico">🍔</div>
 <strong>Food</strong>
@@ -283,12 +238,10 @@ Order food, discover local businesses and find rent or property listings — all
 <strong>Rent & Property</strong>
 <span>Homes, rooms, land & more</span>
 </button>
-
 </div>
 </section>
 
 <section class="section">
-
 <div class="head">
 <div>
 <h2>🔥 Featured on SefwiGo</h2>
@@ -297,46 +250,27 @@ Order food, discover local businesses and find rent or property listings — all
 </div>
 
 <div class="deals">
-
 <div class="deal">
 <div class="deal-main">
-
 <div class="eyebrow">Today’s spotlight</div>
-
 <h3>Local food, delivered.</h3>
-
-<p>
-Choose a meal, customize your options and place your order directly inside SefwiGo.
-</p>
-
-<button class="btn gold" onclick="filterService('Food')">
-Explore Food
-</button>
-
+<p>Choose a meal, customize your options and place your order directly inside SefwiGo.</p>
+<button class="btn gold" onclick="filterService('Food')">Explore Food</button>
 </div>
 </div>
 
 <div class="deal deal-side">
-
 <div>
 <span class="chip">⚡ Local delivery</span>
-
 <h3>Built for Sefwi Wiawso</h3>
-
-<p>
-Simple ordering and local services in one place.
-</p>
+<p>Simple ordering and local services in one place.</p>
 </div>
-
 <div class="price">SefwiGo</div>
-
 </div>
-
 </div>
 </section>
 
 <section class="section" id="businesses">
-
 <div class="head">
 <div>
 <h2>⭐ Popular businesses</h2>
@@ -345,123 +279,61 @@ Simple ordering and local services in one place.
 </div>
 
 <div class="grid" id="businessGrid">
-
 <div class="empty">
 <div style="font-size:45px">🏪</div>
 <strong>Loading local businesses…</strong>
 <p>Businesses added by SefwiGo partners will appear here.</p>
 </div>
-
 </div>
 </section>
 
 <section class="section" id="property">
-
 <div class="head">
-
 <div>
 <h2>🏠 Rent & Property</h2>
 <p>Properties published by SefwiGo partners.</p>
 </div>
-
-<button class="link" onclick="showToast('Property listing is handled through the SefwiGo management website.')">
-List yours
-</button>
-
 </div>
 
-<div class="grid" id="propertyGrid"></div>
-
-</section>
-
-<section class="section">
-
-<div class="partner">
-
-<div>
-<h2>Own a business or property?</h2>
-<p>Join SefwiGo and reach customers around Sefwi Wiawso.</p>
+<div class="grid" id="propertyGrid">
+<div class="empty">
+<div style="font-size:45px">🏠</div>
+<strong>Loading properties…</strong>
+<p>Please wait.</p>
 </div>
-
-<button class="btn gold" onclick="showToast('Partnership applications are handled through the SefwiGo management website.')">
-Become a SefwiGo Partner
-</button>
-
 </div>
-
 </section>
 
 </div>
 </main>
 
 <nav class="bottom">
-
 <div class="bottom-in">
-
-<button class="navitem active" onclick="goHome()">
-<b>⌂</b>Home
-</button>
-
-<button class="navitem" onclick="scrollToId('businesses')">
-<b>🔥</b>Explore
-</button>
-
-<button class="navitem" onclick="openMenu()">
-<b>☰</b>Menu
-</button>
-
-<button class="navitem" onclick="openAccount()">
-<b>◉</b>Account
-</button>
-
+<button class="navitem active" onclick="goHome()"><b>⌂</b>Home</button>
+<button class="navitem" onclick="scrollToId('businesses')"><b>🔥</b>Explore</button>
+<button class="navitem" onclick="openMenu()"><b>☰</b>Menu</button>
+<button class="navitem" onclick="openAccount()"><b>◉</b>Account</button>
 </div>
 </nav>
 
 <div class="overlay" id="menuOverlay" onclick="closeMenu(event)">
-
 <aside class="drawer" onclick="event.stopPropagation()">
 
 <div class="drawer-head">
-
 <strong style="font-size:22px">SefwiGo</strong>
-
 <button class="close" onclick="closeMenu()">×</button>
-
 </div>
 
-<button class="menu" onclick="goHome()">
-🏠 Home
-</button>
-
-<button class="menu" onclick="scrollToId('services');closeMenu()">
-🛍️ Services
-</button>
-
-<button class="menu" onclick="scrollToId('businesses');closeMenu()">
-⭐ Businesses
-</button>
-
-<button class="menu" onclick="scrollToId('property');closeMenu()">
-🏠 Rent & Property
-</button>
+<button class="menu" onclick="goHome()">🏠 Home</button>
+<button class="menu" onclick="scrollToId('services');closeMenu()">🛍️ Services</button>
+<button class="menu" onclick="scrollToId('businesses');closeMenu()">⭐ Businesses</button>
+<button class="menu" onclick="scrollToId('property');closeMenu()">🏠 Rent & Property</button>
 
 <div class="divider"></div>
 
-<button class="menu" onclick="showToast('Partnership applications are handled through the SefwiGo management website.');closeMenu()">
-🏪 Become a SefwiGo Partner
-</button>
-
-<button class="menu" onclick="openAccount();closeMenu()">
-👤 My Account
-</button>
-
-<button class="menu" onclick="openCustomerDashboard();closeMenu()">
-📊 Customer Dashboard
-</button>
-
-<button class="menu" onclick="openCart();closeMenu()">
-🛒 My Cart
-</button>
+<button class="menu" onclick="openAccount();closeMenu()">👤 My Account</button>
+<button class="menu" onclick="openCustomerDashboard();closeMenu()">📊 Customer Dashboard</button>
+<button class="menu" onclick="openCart();closeMenu()">🛒 My Cart</button>
 
 <div class="divider"></div>
 
@@ -473,58 +345,36 @@ SefwiGo connects customers with local businesses, delivery services and property
 </div>
 
 <div class="modal" id="businessModal">
-
 <div class="modal-card">
-
 <div class="modal-head">
-
 <strong id="businessTitle">Business</strong>
-
 <button class="close" onclick="closeModal('businessModal')">×</button>
-
 </div>
-
 <div class="body" id="businessBody"></div>
-
 </div>
 </div>
 
 <div class="modal" id="accountModal">
-
 <div class="modal-card">
-
 <div class="modal-head">
-
 <strong>My SefwiGo Account</strong>
-
 <button class="close" onclick="closeModal('accountModal')">×</button>
-
 </div>
-
 <div class="body" id="accountBody"></div>
-
 </div>
 </div>
 
 <div class="modal" id="customerDashboardModal">
-
 <div class="modal-card">
 
 <div class="dash-head">
-
 <div style="display:flex;justify-content:space-between;gap:12px">
-
 <div>
 <h2>Customer Dashboard</h2>
 <p>Track your account, cart and orders.</p>
 </div>
-
-<button class="close" onclick="closeModal('customerDashboardModal')">
-×
-</button>
-
+<button class="close" onclick="closeModal('customerDashboardModal')">×</button>
 </div>
-
 </div>
 
 <div class="body" id="customerDashboardContent"></div>
@@ -533,59 +383,32 @@ SefwiGo connects customers with local businesses, delivery services and property
 </div>
 
 <div class="modal" id="cartModal">
-
 <div class="modal-card">
-
 <div class="modal-head">
-
 <strong>🛒 Your Cart</strong>
-
-<button class="close" onclick="closeModal('cartModal')">
-×
-</button>
-
+<button class="close" onclick="closeModal('cartModal')">×</button>
 </div>
-
 <div class="body" id="cartBody"></div>
-
 </div>
 </div>
 
 <div class="modal" id="checkoutModal">
-
 <div class="modal-card">
-
 <div class="modal-head">
-
 <strong>📦 Checkout</strong>
-
-<button class="close" onclick="closeModal('checkoutModal')">
-×
-</button>
-
+<button class="close" onclick="closeModal('checkoutModal')">×</button>
 </div>
-
 <div class="body" id="checkoutContent"></div>
-
 </div>
 </div>
 
 <div class="modal" id="ordersModal">
-
 <div class="modal-card">
-
 <div class="modal-head">
-
 <strong>📋 My Orders</strong>
-
-<button class="close" onclick="closeModal('ordersModal')">
-×
-</button>
-
+<button class="close" onclick="closeModal('ordersModal')">×</button>
 </div>
-
 <div class="body" id="ordersContent"></div>
-
 </div>
 </div>
 
@@ -612,36 +435,23 @@ appId:"1:210398787110:web:f7f76a538a2712a2bb58e7"
 const $=id=>document.getElementById(id);
 
 let cart=JSON.parse(localStorage.getItem("sefwiCart")||"[]");
-
 let sefwiBusinesses=[];
-let sefwiProperties=[];
-
-let firebaseInitPromise=null;
 
 async function initFirebase(){
 
 if(firebaseReady)return true;
 
-if(firebaseInitPromise)return firebaseInitPromise;
-
-firebaseInitPromise=(async()=>{
-
 try{
 
 const a=await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js");
-
 const au=await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js");
-
 const fs=await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
-
 const st=await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js");
 
 const app=a.initializeApp(firebaseConfig);
 
 auth=au.getAuth(app);
-
 db=fs.getFirestore(app);
-
 storage=st.getStorage(app);
 
 ff={
@@ -673,11 +483,7 @@ signOut:au.signOut
 };
 
 au.onAuthStateChanged(auth,()=>{
-
-if($("accountModal")?.classList.contains("open")){
-renderAccount();
-}
-
+if($("accountModal")?.classList.contains("open"))renderAccount();
 });
 
 firebaseReady=true;
@@ -687,104 +493,70 @@ return true;
 }catch(e){
 
 console.error(e);
-
-firebaseInitPromise=null;
-
 showToast("Firebase could not load. Check your Firebase setup.");
-
 return false;
 
 }
 
-})();
-
-return firebaseInitPromise;
-
 }
 
 function esc(s){
-
 return String(s??"").replace(/[&<>"']/g,c=>({
-
 "&":"&amp;",
 "<":"&lt;",
 ">":"&gt;",
 '"':"&quot;",
 "'":"&#039;"
-
 }[c]));
-
 }
 
 function toast(m){
 
 const t=$("toast");
 
-t.textContent=m;
+if(!t)return;
 
+t.textContent=m;
 t.classList.add("show");
 
-setTimeout(()=>t.classList.remove("show"),2700);
+setTimeout(()=>{
+t.classList.remove("show");
+},2700);
 
 }
 
 window.showToast=toast;
 
 function closeModal(id){
-
 $(id)?.classList.remove("open");
-
 }
 
 window.closeModal=closeModal;
 
 function openMenu(){
-
 $("menuOverlay").classList.add("open");
-
 }
 
 function closeMenu(e){
-
 if(!e||e.target===$("menuOverlay")){
-
 $("menuOverlay").classList.remove("open");
-
 }
-
 }
 
 function goHome(){
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
+window.scrollTo({top:0,behavior:"smooth"});
 closeMenu();
-
 }
 
 function scrollToId(id){
-
-$(id)?.scrollIntoView({
-behavior:"smooth"
-});
-
+$(id)?.scrollIntoView({behavior:"smooth"});
 closeMenu();
-
 }
 
 window.openMenu=openMenu;
 window.closeMenu=closeMenu;
 window.goHome=goHome;
 window.scrollToId=scrollToId;
-
-function localType(){
-
-return localStorage.getItem("sefwiAccountType")||"customer";
-
-}
 
 async function profile(){
 
@@ -835,7 +607,6 @@ console.warn(e);
 function openAccount(){
 
 $("accountModal").classList.add("open");
-
 renderAccount();
 
 }
@@ -891,7 +662,8 @@ Sign Out
 
 </div>
 
-</div>`;
+</div>
+`;
 
 return;
 
@@ -899,13 +671,10 @@ return;
 
 $("accountBody").innerHTML=`
 
-<h2 style="margin-top:0">
-Welcome to SefwiGo
-</h2>
+<h2 style="margin-top:0">Welcome to SefwiGo</h2>
 
 <p class="help">
-Create your free customer account to order food,
-browse local businesses and track your orders.
+Create your free customer account to order food, browse local businesses and track your orders.
 </p>
 
 <div class="tabs">
@@ -933,63 +702,43 @@ accountTab("signup");
 
 window.accountTab=function(t){
 
-$("signupTab")?.classList.toggle(
-"active",
-t==="signup"
-);
+$("signupTab")?.classList.toggle("active",t==="signup");
+$("loginTab")?.classList.toggle("active",t==="login");
 
-$("loginTab")?.classList.toggle(
-"active",
-t==="login"
-);
+$("authArea").innerHTML=t==="signup"?
 
-$("authArea").innerHTML=t==="signup"
-
-?`
-
+`
 <div class="form">
 
 <div class="field full">
-
 <label>Full name *</label>
-
 <input id="signupName"
 autocomplete="name"
 placeholder="Your full name">
-
 </div>
 
 <div class="field full">
-
 <label>Email *</label>
-
 <input id="signupEmail"
 type="email"
 autocomplete="email"
 placeholder="you@example.com">
-
 </div>
 
 <div class="field">
-
 <label>Password *</label>
-
 <input id="signupPass"
 type="password"
 autocomplete="new-password"
 placeholder="At least 6 characters">
-
 </div>
 
 <div class="field">
-
 <label>Confirm password *</label>
-
 <input id="signupPass2"
 type="password"
 autocomplete="new-password"
 placeholder="Repeat password">
-
 </div>
 
 </div>
@@ -1002,35 +751,28 @@ Create SefwiGo Account
 
 <p class="help">
 Your account is a customer account.
-Partnership management is handled separately.
 </p>
-
 `
 
-:`
+:
 
+`
 <div class="form">
 
 <div class="field full">
-
 <label>Email *</label>
-
 <input id="loginEmail"
 type="email"
 autocomplete="email"
 placeholder="you@example.com">
-
 </div>
 
 <div class="field full">
-
 <label>Password *</label>
-
 <input id="loginPass"
 type="password"
 autocomplete="current-password"
 placeholder="Your password">
-
 </div>
 
 </div>
@@ -1046,7 +788,6 @@ style="width:100%;padding:12px"
 onclick="resetPass()">
 Forgot password?
 </button>
-
 `;
 
 };
@@ -1054,32 +795,18 @@ Forgot password?
 window.signup=async function(){
 
 const n=$("signupName").value.trim();
-
 const e=$("signupEmail").value.trim();
-
 const p=$("signupPass").value;
-
 const p2=$("signupPass2").value;
 
-const t="customer";
-
-if(!n||!e||!p||!p2){
-
+if(!n||!e||!p||!p2)
 return toast("Please fill in all required fields.");
 
-}
-
-if(p.length<6){
-
+if(p.length<6)
 return toast("Password must be at least 6 characters.");
 
-}
-
-if(p!==p2){
-
+if(p!==p2)
 return toast("Passwords do not match.");
-
-}
 
 if(!(await initFirebase()))return;
 
@@ -1087,24 +814,20 @@ try{
 
 const cr=await authFns.create(auth,e,p);
 
-await authFns.update(cr.user,{
-displayName:n
-});
+await authFns.update(cr.user,{displayName:n});
 
 localStorage.setItem("sefwiUserName",n);
+localStorage.setItem("sefwiAccountType","customer");
 
-localStorage.setItem("sefwiAccountType",t);
-
-await saveProfile(t,n,e);
+await saveProfile("customer",n,e);
 
 closeModal("accountModal");
 
 toast("Customer account created.");
 
-setTimeout(
-()=>openCustomerDashboard(),
-300
-);
+setTimeout(()=>{
+openCustomerDashboard();
+},300);
 
 }catch(x){
 
@@ -1113,11 +836,9 @@ console.error(x);
 toast(
 x.code==="auth/email-already-in-use"
 ?"That email is already registered."
-:
-x.code==="auth/invalid-email"
+:x.code==="auth/invalid-email"
 ?"Enter a valid email address."
-:
-"Could not create account. Enable Email/Password in Firebase Authentication."
+:"Could not create account. Enable Email/Password in Firebase Authentication."
 );
 
 }
@@ -1127,14 +848,10 @@ x.code==="auth/invalid-email"
 window.login=async function(){
 
 const e=$("loginEmail").value.trim();
-
 const p=$("loginPass").value;
 
-if(!e||!p){
-
+if(!e||!p)
 return toast("Enter your email and password.");
-
-}
 
 if(!(await initFirebase()))return;
 
@@ -1142,23 +859,19 @@ try{
 
 await authFns.login(auth,e,p);
 
-await profile();
-
 localStorage.setItem("sefwiAccountType","customer");
 
 closeModal("accountModal");
 
 toast("Signed in successfully.");
 
-setTimeout(
-()=>openCustomerDashboard(),
-300
-);
+setTimeout(()=>{
+openCustomerDashboard();
+},300);
 
 }catch(x){
 
 console.error(x);
-
 toast("Email or password is incorrect.");
 
 }
@@ -1169,11 +882,8 @@ window.resetPass=async function(){
 
 const e=$("loginEmail")?.value.trim();
 
-if(!e){
-
+if(!e)
 return toast("Enter your email first.");
-
-}
 
 if(!(await initFirebase()))return;
 
@@ -1195,16 +905,12 @@ window.logoutAccount=async function(){
 
 try{
 
-if(auth&&authFns?.signOut){
-
+if(auth&&authFns?.signOut)
 await authFns.signOut(auth);
-
-}
 
 }catch(e){}
 
 localStorage.removeItem("sefwiAccountType");
-
 localStorage.removeItem("sefwiUserName");
 
 closeModal("accountModal");
@@ -1218,14 +924,12 @@ window.openCustomerDashboard=async function(){
 if(!(await initFirebase())||!auth.currentUser){
 
 toast("Please sign in to your Customer account first.");
-
 openAccount();
-
 return;
 
 }
 
-await profile();
+const p=await profile();
 
 localStorage.setItem("sefwiAccountType","customer");
 
@@ -1238,7 +942,6 @@ renderCustomerDashboard();
 async function renderCustomerDashboard(){
 
 const p=await profile();
-
 const u=auth.currentUser;
 
 let count=0;
@@ -1294,7 +997,7 @@ onclick="openCart();closeModal('customerDashboardModal')">
 <button class="tile"
 onclick="filterService('Food');closeModal('customerDashboardModal')">
 🍔 Order Food
-<span>Choose products and available options.</span>
+<span>Choose a local food business.</span>
 </button>
 
 <button class="tile"
@@ -1312,19 +1015,12 @@ Your profile
 </h3>
 
 <p class="help">
-
-<b>
-${esc(u.displayName||p?.name||"Customer")}
-</b>
-
+<b>${esc(u.displayName||p?.name||"Customer")}</b>
 <br>
-
 ${esc(u.email||"")}
-
 </p>
 
 </div>
-
 `;
 
 }
@@ -1335,10 +1031,8 @@ scrollToId("businesses");
 
 toast(
 cat==="Food"
-?
-"Choose a food business to open its menu."
-:
-cat+" service selected."
+?"Choose a food business to open its menu."
+:cat+" service selected."
 );
 
 }
@@ -1349,31 +1043,20 @@ function businessEmoji(category){
 
 const c=String(category||"").toLowerCase();
 
-if(
-c.includes("food")||
-c.includes("restaurant")||
-c.includes("chop")
-)return "🍲";
+if(c.includes("food")||c.includes("restaurant")||c.includes("chop"))
+return "🍲";
 
-if(
-c.includes("grocery")||
-c.includes("shop")||
-c.includes("market")||
-c.includes("retail")
-)return "🛍️";
+if(c.includes("grocery")||c.includes("shop")||c.includes("market")||c.includes("retail"))
+return "🛍️";
 
 if(c.includes("drink"))
 return "🥤";
 
-if(
-c.includes("property")||
-c.includes("real estate")
-)return "🏠";
+if(c.includes("property")||c.includes("real estate"))
+return "🏠";
 
-if(
-c.includes("beauty")||
-c.includes("salon")
-)return "💇🏾";
+if(c.includes("beauty")||c.includes("salon"))
+return "💇🏾";
 
 if(c.includes("service"))
 return "🛠️";
@@ -1403,7 +1086,6 @@ New businesses will appear here after they are added by SefwiGo partners.
 </p>
 
 </div>
-
 `;
 
 return;
@@ -1412,34 +1094,18 @@ return;
 
 grid.innerHTML=sefwiBusinesses.map(b=>{
 
-const name=String(
-b.name||"SefwiGo Business"
-);
-
-const category=String(
-b.category||"Local business"
-);
-
-const id=String(
-b.id||""
-);
-
+const name=String(b.name||"SefwiGo Business");
+const category=String(b.category||"Local business");
+const id=String(b.id||"");
 const logo=b.logoUrl||"";
 
 const avatar=logo
 
-?
-
-`<img
-src="${esc(logo)}"
+?`<img src="${esc(logo)}"
 alt="${esc(name)}"
 style="width:52px;height:52px;border-radius:16px;object-fit:cover">`
 
-:
-
-`<div class="avatar">
-${businessEmoji(category)}
-</div>`;
+:`<div class="avatar">${businessEmoji(category)}</div>`;
 
 return `
 
@@ -1452,25 +1118,16 @@ ${avatar}
 
 <div>
 
-<h3>
-${esc(name)}
-</h3>
-
-<p>
-${esc(category)}
-${b.location?" • "+esc(b.location):""}
-</p>
+<h3>${esc(name)}</h3>
+<p>${esc(category)}</p>
 
 </div>
 
 </div>
 
-<span class="chip">
-Local
-</span>
+<span class="chip">Local</span>
 
 </button>
-
 `;
 
 }).join("");
@@ -1481,7 +1138,7 @@ async function loadBusinesses(){
 
 const grid=$("businessGrid");
 
-if(grid){
+if(grid)
 
 grid.innerHTML=`
 
@@ -1494,18 +1151,12 @@ grid.innerHTML=`
 <p>Please wait.</p>
 
 </div>
-
 `;
-
-}
 
 try{
 
-if(!(await initFirebase())){
-
+if(!(await initFirebase()))
 throw new Error("Firebase unavailable");
-
-}
 
 const snap=await ff.getDocs(
 ff.collection(db,"businesses")
@@ -1519,28 +1170,22 @@ id:d.id,
 }))
 
 .filter(b=>
-b.active!==false&&
-b.approved!==false&&
-String(b.name||"").trim()
+b.active!==false &&
+b.approved!==false &&
+b.name
 );
 
-sefwiBusinesses.sort(
-(a,b)=>
-String(a.name).localeCompare(
-String(b.name)
-)
+sefwiBusinesses.sort((a,b)=>
+String(a.name).localeCompare(String(b.name))
 );
 
 renderBusinessList();
 
 }catch(e){
 
-console.error(
-"Could not load businesses:",
-e
-);
+console.error("Could not load businesses:",e);
 
-if(grid){
+if(grid)
 
 grid.innerHTML=`
 
@@ -1548,25 +1193,14 @@ grid.innerHTML=`
 
 <div style="font-size:45px">⚠️</div>
 
-<strong>
-Businesses could not be loaded.
-</strong>
+<strong>Businesses could not be loaded.</strong>
 
 <p>
-${
-e?.code==="permission-denied"
-?
-"Firestore denied business reads. Check your Firestore rules."
-:
-"Check your Firebase configuration and internet connection."
-}
+Please check your Firebase connection and Firestore rules.
 </p>
 
 </div>
-
 `;
-
-}
 
 }
 
@@ -1576,17 +1210,10 @@ window.loadBusinesses=loadBusinesses;
 
 async function openBusinessById(id){
 
-const b=sefwiBusinesses.find(
-x=>x.id===id
-);
+const b=sefwiBusinesses.find(x=>x.id===id);
 
-if(!b){
-
-toast("Business not found.");
-
-return;
-
-}
+if(!b)
+return toast("Business not found.");
 
 await openBusiness(
 b.id,
@@ -1598,39 +1225,25 @@ b.category
 
 window.openBusinessById=openBusinessById;
 
-async function openBusiness(
-businessId,
-name,
-category
-){
+async function openBusiness(businessId,name,category){
 
 $("businessTitle").textContent=name;
 
 $("businessBody").innerHTML=`
-
-<div class="empty">
-Loading menu…
-</div>
-
+<div class="empty">Loading menu…</div>
 `;
 
 $("businessModal").classList.add("open");
 
 try{
 
-if(!(await initFirebase())){
+if(!(await initFirebase()))
+throw new Error("Firebase unavailable");
 
-throw new Error(
-"Firebase unavailable"
-);
+let ps=[];
 
-}
-
-/*
-New Management Website products use vendorId.
-*/
-
-let s=await ff.getDocs(
+/* First: load products using the real business/vendor ID */
+const byId=await ff.getDocs(
 
 ff.query(
 ff.collection(db,"products"),
@@ -1639,21 +1252,15 @@ ff.where("vendorId","==",businessId)
 
 );
 
-let ps=s.docs.map(
-d=>({
+ps=byId.docs.map(d=>({
 id:d.id,
 ...d.data()
-})
-);
+}));
 
-/*
-Backward compatibility for older products
-that were saved using vendorName.
-*/
+/* Fallback for older products */
+if(!ps.length&&name){
 
-if(!ps.length){
-
-s=await ff.getDocs(
+const byName=await ff.getDocs(
 
 ff.query(
 ff.collection(db,"products"),
@@ -1662,18 +1269,14 @@ ff.where("vendorName","==",name)
 
 );
 
-ps=s.docs.map(
-d=>({
+ps=byName.docs.map(d=>({
 id:d.id,
 ...d.data()
-})
-);
+}));
 
 }
 
-ps=ps.filter(
-p=>p.available!==false
-);
+ps=ps.filter(p=>p.available!==false);
 
 $("businessBody").innerHTML=ps.length
 
@@ -1685,16 +1288,13 @@ $("businessBody").innerHTML=ps.length
 ${esc(category||"Local business")}
 </span>
 
-<h2>
-${esc(name)}
-</h2>
+<h2>${esc(name)}</h2>
 
 <p class="help">
 Choose your meal or product and customize available options before adding it to your cart.
 </p>
 
-<div
-class="grid"
+<div class="grid"
 style="grid-template-columns:repeat(auto-fit,minmax(230px,1fr))">
 
 ${ps.map(renderProduct).join("")}
@@ -1711,48 +1311,30 @@ ${ps.map(renderProduct).join("")}
 
 <div style="font-size:45px">🍲</div>
 
-<strong>
-No products published yet.
-</strong>
+<strong>No products published yet.</strong>
 
 <p>
 The partner can add products from the Products tab.
-Older products are also checked by business name.
 </p>
 
 </div>
-
 `;
 
 }catch(e){
 
-console.error(
-"Could not load business products:",
-e
-);
+console.error("Could not load business products:",e);
 
 $("businessBody").innerHTML=`
 
 <div class="empty">
 
-<div style="font-size:45px">⚠️</div>
-
-<strong>
-Menu could not be loaded.
-</strong>
+<strong>Menu is not available yet.</strong>
 
 <p>
-${
-e?.code==="permission-denied"
-?
-"Firestore denied product reads. Check your Firestore rules."
-:
-"Please check Firebase and try again."
-}
+Products will appear here after the business publishes them.
 </p>
 
 </div>
-
 `;
 
 }
@@ -1761,83 +1343,118 @@ e?.code==="permission-denied"
 
 window.openBusiness=openBusiness;
 
-function propertyEmoji(type){
-
-const t=String(
-type||""
-).toLowerCase();
-
-if(t.includes("land"))
-return "🌳";
-
-if(
-t.includes("commercial")||
-t.includes("shop")
-)
-return "🏢";
-
-if(t.includes("room"))
-return "🛏️";
-
-if(
-t.includes("apartment")||
-t.includes("flat")
-)
-return "🏬";
-
-return "🏠";
-
-}
-
-function renderPropertyList(){
+async function loadProperties(){
 
 const grid=$("propertyGrid");
 
-if(!grid)return;
+if(grid)
 
-const items=sefwiProperties.filter(
-p=>p.available!==false
+grid.innerHTML=`
+
+<div class="empty">
+
+<div style="font-size:45px">🏠</div>
+
+<strong>Loading properties…</strong>
+
+<p>Please wait.</p>
+
+</div>
+`;
+
+try{
+
+if(!(await initFirebase()))
+throw new Error("Firebase unavailable");
+
+const snap=await ff.getDocs(
+ff.collection(db,"properties")
+);
+
+const items=snap.docs
+
+.map(d=>({
+id:d.id,
+...d.data()
+}))
+
+.filter(p=>
+p.active!==false &&
+p.approved!==false &&
+p.availability!=="Unavailable"
 );
 
 if(!items.length){
 
+if(grid)
+
 grid.innerHTML=`
 
-<div
-class="empty"
-style="grid-column:1/-1">
+<div class="empty">
 
 <div style="font-size:45px">🏠</div>
 
-<strong>
-No properties available yet.
-</strong>
+<strong>No properties available yet.</strong>
 
 <p>
 Properties published by SefwiGo partners will appear here.
 </p>
 
 </div>
-
 `;
 
 return;
 
 }
 
-grid.innerHTML=items.map((p,i)=>{
+if(grid)
+grid.innerHTML=items.map(renderProperty).join("");
 
-const photos=
-Array.isArray(p.photoUrls)
-?
-p.photoUrls.filter(Boolean)
-:
-[];
+}catch(e){
 
-const image=
-photos[0]||
-p.photoUrl||
-"";
+console.error("Could not load properties:",e);
+
+if(grid)
+
+grid.innerHTML=`
+
+<div class="empty">
+
+<div style="font-size:45px">⚠️</div>
+
+<strong>Properties could not be loaded.</strong>
+
+<p>
+Please check your Firebase connection and Firestore rules.
+</p>
+
+</div>
+`;
+
+}
+
+}
+
+function renderProperty(p){
+
+const photos=Array.isArray(p.photoUrls)
+?p.photoUrls
+:(Array.isArray(p.photos)?p.photos:[]);
+
+const image=photos[0]||p.photoUrl||"";
+
+const purpose=p.purpose||p.type||"Property";
+
+const price=
+p.price!=null&&p.price!==""
+?`GH₵ ${Number(p.price).toLocaleString()}`
+:"Contact for price";
+
+const meta=[
+p.location,
+p.bedrooms?`${p.bedrooms} bed`:"",
+p.bathrooms?`${p.bathrooms} bath`:""
+].filter(Boolean);
 
 return `
 
@@ -1846,351 +1463,95 @@ return `
 ${
 image
 
-?
+?`
 
-`<img
+<img
+class="prop-img"
 src="${esc(image)}"
 alt="${esc(p.title||"Property")}"
-style="width:100%;height:170px;object-fit:cover">`
+style="width:100%;object-fit:cover"
+>
 
-:
+`
 
-`<div class="prop-img">
-${propertyEmoji(p.type)}
-</div>`
+:`
+
+<div class="prop-img">
+🏠
+</div>
+
+`
 }
 
 <div class="prop-body">
 
 <span class="chip">
-${esc(p.purpose||"Property")}
+${esc(purpose)}
 </span>
 
 <h3>
-${esc(p.title||"Property listing")}
+${esc(p.title||"SefwiGo Property")}
 </h3>
-
-<div class="prop-price">
-GH₵ ${Number(p.price||0).toLocaleString()}
-</div>
 
 <div class="prop-meta">
 
-<span>
-📍 ${esc(p.location||"")}
-</span>
-
-${
-p.bedrooms!==undefined&&p.bedrooms!==""
-
-?
-
-`<span>
-🛏️ ${esc(p.bedrooms)} bed
-</span>`
-
-:
-""
-}
-
-${
-p.bathrooms!==undefined&&p.bathrooms!==""
-
-?
-
-`<span>
-🚿 ${esc(p.bathrooms)} bath
-</span>`
-
-:
-""
-}
+${meta.map(x=>
+`<span>${esc(x)}</span>`
+).join("")}
 
 </div>
 
-<p class="help">
-${esc(
-String(p.description||"").slice(0,120)
-)}
-</p>
+<div class="prop-price">
+${price}
+</div>
+
+${
+p.description
+?
+`<p class="help">${esc(p.description)}</p>`
+:""
+}
 
 <div class="prop-actions">
 
-<button
-class="small"
-onclick="showPropertyDetails(${i})">
-Details
-</button>
+${
+p.phone
 
-<button
-class="small primary"
-onclick="contactProperty(${i})">
+?
+`<a class="small primary"
+href="tel:${esc(p.phone)}">
 Contact
-</button>
+</a>`
+
+:""
+
+}
 
 </div>
 
 </div>
 
 </article>
-
 `;
-
-}).join("");
-
-}
-
-window.renderPropertyList=
-renderPropertyList;
-
-async function loadProperties(){
-
-const grid=$("propertyGrid");
-
-if(grid){
-
-grid.innerHTML=`
-
-<div
-class="empty"
-style="grid-column:1/-1">
-
-<div style="font-size:45px">🏠</div>
-
-<strong>
-Loading properties…
-</strong>
-
-<p>Please wait.</p>
-
-</div>
-
-`;
-
-}
-
-try{
-
-if(!(await initFirebase())){
-
-throw new Error(
-"Firebase unavailable"
-);
-
-}
-
-const snap=await ff.getDocs(
-ff.collection(db,"properties")
-);
-
-sefwiProperties=snap.docs
-
-.map(d=>({
-id:d.id,
-...d.data()
-}))
-
-.filter(
-p=>p.available!==false
-);
-
-sefwiProperties.sort(
-(a,b)=>
-(b.createdAt?.seconds||0)-
-(a.createdAt?.seconds||0)
-);
-
-renderPropertyList();
-
-}catch(e){
-
-console.error(
-"Could not load properties:",
-e
-);
-
-if(grid){
-
-grid.innerHTML=`
-
-<div
-class="empty"
-style="grid-column:1/-1">
-
-<div style="font-size:45px">⚠️</div>
-
-<strong>
-Properties could not be loaded.
-</strong>
-
-<p>
-${
-e?.code==="permission-denied"
-?
-"Firestore denied property reads. Check your Firestore rules."
-:
-"Check your Firebase configuration and internet connection."
-}
-</p>
-
-</div>
-
-`;
-
-}
 
 }
 
 window.loadProperties=loadProperties;
 
-window.showPropertyDetails=function(index){
-
-const p=sefwiProperties.filter(
-x=>x.available!==false
-)[index];
-
-if(!p)return;
-
-$("businessTitle").textContent=
-p.title||"Property";
-
-$("businessBody").innerHTML=`
-
-<div style="padding:2px">
-
-<span class="chip">
-${esc(p.purpose||"Property")}
-</span>
-
-<h2>
-${esc(p.title||"Property listing")}
-</h2>
-
-<p class="help">
-📍 ${esc(p.location||"")}
-</p>
-
-<div class="price">
-GH₵ ${Number(p.price||0).toLocaleString()}
-</div>
-
-<p>
-${esc(p.description||"")}
-</p>
-
-<p class="help">
-
-Type:
-${esc(p.type||"—")}
-
-<br>
-
-Bedrooms:
-${esc(p.bedrooms||"—")}
-
-<br>
-
-Bathrooms:
-${esc(p.bathrooms||"—")}
-
-<br>
-
-Owner/Agent:
-${esc(p.owner||"—")}
-
-<br>
-
-Phone:
-${esc(p.phone||"—")}
-
-</p>
-
-<button
-class="submit"
-onclick="contactProperty(${index})">
-Contact Owner / Agent
-</button>
-
-</div>
-
-`;
-
-$("businessModal").classList.add("open");
-
-};
-
-window.contactProperty=function(index){
-
-const p=sefwiProperties.filter(
-x=>x.available!==false
-)[index];
-
-if(!p)return;
-
-const phone=String(
-p.phone||""
-).replace(/\D/g,"");
-
-if(phone){
-
-window.open(
-
-`https://wa.me/${phone}?text=${
-encodeURIComponent(
-"Hello, I found your property on SefwiGo: "+
-(p.title||"property")
-)
-}`,
-
-"_blank"
-
-);
-
-}else{
-
-toast(
-"No contact number was added to this property."
-);
-
-}
-
-};
-
-async function loadMarketplace(){
-
-await initFirebase();
-
-await Promise.allSettled([
-loadBusinesses(),
-loadProperties()
-]);
-
-}
-
-window.loadMarketplace=
-loadMarketplace;
-
 function renderProduct(p){
 
 return `
 
-<article
-class="product"
-data-card="${p.id}">
+<article class="product" data-card="${p.id}">
 
 ${
 p.photoUrl
 
 ?
-
-`<img
-src="${esc(p.photoUrl)}"
-alt="${esc(p.name)}">`
+`<img src="${esc(p.photoUrl)}" alt="${esc(p.name)}">`
 
 :
-
-`<div
-class="product-photo"
+`<div class="product-photo"
 style="display:grid;place-items:center;font-size:58px">
 🍲
 </div>`
@@ -2202,31 +1563,22 @@ style="display:grid;place-items:center;font-size:58px">
 ${esc(p.name)}
 </h3>
 
-<p
-class="help"
-style="margin:0">
+<p class="help" style="margin:0">
 ${esc(p.description||"")}
 </p>
 
-<div
-class="price"
-style="margin:8px 0">
-
+<div class="price" style="margin:8px 0">
 GH₵ ${Number(p.price||0).toLocaleString()}
-
 </div>
 
-${
-(p.modifiers||[]).map((g,i)=>`
+${(p.modifiers||[]).map((g,i)=>`
 
 <div class="mod">
 
-<div
-style="display:flex;justify-content:space-between;gap:8px">
+<div style="display:flex;justify-content:space-between;gap:8px">
 
 <b>
-${esc(g.name)}
-${g.required?" *":""}
+${esc(g.name)}${g.required?" *":""}
 </b>
 
 <span class="help">
@@ -2237,8 +1589,7 @@ ${g.multiple?"Choose any":"Choose one"}
 
 <div class="choices">
 
-${
-(g.options||[]).map((o,j)=>`
+${(g.options||[]).map((o,j)=>`
 
 <button
 type="button"
@@ -2246,7 +1597,8 @@ class="choice"
 data-group="${p.id}-${i}"
 data-index="${j}"
 data-multiple="${g.multiple?'1':'0'}"
-onclick="chooseMod(this)">
+onclick="chooseMod(this)"
+>
 
 <strong>
 ${esc(o.name)}
@@ -2256,8 +1608,7 @@ ${esc(o.name)}
 ${
 Number(o.price||0)
 ?
-"+ GH₵ "+
-Number(o.price).toLocaleString()
+"+ GH₵ "+Number(o.price).toLocaleString()
 :
 "Included"
 }
@@ -2265,50 +1616,39 @@ Number(o.price).toLocaleString()
 
 </button>
 
-`).join("")
-}
+`).join("")}
 
 </div>
 
 </div>
 
-`).join("")
-}
+`).join("")}
 
 <div class="qty">
 
 <b>Quantity</b>
 
-<button
-onclick="changeQty('${p.id}',-1)">
-−
-</button>
+<button onclick="changeQty('${p.id}',-1)">−</button>
 
-<span id="q_${p.id}">
-1
-</span>
+<span id="q_${p.id}">1</span>
 
-<button
-onclick="changeQty('${p.id}',1)">
-+
-</button>
+<button onclick="changeQty('${p.id}',1)">+</button>
 
 </div>
 
-<div
-id="t_${p.id}"
+<div id="t_${p.id}"
 class="help"
 style="font-weight:900">
 
-Total:
-GH₵ ${Number(p.price||0).toLocaleString()}
+Total: GH₵ ${Number(p.price||0).toLocaleString()}
 
 </div>
 
 <button
 class="submit"
 style="margin-top:10px"
-onclick='addProduct(${JSON.stringify(p).replace(/</g,"\\u003c")})'>
+onclick='addProduct(${JSON.stringify(p).replace(/</g,"\\u003c")})'
+>
 
 🛒 Add to cart
 
@@ -2333,12 +1673,8 @@ b.classList.toggle("selected");
 }else{
 
 document
-.querySelectorAll(
-`[data-group="${group}"]`
-)
-.forEach(
-x=>x.classList.remove("selected")
-);
+.querySelectorAll(`[data-group="${group}"]`)
+.forEach(x=>x.classList.remove("selected"));
 
 b.classList.add("selected");
 
@@ -2355,12 +1691,8 @@ function updateProductTotal(card){
 if(!card)return;
 
 const p=Number(
-
-card
-.querySelector(".price")
-.textContent
+card.querySelector(".price").textContent
 .replace(/[^0-9.]/g,"")
-
 );
 
 let extra=0;
@@ -2370,8 +1702,7 @@ card
 .forEach(x=>{
 
 extra+=Number(
-x.querySelector("small")
-.textContent
+x.querySelector("small").textContent
 .replace(/[^0-9.]/g,"")
 ||0
 );
@@ -2379,14 +1710,10 @@ x.querySelector("small")
 });
 
 const q=Number(
-card.querySelector(".qty span")
-.textContent
+card.querySelector(".qty span").textContent
 );
 
-card.querySelector(
-'[id^="t_"]'
-).textContent=
-
+card.querySelector('[id^="t_"]').textContent=
 `Total: GH₵ ${((p+extra)*q).toLocaleString()}`;
 
 }
@@ -2406,9 +1733,7 @@ Number(e.textContent)+d
 );
 
 updateProductTotal(
-document.querySelector(
-`[data-card="${id}"]`
-)
+document.querySelector(`[data-card="${id}"]`)
 );
 
 };
@@ -2420,37 +1745,24 @@ const card=document.querySelector(
 );
 
 const selected=[];
-
 let extra=0;
 
-for(
-const [g,i]
-of (p.modifiers||[]).entries()
-){
+for(const[g,i]of(p.modifiers||[]).entries()){
 
 const bs=[...
-
 card.querySelectorAll(
 `[data-group="${p.id}-${i}"].selected`
 )
-
 ];
 
-if(
-g.required&&
-!bs.length
-){
-
+if(g.required&&!bs.length)
 return toast(
 `Please choose an option for ${g.name}.`
 );
 
-}
-
 bs.forEach(b=>{
 
-const o=
-g.options[
+const o=g.options[
 Number(b.dataset.index)
 ];
 
@@ -2459,13 +1771,9 @@ if(o){
 extra+=Number(o.price||0);
 
 selected.push({
-
 group:g.name,
-
 name:o.name,
-
 price:Number(o.price||0)
-
 });
 
 }
@@ -2481,25 +1789,26 @@ $("q_"+p.id).textContent
 cart.push({
 
 id:Date.now().toString(),
-
 productId:p.id,
-
 name:p.name,
 
 basePrice:Number(p.price||0),
 
-price:Number(p.price||0)+extra,
+price:
+Number(p.price||0)+extra,
 
 qty:q,
 
-vendorName:p.vendorName||
-"SefwiGo business",
+vendorName:
+p.vendorName||"SefwiGo business",
 
-vendorId:p.vendorId||null,
+vendorId:
+p.vendorId||null,
 
 modifiers:selected,
 
-photoUrl:p.photoUrl||null
+photoUrl:
+p.photoUrl||null
 
 });
 
@@ -2507,9 +1816,7 @@ saveCart();
 
 closeModal("businessModal");
 
-toast(
-"Customized item added to cart."
-);
+toast("Customized item added to cart.");
 
 };
 
@@ -2555,16 +1862,13 @@ $("cartBody").innerHTML=`
 
 <div style="font-size:45px">🛒</div>
 
-<strong>
-Your cart is empty.
-</strong>
+<strong>Your cart is empty.</strong>
 
 <p>
 Add products from a SefwiGo business.
 </p>
 
 </div>
-
 `;
 
 return;
@@ -2589,15 +1893,10 @@ cart.map((x,i)=>`
 
 ${
 x.photoUrl
-
 ?
-
-`<img
-src="${esc(x.photoUrl)}"
+`<img src="${esc(x.photoUrl)}"
 style="width:76px;height:68px;object-fit:cover;border-radius:13px">`
-
 :
-
 "🍔"
 }
 
@@ -2605,9 +1904,7 @@ style="width:76px;height:68px;object-fit:cover;border-radius:13px">`
 
 <div>
 
-<h4>
-${esc(x.name)}
-</h4>
+<h4>${esc(x.name)}</h4>
 
 <p>
 GH₵ ${Number(x.price).toLocaleString()}
@@ -2618,17 +1915,13 @@ GH₵ ${Number(x.price).toLocaleString()}
 
 ${
 x.modifiers?.length
-
 ?
-
 esc(
 x.modifiers
 .map(m=>m.group+": "+m.name)
 .join(" • ")
 )
-
 :
-
 ""
 }
 
@@ -2656,16 +1949,12 @@ Remove
 
 <div class="checkout">
 
-<div
-style="display:flex;justify-content:space-between">
+<div style="display:flex;justify-content:space-between">
 
 <b>Total</b>
 
-<b
-style="font-size:20px;color:var(--gd)">
-
+<b style="font-size:20px;color:var(--gd)">
 GH₵ ${total.toLocaleString()}
-
 </b>
 
 </div>
@@ -2697,16 +1986,10 @@ renderCart();
 
 window.checkout=async function(){
 
-if(!cart.length){
-
+if(!cart.length)
 return toast("Your cart is empty.");
 
-}
-
-if(
-!(await initFirebase())||
-!auth.currentUser
-){
+if(!(await initFirebase())||!auth.currentUser){
 
 closeModal("cartModal");
 
@@ -2744,8 +2027,7 @@ $("checkoutContent").innerHTML=`
 
 <b>Order summary</b>
 
-${
-cart.map(x=>`
+${cart.map(x=>`
 
 <div class="order-row">
 
@@ -2759,8 +2041,7 @@ GH₵ ${(x.price*x.qty).toLocaleString()}
 
 </div>
 
-`).join("")
-}
+`).join("")}
 
 <div
 class="order-row"
@@ -2784,7 +2065,8 @@ GH₵ ${total.toLocaleString()}
 
 <input
 id="ocName"
-value="${esc(u.displayName||"")}">
+value="${esc(u.displayName||"")}"
+>
 
 </div>
 
@@ -2795,19 +2077,19 @@ value="${esc(u.displayName||"")}">
 <input
 id="ocPhone"
 inputmode="tel"
-placeholder="+233...">
+placeholder="+233..."
+>
 
 </div>
 
 <div class="field full">
 
-<label>
-Delivery address / location *
-</label>
+<label>Delivery address / location *</label>
 
 <input
 id="ocAddress"
-placeholder="House, landmark or location">
+placeholder="House, landmark or location"
+>
 
 </div>
 
@@ -2832,7 +2114,6 @@ onclick="placeOrder()">
 📦 Place Order
 
 </button>
-
 `;
 
 }
@@ -2840,38 +2121,24 @@ onclick="placeOrder()">
 window.placeOrder=async function(){
 
 const n=$("ocName").value.trim();
-
 const ph=$("ocPhone").value.trim();
-
 const ad=$("ocAddress").value.trim();
-
 const note=$("ocNote").value.trim();
 
-if(!n||!ph||!ad){
-
+if(!n||!ph||!ad)
 return toast(
 "Please enter your name, phone and delivery location."
 );
 
-}
-
 const groups={};
 
 cart.forEach(x=>
-(
-groups[
-x.vendorId||
-x.vendorName||
-"unassigned"
-]??=[]
-).push(x)
+(groups[x.vendorId||x.vendorName||"unassigned"]??=[]).push(x)
 );
 
 try{
 
-for(
-const k of Object.keys(groups)
-){
+for(const k of Object.keys(groups)){
 
 const items=groups[k];
 
@@ -2880,40 +2147,23 @@ const v=items[0];
 const data={
 
 orderNumber:
-"SG-"+
-Date.now()
-.toString()
-.slice(-8),
+"SG-"+Date.now().toString().slice(-8),
 
 vendorId:
 v.vendorId||null,
 
 vendorName:
-v.vendorName||
-"SefwiGo business",
+v.vendorName||"SefwiGo business",
 
-items:
-
-items.map(x=>({
+items:items.map(x=>({
 
 name:x.name,
-
 price:Number(x.price),
-
 qty:Number(x.qty||1),
-
 productId:x.productId||null,
-
 modifiers:x.modifiers||[],
-
-basePrice:
-Number(
-x.basePrice||
-x.price
-),
-
-photoUrl:
-x.photoUrl||null
+basePrice:Number(x.basePrice||x.price),
+photoUrl:x.photoUrl||null
 
 })),
 
@@ -2927,11 +2177,8 @@ Number(x.qty||1),
 ),
 
 customerName:n,
-
 customerPhone:ph,
-
 deliveryAddress:ad,
-
 note,
 
 status:"new",
@@ -2957,9 +2204,7 @@ saveCart();
 
 closeModal("checkoutModal");
 
-toast(
-"Order placed successfully."
-);
+toast("Order placed successfully.");
 
 openOrders();
 
@@ -2980,28 +2225,18 @@ function orderDate(o){
 try{
 
 return o.createdAt?.toDate
-
 ?
-
-o.createdAt
-.toDate()
-.toLocaleString()
+o.createdAt.toDate().toLocaleString()
 
 :
-
 o.createdAt?.seconds
-
 ?
-
 new Date(
 o.createdAt.seconds*1000
 ).toLocaleString()
 
 :
-
-new Date(
-o.createdAt
-).toLocaleString();
+new Date(o.createdAt).toLocaleString();
 
 }catch(e){
 
@@ -3016,23 +2251,14 @@ function statusLabel(s){
 return({
 
 new:"Pending",
-
 accepted:"Accepted",
-
 preparing:"Preparing",
-
 ready:"Ready for pickup",
-
 assigned:"Driver assigned",
-
 picked_up:"Picked up",
-
 out_for_delivery:"Out for delivery",
-
 delivered:"Delivered",
-
 completed:"Delivered",
-
 cancelled:"Cancelled"
 
 })[s||"new"]||"Pending";
@@ -3048,21 +2274,15 @@ $("ordersContent").innerHTML=`
 <div class="empty">
 Loading your orders…
 </div>
-
 `;
 
-if(
-!(await initFirebase())||
-!auth.currentUser
-){
+if(!(await initFirebase())||!auth.currentUser){
 
-return $("ordersContent").innerHTML=`
+$("ordersContent").innerHTML=`
 
 <div class="empty">
 
-<strong>
-Sign in required.
-</strong>
+<strong>Sign in required.</strong>
 
 <button
 class="submit"
@@ -3074,8 +2294,9 @@ Sign in
 </button>
 
 </div>
-
 `;
+
+return;
 
 }
 
@@ -3094,12 +2315,10 @@ auth.currentUser.uid
 
 );
 
-const os=s.docs.map(
-d=>({
+const os=s.docs.map(d=>({
 id:d.id,
 ...d.data()
-})
-);
+}));
 
 os.sort(
 (a,b)=>
@@ -3120,8 +2339,7 @@ os.map(o=>`
 <div>
 
 <b>
-Order #${
-esc(
+Order #${esc(
 (o.orderNumber||o.id)
 .slice(-10)
 .toUpperCase()
@@ -3131,30 +2349,17 @@ esc(
 <p class="help">
 
 ${esc(orderDate(o))}
-
 •
-
-${esc(
-o.vendorName||
-"SefwiGo business"
-)}
+${esc(o.vendorName||"SefwiGo business")}
 
 </p>
 
 </div>
 
 <span
-class="status ${
-o.status==="cancelled"
-?
-"off"
-:
-""
-}">
+class="status ${o.status==="cancelled"?"off":""}">
 
-${esc(
-statusLabel(o.status)
-)}
+${esc(statusLabel(o.status))}
 
 </span>
 
@@ -3162,8 +2367,7 @@ statusLabel(o.status)
 
 <div class="order-items">
 
-${
-(o.items||[]).map(x=>`
+${(o.items||[]).map(x=>`
 
 <div class="order-row">
 
@@ -3174,22 +2378,15 @@ ${esc(x.name)}
 
 ${
 x.modifiers?.length
-
 ?
-
-`<small
-style="display:block">
-
+`<small style="display:block">
 ${esc(
 x.modifiers
 .map(m=>m.name)
 .join(", ")
 )}
-
 </small>`
-
 :
-
 ""
 }
 
@@ -3201,8 +2398,7 @@ GH₵ ${(x.price*x.qty).toLocaleString()}
 
 </div>
 
-`).join("")
-}
+`).join("")}
 
 </div>
 
@@ -3219,11 +2415,7 @@ GH₵ ${Number(o.total||0).toLocaleString()}
 </div>
 
 <p class="help">
-
-📍 ${esc(
-o.deliveryAddress||""
-)}
-
+📍 ${esc(o.deliveryAddress||"")}
 </p>
 
 </article>
@@ -3238,16 +2430,13 @@ o.deliveryAddress||""
 
 <div style="font-size:45px">📦</div>
 
-<strong>
-No orders yet.
-</strong>
+<strong>No orders yet.</strong>
 
 <p>
 Your orders will appear here.
 </p>
 
 </div>
-
 `;
 
 }catch(e){
@@ -3262,20 +2451,21 @@ Could not load orders.
 Check Firestore permissions.
 
 </div>
-
 `;
 
 }
 
 };
 
-/*
-Start Firebase and load the real marketplace data.
-No demo/test account is created.
-*/
+/* Start Firebase once, then load customer-visible data */
+initFirebase().then(()=>{
 
-loadMarketplace();
+loadBusinesses();
+loadProperties();
 
+});
+
+/* Keep cart counter correct when the page opens */
 updateCartCount();
 
 </script>
