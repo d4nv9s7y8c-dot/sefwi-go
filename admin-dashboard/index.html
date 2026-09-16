@@ -2860,21 +2860,28 @@ async function renderVendors(){
 
       <div class="card-head">
         <h3>🏪 Vendor accounts</h3>
+        <span id="vendorCount" class="status neutral">
+          Loading…
+        </span>
       </div>
 
       <div class="card-body">
 
         <div class="search-row">
+
           <input
             id="vendorSearch"
             class="search"
             placeholder="Search vendors…"
             oninput="filterTable('vendorsTable','vendorSearch')"
           >
+
         </div>
 
         <div id="vendorsTable" class="table-wrap">
-          <div class="empty">Loading vendors…</div>
+          <div class="empty">
+            Loading vendors…
+          </div>
         </div>
 
       </div>
@@ -2883,7 +2890,6 @@ async function renderVendors(){
 
   `;
 
-
   try{
 
     const snap =
@@ -2891,10 +2897,9 @@ async function renderVendors(){
         collection(db,"users")
       );
 
-
     const vendors =
       snap.docs
-        .map(d=>({
+        .map(d => ({
           id:d.id,
           ...d.data()
         }))
@@ -2912,12 +2917,15 @@ async function renderVendors(){
 
         });
 
+    $("vendorCount").textContent =
+      vendors.length + " vendors";
 
     $("vendorsTable").innerHTML = `
 
       <table>
 
         <thead>
+
           <tr>
             <th>Name</th>
             <th>Email</th>
@@ -2926,58 +2934,87 @@ async function renderVendors(){
             <th>Created</th>
             <th>Action</th>
           </tr>
+
         </thead>
 
         <tbody>
 
           ${
             vendors.length
+
             ?
-            vendors.map(x=>`
 
-              <tr>
+            vendors.map(vendor => {
 
-                <td>
-                  <b>${esc(x.name || "Vendor")}</b>
-                </td>
+              const status =
+                getVendorStatus(vendor);
 
-                <td>${esc(x.email || "—")}</td>
+              return `
 
-                <td>${esc(x.phone || "—")}</td>
+                <tr>
 
-                <td>
-                  ${statusBadge(
-                    x.active === false
-                    ? "suspended"
-                    : x.approved === true
-                    ? "approved"
-                    : "pending"
-                  )}
-                </td>
+                  <td>
+                    <b>
+                      ${esc(vendor.name || "Vendor")}
+                    </b>
+                  </td>
 
-                <td>${dateValue(x.createdAt)}</td>
+                  <td>
+                    ${esc(vendor.email || "—")}
+                  </td>
 
-                <td>
-                  <button
-                    class="btn btn-secondary btn-small"
-                    onclick="showUserDetails('${x.id}')"
-                  >
-                    View
-                  </button>
-                </td>
+                  <td>
+                    ${esc(vendor.phone || "—")}
+                  </td>
 
-              </tr>
+                  <td>
+                    ${statusBadge(status)}
+                  </td>
 
-            `).join("")
+                  <td>
+                    ${dateValue(vendor.createdAt)}
+                  </td>
+
+                  <td>
+
+                    ${vendorActionButtons(vendor)}
+
+                  </td>
+
+                </tr>
+
+              `;
+
+            }).join("")
+
             :
+
             `
+
               <tr>
+
                 <td colspan="6">
+
                   <div class="empty">
-                    No vendor accounts found.
+
+                    <div style="font-size:40px">
+                      🏪
+                    </div>
+
+                    <strong>
+                      No vendor accounts found.
+                    </strong>
+
+                    <p>
+                      Vendor registrations will appear here.
+                    </p>
+
                   </div>
+
                 </td>
+
               </tr>
+
             `
           }
 
@@ -2989,16 +3026,379 @@ async function renderVendors(){
 
   }catch(error){
 
+    console.error("renderVendors:",error);
+
     $("vendorsTable").innerHTML = `
+
       <div class="empty">
-        <strong>Could not load vendors.</strong>
-        <p>${esc(firebaseError(error))}</p>
+
+        <strong>
+          Could not load vendors.
+        </strong>
+
+        <p>
+          ${esc(firebaseError(error))}
+        </p>
+
       </div>
+
     `;
 
   }
 
 }
+
+
+/* =========================
+   VENDOR STATUS
+========================= */
+
+function getVendorStatus(vendor){
+
+  if(vendor.approvalStatus === "rejected"){
+    return "rejected";
+  }
+
+  if(
+    vendor.approvalStatus === "suspended" ||
+    vendor.active === false
+  ){
+    return "suspended";
+  }
+
+  if(
+    vendor.approved === true ||
+    vendor.approvalStatus === "approved"
+  ){
+    return "approved";
+  }
+
+  return "pending";
+
+}
+
+
+/* =========================
+   VENDOR ACTION BUTTONS
+========================= */
+
+function vendorActionButtons(vendor){
+
+  const status =
+    getVendorStatus(vendor);
+
+  let html = `
+
+    <button
+      class="btn btn-secondary btn-small"
+      onclick="showUserDetails('${vendor.id}')"
+    >
+      View
+    </button>
+
+  `;
+
+  if(status === "pending"){
+
+    html += `
+
+      <button
+        class="btn btn-primary btn-small"
+        onclick="reviewVendor('${vendor.id}')"
+        style="margin-left:5px"
+      >
+        Review
+      </button>
+
+    `;
+
+  }
+
+  if(status === "approved"){
+
+    html += `
+
+      <button
+        class="btn btn-danger btn-small"
+        onclick="suspendVendor('${vendor.id}')"
+        style="margin-left:5px"
+      >
+        Suspend
+      </button>
+
+    `;
+
+  }
+
+  if(status === "suspended"){
+
+    html += `
+
+      <button
+        class="btn btn-primary btn-small"
+        onclick="reactivateVendor('${vendor.id}')"
+        style="margin-left:5px"
+      >
+        Reactivate
+      </button>
+
+    `;
+
+  }
+
+  return html;
+
+}
+
+
+/* =========================
+   REVIEW VENDOR
+========================= */
+
+window.reviewVendor = async function(id){
+
+  try{
+
+    const snap =
+      await getDoc(
+        doc(db,"users",id)
+      );
+
+    if(!snap.exists()){
+
+      toast("Vendor account not found.");
+
+      return;
+
+    }
+
+    const vendor = {
+      id:id,
+      ...snap.data()
+    };
+
+    $("detailsTitle").textContent =
+      "Review Vendor";
+
+    $("detailsContent").innerHTML = `
+
+      <div style="display:grid;gap:14px">
+
+        <div>
+
+          <h3 style="margin:0 0 6px">
+            ${esc(vendor.name || "Vendor")}
+          </h3>
+
+          ${statusBadge(getVendorStatus(vendor))}
+
+        </div>
+
+        <div class="card">
+
+          <div class="card-body">
+
+            <p>
+              <b>Email:</b>
+              ${esc(vendor.email || "—")}
+            </p>
+
+            <p>
+              <b>Phone:</b>
+              ${esc(vendor.phone || "—")}
+            </p>
+
+            <p>
+              <b>Account type:</b>
+              ${esc(vendor.accountType || "—")}
+            </p>
+
+            <p>
+              <b>Created:</b>
+              ${dateValue(vendor.createdAt)}
+            </p>
+
+          </div>
+
+        </div>
+
+        <div
+          style="
+            display:flex;
+            gap:10px;
+            flex-wrap:wrap;
+            justify-content:flex-end
+          "
+        >
+
+          <button
+            class="btn btn-primary"
+            onclick="approveVendor('${id}')"
+          >
+            ✓ Approve Vendor
+          </button>
+
+          <button
+            class="btn btn-danger"
+            onclick="rejectVendor('${id}')"
+          >
+            ✕ Reject Vendor
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+    $("detailsModal").classList.add("open");
+
+  }catch(error){
+
+    console.error("reviewVendor:",error);
+
+    toast(firebaseError(error));
+
+  }
+
+};
+
+
+/* =========================
+   APPROVE VENDOR
+========================= */
+
+window.approveVendor = async function(id){
+
+  try{
+
+    await updateDoc(
+      doc(db,"users",id),
+      {
+        approved:true,
+        active:true,
+        approvalStatus:"approved",
+        approvedAt:serverTimestamp(),
+        updatedAt:serverTimestamp()
+      }
+    );
+
+    closeModal("detailsModal");
+
+    toast("Vendor approved successfully.");
+
+    await renderVendors();
+
+  }catch(error){
+
+    console.error("approveVendor:",error);
+
+    toast(firebaseError(error));
+
+  }
+
+};
+
+
+/* =========================
+   REJECT VENDOR
+========================= */
+
+window.rejectVendor = async function(id){
+
+  try{
+
+    await updateDoc(
+      doc(db,"users",id),
+      {
+        approved:false,
+        active:false,
+        approvalStatus:"rejected",
+        rejectedAt:serverTimestamp(),
+        updatedAt:serverTimestamp()
+      }
+    );
+
+    closeModal("detailsModal");
+
+    toast("Vendor rejected.");
+
+    await renderVendors();
+
+  }catch(error){
+
+    console.error("rejectVendor:",error);
+
+    toast(firebaseError(error));
+
+  }
+
+};
+
+
+/* =========================
+   SUSPEND VENDOR
+========================= */
+
+window.suspendVendor = async function(id){
+
+  try{
+
+    await updateDoc(
+      doc(db,"users",id),
+      {
+        active:false,
+        approvalStatus:"suspended",
+        suspendedAt:serverTimestamp(),
+        updatedAt:serverTimestamp()
+      }
+    );
+
+    toast("Vendor suspended.");
+
+    await renderVendors();
+
+  }catch(error){
+
+    console.error("suspendVendor:",error);
+
+    toast(firebaseError(error));
+
+  }
+
+};
+
+
+/* =========================
+   REACTIVATE VENDOR
+========================= */
+
+window.reactivateVendor = async function(id){
+
+  try{
+
+    await updateDoc(
+      doc(db,"users",id),
+      {
+        approved:true,
+        active:true,
+        approvalStatus:"approved",
+        reactivatedAt:serverTimestamp(),
+        updatedAt:serverTimestamp()
+      }
+    );
+
+    toast("Vendor reactivated.");
+
+    await renderVendors();
+
+  }catch(error){
+
+    console.error("reactivateVendor:",error);
+
+  }
+
+};
 
 
 /* =========================
