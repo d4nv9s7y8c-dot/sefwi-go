@@ -2693,30 +2693,31 @@ $("businessForm").addEventListener("submit",async(event)=>{
 
     const data = {
 
-      ownerId:currentUser.uid,
+  ownerId: currentUser.uid,
 
-      name:name,
+  name: name,
 
-      category:category,
+  category: category,
 
-      phone:
-        $("businessPhone").value.trim(),
+  phone: $("businessPhone").value.trim(),
 
-      location:
-        $("businessLocation").value.trim(),
+  location: $("businessLocation").value.trim(),
 
-      description:
-        $("businessDescription").value.trim(),
+  description: $("businessDescription").value.trim(),
 
-      logoUrl:logoUrl,
+  logoUrl: logoUrl,
 
-      active:true,
+  // New businesses must wait for Super Admin approval
+  approvalStatus: currentBusiness?.approvalStatus || "pending",
 
-      approved:true,
+  // Never publish a new business automatically
+  active: currentBusiness?.approvalStatus === "approved",
 
-      updatedAt:serverTimestamp()
+  approved: currentBusiness?.approvalStatus === "approved",
 
-    };
+  updatedAt: serverTimestamp()
+
+};
 
 
     if(currentBusiness?.id){
