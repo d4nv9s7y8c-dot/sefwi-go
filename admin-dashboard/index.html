@@ -3991,6 +3991,586 @@ window.setBusinessStatus = async function(id,active){
 };
 
 
+/* =========================================================
+   DRIVER MANAGEMENT
+   ========================================================= */
+
+
+window.reviewDriver = async function(id){
+
+  try{
+
+    const snap =
+      await getDoc(
+        doc(db,"users",id)
+      );
+
+
+    if(!snap.exists()){
+
+      toast("Driver account no longer exists.");
+
+      return;
+
+    }
+
+
+    const driver =
+      snap.data();
+
+
+    const approval =
+      String(
+        driver.approvalStatus || ""
+      ).toLowerCase();
+
+
+    let status = "pending";
+
+
+    if(
+      driver.active === false &&
+      approval !== "rejected"
+    ){
+
+      status = "suspended";
+
+    }else if(
+      approval === "rejected"
+    ){
+
+      status = "rejected";
+
+    }else if(
+      driver.approved === true ||
+      approval === "approved"
+    ){
+
+      status = "approved";
+
+    }
+
+
+    $("detailsTitle").textContent =
+      "Driver application";
+
+
+    $("detailsContent").innerHTML = `
+
+      <div style="
+        display:grid;
+        gap:16px;
+      ">
+
+
+        <div style="
+          text-align:center;
+          padding:10px 0 5px;
+        ">
+
+          <div style="
+            width:72px;
+            height:72px;
+            margin:0 auto 10px;
+            border-radius:50%;
+            display:grid;
+            place-items:center;
+            background:#eaf7f1;
+            font-size:36px;
+          ">
+            🛵
+          </div>
+
+          <h2 style="
+            margin:0;
+          ">
+            ${esc(
+              driver.name ||
+              "Driver"
+            )}
+          </h2>
+
+          <div style="
+            margin-top:7px;
+          ">
+            ${statusBadge(status)}
+          </div>
+
+        </div>
+
+
+        <div style="
+          display:grid;
+          gap:12px;
+        ">
+
+
+          <div>
+            <div class="stat-label">
+              Email
+            </div>
+
+            <strong>
+              ${esc(
+                driver.email ||
+                "—"
+              )}
+            </strong>
+          </div>
+
+
+          <div>
+            <div class="stat-label">
+              Phone
+            </div>
+
+            <strong>
+              ${esc(
+                driver.phone ||
+                "—"
+              )}
+            </strong>
+          </div>
+
+
+          <div>
+            <div class="stat-label">
+              Vehicle type
+            </div>
+
+            <strong>
+              ${esc(
+                driver.vehicleType ||
+                driver.vehicle ||
+                "—"
+              )}
+            </strong>
+          </div>
+
+
+          <div>
+            <div class="stat-label">
+              Vehicle number
+            </div>
+
+            <strong>
+              ${esc(
+                driver.vehicleNumber ||
+                "—"
+              )}
+            </strong>
+          </div>
+
+
+          <div>
+            <div class="stat-label">
+              Online status
+            </div>
+
+            ${
+              driver.online === true
+              ? statusBadge("online")
+              : statusBadge("offline")
+            }
+
+          </div>
+
+
+          <div>
+            <div class="stat-label">
+              Application status
+            </div>
+
+            ${statusBadge(status)}
+
+          </div>
+
+
+          <div>
+            <div class="stat-label">
+              Applied
+            </div>
+
+            <strong>
+              ${dateValue(
+                driver.createdAt
+              )}
+            </strong>
+          </div>
+
+
+          <div>
+            <div class="stat-label">
+              Driver ID
+            </div>
+
+            <div style="
+              word-break:break-all;
+              font-size:12px;
+            ">
+              ${esc(id)}
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div style="
+          display:flex;
+          gap:8px;
+          flex-wrap:wrap;
+          padding-top:6px;
+        ">
+
+
+          ${
+            status === "pending"
+
+            ? `
+
+              <button
+                class="btn btn-primary"
+                onclick="
+                  closeModal('detailsModal');
+                  approveDriver('${id}');
+                "
+              >
+                ✓ Approve Driver
+              </button>
+
+
+              <button
+                class="btn btn-danger"
+                onclick="
+                  closeModal('detailsModal');
+                  rejectDriver('${id}');
+                "
+              >
+                ✕ Reject
+              </button>
+
+            `
+
+            : ""
+          }
+
+
+          ${
+            status === "approved"
+
+            ? `
+
+              <button
+                class="btn btn-danger"
+                onclick="
+                  closeModal('detailsModal');
+                  suspendDriver('${id}');
+                "
+              >
+                Suspend Driver
+              </button>
+
+            `
+
+            : ""
+          }
+
+
+          ${
+            status === "suspended" ||
+            status === "rejected"
+
+            ? `
+
+              <button
+                class="btn btn-primary"
+                onclick="
+                  closeModal('detailsModal');
+                  reactivateDriver('${id}');
+                "
+              >
+                Reactivate Driver
+              </button>
+
+            `
+
+            : ""
+          }
+
+
+          <button
+            class="btn btn-secondary"
+            onclick="closeModal('detailsModal')"
+          >
+            Close
+          </button>
+
+
+        </div>
+
+      </div>
+
+    `;
+
+
+    $("detailsModal").classList.add("open");
+
+
+  }catch(error){
+
+    console.error(
+      "Driver details error:",
+      error
+    );
+
+    toast(
+      firebaseError(error)
+    );
+
+  }
+
+};
+
+
+
+window.approveDriver = async function(id){
+
+  if(
+    !confirm(
+      "Approve this driver application?"
+    )
+  ){
+    return;
+  }
+
+
+  try{
+
+    await updateDoc(
+      doc(db,"users",id),
+      {
+
+        approved:true,
+
+        active:true,
+
+        online:false,
+
+        approvalStatus:"approved",
+
+        approvedAt:
+          serverTimestamp(),
+
+        updatedAt:
+          serverTimestamp()
+
+      }
+    );
+
+
+    toast(
+      "Driver approved successfully."
+    );
+
+
+    renderDrivers();
+
+
+  }catch(error){
+
+    console.error(
+      "Approve driver error:",
+      error
+    );
+
+    toast(
+      firebaseError(error)
+    );
+
+  }
+
+};
+
+
+
+window.rejectDriver = async function(id){
+
+  if(
+    !confirm(
+      "Reject this driver application?"
+    )
+  ){
+    return;
+  }
+
+
+  try{
+
+    await updateDoc(
+      doc(db,"users",id),
+      {
+
+        approved:false,
+
+        active:false,
+
+        online:false,
+
+        approvalStatus:"rejected",
+
+        rejectedAt:
+          serverTimestamp(),
+
+        updatedAt:
+          serverTimestamp()
+
+      }
+    );
+
+
+    toast(
+      "Driver application rejected."
+    );
+
+
+    renderDrivers();
+
+
+  }catch(error){
+
+    console.error(
+      "Reject driver error:",
+      error
+    );
+
+    toast(
+      firebaseError(error)
+    );
+
+  }
+
+};
+
+
+
+window.suspendDriver = async function(id){
+
+  if(
+    !confirm(
+      "Suspend this driver?"
+    )
+  ){
+    return;
+  }
+
+
+  try{
+
+    await updateDoc(
+      doc(db,"users",id),
+      {
+
+        active:false,
+
+        online:false,
+
+        approvalStatus:"suspended",
+
+        suspendedAt:
+          serverTimestamp(),
+
+        updatedAt:
+          serverTimestamp()
+
+      }
+    );
+
+
+    toast(
+      "Driver suspended."
+    );
+
+
+    renderDrivers();
+
+
+  }catch(error){
+
+    console.error(
+      "Suspend driver error:",
+      error
+    );
+
+    toast(
+      firebaseError(error)
+    );
+
+  }
+
+};
+
+
+
+window.reactivateDriver = async function(id){
+
+  if(
+    !confirm(
+      "Reactivate this driver?"
+    )
+  ){
+    return;
+  }
+
+
+  try{
+
+    await updateDoc(
+      doc(db,"users",id),
+      {
+
+        approved:true,
+
+        active:true,
+
+        online:false,
+
+        approvalStatus:"approved",
+
+        reactivatedAt:
+          serverTimestamp(),
+
+        updatedAt:
+          serverTimestamp()
+
+      }
+    );
+
+
+    toast(
+      "Driver reactivated."
+    );
+
+
+    renderDrivers();
+
+
+  }catch(error){
+
+    console.error(
+      "Reactivate driver error:",
+      error
+    );
+
+    toast(
+      firebaseError(error)
+    );
+
+  }
+
+};
+
+
 /* =========================
    PRODUCTS
 ========================= */
