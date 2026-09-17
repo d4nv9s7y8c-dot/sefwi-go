@@ -3413,23 +3413,44 @@ async function renderDrivers(){
 
       <div>
         <h1>Drivers</h1>
+
         <p>
           Manage delivery partners and driver accounts.
         </p>
       </div>
 
+      <button
+        class="btn btn-secondary"
+        onclick="renderDrivers()"
+      >
+        ↻ Refresh
+      </button>
+
     </div>
+
 
     <div class="card">
 
       <div class="card-head">
-        <h3>🛵 Delivery partners</h3>
+
+        <h3>
+          🛵 Delivery partners
+        </h3>
+
       </div>
+
 
       <div class="card-body">
 
-        <div id="driversTable" class="table-wrap">
-          <div class="empty">Loading drivers…</div>
+        <div
+          id="driversTable"
+          class="table-wrap"
+        >
+
+          <div class="empty">
+            Loading drivers…
+          </div>
+
         </div>
 
       </div>
@@ -3441,44 +3462,170 @@ async function renderDrivers(){
 
   try{
 
-    let snap;
+    /*
+      Read BOTH collections.
 
-    try{
+      Driver accounts created by the Driver Website
+      are stored in users/{uid} and drivers/{uid}.
+    */
 
-      snap =
-        await getDocs(
-          collection(db,"drivers")
+    const [driversSnap, usersSnap] =
+      await Promise.all([
+
+        getDocs(
+          collection(
+            db,
+            "drivers"
+          )
+        ),
+
+        getDocs(
+          collection(
+            db,
+            "users"
+          )
+        )
+
+      ]);
+
+
+    /*
+      Combine both collections.
+
+      If the same driver exists in both,
+      keep one record using the UID.
+    */
+
+    const driverMap =
+      new Map();
+
+
+    driversSnap.docs.forEach(d=>{
+
+      const data =
+        d.data() || {};
+
+      const type =
+        String(
+          data.accountType ||
+          data.role ||
+          ""
+        ).toLowerCase();
+
+
+      if(
+        type === "driver" ||
+        data.driver === true
+      ){
+
+        driverMap.set(
+          d.id,
+          {
+            id:d.id,
+            ...data
+          }
         );
 
-    }catch(error){
+      }
 
-      snap =
-        await getDocs(
-          collection(db,"users")
+    });
+
+
+    usersSnap.docs.forEach(d=>{
+
+      const data =
+        d.data() || {};
+
+      const type =
+        String(
+          data.accountType ||
+          data.role ||
+          ""
+        ).toLowerCase();
+
+
+      if(
+        type === "driver" ||
+        data.driver === true
+      ){
+
+        /*
+          If the driver is already in the
+          drivers collection, merge the newer
+          user information into the record.
+        */
+
+        const existing =
+          driverMap.get(d.id) || {};
+
+
+        driverMap.set(
+          d.id,
+          {
+            ...existing,
+            ...data,
+            id:d.id
+          }
         );
 
-    }
+      }
+
+    });
 
 
     const drivers =
-      snap.docs
-        .map(d=>({
-          id:d.id,
-          ...d.data()
-        }))
-        .filter(x=>{
+      Array.from(
+        driverMap.values()
+      );
 
-          const type =
-            String(
-              x.accountType ||
-              x.role ||
-              ""
-            ).toLowerCase();
 
-          return type === "driver" ||
-                 x.driver === true;
+    /*
+      Sort alphabetically.
+    */
 
-        });
+    drivers.sort((a,b)=>
+      String(
+        a.name ||
+        "Driver"
+      ).localeCompare(
+        String(
+          b.name ||
+          "Driver"
+        )
+      )
+    );
+
+
+    if(!drivers.length){
+
+      $("driversTable").innerHTML = `
+
+        <div class="empty">
+
+          <div style="
+            font-size:45px;
+            margin-bottom:10px;
+          ">
+            🛵
+          </div>
+
+          <strong>
+            No driver accounts found.
+          </strong>
+
+          <p>
+            Driver applications will appear here
+            after someone registers through the
+            SefwiGo Driver website.
+          </p>
+
+        </div>
+
+      `;
+
+      return;
+
+    }
 
 
     $("driversTable").innerHTML = `
@@ -3486,77 +3633,252 @@ async function renderDrivers(){
       <table>
 
         <thead>
+
           <tr>
+
             <th>Name</th>
+
             <th>Phone</th>
+
             <th>Status</th>
+
             <th>Online</th>
+
             <th>Vehicle</th>
+
             <th>Action</th>
+
           </tr>
+
         </thead>
+
 
         <tbody>
 
           ${
-            drivers.length
-            ?
-            drivers.map(x=>`
+            drivers.map(driver=>{
 
-              <tr>
+              const status =
+                String(
+                  driver.approvalStatus ||
+                  ""
+                ).toLowerCase();
 
-                <td>
-                  <b>${esc(x.name || "Driver")}</b>
-                </td>
 
-                <td>${esc(x.phone || "—")}</td>
+              let approvalStatus;
 
-                <td>
-                  ${statusBadge(
-                    x.active === false
-                    ? "suspended"
-                    : x.approved === true
-                    ? "approved"
-                    : "pending"
-                  )}
-                </td>
 
-                <td>
-                  ${x.online === true
-                    ? statusBadge("online")
-                    : statusBadge("offline")}
-                </td>
+              if(
+                driver.active === false ||
+                status === "suspended"
+              ){
 
-                <td>
-                  ${esc(
-                    x.vehicleType ||
-                    x.vehicle ||
-                    "—"
-                  )}
-                </td>
+                approvalStatus =
+                  "suspended";
 
-                <td>
-                  <button
-                    class="btn btn-secondary btn-small"
-                    onclick="showRecordDetails('Driver','${x.id}','drivers')"
-                  >
-                    View
-                  </button>
-                </td>
+              }else if(
+                status === "rejected"
+              ){
 
-              </tr>
+                approvalStatus =
+                  "rejected";
 
-            `).join("")
-            :
-            `
-              <tr>
-                <td colspan="6">
-                  <div class="empty">
-                    No driver accounts found.
-                  </div>
-                </td>
-              </tr>
-            `
+              }else if(
+                driver.approved === true ||
+                status === "approved"
+              ){
+
+                approvalStatus =
+                  "approved";
+
+              }else{
+
+                approvalStatus =
+                  "pending";
+
+              }
+
+
+              return `
+
+                <tr>
+
+                  <td>
+
+                    <b>
+                      ${esc(
+                        driver.name ||
+                        "Driver"
+                      )}
+                    </b>
+
+                    <div style="
+                      font-size:11px;
+                      color:var(--muted);
+                      margin-top:3px;
+                    ">
+
+                      ${esc(
+                        driver.email ||
+                        "No email"
+                      )}
+
+                    </div>
+
+                  </td>
+
+
+                  <td>
+                    ${esc(
+                      driver.phone ||
+                      "—"
+                    )}
+                  </td>
+
+
+                  <td>
+
+                    ${statusBadge(
+                      approvalStatus
+                    )}
+
+                  </td>
+
+
+                  <td>
+
+                    ${
+                      driver.online === true
+
+                      ? statusBadge("online")
+
+                      : statusBadge("offline")
+
+                    }
+
+                  </td>
+
+
+                  <td>
+
+                    ${esc(
+                      driver.vehicleType ||
+                      driver.vehicle ||
+                      "—"
+                    )}
+
+                    ${
+                      driver.vehicleNumber
+
+                      ? `
+                        <div style="
+                          font-size:11px;
+                          color:var(--muted);
+                          margin-top:3px;
+                        ">
+                          ${esc(
+                            driver.vehicleNumber
+                          )}
+                        </div>
+                      `
+
+                      : ""
+
+                    }
+
+                  </td>
+
+
+                  <td>
+
+                    <div style="
+                      display:flex;
+                      flex-wrap:wrap;
+                      gap:6px;
+                    ">
+
+                      <button
+                        class="btn btn-secondary btn-small"
+                        onclick="reviewDriver('${driver.id}')"
+                      >
+                        View
+                      </button>
+
+
+                      ${
+                        approvalStatus === "pending"
+
+                        ? `
+
+                          <button
+                            class="btn btn-primary btn-small"
+                            onclick="approveDriver('${driver.id}')"
+                          >
+                            Approve
+                          </button>
+
+
+                          <button
+                            class="btn btn-danger btn-small"
+                            onclick="rejectDriver('${driver.id}')"
+                          >
+                            Reject
+                          </button>
+
+                        `
+
+                        : ""
+
+                      }
+
+
+                      ${
+                        approvalStatus === "approved"
+
+                        ? `
+
+                          <button
+                            class="btn btn-danger btn-small"
+                            onclick="suspendDriver('${driver.id}')"
+                          >
+                            Suspend
+                          </button>
+
+                        `
+
+                        : ""
+
+                      }
+
+
+                      ${
+                        approvalStatus === "suspended" ||
+                        approvalStatus === "rejected"
+
+                        ? `
+
+                          <button
+                            class="btn btn-primary btn-small"
+                            onclick="reactivateDriver('${driver.id}')"
+                          >
+                            Reactivate
+                          </button>
+
+                        `
+
+                        : ""
+
+                      }
+
+                    </div>
+
+                  </td>
+
+                </tr>
+
+              `;
+
+            }).join("")
           }
 
         </tbody>
@@ -3565,13 +3887,31 @@ async function renderDrivers(){
 
     `;
 
+
   }catch(error){
 
+    console.error(
+      "Drivers error:",
+      error
+    );
+
+
     $("driversTable").innerHTML = `
+
       <div class="empty">
-        <strong>Could not load drivers.</strong>
-        <p>${esc(firebaseError(error))}</p>
+
+        <strong>
+          Could not load drivers.
+        </strong>
+
+        <p>
+          ${esc(
+            firebaseError(error)
+          )}
+        </p>
+
       </div>
+
     `;
 
   }
