@@ -1,1 +1,3659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#087f5b">
 
+<title>SefwiGo Driver</title>
+
+<style>
+:root{
+  --green:#087f5b;
+  --green-dark:#056447;
+  --green-light:#e9f8f2;
+  --bg:#f5f7f6;
+  --card:#fff;
+  --text:#152a24;
+  --muted:#71807b;
+  --line:#e2e9e6;
+  --danger:#c0392b;
+  --warning:#a36a00;
+  --shadow:0 8px 28px rgba(20,45,37,.08);
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Inter,Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+}
+
+button,
+input,
+select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.hidden{
+  display:none!important;
+}
+
+/* =========================
+   AUTH
+========================= */
+
+.auth{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at top right,rgba(255,255,255,.16),transparent 35%),
+    linear-gradient(145deg,#056447,#087f5b 55%,#0a956c);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.auth-card{
+  width:100%;
+  max-width:430px;
+  background:#fff;
+  border-radius:26px;
+  padding:30px;
+  box-shadow:0 25px 70px rgba(0,0,0,.2);
+}
+
+.brand{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.brand-mark{
+  width:62px;
+  height:62px;
+  border-radius:19px;
+  background:var(--green);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 12px;
+  font-size:30px;
+}
+
+.brand h1{
+  font-size:26px;
+}
+
+.brand p{
+  color:var(--muted);
+  margin-top:5px;
+  font-size:14px;
+}
+
+.auth-tabs{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  background:#edf3f0;
+  padding:4px;
+  border-radius:12px;
+  margin-bottom:22px;
+}
+
+.auth-tabs button{
+  border:0;
+  background:transparent;
+  padding:10px;
+  border-radius:9px;
+  color:var(--muted);
+  font-weight:800;
+}
+
+.auth-tabs button.active{
+  background:#fff;
+  color:var(--green);
+  box-shadow:0 2px 8px rgba(0,0,0,.07);
+}
+
+.field{
+  margin-bottom:15px;
+}
+
+.field label{
+  display:block;
+  font-size:13px;
+  font-weight:800;
+  margin-bottom:7px;
+}
+
+.field input,
+.field select{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:13px;
+  outline:0;
+  background:#fbfcfc;
+}
+
+.field input:focus,
+.field select:focus{
+  border-color:var(--green);
+  box-shadow:0 0 0 3px rgba(8,127,91,.09);
+}
+
+.primary{
+  width:100%;
+  border:0;
+  border-radius:12px;
+  background:var(--green);
+  color:#fff;
+  padding:14px;
+  font-weight:900;
+}
+
+.primary:hover{
+  background:var(--green-dark);
+}
+
+.message{
+  display:none;
+  padding:12px;
+  border-radius:11px;
+  margin-bottom:15px;
+  font-size:13px;
+  line-height:1.45;
+}
+
+.message.show{
+  display:block;
+}
+
+.message.error{
+  background:#fdeceb;
+  color:#a32d22;
+}
+
+.message.success{
+  background:#e8f8f0;
+  color:#176d4e;
+}
+
+.message.info{
+  background:#edf5fa;
+  color:#2b607d;
+}
+
+/* =========================
+   APP SHELL
+========================= */
+
+.app{
+  min-height:100vh;
+  padding-bottom:85px;
+}
+
+.topbar{
+  height:66px;
+  background:#fff;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 20px;
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+
+.top-brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:900;
+}
+
+.top-brand-icon{
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  background:var(--green);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.top-right{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.status-pill{
+  border:0;
+  padding:8px 12px;
+  border-radius:30px;
+  font-size:12px;
+  font-weight:900;
+}
+
+.status-pill.online{
+  background:#e5f7ef;
+  color:#13704b;
+}
+
+.status-pill.offline{
+  background:#eef1f0;
+  color:#65716d;
+}
+
+.logout-btn{
+  border:0;
+  background:#f0f4f2;
+  color:#53625d;
+  padding:9px 11px;
+  border-radius:10px;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main{
+  max-width:1050px;
+  margin:auto;
+  padding:22px 16px;
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+.heading{
+  margin-bottom:18px;
+}
+
+.heading h2{
+  font-size:25px;
+  margin-bottom:4px;
+}
+
+.heading p{
+  color:var(--muted);
+  font-size:14px;
+}
+
+/* =========================
+   ONLINE PANEL
+========================= */
+
+.online-panel{
+  background:#fff;
+  border-radius:20px;
+  padding:18px;
+  box-shadow:var(--shadow);
+  margin-bottom:18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.online-left{
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.online-dot{
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:#9ca7a3;
+}
+
+.online-dot.on{
+  background:#10a968;
+  box-shadow:0 0 0 6px rgba(16,169,104,.12);
+}
+
+.online-title{
+  font-weight:900;
+}
+
+.online-sub{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:3px;
+}
+
+.toggle{
+  width:58px;
+  height:32px;
+  background:#cbd4d0;
+  border-radius:30px;
+  position:relative;
+  border:0;
+}
+
+.toggle::after{
+  content:"";
+  position:absolute;
+  width:25px;
+  height:25px;
+  border-radius:50%;
+  background:#fff;
+  top:3.5px;
+  left:4px;
+  transition:.2s;
+  box-shadow:0 2px 5px rgba(0,0,0,.2);
+}
+
+.toggle.on{
+  background:var(--green);
+}
+
+.toggle.on::after{
+  left:29px;
+}
+
+/* =========================
+   MAP
+========================= */
+
+.map-card{
+  height:300px;
+  border-radius:22px;
+  overflow:hidden;
+  position:relative;
+  margin-bottom:18px;
+  background:
+    linear-gradient(120deg,rgba(255,255,255,.85),rgba(228,238,233,.8)),
+    repeating-linear-gradient(
+      45deg,
+      #edf2ef 0,
+      #edf2ef 25px,
+      #e2e9e5 26px,
+      #e2e9e5 28px
+    );
+  border:1px solid #dfe8e4;
+}
+
+.map-road{
+  position:absolute;
+  background:#fff;
+  border:1px solid #d9e1dd;
+  border-radius:100px;
+  transform:rotate(-22deg);
+}
+
+.road-one{
+  width:125%;
+  height:45px;
+  top:45%;
+  left:-10%;
+}
+
+.road-two{
+  width:110%;
+  height:35px;
+  top:15%;
+  left:-4%;
+  transform:rotate(24deg);
+}
+
+.road-three{
+  width:100%;
+  height:38px;
+  top:72%;
+  left:8%;
+  transform:rotate(8deg);
+}
+
+.map-center{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:54px;
+  height:54px;
+  border-radius:50%;
+  background:rgba(8,127,91,.13);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.map-center::before{
+  content:"";
+  width:19px;
+  height:19px;
+  border-radius:50%;
+  background:var(--green);
+  border:4px solid #fff;
+  box-shadow:0 4px 10px rgba(0,0,0,.2);
+}
+
+.map-label{
+  position:absolute;
+  top:15px;
+  left:15px;
+  background:#fff;
+  padding:9px 12px;
+  border-radius:11px;
+  font-size:12px;
+  font-weight:800;
+  box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-bottom:20px;
+}
+
+.stat{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:17px;
+  padding:16px;
+}
+
+.stat-icon{
+  font-size:21px;
+  margin-bottom:8px;
+}
+
+.stat-value{
+  font-size:23px;
+  font-weight:900;
+}
+
+.stat-label{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:3px;
+}
+
+/* =========================
+   DELIVERY CARDS
+========================= */
+
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:20px 0 12px;
+}
+
+.section-title h3{
+  font-size:17px;
+}
+
+.section-title span{
+  color:var(--green);
+  font-size:12px;
+  font-weight:900;
+}
+
+.delivery-list{
+  display:grid;
+  gap:12px;
+}
+
+.delivery{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:17px;
+  box-shadow:0 4px 15px rgba(0,0,0,.035);
+}
+
+.delivery-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:10px;
+  margin-bottom:15px;
+}
+
+.order-number{
+  font-weight:900;
+}
+
+.order-customer{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:3px;
+}
+
+.badge{
+  display:inline-flex;
+  padding:5px 9px;
+  border-radius:30px;
+  font-size:11px;
+  font-weight:900;
+}
+
+.badge.available{
+  background:#fff5d9;
+  color:#866100;
+}
+
+.badge.accepted{
+  background:#e9f4fb;
+  color:#276382;
+}
+
+.badge.picked{
+  background:#f1e9fa;
+  color:#6b4297;
+}
+
+.badge.delivery{
+  background:#e6f7ef;
+  color:#14704b;
+}
+
+.badge.completed{
+  background:#ddf5e8;
+  color:#11623e;
+}
+
+.route{
+  position:relative;
+  padding-left:24px;
+  margin:12px 0;
+}
+
+.route::before{
+  content:"";
+  position:absolute;
+  left:7px;
+  top:8px;
+  bottom:8px;
+  width:2px;
+  background:#d6e2dd;
+}
+
+.route-point{
+  position:relative;
+  margin-bottom:14px;
+}
+
+.route-point:last-child{
+  margin-bottom:0;
+}
+
+.route-point::before{
+  content:"";
+  position:absolute;
+  left:-21px;
+  top:4px;
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:var(--green);
+  border:2px solid #fff;
+  box-shadow:0 0 0 1px var(--green);
+}
+
+.route-point.destination::before{
+  background:#222;
+  box-shadow:0 0 0 1px #222;
+}
+
+.route-label{
+  font-size:10px;
+  color:var(--muted);
+  text-transform:uppercase;
+  font-weight:800;
+}
+
+.route-address{
+  font-size:13px;
+  font-weight:800;
+  margin-top:2px;
+}
+
+.delivery-meta{
+  display:flex;
+  justify-content:space-between;
+  border-top:1px solid var(--line);
+  padding-top:13px;
+  margin-top:14px;
+}
+
+.meta-label{
+  color:var(--muted);
+  font-size:10px;
+}
+
+.meta-value{
+  font-size:13px;
+  font-weight:900;
+  margin-top:3px;
+}
+
+.delivery-actions{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:8px;
+  margin-top:14px;
+}
+
+.action{
+  border:0;
+  border-radius:11px;
+  padding:12px;
+  background:var(--green);
+  color:#fff;
+  font-size:13px;
+  font-weight:900;
+}
+
+.action.secondary{
+  background:#edf7f3;
+  color:var(--green);
+}
+
+.action.danger{
+  background:#fdeceb;
+  color:var(--danger);
+}
+
+.action:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
+
+/* =========================
+   HISTORY
+========================= */
+
+.history-item{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:10px;
+}
+
+.history-top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.history-date{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:5px;
+}
+
+.history-total{
+  font-weight:900;
+  color:var(--green);
+}
+
+/* =========================
+   PROFILE
+========================= */
+
+.profile-card{
+  background:#fff;
+  border-radius:20px;
+  padding:20px;
+  box-shadow:var(--shadow);
+}
+
+.profile-avatar{
+  width:70px;
+  height:70px;
+  border-radius:22px;
+  background:var(--green-light);
+  color:var(--green);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:31px;
+  margin-bottom:15px;
+}
+
+.profile-name{
+  font-size:22px;
+  font-weight:900;
+}
+
+.profile-email{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:3px;
+  margin-bottom:20px;
+}
+
+.profile-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.profile-item{
+  background:#f8faf9;
+  border-radius:12px;
+  padding:13px;
+}
+
+.profile-label{
+  color:var(--muted);
+  font-size:10px;
+  margin-bottom:4px;
+}
+
+.profile-value{
+  font-size:13px;
+  font-weight:800;
+}
+
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:70px;
+  background:#fff;
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:center;
+  z-index:100;
+}
+
+.bottom-inner{
+  width:100%;
+  max-width:600px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+}
+
+.nav-btn{
+  border:0;
+  background:#fff;
+  color:#84908c;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  font-size:10px;
+  font-weight:800;
+}
+
+.nav-btn .icon{
+  font-size:21px;
+}
+
+.nav-btn.active{
+  color:var(--green);
+}
+
+/* =========================
+   STATUS SCREENS
+========================= */
+
+.full-status{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:var(--bg);
+}
+
+.status-card{
+  width:100%;
+  max-width:600px;
+  background:#fff;
+  border-radius:24px;
+  padding:35px 25px;
+  text-align:center;
+  box-shadow:var(--shadow);
+}
+
+.status-icon{
+  font-size:60px;
+  margin-bottom:15px;
+}
+
+.status-card h1{
+  font-size:25px;
+  margin-bottom:9px;
+}
+
+.status-card p{
+  color:var(--muted);
+  line-height:1.6;
+  font-size:14px;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:88px;
+  transform:translateX(-50%) translateY(20px);
+  background:#152a24;
+  color:#fff;
+  padding:12px 17px;
+  border-radius:12px;
+  font-size:13px;
+  font-weight:700;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  z-index:500;
+  max-width:90%;
+  text-align:center;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:700px){
+
+  .topbar{
+    padding:0 12px;
+  }
+
+  .main{
+    padding:17px 12px;
+  }
+
+  .stats{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .stats .stat:last-child{
+    grid-column:1 / -1;
+  }
+
+}
+
+@media(min-width:701px){
+
+  .delivery-list{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .delivery-actions{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .delivery-actions .full{
+    grid-column:1 / -1;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     AUTH SCREEN
+========================= -->
+
+<div id="authScreen" class="auth">
+
+  <div class="auth-card">
+
+    <div class="brand">
+
+      <div class="brand-mark">
+        🛵
+      </div>
+
+      <h1>SefwiGo Driver</h1>
+
+      <p>Earn by delivering around Sefwi Wiawso</p>
+
+    </div>
+
+
+    <div class="auth-tabs">
+
+      <button
+        id="loginTab"
+        class="active"
+        onclick="showAuth('login')"
+      >
+        Sign In
+      </button>
+
+      <button
+        id="registerTab"
+        onclick="showAuth('register')"
+      >
+        Register
+      </button>
+
+    </div>
+
+
+    <div id="authMessage" class="message"></div>
+
+
+    <!-- LOGIN -->
+
+    <div id="loginForm">
+
+      <div class="field">
+        <label>Email</label>
+        <input
+          id="loginEmail"
+          type="email"
+          placeholder="driver@example.com"
+        >
+      </div>
+
+      <div class="field">
+        <label>Password</label>
+        <input
+          id="loginPassword"
+          type="password"
+          placeholder="Password"
+        >
+      </div>
+
+      <button
+        id="loginBtn"
+        class="primary"
+      >
+        Sign In
+      </button>
+
+    </div>
+
+
+    <!-- REGISTER -->
+
+    <div id="registerForm" class="hidden">
+
+      <div class="field">
+        <label>Full name</label>
+        <input
+          id="registerName"
+          type="text"
+          placeholder="Your full name"
+        >
+      </div>
+
+      <div class="field">
+        <label>Email</label>
+        <input
+          id="registerEmail"
+          type="email"
+          placeholder="Your email"
+        >
+      </div>
+
+      <div class="field">
+        <label>Phone number</label>
+        <input
+          id="registerPhone"
+          type="tel"
+          placeholder="024..."
+        >
+      </div>
+
+      <div class="field">
+        <label>Vehicle type</label>
+
+        <select id="registerVehicle">
+          <option value="">Select vehicle</option>
+          <option value="Motorcycle">Motorcycle</option>
+          <option value="Bicycle">Bicycle</option>
+          <option value="Car">Car</option>
+          <option value="Van">Van</option>
+          <option value="Other">Other</option>
+        </select>
+
+      </div>
+
+      <div class="field">
+        <label>Vehicle number</label>
+        <input
+          id="registerVehicleNumber"
+          type="text"
+          placeholder="Vehicle registration"
+        >
+      </div>
+
+      <div class="field">
+        <label>Password</label>
+        <input
+          id="registerPassword"
+          type="password"
+          placeholder="Create password"
+        >
+      </div>
+
+      <div class="field">
+        <label>Confirm password</label>
+        <input
+          id="registerPassword2"
+          type="password"
+          placeholder="Confirm password"
+        >
+      </div>
+
+      <button
+        id="registerBtn"
+        class="primary"
+      >
+        Create Driver Account
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     PENDING
+========================= -->
+
+<div id="pendingScreen" class="full-status hidden">
+
+  <div class="status-card">
+
+    <div class="status-icon">
+      ⏳
+    </div>
+
+    <h1>Application Pending</h1>
+
+    <p>
+      Your driver account has been created.
+      SefwiGo needs to review and approve your
+      application before you can accept deliveries.
+    </p>
+
+    <br>
+
+    <button
+      class="primary"
+      onclick="logout()"
+    >
+      Sign Out
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     REJECTED
+========================= -->
+
+<div id="rejectedScreen" class="full-status hidden">
+
+  <div class="status-card">
+
+    <div class="status-icon">
+      ❌
+    </div>
+
+    <h1>Application Not Approved</h1>
+
+    <p id="rejectedText">
+      Your driver application has not been approved.
+    </p>
+
+    <br>
+
+    <button
+      class="primary"
+      onclick="logout()"
+    >
+      Sign Out
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     SUSPENDED
+========================= -->
+
+<div id="suspendedScreen" class="full-status hidden">
+
+  <div class="status-card">
+
+    <div class="status-icon">
+      🚫
+    </div>
+
+    <h1>Account Suspended</h1>
+
+    <p>
+      Your SefwiGo driver account is currently suspended.
+      Please contact SefwiGo support.
+    </p>
+
+    <br>
+
+    <button
+      class="primary"
+      onclick="logout()"
+    >
+      Sign Out
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     MAIN APP
+========================= -->
+
+<div id="app" class="app hidden">
+
+  <header class="topbar">
+
+    <div class="top-brand">
+
+      <div class="top-brand-icon">
+        🛵
+      </div>
+
+      <div>
+        SefwiGo Driver
+      </div>
+
+    </div>
+
+
+    <div class="top-right">
+
+      <span
+        id="topStatus"
+        class="status-pill offline"
+      >
+        Offline
+      </span>
+
+      <button
+        class="logout-btn"
+        onclick="logout()"
+      >
+        ↪
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <main class="main">
+
+
+    <!-- DASHBOARD -->
+
+    <section
+      id="dashboardPage"
+      class="page active"
+    >
+
+      <div class="heading">
+
+        <h2 id="welcome">
+          Welcome, Driver
+        </h2>
+
+        <p>
+          Find deliveries and earn with SefwiGo.
+        </p>
+
+      </div>
+
+
+      <div class="online-panel">
+
+        <div class="online-left">
+
+          <div
+            id="onlineDot"
+            class="online-dot"
+          ></div>
+
+          <div>
+
+            <div
+              id="onlineTitle"
+              class="online-title"
+            >
+              You're offline
+            </div>
+
+            <div
+              id="onlineSub"
+              class="online-sub"
+            >
+              Go online to receive delivery requests.
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <button
+          id="onlineToggle"
+          class="toggle"
+          onclick="toggleOnline()"
+        ></button>
+
+      </div>
+
+
+      <div class="map-card">
+
+        <div class="map-road road-one"></div>
+        <div class="map-road road-two"></div>
+        <div class="map-road road-three"></div>
+
+        <div class="map-label">
+          📍 Sefwi Wiawso delivery area
+        </div>
+
+        <div class="map-center"></div>
+
+      </div>
+
+
+      <div class="stats">
+
+        <div class="stat">
+
+          <div class="stat-icon">📦</div>
+
+          <div
+            id="availableCount"
+            class="stat-value"
+          >
+            0
+          </div>
+
+          <div class="stat-label">
+            Available
+          </div>
+
+        </div>
+
+
+        <div class="stat">
+
+          <div class="stat-icon">🚚</div>
+
+          <div
+            id="activeCount"
+            class="stat-value"
+          >
+            0
+          </div>
+
+          <div class="stat-label">
+            Active
+          </div>
+
+        </div>
+
+
+        <div class="stat">
+
+          <div class="stat-icon">✅</div>
+
+          <div
+            id="completedCount"
+            class="stat-value"
+          >
+            0
+          </div>
+
+          <div class="stat-label">
+            Completed
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="section-title">
+
+        <h3>
+          Available deliveries
+        </h3>
+
+        <span>
+          Nearby
+        </span>
+
+      </div>
+
+
+      <div
+        id="dashboardDeliveries"
+        class="delivery-list"
+      >
+
+        <div class="delivery">
+          <div class="empty-state">
+            Loading deliveries…
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- DELIVERIES -->
+
+    <section
+      id="deliveriesPage"
+      class="page"
+    >
+
+      <div class="heading">
+
+        <h2>Deliveries</h2>
+
+        <p>
+          Available and active delivery jobs.
+        </p>
+
+      </div>
+
+
+      <div
+        id="deliveriesList"
+        class="delivery-list"
+      ></div>
+
+    </section>
+
+
+    <!-- HISTORY -->
+
+    <section
+      id="historyPage"
+      class="page"
+    >
+
+      <div class="heading">
+
+        <h2>History</h2>
+
+        <p>
+          Your completed SefwiGo deliveries.
+        </p>
+
+      </div>
+
+
+      <div id="historyList"></div>
+
+    </section>
+
+
+    <!-- PROFILE -->
+
+    <section
+      id="profilePage"
+      class="page"
+    >
+
+      <div class="heading">
+
+        <h2>Account</h2>
+
+        <p>
+          Your driver information.
+        </p>
+
+      </div>
+
+
+      <div
+        id="profileContent"
+        class="profile-card"
+      ></div>
+
+    </section>
+
+  </main>
+
+
+  <!-- BOTTOM NAV -->
+
+  <nav class="bottom-nav">
+
+    <div class="bottom-inner">
+
+      <button
+        id="navDashboard"
+        class="nav-btn active"
+        onclick="showPage('dashboard')"
+      >
+
+        <span class="icon">⌂</span>
+        Home
+
+      </button>
+
+
+      <button
+        id="navDeliveries"
+        class="nav-btn"
+        onclick="showPage('deliveries')"
+      >
+
+        <span class="icon">📦</span>
+        Deliveries
+
+      </button>
+
+
+      <button
+        id="navHistory"
+        class="nav-btn"
+        onclick="showPage('history')"
+      >
+
+        <span class="icon">📋</span>
+        History
+
+      </button>
+
+
+      <button
+        id="navProfile"
+        class="nav-btn"
+        onclick="showPage('profile')"
+      >
+
+        <span class="icon">👤</span>
+        Account
+
+      </button>
+
+    </div>
+
+  </nav>
+
+</div>
+
+
+<div id="toast" class="toast"></div>
+
+
+<script type="module">
+
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+  getFirestore,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+  updateDoc,
+  setDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* =========================
+   FIREBASE
+========================= */
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDjHGyoBePPLLuqTNhNGE5SBRfBL5T29qWA",
+  authDomain: "sefwi-go.firebaseapp.com",
+  projectId: "sefwi-go",
+  storageBucket: "sefwi-go.firebasestorage.app",
+  messagingSenderId: "210398787110",
+  appId: "1:210398787110:web:f7f76a538a2712a2bb58e7"
+};
+
+const firebaseApp =
+  initializeApp(firebaseConfig);
+
+const auth =
+  getAuth(firebaseApp);
+
+const db =
+  getFirestore(firebaseApp);
+
+
+/* =========================
+   STATE
+========================= */
+
+let currentUser = null;
+
+let driver = null;
+
+let availableOrders = [];
+
+let activeOrders = [];
+
+let completedOrders = [];
+
+
+/* =========================
+   HELPERS
+========================= */
+
+const $ = id =>
+  document.getElementById(id);
+
+
+function esc(value){
+
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+function money(value){
+
+  const amount =
+    Number(value || 0);
+
+  return "GH₵ " +
+    amount.toFixed(2);
+
+}
+
+
+function toast(text){
+
+  const el =
+    $("toast");
+
+  el.textContent =
+    text;
+
+  el.classList.add("show");
+
+  clearTimeout(
+    window.__toastTimer
+  );
+
+  window.__toastTimer =
+    setTimeout(()=>{
+      el.classList.remove("show");
+    },2800);
+
+}
+
+
+function authMessage(
+  text,
+  type="info"
+){
+
+  const el =
+    $("authMessage");
+
+  el.className =
+    "message show " + type;
+
+  el.textContent =
+    text;
+
+}
+
+
+function clearAuthMessage(){
+
+  $("authMessage").className =
+    "message";
+
+  $("authMessage").textContent =
+    "";
+
+}
+
+
+function firebaseError(error){
+
+  const code =
+    error?.code || "";
+
+  if(
+    code.includes(
+      "auth/invalid-credential"
+    ) ||
+    code.includes(
+      "auth/wrong-password"
+    ) ||
+    code.includes(
+      "auth/user-not-found"
+    )
+  ){
+
+    return "Incorrect email or password.";
+
+  }
+
+  if(
+    code.includes(
+      "auth/email-already-in-use"
+    )
+  ){
+
+    return "This email is already registered.";
+
+  }
+
+  if(
+    code.includes(
+      "auth/invalid-email"
+    )
+  ){
+
+    return "Please enter a valid email address.";
+
+  }
+
+  if(
+    code.includes(
+      "auth/weak-password"
+    )
+  ){
+
+    return "Password must be at least 6 characters.";
+
+  }
+
+  if(
+    code.includes(
+      "permission-denied"
+    )
+  ){
+
+    return "Firebase permission denied. Check your Firestore rules.";
+
+  }
+
+  return error?.message ||
+    "Something went wrong.";
+
+}
+
+
+/* =========================
+   AUTH TABS
+========================= */
+
+window.showAuth =
+function(type){
+
+  clearAuthMessage();
+
+  if(type === "login"){
+
+    $("loginForm")
+      .classList
+      .remove("hidden");
+
+    $("registerForm")
+      .classList
+      .add("hidden");
+
+    $("loginTab")
+      .classList
+      .add("active");
+
+    $("registerTab")
+      .classList
+      .remove("active");
+
+  }else{
+
+    $("loginForm")
+      .classList
+      .add("hidden");
+
+    $("registerForm")
+      .classList
+      .remove("hidden");
+
+    $("loginTab")
+      .classList
+      .remove("active");
+
+    $("registerTab")
+      .classList
+      .add("active");
+
+  }
+
+};
+
+
+/* =========================
+   REGISTER
+========================= */
+
+$("registerBtn")
+.addEventListener(
+  "click",
+  async()=>{
+
+    const name =
+      $("registerName")
+        .value
+        .trim();
+
+    const email =
+      $("registerEmail")
+        .value
+        .trim();
+
+    const phone =
+      $("registerPhone")
+        .value
+        .trim();
+
+    const vehicleType =
+      $("registerVehicle")
+        .value;
+
+    const vehicleNumber =
+      $("registerVehicleNumber")
+        .value
+        .trim();
+
+    const password =
+      $("registerPassword")
+        .value;
+
+    const password2 =
+      $("registerPassword2")
+        .value;
+
+
+    if(
+      !name ||
+      !email ||
+      !phone ||
+      !vehicleType ||
+      !vehicleNumber ||
+      !password
+    ){
+
+      authMessage(
+        "Please complete all fields.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    if(password !== password2){
+
+      authMessage(
+        "Passwords do not match.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    if(password.length < 6){
+
+      authMessage(
+        "Password must contain at least 6 characters.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    const button =
+      $("registerBtn");
+
+    button.disabled = true;
+
+    button.textContent =
+      "Creating account…";
+
+
+    try{
+
+      const credential =
+        await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+
+      const uid =
+        credential.user.uid;
+
+
+      const profile = {
+
+        uid,
+
+        name,
+
+        email,
+
+        phone,
+
+        accountType:"driver",
+
+        role:"driver",
+
+        driver:true,
+
+        vehicleType,
+
+        vehicleNumber,
+
+        approvalStatus:"pending",
+
+        approved:false,
+
+        active:true,
+
+        online:false,
+
+        createdAt:
+          serverTimestamp(),
+
+        updatedAt:
+          serverTimestamp()
+
+      };
+
+
+      await setDoc(
+        doc(
+          db,
+          "users",
+          uid
+        ),
+        profile
+      );
+
+
+      /*
+        Mirror the driver in the drivers collection
+        because the Super Admin Drivers page already
+        understands this collection.
+      */
+
+      await setDoc(
+        doc(
+          db,
+          "drivers",
+          uid
+        ),
+        profile
+      );
+
+
+      authMessage(
+        "Your driver account has been created and is waiting for approval.",
+        "success"
+      );
+
+
+      setTimeout(()=>{
+        showOnly("pendingScreen");
+      },700);
+
+
+    }catch(error){
+
+      console.error(error);
+
+      authMessage(
+        firebaseError(error),
+        "error"
+      );
+
+    }finally{
+
+      button.disabled = false;
+
+      button.textContent =
+        "Create Driver Account";
+
+    }
+
+  }
+);
+
+
+/* =========================
+   LOGIN
+========================= */
+
+$("loginBtn")
+.addEventListener(
+  "click",
+  async()=>{
+
+    const email =
+      $("loginEmail")
+        .value
+        .trim();
+
+    const password =
+      $("loginPassword")
+        .value;
+
+
+    if(!email || !password){
+
+      authMessage(
+        "Enter your email and password.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    const button =
+      $("loginBtn");
+
+    button.disabled = true;
+
+    button.textContent =
+      "Signing in…";
+
+
+    try{
+
+      await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+    }catch(error){
+
+      console.error(error);
+
+      authMessage(
+        firebaseError(error),
+        "error"
+      );
+
+    }finally{
+
+      button.disabled = false;
+
+      button.textContent =
+        "Sign In";
+
+    }
+
+  }
+);
+
+
+/* =========================
+   AUTH STATE
+========================= */
+
+onAuthStateChanged(
+  auth,
+  async(user)=>{
+
+    currentUser =
+      user;
+
+
+    if(!user){
+
+      showOnly("authScreen");
+
+      return;
+
+    }
+
+
+    await loadDriver();
+
+  }
+);
+
+
+/* =========================
+   DRIVER PROFILE
+========================= */
+
+async function loadDriver(){
+
+  try{
+
+    const ref =
+      doc(
+        db,
+        "users",
+        currentUser.uid
+      );
+
+
+    const snap =
+      await getDoc(ref);
+
+
+    if(!snap.exists()){
+
+      await signOut(auth);
+
+      showOnly("authScreen");
+
+      authMessage(
+        "Driver profile was not found.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    driver = {
+      id:currentUser.uid,
+      ...snap.data()
+    };
+
+
+    /*
+      Keep the two driver documents aligned
+      if the admin changes the main users profile.
+    */
+
+    handleDriverStatus();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    showOnly("authScreen");
+
+    authMessage(
+      firebaseError(error),
+      "error"
+    );
+
+  }
+
+}
+
+
+/* =========================
+   DRIVER STATUS
+========================= */
+
+function handleDriverStatus(){
+
+  const status =
+    String(
+      driver.approvalStatus ||
+      ""
+    ).toLowerCase();
+
+
+  if(
+    driver.active === false ||
+    status === "suspended"
+  ){
+
+    showOnly("suspendedScreen");
+
+    return;
+
+  }
+
+
+  if(
+    status === "rejected"
+  ){
+
+    $("rejectedText").textContent =
+      driver.rejectionReason ||
+      "Your driver application has not been approved.";
+
+    showOnly("rejectedScreen");
+
+    return;
+
+  }
+
+
+  if(
+    driver.approved !== true ||
+    status !== "approved"
+  ){
+
+    showOnly("pendingScreen");
+
+    return;
+
+  }
+
+
+  showOnly("app");
+
+  renderDriver();
+
+  loadData();
+
+}
+
+
+/* =========================
+   SHOW SCREEN
+========================= */
+
+function showOnly(id){
+
+  [
+    "authScreen",
+    "pendingScreen",
+    "rejectedScreen",
+    "suspendedScreen",
+    "app"
+  ].forEach(name=>{
+
+    const el =
+      $(name);
+
+    if(el){
+
+      el.classList.add("hidden");
+
+    }
+
+  });
+
+
+  const target =
+    $(id);
+
+  if(target){
+
+    target.classList.remove(
+      "hidden"
+    );
+
+  }
+
+}
+
+
+/* =========================
+   DRIVER HEADER
+========================= */
+
+function renderDriver(){
+
+  $("welcome").textContent =
+    "Welcome, " +
+    (
+      driver.name ||
+      "Driver"
+    );
+
+
+  const online =
+    driver.online === true;
+
+
+  $("onlineToggle")
+    .classList
+    .toggle(
+      "on",
+      online
+    );
+
+
+  $("onlineDot")
+    .classList
+    .toggle(
+      "on",
+      online
+    );
+
+
+  $("onlineTitle").textContent =
+    online
+    ? "You're online"
+    : "You're offline";
+
+
+  $("onlineSub").textContent =
+    online
+    ? "You're ready to receive delivery requests."
+    : "Go online to receive delivery requests.";
+
+
+  $("topStatus").textContent =
+    online
+    ? "Online"
+    : "Offline";
+
+
+  $("topStatus")
+    .className =
+    "status-pill " +
+    (
+      online
+      ? "online"
+      : "offline"
+    );
+
+
+  renderProfile();
+
+}
+
+
+/* =========================
+   ONLINE / OFFLINE
+========================= */
+
+window.toggleOnline =
+async function(){
+
+  if(!driver) return;
+
+
+  const online =
+    driver.online !== true;
+
+
+  try{
+
+    await updateDoc(
+      doc(
+        db,
+        "users",
+        currentUser.uid
+      ),
+      {
+
+        online,
+
+        updatedAt:
+          serverTimestamp()
+
+      }
+    );
+
+
+    /*
+      Keep drivers mirror updated.
+    */
+
+    try{
+
+      await updateDoc(
+        doc(
+          db,
+          "drivers",
+          currentUser.uid
+        ),
+        {
+
+          online,
+
+          updatedAt:
+            serverTimestamp()
+
+        }
+      );
+
+    }catch(error){
+
+      console.warn(
+        "Driver mirror update failed",
+        error
+      );
+
+    }
+
+
+    driver.online =
+      online;
+
+
+    renderDriver();
+
+    toast(
+      online
+      ? "You're now online."
+      : "You're now offline."
+    );
+
+
+    await loadData();
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      firebaseError(error)
+    );
+
+  }
+
+};
+
+
+/* =========================
+   LOAD DATA
+========================= */
+
+async function loadData(){
+
+  await Promise.all([
+    loadAvailable(),
+    loadActive(),
+    loadCompleted()
+  ]);
+
+
+  renderDashboard();
+
+  renderDeliveries();
+
+  renderHistory();
+
+}
+
+
+/* =========================
+   AVAILABLE ORDERS
+========================= */
+
+async function loadAvailable(){
+
+  availableOrders = [];
+
+
+  try{
+
+    const q =
+      query(
+        collection(
+          db,
+          "orders"
+        ),
+        where(
+          "status",
+          "in",
+          [
+            "new",
+            "accepted",
+            "preparing",
+            "ready"
+          ]
+        )
+      );
+
+
+    const snap =
+      await getDocs(q);
+
+
+    availableOrders =
+      snap.docs
+        .map(d=>({
+          id:d.id,
+          ...d.data()
+        }))
+        .filter(order=>{
+
+          return !order.assignedTo &&
+                 !order.driverId &&
+                 order.deliveryRequired !== false;
+
+        });
+
+
+  }catch(error){
+
+    console.error(
+      "Available orders:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================
+   ACTIVE ORDERS
+========================= */
+
+async function loadActive(){
+
+  activeOrders = [];
+
+
+  try{
+
+    const q =
+      query(
+        collection(
+          db,
+          "orders"
+        ),
+        where(
+          "assignedTo",
+          "==",
+          currentUser.uid
+        )
+      );
+
+
+    const snap =
+      await getDocs(q);
+
+
+    activeOrders =
+      snap.docs
+        .map(d=>({
+          id:d.id,
+          ...d.data()
+        }))
+        .filter(order=>{
+
+          const status =
+            String(
+              order.status ||
+              ""
+            ).toLowerCase();
+
+
+          return ![
+            "delivered",
+            "completed",
+            "cancelled"
+          ].includes(status);
+
+        });
+
+
+  }catch(error){
+
+    console.error(
+      "Active orders:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================
+   COMPLETED
+========================= */
+
+async function loadCompleted(){
+
+  completedOrders = [];
+
+
+  try{
+
+    const q =
+      query(
+        collection(
+          db,
+          "orders"
+        ),
+        where(
+          "assignedTo",
+          "==",
+          currentUser.uid
+        )
+      );
+
+
+    const snap =
+      await getDocs(q);
+
+
+    completedOrders =
+      snap.docs
+        .map(d=>({
+          id:d.id,
+          ...d.data()
+        }))
+        .filter(order=>{
+
+          const status =
+            String(
+              order.status ||
+              ""
+            ).toLowerCase();
+
+
+          return [
+            "delivered",
+            "completed"
+          ].includes(status);
+
+        });
+
+  }catch(error){
+
+    console.error(
+      "Completed orders:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+function renderDashboard(){
+
+  $("availableCount").textContent =
+    availableOrders.length;
+
+
+  $("activeCount").textContent =
+    activeOrders.length;
+
+
+  $("completedCount").textContent =
+    completedOrders.length;
+
+
+  const combined = [
+    ...activeOrders,
+    ...availableOrders
+  ];
+
+
+  const unique =
+    Array.from(
+      new Map(
+        combined.map(order=>[
+          order.id,
+          order
+        ])
+      ).values()
+    );
+
+
+  if(!unique.length){
+
+    $("dashboardDeliveries").innerHTML = `
+
+      <div class="delivery">
+
+        <div style="
+          text-align:center;
+          padding:25px;
+          color:var(--muted)
+        ">
+
+          <div style="
+            font-size:38px;
+            margin-bottom:8px
+          ">
+            📭
+          </div>
+
+          <b>No deliveries right now</b>
+
+          <div style="
+            font-size:12px;
+            margin-top:5px
+          ">
+            ${
+              driver.online
+              ? "Stay online and new requests will appear here."
+              : "Go online to start receiving requests."
+            }
+          </div>
+
+        </div>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  $("dashboardDeliveries").innerHTML =
+    unique
+      .slice(0,6)
+      .map(order=>
+        deliveryHTML(
+          order,
+          activeOrders.some(
+            x=>x.id===order.id
+          )
+        )
+      )
+      .join("");
+
+}
+
+
+/* =========================
+   DELIVERY HTML
+========================= */
+
+function deliveryHTML(
+  order,
+  active=false
+){
+
+  const status =
+    String(
+      order.status ||
+      "ready"
+    );
+
+
+  const customer =
+    order.customerName ||
+    order.customer ||
+    "Customer";
+
+
+  const phone =
+    order.customerPhone ||
+    order.phone ||
+    "";
+
+
+  const pickup =
+    order.pickupAddress ||
+    order.businessAddress ||
+    order.vendorAddress ||
+    order.pickupLocation ||
+    "Pickup location";
+
+
+  const destination =
+    order.deliveryAddress ||
+    order.dropoffAddress ||
+    order.address ||
+    "Customer location";
+
+
+  const amount =
+    order.deliveryFee ??
+    order.driverFee ??
+    order.total ??
+    order.amount ??
+    0;
+
+
+  let action = "";
+
+
+  if(!active){
+
+    action = `
+
+      <button
+        class="action"
+        onclick="acceptDelivery('${order.id}')"
+        ${driver.online !== true ? "disabled" : ""}
+      >
+        ${
+          driver.online === true
+          ? "Accept delivery"
+          : "Go online to accept"
+        }
+      </button>
+
+    `;
+
+  }else{
+
+    const s =
+      status.toLowerCase();
+
+
+    if(
+      [
+        "accepted",
+        "assigned",
+        "new",
+        "preparing",
+        "ready"
+      ].includes(s)
+    ){
+
+      action = `
+
+        <button
+          class="action"
+          onclick="changeDelivery('${order.id}','picked_up')"
+        >
+          📦 Mark picked up
+        </button>
+
+      `;
+
+    }else if(
+      s === "picked_up"
+    ){
+
+      action = `
+
+        <button
+          class="action"
+          onclick="changeDelivery('${order.id}','out_for_delivery')"
+        >
+          🚚 Start delivery
+        </button>
+
+      `;
+
+    }else if(
+      s === "out_for_delivery"
+    ){
+
+      action = `
+
+        <button
+          class="action"
+          onclick="changeDelivery('${order.id}','delivered')"
+        >
+          ✓ Complete delivery
+        </button>
+
+      `;
+
+    }
+
+  }
+
+
+  const phoneButton =
+    phone
+    ? `
+
+      <a
+        href="tel:${esc(phone)}"
+        class="action secondary"
+        style="
+          text-decoration:none;
+          text-align:center
+        "
+      >
+        📞 Call customer
+      </a>
+
+    `
+    : "";
+
+
+  return `
+
+    <article class="delivery">
+
+      <div class="delivery-head">
+
+        <div>
+
+          <div class="order-number">
+            Order #${esc(
+              order.orderNumber ||
+              order.id.slice(0,8)
+            )}
+          </div>
+
+          <div class="order-customer">
+            ${esc(customer)}
+          </div>
+
+        </div>
+
+
+        <div>
+          ${statusBadge(status)}
+        </div>
+
+      </div>
+
+
+      <div class="route">
+
+        <div class="route-point">
+
+          <div class="route-label">
+            Pickup
+          </div>
+
+          <div class="route-address">
+            ${esc(pickup)}
+          </div>
+
+        </div>
+
+
+        <div class="route-point destination">
+
+          <div class="route-label">
+            Drop-off
+          </div>
+
+          <div class="route-address">
+            ${esc(destination)}
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="delivery-meta">
+
+        <div>
+
+          <div class="meta-label">
+            Customer
+          </div>
+
+          <div class="meta-value">
+            ${esc(customer)}
+          </div>
+
+        </div>
+
+
+        <div style="text-align:right">
+
+          <div class="meta-label">
+            Delivery
+          </div>
+
+          <div class="meta-value">
+            ${money(amount)}
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="delivery-actions">
+
+        ${action}
+
+        ${phoneButton}
+
+      </div>
+
+    </article>
+
+  `;
+
+}
+
+
+/* =========================
+   STATUS BADGE
+========================= */
+
+function statusBadge(status){
+
+  const s =
+    String(status || "")
+      .toLowerCase();
+
+
+  let cls =
+    "available";
+
+  let text =
+    "Available";
+
+
+  if(
+    s === "accepted" ||
+    s === "assigned"
+  ){
+
+    cls =
+      "accepted";
+
+    text =
+      "Accepted";
+
+  }
+
+
+  if(
+    s === "picked_up"
+  ){
+
+    cls =
+      "picked";
+
+    text =
+      "Picked up";
+
+  }
+
+
+  if(
+    s === "out_for_delivery"
+  ){
+
+    cls =
+      "delivery";
+
+    text =
+      "Out for delivery";
+
+  }
+
+
+  if(
+    s === "delivered" ||
+    s === "completed"
+  ){
+
+    cls =
+      "completed";
+
+    text =
+      "Completed";
+
+  }
+
+
+  return `
+    <span class="badge ${cls}">
+      ${text}
+    </span>
+  `;
+
+}
+
+
+/* =========================
+   DELIVERIES PAGE
+========================= */
+
+function renderDeliveries(){
+
+  const combined = [
+    ...activeOrders,
+    ...availableOrders
+  ];
+
+
+  const unique =
+    Array.from(
+      new Map(
+        combined.map(order=>[
+          order.id,
+          order
+        ])
+      ).values()
+    );
+
+
+  if(!unique.length){
+
+    $("deliveriesList").innerHTML = `
+
+      <div class="delivery">
+
+        <div style="
+          text-align:center;
+          padding:30px;
+          color:var(--muted)
+        ">
+
+          📭
+
+          <br><br>
+
+          No deliveries available.
+
+        </div>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  $("deliveriesList").innerHTML =
+    unique
+      .map(order=>
+        deliveryHTML(
+          order,
+          activeOrders.some(
+            x=>x.id===order.id
+          )
+        )
+      )
+      .join("");
+
+}
+
+
+/* =========================
+   ACCEPT DELIVERY
+========================= */
+
+window.acceptDelivery =
+async function(orderId){
+
+  if(!driver) return;
+
+
+  if(driver.online !== true){
+
+    toast(
+      "Go online before accepting a delivery."
+    );
+
+    return;
+
+  }
+
+
+  try{
+
+    /*
+      This writes the driver assignment
+      directly to the order.
+    */
+
+    await updateDoc(
+      doc(
+        db,
+        "orders",
+        orderId
+      ),
+      {
+
+        assignedTo:
+          currentUser.uid,
+
+        driverId:
+          currentUser.uid,
+
+        driverName:
+          driver.name || "",
+
+        driverPhone:
+          driver.phone || "",
+
+        status:"accepted",
+
+        driverAcceptedAt:
+          serverTimestamp(),
+
+        updatedAt:
+          serverTimestamp()
+
+      }
+    );
+
+
+    toast(
+      "Delivery accepted."
+    );
+
+
+    await loadData();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      firebaseError(error)
+    );
+
+  }
+
+};
+
+
+/* =========================
+   CHANGE DELIVERY STATUS
+========================= */
+
+window.changeDelivery =
+async function(
+  orderId,
+  newStatus
+){
+
+  try{
+
+    const updates = {
+
+      status:newStatus,
+
+      updatedAt:
+        serverTimestamp()
+
+    };
+
+
+    if(
+      newStatus === "picked_up"
+    ){
+
+      updates.driverPickedUpAt =
+        serverTimestamp();
+
+    }
+
+
+    if(
+      newStatus === "out_for_delivery"
+    ){
+
+      updates.outForDeliveryAt =
+        serverTimestamp();
+
+    }
+
+
+    if(
+      newStatus === "delivered"
+    ){
+
+      updates.deliveredAt =
+        serverTimestamp();
+
+      updates.completedAt =
+        serverTimestamp();
+
+    }
+
+
+    await updateDoc(
+      doc(
+        db,
+        "orders",
+        orderId
+      ),
+      updates
+    );
+
+
+    toast(
+      newStatus === "picked_up"
+      ? "Order marked as picked up."
+      : newStatus === "out_for_delivery"
+      ? "Delivery started."
+      : "Delivery completed."
+    );
+
+
+    await loadData();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    toast(
+      firebaseError(error)
+    );
+
+  }
+
+};
+
+
+/* =========================
+   HISTORY
+========================= */
+
+function renderHistory(){
+
+  if(!completedOrders.length){
+
+    $("historyList").innerHTML = `
+
+      <div class="delivery">
+
+        <div style="
+          text-align:center;
+          padding:30px;
+          color:var(--muted)
+        ">
+
+          <div style="font-size:38px">
+            📋
+          </div>
+
+          <br>
+
+          No completed deliveries yet.
+
+        </div>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  $("historyList").innerHTML =
+    completedOrders
+      .map(order=>`
+
+        <div class="history-item">
+
+          <div class="history-top">
+
+            <div>
+
+              <b>
+                Order #${esc(
+                  order.orderNumber ||
+                  order.id.slice(0,8)
+                )}
+              </b>
+
+              <div class="history-date">
+                ${esc(
+                  order.customerName ||
+                  "Customer"
+                )}
+              </div>
+
+            </div>
+
+            <div class="history-total">
+              ${money(
+                order.deliveryFee ??
+                order.driverFee ??
+                order.total ??
+                order.amount ??
+                0
+              )}
+            </div>
+
+          </div>
+
+          <div style="
+            margin-top:12px;
+            font-size:12px;
+            color:var(--muted)
+          ">
+
+            ${esc(
+              order.deliveryAddress ||
+              order.address ||
+              "Delivery completed"
+            )}
+
+          </div>
+
+          <div style="
+            margin-top:10px
+          ">
+
+            ${statusBadge(
+              order.status
+            )}
+
+          </div>
+
+        </div>
+
+      `)
+      .join("");
+
+}
+
+
+/* =========================
+   PROFILE
+========================= */
+
+function renderProfile(){
+
+  if(!driver) return;
+
+
+  $("profileContent").innerHTML = `
+
+    <div class="profile-avatar">
+      🛵
+    </div>
+
+
+    <div class="profile-name">
+      ${esc(
+        driver.name ||
+        "Driver"
+      )}
+    </div>
+
+
+    <div class="profile-email">
+      ${esc(
+        driver.email ||
+        currentUser?.email ||
+        ""
+      )}
+    </div>
+
+
+    <div class="profile-grid">
+
+      <div class="profile-item">
+
+        <div class="profile-label">
+          Phone
+        </div>
+
+        <div class="profile-value">
+          ${esc(
+            driver.phone ||
+            "—"
+          )}
+        </div>
+
+      </div>
+
+
+      <div class="profile-item">
+
+        <div class="profile-label">
+          Vehicle
+        </div>
+
+        <div class="profile-value">
+          ${esc(
+            driver.vehicleType ||
+            "—"
+          )}
+        </div>
+
+      </div>
+
+
+      <div class="profile-item">
+
+        <div class="profile-label">
+          Vehicle number
+        </div>
+
+        <div class="profile-value">
+          ${esc(
+            driver.vehicleNumber ||
+            "—"
+          )}
+        </div>
+
+      </div>
+
+
+      <div class="profile-item">
+
+        <div class="profile-label">
+          Status
+        </div>
+
+        <div class="profile-value">
+          ${driver.approved === true
+            ? "Approved"
+            : "Pending"}
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="action danger"
+      style="margin-top:20px;width:100%"
+      onclick="logout()"
+    >
+      Sign out
+    </button>
+
+  `;
+
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+window.showPage =
+function(page){
+
+  const pages = [
+    "dashboard",
+    "deliveries",
+    "history",
+    "profile"
+  ];
+
+
+  pages.forEach(name=>{
+
+    const pageEl =
+      $(name + "Page");
+
+    const navEl =
+      $("nav" +
+        name.charAt(0).toUpperCase() +
+        name.slice(1));
+
+
+    if(pageEl){
+
+      pageEl.classList.toggle(
+        "active",
+        name === page
+      );
+
+    }
+
+
+    if(navEl){
+
+      navEl.classList.toggle(
+        "active",
+        name === page
+      );
+
+    }
+
+  });
+
+
+  if(page === "deliveries"){
+
+    renderDeliveries();
+
+  }
+
+
+  if(page === "history"){
+
+    renderHistory();
+
+  }
+
+
+  if(page === "profile"){
+
+    renderProfile();
+
+  }
+
+};
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+window.logout =
+async function(){
+
+  try{
+
+    if(currentUser){
+
+      try{
+
+        await updateDoc(
+          doc(
+            db,
+            "users",
+            currentUser.uid
+          ),
+          {
+
+            online:false,
+
+            updatedAt:
+              serverTimestamp()
+
+          }
+        );
+
+      }catch(error){
+
+        console.warn(
+          "Could not set driver offline",
+          error
+        );
+
+      }
+
+    }
+
+
+    await signOut(auth);
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+
+};
+
+</script>
+
+</body>
+</html>
