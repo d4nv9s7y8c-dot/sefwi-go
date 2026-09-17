@@ -373,6 +373,62 @@ button{
 }
 
 /* =========================
+   LOCATION STATUS
+========================= */
+
+.location-status{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:17px;
+  padding:14px 16px;
+  margin-bottom:18px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.location-status-icon{
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  background:#eef3f1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:19px;
+  flex:none;
+}
+
+.location-status-icon.active{
+  background:var(--green-light);
+}
+
+.location-status-title{
+  font-size:13px;
+  font-weight:900;
+}
+
+.location-status-sub{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:3px;
+}
+
+.location-status-dot{
+  margin-left:auto;
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:#9ca7a3;
+  flex:none;
+}
+
+.location-status-dot.active{
+  background:#10a968;
+  box-shadow:0 0 0 5px rgba(16,169,104,.1);
+}
+
+/* =========================
    MAP
 ========================= */
 
@@ -951,7 +1007,6 @@ button{
 
     </div>
 
-
     <div class="auth-tabs">
 
       <button
@@ -971,9 +1026,7 @@ button{
 
     </div>
 
-
     <div id="authMessage" class="message"></div>
-
 
     <!-- LOGIN -->
 
@@ -1005,7 +1058,6 @@ button{
       </button>
 
     </div>
-
 
     <!-- REGISTER -->
 
@@ -1092,7 +1144,6 @@ button{
 
 </div>
 
-
 <!-- =========================
      PENDING
 ========================= -->
@@ -1126,7 +1177,6 @@ button{
 
 </div>
 
-
 <!-- =========================
      REJECTED
 ========================= -->
@@ -1157,7 +1207,6 @@ button{
   </div>
 
 </div>
-
 
 <!-- =========================
      SUSPENDED
@@ -1191,7 +1240,6 @@ button{
 
 </div>
 
-
 <!-- =========================
      MAIN APP
 ========================= -->
@@ -1211,7 +1259,6 @@ button{
       </div>
 
     </div>
-
 
     <div class="top-right">
 
@@ -1233,9 +1280,7 @@ button{
 
   </header>
 
-
   <main class="main">
-
 
     <!-- DASHBOARD -->
 
@@ -1255,7 +1300,6 @@ button{
         </p>
 
       </div>
-
 
       <div class="online-panel">
 
@@ -1286,7 +1330,6 @@ button{
 
         </div>
 
-
         <button
           id="onlineToggle"
           class="toggle"
@@ -1295,6 +1338,41 @@ button{
 
       </div>
 
+      <!-- LIVE LOCATION STATUS -->
+
+      <div class="location-status">
+
+        <div
+          id="locationStatusIcon"
+          class="location-status-icon"
+        >
+          📍
+        </div>
+
+        <div>
+
+          <div
+            id="locationStatusTitle"
+            class="location-status-title"
+          >
+            Location sharing inactive
+          </div>
+
+          <div
+            id="locationStatusSub"
+            class="location-status-sub"
+          >
+            Your location is only shared during an active delivery.
+          </div>
+
+        </div>
+
+        <div
+          id="locationStatusDot"
+          class="location-status-dot"
+        ></div>
+
+      </div>
 
       <div class="map-card">
 
@@ -1309,7 +1387,6 @@ button{
         <div class="map-center"></div>
 
       </div>
-
 
       <div class="stats">
 
@@ -1330,7 +1407,6 @@ button{
 
         </div>
 
-
         <div class="stat">
 
           <div class="stat-icon">🚚</div>
@@ -1347,7 +1423,6 @@ button{
           </div>
 
         </div>
-
 
         <div class="stat">
 
@@ -1368,7 +1443,6 @@ button{
 
       </div>
 
-
       <div class="section-title">
 
         <h3>
@@ -1381,22 +1455,26 @@ button{
 
       </div>
 
-
       <div
         id="dashboardDeliveries"
         class="delivery-list"
       >
 
         <div class="delivery">
-          <div class="empty-state">
+
+          <div style="
+            text-align:center;
+            padding:25px;
+            color:var(--muted)
+          ">
             Loading deliveries…
           </div>
+
         </div>
 
       </div>
 
     </section>
-
 
     <!-- DELIVERIES -->
 
@@ -1415,14 +1493,12 @@ button{
 
       </div>
 
-
       <div
         id="deliveriesList"
         class="delivery-list"
       ></div>
 
     </section>
-
 
     <!-- HISTORY -->
 
@@ -1441,11 +1517,9 @@ button{
 
       </div>
 
-
       <div id="historyList"></div>
 
     </section>
-
 
     <!-- PROFILE -->
 
@@ -1464,7 +1538,6 @@ button{
 
       </div>
 
-
       <div
         id="profileContent"
         class="profile-card"
@@ -1473,7 +1546,6 @@ button{
     </section>
 
   </main>
-
 
   <!-- BOTTOM NAV -->
 
@@ -1492,7 +1564,6 @@ button{
 
       </button>
 
-
       <button
         id="navDeliveries"
         class="nav-btn"
@@ -1504,7 +1575,6 @@ button{
 
       </button>
 
-
       <button
         id="navHistory"
         class="nav-btn"
@@ -1515,7 +1585,6 @@ button{
         History
 
       </button>
-
 
       <button
         id="navProfile"
@@ -1534,9 +1603,7 @@ button{
 
 </div>
 
-
 <div id="toast" class="toast"></div>
-
 
 <script type="module">
 
@@ -1562,6 +1629,7 @@ import {
   where,
   updateDoc,
   setDoc,
+  deleteField,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -1571,7 +1639,7 @@ import {
 ========================= */
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDjHGyeObPLLuqTNhNGE5SBRfBL5T29qWA",
+  apiKey: "AIzaSyDjHGyoBePPLLuqTNhNGE5SBRfBL5T29qWA",
   authDomain: "sefwi-go.firebaseapp.com",
   projectId: "sefwi-go",
   storageBucket: "sefwi-go.firebasestorage.app",
@@ -1602,6 +1670,48 @@ let availableOrders = [];
 let activeOrders = [];
 
 let completedOrders = [];
+
+
+/* =========================
+   LIVE LOCATION STATE
+========================= */
+
+/*
+  Only ONE active delivery is tracked at a time.
+
+  This prevents the browser from running multiple
+  GPS watchers and prevents the driver's location
+  from being written to unrelated orders.
+*/
+
+let locationWatchId = null;
+
+let locationOrderId = null;
+
+let lastLocationWrite = 0;
+
+let lastLatitude = null;
+
+let lastLongitude = null;
+
+
+/*
+  Minimum time between Firestore location writes.
+
+  10 seconds is frequent enough for customer tracking
+  while avoiding an unnecessary write on every GPS event.
+*/
+
+const LOCATION_WRITE_INTERVAL = 10000;
+
+
+/*
+  Minimum movement before another location update.
+
+  Approximately 20 metres.
+*/
+
+const LOCATION_MIN_DISTANCE_METERS = 20;
 
 
 /* =========================
@@ -1746,8 +1856,129 @@ function firebaseError(error){
 
   }
 
+  if(
+    code.includes(
+      "location"
+    )
+  ){
+
+    return "Location access was not available.";
+
+  }
+
   return error?.message ||
     "Something went wrong.";
+
+}
+
+
+/* =========================
+   DISTANCE
+========================= */
+
+/*
+  Calculate distance between two GPS coordinates.
+
+  Used only to decide whether another Firestore
+  location update is necessary.
+*/
+
+function distanceMeters(
+  lat1,
+  lon1,
+  lat2,
+  lon2
+){
+
+  if(
+    lat1 === null ||
+    lon1 === null ||
+    lat2 === null ||
+    lon2 === null
+  ){
+
+    return Infinity;
+
+  }
+
+
+  const R =
+    6371000;
+
+
+  const toRad =
+    value =>
+      value * Math.PI / 180;
+
+
+  const dLat =
+    toRad(lat2 - lat1);
+
+  const dLon =
+    toRad(lon2 - lon1);
+
+
+  const a =
+    Math.sin(dLat / 2) *
+    Math.sin(dLat / 2) +
+
+    Math.cos(toRad(lat1)) *
+    Math.cos(toRad(lat2)) *
+    Math.sin(dLon / 2) *
+    Math.sin(dLon / 2);
+
+
+  const c =
+    2 *
+    Math.atan2(
+      Math.sqrt(a),
+      Math.sqrt(1-a)
+    );
+
+
+  return R * c;
+
+}
+
+
+/* =========================
+   LOCATION UI
+========================= */
+
+function renderLocationStatus(
+  active,
+  text,
+  sub
+){
+
+  const icon =
+    $("locationStatusIcon");
+
+  const dot =
+    $("locationStatusDot");
+
+
+  if(active){
+
+    icon.classList.add("active");
+
+    dot.classList.add("active");
+
+  }else{
+
+    icon.classList.remove("active");
+
+    dot.classList.remove("active");
+
+  }
+
+
+  $("locationStatusTitle").textContent =
+    text;
+
+
+  $("locationStatusSub").textContent =
+    sub;
 
 }
 
@@ -1957,12 +2188,6 @@ $("registerBtn")
       );
 
 
-      /*
-        Mirror the driver in the drivers collection
-        because the Super Admin Drivers page already
-        understands this collection.
-      */
-
       await setDoc(
         doc(
           db,
@@ -2090,6 +2315,8 @@ onAuthStateChanged(
 
     if(!user){
 
+      stopLocationTracking();
+
       showOnly("authScreen");
 
       return;
@@ -2145,11 +2372,6 @@ async function loadDriver(){
     };
 
 
-    /*
-      Keep the two driver documents aligned
-      if the admin changes the main users profile.
-    */
-
     handleDriverStatus();
 
 
@@ -2187,6 +2409,8 @@ function handleDriverStatus(){
     status === "suspended"
   ){
 
+    stopLocationTracking();
+
     showOnly("suspendedScreen");
 
     return;
@@ -2197,6 +2421,8 @@ function handleDriverStatus(){
   if(
     status === "rejected"
   ){
+
+    stopLocationTracking();
 
     $("rejectedText").textContent =
       driver.rejectionReason ||
@@ -2213,6 +2439,8 @@ function handleDriverStatus(){
     driver.approved !== true ||
     status !== "approved"
   ){
+
+    stopLocationTracking();
 
     showOnly("pendingScreen");
 
@@ -2353,6 +2581,18 @@ async function(){
 
   try{
 
+    /*
+      Going offline immediately stops
+      the location watcher.
+    */
+
+    if(!online){
+
+      stopLocationTracking();
+
+    }
+
+
     await updateDoc(
       doc(
         db,
@@ -2369,10 +2609,6 @@ async function(){
       }
     );
 
-
-    /*
-      Keep drivers mirror updated.
-    */
 
     try{
 
@@ -2407,6 +2643,7 @@ async function(){
 
 
     renderDriver();
+
 
     toast(
       online
@@ -2448,6 +2685,31 @@ async function loadData(){
   renderDeliveries();
 
   renderHistory();
+
+
+  /*
+    If there is an active delivery,
+    automatically resume live tracking.
+
+    This is important if the driver refreshes
+    the browser while a delivery is active.
+  */
+
+  if(
+    driver &&
+    driver.online === true &&
+    activeOrders.length
+  ){
+
+    startLocationTracking(
+      activeOrders[0].id
+    );
+
+  }else{
+
+    stopLocationTracking();
+
+  }
 
 }
 
@@ -2633,6 +2895,510 @@ async function loadCompleted(){
 
     console.error(
       "Completed orders:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================
+   LIVE LOCATION TRACKING
+========================= */
+
+function startLocationTracking(
+  orderId
+){
+
+  if(!currentUser){
+
+    return;
+
+  }
+
+
+  if(!driver){
+
+    return;
+
+  }
+
+
+  if(driver.online !== true){
+
+    return;
+
+  }
+
+
+  if(!orderId){
+
+    return;
+
+  }
+
+
+  /*
+    Don't create a second watcher for
+    the same delivery.
+  */
+
+  if(
+    locationWatchId !== null &&
+    locationOrderId === orderId
+  ){
+
+    return;
+
+  }
+
+
+  /*
+    Stop any previous watcher before
+    switching to another active delivery.
+  */
+
+  stopLocationTracking();
+
+
+  if(
+    !navigator.geolocation
+  ){
+
+    renderLocationStatus(
+      false,
+      "Location unavailable",
+      "This browser does not support GPS location."
+    );
+
+    toast(
+      "This browser does not support location tracking."
+    );
+
+    return;
+
+  }
+
+
+  locationOrderId =
+    orderId;
+
+
+  lastLocationWrite = 0;
+
+  lastLatitude = null;
+
+  lastLongitude = null;
+
+
+  renderLocationStatus(
+    true,
+    "Live location active",
+    "Your location is being shared with the customer for this delivery."
+  );
+
+
+  /*
+    Ask the browser for permission and
+    continuously monitor the driver's position.
+  */
+
+  locationWatchId =
+    navigator.geolocation.watchPosition(
+      handleLocationPosition,
+      handleLocationError,
+      {
+        enableHighAccuracy:true,
+        maximumAge:5000,
+        timeout:15000
+      }
+    );
+
+}
+
+
+async function handleLocationPosition(
+  position
+){
+
+  if(
+    !currentUser ||
+    !driver ||
+    !locationOrderId
+  ){
+
+    return;
+
+  }
+
+
+  if(driver.online !== true){
+
+    stopLocationTracking();
+
+    return;
+
+  }
+
+
+  const latitude =
+    position.coords.latitude;
+
+  const longitude =
+    position.coords.longitude;
+
+  const accuracy =
+    position.coords.accuracy;
+
+
+  if(
+    !Number.isFinite(latitude) ||
+    !Number.isFinite(longitude)
+  ){
+
+    return;
+
+  }
+
+
+  const now =
+    Date.now();
+
+
+  const distance =
+    distanceMeters(
+      lastLatitude,
+      lastLongitude,
+      latitude,
+      longitude
+    );
+
+
+  /*
+    Write when:
+
+    1. This is the first location, OR
+    2. At least 10 seconds have passed AND
+       the driver moved approximately 20m.
+
+    If the driver is stationary, we still send
+    an update every 10 seconds so the customer
+    knows the tracking connection is alive.
+  */
+
+  const enoughTime =
+    now -
+    lastLocationWrite >=
+    LOCATION_WRITE_INTERVAL;
+
+
+  const movedEnough =
+    distance >=
+    LOCATION_MIN_DISTANCE_METERS;
+
+
+  const firstLocation =
+    lastLatitude === null ||
+    lastLongitude === null;
+
+
+  if(
+    !firstLocation &&
+    !enoughTime
+  ){
+
+    return;
+
+  }
+
+
+  if(
+    !firstLocation &&
+    !movedEnough &&
+    !enoughTime
+  ){
+
+    return;
+
+  }
+
+
+  /*
+    If another active delivery somehow became
+    current while the GPS callback was pending,
+    don't write to the wrong order.
+  */
+
+  const orderId =
+    locationOrderId;
+
+
+  try{
+
+    const location = {
+
+      latitude,
+
+      longitude,
+
+      accuracy:
+
+        Number.isFinite(accuracy)
+        ? accuracy
+        : null,
+
+      /*
+        Keep the timestamp server-generated
+        so the customer gets a trusted Firestore
+        timestamp.
+      */
+
+      updatedAt:
+        serverTimestamp()
+
+    };
+
+
+    await updateDoc(
+      doc(
+        db,
+        "orders",
+        orderId
+      ),
+      {
+        driverLocation:
+          location
+      }
+    );
+
+
+    lastLocationWrite =
+      now;
+
+    lastLatitude =
+      latitude;
+
+    lastLongitude =
+      longitude;
+
+
+    renderLocationStatus(
+      true,
+      "Live location active",
+      "Location updated. Customer can follow your delivery."
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "Live location update failed:",
+      error
+    );
+
+
+    /*
+      Don't immediately stop GPS because a
+      temporary network problem may recover.
+    */
+
+    renderLocationStatus(
+      true,
+      "Live location waiting",
+      "GPS is active. Waiting for the connection to update the customer."
+    );
+
+  }
+
+}
+
+
+function handleLocationError(
+  error
+){
+
+  console.warn(
+    "Driver location error:",
+    error
+  );
+
+
+  if(
+    error?.code ===
+    error.PERMISSION_DENIED
+  ){
+
+    renderLocationStatus(
+      false,
+      "Location permission denied",
+      "Allow location access in your browser to share your position during deliveries."
+    );
+
+    toast(
+      "Location permission is required for live delivery tracking."
+    );
+
+    return;
+
+  }
+
+
+  if(
+    error?.code ===
+    error.POSITION_UNAVAILABLE
+  ){
+
+    renderLocationStatus(
+      true,
+      "Finding your location…",
+      "GPS is temporarily unavailable."
+    );
+
+    return;
+
+  }
+
+
+  if(
+    error?.code ===
+    error.TIMEOUT
+  ){
+
+    renderLocationStatus(
+      true,
+      "Finding your location…",
+      "GPS request timed out. Trying again."
+    );
+
+  }
+
+}
+
+
+/* =========================
+   STOP LOCATION
+========================= */
+
+function stopLocationTracking(){
+
+  if(
+    locationWatchId !== null &&
+    navigator.geolocation
+  ){
+
+    navigator.geolocation.clearWatch(
+      locationWatchId
+    );
+
+  }
+
+
+  locationWatchId =
+    null;
+
+  locationOrderId =
+    null;
+
+  lastLocationWrite =
+    0;
+
+  lastLatitude =
+    null;
+
+  lastLongitude =
+    null;
+
+
+  /*
+    Location sharing is no longer active.
+  */
+
+  const icon =
+    $("locationStatusIcon");
+
+  const dot =
+    $("locationStatusDot");
+
+
+  if(icon){
+
+    icon.classList.remove(
+      "active"
+    );
+
+  }
+
+
+  if(dot){
+
+    dot.classList.remove(
+      "active"
+    );
+
+  }
+
+
+  if(
+    $("locationStatusTitle")
+  ){
+
+    $("locationStatusTitle").textContent =
+      "Location sharing inactive";
+
+  }
+
+
+  if(
+    $("locationStatusSub")
+  ){
+
+    $("locationStatusSub").textContent =
+      "Your location is only shared during an active delivery.";
+
+  }
+
+}
+
+
+/* =========================
+   CLEAR LOCATION FROM ORDER
+========================= */
+
+async function clearOrderDriverLocation(
+  orderId
+){
+
+  if(!orderId){
+
+    return;
+
+  }
+
+
+  try{
+
+    await updateDoc(
+      doc(
+        db,
+        "orders",
+        orderId
+      ),
+      {
+
+        driverLocation:
+          deleteField(),
+
+        updatedAt:
+          serverTimestamp()
+
+      }
+    );
+
+  }catch(error){
+
+    console.warn(
+      "Could not clear driver location:",
       error
     );
 
@@ -2909,13 +3675,11 @@ function deliveryHTML(
 
         </div>
 
-
         <div>
           ${statusBadge(status)}
         </div>
 
       </div>
-
 
       <div class="route">
 
@@ -2931,7 +3695,6 @@ function deliveryHTML(
 
         </div>
 
-
         <div class="route-point destination">
 
           <div class="route-label">
@@ -2945,7 +3708,6 @@ function deliveryHTML(
         </div>
 
       </div>
-
 
       <div class="delivery-meta">
 
@@ -2961,7 +3723,6 @@ function deliveryHTML(
 
         </div>
 
-
         <div style="text-align:right">
 
           <div class="meta-label">
@@ -2975,7 +3736,6 @@ function deliveryHTML(
         </div>
 
       </div>
-
 
       <div class="delivery-actions">
 
@@ -3161,12 +3921,23 @@ async function(orderId){
   }
 
 
-  try{
+  /*
+    Prevent a driver from accepting another
+    delivery while already actively delivering.
+  */
 
-    /*
-      This writes the driver assignment
-      directly to the order.
-    */
+  if(activeOrders.length){
+
+    toast(
+      "Finish your current delivery before accepting another one."
+    );
+
+    return;
+
+  }
+
+
+  try{
 
     await updateDoc(
       doc(
@@ -3202,6 +3973,16 @@ async function(orderId){
 
     toast(
       "Delivery accepted."
+    );
+
+
+    /*
+      Start GPS immediately after the order
+      becomes assigned.
+    */
+
+    startLocationTracking(
+      orderId
     );
 
 
@@ -3284,6 +4065,35 @@ async function(
       ),
       updates
     );
+
+
+    /*
+      When delivery is complete:
+
+      1. Stop GPS watcher.
+      2. Remove driverLocation from order.
+      3. Customer will stop seeing the driver's
+         last known live position.
+    */
+
+    if(
+      newStatus === "delivered"
+    ){
+
+      if(
+        locationOrderId === orderId
+      ){
+
+        stopLocationTracking();
+
+      }
+
+
+      await clearOrderDriverLocation(
+        orderId
+      );
+
+    }
 
 
     toast(
@@ -3433,14 +4243,12 @@ function renderProfile(){
       🛵
     </div>
 
-
     <div class="profile-name">
       ${esc(
         driver.name ||
         "Driver"
       )}
     </div>
-
 
     <div class="profile-email">
       ${esc(
@@ -3449,7 +4257,6 @@ function renderProfile(){
         ""
       )}
     </div>
-
 
     <div class="profile-grid">
 
@@ -3468,7 +4275,6 @@ function renderProfile(){
 
       </div>
 
-
       <div class="profile-item">
 
         <div class="profile-label">
@@ -3483,7 +4289,6 @@ function renderProfile(){
         </div>
 
       </div>
-
 
       <div class="profile-item">
 
@@ -3500,7 +4305,6 @@ function renderProfile(){
 
       </div>
 
-
       <div class="profile-item">
 
         <div class="profile-label">
@@ -3516,7 +4320,6 @@ function renderProfile(){
       </div>
 
     </div>
-
 
     <button
       class="action danger"
@@ -3611,6 +4414,13 @@ async function(){
 
   try{
 
+    /*
+      Stop the browser GPS watcher first.
+    */
+
+    stopLocationTracking();
+
+
     if(currentUser){
 
       try{
@@ -3640,10 +4450,43 @@ async function(){
 
       }
 
+
+      /*
+        Keep the drivers mirror offline too.
+      */
+
+      try{
+
+        await updateDoc(
+          doc(
+            db,
+            "drivers",
+            currentUser.uid
+          ),
+          {
+
+            online:false,
+
+            updatedAt:
+              serverTimestamp()
+
+          }
+        );
+
+      }catch(error){
+
+        console.warn(
+          "Could not set driver mirror offline",
+          error
+        );
+
+      }
+
     }
 
 
     await signOut(auth);
+
 
   }catch(error){
 
