@@ -2496,45 +2496,6 @@ function localType(){
    CUSTOMER PROFILE
    ========================= */
 
-async function profile(){
-
-  if(
-    !auth?.currentUser ||
-    !db
-  ){
-
-    return null;
-
-  }
-
-
-  try{
-
-    const s=
-      await ff.getDoc(
-        ff.doc(
-          db,
-          "users",
-          auth.currentUser.uid
-        )
-      );
-
-
-    return s.exists()
-      ?s.data()
-      :null;
-
-  }
-
-  catch(e){
-
-    return null;
-
-  }
-
-}
-
-
 async function saveProfile(
   type,
   name,
@@ -2542,6 +2503,7 @@ async function saveProfile(
   phone,
   customerId
 ){
+
   if(
     !auth?.currentUser ||
     !db
@@ -2574,45 +2536,6 @@ async function saveProfile(
 
         createdAt:ff.serverTimestamp(),
 
-        updatedAt:ff.serverTimestamp()
-      },
-      {
-        merge:true
-      }
-    );
-
-  }
-
-  catch(e){
-
-    console.warn(e);
-
-  }
-}
-
-  if(
-    !auth?.currentUser ||
-    !db
-  ){
-
-    return;
-
-  }
-
-
-  try{
-
-    await ff.setDoc(
-      ff.doc(
-        db,
-        "users",
-        auth.currentUser.uid
-      ),
-      {
-        uid:auth.currentUser.uid,
-        name,
-        email,
-        accountType:"customer",
         updatedAt:ff.serverTimestamp()
       },
       {
