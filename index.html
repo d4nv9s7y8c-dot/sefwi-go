@@ -2538,8 +2538,57 @@ async function profile(){
 async function saveProfile(
   type,
   name,
-  email
+  email,
+  phone,
+  customerId
 ){
+  if(
+    !auth?.currentUser ||
+    !db
+  ){
+    return;
+  }
+
+  try{
+
+    await ff.setDoc(
+      ff.doc(
+        db,
+        "users",
+        auth.currentUser.uid
+      ),
+      {
+        uid:auth.currentUser.uid,
+
+        customerId:customerId,
+
+        name:name,
+
+        phone:phone,
+
+        email:email,
+
+        accountType:"customer",
+
+        identityVerificationStatus:"not_started",
+
+        createdAt:ff.serverTimestamp(),
+
+        updatedAt:ff.serverTimestamp()
+      },
+      {
+        merge:true
+      }
+    );
+
+  }
+
+  catch(e){
+
+    console.warn(e);
+
+  }
+}
 
   if(
     !auth?.currentUser ||
