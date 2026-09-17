@@ -2995,11 +2995,20 @@ const e=
     );
 
 
-    await saveProfile(
-      t,
-      n,
-      e
-    );
+  const customerId =
+  "SG-" +
+  Math.random()
+    .toString(36)
+    .substring(2,8)
+    .toUpperCase();
+
+  await saveProfile(
+  t,
+  n,
+  e,
+  ph,
+  customerId
+);
 
 
     closeModal(
