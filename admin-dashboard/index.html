@@ -3431,9 +3431,7 @@ async function renderDrivers(){
     <div class="card">
 
       <div class="card-head">
-
         <h3>🛵 Delivery partners</h3>
-
       </div>
 
       <div class="card-body">
@@ -3459,11 +3457,7 @@ async function renderDrivers(){
   try{
 
     /*
-     * Driver Website stores driver accounts
-     * in users/{uid}.
-     *
-     * Super Admin already has permission to read
-     * user profiles through the isAdmin() rule.
+     * Drivers are currently stored in users/{uid}.
      */
 
     const snap =
@@ -3480,40 +3474,28 @@ async function renderDrivers(){
         }))
         .filter(driver => {
 
-          const accountType =
+          const type =
             String(
               driver.accountType ||
               driver.role ||
               ""
             ).toLowerCase();
 
-
           return (
-            accountType === "driver" ||
+            type === "driver" ||
             driver.driver === true
           );
 
         });
 
 
-    /*
-     * Sort drivers alphabetically.
-     */
-
     drivers.sort((a,b) =>
-      String(
-        a.name || "Driver"
-      ).localeCompare(
-        String(
-          b.name || "Driver"
+      String(a.name || "Driver")
+        .localeCompare(
+          String(b.name || "Driver")
         )
-      )
     );
 
-
-    /*
-     * No drivers yet.
-     */
 
     if(!drivers.length){
 
@@ -3546,10 +3528,6 @@ async function renderDrivers(){
     }
 
 
-    /*
-     * Render driver table.
-     */
-
     $("driversTable").innerHTML = `
 
       <table>
@@ -3557,19 +3535,12 @@ async function renderDrivers(){
         <thead>
 
           <tr>
-
             <th>Name</th>
-
             <th>Phone</th>
-
             <th>Status</th>
-
             <th>Online</th>
-
             <th>Vehicle</th>
-
             <th>Action</th>
-
           </tr>
 
         </thead>
@@ -3580,45 +3551,34 @@ async function renderDrivers(){
           ${
             drivers.map(driver => {
 
-              const approvalStatus =
+              const approval =
                 String(
-                  driver.approvalStatus ||
-                  ""
+                  driver.approvalStatus || ""
                 ).toLowerCase();
 
 
-              let status;
+              let status = "pending";
 
 
               if(
-                driver.active === false ||
-                approvalStatus === "suspended"
+                driver.active === false &&
+                approval !== "rejected"
               ){
 
                 status = "suspended";
 
-              }
-
-              else if(
-                approvalStatus === "rejected"
+              }else if(
+                approval === "rejected"
               ){
 
                 status = "rejected";
 
-              }
-
-              else if(
+              }else if(
                 driver.approved === true ||
-                approvalStatus === "approved"
+                approval === "approved"
               ){
 
                 status = "approved";
-
-              }
-
-              else{
-
-                status = "pending";
 
               }
 
@@ -3641,45 +3601,34 @@ async function renderDrivers(){
                       color:var(--muted);
                       margin-top:3px;
                     ">
-
                       ${esc(
                         driver.email ||
-                        "No email"
+                        "—"
                       )}
-
                     </div>
 
                   </td>
 
 
                   <td>
-
                     ${esc(
                       driver.phone ||
                       "—"
                     )}
-
                   </td>
 
 
                   <td>
-
                     ${statusBadge(status)}
-
                   </td>
 
 
                   <td>
-
                     ${
                       driver.online === true
-
                       ? statusBadge("online")
-
                       : statusBadge("offline")
-
                     }
-
                   </td>
 
 
@@ -3693,25 +3642,18 @@ async function renderDrivers(){
 
                     ${
                       driver.vehicleNumber
-
                       ? `
-
                         <div style="
                           font-size:11px;
                           color:var(--muted);
                           margin-top:3px;
                         ">
-
                           ${esc(
                             driver.vehicleNumber
                           )}
-
                         </div>
-
                       `
-
                       : ""
-
                     }
 
                   </td>
@@ -3719,16 +3661,82 @@ async function renderDrivers(){
 
                   <td>
 
-                    <button
-                      class="btn btn-secondary btn-small"
-                      onclick="showRecordDetails(
-                        'Driver',
-                        '${driver.id}',
-                        'users'
-                      )"
-                    >
-                      View
-                    </button>
+                    <div style="
+                      display:flex;
+                      gap:6px;
+                      flex-wrap:wrap;
+                    ">
+
+                      <button
+                        class="btn btn-secondary btn-small"
+                        onclick="reviewDriver('${driver.id}')"
+                      >
+                        View
+                      </button>
+
+
+                      ${
+                        status === "pending"
+
+                        ? `
+
+                          <button
+                            class="btn btn-primary btn-small"
+                            onclick="approveDriver('${driver.id}')"
+                          >
+                            Approve
+                          </button>
+
+                          <button
+                            class="btn btn-danger btn-small"
+                            onclick="rejectDriver('${driver.id}')"
+                          >
+                            Reject
+                          </button>
+
+                        `
+
+                        : ""
+                      }
+
+
+                      ${
+                        status === "approved"
+
+                        ? `
+
+                          <button
+                            class="btn btn-danger btn-small"
+                            onclick="suspendDriver('${driver.id}')"
+                          >
+                            Suspend
+                          </button>
+
+                        `
+
+                        : ""
+                      }
+
+
+                      ${
+                        status === "suspended" ||
+                        status === "rejected"
+
+                        ? `
+
+                          <button
+                            class="btn btn-primary btn-small"
+                            onclick="reactivateDriver('${driver.id}')"
+                          >
+                            Reactivate
+                          </button>
+
+                        `
+
+                        : ""
+                      }
+
+                    </div>
 
                   </td>
 
@@ -3745,14 +3753,12 @@ async function renderDrivers(){
 
     `;
 
-
   }catch(error){
 
     console.error(
       "Drivers error:",
       error
     );
-
 
     $("driversTable").innerHTML = `
 
