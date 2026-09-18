@@ -2570,126 +2570,314 @@ function openAccount(){
 window.openAccount=openAccount;
 
 
-async function renderAccount(){
+function renderAccount(){
 
-  const u=
+  const u =
     auth?.currentUser;
 
-
-  if(u){
-
-    const p=
-      await profile();
-
-
-    localStorage.setItem(
-      "sefwiAccountType",
-      "customer"
-    );
-
+  if(!u){
 
     $("accountBody").innerHTML=`
 
-      <div style="text-align:center;padding:10px">
+      <h2 style="margin-top:0">
+        Welcome to SefwiGo
+      </h2>
 
-        <div style="font-size:55px">
-          👤
-        </div>
+      <p class="help">
+        Create your free customer account to order
+        food, browse local businesses and manage
+        your SefwiGo account.
+      </p>
 
-        <h2>
-          Welcome,
-          ${esc(
-            u.displayName||
-            p?.name||
-            "SefwiGo customer"
-          )}
-        </h2>
+      <div class="tabs">
 
-        <p class="help">
-          ${esc(u.email||"")}
-          <br>
-          <b>Customer account</b>
-        </p>
-
-        <div
-          style="display:grid;gap:9px;margin-top:15px"
+        <button
+          id="signupTab"
+          class="tab active"
+          onclick="accountTab('signup')"
         >
+          Create Account
+        </button>
 
-          <button
-            class="submit"
-            onclick="closeModal('accountModal');openCustomerDashboard()"
-          >
-            👤 Customer Dashboard
-          </button>
-
-          <button
-            class="small"
-            onclick="openOrders();closeModal('accountModal')"
-          >
-            📋 My Orders
-          </button>
-
-          <button
-            class="small"
-            onclick="openCart();closeModal('accountModal')"
-          >
-            🛒 My Cart
-          </button>
-
-          <button
-            class="small danger"
-            onclick="logoutAccount()"
-          >
-            Sign Out
-          </button>
-
-        </div>
+        <button
+          id="loginTab"
+          class="tab"
+          onclick="accountTab('login')"
+        >
+          Sign In
+        </button>
 
       </div>
 
+      <div id="authArea"></div>
+
     `;
 
-    return;
+    accountTab("signup");
 
+    return;
   }
+
+
+  localStorage.setItem(
+    "sefwiAccountType",
+    "customer"
+  );
 
 
   $("accountBody").innerHTML=`
 
-    <h2 style="margin-top:0">
-      Welcome to SefwiGo
-    </h2>
+    <div style="padding:6px">
 
-    <p class="help">
-      Create your free customer account to order food,
-      browse local businesses and track your orders.
-    </p>
+      <div style="text-align:center">
 
-    <div class="tabs">
+        <div style="
+          font-size:55px;
+          margin-bottom:6px
+        ">
+          👤
+        </div>
 
-      <button
-        id="signupTab"
-        class="tab active"
-        onclick="accountTab('signup')"
+        <h2 style="margin:6px 0">
+
+          Hello,
+          ${esc(
+            u.displayName ||
+            localStorage.getItem(
+              "sefwiUserName"
+            ) ||
+            "Customer"
+          )}
+
+        </h2>
+
+        <p class="help">
+
+          ${esc(u.email || "")}
+
+          <br>
+
+          <b>
+            SefwiGo Customer
+          </b>
+
+        </p>
+
+      </div>
+
+
+      <div
+        style="
+          display:grid;
+          gap:10px;
+          margin-top:18px
+        "
       >
-        Create Account
-      </button>
 
-      <button
-        id="loginTab"
-        class="tab"
-        onclick="accountTab('login')"
+        <button
+          class="submit"
+          onclick="
+            closeModal('accountModal');
+            openCustomerDashboard()
+          "
+        >
+          👤 My Customer Account
+        </button>
+
+
+        <button
+          class="small"
+          onclick="
+            openOrders();
+            closeModal('accountModal')
+          "
+        >
+          📋 My Orders
+        </button>
+
+
+        <button
+          class="small"
+          onclick="
+            openCart();
+            closeModal('accountModal')
+          "
+        >
+          🛒 My Cart
+        </button>
+
+
+        <button
+          class="small"
+          onclick="
+            closeModal('accountModal');
+            scrollToId('property')
+          "
+        >
+          🏡 Properties
+        </button>
+
+
+        <button
+          class="small"
+          onclick="
+            closeModal('accountModal');
+            scrollToId('businesses')
+          "
+        >
+          🏪 Browse Businesses
+        </button>
+
+
+        <button
+          class="small danger"
+          onclick="logoutAccount()"
+        >
+          Sign Out
+        </button>
+
+      </div>
+
+
+      <div
+        class="dash"
+        style="margin-top:15px"
       >
-        Sign In
-      </button>
+
+        <h3 style="margin-top:0">
+          Your profile
+        </h3>
+
+        <p class="help">
+
+          <b>
+            Name
+          </b>
+
+          <br>
+
+          ${esc(
+            u.displayName ||
+            localStorage.getItem(
+              "sefwiUserName"
+            ) ||
+            "Customer"
+          )}
+
+          <br><br>
+
+          <b>
+            Email
+          </b>
+
+          <br>
+
+          ${esc(u.email || "")}
+
+        </p>
+
+      </div>
 
     </div>
 
-    <div id="authArea"></div>
-
   `;
 
-  accountTab("signup");
+
+  /*
+    Load Firestore profile in the background.
+    The Account screen is already visible,
+    so it cannot get stuck waiting for Firestore.
+  */
+
+  profile()
+    .then(p=>{
+
+      if(!p)return;
+
+      const name =
+        p.name ||
+        u.displayName ||
+        "Customer";
+
+      const phone =
+        p.phone ||
+        "Not added yet";
+
+      const customerId =
+        p.customerId ||
+        "Not assigned yet";
+
+
+      const profileBox =
+        $("accountBody")
+          ?.querySelector(".dash");
+
+      if(!profileBox)return;
+
+
+      profileBox.innerHTML=`
+
+        <h3 style="margin-top:0">
+          Your profile
+        </h3>
+
+        <p class="help">
+
+          <b>
+            Name
+          </b>
+
+          <br>
+
+          ${esc(name)}
+
+          <br><br>
+
+          <b>
+            Phone
+          </b>
+
+          <br>
+
+          ${esc(phone)}
+
+          <br><br>
+
+          <b>
+            Email
+          </b>
+
+          <br>
+
+          ${esc(
+            p.email ||
+            u.email ||
+            ""
+          )}
+
+          <br><br>
+
+          <b>
+            Customer ID
+          </b>
+
+          <br>
+
+          ${esc(customerId)}
+
+        </p>
+
+      `;
+
+    })
+    .catch(e=>{
+
+      console.warn(
+        "Could not load customer profile.",
+        e
+      );
+
+    });
 
 }
 
