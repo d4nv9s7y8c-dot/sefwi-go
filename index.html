@@ -2578,23 +2578,25 @@ function openAccount(){
 window.openAccount=openAccount;
 
 
-function renderAccount(){
+async function renderAccount(){
 
-  const u =
-    auth?.currentUser;
+  const u = auth?.currentUser;
+
+  /* =========================
+     SIGNED OUT ACCOUNT
+     ========================= */
 
   if(!u){
 
-    $("accountBody").innerHTML=`
+    $("accountBody").innerHTML = `
 
       <h2 style="margin-top:0">
         Welcome to SefwiGo
       </h2>
 
       <p class="help">
-        Create your free customer account to order
-        food, browse local businesses and manage
-        your SefwiGo account.
+        Create your free customer account to order food,
+        browse local businesses and track your orders.
       </p>
 
       <div class="tabs">
@@ -2627,118 +2629,704 @@ function renderAccount(){
   }
 
 
+  /* =========================
+     CUSTOMER ACCOUNT
+     ========================= */
+
   localStorage.setItem(
     "sefwiAccountType",
     "customer"
   );
 
 
-  $("accountBody").innerHTML=`
+  let name =
+    u.displayName ||
+    localStorage.getItem("sefwiUserName") ||
+    "Customer";
 
-    <div style="padding:6px">
+  let email =
+    u.email ||
+    "";
 
-      <div style="text-align:center">
+  let phone =
+    "";
 
-        <div style="
-          font-size:55px;
-          margin-bottom:6px
-        ">
-          👤
-        </div>
+  let customerId =
+    "";
 
-        <h2 style="margin:6px 0">
 
-          Hello,
-          ${esc(
-            u.displayName ||
-            localStorage.getItem(
-              "sefwiUserName"
-            ) ||
-            "Customer"
-          )}
+  /* =========================
+     LOAD CUSTOMER PROFILE
+     ========================= */
 
+  try{
+
+    if(db){
+
+      const snap =
+        await ff.getDoc(
+          ff.doc(
+            db,
+            "users",
+            u.uid
+          )
+        );
+
+      if(snap.exists()){
+
+        const p =
+          snap.data();
+
+        name =
+          p.name ||
+          name;
+
+        email =
+          p.email ||
+          email;
+
+        phone =
+          p.phone ||
+          "";
+
+        customerId =
+          p.customerId ||
+          "";
+
+      }
+
+    }
+
+  }
+
+  catch(e){
+
+    console.warn(
+      "Could not load customer profile:",
+      e
+    );
+
+  }
+
+
+  /* =========================
+     ACCOUNT PAGE
+     ========================= */
+
+  $("accountBody").innerHTML = `
+
+    <div
+      style="
+        display:flex;
+        flex-direction:column;
+        gap:0;
+      "
+    >
+
+      <!-- GREETING -->
+
+      <div
+        style="
+          padding:4px 0 22px;
+        "
+      >
+
+        <h2
+          style="
+            margin:0;
+            font-size:28px;
+          "
+        >
+          Hello, ${esc(name)}
         </h2>
 
-        <p class="help">
+      </div>
 
-          ${esc(u.email || "")}
 
-          <br>
+      <!-- FAVOURITES -->
 
-          <b>
-            SefwiGo Customer
-          </b>
+      <div
+        style="
+          padding:18px 0;
+          border-top:1px solid var(--line);
+        "
+      >
 
+        <h3
+          style="
+            margin:0 0 10px;
+          "
+        >
+          Favourites
+        </h3>
+
+        <strong>
+          No favourites added
+        </strong>
+
+        <p
+          class="help"
+          style="margin:6px 0 0"
+        >
+          Save all your favourites in one place
+          using the heart icon.
         </p>
 
       </div>
 
 
+      <!-- PAYMENT -->
+
       <div
         style="
-          display:grid;
-          gap:10px;
-          margin-top:18px
+          padding:18px 0;
+          border-top:1px solid var(--line);
+        "
+      >
+
+        <h3
+          style="
+            margin:0 0 12px;
+          "
+        >
+          Payment
+        </h3>
+
+        <div
+          style="
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:12px;
+          "
+        >
+
+          <strong>
+            MTN Mobile Money
+          </strong>
+
+          <button
+            type="button"
+            class="link"
+            onclick="
+              toast(
+                'Payment settings coming soon.'
+              )
+            "
+          >
+            Change
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- BALANCE -->
+
+      <div
+        style="
+          padding:18px 0;
+          border-top:1px solid var(--line);
+        "
+      >
+
+        <h3
+          style="
+            margin:0 0 8px;
+          "
+        >
+          Bolt Balance
+        </h3>
+
+        <div
+          style="
+            font-size:22px;
+            font-weight:900;
+          "
+        >
+          GHC 0.00
+        </div>
+
+      </div>
+
+
+      <!-- PROFILE -->
+
+      <div
+        style="
+          padding:18px 0;
+          border-top:1px solid var(--line);
+        "
+      >
+
+        <h3
+          style="
+            margin:0 0 8px;
+          "
+        >
+          Profile
+        </h3>
+
+
+        <!-- NAME -->
+
+        <div
+          style="
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:12px;
+            padding:12px 0;
+          "
+        >
+
+          <strong>
+            ${esc(name)}
+          </strong>
+
+          <button
+            type="button"
+            class="link"
+            onclick="editCustomerName()"
+          >
+            Edit
+          </button>
+
+        </div>
+
+
+        <!-- PHONE -->
+
+        <div
+          style="
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:12px;
+            padding:12px 0;
+          "
+        >
+
+          <strong>
+            ${esc(
+              phone ||
+              "Phone number not added"
+            )}
+          </strong>
+
+          <button
+            type="button"
+            class="link"
+            onclick="editCustomerPhone()"
+          >
+            Edit
+          </button>
+
+        </div>
+
+
+        <!-- CUSTOMER ID -->
+
+        <div
+          style="
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:12px;
+            padding:12px 0;
+          "
+        >
+
+          <strong>
+            Customer ID
+          </strong>
+
+          <span
+            style="
+              font-weight:700;
+              color:var(--muted);
+            "
+          >
+            ${esc(
+              customerId ||
+              "Not available"
+            )}
+          </span>
+
+        </div>
+
+
+        <!-- EMAIL -->
+
+        <div
+          style="
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:12px;
+            padding:12px 0;
+          "
+        >
+
+          <strong
+            style="
+              word-break:break-word;
+            "
+          >
+            ${esc(email)}
+          </strong>
+
+          <button
+            type="button"
+            class="link"
+            onclick="editCustomerEmail()"
+          >
+            Edit
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- THEME -->
+
+      <div
+        style="
+          padding:18px 0;
+          border-top:1px solid var(--line);
+        "
+      >
+
+        <h3
+          style="
+            margin:0 0 12px;
+          "
+        >
+          Theme
+        </h3>
+
+        <div
+          style="
+            display:flex;
+            gap:8px;
+            flex-wrap:wrap;
+          "
+        >
+
+          <button
+            type="button"
+            class="small"
+            onclick="
+              toast('System theme selected.')
+            "
+          >
+            System
+          </button>
+
+          <button
+            type="button"
+            class="small"
+            onclick="
+              toast('Light theme selected.')
+            "
+          >
+            Light
+          </button>
+
+          <button
+            type="button"
+            class="small"
+            onclick="
+              toast('Dark theme selected.')
+            "
+          >
+            Dark
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- OTHER -->
+
+      <div
+        style="
+          padding:18px 0;
+          border-top:1px solid var(--line);
+        "
+      >
+
+        <h3
+          style="
+            margin:0 0 4px;
+          "
+        >
+          Other
+        </h3>
+
+
+        <button
+          type="button"
+          class="account-menu-row"
+          onclick="
+            toast('Promo codes coming soon.')
+          "
+        >
+          <span>
+            Promo codes
+          </span>
+
+          <span>
+            ›
+          </span>
+        </button>
+
+
+        <button
+          type="button"
+          class="account-menu-row"
+          onclick="
+            toast('Settings coming soon.')
+          "
+        >
+          <span>
+            Settings
+          </span>
+
+          <span>
+            ›
+          </span>
+        </button>
+
+
+        <button
+          type="button"
+          class="account-menu-row"
+          onclick="
+            toast('Privacy information coming soon.')
+          "
+        >
+          <span>
+            Privacy
+          </span>
+
+          <span>
+            ›
+          </span>
+        </button>
+
+
+        <button
+          type="button"
+          class="account-menu-row"
+          onclick="
+            toast('About SefwiGo.')
+          "
+        >
+          <span>
+            About
+          </span>
+
+          <span>
+            ›
+          </span>
+        </button>
+
+
+        <button
+          type="button"
+          class="account-menu-row"
+          onclick="
+            toast('Support coming soon.')
+          "
+        >
+          <span>
+            Support
+          </span>
+
+          <span>
+            ›
+          </span>
+        </button>
+
+      </div>
+
+
+      <!-- PARTNER WITH SEFWIGO -->
+
+      <div
+        style="
+          padding:18px 0;
+          border-top:1px solid var(--line);
+        "
+      >
+
+        <h3
+          style="
+            margin:0 0 4px;
+          "
+        >
+          Partner with SefwiGo
+        </h3>
+
+
+        <button
+          type="button"
+          class="account-menu-row"
+          onclick="
+            toast('Local Vendor registration coming soon.')
+          "
+        >
+          <span>
+            Local Vendor
+          </span>
+
+          <span>
+            ›
+          </span>
+        </button>
+
+
+        <button
+          type="button"
+          class="account-menu-row"
+          onclick="
+            toast('Restaurant partner registration coming soon.')
+          "
+        >
+          <span>
+            Restaurant partner
+          </span>
+
+          <span>
+            ›
+          </span>
+        </button>
+
+
+        <button
+          type="button"
+          class="account-menu-row"
+          onclick="
+            toast('Grocery / Shop partner registration coming soon.')
+          "
+        >
+          <span>
+            Grocery / Shop partner
+          </span>
+
+          <span>
+            ›
+          </span>
+        </button>
+
+
+        <button
+          type="button"
+          class="account-menu-row"
+          onclick="
+            toast('Home Services partner registration coming soon.')
+          "
+        >
+          <span>
+            Home Services Partner
+          </span>
+
+          <span>
+            ›
+          </span>
+        </button>
+
+
+        <button
+          type="button"
+          class="account-menu-row"
+          onclick="
+            toast('Property partner registration coming soon.')
+          "
+        >
+          <span>
+            Property Partner
+          </span>
+
+          <span>
+            ›
+          </span>
+        </button>
+
+
+        <button
+          type="button"
+          class="account-menu-row"
+          onclick="
+            toast('Parcel partner registration coming soon.')
+          "
+        >
+          <span>
+            Parcel Partner
+          </span>
+
+          <span>
+            ›
+          </span>
+        </button>
+
+      </div>
+
+
+      <!-- COURIER -->
+
+      <div
+        style="
+          padding:18px 0;
+          border-top:1px solid var(--line);
+        "
+      >
+
+        <h3
+          style="
+            margin:0 0 4px;
+          "
+        >
+          Become a courier
+        </h3>
+
+
+        <button
+          type="button"
+          class="account-menu-row"
+          onclick="
+            toast('Courier registration coming soon.')
+          "
+        >
+          <span>
+            Apply as a SefwiGo courier
+          </span>
+
+          <span>
+            ›
+          </span>
+        </button>
+
+      </div>
+
+
+      <!-- SIGN OUT -->
+
+      <div
+        style="
+          padding:18px 0 4px;
+          border-top:1px solid var(--line);
         "
       >
 
         <button
-          class="submit"
-          onclick="
-            closeModal('accountModal');
-            openCustomerDashboard()
-          "
-        >
-          👤 My Customer Account
-        </button>
-
-
-        <button
-          class="small"
-          onclick="
-            openOrders();
-            closeModal('accountModal')
-          "
-        >
-          📋 My Orders
-        </button>
-
-
-        <button
-          class="small"
-          onclick="
-            openCart();
-            closeModal('accountModal')
-          "
-        >
-          🛒 My Cart
-        </button>
-
-
-        <button
-          class="small"
-          onclick="
-            closeModal('accountModal');
-            scrollToId('property')
-          "
-        >
-          🏡 Properties
-        </button>
-
-
-        <button
-          class="small"
-          onclick="
-            closeModal('accountModal');
-            scrollToId('businesses')
-          "
-        >
-          🏪 Browse Businesses
-        </button>
-
-
-        <button
+          type="button"
           class="small danger"
+          style="width:100%"
           onclick="logoutAccount()"
         >
           Sign Out
@@ -2746,146 +3334,9 @@ function renderAccount(){
 
       </div>
 
-
-      <div
-        class="dash"
-        style="margin-top:15px"
-      >
-
-        <h3 style="margin-top:0">
-          Your profile
-        </h3>
-
-        <p class="help">
-
-          <b>
-            Name
-          </b>
-
-          <br>
-
-          ${esc(
-            u.displayName ||
-            localStorage.getItem(
-              "sefwiUserName"
-            ) ||
-            "Customer"
-          )}
-
-          <br><br>
-
-          <b>
-            Email
-          </b>
-
-          <br>
-
-          ${esc(u.email || "")}
-
-        </p>
-
-      </div>
-
     </div>
 
   `;
-
-
-  /*
-    Load Firestore profile in the background.
-    The Account screen is already visible,
-    so it cannot get stuck waiting for Firestore.
-  */
-
-  profile()
-    .then(p=>{
-
-      if(!p)return;
-
-      const name =
-        p.name ||
-        u.displayName ||
-        "Customer";
-
-      const phone =
-        p.phone ||
-        "Not added yet";
-
-      const customerId =
-        p.customerId ||
-        "Not assigned yet";
-
-
-      const profileBox =
-        $("accountBody")
-          ?.querySelector(".dash");
-
-      if(!profileBox)return;
-
-
-      profileBox.innerHTML=`
-
-        <h3 style="margin-top:0">
-          Your profile
-        </h3>
-
-        <p class="help">
-
-          <b>
-            Name
-          </b>
-
-          <br>
-
-          ${esc(name)}
-
-          <br><br>
-
-          <b>
-            Phone
-          </b>
-
-          <br>
-
-          ${esc(phone)}
-
-          <br><br>
-
-          <b>
-            Email
-          </b>
-
-          <br>
-
-          ${esc(
-            p.email ||
-            u.email ||
-            ""
-          )}
-
-          <br><br>
-
-          <b>
-            Customer ID
-          </b>
-
-          <br>
-
-          ${esc(customerId)}
-
-        </p>
-
-      `;
-
-    })
-    .catch(e=>{
-
-      console.warn(
-        "Could not load customer profile.",
-        e
-      );
-
-    });
 
 }
 
