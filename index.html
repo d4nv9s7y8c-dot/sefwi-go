@@ -2522,21 +2522,26 @@ async function saveProfile(
       {
         uid:auth.currentUser.uid,
 
-        customerId:customerId,
+        customerId:
+          customerId || "",
 
-        name:name,
+        name:
+          name || "",
 
-        phone:phone,
+        phone:
+          phone || "",
 
-        email:email,
+        email:
+          email || auth.currentUser.email || "",
 
-        accountType:"customer",
+        accountType:
+          "customer",
 
-        identityVerificationStatus:"not_started",
+        identityVerificationStatus:
+          "not_started",
 
-        createdAt:ff.serverTimestamp(),
-
-        updatedAt:ff.serverTimestamp()
+        updatedAt:
+          ff.serverTimestamp()
       },
       {
         merge:true
@@ -2547,7 +2552,10 @@ async function saveProfile(
 
   catch(e){
 
-    console.warn(e);
+    console.error(
+      "Could not save customer profile:",
+      e
+    );
 
   }
 
