@@ -2575,6 +2575,247 @@ function openAccount(){
 }
 
 
+/* =========================
+   CUSTOMER LOGIN SCREEN
+========================= */
+
+window.showCustomerLogin=function(){
+
+  $("accountBody").innerHTML=`
+
+    <div style="padding:8px 0 20px">
+
+      <h2
+        style="
+          margin:0 0 8px;
+          font-size:28px;
+          font-weight:800;
+        "
+      >
+        Sign In
+      </h2>
+
+      <p class="help">
+        Sign in to your SefwiGo customer account.
+      </p>
+
+
+      <div class="form">
+
+        <div class="field full">
+
+          <label>
+            Email
+          </label>
+
+          <input
+            id="loginEmail"
+            type="email"
+            autocomplete="email"
+            placeholder="you@example.com"
+          >
+
+        </div>
+
+
+        <div class="field full">
+
+          <label>
+            Password
+          </label>
+
+          <input
+            id="loginPass"
+            type="password"
+            autocomplete="current-password"
+            placeholder="Your password"
+          >
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="submit"
+        style="margin-top:14px"
+        onclick="login()"
+      >
+        Sign In
+      </button>
+
+
+      <button
+        class="link"
+        style="width:100%;padding:12px"
+        onclick="resetPass()"
+      >
+        Forgot password?
+      </button>
+
+
+      <button
+        type="button"
+        onclick="showCustomerSignup()"
+        style="
+          width:100%;
+          padding:12px;
+          border:0;
+          background:none;
+          color:var(--accent);
+          font-weight:800;
+        "
+      >
+        Create a new customer account
+      </button>
+
+    </div>
+
+  `;
+
+};
+
+
+/* =========================
+   CUSTOMER SIGNUP SCREEN
+========================= */
+
+window.showCustomerSignup=function(){
+
+  $("accountBody").innerHTML=`
+
+    <div style="padding:8px 0 20px">
+
+      <h2
+        style="
+          margin:0 0 8px;
+          font-size:28px;
+          font-weight:800;
+        "
+      >
+        Create Customer Account
+      </h2>
+
+      <p class="help">
+        Create your SefwiGo customer account.
+      </p>
+
+
+      <div class="form">
+
+        <div class="field full">
+
+          <label>
+            Full name *
+          </label>
+
+          <input
+            id="signupName"
+            autocomplete="name"
+            placeholder="Your full name"
+          >
+
+        </div>
+
+
+        <div class="field full">
+
+          <label>
+            Phone number *
+          </label>
+
+          <input
+            id="signupPhone"
+            type="tel"
+            inputmode="tel"
+            autocomplete="tel"
+            placeholder="+233..."
+          >
+
+        </div>
+
+
+        <div class="field full">
+
+          <label>
+            Email *
+          </label>
+
+          <input
+            id="signupEmail"
+            type="email"
+            autocomplete="email"
+            placeholder="you@example.com"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Password *
+          </label>
+
+          <input
+            id="signupPass"
+            type="password"
+            autocomplete="new-password"
+            placeholder="At least 6 characters"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Confirm password *
+          </label>
+
+          <input
+            id="signupPass2"
+            type="password"
+            autocomplete="new-password"
+            placeholder="Repeat password"
+          >
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="submit"
+        style="margin-top:14px"
+        onclick="signup()"
+      >
+        Create SefwiGo Account
+      </button>
+
+
+      <button
+        type="button"
+        onclick="showCustomerLogin()"
+        style="
+          width:100%;
+          padding:12px;
+          border:0;
+          background:none;
+          color:var(--accent);
+          font-weight:800;
+        "
+      >
+        Already have an account? Sign In
+      </button>
+
+    </div>
+
+  `;
+
+};
+
+
 window.openAccount=openAccount;
 
 
