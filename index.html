@@ -3768,6 +3768,10 @@ window.resetPass=async function(){
    LOGOUT
    ========================= */
 
+/* =========================
+   LOGOUT
+========================= */
+
 window.logoutAccount=async function(){
 
   try{
@@ -3785,26 +3789,73 @@ window.logoutAccount=async function(){
 
   }
 
-  catch(e){}
+  catch(e){
 
+    console.warn(
+      "Sign out error:",
+      e
+    );
+
+  }
+
+
+  /* Clear local customer session data */
 
   localStorage.removeItem(
     "sefwiAccountType"
   );
-
 
   localStorage.removeItem(
     "sefwiUserName"
   );
 
 
+  /* Close the current account/dashboard view */
+
   closeModal(
     "accountModal"
+  );
+
+  closeModal(
+    "customerDashboardModal"
   );
 
 
   toast(
     "Signed out."
+  );
+
+
+  /*
+     Re-open the account area and
+     immediately show the login form.
+  */
+
+  setTimeout(
+    ()=>{
+
+      openAccount();
+
+      setTimeout(
+        ()=>{
+
+          if(
+            typeof window.accountTab ===
+            "function"
+          ){
+
+            window.accountTab(
+              "login"
+            );
+
+          }
+
+        },
+        100
+      );
+
+    },
+    250
   );
 
 };
