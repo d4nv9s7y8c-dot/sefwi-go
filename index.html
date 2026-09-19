@@ -2583,61 +2583,35 @@ async function renderAccount(){
   const u = auth?.currentUser;
 
   /* =========================
-     SIGNED OUT ACCOUNT
-     ========================= */
+     SIGNED OUT
+  ========================= */
 
   if(!u){
 
     $("accountBody").innerHTML = `
 
-      <h2 style="margin-top:0">
-        Welcome to SefwiGo
-      </h2>
+      <div style="padding:8px 0 20px">
 
-      <p class="help">
-        Create your free customer account to order food,
-        browse local businesses and track your orders.
-      </p>
+        <h2 style="margin:0 0 8px">
+          Welcome to SefwiGo
+        </h2>
 
-      <div class="tabs">
-
-        <button
-          id="signupTab"
-          class="tab active"
-          onclick="accountTab('signup')"
-        >
-          Create Account
-        </button>
-
-        <button
-          id="loginTab"
-          class="tab"
-          onclick="accountTab('login')"
-        >
-          Sign In
-        </button>
+        <p class="help">
+          Sign in or create a customer account
+          to manage your SefwiGo account.
+        </p>
 
       </div>
 
-      <div id="authArea"></div>
-
     `;
-
-    accountTab("signup");
 
     return;
   }
 
 
   /* =========================
-     CUSTOMER ACCOUNT
-     ========================= */
-
-  localStorage.setItem(
-    "sefwiAccountType",
-    "customer"
-  );
-
+     INITIAL ACCOUNT DATA
+  ========================= */
 
   let name =
     u.displayName ||
@@ -2645,85 +2619,35 @@ async function renderAccount(){
     "Customer";
 
   let email =
-    u.email ||
-    "";
+    u.email || "";
 
-  let phone =
-    "";
+  let phone = "";
 
-  let customerId =
-    "";
+  let customerId = "";
 
+  let paymentMethod = "";
 
-  /* =========================
-     LOAD CUSTOMER PROFILE
-     ========================= */
-
-  try{
-
-    if(db){
-
-      const snap =
-        await ff.getDoc(
-          ff.doc(
-            db,
-            "users",
-            u.uid
-          )
-        );
-
-      if(snap.exists()){
-
-        const p =
-          snap.data();
-
-        name =
-          p.name ||
-          name;
-
-        email =
-          p.email ||
-          email;
-
-        phone =
-          p.phone ||
-          "";
-
-        customerId =
-          p.customerId ||
-          "";
-
-      }
-
-    }
-
-  }
-
-  catch(e){
-
-    console.warn(
-      "Could not load customer profile:",
-      e
-    );
-
-  }
+  let paymentNumber = "";
 
 
   /* =========================
-     ACCOUNT PAGE
-     ========================= */
+     ACCOUNT UI
+  ========================= */
 
-  $("accountBody").innerHTML = `
+  function drawAccount(){
 
-    <div
-      style="
-        display:flex;
-        flex-direction:column;
-        gap:0;
-      "
-    >
+    const paymentText =
+      paymentMethod
+        ? paymentMethod
+        : "No payment method added";
 
-      <!-- GREETING -->
+    const paymentAction =
+      paymentMethod
+        ? "Change"
+        : "Add";
+
+
+    $("accountBody").innerHTML = `
 
       <div
         style="
@@ -2735,6 +2659,7 @@ async function renderAccount(){
           style="
             margin:0;
             font-size:28px;
+            font-weight:800;
           "
         >
           Hello, ${esc(name)}
@@ -2752,11 +2677,7 @@ async function renderAccount(){
         "
       >
 
-        <h3
-          style="
-            margin:0 0 10px;
-          "
-        >
+        <h3 style="margin:0 0 8px">
           Favourites
         </h3>
 
@@ -2784,37 +2705,65 @@ async function renderAccount(){
         "
       >
 
-        <h3
-          style="
-            margin:0 0 12px;
-          "
-        >
+        <h3 style="margin:0 0 10px">
           Payment
         </h3>
 
         <div
           style="
             display:flex;
-            align-items:center;
             justify-content:space-between;
+            align-items:center;
             gap:12px;
           "
         >
 
-          <strong>
-            MTN Mobile Money
-          </strong>
+          <div>
+
+            <strong>
+              ${esc(paymentText)}
+            </strong>
+
+            ${
+              paymentNumber
+              ? `
+                <div
+                  style="
+                    margin-top:4px;
+                    color:var(--muted);
+                    font-size:13px;
+                  "
+                >
+                  ${esc(paymentNumber)}
+                </div>
+              `
+              : `
+                <div
+                  style="
+                    margin-top:4px;
+                    color:var(--muted);
+                    font-size:13px;
+                  "
+                >
+                  Optional
+                </div>
+              `
+            }
+
+          </div>
 
           <button
             type="button"
-            class="link"
-            onclick="
-              toast(
-                'Payment settings coming soon.'
-              )
+            onclick="openPaymentOptions()"
+            style="
+              border:0;
+              background:none;
+              color:var(--accent);
+              font-weight:800;
+              cursor:pointer;
             "
           >
-            Change
+            ${paymentAction}
           </button>
 
         </div>
@@ -2822,7 +2771,7 @@ async function renderAccount(){
       </div>
 
 
-      <!-- BALANCE -->
+      <!-- BOLT BALANCE -->
 
       <div
         style="
@@ -2831,22 +2780,17 @@ async function renderAccount(){
         "
       >
 
-        <h3
-          style="
-            margin:0 0 8px;
-          "
-        >
+        <h3 style="margin:0 0 8px">
           Bolt Balance
         </h3>
 
-        <div
+        <strong
           style="
             font-size:22px;
-            font-weight:900;
           "
         >
           GHC 0.00
-        </div>
+        </strong>
 
       </div>
 
@@ -2860,24 +2804,19 @@ async function renderAccount(){
         "
       >
 
-        <h3
-          style="
-            margin:0 0 8px;
-          "
-        >
+        <h3 style="margin:0 0 6px">
           Profile
         </h3>
 
 
-        <!-- NAME -->
-
         <div
           style="
             display:flex;
-            align-items:center;
             justify-content:space-between;
+            align-items:center;
             gap:12px;
-            padding:12px 0;
+            padding:13px 0;
+            border-bottom:1px solid var(--line);
           "
         >
 
@@ -2887,8 +2826,13 @@ async function renderAccount(){
 
           <button
             type="button"
-            class="link"
             onclick="editCustomerName()"
+            style="
+              border:0;
+              background:none;
+              color:var(--accent);
+              font-weight:800;
+            "
           >
             Edit
           </button>
@@ -2896,15 +2840,14 @@ async function renderAccount(){
         </div>
 
 
-        <!-- PHONE -->
-
         <div
           style="
             display:flex;
-            align-items:center;
             justify-content:space-between;
+            align-items:center;
             gap:12px;
-            padding:12px 0;
+            padding:13px 0;
+            border-bottom:1px solid var(--line);
           "
         >
 
@@ -2917,8 +2860,13 @@ async function renderAccount(){
 
           <button
             type="button"
-            class="link"
             onclick="editCustomerPhone()"
+            style="
+              border:0;
+              background:none;
+              color:var(--accent);
+              font-weight:800;
+            "
           >
             Edit
           </button>
@@ -2926,15 +2874,14 @@ async function renderAccount(){
         </div>
 
 
-        <!-- CUSTOMER ID -->
-
         <div
           style="
             display:flex;
-            align-items:center;
             justify-content:space-between;
+            align-items:center;
             gap:12px;
-            padding:12px 0;
+            padding:13px 0;
+            border-bottom:1px solid var(--line);
           "
         >
 
@@ -2944,8 +2891,9 @@ async function renderAccount(){
 
           <span
             style="
-              font-weight:700;
               color:var(--muted);
+              font-weight:700;
+              font-size:13px;
             "
           >
             ${esc(
@@ -2957,15 +2905,13 @@ async function renderAccount(){
         </div>
 
 
-        <!-- EMAIL -->
-
         <div
           style="
             display:flex;
-            align-items:center;
             justify-content:space-between;
+            align-items:center;
             gap:12px;
-            padding:12px 0;
+            padding:13px 0;
           "
         >
 
@@ -2979,8 +2925,13 @@ async function renderAccount(){
 
           <button
             type="button"
-            class="link"
             onclick="editCustomerEmail()"
+            style="
+              border:0;
+              background:none;
+              color:var(--accent);
+              font-weight:800;
+            "
           >
             Edit
           </button>
@@ -2999,11 +2950,7 @@ async function renderAccount(){
         "
       >
 
-        <h3
-          style="
-            margin:0 0 12px;
-          "
-        >
+        <h3 style="margin:0 0 10px">
           Theme
         </h3>
 
@@ -3011,15 +2958,19 @@ async function renderAccount(){
           style="
             display:flex;
             gap:8px;
-            flex-wrap:wrap;
           "
         >
 
           <button
             type="button"
-            class="small"
-            onclick="
-              toast('System theme selected.')
+            onclick="setAccountTheme('system')"
+            style="
+              flex:1;
+              padding:10px;
+              border:1px solid var(--line);
+              border-radius:10px;
+              background:transparent;
+              color:inherit;
             "
           >
             System
@@ -3027,9 +2978,14 @@ async function renderAccount(){
 
           <button
             type="button"
-            class="small"
-            onclick="
-              toast('Light theme selected.')
+            onclick="setAccountTheme('light')"
+            style="
+              flex:1;
+              padding:10px;
+              border:1px solid var(--line);
+              border-radius:10px;
+              background:transparent;
+              color:inherit;
             "
           >
             Light
@@ -3037,9 +2993,14 @@ async function renderAccount(){
 
           <button
             type="button"
-            class="small"
-            onclick="
-              toast('Dark theme selected.')
+            onclick="setAccountTheme('dark')"
+            style="
+              flex:1;
+              padding:10px;
+              border:1px solid var(--line);
+              border-radius:10px;
+              background:transparent;
+              color:inherit;
             "
           >
             Dark
@@ -3059,98 +3020,20 @@ async function renderAccount(){
         "
       >
 
-        <h3
-          style="
-            margin:0 0 4px;
-          "
-        >
+        <h3 style="margin:0 0 4px">
           Other
         </h3>
 
 
-        <button
-          type="button"
-          class="account-menu-row"
-          onclick="
-            toast('Promo codes coming soon.')
-          "
-        >
-          <span>
-            Promo codes
-          </span>
+        ${accountRow("Promo codes","openPromoCodes()")}
 
-          <span>
-            ›
-          </span>
-        </button>
+        ${accountRow("Settings","openAccountSettings()")}
 
+        ${accountRow("Privacy","openPrivacy()")}
 
-        <button
-          type="button"
-          class="account-menu-row"
-          onclick="
-            toast('Settings coming soon.')
-          "
-        >
-          <span>
-            Settings
-          </span>
+        ${accountRow("About","openAbout()")}
 
-          <span>
-            ›
-          </span>
-        </button>
-
-
-        <button
-          type="button"
-          class="account-menu-row"
-          onclick="
-            toast('Privacy information coming soon.')
-          "
-        >
-          <span>
-            Privacy
-          </span>
-
-          <span>
-            ›
-          </span>
-        </button>
-
-
-        <button
-          type="button"
-          class="account-menu-row"
-          onclick="
-            toast('About SefwiGo.')
-          "
-        >
-          <span>
-            About
-          </span>
-
-          <span>
-            ›
-          </span>
-        </button>
-
-
-        <button
-          type="button"
-          class="account-menu-row"
-          onclick="
-            toast('Support coming soon.')
-          "
-        >
-          <span>
-            Support
-          </span>
-
-          <span>
-            ›
-          </span>
-        </button>
+        ${accountRow("Support","openSupport()")}
 
       </div>
 
@@ -3164,115 +3047,40 @@ async function renderAccount(){
         "
       >
 
-        <h3
-          style="
-            margin:0 0 4px;
-          "
-        >
+        <h3 style="margin:0 0 8px">
           Partner with SefwiGo
         </h3>
 
 
-        <button
-          type="button"
-          class="account-menu-row"
-          onclick="
-            toast('Local Vendor registration coming soon.')
-          "
-        >
-          <span>
-            Local Vendor
-          </span>
+        ${accountRow(
+          "Local Vendor",
+          "openPartnerRegistration('vendor')"
+        )}
 
-          <span>
-            ›
-          </span>
-        </button>
+        ${accountRow(
+          "Restaurant partner",
+          "openPartnerRegistration('restaurant')"
+        )}
 
+        ${accountRow(
+          "Grocery / Shop partner",
+          "openPartnerRegistration('grocery')"
+        )}
 
-        <button
-          type="button"
-          class="account-menu-row"
-          onclick="
-            toast('Restaurant partner registration coming soon.')
-          "
-        >
-          <span>
-            Restaurant partner
-          </span>
+        ${accountRow(
+          "Home Services partner",
+          "openPartnerRegistration('home-services')"
+        )}
 
-          <span>
-            ›
-          </span>
-        </button>
+        ${accountRow(
+          "Property partner",
+          "openPartnerRegistration('property')"
+        )}
 
-
-        <button
-          type="button"
-          class="account-menu-row"
-          onclick="
-            toast('Grocery / Shop partner registration coming soon.')
-          "
-        >
-          <span>
-            Grocery / Shop partner
-          </span>
-
-          <span>
-            ›
-          </span>
-        </button>
-
-
-        <button
-          type="button"
-          class="account-menu-row"
-          onclick="
-            toast('Home Services partner registration coming soon.')
-          "
-        >
-          <span>
-            Home Services Partner
-          </span>
-
-          <span>
-            ›
-          </span>
-        </button>
-
-
-        <button
-          type="button"
-          class="account-menu-row"
-          onclick="
-            toast('Property partner registration coming soon.')
-          "
-        >
-          <span>
-            Property Partner
-          </span>
-
-          <span>
-            ›
-          </span>
-        </button>
-
-
-        <button
-          type="button"
-          class="account-menu-row"
-          onclick="
-            toast('Parcel partner registration coming soon.')
-          "
-        >
-          <span>
-            Parcel Partner
-          </span>
-
-          <span>
-            ›
-          </span>
-        </button>
+        ${accountRow(
+          "Parcel partner",
+          "openPartnerRegistration('parcel')"
+        )}
 
       </div>
 
@@ -3286,29 +3094,39 @@ async function renderAccount(){
         "
       >
 
-        <h3
-          style="
-            margin:0 0 4px;
-          "
-        >
+        <h3 style="margin:0 0 8px">
           Become a courier
         </h3>
 
-
         <button
           type="button"
-          class="account-menu-row"
-          onclick="
-            toast('Courier registration coming soon.')
+          onclick="openPartnerRegistration('courier')"
+          style="
+            width:100%;
+            padding:16px;
+            border:0;
+            border-radius:14px;
+            background:var(--accent);
+            color:#fff;
+            text-align:left;
+            font-weight:800;
+            cursor:pointer;
           "
         >
-          <span>
-            Apply as a SefwiGo courier
-          </span>
 
-          <span>
-            ›
-          </span>
+          Apply as a SefwiGo courier
+
+          <div
+            style="
+              margin-top:4px;
+              font-size:13px;
+              opacity:.9;
+              font-weight:500;
+            "
+          >
+            Earn money on your schedule
+          </div>
+
         </button>
 
       </div>
@@ -3318,25 +3136,154 @@ async function renderAccount(){
 
       <div
         style="
-          padding:18px 0 4px;
+          padding:18px 0;
           border-top:1px solid var(--line);
         "
       >
 
         <button
           type="button"
-          class="small danger"
-          style="width:100%"
           onclick="logoutAccount()"
+          style="
+            width:100%;
+            padding:12px;
+            border:1px solid #d9534f;
+            border-radius:12px;
+            background:transparent;
+            color:#d9534f;
+            font-weight:800;
+          "
         >
           Sign Out
         </button>
 
       </div>
 
-    </div>
+    `;
 
-  `;
+  }
+
+
+  /* =========================
+     ACCOUNT ROW HELPER
+  ========================= */
+
+  function accountRow(
+    label,
+    action
+  ){
+
+    return `
+
+      <button
+        type="button"
+        onclick="${action}"
+        style="
+          width:100%;
+          display:flex;
+          justify-content:space-between;
+          align-items:center;
+          padding:15px 0;
+          border:0;
+          border-bottom:1px solid var(--line);
+          background:none;
+          color:inherit;
+          text-align:left;
+          font-size:15px;
+          cursor:pointer;
+        "
+      >
+
+        <span>
+          ${esc(label)}
+        </span>
+
+        <span
+          style="
+            color:var(--muted);
+            font-size:22px;
+          "
+        >
+          ›
+        </span>
+
+      </button>
+
+    `;
+
+  }
+
+
+  /* =========================
+     DRAW IMMEDIATELY
+  ========================= */
+
+  drawAccount();
+
+
+  /* =========================
+     LOAD FIRESTORE PROFILE
+  ========================= */
+
+  if(db){
+
+    ff.getDoc(
+      ff.doc(
+        db,
+        "users",
+        u.uid
+      )
+    )
+
+    .then(function(snap){
+
+      if(!snap.exists()){
+        return;
+      }
+
+      const p =
+        snap.data();
+
+      name =
+        p.name ||
+        name;
+
+      email =
+        p.email ||
+        email;
+
+      phone =
+        p.phone ||
+        "";
+
+      customerId =
+        p.customerId ||
+        "";
+
+      paymentMethod =
+        p.paymentMethod ||
+        "";
+
+      paymentNumber =
+        p.paymentNumber ||
+        "";
+
+      drawAccount();
+
+    })
+
+    .catch(function(e){
+
+      console.warn(
+        "Could not load customer profile:",
+        e
+      );
+
+    });
+
+  }
+
+}
 
 }
 
