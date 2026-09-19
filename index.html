@@ -2604,7 +2604,9 @@ async function renderAccount(){
 
       <p
         class="help"
-        style="margin-bottom:20px"
+        style="
+          margin:0 0 20px;
+        "
       >
         Sign in or create a customer account
         to manage your SefwiGo account.
@@ -2613,10 +2615,7 @@ async function renderAccount(){
 
       <button
         type="button"
-        onclick="
-          closeModal('customerDashboardModal');
-          openAccount();
-        "
+        onclick="showCustomerLogin()"
         style="
           width:100%;
           padding:14px;
@@ -2629,7 +2628,25 @@ async function renderAccount(){
           margin-bottom:10px;
         "
       >
-        Sign In / Create Account
+        Sign In
+      </button>
+
+
+      <button
+        type="button"
+        onclick="showCustomerSignup()"
+        style="
+          width:100%;
+          padding:14px;
+          border:1px solid var(--line);
+          border-radius:12px;
+          background:transparent;
+          color:inherit;
+          font-weight:800;
+          font-size:15px;
+        "
+      >
+        Create Customer Account
       </button>
 
     </div>
